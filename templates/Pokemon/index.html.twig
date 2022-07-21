@@ -1,3 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}Ceci est la page Pokemon{% endblock %}
+{% block title %}Liste des pokémons{% endblock title %}
+
+{% block container %}
+<table class="striped centered responsive-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Icon</th>
+            <th>Shiny Icon</th>
+            <th>Origin Generation</th>
+            <th>Origin Game Bundle</th>
+            <th>Family</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pokemon in list %}
+        <tr id="{{ pokemon.slug }}">
+            <td>{{ pokemon.nationalDexNumber }}</td>
+            <td>{{ pokemon.name }}</td>
+            {% apply spaceless %}
+            <td>{{ _self.regularIcon(pokemon) }}</td>
+            <td>{{ _self.shinyIcon(pokemon) }}</td>
+            {% endapply %}
+            <td>{{ pokemon.originalGameBundle.generation.name }}</td>
+            <td>{{ pokemon.originalGameBundle.name }}</td>
+            {% apply spaceless %}
+            <td>
+                {% if pokemon.family is defined %}
+                    <a href="#{{ pokemon.family.slug }}">{{ pokemon.family.name }}</a>
+                {% endif %}
+            </td>
+            {% endapply %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock container %}
+
+{% macro regularIcon(pokemon) %}
+    {{ _self.icon(pokemon, 'regular', 'Icon') }}
+{% endmacro %}
+{% macro shinyIcon(pokemon) %}
+    {{ _self.icon(pokemon, 'shiny', 'Shiny icon') }}
+{% endmacro %}
+{% macro icon(pokemon, dir, alt) %}
+    {% set iconBaseUrl = 'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8' %}
+    {% set iconUrl = (pokemon.nationalDexNumber == 0 or (pokemon.family is defined and pokemon.family.nationalDexNumber == 0))
+        ? iconBaseUrl~'/'~pokemon.iconName~'.png'
+        : iconBaseUrl~'/'~dir~'/'~pokemon.iconName~'.png'
+    %}
+    <img
+        src="{{ iconUrl }}"
+        alt="{{ alt }} of {{ pokemon.name }}"
+    />
+{% endmacro %}

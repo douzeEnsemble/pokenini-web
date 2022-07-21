@@ -58,9 +58,23 @@ services:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
 
+  moco:
+    build:
+      context: docker/moco
+    volumes:
+      - ./tests/resources/moco/:/var/moco:ro
+    networks:
+      default:
+        aliases:
+          - pkmn-lagd-api.local
+
 volumes:
   php_socket:
   caddy_data:
   caddy_config:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
+
+networks:
+  default:
+    driver: overlay

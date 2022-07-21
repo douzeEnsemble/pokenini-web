@@ -1,0 +1,10 @@
+[
+  {
+    "request": {
+      "uri": "/pokemon"
+    },
+    "response" : {
+      "file": "/var/moco/pokemon.json"
+    }
+  }
+]

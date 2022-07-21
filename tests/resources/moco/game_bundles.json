@@ -1,0 +1,104 @@
+[
+  {
+    "generation": {
+      "name": "1"
+    },
+    "name": "Red, Green, Blue, Yellow"
+  },
+  {
+    "generation": {
+      "name": "2"
+    },
+    "name": "Gold, Silver, Crystal"
+  },
+  {
+    "generation": {
+      "name": "3"
+    },
+    "name": "Ruby, Sapphire, Emerald"
+  },
+  {
+    "generation": {
+      "name": "3"
+    },
+    "name": "RedFire, LeafGreen"
+  },
+  {
+    "generation": {
+      "name": "4"
+    },
+    "name": "Diamond, Pearl, Platinium"
+  },
+  {
+    "generation": {
+      "name": "4"
+    },
+    "name": "Heart Gold, Soul Silver"
+  },
+  {
+    "generation": {
+      "name": "5"
+    },
+    "name": "Black, White"
+  },
+  {
+    "generation": {
+      "name": "5"
+    },
+    "name": "Black 2, White 2"
+  },
+  {
+    "generation": {
+      "name": "6"
+    },
+    "name": "X, Y"
+  },
+  {
+    "generation": {
+      "name": "6"
+    },
+    "name": "Omega Ruby, Alpha Sapphire"
+  },
+  {
+    "generation": {
+      "name": "7"
+    },
+    "name": "Sun, Moon"
+  },
+  {
+    "generation": {
+      "name": "7"
+    },
+    "name": "Ultra Sun, Ultra Moon"
+  },
+  {
+    "generation": {
+      "name": "7"
+    },
+    "name": "Let's Go Pikachu, Let's Go Eevee"
+  },
+  {
+    "generation": {
+      "name": "7"
+    },
+    "name": "Pokemon Go"
+  },
+  {
+    "generation": {
+      "name": "8"
+    },
+    "name": "Sword, Shield"
+  },
+  {
+    "generation": {
+      "name": "8"
+    },
+    "name": "Brilland Diamond, Shining Pearl"
+  },
+  {
+    "generation": {
+      "name": "8"
+    },
+    "name": "Legend Arceus"
+  }
+]

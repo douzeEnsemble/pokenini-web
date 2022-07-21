@@ -7,13 +7,28 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-        {% endblock %}
 
-        {% block javascripts %}
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <!-- Compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        {% endblock stylesheets %}
+
+        {% block head_javascripts %}
             {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        {% endblock head_javascripts %}
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        <div class="container">
+            {% block container %}{% endblock container %}
+        </div>
+        {% endblock body %}
+        {% block foot_javascript %}
+            <!-- Compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script><!--Import Google Icon Font-->
+        {% endblock foot_javascript %}
     </body>
 </html>
