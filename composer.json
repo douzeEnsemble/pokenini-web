@@ -75,10 +75,11 @@
         }
     },
     "require-dev": {
+        "ext-dom": "*",
+        "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.1.*",
         "symfony/css-selector": "6.1.*",
-        "symfony/phpunit-bridge": "^6.1",
-        "ext-dom": "*"
+        "symfony/phpunit-bridge": "^6.1"
     }
 }

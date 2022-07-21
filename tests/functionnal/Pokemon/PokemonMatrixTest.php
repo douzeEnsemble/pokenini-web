@@ -99,48 +99,48 @@ class PokemonMatrixTest extends WebTestCase
     ): void {
         $crawler = $mainCrawler->filter('table tbody tr:nth-child('.$rowIndex.') td:nth-child('.$columnIndex.')');
         // To be sure there is only img tag node and no empty text node
-        $this->assertCount(1, $crawler->getNode(0)->childNodes);
+        $this->assertEquals(1, $crawler->getNode(0)?->childNodes->count());
 
-        $imgNode = $crawler->getNode(0)->childNodes->item(0);
-        $this->assertEquals('img', $imgNode->nodeName);
+        $imgNode = $crawler->getNode(0)?->childNodes->item(0);
+        $this->assertEquals('img', $imgNode?->nodeName);
         $this->assertEquals(
             "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/{$imageEndPath}",
-            $imgNode->getAttribute('src')
+            $imgNode?->attributes?->getNamedItem('src')?->textContent
         );
         $this->assertStringContainsString(
             $expectedAlt,
-            $imgNode->getAttribute('alt')
+            $imgNode?->attributes?->getNamedItem('alt')?->textContent ?? ''
         );
     }
 
-    private function assertTrHasId(Crawler $mainCrawler, int $rowIndex, string $expectedValue)
+    private function assertTrHasId(Crawler $mainCrawler, int $rowIndex, string $expectedValue): void
     {
         $crawler = $mainCrawler->filter('table tbody tr:nth-child('.$rowIndex.')');
 
         $tr = $crawler->getNode(0);
 
-        $this->assertEquals($expectedValue, $tr->getAttribute('id'));
+        $this->assertEquals($expectedValue, $tr?->attributes?->getNamedItem('id')?->textContent);
     }
 
-    private function assertFamilyLink(Crawler $mainCrawler, int $rowIndex, string $expectedValue)
+    private function assertFamilyLink(Crawler $mainCrawler, int $rowIndex, string $expectedValue): void
     {
         $crawler = $mainCrawler->filter('table tbody tr:nth-child('.$rowIndex.') td:nth-child(7)');
 
         $tdElement = $crawler->getNode(0);
 
-        $this->assertCount(1, $tdElement->childNodes);
+        $this->assertEquals(1, $tdElement?->childNodes->count());
 
-        $familyLink = $tdElement->childNodes->item(0);
+        $familyLink = $tdElement?->childNodes->item(0);
 
-        $this->assertEquals("#{$expectedValue}", $familyLink->getAttribute('href'));
+        $this->assertEquals("#{$expectedValue}", $familyLink?->attributes?->getNamedItem('href')?->textContent);
     }
 
-    private function assertHasNoFamilyLink(Crawler $mainCrawler, int $rowIndex)
+    private function assertHasNoFamilyLink(Crawler $mainCrawler, int $rowIndex): void
     {
         $crawler = $mainCrawler->filter('table tbody tr:nth-child('.$rowIndex.') td:nth-child(7)');
 
         $tdElement = $crawler->getNode(0);
 
-        $this->assertEquals('', $tdElement->textContent);
+        $this->assertEquals('', $tdElement?->textContent);
     }
 }
