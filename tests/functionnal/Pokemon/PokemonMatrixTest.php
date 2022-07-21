@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Tests\functionnal;
+
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -97,7 +99,9 @@ class PokemonMatrixTest extends WebTestCase
         string $imageEndPath,
         string $expectedAlt,
     ): void {
-        $crawler = $mainCrawler->filter('table tbody tr:nth-child('.$rowIndex.') td:nth-child('.$columnIndex.')');
+        $crawler = $mainCrawler->filter(
+            'table tbody tr:nth-child(' . $rowIndex . ') td:nth-child(' . $columnIndex . ')'
+        );
         // To be sure there is only img tag node and no empty text node
         $this->assertEquals(1, $crawler->getNode(0)?->childNodes->count());
 
@@ -115,7 +119,7 @@ class PokemonMatrixTest extends WebTestCase
 
     private function assertTrHasId(Crawler $mainCrawler, int $rowIndex, string $expectedValue): void
     {
-        $crawler = $mainCrawler->filter('table tbody tr:nth-child('.$rowIndex.')');
+        $crawler = $mainCrawler->filter('table tbody tr:nth-child(' . $rowIndex . ')');
 
         $tr = $crawler->getNode(0);
 
@@ -124,7 +128,7 @@ class PokemonMatrixTest extends WebTestCase
 
     private function assertFamilyLink(Crawler $mainCrawler, int $rowIndex, string $expectedValue): void
     {
-        $crawler = $mainCrawler->filter('table tbody tr:nth-child('.$rowIndex.') td:nth-child(7)');
+        $crawler = $mainCrawler->filter('table tbody tr:nth-child(' . $rowIndex . ') td:nth-child(7)');
 
         $tdElement = $crawler->getNode(0);
 
@@ -137,7 +141,7 @@ class PokemonMatrixTest extends WebTestCase
 
     private function assertHasNoFamilyLink(Crawler $mainCrawler, int $rowIndex): void
     {
-        $crawler = $mainCrawler->filter('table tbody tr:nth-child('.$rowIndex.') td:nth-child(7)');
+        $crawler = $mainCrawler->filter('table tbody tr:nth-child(' . $rowIndex . ') td:nth-child(7)');
 
         $tdElement = $crawler->getNode(0);
 
