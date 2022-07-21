@@ -30,8 +30,8 @@ class PokemonMatrixTest extends WebTestCase
         );
         $this->assertTrHasId($mainCrawler, 1, 'egg');
         $this->assertHasNoFamilyLink($mainCrawler, 1);
-        $this->assertRegularIconImage($mainCrawler, 1, 'egg', false);
-        $this->assertShinyIconImage($mainCrawler, 1, 'egg', false);
+        $this->assertNonPokemonRegularIconImage($mainCrawler, 1, 'egg');
+        $this->assertNonPokemonShinyIconImage($mainCrawler, 1, 'egg');
 
         $this->assertSelectorTextSame(
             'table tbody tr:nth-child(2)',
@@ -39,8 +39,8 @@ class PokemonMatrixTest extends WebTestCase
         );
         $this->assertTrHasId($mainCrawler, 2, 'bulbasaur');
         $this->assertHasNoFamilyLink($mainCrawler, 2);
-        $this->assertRegularIconImage($mainCrawler, 2, 'bulbasaur');
-        $this->assertShinyIconImage($mainCrawler, 2, 'bulbasaur');
+        $this->assertPokemonRegularIconImage($mainCrawler, 2, 'bulbasaur');
+        $this->assertPokemonShinyIconImage($mainCrawler, 2, 'bulbasaur');
 
         $this->assertSelectorTextSame(
             'table tbody tr:nth-child(12)',
@@ -48,8 +48,8 @@ class PokemonMatrixTest extends WebTestCase
         );
         $this->assertTrHasId($mainCrawler, 12, 'charizard-mega-y');
         $this->assertFamilyLink($mainCrawler, 12, 'charmander');
-        $this->assertRegularIconImage($mainCrawler, 12, 'charizard-mega-y');
-        $this->assertShinyIconImage($mainCrawler, 12, 'charizard-mega-y');
+        $this->assertPokemonRegularIconImage($mainCrawler, 12, 'charizard-mega-y');
+        $this->assertPokemonShinyIconImage($mainCrawler, 12, 'charizard-mega-y');
 
         $this->assertSelectorTextSame(
             'table tbody tr:nth-child(120)',
@@ -57,8 +57,8 @@ class PokemonMatrixTest extends WebTestCase
         );
         $this->assertTrHasId($mainCrawler, 120, 'golduck-alpha');
         $this->assertFamilyLink($mainCrawler, 120, 'psyduck');
-        $this->assertRegularIconImage($mainCrawler, 120, 'golduck');
-        $this->assertShinyIconImage($mainCrawler, 120, 'golduck');
+        $this->assertPokemonRegularIconImage($mainCrawler, 120, 'golduck');
+        $this->assertPokemonShinyIconImage($mainCrawler, 120, 'golduck');
 
         $this->assertSelectorTextSame(
             'table tbody tr:nth-child(1200)',
@@ -66,30 +66,40 @@ class PokemonMatrixTest extends WebTestCase
         );
         $this->assertTrHasId($mainCrawler, 1200, 'ferrothorn');
         $this->assertFamilyLink($mainCrawler, 1200, 'ferroseed');
-        $this->assertRegularIconImage($mainCrawler, 1200, 'ferrothorn');
-        $this->assertShinyIconImage($mainCrawler, 1200, 'ferrothorn');
+        $this->assertPokemonRegularIconImage($mainCrawler, 1200, 'ferrothorn');
+        $this->assertPokemonShinyIconImage($mainCrawler, 1200, 'ferrothorn');
     }
 
-    private function assertRegularIconImage(
+    private function assertPokemonRegularIconImage(
         Crawler $mainCrawler,
         int $rowIndex,
-        string $iconName,
-        bool $hasSubdir = true
+        string $iconName
     ): void {
-        $iconPath = $hasSubdir ? "regular/{$iconName}.png" : "{$iconName}.png";
-
-        $this->assertIconImage($mainCrawler, 3, $rowIndex, $iconPath, 'Icon of ');
+        $this->assertIconImage($mainCrawler, 3, $rowIndex, "regular/{$iconName}.png", 'Icon of ');
     }
 
-    private function assertShinyIconImage(
+    private function assertNonPokemonRegularIconImage(
         Crawler $mainCrawler,
         int $rowIndex,
-        string $iconName,
-        bool $hasSubdir = true
+        string $iconName
     ): void {
-        $iconPath = $hasSubdir ? "shiny/{$iconName}.png" : "{$iconName}.png";
+        $this->assertIconImage($mainCrawler, 3, $rowIndex, "{$iconName}.png", 'Icon of ');
+    }
 
-        $this->assertIconImage($mainCrawler, 4, $rowIndex, $iconPath, 'Shiny icon of ');
+    private function assertPokemonShinyIconImage(
+        Crawler $mainCrawler,
+        int $rowIndex,
+        string $iconName
+    ): void {
+        $this->assertIconImage($mainCrawler, 4, $rowIndex, "shiny/{$iconName}.png", 'Shiny icon of ');
+    }
+
+    private function assertNonPokemonShinyIconImage(
+        Crawler $mainCrawler,
+        int $rowIndex,
+        string $iconName
+    ): void {
+        $this->assertIconImage($mainCrawler, 4, $rowIndex, "{$iconName}.png", 'Shiny icon of ');
     }
 
     private function assertIconImage(
@@ -105,15 +115,15 @@ class PokemonMatrixTest extends WebTestCase
         // To be sure there is only img tag node and no empty text node
         $this->assertEquals(1, $crawler->getNode(0)?->childNodes->count());
 
-        $imgNode = $crawler->getNode(0)?->childNodes->item(0);
-        $this->assertEquals('img', $imgNode?->nodeName);
+        $node = $crawler->getNode(0)?->childNodes->item(0);
+        $this->assertEquals('img', $node?->nodeName);
         $this->assertEquals(
             "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/{$imageEndPath}",
-            $imgNode?->attributes?->getNamedItem('src')?->textContent
+            $node?->attributes?->getNamedItem('src')?->textContent
         );
         $this->assertStringContainsString(
             $expectedAlt,
-            $imgNode?->attributes?->getNamedItem('alt')?->textContent ?? ''
+            $node?->attributes?->getNamedItem('alt')?->textContent ?? ''
         );
     }
 
@@ -121,20 +131,20 @@ class PokemonMatrixTest extends WebTestCase
     {
         $crawler = $mainCrawler->filter('table tbody tr:nth-child(' . $rowIndex . ')');
 
-        $tr = $crawler->getNode(0);
+        $node = $crawler->getNode(0);
 
-        $this->assertEquals($expectedValue, $tr?->attributes?->getNamedItem('id')?->textContent);
+        $this->assertEquals($expectedValue, $node?->attributes?->getNamedItem('id')?->textContent);
     }
 
     private function assertFamilyLink(Crawler $mainCrawler, int $rowIndex, string $expectedValue): void
     {
         $crawler = $mainCrawler->filter('table tbody tr:nth-child(' . $rowIndex . ') td:nth-child(7)');
 
-        $tdElement = $crawler->getNode(0);
+        $node = $crawler->getNode(0);
 
-        $this->assertEquals(1, $tdElement?->childNodes->count());
+        $this->assertEquals(1, $node?->childNodes->count());
 
-        $familyLink = $tdElement?->childNodes->item(0);
+        $familyLink = $node?->childNodes->item(0);
 
         $this->assertEquals("#{$expectedValue}", $familyLink?->attributes?->getNamedItem('href')?->textContent);
     }
@@ -143,8 +153,8 @@ class PokemonMatrixTest extends WebTestCase
     {
         $crawler = $mainCrawler->filter('table tbody tr:nth-child(' . $rowIndex . ') td:nth-child(7)');
 
-        $tdElement = $crawler->getNode(0);
+        $node = $crawler->getNode(0);
 
-        $this->assertEquals('', $tdElement?->textContent);
+        $this->assertEquals('', $node?->textContent);
     }
 }
