@@ -1,17 +1,22 @@
 [
   {
-    "name": "No"
+    "name": "No",
+    "slug": "no"
   },
   {
-    "name": "ToEvolve"
+    "name": "ToEvolve",
+    "slug": "toevolve"
   },
   {
-    "name": "ToBreed"
+    "name": "ToBreed",
+    "slug": "tobreed"
   },
   {
-    "name": "ToTransfer"
+    "name": "ToTransfer",
+    "slug": "totransfer"
   },
   {
-    "name": "Yes"
+    "name": "Yes",
+    "slug": "yes"
   }
 ]

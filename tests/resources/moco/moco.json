@@ -1,10 +1,205 @@
 [
   {
     "request": {
+      "uri": "/catch_states"
+    },
+    "response" : {
+      "file": "/var/moco/catch_states.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/pokemon"
     },
     "response" : {
       "file": "/var/moco/pokemon.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "redgreenblueyellow"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/redgreenblueyellow.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "goldsilvercrystal"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/goldsilvercrystal.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "rubysapphireemerald"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/rubysapphireemerald.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "redfireleafgreen"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/redfireleafgreen.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "diamondpearlplatinium"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/diamondpearlplatinium.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "heartgoldsoulsilver"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/heartgoldsoulsilver.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "blackwhite"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/blackwhite.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "black2white2"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/black2white2.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "xy"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/xy.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "omegarubyalphasapphire"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/omegarubyalphasapphire.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "sunmoon"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/sunmoon.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "ultrasunultramoon"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/ultrasunultramoon.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "letsgopikachuletsgoeevee"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/letsgopikachuletsgoeevee.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "pokemongo"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/homepogo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "swordshield"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/swordshield.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "brillanddiamondshiningpearl"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/brillanddiamondshiningpearl.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "legendarceus"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/legendarceus.json"
     }
   }
 ]

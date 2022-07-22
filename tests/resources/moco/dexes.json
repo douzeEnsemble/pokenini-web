@@ -1,59 +1,78 @@
 [
   {
-    "name": "Red, Green, Blue, Yellow"
+    "name": "Red, Green, Blue, Yellow",
+    "slug": "redgreenblueyellow"
   },
   {
-    "name": "Gold, Silver, Crystal"
+    "name": "Gold, Silver, Crystal",
+    "slug": "goldsilvercrystal"
   },
   {
-    "name": "Ruby, Sapphire, Emerald"
+    "name": "Ruby, Sapphire, Emerald",
+    "slug": "rubysapphireemerald"
   },
   {
-    "name": "RedFire, LeafGreen"
+    "name": "RedFire, LeafGreen",
+    "slug": "redfireleafgreen"
   },
   {
-    "name": "Diamond, Pearl, Platinium"
+    "name": "Diamond, Pearl, Platinium",
+    "slug": "diamondpearlplatinium"
   },
   {
-    "name": "Heart Gold, Soul Silver"
+    "name": "Heart Gold, Soul Silver",
+    "slug": "heartgoldsoulsilver"
   },
   {
-    "name": "Black, White"
+    "name": "Black, White",
+    "slug": "blackwhite"
   },
   {
-    "name": "Black 2, White 2"
+    "name": "Black 2, White 2",
+    "slug": "black2white2"
   },
   {
-    "name": "X, Y"
+    "name": "X, Y",
+    "slug": "xy"
   },
   {
-    "name": "Omega Ruby, Alpha Sapphire"
+    "name": "Omega Ruby, Alpha Sapphire",
+    "slug": "omegarubyalphasapphire"
   },
   {
-    "name": "Sun, Moon"
+    "name": "Sun, Moon",
+    "slug": "sunmoon"
   },
   {
-    "name": "Ultra Sun, Ultra Moon"
+    "name": "Ultra Sun, Ultra Moon",
+    "slug": "ultrasunultramoon"
   },
   {
-    "name": "Let's Go Pikachu, Let's Go Eevee"
+    "name": "Let's Go Pikachu, Let's Go Eevee",
+    "slug": "letsgopikachuletsgoeevee"
   },
   {
-    "name": "Sword, Shield"
+    "name": "Sword, Shield",
+    "slug": "swordshield"
   },
   {
-    "name": "Brilland Diamond, Shining Pearl"
+    "name": "Brilland Diamond, Shining Pearl",
+    "slug": "brillanddiamondshiningpearl"
   },
   {
-    "name": "Legend Arceus"
+    "name": "Legend Arceus",
+    "slug": "legendarceus"
   },
   {
-    "name": "Home"
+    "name": "Home",
+    "slug": "home"
   },
   {
-    "name": "Home Shiny"
+    "name": "Home Shiny",
+    "slug": "homeshiny"
   },
   {
-    "name": "Home Pogo"
+    "name": "Home Pogo",
+    "slug": "homepogo"
   }
 ]

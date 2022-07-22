@@ -1,0 +1,1554 @@
+{
+  "dex": {
+    "name": "Legend Arceus"
+  },
+  "pokemons": [
+    {
+      "pokemon_slug": "pikachu",
+      "pokemon_name": "Pikachu",
+      "pokemon_icon": "pikachu",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "raichu",
+      "pokemon_name": "Raichu",
+      "pokemon_icon": "raichu",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "clefairy",
+      "pokemon_name": "Clefairy",
+      "pokemon_icon": "clefairy",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "clefable",
+      "pokemon_name": "Clefable",
+      "pokemon_icon": "clefable",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "vulpix",
+      "pokemon_name": "Vulpix",
+      "pokemon_icon": "vulpix",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "ninetales",
+      "pokemon_name": "Ninetales",
+      "pokemon_icon": "ninetales",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "zubat",
+      "pokemon_name": "Zubat",
+      "pokemon_icon": "zubat",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "golbat",
+      "pokemon_name": "Golbat",
+      "pokemon_icon": "golbat",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "paras",
+      "pokemon_name": "Paras",
+      "pokemon_icon": "paras",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "parasect",
+      "pokemon_name": "Parasect",
+      "pokemon_icon": "parasect",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "psyduck",
+      "pokemon_name": "Psyduck",
+      "pokemon_icon": "psyduck",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "golduck",
+      "pokemon_name": "Golduck",
+      "pokemon_icon": "golduck",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "abra",
+      "pokemon_name": "Abra",
+      "pokemon_icon": "abra",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "kadabra",
+      "pokemon_name": "Kadabra",
+      "pokemon_icon": "kadabra",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "alakazam",
+      "pokemon_name": "Alakazam",
+      "pokemon_icon": "alakazam",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "machop",
+      "pokemon_name": "Machop",
+      "pokemon_icon": "machop",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "machoke",
+      "pokemon_name": "Machoke",
+      "pokemon_icon": "machoke",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "machamp",
+      "pokemon_name": "Machamp",
+      "pokemon_icon": "machamp",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "tentacool",
+      "pokemon_name": "Tentacool",
+      "pokemon_icon": "tentacool",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "tentacruel",
+      "pokemon_name": "Tentacruel",
+      "pokemon_icon": "tentacruel",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "geodude",
+      "pokemon_name": "Geodude",
+      "pokemon_icon": "geodude",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "graveler",
+      "pokemon_name": "Graveler",
+      "pokemon_icon": "graveler",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "golem",
+      "pokemon_name": "Golem",
+      "pokemon_icon": "golem",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "ponyta",
+      "pokemon_name": "Ponyta",
+      "pokemon_icon": "ponyta",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "rapidash",
+      "pokemon_name": "Rapidash",
+      "pokemon_icon": "rapidash",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "magnemite",
+      "pokemon_name": "Magnemite",
+      "pokemon_icon": "magnemite",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "magneton",
+      "pokemon_name": "Magneton",
+      "pokemon_icon": "magneton",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gastly",
+      "pokemon_name": "Gastly",
+      "pokemon_icon": "gastly",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "haunter",
+      "pokemon_name": "Haunter",
+      "pokemon_icon": "haunter",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gengar",
+      "pokemon_name": "Gengar",
+      "pokemon_icon": "gengar",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "onix",
+      "pokemon_name": "Onix",
+      "pokemon_icon": "onix",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "lickitung",
+      "pokemon_name": "Lickitung",
+      "pokemon_icon": "lickitung",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "rhyhorn",
+      "pokemon_name": "Rhyhorn",
+      "pokemon_icon": "rhyhorn",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "rhydon",
+      "pokemon_name": "Rhydon",
+      "pokemon_icon": "rhydon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "chansey",
+      "pokemon_name": "Chansey",
+      "pokemon_icon": "chansey",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "tangela",
+      "pokemon_name": "Tangela",
+      "pokemon_icon": "tangela",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "mr-mime",
+      "pokemon_name": "Mr. Mime",
+      "pokemon_icon": "mr-mime",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "scyther",
+      "pokemon_name": "Scyther",
+      "pokemon_icon": "scyther",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "electabuzz",
+      "pokemon_name": "Electabuzz",
+      "pokemon_icon": "electabuzz",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "magmar",
+      "pokemon_name": "Magmar",
+      "pokemon_icon": "magmar",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "magikarp",
+      "pokemon_name": "Magikarp",
+      "pokemon_icon": "magikarp",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gyarados",
+      "pokemon_name": "Gyarados",
+      "pokemon_icon": "gyarados",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "eevee",
+      "pokemon_name": "Eevee",
+      "pokemon_icon": "eevee",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "vaporeon",
+      "pokemon_name": "Vaporeon",
+      "pokemon_icon": "vaporeon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "jolteon",
+      "pokemon_name": "Jolteon",
+      "pokemon_icon": "jolteon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "flareon",
+      "pokemon_name": "Flareon",
+      "pokemon_icon": "flareon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "porygon",
+      "pokemon_name": "Porygon",
+      "pokemon_icon": "porygon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "snorlax",
+      "pokemon_name": "Snorlax",
+      "pokemon_icon": "snorlax",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "cyndaquil",
+      "pokemon_name": "Cyndaquil",
+      "pokemon_icon": "cyndaquil",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "quilava",
+      "pokemon_name": "Quilava",
+      "pokemon_icon": "quilava",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "crobat",
+      "pokemon_name": "Crobat",
+      "pokemon_icon": "crobat",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "pichu",
+      "pokemon_name": "Pichu",
+      "pokemon_icon": "pichu",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "cleffa",
+      "pokemon_name": "Cleffa",
+      "pokemon_icon": "cleffa",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "togepi",
+      "pokemon_name": "Togepi",
+      "pokemon_icon": "togepi",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "togetic",
+      "pokemon_name": "Togetic",
+      "pokemon_icon": "togetic",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "sudowoodo",
+      "pokemon_name": "Sudowoodo",
+      "pokemon_icon": "sudowoodo",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "aipom",
+      "pokemon_name": "Aipom",
+      "pokemon_icon": "aipom",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "yanma",
+      "pokemon_name": "Yanma",
+      "pokemon_icon": "yanma",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "espeon",
+      "pokemon_name": "Espeon",
+      "pokemon_icon": "espeon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "umbreon",
+      "pokemon_name": "Umbreon",
+      "pokemon_icon": "umbreon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "murkrow",
+      "pokemon_name": "Murkrow",
+      "pokemon_icon": "murkrow",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "misdreavus",
+      "pokemon_name": "Misdreavus",
+      "pokemon_icon": "misdreavus",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gligar",
+      "pokemon_name": "Gligar",
+      "pokemon_icon": "gligar",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "steelix",
+      "pokemon_name": "Steelix",
+      "pokemon_icon": "steelix",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "scizor",
+      "pokemon_name": "Scizor",
+      "pokemon_icon": "scizor",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "heracross",
+      "pokemon_name": "Heracross",
+      "pokemon_icon": "heracross",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "sneasel",
+      "pokemon_name": "Sneasel",
+      "pokemon_icon": "sneasel",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "teddiursa",
+      "pokemon_name": "Teddiursa",
+      "pokemon_icon": "teddiursa",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "ursaring",
+      "pokemon_name": "Ursaring",
+      "pokemon_icon": "ursaring",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "swinub",
+      "pokemon_name": "Swinub",
+      "pokemon_icon": "swinub",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "piloswine",
+      "pokemon_name": "Piloswine",
+      "pokemon_icon": "piloswine",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "remoraid",
+      "pokemon_name": "Remoraid",
+      "pokemon_icon": "remoraid",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "octillery",
+      "pokemon_name": "Octillery",
+      "pokemon_icon": "octillery",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "mantine",
+      "pokemon_name": "Mantine",
+      "pokemon_icon": "mantine",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "porygon2",
+      "pokemon_name": "Porygon2",
+      "pokemon_icon": "porygon2",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "stantler",
+      "pokemon_name": "Stantler",
+      "pokemon_icon": "stantler",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "elekid",
+      "pokemon_name": "Elekid",
+      "pokemon_icon": "elekid",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "magby",
+      "pokemon_name": "Magby",
+      "pokemon_icon": "magby",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "blissey",
+      "pokemon_name": "Blissey",
+      "pokemon_icon": "blissey",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "wurmple",
+      "pokemon_name": "Wurmple",
+      "pokemon_icon": "wurmple",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "silcoon",
+      "pokemon_name": "Silcoon",
+      "pokemon_icon": "silcoon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "beautifly",
+      "pokemon_name": "Beautifly",
+      "pokemon_icon": "beautifly",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "cascoon",
+      "pokemon_name": "Cascoon",
+      "pokemon_icon": "cascoon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "dustox",
+      "pokemon_name": "Dustox",
+      "pokemon_icon": "dustox",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "ralts",
+      "pokemon_name": "Ralts",
+      "pokemon_icon": "ralts",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "kirlia",
+      "pokemon_name": "Kirlia",
+      "pokemon_icon": "kirlia",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gardevoir",
+      "pokemon_name": "Gardevoir",
+      "pokemon_icon": "gardevoir",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "nosepass",
+      "pokemon_name": "Nosepass",
+      "pokemon_icon": "nosepass",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "roselia",
+      "pokemon_name": "Roselia",
+      "pokemon_icon": "roselia",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "barboach",
+      "pokemon_name": "Barboach",
+      "pokemon_icon": "barboach",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "whiscash",
+      "pokemon_name": "Whiscash",
+      "pokemon_icon": "whiscash",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "duskull",
+      "pokemon_name": "Duskull",
+      "pokemon_icon": "duskull",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "dusclops",
+      "pokemon_name": "Dusclops",
+      "pokemon_icon": "dusclops",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "chimecho",
+      "pokemon_name": "Chimecho",
+      "pokemon_icon": "chimecho",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "snorunt",
+      "pokemon_name": "Snorunt",
+      "pokemon_icon": "snorunt",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "glalie",
+      "pokemon_name": "Glalie",
+      "pokemon_icon": "glalie",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "spheal",
+      "pokemon_name": "Spheal",
+      "pokemon_icon": "spheal",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "sealeo",
+      "pokemon_name": "Sealeo",
+      "pokemon_icon": "sealeo",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "walrein",
+      "pokemon_name": "Walrein",
+      "pokemon_icon": "walrein",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "turtwig",
+      "pokemon_name": "Turtwig",
+      "pokemon_icon": "turtwig",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "grotle",
+      "pokemon_name": "Grotle",
+      "pokemon_icon": "grotle",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "torterra",
+      "pokemon_name": "Torterra",
+      "pokemon_icon": "torterra",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "chimchar",
+      "pokemon_name": "Chimchar",
+      "pokemon_icon": "chimchar",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "monferno",
+      "pokemon_name": "Monferno",
+      "pokemon_icon": "monferno",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "infernape",
+      "pokemon_name": "Infernape",
+      "pokemon_icon": "infernape",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "piplup",
+      "pokemon_name": "Piplup",
+      "pokemon_icon": "piplup",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "prinplup",
+      "pokemon_name": "Prinplup",
+      "pokemon_icon": "prinplup",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "empoleon",
+      "pokemon_name": "Empoleon",
+      "pokemon_icon": "empoleon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "starly",
+      "pokemon_name": "Starly",
+      "pokemon_icon": "starly",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "staravia",
+      "pokemon_name": "Staravia",
+      "pokemon_icon": "staravia",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "staraptor",
+      "pokemon_name": "Staraptor",
+      "pokemon_icon": "staraptor",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "bidoof",
+      "pokemon_name": "Bidoof",
+      "pokemon_icon": "bidoof",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "bibarel",
+      "pokemon_name": "Bibarel",
+      "pokemon_icon": "bibarel",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "kricketot",
+      "pokemon_name": "Kricketot",
+      "pokemon_icon": "kricketot",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "kricketune",
+      "pokemon_name": "Kricketune",
+      "pokemon_icon": "kricketune",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "shinx",
+      "pokemon_name": "Shinx",
+      "pokemon_icon": "shinx",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "luxio",
+      "pokemon_name": "Luxio",
+      "pokemon_icon": "luxio",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "luxray",
+      "pokemon_name": "Luxray",
+      "pokemon_icon": "luxray",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "budew",
+      "pokemon_name": "Budew",
+      "pokemon_icon": "budew",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "roserade",
+      "pokemon_name": "Roserade",
+      "pokemon_icon": "roserade",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "cranidos",
+      "pokemon_name": "Cranidos",
+      "pokemon_icon": "cranidos",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "rampardos",
+      "pokemon_name": "Rampardos",
+      "pokemon_icon": "rampardos",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "shieldon",
+      "pokemon_name": "Shieldon",
+      "pokemon_icon": "shieldon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "bastiodon",
+      "pokemon_name": "Bastiodon",
+      "pokemon_icon": "bastiodon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "mothim",
+      "pokemon_name": "Mothim",
+      "pokemon_icon": "mothim",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "combee",
+      "pokemon_name": "Combee",
+      "pokemon_icon": "combee",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "vespiquen",
+      "pokemon_name": "Vespiquen",
+      "pokemon_icon": "vespiquen",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "pachirisu",
+      "pokemon_name": "Pachirisu",
+      "pokemon_icon": "pachirisu",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "buizel",
+      "pokemon_name": "Buizel",
+      "pokemon_icon": "buizel",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "floatzel",
+      "pokemon_name": "Floatzel",
+      "pokemon_icon": "floatzel",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "cherubi",
+      "pokemon_name": "Cherubi",
+      "pokemon_icon": "cherubi",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "cherrim",
+      "pokemon_name": "Cherrim",
+      "pokemon_icon": "cherrim",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "ambipom",
+      "pokemon_name": "Ambipom",
+      "pokemon_icon": "ambipom",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "drifloon",
+      "pokemon_name": "Drifloon",
+      "pokemon_icon": "drifloon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "drifblim",
+      "pokemon_name": "Drifblim",
+      "pokemon_icon": "drifblim",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "buneary",
+      "pokemon_name": "Buneary",
+      "pokemon_icon": "buneary",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "lopunny",
+      "pokemon_name": "Lopunny",
+      "pokemon_icon": "lopunny",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "mismagius",
+      "pokemon_name": "Mismagius",
+      "pokemon_icon": "mismagius",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "honchkrow",
+      "pokemon_name": "Honchkrow",
+      "pokemon_icon": "honchkrow",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "glameow",
+      "pokemon_name": "Glameow",
+      "pokemon_icon": "glameow",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "purugly",
+      "pokemon_name": "Purugly",
+      "pokemon_icon": "purugly",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "chingling",
+      "pokemon_name": "Chingling",
+      "pokemon_icon": "chingling",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "stunky",
+      "pokemon_name": "Stunky",
+      "pokemon_icon": "stunky",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "skuntank",
+      "pokemon_name": "Skuntank",
+      "pokemon_icon": "skuntank",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "bronzor",
+      "pokemon_name": "Bronzor",
+      "pokemon_icon": "bronzor",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "bronzong",
+      "pokemon_name": "Bronzong",
+      "pokemon_icon": "bronzong",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "bonsly",
+      "pokemon_name": "Bonsly",
+      "pokemon_icon": "bonsly",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "mime-jr",
+      "pokemon_name": "Mime Jr.",
+      "pokemon_icon": "mime-jr",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "happiny",
+      "pokemon_name": "Happiny",
+      "pokemon_icon": "happiny",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "chatot",
+      "pokemon_name": "Chatot",
+      "pokemon_icon": "chatot",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "spiritomb",
+      "pokemon_name": "Spiritomb",
+      "pokemon_icon": "spiritomb",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gible",
+      "pokemon_name": "Gible",
+      "pokemon_icon": "gible",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gabite",
+      "pokemon_name": "Gabite",
+      "pokemon_icon": "gabite",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "garchomp",
+      "pokemon_name": "Garchomp",
+      "pokemon_icon": "garchomp",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "munchlax",
+      "pokemon_name": "Munchlax",
+      "pokemon_icon": "munchlax",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "riolu",
+      "pokemon_name": "Riolu",
+      "pokemon_icon": "riolu",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "lucario",
+      "pokemon_name": "Lucario",
+      "pokemon_icon": "lucario",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "hippopotas",
+      "pokemon_name": "Hippopotas",
+      "pokemon_icon": "hippopotas",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "hippowdon",
+      "pokemon_name": "Hippowdon",
+      "pokemon_icon": "hippowdon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "skorupi",
+      "pokemon_name": "Skorupi",
+      "pokemon_icon": "skorupi",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "drapion",
+      "pokemon_name": "Drapion",
+      "pokemon_icon": "drapion",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "croagunk",
+      "pokemon_name": "Croagunk",
+      "pokemon_icon": "croagunk",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "toxicroak",
+      "pokemon_name": "Toxicroak",
+      "pokemon_icon": "toxicroak",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "carnivine",
+      "pokemon_name": "Carnivine",
+      "pokemon_icon": "carnivine",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "finneon",
+      "pokemon_name": "Finneon",
+      "pokemon_icon": "finneon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "lumineon",
+      "pokemon_name": "Lumineon",
+      "pokemon_icon": "lumineon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "mantyke",
+      "pokemon_name": "Mantyke",
+      "pokemon_icon": "mantyke",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "snover",
+      "pokemon_name": "Snover",
+      "pokemon_icon": "snover",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "abomasnow",
+      "pokemon_name": "Abomasnow",
+      "pokemon_icon": "abomasnow",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "weavile",
+      "pokemon_name": "Weavile",
+      "pokemon_icon": "weavile",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "magnezone",
+      "pokemon_name": "Magnezone",
+      "pokemon_icon": "magnezone",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "lickilicky",
+      "pokemon_name": "Lickilicky",
+      "pokemon_icon": "lickilicky",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "rhyperior",
+      "pokemon_name": "Rhyperior",
+      "pokemon_icon": "rhyperior",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "tangrowth",
+      "pokemon_name": "Tangrowth",
+      "pokemon_icon": "tangrowth",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "electivire",
+      "pokemon_name": "Electivire",
+      "pokemon_icon": "electivire",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "magmortar",
+      "pokemon_name": "Magmortar",
+      "pokemon_icon": "magmortar",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "togekiss",
+      "pokemon_name": "Togekiss",
+      "pokemon_icon": "togekiss",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "yanmega",
+      "pokemon_name": "Yanmega",
+      "pokemon_icon": "yanmega",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "leafeon",
+      "pokemon_name": "Leafeon",
+      "pokemon_icon": "leafeon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "glaceon",
+      "pokemon_name": "Glaceon",
+      "pokemon_icon": "glaceon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gliscor",
+      "pokemon_name": "Gliscor",
+      "pokemon_icon": "gliscor",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "mamoswine",
+      "pokemon_name": "Mamoswine",
+      "pokemon_icon": "mamoswine",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "porygon-z",
+      "pokemon_name": "Porygon-Z",
+      "pokemon_icon": "porygon-z",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "gallade",
+      "pokemon_name": "Gallade",
+      "pokemon_icon": "gallade",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "probopass",
+      "pokemon_name": "Probopass",
+      "pokemon_icon": "probopass",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "dusknoir",
+      "pokemon_name": "Dusknoir",
+      "pokemon_icon": "dusknoir",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "froslass",
+      "pokemon_name": "Froslass",
+      "pokemon_icon": "froslass",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "rotom",
+      "pokemon_name": "Rotom",
+      "pokemon_icon": "rotom",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "uxie",
+      "pokemon_name": "Uxie",
+      "pokemon_icon": "uxie",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "mesprit",
+      "pokemon_name": "Mesprit",
+      "pokemon_icon": "mesprit",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "azelf",
+      "pokemon_name": "Azelf",
+      "pokemon_icon": "azelf",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "dialga",
+      "pokemon_name": "Dialga",
+      "pokemon_icon": "dialga",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "palkia",
+      "pokemon_name": "Palkia",
+      "pokemon_icon": "palkia",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "heatran",
+      "pokemon_name": "Heatran",
+      "pokemon_icon": "heatran",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "regigigas",
+      "pokemon_name": "Regigigas",
+      "pokemon_icon": "regigigas",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "giratina",
+      "pokemon_name": "Giratina",
+      "pokemon_icon": "giratina",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "cresselia",
+      "pokemon_name": "Cresselia",
+      "pokemon_icon": "cresselia",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "phione",
+      "pokemon_name": "Phione",
+      "pokemon_icon": "phione",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "manaphy",
+      "pokemon_name": "Manaphy",
+      "pokemon_icon": "manaphy",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "darkrai",
+      "pokemon_name": "Darkrai",
+      "pokemon_icon": "darkrai",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "shaymin",
+      "pokemon_name": "Shaymin",
+      "pokemon_icon": "shaymin",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "arceus",
+      "pokemon_name": "Arceus",
+      "pokemon_icon": "arceus",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "oshawott",
+      "pokemon_name": "Oshawott",
+      "pokemon_icon": "oshawott",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "dewott",
+      "pokemon_name": "Dewott",
+      "pokemon_icon": "dewott",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "petilil",
+      "pokemon_name": "Petilil",
+      "pokemon_icon": "petilil",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "rufflet",
+      "pokemon_name": "Rufflet",
+      "pokemon_icon": "rufflet",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "tornadus",
+      "pokemon_name": "Tornadus",
+      "pokemon_icon": "tornadus",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "thundurus",
+      "pokemon_name": "Thundurus",
+      "pokemon_icon": "thundurus",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "landorus",
+      "pokemon_name": "Landorus",
+      "pokemon_icon": "landorus",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "sylveon",
+      "pokemon_name": "Sylveon",
+      "pokemon_icon": "sylveon",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "goomy",
+      "pokemon_name": "Goomy",
+      "pokemon_icon": "goomy",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "bergmite",
+      "pokemon_name": "Bergmite",
+      "pokemon_icon": "bergmite",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "rowlet",
+      "pokemon_name": "Rowlet",
+      "pokemon_icon": "rowlet",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "dartrix",
+      "pokemon_name": "Dartrix",
+      "pokemon_icon": "dartrix",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "wyrdeer",
+      "pokemon_name": "Wyrdeer",
+      "pokemon_icon": "wyrdeer",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "kleavor",
+      "pokemon_name": "Kleavor",
+      "pokemon_icon": "kleavor",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "ursaluna",
+      "pokemon_name": "Ursaluna",
+      "pokemon_icon": "ursaluna",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "basculegion",
+      "pokemon_name": "Basculegion",
+      "pokemon_icon": "basculegion",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "sneasler",
+      "pokemon_name": "Sneasler",
+      "pokemon_icon": "sneasler",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "overqwil",
+      "pokemon_name": "Overqwil",
+      "pokemon_icon": "overqwil",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    },
+    {
+      "pokemon_slug": "enamorus",
+      "pokemon_name": "Enamorus",
+      "pokemon_icon": "enamorus",
+      "catch_state_slug": null,
+      "catch_state_name": null
+    }
+  ]
+}

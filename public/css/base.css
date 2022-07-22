@@ -1,0 +1,6 @@
+.card.pokedex-case .card-action {
+    padding: 0;
+}
+.card.pokedex-case .card-action .input-field {
+    margin-bottom: .5rem;
+}

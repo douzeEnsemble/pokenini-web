@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pokédex {{ dex.name }}{% endblock title %}
+
+{% block container %}
+{% set catchStateClassColors = {
+    'no': 'red lighten-2',
+    'toevolve': 'green lighten-4',
+    'tobreed': 'light-blue lighten-2',
+    'totransfer': 'amber lighten-2',
+    'yes': 'green lighten-1',
+} %}
+<div class="row">
+    {% for item in list %}
+    {% set currentCatchState = item.catch_state_slug ?? catchStates[0].slug %}
+    <div class="card hoverable pokedex-case col s2 {{ catchStateClassColors[currentCatchState] }}" id="{{ item.pokemon_slug }}">
+        <div class="card-image">
+            {{ _self.regularIcon(item) }}
+        </div>
+        <div class="card-content center-align">
+            <p class="">{{ item.pokemon_name }}</p>
+        </div>
+        <div class="card-action">
+            <div class="input-field">
+                <select class="browser-default {{ catchStateClassColors[currentCatchState] }}">
+                    {% for catchState in catchStates %}
+                    {% set isSelected = (catchState.slug == currentCatchState) %}
+                    <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
+                        {{ catchState.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock container %}
+
+{% block foot_javascript %}
+    {{ parent() }}
+{% endblock foot_javascript %}
+
+{% macro regularIcon(item) %}
+    {{ _self.icon(item, 'regular', 'Icon') }}
+{% endmacro %}
+{% macro shinyIcon(item) %}
+    {{ _self.icon(item, 'shiny', 'Shiny icon') }}
+{% endmacro %}
+{% macro icon(item, dir, alt) %}
+    {% set iconBaseUrl = 'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8' %}
+    {% set iconUrl = iconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png'
+    %}
+    <img
+        src="{{ iconUrl }}"
+        alt="{{ alt }} of {{ item.pokemon_name }}"
+    />
+{% endmacro %}

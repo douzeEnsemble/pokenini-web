@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tests\functionnal;
+namespace App\Tests\Functionnal\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
-class PokemonMatrixTest extends WebTestCase
+class PokemonControllerTest extends WebTestCase
 {
     public function testList(): void
     {
