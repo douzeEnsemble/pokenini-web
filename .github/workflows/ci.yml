@@ -1,31 +1,63 @@
 name: CI
 
 on:
-    push:
-    pull_request:
+  push:
+    branches:
+      - main
+      - test/ci
+  pull_request: ~
+  workflow_dispatch: ~
 
 jobs:
-    build:
-        name: Docker build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-            - name: Pull images
-              run: docker-compose pull
-            - name: Start services
-              run: docker-compose up --build -d
-            - name: Wait for services
-              run: |
-                  while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose ps -q php)")"; do
-                    case $status in
-                      starting) sleep 1;;
-                      healthy) exit 0;;
-                      unhealthy) exit 1;;
-                    esac
-                  done
-                  exit 1
-            - name: Check HTTP reachability
-              run: curl http://localhost
-            - name: Check HTTPS reachability
-              run: curl -k https://localhost
+  build_and_tests:
+    name: All Checks (Quality & Tests & Integration)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pull images
+        run: docker-compose pull --ignore-pull-failures || true
+      - name: Start services
+        run: docker-compose up --build -d
+      - name: Wait for services
+        run: |
+          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker-compose ps -q php)")"; do
+            case $status in
+              starting) sleep 1;;
+              healthy) exit 0;;
+              unhealthy)
+                docker-compose ps
+                docker-compose logs
+                exit 1
+              ;;
+            esac
+          done
+          exit 1
+      - name: Check HTTP reachability
+        run: curl -v -o /dev/null http://localhost:8080
+      - name: Check HTTPS reachability
+        run: curl  -vk -o /dev/null https://localhost:4430
+      - name: Create test database
+        run: |
+          docker-compose exec -T php bin/console -e test doctrine:database:create --if-not-exists
+          docker-compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
+      - name: Doctrine Schema Validator
+        run: docker-compose exec -T php bin/console doctrine:schema:validate --skip-sync
+      - name: Quality PHPCS
+        run: make phpcs
+        continue-on-error: false
+      - name: Quality PHPMD
+        run: make phpmd
+        continue-on-error: false
+      - name: Quality Psalm
+        run: make psalm
+        continue-on-error: false
+      - name: Tests PHPStan
+        run: make phpstan
+        continue-on-error: false
+      - name: Tests PHPUnit
+        run: make phpunit
+        continue-on-error: false
+      - name: Integration Newman
+        run: make newman
+        continue-on-error: false

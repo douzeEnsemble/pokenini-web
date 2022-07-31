@@ -56,24 +56,24 @@ tests: ## Execute all tests
 tests: phpstan phpunit
 
 phpstan: ## Execute phpstan analyse
-	docker-compose exec php vendor/bin/phpstan analyse
+	@$(PHP_CONT) vendor/bin/phpstan analyse
 
 phpunit: ## Execute unit test
-	docker-compose exec php bin/phpunit
+	@$(PHP_CONT) bin/phpunit
 
 
 ## —— Quality 👌 ———————————————————————————————————————————————————————————————
 quality: ## Execute all quality analyses
-quality: phpcs phpmd
+quality: phpcs phpmd psalm
 
 phpcs: ## Execute phpcs
-	docker-compose exec php vendor/bin/phpcs
+	@$(PHP_CONT) vendor/bin/phpcs
 phpcbf: ## Execute phpcbf (code beautifier) /!\ This could edit your code
-	docker-compose exec php vendor/bin/phpcbf
+	@$(PHP_CONT) vendor/bin/phpcbf
 
 phpmd: ## Execute phpmd
-	docker-compose exec php vendor/bin/phpmd src,tests text ruleset.xml
+	@$(PHP_CONT) vendor/bin/phpmd src,tests text ruleset.xml
 
 psalm: ## Execute psalm
-	docker-compose exec php vendor/bin/psalm --show-info=true
+	@$(PHP_CONT) vendor/bin/psalm --show-info=true
 
