@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-#[Route('/pokedex')]
-class PokedexController extends AbstractController
+#[Route('/album')]
+class AlbumController extends AbstractController
 {
     public function __construct(private readonly HttpClientInterface $client)
     {
@@ -21,7 +21,7 @@ class PokedexController extends AbstractController
 
         $catchStates = $this->getCatchStates();
 
-        return $this->render('Pokedex/index.html.twig', [
+        return $this->render('Album/index.html.twig', [
             'dex' => $pokedex['dex'],
             'list' => $pokedex['pokemons'],
             'catchStates' => $catchStates,
@@ -35,7 +35,7 @@ class PokedexController extends AbstractController
     {
         $response = $this->client->request(
             'GET',
-            "http://pkmn-lagd-api.local/pokedex?dex_slug=$dexSlug"
+            "http://pkmn-lagd-api.local/album/$dexSlug"
         );
 
         /** @var string[][]|string[][][] */

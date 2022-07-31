@@ -17,233 +17,170 @@
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "redgreenblueyellow"
-      }
+      "uri": "/album/redgreenblueyellow"
     },
     "response" : {
-      "file": "/var/moco/pokedex/redgreenblueyellow.json"
+      "file": "/var/moco/album/redgreenblueyellow.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "demo"
-      }
+      "uri": "/album/demo"
     },
     "response" : {
-      "file": "/var/moco/pokedex/demo.json"
+      "file": "/var/moco/album/demo.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "goldsilvercrystal"
-      }
+      "uri": "/album/goldsilvercrystal"
     },
     "response" : {
-      "file": "/var/moco/pokedex/goldsilvercrystal.json"
+      "file": "/var/moco/album/goldsilvercrystal.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "rubysapphireemerald"
-      }
+      "uri": "/album/rubysapphireemerald"
     },
     "response" : {
-      "file": "/var/moco/pokedex/rubysapphireemerald.json"
+      "file": "/var/moco/album/rubysapphireemerald.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "redfireleafgreen"
-      }
+      "uri": "/album/redfireleafgreen"
     },
     "response" : {
-      "file": "/var/moco/pokedex/redfireleafgreen.json"
+      "file": "/var/moco/album/redfireleafgreen.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "diamondpearlplatinium"
-      }
+      "uri": "/album/diamondpearlplatinium"
     },
     "response" : {
-      "file": "/var/moco/pokedex/diamondpearlplatinium.json"
+      "file": "/var/moco/album/diamondpearlplatinium.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "heartgoldsoulsilver"
-      }
+      "uri": "/album/heartgoldsoulsilver"
     },
     "response" : {
-      "file": "/var/moco/pokedex/heartgoldsoulsilver.json"
+      "file": "/var/moco/album/heartgoldsoulsilver.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "blackwhite"
-      }
+      "uri": "/album/blackwhite"
     },
     "response" : {
-      "file": "/var/moco/pokedex/blackwhite.json"
+      "file": "/var/moco/album/blackwhite.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "black2white2"
-      }
+      "uri": "/album/black2white2"
     },
     "response" : {
-      "file": "/var/moco/pokedex/black2white2.json"
+      "file": "/var/moco/album/black2white2.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "xy"
-      }
+      "uri": "/album/xy"
     },
     "response" : {
-      "file": "/var/moco/pokedex/xy.json"
+      "file": "/var/moco/album/xy.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "omegarubyalphasapphire"
-      }
+      "uri": "/album/omegarubyalphasapphire"
     },
     "response" : {
-      "file": "/var/moco/pokedex/omegarubyalphasapphire.json"
+      "file": "/var/moco/album/omegarubyalphasapphire.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "sunmoon"
-      }
+      "uri": "/album/sunmoon"
     },
     "response" : {
-      "file": "/var/moco/pokedex/sunmoon.json"
+      "file": "/var/moco/album/sunmoon.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "ultrasunultramoon"
-      }
+      "uri": "/album/ultrasunultramoon"
     },
     "response" : {
-      "file": "/var/moco/pokedex/ultrasunultramoon.json"
+      "file": "/var/moco/album/ultrasunultramoon.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "letsgopikachuletsgoeevee"
-      }
+      "uri": "/album/letsgopikachuletsgoeevee"
     },
     "response" : {
-      "file": "/var/moco/pokedex/letsgopikachuletsgoeevee.json"
+      "file": "/var/moco/album/letsgopikachuletsgoeevee.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "pokemongo"
-      }
+      "uri": "/album/pokemongo"
     },
     "response" : {
-      "file": "/var/moco/pokedex/homepogo.json"
+      "file": "/var/moco/album/homepogo.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "swordshield"
-      }
+      "uri": "/album/swordshield"
     },
     "response" : {
-      "file": "/var/moco/pokedex/swordshield.json"
+      "file": "/var/moco/album/swordshield.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "brillanddiamondshiningpearl"
-      }
+      "uri": "/album/brillanddiamondshiningpearl"
     },
     "response" : {
-      "file": "/var/moco/pokedex/brillanddiamondshiningpearl.json"
+      "file": "/var/moco/album/brillanddiamondshiningpearl.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "legendarceus"
-      }
+      "uri": "/album/legendarceus"
     },
     "response" : {
-      "file": "/var/moco/pokedex/legendarceus.json"
+      "file": "/var/moco/album/legendarceus.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "home"
-      }
+      "uri": "/album/home"
     },
     "response" : {
-      "file": "/var/moco/pokedex/home.json"
+      "file": "/var/moco/album/home.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "homeshiny"
-      }
+      "uri": "/album/homeshiny"
     },
     "response" : {
-      "file": "/var/moco/pokedex/homeshiny.json"
+      "file": "/var/moco/album/homeshiny.json"
     }
   },
   {
     "request": {
-      "uri": "/pokedex",
-      "queries": {
-        "dex_slug": "homepokemongo"
-      }
+      "uri": "/album/homepokemongo"
     },
     "response" : {
-      "file": "/var/moco/pokedex/homepokemongo.json"
+      "file": "/var/moco/album/homepokemongo.json"
     }
   }
 ]

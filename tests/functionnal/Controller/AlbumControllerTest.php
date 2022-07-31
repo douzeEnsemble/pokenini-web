@@ -4,16 +4,16 @@ namespace functionnal\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class PokedexControllerTest extends WebTestCase
+class AlbumControllerTest extends WebTestCase
 {
     public function testList(): void
     {
         $client = static::createClient();
 
-        $client->request('GET', '/pokedex/demo');
+        $client->request('GET', '/album/demo');
 
         $this->assertResponseIsSuccessful();
-        $this->assertPageTitleSame('Pokédex Demo');
+        $this->assertPageTitleSame('Pokénini Demo');
 
         $mainCrawler = $client->getCrawler();
 
@@ -47,7 +47,8 @@ class PokedexControllerTest extends WebTestCase
         $this->assertEquals(
             1,
             $mainCrawler
-                ->filter('#bulbasaur.card.red.lighten-2')->count());
+            ->filter('#bulbasaur.card.red.lighten-2')->count()
+        );
         $this->assertEquals(
             1,
             $mainCrawler
@@ -82,7 +83,7 @@ class PokedexControllerTest extends WebTestCase
         $this->assertEquals(
             1734,
             $mainCrawler
-                ->filter('.pokedex-case.card.s2')
+                ->filter('.album-case.card.s2')
                 ->count()
         );
         $this->assertEquals(

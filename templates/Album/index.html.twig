@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pokédex {{ dex.name }}{% endblock title %}
+{% block title %}Pokénini {{ dex.name }}{% endblock title %}
 
 {% block container %}
 {% set catchStateClassColors = {
@@ -22,7 +22,7 @@
 <div class="row">
     {% endif %}
     {% set currentCatchState = item.catch_state_slug ?? catchStates[0].slug %}
-    <div class="card hoverable pokedex-case col s2 {{ catchStateClassColors[currentCatchState] }}" id="{{ item.pokemon_slug }}">
+    <div class="card hoverable album-case col s2 {{ catchStateClassColors[currentCatchState] }}" id="{{ item.pokemon_slug }}">
         <div class="card-image">
             {{ _self.regularIcon(item) }}
         </div>
