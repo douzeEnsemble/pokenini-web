@@ -10,8 +10,17 @@
     'totransfer': 'amber lighten-2',
     'yes': 'green lighten-1',
 } %}
+<h2>Box 1</h2>
 <div class="row">
     {% for item in list %}
+    {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
+</div>
+{% if (loop.index0 % 5) is same as(0) %}
+<div class="divider"></div>
+<h2>Box {{ (loop.index0 / (6*5)) + 1 }}</h2>
+    {% endif %}
+<div class="row">
+    {% endif %}
     {% set currentCatchState = item.catch_state_slug ?? catchStates[0].slug %}
     <div class="card hoverable pokedex-case col s2 {{ catchStateClassColors[currentCatchState] }}" id="{{ item.pokemon_slug }}">
         <div class="card-image">
@@ -52,7 +61,8 @@
     {% set iconUrl = iconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png'
     %}
     <img
-        src="{{ iconUrl }}"
         alt="{{ alt }} of {{ item.pokemon_name }}"
+        clas="responsive-img"
+        src="{{ iconUrl }}"
     />
 {% endmacro %}

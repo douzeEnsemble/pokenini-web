@@ -10,14 +10,14 @@ class PokedexControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/pokedex/redgreenblueyellow');
+        $client->request('GET', '/pokedex/demo');
 
         $this->assertResponseIsSuccessful();
-        $this->assertPageTitleSame('Pokédex Red, Green, Blue, Yellow');
+        $this->assertPageTitleSame('Pokédex Demo');
 
         $mainCrawler = $client->getCrawler();
 
-        $expectedPokemonCount = 149;
+        $expectedPokemonCount = 1734;
 
         $this->assertEquals(
             $expectedPokemonCount,
@@ -44,10 +44,58 @@ class PokedexControllerTest extends WebTestCase
             $label->text()
         );
 
-        $this->assertNotNull($mainCrawler->filter('#bulbasaur .card.green.lighten-4'));
-        $this->assertNotNull($mainCrawler->filter('#ivysaur .card.light-blue.lighten-2'));
-        $this->assertNotNull($mainCrawler->filter('#venusaur .card.amber.lighten-2'));
-        $this->assertNotNull($mainCrawler->filter('#charmander .card.green.lighten-1'));
-        $this->assertNotNull($mainCrawler->filter('#charmeleon .card.red.lighten-2'));
+        $this->assertEquals(
+            1,
+            $mainCrawler
+                ->filter('#bulbasaur.card.red.lighten-2')->count());
+        $this->assertEquals(
+            1,
+            $mainCrawler
+                ->filter('#ivysaur.card.red.lighten-2')
+                ->count()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler
+                ->filter('#venusaur.card.green.lighten-4')
+                ->count()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler
+                ->filter('#venusaur-f.card.light-blue.lighten-2')
+                ->count()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler
+                ->filter('#venusaur-mega.card.amber.lighten-2')
+                ->count()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler
+                ->filter('#venusaur-gmax.card.green.lighten-1')
+                ->count()
+        );
+
+        $this->assertEquals(
+            1734,
+            $mainCrawler
+                ->filter('.pokedex-case.card.s2')
+                ->count()
+        );
+        $this->assertEquals(
+            289,
+            $mainCrawler
+                ->filter('div.row')
+                ->count()
+        );
+        $this->assertEquals(
+            58,
+            $mainCrawler
+                ->filter('h2')
+                ->count()
+        );
     }
 }

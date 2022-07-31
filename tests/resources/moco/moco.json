@@ -30,6 +30,17 @@
     "request": {
       "uri": "/pokedex",
       "queries": {
+        "dex_slug": "demo"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/demo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
         "dex_slug": "goldsilvercrystal"
       }
     },
@@ -200,6 +211,39 @@
     },
     "response" : {
       "file": "/var/moco/pokedex/legendarceus.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "home"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/home.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "homeshiny"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/homeshiny.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/pokedex",
+      "queries": {
+        "dex_slug": "homepokemongo"
+      }
+    },
+    "response" : {
+      "file": "/var/moco/pokedex/homepokemongo.json"
     }
   }
 ]
