@@ -17,18 +17,18 @@
   },
   {
     "request": {
-      "uri": "/album/redgreenblueyellow"
-    },
-    "response" : {
-      "file": "/var/moco/album/redgreenblueyellow.json"
-    }
-  },
-  {
-    "request": {
       "uri": "/album/demo"
     },
     "response" : {
       "file": "/var/moco/album/demo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/album/redgreenblueyellow"
+    },
+    "response" : {
+      "file": "/var/moco/album/redgreenblueyellow.json"
     }
   },
   {
@@ -181,6 +181,28 @@
     },
     "response" : {
       "file": "/var/moco/album/homepokemongo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w-]*/[\\w-]*"
+      },
+      "method" : "patch"
+    },
+    "response" : {
+      "status" : "200"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w-]*/[\\w-]*"
+      },
+      "method" : "put"
+    },
+    "response" : {
+      "status" : "201"
     }
   }
 ]

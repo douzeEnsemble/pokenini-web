@@ -2,7 +2,6 @@
 
 {% block title %}Pokénini {{ dex.name }}{% endblock title %}
 
-{% block container %}
 {% set catchStateClassColors = {
     'no': 'red lighten-2',
     'toevolve': 'green lighten-4',
@@ -10,6 +9,8 @@
     'totransfer': 'amber lighten-2',
     'yes': 'green lighten-1',
 } %}
+
+{% block container %}
 <h2>Box 1</h2>
 <div class="row">
     {% for item in list %}
@@ -29,11 +30,12 @@
         <div class="card-content center-align">
             <p class="">{{ item.pokemon_name }}</p>
         </div>
+        {% if (mode is same as('write')) %}
         <div class="card-action">
             <div class="input-field">
                 <select class="browser-default {{ catchStateClassColors[currentCatchState] }}">
                     {% for catchState in catchStates %}
-                    {% set isSelected = (catchState.slug == currentCatchState) %}
+                    {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
                     <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
                         {{ catchState.name }}
                     </option>
@@ -41,6 +43,7 @@
                 </select>
             </div>
         </div>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
@@ -48,6 +51,12 @@
 
 {% block foot_javascript %}
     {{ parent() }}
+
+    <script type="application/javascript">
+        const catchStateClassColors = JSON.parse('{{ catchStateClassColors | json_encode | raw }}');
+
+        watchCatchStates();
+    </script>
 {% endblock foot_javascript %}
 
 {% macro regularIcon(item) %}

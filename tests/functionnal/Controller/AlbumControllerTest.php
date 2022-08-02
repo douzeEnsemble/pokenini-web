@@ -2,16 +2,116 @@
 
 namespace functionnal\Controller;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AlbumControllerTest extends WebTestCase
 {
-    public function testList(): void
+    public function testListPrivate(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/album/demo?token=cb19dc668f0c426c8f3e319f9ea36ecc');
+
+        $this->assertAlbum($client);
+
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertEquals(
+            1734,
+            $mainCrawler
+                ->filter('.album-case select')
+                ->count()
+        );
+
+        $options = $mainCrawler->filter('#bulbasaur select option');
+        $this->assertEquals(5, $options->count());
+    }
+
+    public function testListPublic(): void
     {
         $client = static::createClient();
 
         $client->request('GET', '/album/demo');
 
+        $this->assertAlbum($client);
+
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertEquals(
+            0,
+            $mainCrawler
+                ->filter('.album-case select')
+                ->count()
+        );
+    }
+
+    public function testListWrongToken(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/album/demo?token=kadkjazpdazpdi');
+
+        $this->assertAlbum($client);
+
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertEquals(
+            0,
+            $mainCrawler
+                ->filter('.album-case select')
+                ->count()
+        );
+    }
+
+    public function testUpdatePrivate(): void
+    {
+        $client = static::createClient();
+
+        $client->request(
+            'PATCH',
+            '/album/demo/bulbasaur?token=cb19dc668f0c426c8f3e319f9ea36ecc',
+            [
+                'body' => 'yes',
+            ]
+        );
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testUpdatePublic(): void
+    {
+        $client = static::createClient();
+
+        $client->request(
+            'PATCH',
+            '/album/demo/bulbasaur',
+            [
+                'body' => 'yes',
+            ]
+        );
+
+
+        $this->assertEquals(403, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateWrongToken(): void
+    {
+        $client = static::createClient();
+
+        $client->request(
+            'PATCH',
+            '/album/demo/bulbasaur?token=kadkjazpdazpdi',
+            [
+                'body' => 'yes',
+            ]
+        );
+
+        $this->assertEquals(403, $client->getResponse()->getStatusCode());
+    }
+
+    private function assertAlbum(KernelBrowser $client): void
+    {
         $this->assertResponseIsSuccessful();
         $this->assertPageTitleSame('Pokénini Demo');
 
@@ -23,14 +123,6 @@ class AlbumControllerTest extends WebTestCase
             $expectedPokemonCount,
             $mainCrawler->filter('.card')->count()
         );
-
-        $this->assertEquals(
-            $expectedPokemonCount,
-            $mainCrawler->filter('.card .card-action select')->count()
-        );
-
-        $options = $mainCrawler->filter('#bulbasaur select option');
-        $this->assertEquals(5, $options->count());
 
         $icon = $mainCrawler->filter('#bulbasaur .card-image img');
         $this->assertEquals(
@@ -47,7 +139,7 @@ class AlbumControllerTest extends WebTestCase
         $this->assertEquals(
             1,
             $mainCrawler
-            ->filter('#bulbasaur.card.red.lighten-2')->count()
+                ->filter('#bulbasaur.card.red.lighten-2')->count()
         );
         $this->assertEquals(
             1,
@@ -80,8 +172,11 @@ class AlbumControllerTest extends WebTestCase
                 ->count()
         );
 
+        $this->assertStringContainsString('const catchStateClassColors = JSON.parse', $mainCrawler->outerHtml());
+        $this->assertStringContainsString('watchCatchStates();', $mainCrawler->outerHtml());
+
         $this->assertEquals(
-            1734,
+            $expectedPokemonCount,
             $mainCrawler
                 ->filter('.album-case.card.s2')
                 ->count()
