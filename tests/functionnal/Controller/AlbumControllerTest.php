@@ -14,18 +14,7 @@ class AlbumControllerTest extends WebTestCase
         $client->request('GET', '/album/demo?token=cb19dc668f0c426c8f3e319f9ea36ecc');
 
         $this->assertAlbum($client);
-
-        $mainCrawler = $client->getCrawler();
-
-        $this->assertEquals(
-            1736,
-            $mainCrawler
-                ->filter('.album-case select')
-                ->count()
-        );
-
-        $options = $mainCrawler->filter('#bulbasaur select option');
-        $this->assertEquals(5, $options->count());
+        $this->assertWriteMode($client);
     }
 
     public function testListPublic(): void
@@ -35,15 +24,7 @@ class AlbumControllerTest extends WebTestCase
         $client->request('GET', '/album/demo');
 
         $this->assertAlbum($client);
-
-        $mainCrawler = $client->getCrawler();
-
-        $this->assertEquals(
-            0,
-            $mainCrawler
-                ->filter('.album-case select')
-                ->count()
-        );
+        $this->assertReadMode($client);
     }
 
     public function testListWrongToken(): void
@@ -53,15 +34,7 @@ class AlbumControllerTest extends WebTestCase
         $client->request('GET', '/album/demo?token=kadkjazpdazpdi');
 
         $this->assertAlbum($client);
-
-        $mainCrawler = $client->getCrawler();
-
-        $this->assertEquals(
-            0,
-            $mainCrawler
-                ->filter('.album-case select')
-                ->count()
-        );
+        $this->assertReadMode($client);
     }
 
     public function testUpdatePrivate(): void
@@ -132,14 +105,31 @@ class AlbumControllerTest extends WebTestCase
 
         $label = $mainCrawler->filter('#bulbasaur .album-case-name');
         $this->assertEquals(
-            'Bulbasaur',
+            'Bulbizarre / Bulbasaur',
             $label->text()
+        );
+
+        $forms = $mainCrawler->filter('#bulbasaur .album-case-forms');
+        $this->assertEquals(
+            html_entity_decode('&nbsp;'),
+            $forms->text()
+        );
+        $forms = $mainCrawler->filter('#venusaur-f .album-case-forms');
+        $this->assertEquals(
+            'Gender',
+            $forms->text()
+        );
+        $forms = $mainCrawler->filter('#pikachu-alpha-f .album-case-forms');
+        $this->assertEquals(
+            'Alpha Gender',
+            $forms->text()
         );
 
         $this->assertEquals(
             1,
             $mainCrawler
-                ->filter('#bulbasaur.album-case.catch-state-no')->count()
+                ->filter('#bulbasaur.album-case.catch-state-no')
+                ->count()
         );
         $this->assertEquals(
             1,
@@ -172,7 +162,7 @@ class AlbumControllerTest extends WebTestCase
                 ->count()
         );
 
-        $this->assertStringContainsString('const catchStateClassColors = JSON.parse', $mainCrawler->outerHtml());
+        $this->assertStringContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
         $this->assertStringContainsString('watchCatchStates();', $mainCrawler->outerHtml());
 
         $this->assertEquals(
@@ -191,6 +181,83 @@ class AlbumControllerTest extends WebTestCase
             58,
             $mainCrawler
                 ->filter('h2')
+                ->count()
+        );
+    }
+
+    private function assertReadMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertEquals(
+            0,
+            $mainCrawler
+                ->filter('.album-case select')
+                ->count()
+        );
+
+        $this->assertEquals(
+            1736,
+            $mainCrawler
+                ->filter('.album-case .album-case-catch-state')
+                ->count()
+        );
+
+        $this->assertEquals(
+            'No',
+            $mainCrawler
+                ->filter('#bulbasaur .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'No',
+            $mainCrawler
+                ->filter('#ivysaur .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'To evolve',
+            $mainCrawler
+                ->filter('#venusaur .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'To breed',
+            $mainCrawler
+                ->filter('#venusaur-f .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'To transfer',
+            $mainCrawler
+                ->filter('#venusaur-mega .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'Yes',
+            $mainCrawler
+                ->filter('#venusaur-gmax .album-case-catch-state')
+                ->text()
+        );
+    }
+
+    private function assertWriteMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertEquals(
+            1736,
+            $mainCrawler
+                ->filter('.album-case select')
+                ->count()
+        );
+
+        $options = $mainCrawler->filter('#bulbasaur select option');
+        $this->assertEquals(5, $options->count());
+        $this->assertEquals(
+            0,
+            $mainCrawler
+                ->filter('.album-case .album-case-catch-state')
                 ->count()
         );
     }

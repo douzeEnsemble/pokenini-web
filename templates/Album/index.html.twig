@@ -27,10 +27,17 @@
             <div class="album-case-image text-center">
                 {{ _self.regularPokemonIcon(item) }}
             </div>
-            <div class="album-case-symbols text-truncate">
-                {{ item.regional_form_slug ?? '&nbsp;' }}
-                {{ item.special_form_slug }}
-                {{ item.variant_form_slug }}
+            <div class="album-case-forms text-truncate">
+                {{ item.regional_form_name }}
+                {{ item.special_form_name }}
+                {{ item.variant_form_name }}
+                {% if
+                    item.regional_form_name is null
+                    and item.special_form_name is null
+                    and item.variant_form_name is null
+                %}
+                    &nbsp;
+                {% endif %}
             </div>
             {% if (mode is same as('write')) %}
                 <div class="album-case-action text-center mt-1">
@@ -45,7 +52,7 @@
                 </div>
             {% else %}
                 <div class="album-case-catch-state rounded-1 ps-2">
-                    {{ item.catch_state_slug ?? 'No' }}
+                    {{ item.catch_state_name ?? 'No' }}
                 </div>
             {% endif %}
         </div>
