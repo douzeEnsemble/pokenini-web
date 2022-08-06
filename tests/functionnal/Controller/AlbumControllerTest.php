@@ -108,6 +108,11 @@ class AlbumControllerTest extends WebTestCase
             'Bulbizarre / Bulbasaur',
             $label->text()
         );
+        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
+        $this->assertEquals(
+            'Bulbizarre',
+            $tooltip->attr('title')
+        );
 
         $forms = $mainCrawler->filter('#bulbasaur .album-case-forms');
         $this->assertEquals(

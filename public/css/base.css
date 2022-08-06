@@ -2,10 +2,8 @@
     max-width: 600px;
 }
 
-@media (max-width: 1576px) {
-    .album-case-name {
-        opacity: 0%;
-    }
+.album-case-name {
+    font-size: 0px;
 }
 .album-case-catch-state {
     font-size: .6rem;

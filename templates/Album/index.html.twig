@@ -24,7 +24,7 @@
             <span class="album-case-name position-absolute text-start">
                 {{ item.pokemon_french_name }} / {{ item.pokemon_name }}
             </span>
-            <div class="album-case-image text-center">
+            <div class="album-case-image text-center" title="{{ item.pokemon_french_name }}">
                 {{ _self.regularPokemonIcon(item) }}
             </div>
             <div class="album-case-forms text-truncate">
@@ -68,6 +68,10 @@
         const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
 
         watchCatchStates();
+
+        // Enable tooltips
+        const tooltipTriggerList = document.querySelectorAll('.album-case-image')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
 {% endblock foot_javascript %}
 
@@ -83,7 +87,8 @@
     %}
     <img
         alt="{{ alt }} of {{ item.pokemon_name }}"
-        class="img-fluid"
+        title="{{ item.pokemon_name }}"
+        class="album-image img-fluid"
         src="{{ iconUrl }}"
     />
 {% endmacro %}
