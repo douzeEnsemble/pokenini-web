@@ -18,7 +18,7 @@ class AlbumControllerTest extends WebTestCase
         $mainCrawler = $client->getCrawler();
 
         $this->assertEquals(
-            1734,
+            1736,
             $mainCrawler
                 ->filter('.album-case select')
                 ->count()
@@ -117,20 +117,20 @@ class AlbumControllerTest extends WebTestCase
 
         $mainCrawler = $client->getCrawler();
 
-        $expectedPokemonCount = 1734;
+        $expectedPokemonCount = 1736;
 
         $this->assertEquals(
             $expectedPokemonCount,
-            $mainCrawler->filter('.card')->count()
+            $mainCrawler->filter('.album-case')->count()
         );
 
-        $icon = $mainCrawler->filter('#bulbasaur .card-image img');
+        $icon = $mainCrawler->filter('#bulbasaur .album-case-image img');
         $this->assertEquals(
             'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/bulbasaur.png',
             $icon->attr('src')
         );
 
-        $label = $mainCrawler->filter('#bulbasaur .card-content p');
+        $label = $mainCrawler->filter('#bulbasaur .album-case-name');
         $this->assertEquals(
             'Bulbasaur',
             $label->text()
@@ -139,36 +139,36 @@ class AlbumControllerTest extends WebTestCase
         $this->assertEquals(
             1,
             $mainCrawler
-                ->filter('#bulbasaur.card.red.lighten-2')->count()
+                ->filter('#bulbasaur.album-case.catch-state-no')->count()
         );
         $this->assertEquals(
             1,
             $mainCrawler
-                ->filter('#ivysaur.card.red.lighten-2')
+                ->filter('#ivysaur.album-case.catch-state-no')
                 ->count()
         );
         $this->assertEquals(
             1,
             $mainCrawler
-                ->filter('#venusaur.card.green.lighten-4')
+                ->filter('#venusaur.album-case.catch-state-toevolve')
                 ->count()
         );
         $this->assertEquals(
             1,
             $mainCrawler
-                ->filter('#venusaur-f.card.light-blue.lighten-2')
+                ->filter('#venusaur-f.album-case.catch-state-tobreed')
                 ->count()
         );
         $this->assertEquals(
             1,
             $mainCrawler
-                ->filter('#venusaur-mega.card.amber.lighten-2')
+                ->filter('#venusaur-mega.album-case.catch-state-totransfer')
                 ->count()
         );
         $this->assertEquals(
             1,
             $mainCrawler
-                ->filter('#venusaur-gmax.card.green.lighten-1')
+                ->filter('#venusaur-gmax.album-case.catch-state-yes')
                 ->count()
         );
 
@@ -178,11 +178,11 @@ class AlbumControllerTest extends WebTestCase
         $this->assertEquals(
             $expectedPokemonCount,
             $mainCrawler
-                ->filter('.album-case.card.s2')
+                ->filter('.album-case.col-2')
                 ->count()
         );
         $this->assertEquals(
-            289,
+            290,
             $mainCrawler
                 ->filter('div.row')
                 ->count()

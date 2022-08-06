@@ -2,50 +2,55 @@
 
 {% block title %}Pokénini {{ dex.name }}{% endblock title %}
 
-{% set catchStateClassColors = {
-    'no': 'red lighten-2',
-    'toevolve': 'green lighten-4',
-    'tobreed': 'light-blue lighten-2',
-    'totransfer': 'amber lighten-2',
-    'yes': 'green lighten-1',
-} %}
-
 {% block container %}
-<h2>Box 1</h2>
-<div class="row">
+<div class="album-container">
+    <h2 id="box-1">Box 1</h2>
+    <div class="row">
     {% for item in list %}
-    {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
-</div>
-{% if (loop.index0 % 5) is same as(0) %}
-<div class="divider"></div>
-<h2>Box {{ (loop.index0 / (6*5)) + 1 }}</h2>
-    {% endif %}
-<div class="row">
-    {% endif %}
-    {% set currentCatchState = item.catch_state_slug ?? catchStates[0].slug %}
-    <div class="card hoverable album-case col s2 {{ catchStateClassColors[currentCatchState] }}" id="{{ item.pokemon_slug }}">
-        <div class="card-image">
-            {{ _self.regularIcon(item) }}
-        </div>
-        <div class="card-content center-align">
-            <p class="">{{ item.pokemon_name }}</p>
-        </div>
-        {% if (mode is same as('write')) %}
-        <div class="card-action">
-            <div class="input-field">
-                <select class="browser-default {{ catchStateClassColors[currentCatchState] }}">
-                    {% for catchState in catchStates %}
-                    {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
-                    <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
-                        {{ catchState.name }}
-                    </option>
-                    {% endfor %}
-                </select>
+        {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
             </div>
-        </div>
+            {% if (loop.index0 % 5) is same as(0) %}
+                {% set boxNumber = (loop.index0 / (6*5)) + 1 %}
+                <hr>
+                <h2 id="box-{{ boxNumber }}">Box {{ boxNumber }}</h2>
+            {% endif %}
+            <div class="row">
         {% endif %}
-    </div>
+        {% set currentCatchState = item.catch_state_slug ?? 'no' %}
+        <div
+            class="album-case col col-2 mb-2 position-relative catch-state-{{ currentCatchState }}"
+            id="{{ item.pokemon_slug }}"
+        >
+            <span class="album-case-name position-absolute text-start">
+                {{ item.pokemon_french_name }} / {{ item.pokemon_name }}
+            </span>
+            <div class="album-case-image text-center">
+                {{ _self.regularPokemonIcon(item) }}
+            </div>
+            <div class="album-case-symbols text-truncate">
+                {{ item.regional_form_slug ?? '&nbsp;' }}
+                {{ item.special_form_slug }}
+                {{ item.variant_form_slug }}
+            </div>
+            {% if (mode is same as('write')) %}
+                <div class="album-case-action text-center mt-1">
+                    <select class="catch-state-{{ currentCatchState }}">
+                        {% for catchState in catchStates %}
+                            {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
+                            <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
+                                {{ catchState.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% else %}
+                <div class="album-case-catch-state rounded-1 ps-2">
+                    {{ item.catch_state_slug ?? 'No' }}
+                </div>
+            {% endif %}
+        </div>
     {% endfor %}
+    </div>
 </div>
 {% endblock container %}
 
@@ -53,25 +58,25 @@
     {{ parent() }}
 
     <script type="application/javascript">
-        const catchStateClassColors = JSON.parse('{{ catchStateClassColors | json_encode | raw }}');
+        const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
 
         watchCatchStates();
     </script>
 {% endblock foot_javascript %}
 
-{% macro regularIcon(item) %}
-    {{ _self.icon(item, 'regular', 'Icon') }}
+{% macro regularPokemonIcon(item) %}
+    {{ _self.pokemonIcon(item, 'regular', 'Icon') }}
 {% endmacro %}
-{% macro shinyIcon(item) %}
-    {{ _self.icon(item, 'shiny', 'Shiny icon') }}
+{% macro shinyPokemonIcon(item) %}
+    {{ _self.pokemonIcon(item, 'shiny', 'Shiny icon') }}
 {% endmacro %}
-{% macro icon(item, dir, alt) %}
+{% macro pokemonIcon(item, dir, alt) %}
     {% set iconBaseUrl = 'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8' %}
     {% set iconUrl = iconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png'
     %}
     <img
         alt="{{ alt }} of {{ item.pokemon_name }}"
-        clas="responsive-img"
+        class="img-fluid"
         src="{{ iconUrl }}"
     />
 {% endmacro %}

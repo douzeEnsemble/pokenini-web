@@ -25,6 +25,14 @@
   },
   {
     "request": {
+      "uri": "/album/demo-lite"
+    },
+    "response" : {
+      "file": "/var/moco/album/demo-lite.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/album/redgreenblueyellow"
     },
     "response" : {

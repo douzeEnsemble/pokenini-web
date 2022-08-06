@@ -1,39 +1,25 @@
-# Symfony Docker
+# Pokénini
 
-A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework, with full [HTTP/2](https://symfony.com/doc/current/weblink.html), HTTP/3 and HTTPS support.
+## Update moco mock from Pokénin-Api
 
-![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
-
-## Getting Started
-
-1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/)
-2. Run `docker-compose build --pull --no-cache` to build fresh images
-3. Run `docker-compose up` (the logs will be displayed in the current shell)
-4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
-5. Run `docker-compose down --remove-orphans` to stop the Docker containers.
-
-## Features
-
-* Production, development and CI ready
-* Automatic HTTPS (in dev and in prod!)
-* HTTP/2, HTTP/3 and [Preload](https://symfony.com/doc/current/web_link.html) support
-* Built-in [Mercure](https://symfony.com/doc/current/mercure.html) hub
-* [Vulcain](https://vulcain.rocks) support
-* Just 2 services (PHP FPM and Caddy server)
-* Super-readable configuration
-
-**Enjoy!**
-
-## Docs
-
-1. [Build options](docs/build.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Installing Xdebug](docs/xdebug.md)
-6. [Using a Makefile](docs/makefile.md)
-7. [Troubleshooting](docs/troubleshooting.md)
-
-## Credits
-
-Created by [Kévin Dunglas](https://dunglas.fr), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
+```
+curl "https://localhost:4430/album/redgreenblueyellow" --insecure --output tests/resources/moco/album/redgreenblueyellow.json
+curl "https://localhost:4430/album/goldsilvercrystal" --insecure --output tests/resources/moco/album/goldsilvercrystal.json
+curl "https://localhost:4430/album/rubysapphireemerald" --insecure --output tests/resources/moco/album/rubysapphireemerald.json
+curl "https://localhost:4430/album/redfireleafgreen" --insecure --output tests/resources/moco/album/redfireleafgreen.json
+curl "https://localhost:4430/album/diamondpearlplatinium" --insecure --output tests/resources/moco/album/diamondpearlplatinium.json
+curl "https://localhost:4430/album/heartgoldsoulsilver" --insecure --output tests/resources/moco/album/heartgoldsoulsilver.json
+curl "https://localhost:4430/album/blackwhite" --insecure --output tests/resources/moco/album/blackwhite.json
+curl "https://localhost:4430/album/black2white2" --insecure --output tests/resources/moco/album/black2white2.json
+curl "https://localhost:4430/album/xy" --insecure --output tests/resources/moco/album/xy.json
+curl "https://localhost:4430/album/omegarubyalphasapphire" --insecure --output tests/resources/moco/album/omegarubyalphasapphire.json
+curl "https://localhost:4430/album/sunmoon" --insecure --output tests/resources/moco/album/sunmoon.json
+curl "https://localhost:4430/album/ultrasunultramoon" --insecure --output tests/resources/moco/album/ultrasunultramoon.json
+curl "https://localhost:4430/album/letsgopikachuletsgoeevee" --insecure --output tests/resources/moco/album/letsgopikachuletsgoeevee.json
+curl "https://localhost:4430/album/swordshield" --insecure --output tests/resources/moco/album/swordshield.json
+curl "https://localhost:4430/album/brillanddiamondshiningpearl" --insecure --output tests/resources/moco/album/brillanddiamondshiningpearl.json
+curl "https://localhost:4430/album/legendarceus" --insecure --output tests/resources/moco/album/legendarceus.json
+curl "https://localhost:4430/album/home" --insecure --output tests/resources/moco/album/home.json
+curl "https://localhost:4430/album/homeshiny" --insecure --output tests/resources/moco/album/homeshiny.json
+curl "https://localhost:4430/album/homepokemongo" --insecure --output tests/resources/moco/album/homepokemongo.json
+```

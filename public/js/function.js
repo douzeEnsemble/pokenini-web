@@ -10,7 +10,7 @@ function onChangeCatchState(event)
   const target = event.target;
 
   saveChange(target);
-  saveColor(target);
+  changeClass(target);
 }
 
 function saveChange(target)
@@ -19,7 +19,13 @@ function saveChange(target)
   const pokemon = target.closest('.album-case').getAttribute('id');
   const catchState = target.value;
 
-  const request = new Request('https://localhost:4431/album/'+dex+'/'+pokemon, {method: 'PATCH', body: catchState});
+  const request = new Request(
+    'https://localhost:4431/album/'+dex+'/'+pokemon+window.location.search,
+{
+        method: 'PATCH',
+        body: catchState
+    }
+  );
 
   fetch(request)
     .then(response => {
@@ -33,21 +39,14 @@ function saveChange(target)
   ;
 }
 
-function saveColor(target)
+function changeClass(target)
 {
   const albumCase = target.closest('.album-case');
 
-  for (const property in catchStateClassColors) {
-    const classes = catchStateClassColors[property].split(' ');
-    classes.forEach(function (item) {
-      target.classList.remove(item);
-      albumCase.classList.remove(item);
-    });
-  }
+  for (const i in catchStates) {
+    const item = 'catch-state-'+catchStates[i].slug;
 
-  const classes = catchStateClassColors[target.value].split(' ');
-  classes.forEach(function (item) {
-    target.classList.add(item);
-    albumCase.classList.add(item);
-  });
+    target.classList.toggle(item);
+    albumCase.classList.toggle(item);
+  }
 }

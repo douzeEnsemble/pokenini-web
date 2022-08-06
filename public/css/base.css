@@ -1,6 +1,60 @@
-.card.album-case .card-action {
-    padding: 0;
+.album-container {
+    max-width: 600px;
 }
-.card.album-case .card-action .input-field {
-    margin-bottom: .5rem;
+
+@media (max-width: 1576px) {
+    .album-case-name {
+        opacity: 0%;
+    }
 }
+.album-case-catch-state {
+    font-size: .6rem;
+}
+.album-case-symbols {
+    font-size: .6rem;
+}
+.album-case-action {
+    font-size: .6rem;
+    border-left: solid 5px;
+}
+.album-case-action select {
+    max-width: 100%;
+}
+
+/** < Colors **/
+.album-case.catch-state-no .album-case-catch-state {
+    background-color: #e57373;
+}
+.album-case.catch-state-no .album-case-action {
+    border-color: #e57373;
+}
+
+.album-case.catch-state-toevolve .album-case-catch-state {
+    background-color: #c8e6c9;
+}
+.album-case.catch-state-toevolve .album-case-action {
+    border-color: #c8e6c9;
+}
+
+.album-case.catch-state-tobreed .album-case-catch-state {
+    background-color: #4fc3f7;
+}
+.album-case.catch-state-tobreed .album-case-action {
+    border-color: #4fc3f7;
+}
+
+.album-case.catch-state-totransfer .album-case-catch-state {
+    background-color: #ffd54f;
+}
+.album-case.catch-state-totransfer .album-case-action {
+    border-color: #ffd54f;
+}
+
+.album-case.catch-state-yes .album-case-catch-state {
+    background-color: #66bb6a;
+}
+.album-case.catch-state-yes .album-case-action {
+    border-color: #66bb6a;
+}
+/** > Colors **/
+
