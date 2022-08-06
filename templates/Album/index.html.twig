@@ -24,8 +24,10 @@
             <span class="album-case-name position-absolute text-start">
                 {{ item.pokemon_french_name }} / {{ item.pokemon_name }}
             </span>
-            <div class="album-case-image text-center" title="{{ item.pokemon_french_name }}">
-                {{ _self.regularPokemonIcon(item) }}
+            <div class="album-case-image text-center"
+                 title="{{ lang is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
+            >
+                {{ _self.regularPokemonIcon(item, lang) }}
             </div>
             <div class="album-case-forms text-truncate">
                 {{ item.regional_form_name }}
@@ -75,19 +77,31 @@
     </script>
 {% endblock foot_javascript %}
 
-{% macro regularPokemonIcon(item) %}
-    {{ _self.pokemonIcon(item, 'regular', 'Icon') }}
+{% macro regularPokemonIcon(item, lang) %}
+    {{ _self.pokemonIcon(
+        item,
+        'regular',
+        lang
+    ) }}
 {% endmacro %}
 {% macro shinyPokemonIcon(item) %}
-    {{ _self.pokemonIcon(item, 'shiny', 'Shiny icon') }}
+    {{ _self.pokemonIcon(
+        item,
+        'shiny',
+        lang
+    ) }}
 {% endmacro %}
-{% macro pokemonIcon(item, dir, alt) %}
+{% macro pokemonIcon(item, dir, lang) %}
     {% set iconBaseUrl = 'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8' %}
-    {% set iconUrl = iconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png'
-    %}
+    {% set iconUrl = iconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png' %}
+    {% set pokemonName = lang is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
+    {% if dir is same as('regular') %}
+    {% set alt = lang is same as('fr') ? 'Icone de' : 'Icon of' %}
+    {% else %}
+    {% set alt = lang is same as('fr') ? 'Icone chromatique de' : 'Shiny icon of' %}
+    {% endif %}
     <img
-        alt="{{ alt }} of {{ item.pokemon_name }}"
-        title="{{ item.pokemon_name }}"
+        alt="{{ alt }} {{ pokemonName }}"
         class="album-image img-fluid"
         src="{{ iconUrl }}"
     />

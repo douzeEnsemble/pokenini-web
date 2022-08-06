@@ -14,6 +14,7 @@ class AlbumControllerTest extends WebTestCase
         $client->request('GET', '/album/demo?token=cb19dc668f0c426c8f3e319f9ea36ecc');
 
         $this->assertAlbum($client);
+        $this->assertAlbumFrench($client);
         $this->assertWriteMode($client);
     }
 
@@ -24,6 +25,7 @@ class AlbumControllerTest extends WebTestCase
         $client->request('GET', '/album/demo');
 
         $this->assertAlbum($client);
+        $this->assertAlbumFrench($client);
         $this->assertReadMode($client);
     }
 
@@ -34,7 +36,30 @@ class AlbumControllerTest extends WebTestCase
         $client->request('GET', '/album/demo?token=kadkjazpdazpdi');
 
         $this->assertAlbum($client);
+        $this->assertAlbumFrench($client);
         $this->assertReadMode($client);
+    }
+
+    public function testListLanguageEnglish(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/album/demo?lang=en');
+
+        $this->assertAlbum($client);
+        $this->assertReadMode($client);
+        $this->assertAlbumEnglish($client);
+    }
+
+    public function testListLanguageFrench(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/album/demo?lang=fr');
+
+        $this->assertAlbum($client);
+        $this->assertReadMode($client);
+        $this->assertAlbumFrench($client);
     }
 
     public function testUpdatePrivate(): void
@@ -103,31 +128,22 @@ class AlbumControllerTest extends WebTestCase
             $icon->attr('src')
         );
 
-        $label = $mainCrawler->filter('#bulbasaur .album-case-name');
         $this->assertEquals(
             'Bulbizarre / Bulbasaur',
-            $label->text()
-        );
-        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
-        $this->assertEquals(
-            'Bulbizarre',
-            $tooltip->attr('title')
+            $mainCrawler->filter('#bulbasaur .album-case-name')->text()
         );
 
-        $forms = $mainCrawler->filter('#bulbasaur .album-case-forms');
         $this->assertEquals(
             html_entity_decode('&nbsp;'),
-            $forms->text()
+            $mainCrawler->filter('#bulbasaur .album-case-forms')->text()
         );
-        $forms = $mainCrawler->filter('#venusaur-f .album-case-forms');
         $this->assertEquals(
             'Gender',
-            $forms->text()
+            $mainCrawler->filter('#venusaur-f .album-case-forms')->text()
         );
-        $forms = $mainCrawler->filter('#pikachu-alpha-f .album-case-forms');
         $this->assertEquals(
             'Alpha Gender',
-            $forms->text()
+            $mainCrawler->filter('#pikachu-alpha-f .album-case-forms')->text()
         );
 
         $this->assertEquals(
@@ -264,6 +280,38 @@ class AlbumControllerTest extends WebTestCase
             $mainCrawler
                 ->filter('.album-case .album-case-catch-state')
                 ->count()
+        );
+    }
+
+    private function assertAlbumFrench(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
+        $this->assertEquals(
+            'Bulbizarre',
+            $tooltip->attr('title')
+        );
+        $imgAlt = $mainCrawler->filter('#bulbasaur .album-image');
+        $this->assertEquals(
+            'Icone de Bulbizarre',
+            $imgAlt->attr('alt')
+        );
+    }
+
+    private function assertAlbumEnglish(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
+        $this->assertEquals(
+            'Bulbasaur',
+            $tooltip->attr('title')
+        );
+        $imgAlt = $mainCrawler->filter('#bulbasaur .album-image');
+        $this->assertEquals(
+            'Icon of Bulbasaur',
+            $imgAlt->attr('alt')
         );
     }
 }
