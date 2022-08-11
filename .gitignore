@@ -19,7 +19,6 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 /.idea/
-/.env
 
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
