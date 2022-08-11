@@ -20,7 +20,7 @@ function saveChange(target)
   const catchState = target.value;
 
   const request = new Request(
-    appApiUrl+'/album/'+dex+'/'+pokemon+window.location.search,
+    '/album/'+dex+'/'+pokemon+window.location.search,
 {
         method: 'PATCH',
         body: catchState

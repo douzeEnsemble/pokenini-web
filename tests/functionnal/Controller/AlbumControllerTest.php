@@ -178,7 +178,6 @@ class AlbumControllerTest extends WebTestCase
         );
 
         $this->assertStringContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
-        $this->assertStringContainsString("const appApiUrl = 'http://pokenini-api.local';", $mainCrawler->outerHtml());
         $this->assertStringContainsString('watchCatchStates();', $mainCrawler->outerHtml());
 
         $this->assertCount(

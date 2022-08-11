@@ -38,7 +38,6 @@ class AlbumController extends AbstractController
             'catchStates' => $catchStates,
             'mode' => $mode,
             'lang' => $request->query->get('lang', 'fr'),
-            'appApiUrl' => $this->appApiUrl,
         ]);
     }
 
