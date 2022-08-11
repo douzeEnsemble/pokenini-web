@@ -11,7 +11,7 @@ SYMFONY  = $(PHP_CONT) bin/console
 
 # Misc
 .DEFAULT_GOAL = help
-.PHONY        = help build up start down logs sh composer vendor sf cc
+.PHONY        = help build up start down logs sh composer vendor sf cc deploy
 
 ## —— 🎵 🐳 The Symfony-docker Makefile 🐳 🎵 ——————————————————————————————————
 help: ## Outputs this help screen
@@ -76,4 +76,19 @@ phpmd: ## Execute phpmd
 
 psalm: ## Execute psalm
 	@$(PHP_CONT) vendor/bin/psalm --show-info=true
+
+
+## —— Deployment 🚀 ————————————————————————————————————————————————————————————————
+deploy: ## Deployment
+	rm -Rf ~/tmp/deploy/pokenini-web
+	mkdir -p ~/tmp/deploy/pokenini-web
+	heroku git:clone -a pokenini-web ~/tmp/deploy/pokenini-web/heroku
+	git clone git@github.com:RenaudDouze/pokenini-web.git ~/tmp/deploy/pokenini-web/project
+	rm -Rf ~/tmp/deploy/pokenini-web/project/.git
+	cp -R ~/tmp/deploy/pokenini-web/project/* ~/tmp/deploy/pokenini-web/heroku/
+	cd ~/tmp/deploy/pokenini-web/heroku; \
+        git add --all; \
+		git commit --allow-empty -m "Deployment"; \
+		git push heroku main
+	rm -Rf ~/tmp/deploy/pokenini-web
 
