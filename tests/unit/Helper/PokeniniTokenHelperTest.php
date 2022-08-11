@@ -23,5 +23,15 @@ class PokeniniTokenHelperTest extends TestCase
             '678aa9c6c4ccd4255b33af7268b4454d',
             PokeniniTokenHelper::getFromDexSlug('home')
         );
+
+        $this->assertEquals(
+            '2975a018d9e2cea6106d1c6a3c04b394',
+            PokeniniTokenHelper::getFromDexSlug('homeshiny')
+        );
+
+        $this->assertEquals(
+            '1da3b0d3289c4206fa74ac01142af4da',
+            PokeniniTokenHelper::getFromDexSlug('redgreenblueyellow')
+        );
     }
 }

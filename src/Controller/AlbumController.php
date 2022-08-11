@@ -80,7 +80,12 @@ class AlbumController extends AbstractController
     {
         $response = $this->client->request(
             'GET',
-            "{$this->appApiUrl}/catch_states"
+            "{$this->appApiUrl}/catch_states",
+            [
+                'headers' => [
+                    'accept' => 'application/json',
+                ],
+            ]
         );
 
         /** @var string[][] */
