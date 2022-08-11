@@ -117,9 +117,9 @@ class AlbumControllerTest extends WebTestCase
 
         $expectedPokemonCount = 1736;
 
-        $this->assertEquals(
+        $this->assertCount(
             $expectedPokemonCount,
-            $mainCrawler->filter('.album-case')->count()
+            $mainCrawler->filter('.album-case')
         );
 
         $icon = $mainCrawler->filter('#bulbasaur .album-case-image img');
@@ -146,63 +146,55 @@ class AlbumControllerTest extends WebTestCase
             $mainCrawler->filter('#pikachu-alpha-f .album-case-forms')->text()
         );
 
-        $this->assertEquals(
+        $this->assertCount(
             1,
             $mainCrawler
                 ->filter('#bulbasaur.album-case.catch-state-no')
-                ->count()
         );
-        $this->assertEquals(
+        $this->assertCount(
             1,
             $mainCrawler
                 ->filter('#ivysaur.album-case.catch-state-no')
-                ->count()
         );
-        $this->assertEquals(
+        $this->assertCount(
             1,
             $mainCrawler
                 ->filter('#venusaur.album-case.catch-state-toevolve')
-                ->count()
         );
-        $this->assertEquals(
+        $this->assertCount(
             1,
             $mainCrawler
                 ->filter('#venusaur-f.album-case.catch-state-tobreed')
-                ->count()
         );
-        $this->assertEquals(
+        $this->assertCount(
             1,
             $mainCrawler
                 ->filter('#venusaur-mega.album-case.catch-state-totransfer')
-                ->count()
         );
-        $this->assertEquals(
+        $this->assertCount(
             1,
             $mainCrawler
                 ->filter('#venusaur-gmax.album-case.catch-state-yes')
-                ->count()
         );
 
         $this->assertStringContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
+        $this->assertStringContainsString("const appApiUrl = 'http://pokenini-api.local';", $mainCrawler->outerHtml());
         $this->assertStringContainsString('watchCatchStates();', $mainCrawler->outerHtml());
 
-        $this->assertEquals(
+        $this->assertCount(
             $expectedPokemonCount,
             $mainCrawler
                 ->filter('.album-case.col-2')
-                ->count()
         );
-        $this->assertEquals(
+        $this->assertCount(
             290,
             $mainCrawler
                 ->filter('div.row')
-                ->count()
         );
-        $this->assertEquals(
+        $this->assertCount(
             58,
             $mainCrawler
                 ->filter('h2')
-                ->count()
         );
     }
 
@@ -210,18 +202,16 @@ class AlbumControllerTest extends WebTestCase
     {
         $mainCrawler = $client->getCrawler();
 
-        $this->assertEquals(
+        $this->assertCount(
             0,
             $mainCrawler
                 ->filter('.album-case select')
-                ->count()
         );
 
-        $this->assertEquals(
+        $this->assertCount(
             1736,
             $mainCrawler
                 ->filter('.album-case .album-case-catch-state')
-                ->count()
         );
 
         $this->assertEquals(
@@ -266,20 +256,18 @@ class AlbumControllerTest extends WebTestCase
     {
         $mainCrawler = $client->getCrawler();
 
-        $this->assertEquals(
+        $this->assertCount(
             1736,
             $mainCrawler
                 ->filter('.album-case select')
-                ->count()
         );
 
         $options = $mainCrawler->filter('#bulbasaur select option');
-        $this->assertEquals(5, $options->count());
-        $this->assertEquals(
+        $this->assertCount(5, $options);
+        $this->assertCount(
             0,
             $mainCrawler
                 ->filter('.album-case .album-case-catch-state')
-                ->count()
         );
     }
 

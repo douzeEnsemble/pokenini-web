@@ -37,7 +37,8 @@ class AlbumController extends AbstractController
             'list' => $pokedex['pokemons'],
             'catchStates' => $catchStates,
             'mode' => $mode,
-            'lang' => $request->query->get('lang', 'fr')
+            'lang' => $request->query->get('lang', 'fr'),
+            'appApiUrl' => $this->appApiUrl,
         ]);
     }
 
