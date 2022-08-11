@@ -86,6 +86,7 @@ deploy: ## Deployment
 	git clone git@github.com:RenaudDouze/pokenini-web.git ~/tmp/deploy/pokenini-web/project
 	rm -Rf ~/tmp/deploy/pokenini-web/project/.git
 	cp -R ~/tmp/deploy/pokenini-web/project/* ~/tmp/deploy/pokenini-web/heroku/
+	cp -R ~/tmp/deploy/pokenini-web/project/.* ~/tmp/deploy/pokenini-web/heroku/
 	cd ~/tmp/deploy/pokenini-web/heroku; \
         git add --all; \
 		git commit --allow-empty -m "Deployment"; \

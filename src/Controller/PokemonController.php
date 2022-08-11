@@ -12,12 +12,16 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[Route('/pokemon')]
 class PokemonController extends AbstractController
 {
+    public function __construct(private readonly string $appApiUrl)
+    {
+    }
+
     #[Route('/')]
     public function index(HttpClientInterface $client): Response
     {
         $response = $client->request(
             'GET',
-            'http://pkmn-lagd-api.local/pokemon'
+            "{$this->appApiUrl}/pokemon"
         );
 
         $pokemons = json_decode($response->getContent());

@@ -14,8 +14,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[Route('/album')]
 class AlbumController extends AbstractController
 {
-    public function __construct(private readonly HttpClientInterface $client)
-    {
+    public function __construct(
+        private readonly HttpClientInterface $client,
+        private readonly string $appApiUrl
+    ) {
     }
 
     #[Route('/{dexSlug}', methods: ['GET'])]
@@ -48,7 +50,7 @@ class AlbumController extends AbstractController
 
         $this->client->request(
             $request->getMethod(),
-            "http://pkmn-lagd-api.local/album/$dexSlug/$pokemonSlug",
+            "{$this->appApiUrl}/album/$dexSlug/$pokemonSlug",
             [
                 'body' => $request->getContent(),
             ]
@@ -64,7 +66,7 @@ class AlbumController extends AbstractController
     {
         $response = $this->client->request(
             'GET',
-            "http://pkmn-lagd-api.local/album/$dexSlug"
+            "{$this->appApiUrl}/album/$dexSlug"
         );
 
         /** @var string[][]|string[][][] */
@@ -78,7 +80,7 @@ class AlbumController extends AbstractController
     {
         $response = $this->client->request(
             'GET',
-            'http://pkmn-lagd-api.local/catch_states'
+            "{$this->appApiUrl}/catch_states"
         );
 
         /** @var string[][] */
