@@ -16,6 +16,7 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
         $this->assertWriteMode($client);
+        $this->assertAlbumFrenchWriteMode($client);
     }
 
     public function testListPublic(): void
@@ -27,6 +28,7 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
         $this->assertReadMode($client);
+        $this->assertAlbumFrenchReadMode($client);
     }
 
     public function testListWrongToken(): void
@@ -38,6 +40,7 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
         $this->assertReadMode($client);
+        $this->assertAlbumFrenchReadMode($client);
     }
 
     public function testListLanguageEnglish(): void
@@ -49,6 +52,19 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbum($client);
         $this->assertReadMode($client);
         $this->assertAlbumEnglish($client);
+        $this->assertAlbumEnglishReadMode($client);
+    }
+
+    public function testListLanguageEnglishWriteMode(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/album/demo?lang=en&token=cb19dc668f0c426c8f3e319f9ea36ecc');
+
+        $this->assertAlbum($client);
+        $this->assertWriteMode($client);
+        $this->assertAlbumEnglish($client);
+        $this->assertAlbumEnglishWriteMode($client);
     }
 
     public function testListLanguageFrench(): void
@@ -60,6 +76,7 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbum($client);
         $this->assertReadMode($client);
         $this->assertAlbumFrench($client);
+        $this->assertAlbumFrenchReadMode($client);
     }
 
     public function testUpdatePrivate(): void
@@ -111,7 +128,6 @@ class AlbumControllerTest extends WebTestCase
     private function assertAlbum(KernelBrowser $client): void
     {
         $this->assertResponseIsSuccessful();
-        $this->assertPageTitleSame('Pokénini Demo');
 
         $mainCrawler = $client->getCrawler();
 
@@ -212,6 +228,175 @@ class AlbumControllerTest extends WebTestCase
             $mainCrawler
                 ->filter('.album-case .album-case-catch-state')
         );
+    }
+
+    private function assertWriteMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(
+            1736,
+            $mainCrawler
+                ->filter('.album-case select')
+        );
+
+        $options = $mainCrawler->filter('#bulbasaur select option');
+        $this->assertCount(5, $options);
+
+        $this->assertCount(
+            0,
+            $mainCrawler
+                ->filter('.album-case .album-case-catch-state')
+        );
+    }
+
+    private function assertAlbumFrench(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertPageTitleSame('Pokénini Démo');
+
+        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
+        $this->assertEquals(
+            'Bulbizarre',
+            $tooltip->attr('title')
+        );
+        $imgAlt = $mainCrawler->filter('#bulbasaur .album-image');
+        $this->assertEquals(
+            'Icone de Bulbizarre',
+            $imgAlt->attr('alt')
+        );
+        $titleBox1 = $mainCrawler->filter('h2#box-1');
+        $this->assertEquals(
+            'Boite 1',
+            $titleBox1->text()
+        );
+        $titleBox58 = $mainCrawler->filter('h2#box-58');
+        $this->assertEquals(
+            'Boite 58',
+            $titleBox58->text()
+        );
+    }
+
+    private function assertAlbumEnglish(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertPageTitleSame('Pokénini Demo');
+
+        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
+        $this->assertEquals(
+            'Bulbasaur',
+            $tooltip->attr('title')
+        );
+        $imgAlt = $mainCrawler->filter('#bulbasaur .album-image');
+        $this->assertEquals(
+            'Icon of Bulbasaur',
+            $imgAlt->attr('alt')
+        );
+        $titleBox1 = $mainCrawler->filter('h2#box-1');
+        $this->assertEquals(
+            'Box 1',
+            $titleBox1->text()
+        );
+        $titleBox58 = $mainCrawler->filter('h2#box-58');
+        $this->assertEquals(
+            'Box 58',
+            $titleBox58->text()
+        );
+    }
+
+    private function assertAlbumFrenchWriteMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $selectedOption = $mainCrawler->filter('#bulbasaur select option:selected')->first();
+        $this->assertEquals('Non', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#ivysaur select option:selected')->first();
+        $this->assertEquals('Non', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#venusaur select option:selected')->first();
+        $this->assertEquals('af. évoluer', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#venusaur-f select option:selected')->first();
+        $this->assertEquals('af. reproduire', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#venusaur-mega select option:selected')->first();
+        $this->assertEquals('à transférer', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#venusaur-gmax select option:selected')->first();
+        $this->assertEquals('Oui', $selectedOption->text());
+    }
+
+    private function assertAlbumFrenchReadMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertEquals(
+            'Non',
+            $mainCrawler
+                ->filter('#bulbasaur .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'Non',
+            $mainCrawler
+                ->filter('#ivysaur .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'af. évoluer',
+            $mainCrawler
+                ->filter('#venusaur .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'af. reproduire',
+            $mainCrawler
+                ->filter('#venusaur-f .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'à transférer',
+            $mainCrawler
+                ->filter('#venusaur-mega .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'Oui',
+            $mainCrawler
+                ->filter('#venusaur-gmax .album-case-catch-state')
+                ->text()
+        );
+    }
+
+    private function assertAlbumEnglishWriteMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $selectedOption = $mainCrawler->filter('#bulbasaur select option:selected')->first();
+        $this->assertEquals('No', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#ivysaur select option:selected')->first();
+        $this->assertEquals('No', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#venusaur select option:selected')->first();
+        $this->assertEquals('To evolve', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#venusaur-f select option:selected')->first();
+        $this->assertEquals('To breed', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#venusaur-mega select option:selected')->first();
+        $this->assertEquals('To transfer', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#venusaur-gmax select option:selected')->first();
+        $this->assertEquals('Yes', $selectedOption->text());
+    }
+
+    private function assertAlbumEnglishReadMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
 
         $this->assertEquals(
             'No',
@@ -248,57 +433,6 @@ class AlbumControllerTest extends WebTestCase
             $mainCrawler
                 ->filter('#venusaur-gmax .album-case-catch-state')
                 ->text()
-        );
-    }
-
-    private function assertWriteMode(KernelBrowser $client): void
-    {
-        $mainCrawler = $client->getCrawler();
-
-        $this->assertCount(
-            1736,
-            $mainCrawler
-                ->filter('.album-case select')
-        );
-
-        $options = $mainCrawler->filter('#bulbasaur select option');
-        $this->assertCount(5, $options);
-        $this->assertCount(
-            0,
-            $mainCrawler
-                ->filter('.album-case .album-case-catch-state')
-        );
-    }
-
-    private function assertAlbumFrench(KernelBrowser $client): void
-    {
-        $mainCrawler = $client->getCrawler();
-
-        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
-        $this->assertEquals(
-            'Bulbizarre',
-            $tooltip->attr('title')
-        );
-        $imgAlt = $mainCrawler->filter('#bulbasaur .album-image');
-        $this->assertEquals(
-            'Icone de Bulbizarre',
-            $imgAlt->attr('alt')
-        );
-    }
-
-    private function assertAlbumEnglish(KernelBrowser $client): void
-    {
-        $mainCrawler = $client->getCrawler();
-
-        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
-        $this->assertEquals(
-            'Bulbasaur',
-            $tooltip->attr('title')
-        );
-        $imgAlt = $mainCrawler->filter('#bulbasaur .album-image');
-        $this->assertEquals(
-            'Icon of Bulbasaur',
-            $imgAlt->attr('alt')
         );
     }
 }

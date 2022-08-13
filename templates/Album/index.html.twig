@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pokénini {{ dex.name }}{% endblock title %}
+{% block title %}Pokénini {{ lang is same as('fr') ? dex.french_name : dex.name }}{% endblock title %}
 
 {% block container %}
+{% set boxLabel = lang is same as('fr') ? 'Boite' : 'Box' %}
 <div class="album-container">
-    <h2 id="box-1">Box 1</h2>
+    <h2 id="box-1">{{ boxLabel }} 1</h2>
     <div class="row">
     {% for item in list %}
         {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
@@ -12,7 +13,7 @@
             {% if (loop.index0 % 5) is same as(0) %}
                 {% set boxNumber = (loop.index0 / (6*5)) + 1 %}
                 <hr>
-                <h2 id="box-{{ boxNumber }}">Box {{ boxNumber }}</h2>
+                <h2 id="box-{{ boxNumber }}">{{ boxLabel }} {{ boxNumber }}</h2>
             {% endif %}
             <div class="row">
         {% endif %}
@@ -47,14 +48,18 @@
                         {% for catchState in catchStates %}
                             {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
                             <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
-                                {{ catchState.name }}
+                                {{ lang is same as('fr') ? catchState.frenchName : catchState.name }}
                             </option>
                         {% endfor %}
                     </select>
                 </div>
             {% else %}
                 <div class="album-case-catch-state rounded-1 ps-2">
+                    {% if lang is same as('fr') %}
+                    {{ item.catch_state_french_name ?? 'Non' }}
+                    {% else %}
                     {{ item.catch_state_name ?? 'No' }}
+                    {% endif %}
                 </div>
             {% endif %}
         </div>
