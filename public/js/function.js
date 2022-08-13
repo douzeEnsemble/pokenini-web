@@ -46,7 +46,12 @@ function changeClass(target)
   for (const i in catchStates) {
     const item = 'catch-state-'+catchStates[i].slug;
 
-    target.classList.toggle(item);
-    albumCase.classList.toggle(item);
+    target.classList.remove(item);
+    albumCase.classList.remove(item);
   }
+
+  const currentCatchState = albumCase.querySelector('select');
+
+  target.classList.add('catch-state-'+currentCatchState.value);
+  albumCase.classList.add('catch-state-'+currentCatchState.value);
 }
