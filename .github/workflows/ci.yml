@@ -34,9 +34,9 @@ jobs:
           done
           exit 1
       - name: Check HTTP reachability
-        run: curl -v -o /dev/null http://localhost:8080
+        run: curl -v -o /dev/null http://localhost:8081
       - name: Check HTTPS reachability
-        run: curl  -vk -o /dev/null https://localhost:4430
+        run: curl  -vk -o /dev/null https://localhost:4431
       - name: Create test database
         run: |
           docker-compose exec -T php bin/console -e test doctrine:database:create --if-not-exists
