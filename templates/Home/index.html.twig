@@ -1,3 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}Ceci est la Home{% endblock %}
+{% block body %}
+<div class="row justify-content-md-center">
+    <div class="col-md-8 mx-auto text-center">
+        <h1>Pokénini</h1>
+
+        <ul class="nav flex-column">
+            {% for dex in dexes|filter(dex => dex.isPrivate is not same as(true)) %}
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    aria-current="page"
+                    href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}"
+                >
+                    {{ lang is same as('fr') ? dex.frenchName : dex.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

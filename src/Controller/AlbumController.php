@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Traits\DexesRequestTrait;
 use App\Helper\PokeniniTokenHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[Route('/album')]
 class AlbumController extends AbstractController
 {
+    use DexesRequestTrait;
+
     public function __construct(
         private readonly HttpClientInterface $client,
         private readonly string $appApiUrl
@@ -21,8 +24,10 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/{dexSlug}', methods: ['GET'])]
-    public function index(string $dexSlug, Request $request): Response
-    {
+    public function index(
+        string $dexSlug,
+        Request $request,
+    ): Response {
         $mode = 'read';
         if ($request->query->get('token') === PokeniniTokenHelper::getFromDexSlug($dexSlug)) {
             $mode = 'write';
@@ -30,12 +35,15 @@ class AlbumController extends AbstractController
 
         $pokedex = $this->getPokedex($dexSlug);
         $catchStates = $this->getCatchStates();
+        $dexes = $this->getDexes();
 
         return $this->render('Album/index.html.twig', [
+            'currentDexSlug' => $dexSlug,
             'dex' => $pokedex['dex'],
             'report' => $pokedex['report'],
             'list' => $pokedex['pokemons'],
             'catchStates' => $catchStates,
+            'dexes' => $dexes,
             'mode' => $mode,
             'lang' => $request->query->get('lang', 'fr'),
         ]);

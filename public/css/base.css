@@ -15,6 +15,10 @@
     max-width: 100%;
 }
 
+.report-container {
+    margin-bottom: 3.5rem;
+}
+
 /** < Colors **/
 .album-case.catch-state-no .album-case-catch-state {
     background-color: #e57373;
