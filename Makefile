@@ -2,7 +2,11 @@
 DOCKER_COMP = docker-compose
 
 # Docker containers
+ifeq (${CI}, true)
+PHP_CONT = $(DOCKER_COMP) exec -T php
+else
 PHP_CONT = $(DOCKER_COMP) exec php
+endif
 
 # Executables
 PHP      = $(PHP_CONT) php

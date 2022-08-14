@@ -1,6 +1,9 @@
 {
   "dex": {
-    "name": "Demo"
+    "name": "Demo",
+    "french_name": "Démo",
+    "is_shiny": false,
+    "is_private": true
   },
   "pokemons": [
     {
@@ -15,7 +18,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "ivysaur",
@@ -29,7 +33,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": "no",
-      "catch_state_name": "No"
+      "catch_state_name": "No",
+      "catch_state_french_name": "Non"
     },
     {
       "pokemon_slug": "venusaur",
@@ -43,7 +48,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": "toevolve",
-      "catch_state_name": "To evolve"
+      "catch_state_name": "To evolve",
+      "catch_state_french_name": "af. évoluer"
     },
     {
       "pokemon_slug": "venusaur-f",
@@ -57,7 +63,8 @@
       "variant_form_slug": "gender",
       "variant_form_name": "Gender",
       "catch_state_slug": "tobreed",
-      "catch_state_name": "To breed"
+      "catch_state_name": "To breed",
+      "catch_state_french_name": "af. reproduire"
     },
     {
       "pokemon_slug": "venusaur-mega",
@@ -71,7 +78,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": "totransfer",
-      "catch_state_name": "To transfer"
+      "catch_state_name": "To transfer",
+      "catch_state_french_name": "à transférer"
     },
     {
       "pokemon_slug": "venusaur-gmax",
@@ -85,7 +93,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": "yes",
-      "catch_state_name": "Yes"
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "charmander",
@@ -98,13 +107,14 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "charmeleon",
       "pokemon_name": "Charmeleon",
-      "pokemon_french_name": "Charmeleon",
+      "pokemon_french_name": "Reptincel",
       "pokemon_icon": "charmeleon",
       "regional_form_slug": null,
       "regional_form_name": null,
@@ -118,7 +128,7 @@
     {
       "pokemon_slug": "charizard",
       "pokemon_name": "Charizard",
-      "pokemon_french_name": "Reptincel",
+      "pokemon_french_name": "Dracaufeu",
       "pokemon_icon": "charizard",
       "regional_form_slug": null,
       "regional_form_name": null,
@@ -24307,5 +24317,42 @@
       "catch_state_slug": null,
       "catch_state_name": null
     }
-  ]
+  ],
+  "report": {
+    "total": 1736,
+    "totalCaught": 2,
+    "totalUncaught": 1731,
+    "detail": [
+      {
+        "slug": "no",
+        "name": "No",
+        "frenchName": "Non",
+        "count": 1
+      },
+      {
+        "slug": "toevolve",
+        "name": "To evolve",
+        "frenchName": "af. \u00e9voluer",
+        "count": 1
+      },
+      {
+        "slug": "tobreed",
+        "name": "To breed",
+        "frenchName": "af. reproduire",
+        "count": 1
+      },
+      {
+        "slug": "totransfer",
+        "name": "To transfer",
+        "frenchName": "\u00e0 transf\u00e9rer",
+        "count": 1
+      },
+      {
+        "slug": "yes",
+        "name": "Yes",
+        "frenchName": "Oui",
+        "count": 2
+      }
+    ]
+  }
 }

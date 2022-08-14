@@ -29,11 +29,11 @@ class AlbumController extends AbstractController
         }
 
         $pokedex = $this->getPokedex($dexSlug);
-
         $catchStates = $this->getCatchStates();
 
         return $this->render('Album/index.html.twig', [
             'dex' => $pokedex['dex'],
+            'report' => $pokedex['report'],
             'list' => $pokedex['pokemons'],
             'catchStates' => $catchStates,
             'mode' => $mode,
