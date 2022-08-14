@@ -1,0 +1,228 @@
+<?php
+
+namespace App\Tests\Functionnal\Controller\AlbumController;
+
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class AbstractAlbumControllerTestCase extends WebTestCase
+{
+    protected function assertAlbum(KernelBrowser $client): void
+    {
+        $this->assertResponseIsSuccessful();
+
+        $mainCrawler = $client->getCrawler();
+
+        $expectedPokemonCount = 1736;
+
+        $this->assertCount(
+            $expectedPokemonCount,
+            $mainCrawler->filter('.album-case')
+        );
+
+        $icon = $mainCrawler->filter('#bulbasaur .album-case-image img');
+        $this->assertEquals(
+            'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/bulbasaur.png',
+            $icon->attr('src')
+        );
+
+        $this->assertEquals(
+            'Bulbizarre / Bulbasaur',
+            $mainCrawler->filter('#bulbasaur .album-case-name')->text()
+        );
+
+        $this->assertEquals(
+            html_entity_decode('&nbsp;'),
+            $mainCrawler->filter('#bulbasaur .album-case-forms')->text()
+        );
+        $this->assertEquals(
+            'Gender',
+            $mainCrawler->filter('#venusaur-f .album-case-forms')->text()
+        );
+        $this->assertEquals(
+            'Alpha Gender',
+            $mainCrawler->filter('#pikachu-alpha-f .album-case-forms')->text()
+        );
+
+        $this->assertCount(
+            1,
+            $mainCrawler
+                ->filter('#bulbasaur.album-case.catch-state-no')
+        );
+        $this->assertCount(
+            1,
+            $mainCrawler
+                ->filter('#ivysaur.album-case.catch-state-no')
+        );
+        $this->assertCount(
+            1,
+            $mainCrawler
+                ->filter('#venusaur.album-case.catch-state-toevolve')
+        );
+        $this->assertCount(
+            1,
+            $mainCrawler
+                ->filter('#venusaur-f.album-case.catch-state-tobreed')
+        );
+        $this->assertCount(
+            1,
+            $mainCrawler
+                ->filter('#venusaur-mega.album-case.catch-state-totransfer')
+        );
+        $this->assertCount(
+            1,
+            $mainCrawler
+                ->filter('#venusaur-gmax.album-case.catch-state-yes')
+        );
+
+        $this->assertStringContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
+        $this->assertStringContainsString('watchCatchStates();', $mainCrawler->outerHtml());
+
+        $this->assertCount(
+            $expectedPokemonCount,
+            $mainCrawler
+                ->filter('.album-case.col-2')
+        );
+        $this->assertCount(
+            291,
+            $mainCrawler
+                ->filter('div.row')
+        );
+        $this->assertCount(
+            58,
+            $mainCrawler
+                ->filter('h2.box')
+        );
+    }
+
+    protected function assertReadMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(
+            0,
+            $mainCrawler
+                ->filter('.album-case select')
+        );
+
+        $this->assertCount(
+            1736,
+            $mainCrawler
+                ->filter('.album-case .album-case-catch-state')
+        );
+    }
+
+    protected function assertWriteMode(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(
+            1736,
+            $mainCrawler
+                ->filter('.album-case select')
+        );
+
+        $options = $mainCrawler->filter('#bulbasaur select option');
+        $this->assertCount(5, $options);
+
+        $this->assertCount(
+            0,
+            $mainCrawler
+                ->filter('.album-case .album-case-catch-state')
+        );
+    }
+
+    protected function assertStatistics(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $statsTitle = $mainCrawler->filter('h2#stats');
+        $this->assertCount(1, $statsTitle);
+        $this->assertEquals('Stats', $statsTitle->text());
+
+        $this->assertCount(1, $mainCrawler->filter('.progress'));
+        $this->assertCount(5, $mainCrawler->filter('.progress-bar'));
+
+        $this->assertEquals(
+            '99.71%',
+            $mainCrawler->filter('.progress-bar.catch-state-no')->text()
+        );
+        $this->assertEmpty(
+            $mainCrawler->filter('.progress-bar.catch-state-toevolve')->text()
+        );
+        $this->assertEmpty(
+            $mainCrawler->filter('.progress-bar.catch-state-tobreed')->text()
+        );
+        $this->assertEmpty(
+            $mainCrawler->filter('.progress-bar.catch-state-totransfer')->text()
+        );
+        $this->assertEquals(
+            '0.12%',
+            $mainCrawler->filter('.progress-bar.catch-state-yes')->text()
+        );
+
+        $this->assertCount(1, $mainCrawler->filter('table#report'));
+        $this->assertCount(6, $mainCrawler->filter('table#report tr'));
+
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-no'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-toevolve'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-tobreed'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-totransfer'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-yes'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-total'));
+
+        $this->assertEquals(
+            1731,
+            $mainCrawler->filter('table#report tr.catch-state-no td')->text()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler->filter('table#report tr.catch-state-toevolve td')->text()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler->filter('table#report tr.catch-state-tobreed td')->text()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler->filter('table#report tr.catch-state-totransfer td')->text()
+        );
+        $this->assertEquals(
+            2,
+            $mainCrawler->filter('table#report tr.catch-state-yes td')->text()
+        );
+        $this->assertEquals(
+            1736,
+            $mainCrawler->filter('table#report tr.catch-state-total td')->text()
+        );
+    }
+
+    protected function assertNavigationBar(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(1, $mainCrawler->filter('.navbar'));
+        $this->assertCount(5, $mainCrawler->filter('.navbar .nav-item'));
+        $this->assertCount(5, $mainCrawler->filter('.navbar .nav-item .nav-link'));
+    }
+
+    protected function assertRegular(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertStringContainsString(
+            '/regular/',
+            $mainCrawler->filter('.album-image')->first()->attr('src') ?? ''
+        );
+    }
+
+    protected function assertShiny(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertStringContainsString(
+            '/shiny/',
+            $mainCrawler->filter('.album-image')->first()->attr('src') ?? ''
+        );
+    }
+}
