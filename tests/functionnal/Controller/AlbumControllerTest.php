@@ -19,6 +19,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumFrenchWriteMode($client);
         $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
+        $this->assertNavigationBar($client);
+        $this->assertNavigationBarFrench($client);
     }
 
     public function testListPublic(): void
@@ -33,6 +35,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumFrenchReadMode($client);
         $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
+        $this->assertNavigationBar($client);
+        $this->assertNavigationBarFrench($client);
     }
 
     public function testListWrongToken(): void
@@ -47,6 +51,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumFrenchReadMode($client);
         $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
+        $this->assertNavigationBar($client);
+        $this->assertNavigationBarFrench($client);
     }
 
     public function testListLanguageEnglish(): void
@@ -61,6 +67,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumEnglishReadMode($client);
         $this->assertStatistics($client);
         $this->assertEnglishStatistics($client);
+        $this->assertNavigationBar($client);
+        $this->assertNavigationBarEnglish($client);
     }
 
     public function testListLanguageEnglishWriteMode(): void
@@ -75,6 +83,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumEnglishWriteMode($client);
         $this->assertStatistics($client);
         $this->assertEnglishStatistics($client);
+        $this->assertNavigationBar($client);
+        $this->assertNavigationBarEnglish($client);
     }
 
     public function testListLanguageFrench(): void
@@ -89,6 +99,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumFrenchReadMode($client);
         $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
+        $this->assertNavigationBar($client);
+        $this->assertNavigationBarFrench($client);
     }
 
     public function testUpdatePrivate(): void
@@ -563,5 +575,40 @@ class AlbumControllerTest extends WebTestCase
             'Yes',
             $mainCrawler->filter('table#report tr.catch-state-yes th')->text()
         );
+    }
+
+    private function assertNavigationBar(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(1, $mainCrawler->filter('.navbar'));
+        $this->assertCount(5, $mainCrawler->filter('.navbar .nav-item'));
+        $this->assertCount(5, $mainCrawler->filter('.navbar .nav-item .nav-link'));
+    }
+
+    private function assertNavigationBarFrench(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $firstAlbum = $mainCrawler->filter('.navbar .nav-item')->first();
+        $this->assertEquals('Home', $firstAlbum->text());
+        $this->assertEquals('/album/home?lang=fr', $firstAlbum->filter('.nav-link')->attr('href'));
+
+        $secondAlbum = $mainCrawler->filter('.navbar .nav-item')->eq(1);
+        $this->assertEquals('Home Chromatique', $secondAlbum->text());
+        $this->assertEquals('/album/homeshiny?lang=fr', $secondAlbum->filter('.nav-link')->attr('href'));
+    }
+
+    private function assertNavigationBarEnglish(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $firstAlbum = $mainCrawler->filter('.navbar .nav-item')->first();
+        $this->assertEquals('Home', $firstAlbum->text());
+        $this->assertEquals('/album/home?lang=en', $firstAlbum->filter('.nav-link')->attr('href'));
+
+        $secondAlbum = $mainCrawler->filter('.navbar .nav-item')->eq(1);
+        $this->assertEquals('Home Shiny', $secondAlbum->text());
+        $this->assertEquals('/album/homeshiny?lang=en', $secondAlbum->filter('.nav-link')->attr('href'));
     }
 }

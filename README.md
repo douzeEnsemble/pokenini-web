@@ -3,6 +3,9 @@
 ## Update moco mock from Pokénin-Api
 
 ```
+curl "https://localhost:4430/catch_states" --insecure --output tests/resources/moco/catch_states.json --header 'Accept: application/json'
+curl "https://localhost:4430/dexes" --insecure --output tests/resources/moco/dexes.json --header 'Accept: application/json'
+
 curl "https://localhost:4430/album/redgreenblueyellow" --insecure --output tests/resources/moco/album/redgreenblueyellow.json
 curl "https://localhost:4430/album/goldsilvercrystal" --insecure --output tests/resources/moco/album/goldsilvercrystal.json
 curl "https://localhost:4430/album/rubysapphireemerald" --insecure --output tests/resources/moco/album/rubysapphireemerald.json

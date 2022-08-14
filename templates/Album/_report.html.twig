@@ -1,0 +1,34 @@
+<div class="report-container">
+    <h2 id="stats">Stats</h2>
+
+    <div class="progress mb-2">
+        {% for line in report.detail %}
+            {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
+            {% set completion = (100 * count / report.total)|round(2) %}
+            <div class="progress-bar catch-state-{{ line.slug }}"
+                 role="progressbar"
+                 aria-label="{{ lang is same as('fr') ? line.frenchName : line.name }}"
+                 style="width: {{ completion }}%;"
+                 aria-valuenow="{{ completion }}"
+                 aria-valuemin="0"
+                 aria-valuemax="100"
+            >
+                {{ line.slug is same as('no') or line.slug is same as('yes') ? completion~'%' : '' }}
+            </div>
+        {% endfor %}
+    </div>
+    <table class="table table-hover table-bordered" id="report">
+        <tbody>
+        {% for line in report.detail %}
+            <tr class="catch-state-{{ line.slug }}">
+                <th>{{ lang is same as('fr') ? line.frenchName : line.name }}</th>
+                <td>{{ line.slug is same as('no') ? report.totalUncaught : line.count }}</td>
+            </tr>
+        {% endfor %}
+        <tr class="catch-state-total">
+            <th>Total</th>
+            <td>{{ report.total }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

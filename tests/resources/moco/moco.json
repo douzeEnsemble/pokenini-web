@@ -9,6 +9,14 @@
   },
   {
     "request": {
+      "uri": "/dexes"
+    },
+    "response" : {
+      "file": "/var/moco/dexes.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/pokemon"
     },
     "response" : {

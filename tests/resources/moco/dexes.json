@@ -17,7 +17,7 @@
     "isShiny": false,
     "isPrivate": true,
     "name": "Ruby, Sapphire, Emerald",
-    "frenchName": "Rubis, Saphir, Émeraude",
+    "frenchName": "Rubis, Saphir, \u00c9meraude",
     "slug": "rubysapphireemerald"
   },
   {
@@ -66,7 +66,7 @@
     "isShiny": false,
     "isPrivate": true,
     "name": "Omega Ruby, Alpha Sapphire",
-    "frenchName": "Rubis Oméga, Saphir Alpha",
+    "frenchName": "Rubis Om\u00e9ga, Saphir Alpha",
     "slug": "omegarubyalphasapphire"
   },
   {
@@ -87,28 +87,28 @@
     "isShiny": false,
     "isPrivate": true,
     "name": "Let's Go Pikachu, Let's Go Eevee",
-    "frenchName": "Let's Go Pikachu, Let's Go Évoli",
+    "frenchName": "Let's Go Pikachu, Let's Go \u00c9voli",
     "slug": "letsgopikachuletsgoeevee"
   },
   {
     "isShiny": false,
     "isPrivate": true,
     "name": "Sword, Shield",
-    "frenchName": "Épée, Bouclier",
+    "frenchName": "\u00c9p\u00e9e, Bouclier",
     "slug": "swordshield"
   },
   {
     "isShiny": false,
     "isPrivate": true,
     "name": "Brilland Diamond, Shining Pearl",
-    "frenchName": "Diamant Étincelant, Perle Scintillante",
+    "frenchName": "Diamant \u00c9tincelant, Perle Scintillante",
     "slug": "brillanddiamondshiningpearl"
   },
   {
     "isShiny": false,
     "isPrivate": true,
-    "name": "Pokémon Legends Arceus",
-    "frenchName": "Légendes Pokémon : Arceus",
+    "name": "Pok\u00e9mon Legends Arceus",
+    "frenchName": "L\u00e9gendes Pok\u00e9mon : Arceus",
     "slug": "pokemonlegendsarceus"
   },
   {
@@ -131,5 +131,19 @@
     "name": "Home Pokemon Go",
     "frenchName": "Home Pokemon Go",
     "slug": "homepokemongo"
+  },
+  {
+    "isShiny": false,
+    "isPrivate": false,
+    "name": "Demo",
+    "frenchName": "Démo",
+    "slug": "demo"
+  },
+  {
+    "isShiny": false,
+    "isPrivate": false,
+    "name": "Demo lite",
+    "frenchName": "Démo extrait",
+    "slug": "demo-lite"
   }
 ]
