@@ -23,7 +23,7 @@
             <div class="album-case-image text-center"
                  title="{{ lang is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
             >
-                {{ _self.regularPokemonIcon(item, lang) }}
+                {{ dex.is_shiny ? _self.shinyPokemonIcon(item, lang) : _self.regularPokemonIcon(item, lang) }}
             </div>
             <div class="album-case-forms text-truncate">
                 {{ item.regional_form_name }}
@@ -62,7 +62,6 @@
     </div>
 </div>
 
-
 {% macro regularPokemonIcon(item, lang) %}
     {{ _self.pokemonIcon(
         item,
@@ -70,7 +69,7 @@
         lang
     ) }}
 {% endmacro %}
-{% macro shinyPokemonIcon(item) %}
+{% macro shinyPokemonIcon(item, lang) %}
     {{ _self.pokemonIcon(
         item,
         'shiny',
