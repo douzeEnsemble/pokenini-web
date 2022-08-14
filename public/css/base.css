@@ -15,8 +15,8 @@
     max-width: 100%;
 }
 
-.report-container {
-    margin-bottom: 3.5rem;
+.report-container, .album-container {
+    margin-bottom: 4.5rem;
 }
 
 /** < Colors **/
