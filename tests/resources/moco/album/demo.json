@@ -24319,30 +24319,40 @@
     }
   ],
   "report": {
-    "no": {
-      "count": 1731,
-      "name": "No",
-      "french_name": "Non"
-    },
-    "toevolve": {
-      "count": 1,
-      "name": "To evolve",
-      "french_name": "af. \u00e9voluer"
-    },
-    "tobreed": {
-      "count": 1,
-      "name": "To breed",
-      "french_name": "af. reproduire"
-    },
-    "totransfer": {
-      "count": 1,
-      "name": "To transfer",
-      "french_name": "af. transf\u00e9rer"
-    },
-    "yes": {
-      "count": 2,
-      "name": "Yes",
-      "french_name": "Oui"
-    }
+    "total": 1736,
+    "totalCaught": 2,
+    "totalUncaught": 1731,
+    "detail": [
+      {
+        "slug": "no",
+        "name": "No",
+        "frenchName": "Non",
+        "count": 1
+      },
+      {
+        "slug": "toevolve",
+        "name": "To evolve",
+        "frenchName": "af. \u00e9voluer",
+        "count": 1
+      },
+      {
+        "slug": "tobreed",
+        "name": "To breed",
+        "frenchName": "af. reproduire",
+        "count": 1
+      },
+      {
+        "slug": "totransfer",
+        "name": "To transfer",
+        "frenchName": "\u00e0 transf\u00e9rer",
+        "count": 1
+      },
+      {
+        "slug": "yes",
+        "name": "Yes",
+        "frenchName": "Oui",
+        "count": 2
+      }
+    ]
   }
 }

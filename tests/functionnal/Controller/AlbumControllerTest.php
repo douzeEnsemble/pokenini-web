@@ -17,6 +17,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumFrench($client);
         $this->assertWriteMode($client);
         $this->assertAlbumFrenchWriteMode($client);
+        $this->assertStatistics($client);
+        $this->assertFrenchStatistics($client);
     }
 
     public function testListPublic(): void
@@ -29,6 +31,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumFrench($client);
         $this->assertReadMode($client);
         $this->assertAlbumFrenchReadMode($client);
+        $this->assertStatistics($client);
+        $this->assertFrenchStatistics($client);
     }
 
     public function testListWrongToken(): void
@@ -41,6 +45,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertAlbumFrench($client);
         $this->assertReadMode($client);
         $this->assertAlbumFrenchReadMode($client);
+        $this->assertStatistics($client);
+        $this->assertFrenchStatistics($client);
     }
 
     public function testListLanguageEnglish(): void
@@ -53,6 +59,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertReadMode($client);
         $this->assertAlbumEnglish($client);
         $this->assertAlbumEnglishReadMode($client);
+        $this->assertStatistics($client);
+        $this->assertEnglishStatistics($client);
     }
 
     public function testListLanguageEnglishWriteMode(): void
@@ -65,6 +73,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertWriteMode($client);
         $this->assertAlbumEnglish($client);
         $this->assertAlbumEnglishWriteMode($client);
+        $this->assertStatistics($client);
+        $this->assertEnglishStatistics($client);
     }
 
     public function testListLanguageFrench(): void
@@ -77,6 +87,8 @@ class AlbumControllerTest extends WebTestCase
         $this->assertReadMode($client);
         $this->assertAlbumFrench($client);
         $this->assertAlbumFrenchReadMode($client);
+        $this->assertStatistics($client);
+        $this->assertFrenchStatistics($client);
     }
 
     public function testUpdatePrivate(): void
@@ -202,14 +214,14 @@ class AlbumControllerTest extends WebTestCase
                 ->filter('.album-case.col-2')
         );
         $this->assertCount(
-            290,
+            291,
             $mainCrawler
                 ->filter('div.row')
         );
         $this->assertCount(
             58,
             $mainCrawler
-                ->filter('h2')
+                ->filter('h2.box')
         );
     }
 
@@ -433,6 +445,123 @@ class AlbumControllerTest extends WebTestCase
             $mainCrawler
                 ->filter('#venusaur-gmax .album-case-catch-state')
                 ->text()
+        );
+    }
+
+    private function assertStatistics(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $statsTitle = $mainCrawler->filter('h2#stats');
+        $this->assertCount(1, $statsTitle);
+        $this->assertEquals('Stats', $statsTitle->text());
+
+        $this->assertCount(1, $mainCrawler->filter('.progress'));
+        $this->assertCount(5, $mainCrawler->filter('.progress-bar'));
+
+        $this->assertEquals(
+            '99.71%',
+            $mainCrawler->filter('.progress-bar.catch-state-no')->text()
+        );
+        $this->assertEmpty(
+            $mainCrawler->filter('.progress-bar.catch-state-toevolve')->text()
+        );
+        $this->assertEmpty(
+            $mainCrawler->filter('.progress-bar.catch-state-tobreed')->text()
+        );
+        $this->assertEmpty(
+            $mainCrawler->filter('.progress-bar.catch-state-totransfer')->text()
+        );
+        $this->assertEquals(
+            '0.12%',
+            $mainCrawler->filter('.progress-bar.catch-state-yes')->text()
+        );
+
+        $this->assertCount(1, $mainCrawler->filter('table#report'));
+        $this->assertCount(6, $mainCrawler->filter('table#report tr'));
+
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-no'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-toevolve'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-tobreed'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-totransfer'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-yes'));
+        $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-total'));
+
+        $this->assertEquals(
+            1731,
+            $mainCrawler->filter('table#report tr.catch-state-no td')->text()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler->filter('table#report tr.catch-state-toevolve td')->text()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler->filter('table#report tr.catch-state-tobreed td')->text()
+        );
+        $this->assertEquals(
+            1,
+            $mainCrawler->filter('table#report tr.catch-state-totransfer td')->text()
+        );
+        $this->assertEquals(
+            2,
+            $mainCrawler->filter('table#report tr.catch-state-yes td')->text()
+        );
+        $this->assertEquals(
+            1736,
+            $mainCrawler->filter('table#report tr.catch-state-total td')->text()
+        );
+    }
+
+    private function assertFrenchStatistics(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertEquals(
+            'Non',
+            $mainCrawler->filter('table#report tr.catch-state-no th')->text()
+        );
+        $this->assertEquals(
+            'af. évoluer',
+            $mainCrawler->filter('table#report tr.catch-state-toevolve th')->text()
+        );
+        $this->assertEquals(
+            'af. reproduire',
+            $mainCrawler->filter('table#report tr.catch-state-tobreed th')->text()
+        );
+        $this->assertEquals(
+            'à transférer',
+            $mainCrawler->filter('table#report tr.catch-state-totransfer th')->text()
+        );
+        $this->assertEquals(
+            'Oui',
+            $mainCrawler->filter('table#report tr.catch-state-yes th')->text()
+        );
+    }
+
+    private function assertEnglishStatistics(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertEquals(
+            'No',
+            $mainCrawler->filter('table#report tr.catch-state-no th')->text()
+        );
+        $this->assertEquals(
+            'To evolve',
+            $mainCrawler->filter('table#report tr.catch-state-toevolve th')->text()
+        );
+        $this->assertEquals(
+            'To breed',
+            $mainCrawler->filter('table#report tr.catch-state-tobreed th')->text()
+        );
+        $this->assertEquals(
+            'To transfer',
+            $mainCrawler->filter('table#report tr.catch-state-totransfer th')->text()
+        );
+        $this->assertEquals(
+            'Yes',
+            $mainCrawler->filter('table#report tr.catch-state-yes th')->text()
         );
     }
 }

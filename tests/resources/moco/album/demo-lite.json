@@ -123,7 +123,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "charizard",
@@ -137,7 +138,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "charizard-mega-x",
@@ -151,7 +153,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "charizard-mega-y",
@@ -165,7 +168,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "charizard-gmax",
@@ -179,7 +183,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "squirtle",
@@ -192,8 +197,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "wartortle",
@@ -206,8 +212,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "blastoise",
@@ -220,8 +227,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "blastoise-mega",
@@ -234,8 +242,9 @@
       "special_form_name": "Mega",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "blastoise-gmax",
@@ -248,8 +257,9 @@
       "special_form_name": "Gigantamax",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "caterpie",
@@ -262,8 +272,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "metapod",
@@ -276,8 +287,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "butterfree",
@@ -290,8 +302,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "butterfree-f",
@@ -305,7 +318,8 @@
       "variant_form_slug": "gender",
       "variant_form_name": "Gender",
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "butterfree-gmax",
@@ -319,7 +333,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "weedle",
@@ -333,7 +348,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "kakuna",
@@ -347,7 +363,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "beedrill",
@@ -361,7 +378,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "beedrill-mega",
@@ -375,7 +393,8 @@
       "variant_form_slug": null,
       "variant_form_name": null,
       "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_name": null,
+      "catch_state_french_name": null
     },
     {
       "pokemon_slug": "pidgey",
@@ -388,8 +407,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "pidgeotto",
@@ -402,8 +422,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "pidgeot",
@@ -416,8 +437,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "pidgeot-mega",
@@ -430,8 +452,9 @@
       "special_form_name": "Mega",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "rattata",
@@ -444,8 +467,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "rattata-f",
@@ -458,8 +482,9 @@
       "special_form_name": null,
       "variant_form_slug": "gender",
       "variant_form_name": "Gender",
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "rattata-alola",
@@ -472,8 +497,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "raticate",
@@ -486,8 +512,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "raticate-f",
@@ -500,8 +527,9 @@
       "special_form_name": null,
       "variant_form_slug": "gender",
       "variant_form_name": "Gender",
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "raticate-alola",
@@ -514,8 +542,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "raticate-alola-totem",
@@ -528,35 +557,46 @@
       "special_form_name": "Totem",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     }
   ],
   "report": {
-    "no": {
-      "count": 32,
-      "name": "No",
-      "french_name": "Non"
-    },
-    "toevolve": {
-      "count": 1,
-      "name": "To evolve",
-      "french_name": "af. \u00e9voluer"
-    },
-    "tobreed": {
-      "count": 1,
-      "name": "To breed",
-      "french_name": "af. reproduire"
-    },
-    "totransfer": {
-      "count": 1,
-      "name": "To transfer",
-      "french_name": "af. transf\u00e9rer"
-    },
-    "yes": {
-      "count": 2,
-      "name": "Yes",
-      "french_name": "Oui"
-    }
+    "total": 37,
+    "totalCaught": 20,
+    "totalUncaught": 17,
+    "detail": [
+      {
+        "slug": "no",
+        "name": "No",
+        "frenchName": "Non",
+        "count": 1
+      },
+      {
+        "slug": "toevolve",
+        "name": "To evolve",
+        "frenchName": "af. \u00e9voluer",
+        "count": 1
+      },
+      {
+        "slug": "tobreed",
+        "name": "To breed",
+        "frenchName": "af. reproduire",
+        "count": 1
+      },
+      {
+        "slug": "totransfer",
+        "name": "To transfer",
+        "frenchName": "\u00e0 transf\u00e9rer",
+        "count": 1
+      },
+      {
+        "slug": "yes",
+        "name": "Yes",
+        "frenchName": "Oui",
+        "count": 20
+      }
+    ]
   }
 }
