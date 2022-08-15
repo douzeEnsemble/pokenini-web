@@ -4,15 +4,16 @@
 
 {% block container %}
 {% include 'Album/_nav.html.twig' %}
-<div class="row">
-    <div class="col-md-6 col-sm-12">
+<div class="row justify-content-lg-center">
+    <div class="col-xxl-6 col-xl-12">
         {% include 'Album/_albums.html.twig' %}
     </div>
-    <div class="col-md-2 d-sm-none d-md-block">
-        &nbsp;
-    </div>
-    <div class="col-md-3 d-sm-none d-md-block">
-        {% include 'Album/_report.html.twig' %}
+    <div class="col-xxl-6">
+        <div class="row justify-content-lg-center">
+            <div class="co-md-4 col-lg-6">
+                {% include 'Album/_report.html.twig' %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock container %}

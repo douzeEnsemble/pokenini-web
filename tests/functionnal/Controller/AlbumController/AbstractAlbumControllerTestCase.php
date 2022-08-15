@@ -84,9 +84,9 @@ class AbstractAlbumControllerTestCase extends WebTestCase
                 ->filter('.album-case.col-2')
         );
         $this->assertCount(
-            291,
+            290,
             $mainCrawler
-                ->filter('div.row')
+                ->filter('div.row.album-line')
         );
         $this->assertCount(
             58,

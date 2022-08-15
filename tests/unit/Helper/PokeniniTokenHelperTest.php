@@ -30,6 +30,11 @@ class PokeniniTokenHelperTest extends TestCase
         );
 
         $this->assertEquals(
+            '124c9f1ba2fa390341b14a380ea60834',
+            PokeniniTokenHelper::getFromDexSlug('homepokemongo')
+        );
+
+        $this->assertEquals(
             '1da3b0d3289c4206fa74ac01142af4da',
             PokeniniTokenHelper::getFromDexSlug('redgreenblueyellow')
         );
