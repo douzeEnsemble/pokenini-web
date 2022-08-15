@@ -18,8 +18,8 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertCount(1, $mainCrawler->filter('h1'));
         $this->assertCount(1, $mainCrawler->filter('.nav'));
-        $this->assertCount(5, $mainCrawler->filter('.nav .nav-item'));
-        $this->assertCount(5, $mainCrawler->filter('.nav .nav-item .nav-link'));
+        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item'));
+        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item .nav-link'));
 
         $firstAlbum = $mainCrawler->filter('.nav .nav-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
@@ -42,8 +42,8 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertCount(1, $mainCrawler->filter('h1'));
         $this->assertCount(1, $mainCrawler->filter('.nav'));
-        $this->assertCount(5, $mainCrawler->filter('.nav .nav-item'));
-        $this->assertCount(5, $mainCrawler->filter('.nav .nav-item .nav-link'));
+        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item'));
+        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item .nav-link'));
 
         $firstAlbum = $mainCrawler->filter('.nav .nav-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
@@ -66,8 +66,8 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertCount(1, $mainCrawler->filter('h1'));
         $this->assertCount(1, $mainCrawler->filter('.nav'));
-        $this->assertCount(5, $mainCrawler->filter('.nav .nav-item'));
-        $this->assertCount(5, $mainCrawler->filter('.nav .nav-item .nav-link'));
+        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item'));
+        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item .nav-link'));
 
         $firstAlbum = $mainCrawler->filter('.nav .nav-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());

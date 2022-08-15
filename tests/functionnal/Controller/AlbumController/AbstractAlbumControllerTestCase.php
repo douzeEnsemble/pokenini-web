@@ -202,8 +202,8 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         $mainCrawler = $client->getCrawler();
 
         $this->assertCount(1, $mainCrawler->filter('.navbar'));
-        $this->assertCount(5, $mainCrawler->filter('.navbar .nav-item'));
-        $this->assertCount(5, $mainCrawler->filter('.navbar .nav-item .nav-link'));
+        $this->assertCount(3, $mainCrawler->filter('.navbar .nav-item'));
+        $this->assertCount(3, $mainCrawler->filter('.navbar .nav-item .nav-link'));
     }
 
     protected function assertRegular(KernelBrowser $client): void
