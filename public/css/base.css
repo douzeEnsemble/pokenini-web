@@ -1,3 +1,9 @@
+.container {
+    padding-bottom: 10rem;
+}
+.album-case {
+    padding: 0 2px;
+}
 .album-case-name {
     font-size: 0px;
 }
@@ -13,10 +19,6 @@
 }
 .album-case-action select {
     max-width: 100%;
-}
-
-.report-container, .album-container {
-    margin-bottom: 4.5rem;
 }
 
 /** < Colors **/

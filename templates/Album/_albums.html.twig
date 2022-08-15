@@ -1,7 +1,7 @@
 {% set boxLabel = lang is same as('fr') ? 'Boite' : 'Box' %}
 <div class="album-container">
     <h2 class="box" id="box-1">{{ boxLabel }} 1</h2>
-    <div class="row">
+    <div class="row album-line">
         {% for item in list %}
         {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
     </div>
@@ -10,7 +10,7 @@
         <hr>
         <h2 class="box" id="box-{{ boxNumber }}">{{ boxLabel }} {{ boxNumber }}</h2>
     {% endif %}
-    <div class="row">
+    <div class="row album-line">
         {% endif %}
         {% set currentCatchState = item.catch_state_slug ?? 'no' %}
         <div
