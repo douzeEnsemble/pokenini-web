@@ -4,11 +4,18 @@
 .album-case {
     padding: 0 2px;
 }
-.album-case-name {
+.album-case-name-hidden {
     font-size: 0px;
 }
-.album-case-catch-state {
+.album-case-national-dex-number {
+    font-size: .5rem;
+}
+.album-case-name {
     font-size: .6rem;
+    font-weight: bold;
+}
+.album-case-catch-state {
+    font-size: .7rem;
 }
 .album-case-forms {
     font-size: .6rem;

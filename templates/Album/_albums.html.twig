@@ -17,29 +17,35 @@
             class="album-case col col-2 mb-2 position-relative catch-state-{{ currentCatchState }}"
             id="{{ item.pokemon_slug }}"
         >
-                <span class="album-case-name position-absolute text-start">
-                    {{ item.pokemon_french_name }} / {{ item.pokemon_name }}
-                </span>
+            <span class="album-case-name-hidden position-absolute text-start">
+                <!-- Other language name for browser's search in page feature -->
+                {{ lang is same as('fr') ? item.pokemon_name : item.pokemon_french_name }}
+            </span>
+            <div class="text-center">
+                <label for="{{ item.pokemon_slug }}" class="album-case-national-dex-number">
+                    #{{ item.pokemon_national_dex_number }}
+                </label>
+                <label for="{{ item.pokemon_slug }}" class="album-case-name">
+                    {{ lang is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+                </label>
+            </div>
             <div class="album-case-image text-center"
-                 title="{{ lang is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
+                 title="#{{ item.pokemon_national_dex_number }} {{ lang is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
             >
                 {{ dex.is_shiny ? _self.shinyPokemonIcon(item, lang) : _self.regularPokemonIcon(item, lang) }}
             </div>
-            <div class="album-case-forms text-truncate">
-                {{ item.regional_form_name }}
-                {{ item.special_form_name }}
-                {{ item.variant_form_name }}
+            <div class="album-case-forms text-truncate text-end">
+                {{ lang is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label }}
                 {% if
-                    item.regional_form_name is null
-                    and item.special_form_name is null
-                    and item.variant_form_name is null
+                    item.pokemon_forms_french_label is empty
+                    and item.pokemon_forms_label is empty
                 %}
                     &nbsp;
                 {% endif %}
             </div>
             {% if (mode is same as('write')) %}
                 <div class="album-case-action text-center mt-1">
-                    <select class="catch-state-{{ currentCatchState }}">
+                    <select class="catch-state-{{ currentCatchState }}" id="{{ item.pokemon_slug }}">
                         {% for catchState in catchStates %}
                             {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
                             <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
