@@ -104,9 +104,23 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
 
         $this->assertPageTitleSame('Pokénini Démo');
 
-        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
         $this->assertEquals(
             'Bulbizarre',
+            $mainCrawler->filter('#bulbasaur .album-case-name')->text()
+        );
+        $this->assertEquals(
+            'Bulbasaur',
+            $mainCrawler->filter('#bulbasaur .album-case-name-hidden')->text()
+        );
+
+        $this->assertEquals(
+            'Baron ♀️',
+            $mainCrawler->filter('#pikachu-alpha-f .album-case-forms')->text()
+        );
+
+        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
+        $this->assertEquals(
+            '#1 Bulbizarre',
             $tooltip->attr('title')
         );
         $imgAlt = $mainCrawler->filter('#bulbasaur .album-image');
