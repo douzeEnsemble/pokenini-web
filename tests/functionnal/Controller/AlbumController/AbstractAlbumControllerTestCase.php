@@ -13,7 +13,7 @@ class AbstractAlbumControllerTestCase extends WebTestCase
 
         $mainCrawler = $client->getCrawler();
 
-        $expectedPokemonCount = 1736;
+        $expectedPokemonCount = 1738;
 
         $this->assertCount(
             $expectedPokemonCount,
@@ -27,21 +27,12 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         );
 
         $this->assertEquals(
-            'Bulbizarre / Bulbasaur',
-            $mainCrawler->filter('#bulbasaur .album-case-name')->text()
-        );
-
-        $this->assertEquals(
             html_entity_decode('&nbsp;'),
             $mainCrawler->filter('#bulbasaur .album-case-forms')->text()
         );
         $this->assertEquals(
-            'Gender',
+            '♀️',
             $mainCrawler->filter('#venusaur-f .album-case-forms')->text()
-        );
-        $this->assertEquals(
-            'Alpha Gender',
-            $mainCrawler->filter('#pikachu-alpha-f .album-case-forms')->text()
         );
 
         $this->assertCount(
@@ -106,7 +97,7 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         );
 
         $this->assertCount(
-            1736,
+            1738,
             $mainCrawler
                 ->filter('.album-case .album-case-catch-state')
         );
@@ -117,7 +108,7 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         $mainCrawler = $client->getCrawler();
 
         $this->assertCount(
-            1736,
+            1738,
             $mainCrawler
                 ->filter('.album-case select')
         );

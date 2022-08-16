@@ -9,7 +9,7 @@
                 {% for dex in dexes|filter(dex => dex.isPrivate is not same as(true)) %}
                 <li class="nav-item">
                     <a
-                        class="nav-link {{ dex.slug is same as(currentDexSlug) ? 'active' : '' }}"
+                        class="nav-link {{ currentDexSlug is defined and dex.slug is same as(currentDexSlug) ? 'active' : '' }}"
                         aria-current="page"
                         href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}"
                     >
@@ -20,7 +20,7 @@
             </ul>
         </div>
         {% apply spaceless %}
-        <span class="navbar-text">
+        <div class="navbar-text d-none d-md-block">
             Made by and for RenaudDouze
             &nbsp;
             <a href="https://github.com/RenaudDouze">
@@ -30,7 +30,7 @@
             <a class="navbar-text" href="https://twitter.com/RenaudDouze">
                 <i class="bi bi-twitter"></i>
             </a>
-        </span>
+        </div>
         {% endapply %}
     </div>
 </nav>
