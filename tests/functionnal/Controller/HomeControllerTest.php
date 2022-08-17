@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functionnal\Controller;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class HomeControllerTest extends WebTestCase
@@ -14,12 +15,9 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $mainCrawler = $client->getCrawler();
+        $this->assertHomeNav($client);
 
-        $this->assertCount(1, $mainCrawler->filter('h1'));
-        $this->assertCount(1, $mainCrawler->filter('.nav'));
-        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item'));
-        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item .nav-link'));
+        $mainCrawler = $client->getCrawler();
 
         $firstAlbum = $mainCrawler->filter('.nav .nav-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
@@ -38,13 +36,9 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertHomeNav($client);
+
         $mainCrawler = $client->getCrawler();
-
-        $this->assertCount(1, $mainCrawler->filter('h1'));
-        $this->assertCount(1, $mainCrawler->filter('.nav'));
-        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item'));
-        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item .nav-link'));
-
         $firstAlbum = $mainCrawler->filter('.nav .nav-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
         $this->assertEquals('/album/home?lang=fr', $firstAlbum->filter('.nav-link')->attr('href'));
@@ -62,12 +56,9 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $mainCrawler = $client->getCrawler();
+        $this->assertHomeNav($client);
 
-        $this->assertCount(1, $mainCrawler->filter('h1'));
-        $this->assertCount(1, $mainCrawler->filter('.nav'));
-        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item'));
-        $this->assertCount(3, $mainCrawler->filter('.nav .nav-item .nav-link'));
+        $mainCrawler = $client->getCrawler();
 
         $firstAlbum = $mainCrawler->filter('.nav .nav-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
@@ -76,5 +67,15 @@ class HomeControllerTest extends WebTestCase
         $secondAlbum = $mainCrawler->filter('.nav .nav-item')->eq(1);
         $this->assertEquals('Home Shiny', $secondAlbum->text());
         $this->assertEquals('/album/homeshiny?lang=en', $secondAlbum->filter('.nav-link')->attr('href'));
+    }
+
+    private function assertHomeNav(KernelBrowser $client): void
+    {
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(1, $mainCrawler->filter('h1'));
+        $this->assertCount(1, $mainCrawler->filter('.nav'));
+        $this->assertCount(4, $mainCrawler->filter('.nav .nav-item'));
+        $this->assertCount(4, $mainCrawler->filter('.nav .nav-item .nav-link'));
     }
 }
