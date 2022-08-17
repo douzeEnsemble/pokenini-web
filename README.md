@@ -25,4 +25,5 @@ curl "https://localhost:4430/album/legendarceus" --insecure --output tests/resou
 curl "https://localhost:4430/album/home" --insecure --output tests/resources/moco/album/home.json
 curl "https://localhost:4430/album/homeshiny" --insecure --output tests/resources/moco/album/homeshiny.json
 curl "https://localhost:4430/album/homepokemongo" --insecure --output tests/resources/moco/album/homepokemongo.json
+curl "https://localhost:4430/album/alpha" --insecure --output tests/resources/moco/album/alpha.json
 ```

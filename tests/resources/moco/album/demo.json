@@ -28028,7 +28028,7 @@
     },
     {
       "pokemon_slug": "lycanroc-midnight",
-      "pokemon_name": "Lycanroc-Dusk",
+      "pokemon_name": "Lycanroc-Midnight",
       "pokemon_national_dex_number": 745,
       "pokemon_simplified_name": "Lycanroc",
       "pokemon_forms_label": "Dusk",
@@ -28048,7 +28048,7 @@
     },
     {
       "pokemon_slug": "lycanroc-dusk",
-      "pokemon_name": "Lycanroc-Midnight",
+      "pokemon_name": "Lycanroc-Dusk",
       "pokemon_national_dex_number": 745,
       "pokemon_simplified_name": "Lycanroc",
       "pokemon_forms_label": "Midnight",
