@@ -21,12 +21,14 @@
                 <!-- Other language name for browser's search in page feature -->
                 {{ lang is same as('fr') ? item.pokemon_name : item.pokemon_french_name }}
             </span>
-            <div class="text-center">
-                <label for="{{ item.pokemon_slug }}" class="album-case-national-dex-number">
-                    #{{ item.pokemon_national_dex_number }}
-                </label>
-                <label for="{{ item.pokemon_slug }}" class="album-case-name">
-                    {{ lang is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+            <div class="text-center text-truncate">
+                <label for="{{ item.pokemon_slug }}">
+                    <span class="album-case-national-dex-number">
+                        #{{ item.pokemon_national_dex_number }}
+                    </span>
+                    <span class="album-case-name">
+                        {{ lang is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+                    </span>
                 </label>
             </div>
             <div class="album-case-image text-center"
