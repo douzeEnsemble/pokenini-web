@@ -14,7 +14,7 @@ class AlbumControllerTest extends WebTestCase
 
         $mainCrawler = $client->getCrawler();
 
-        $this->assertCount(1738, $mainCrawler->filter('.album-case-forms'));
+        $this->assertEquals('Printemps', $mainCrawler->filter('#deerling-spring .album-case-forms')->text());
     }
     public function testNonDisplayForm(): void
     {
@@ -24,6 +24,6 @@ class AlbumControllerTest extends WebTestCase
 
         $mainCrawler = $client->getCrawler();
 
-        $this->assertCount(0, $mainCrawler->filter('.album-case-forms'));
+        $this->assertEquals(' ', $mainCrawler->filter('#deerling-spring .album-case-forms')->text());
     }
 }
