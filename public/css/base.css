@@ -44,18 +44,18 @@ tr.catch-state-no th {
 }
 
 .album-case.catch-state-toevolve .album-case-catch-state {
-    background-color: #c8e6c9;
+    background-color: #9575cd;
 }
 .album-case.catch-state-toevolve .album-case-action {
-    background-color: #c8e6c9;
-    background: linear-gradient(90deg, #c8e6c9 0%, #c8e6c9 35%, #FFFFFF 100%);
+    background-color: #9575cd;
+    background: linear-gradient(90deg, #9575cd 0%, #9575cd 35%, #FFFFFF 100%);
 }
 tr.catch-state-toevolve td,
 tr.catch-state-toevolve th {
-    background-color: #c8e6c9;
+    background-color: #9575cd;
 }
 .progress-bar.catch-state-toevolve {
-    background-color: #c8e6c9;
+    background-color: #9575cd;
 }
 
 .album-case.catch-state-tobreed .album-case-catch-state {
