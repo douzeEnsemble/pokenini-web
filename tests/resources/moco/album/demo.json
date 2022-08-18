@@ -3,7 +3,8 @@
     "name": "Demo",
     "french_name": "Démo",
     "is_shiny": false,
-    "is_private": true
+    "is_private": true,
+    "is_display_form": true
   },
   "pokemons": [
     {
