@@ -36,6 +36,7 @@
             >
                 {{ dex.is_shiny ? _self.shinyPokemonIcon(item, lang) : _self.regularPokemonIcon(item, lang) }}
             </div>
+            {% if dex.is_display_form %}
             <div class="album-case-forms text-truncate text-end">
                 {{ lang is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label }}
                 {% if
@@ -45,6 +46,7 @@
                     &nbsp;
                 {% endif %}
             </div>
+            {% endif %}
             {% if (mode is same as('write')) %}
                 <div class="album-case-action text-center mt-1">
                     <select class="catch-state-{{ currentCatchState }}" id="{{ item.pokemon_slug }}">
