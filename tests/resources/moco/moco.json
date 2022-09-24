@@ -228,5 +228,49 @@
     "response" : {
       "status" : "201"
     }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/istrateur/update/labels"
+      },
+      "method" : "post"
+    },
+    "response" : {
+      "status" : "200"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/istrateur/update/games_and_dexes"
+      },
+      "method" : "post"
+    },
+    "response" : {
+      "status" : "200"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/istrateur/update/game_bundle_availability"
+      },
+      "method" : "post"
+    },
+    "response" : {
+      "status" : "200"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/istrateur/update/dex_availability"
+      },
+      "method" : "post"
+    },
+    "response" : {
+      "status" : "500"
+    }
   }
 ]

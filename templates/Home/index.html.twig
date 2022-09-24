@@ -7,11 +7,8 @@
 
         <div class="row">
             {% for dex in dexes|filter(dex => dex.isPrivate is not same as(true)) %}
-            <div class="col-3">
-                <a
-                    class=""
-                    href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}"
-                >
+            <div class="col-3 home-item">
+                <a href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}">
                     {{ lang is same as('fr') ? dex.frenchName : dex.name }}
                 </a>
             </div>
