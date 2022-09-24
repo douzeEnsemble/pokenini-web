@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Functionnal\Controller\AlbumController;
+namespace App\Tests\Functional\Controller\AlbumController;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
