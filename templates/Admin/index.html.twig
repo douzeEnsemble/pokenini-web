@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+{% endblock nav %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1>Pokénini Administration</h1>
+
+        {# read and display all flash messages #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }} alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <h2>MAJ des données</h2>
+        <ul class="nav flex-column">
+            <li class="nav-item admin-item">
+                <a href="/istrateur/update/labels" class="nav-link">
+                    <i class="bi bi-tag"></i>
+                    MAJ des labels
+                </a>
+            </li>
+            <li class="nav-item admin-item">
+                <a href="/istrateur/update/games_and_dexes" class="nav-link">
+                    <i class="bi bi-joystick"></i>
+                    MAJ des jeux et dex
+                </a>
+            </li>
+            <li class="nav-item admin-item">
+                <a href="/istrateur/update/game_bundle_availability" class="nav-link">
+                    <i class="bi bi-box-seam-fill"></i>
+                    MAJ des dispo des bundles de jeux
+                </a>
+            </li>
+            <li class="nav-item admin-item">
+                <a href="/istrateur/update/dex_availability" class="nav-link">
+                    <i class="bi bi-list-check"></i>
+                    MAJ des dispo des dex
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

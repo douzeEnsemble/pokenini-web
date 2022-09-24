@@ -1,0 +1,62 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Tests\Functionnal\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
+
+class AdminControllerTest extends WebTestCase
+{
+    public function testAdminHomeNotConnected(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/istrateur/');
+
+        $this->assertResponseStatusCodeSame(401);
+    }
+
+    public function testAdminHomeBadCredentials(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/istrateur/', [], [], [
+            'PHP_AUTH_USER' => 'renaud',
+            'PHP_AUTH_PW'   => '12',
+        ]);
+
+        $this->assertResponseStatusCodeSame(401);
+    }
+
+    public function testAdminHomeConnected(): void
+    {
+        $this->getAdminHomeConnected();
+    }
+
+    public function testAdminHome(): void
+    {
+        $crawler = $this->getAdminHomeConnected();
+
+        $this->assertCount(1, $crawler->filter('h1'));
+        $this->assertCount(1, $crawler->filter('h2'));
+        $this->assertCount(4, $crawler->filter('.admin-item'));
+        $this->assertCount(4, $crawler->filter('.admin-item a'));
+        $this->assertCount(4, $crawler->filter('i.bi'));
+    }
+
+    private function getAdminHomeConnected(): Crawler
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/istrateur/', [], [], [
+            'PHP_AUTH_USER' => 'renaud',
+            'PHP_AUTH_PW'   => 'douze',
+        ]);
+
+        $this->assertResponseStatusCodeSame(200);
+
+        return $crawler;
+    }
+}
