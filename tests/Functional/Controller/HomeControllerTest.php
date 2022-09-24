@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Functionnal\Controller;
+namespace App\Tests\Functional\Controller;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
