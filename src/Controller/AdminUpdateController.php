@@ -34,7 +34,7 @@ class AdminUpdateController extends AbstractController
                 'success',
                 'La MAJ a bien fonctionné'
             );
-        } catch (TransportExceptionInterface | ServerException $e) {
+        } catch (TransportExceptionInterface | ServerException | \Exception $e) {
             $this->addFlash(
                 'danger',
                 "La MAJ a échoué. ({$e->getMessage()})"
