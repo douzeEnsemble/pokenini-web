@@ -110,10 +110,6 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
             'Bulbizarre',
             $mainCrawler->filter('#bulbasaur .album-case-name')->text()
         );
-        $this->assertEquals(
-            'Bulbasaur',
-            $mainCrawler->filter('#bulbasaur .album-case-name-hidden')->text()
-        );
 
         $this->assertEquals(
             'Baron ♀️',

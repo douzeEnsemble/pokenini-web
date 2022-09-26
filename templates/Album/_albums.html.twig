@@ -17,10 +17,6 @@
             class="album-case col col-2 mb-2 position-relative catch-state-{{ currentCatchState }}"
             id="{{ item.pokemon_slug }}"
         >
-            <span class="album-case-name-hidden position-absolute text-start">
-                <!-- Other language name for browser's search in page feature -->
-                {{ lang is same as('fr') ? item.pokemon_name : item.pokemon_french_name }}
-            </span>
             <div class="text-center text-truncate">
                 <label for="{{ item.pokemon_slug }}">
                     <span class="album-case-national-dex-number">
