@@ -116,7 +116,7 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         );
 
         $options = $mainCrawler->filter('#bulbasaur select option');
-        $this->assertCount(5, $options);
+        $this->assertCount(6, $options);
 
         $this->assertCount(
             0,
@@ -134,7 +134,7 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         $this->assertEquals('Stats', $statsTitle->text());
 
         $this->assertCount(1, $mainCrawler->filter('.progress'));
-        $this->assertCount(5, $mainCrawler->filter('.progress-bar'));
+        $this->assertCount(6, $mainCrawler->filter('.progress-bar'));
 
         $this->assertEquals(
             '99.71%',
@@ -155,7 +155,7 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         );
 
         $this->assertCount(1, $mainCrawler->filter('table#report'));
-        $this->assertCount(6, $mainCrawler->filter('table#report tr'));
+        $this->assertCount(7, $mainCrawler->filter('table#report tr'));
 
         $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-no'));
         $this->assertCount(1, $mainCrawler->filter('table#report tr.catch-state-toevolve'));
