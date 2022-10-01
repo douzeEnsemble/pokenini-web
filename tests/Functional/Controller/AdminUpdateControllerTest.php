@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminUpdateControllerTest extends WebTestCase
 {
@@ -43,13 +43,14 @@ class AdminUpdateControllerTest extends WebTestCase
     public function testAdminUpdateUnknown(): void
     {
         $client = static::createClient();
+        $client->catchExceptions(false);
+
+        $this->expectException(NotFoundHttpException::class);
 
         $client->request('GET', "/istrateur/update/truc", [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);
-
-        $this->assertResponseStatusCodeSame(404);
     }
 
     private function testAdminUpdate(string $name): void
