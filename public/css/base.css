@@ -85,6 +85,21 @@ tr.catch-state-totransfer th {
     background-color: #ffd54f;
 }
 
+.album-case.catch-state-totrade .album-case-catch-state {
+    background-color: #ff9100;
+}
+.album-case.catch-state-totrade .album-case-action {
+    background-color: #ff9100;
+    background: linear-gradient(90deg, #ff9100 0%, #ff9100 35%, #FFFFFF 100%);
+}
+tr.catch-state-totrade td,
+tr.catch-state-totrade th {
+    background-color: #ff9100;
+}
+.progress-bar.catch-state-totrade {
+    background-color: #ff9100;
+}
+
 .album-case.catch-state-yes .album-case-catch-state {
     background-color: #66bb6a;
 }

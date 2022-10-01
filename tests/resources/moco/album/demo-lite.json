@@ -85,7 +85,7 @@
       "variant_form_name": "Gender",
       "catch_state_slug": "tobreed",
       "catch_state_name": "To breed",
-      "catch_state_french_name": "af. reproduire"
+      "catch_state_french_name": "Af. reproduire"
     },
     {
       "pokemon_slug": "venusaur-mega",
@@ -762,20 +762,26 @@
       {
         "slug": "toevolve",
         "name": "To evolve",
-        "frenchName": "af. \u00e9voluer",
+        "frenchName": "Af. \u00e9voluer",
         "count": 1
       },
       {
         "slug": "tobreed",
         "name": "To breed",
-        "frenchName": "af. reproduire",
+        "frenchName": "Af. reproduire",
         "count": 1
       },
       {
         "slug": "totransfer",
         "name": "To transfer",
-        "frenchName": "\u00e0 transf\u00e9rer",
+        "frenchName": "\u00c0 transf\u00e9rer",
         "count": 1
+      },
+      {
+        "slug": "totrade",
+        "name": "To trade",
+        "frenchName": "\u00c0 \u00e9changer",
+        "count": 0
       },
       {
         "slug": "yes",

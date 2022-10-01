@@ -149,13 +149,13 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertEquals('Non', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur select option:selected')->first();
-        $this->assertEquals('af. évoluer', $selectedOption->text());
+        $this->assertEquals('Af. évoluer', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur-f select option:selected')->first();
-        $this->assertEquals('af. reproduire', $selectedOption->text());
+        $this->assertEquals('Af. reproduire', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur-mega select option:selected')->first();
-        $this->assertEquals('à transférer', $selectedOption->text());
+        $this->assertEquals('À transférer', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur-gmax select option:selected')->first();
         $this->assertEquals('Oui', $selectedOption->text());
@@ -184,7 +184,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
                 ->text()
         );
         $this->assertEquals(
-            'af. reproduire',
+            'Af. reproduire',
             $mainCrawler
                 ->filter('#venusaur-f .album-case-catch-state')
                 ->text()
@@ -212,15 +212,15 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
             $mainCrawler->filter('table#report tr.catch-state-no th')->text()
         );
         $this->assertEquals(
-            'af. évoluer',
+            'Af. évoluer',
             $mainCrawler->filter('table#report tr.catch-state-toevolve th')->text()
         );
         $this->assertEquals(
-            'af. reproduire',
+            'Af. reproduire',
             $mainCrawler->filter('table#report tr.catch-state-tobreed th')->text()
         );
         $this->assertEquals(
-            'à transférer',
+            'À transférer',
             $mainCrawler->filter('table#report tr.catch-state-totransfer th')->text()
         );
         $this->assertEquals(

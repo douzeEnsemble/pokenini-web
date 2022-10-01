@@ -1,1 +1,32 @@
-[{"name":"No","frenchName":"Non","slug":"no"},{"name":"To evolve","frenchName":"af. \u00e9voluer","slug":"toevolve"},{"name":"To breed","frenchName":"af. reproduire","slug":"tobreed"},{"name":"To transfer","frenchName":"\u00e0 transf\u00e9rer","slug":"totransfer"},{"name":"Yes","frenchName":"Oui","slug":"yes"}]
+[
+  {
+    "name": "No",
+    "frenchName": "Non",
+    "slug": "no"
+  },
+  {
+    "name": "To evolve",
+    "frenchName": "Af. \u00e9voluer",
+    "slug": "toevolve"
+  },
+  {
+    "name": "To breed",
+    "frenchName": "Af. reproduire",
+    "slug": "tobreed"
+  },
+  {
+    "name": "To transfer",
+    "frenchName": "\u00c0 transf\u00e9rer",
+    "slug": "totransfer"
+  },
+  {
+    "name": "To trade",
+    "frenchName": "\u00c0 \u00e9changer",
+    "slug": "totrade"
+  },
+  {
+    "name": "Yes",
+    "frenchName": "Oui",
+    "slug": "yes"
+  }
+]
