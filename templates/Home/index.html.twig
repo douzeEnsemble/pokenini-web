@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Pokénini Accueil{% endblock %}
+
 {% block body %}
 <div class="row">
     <div class="col-md-8 mx-auto text-center">
@@ -7,7 +9,7 @@
 
         <div class="row">
             {% for dex in dexes|filter(dex => dex.isPrivate is not same as(true)) %}
-            <div class="col-3 home-item">
+            <div class="col-4 home-item">
                 <a href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}">
                     {{ lang is same as('fr') ? dex.frenchName : dex.name }}
                 </a>
