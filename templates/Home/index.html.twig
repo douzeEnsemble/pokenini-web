@@ -9,10 +9,22 @@
 
         <div class="row">
             {% for dex in dexes|filter(dex => dex.isPrivate is not same as(true)) %}
-            <div class="col-4 home-item">
-                <a href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}">
-                    {{ lang is same as('fr') ? dex.frenchName : dex.name }}
-                </a>
+            <div class="card col-3 home-item">
+                {% set bannerDir = '/img/dex/banner/' %}
+                {% set dexBannerPath = bannerDir ~ dex.slug ~ '.png' %}
+                {% set defaultBannerPath = bannerDir ~ 'default.png' %}
+                <img
+                    src="{{ banner_exists(dex.slug) ? dexBannerPath : defaultBannerPath }}"
+                    class="card-img"
+                    alt=""
+                >
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}">
+                            {{ lang is same as('fr') ? dex.frenchName : dex.name }}
+                        </a>
+                    </h5>
+                </div>
             </div>
             {% endfor %}
         </div>
