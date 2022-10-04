@@ -8,6 +8,7 @@ use App\Controller\Traits\DexesRequestTrait;
 use App\Helper\PokeniniTokenHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -27,6 +28,7 @@ class AlbumController extends AbstractController
     public function index(
         string $dexSlug,
         Request $request,
+        RequestStack $requestStack,
     ): Response {
         $mode = 'read';
         if ($request->query->get('token') === PokeniniTokenHelper::getFromDexSlug($dexSlug)) {
@@ -45,7 +47,7 @@ class AlbumController extends AbstractController
             'catchStates' => $catchStates,
             'dexes' => $dexes,
             'mode' => $mode,
-            'lang' => $request->query->get('lang', 'fr'),
+            'lang' => $requestStack->getSession()->get('app.lang', 'fr'),
         ]);
     }
 

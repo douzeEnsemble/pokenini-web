@@ -1,3 +1,4 @@
+{% set currentRoute = app.request.get('_route') %}
 <nav class="navbar fixed-bottom navbar-expand-sm bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Pokénini</a>
@@ -6,17 +7,36 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                {% for dex in dexes|filter(dex => dex.isPrivate is not same as(true)) %}
                 <li class="nav-item">
                     <a
-                        class="nav-link {{ currentDexSlug is defined and dex.slug is same as(currentDexSlug) ? 'active' : '' }}"
+                        class="nav-link {{ 'app_home_index' == currentRoute ? ' active' : '' }}"
                         aria-current="page"
-                        href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}"
+                        href="{{ path('app_home_index') }}"
                     >
-                        {{ lang is same as('fr') ? dex.frenchName : dex.name }}
+                        {{ lang is same as('fr') ? 'Accueil' : 'Home' }}
                     </a>
                 </li>
-                {% endfor %}
+                <li class="nav-item dropup lang-switch">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ lang is same as('fr') ? 'Langage' : 'Language' }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="?lang=fr">Français</a></li>
+                        <li><a class="dropdown-item" href="?lang=en">English</a></li>
+                    </ul>
+                </li>
+
+                {% if is_granted("ROLE_ADMIN") %}
+                <li class="nav-item">
+                    <a
+                        class="nav-link {{ 'app_admin_index' == currentRoute ? ' active' : '' }}"
+                        aria-current="page"
+                        href="{{ path('app_admin_index') }}"
+                    >
+                        {{ lang is same as('fr') ? 'Administration' : 'Administration' }}
+                    </a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         {% apply spaceless %}

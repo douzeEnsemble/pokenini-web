@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller\AlbumController;
 
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AbstractAlbumControllerTestCase extends WebTestCase
 {
+    use TestNavTrait;
+
     protected function assertAlbum(KernelBrowser $client): void
     {
         $this->assertResponseIsSuccessful();
@@ -194,9 +197,8 @@ class AbstractAlbumControllerTestCase extends WebTestCase
     {
         $mainCrawler = $client->getCrawler();
 
-        $this->assertCount(1, $mainCrawler->filter('.navbar'));
-        $this->assertCount(4, $mainCrawler->filter('.navbar .nav-item'));
-        $this->assertCount(4, $mainCrawler->filter('.navbar .nav-item .nav-link'));
+        $this->assertNoConnectedNavBar($mainCrawler);
+        $this->assertLangSwitch($mainCrawler);
     }
 
     protected function assertRegular(KernelBrowser $client): void

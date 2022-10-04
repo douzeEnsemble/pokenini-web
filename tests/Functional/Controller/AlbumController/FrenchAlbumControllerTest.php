@@ -234,12 +234,8 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
         $mainCrawler = $client->getCrawler();
 
         $firstAlbum = $mainCrawler->filter('.navbar .nav-item')->first();
-        $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/album/home?lang=fr', $firstAlbum->filter('.nav-link')->attr('href'));
-
-        $secondAlbum = $mainCrawler->filter('.navbar .nav-item')->eq(1);
-        $this->assertEquals('Home Chromatique', $secondAlbum->text());
-        $this->assertEquals('/album/homeshiny?lang=fr', $secondAlbum->filter('.nav-link')->attr('href'));
+        $this->assertEquals('Accueil', $firstAlbum->text());
+        $this->assertEquals('/', $firstAlbum->filter('.nav-link')->attr('href'));
     }
 
     private function assertRegularFrench(KernelBrowser $client): void

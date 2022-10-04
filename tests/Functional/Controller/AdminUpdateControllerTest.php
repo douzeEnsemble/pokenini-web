@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller;
 
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminUpdateControllerTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testAdminUpdateLabels(): void
     {
         $this->testAdminUpdate('labels');
@@ -66,5 +69,8 @@ class AdminUpdateControllerTest extends WebTestCase
 
         $this->assertCount(1, $crawler->filter('.flash-success'));
         $this->assertEquals('La MAJ a bien fonctionné', $crawler->filter('.flash-success')->text());
+
+        $this->assertConnectedNavBar($crawler);
+        $this->assertLangSwitch($crawler);
     }
 }

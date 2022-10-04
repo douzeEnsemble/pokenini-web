@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -13,8 +14,13 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class AdminController extends AbstractController
 {
     #[Route('/', methods: ['GET'])]
-    public function index(): Response
+    public function index(RequestStack $requestStack): Response
     {
-        return $this->render('Admin/index.html.twig');
+        return $this->render(
+            'Admin/index.html.twig',
+            [
+                'lang' => $requestStack->getSession()->get('app.lang', 'fr'),
+            ]
+        );
     }
 }

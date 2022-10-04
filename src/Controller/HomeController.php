@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Controller\Traits\DexesRequestTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -22,7 +23,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/')]
-    public function index(Request $request): Response
+    public function index(RequestStack $requestStack): Response
     {
         $dexes = $this->getDexes();
 
@@ -30,7 +31,7 @@ class HomeController extends AbstractController
             'Home/index.html.twig',
             [
                 'dexes' => $dexes,
-                'lang' => $request->query->get('lang', 'fr'),
+                'lang' => $requestStack->getSession()->get('app.lang', 'fr'),
             ]
         );
     }
