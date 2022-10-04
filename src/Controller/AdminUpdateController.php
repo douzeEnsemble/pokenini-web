@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\Exception\ServerException;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -22,7 +23,8 @@ class AdminUpdateController extends AbstractController
     public function update(
         string $name,
         HttpClientInterface $client,
-        string $appApiUrl
+        string $appApiUrl,
+        RequestStack $requestStack,
     ): Response {
         try {
             $client->request(
@@ -41,6 +43,11 @@ class AdminUpdateController extends AbstractController
             );
         }
 
-        return $this->render('Admin/index.html.twig');
+        return $this->render(
+            'Admin/index.html.twig',
+            [
+                'lang' => $requestStack->getSession()->get('app.lang', 'fr'),
+            ]
+        );
     }
 }

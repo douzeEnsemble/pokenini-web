@@ -189,11 +189,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
 
         $firstAlbum = $mainCrawler->filter('.navbar .nav-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/album/home?lang=en', $firstAlbum->filter('.nav-link')->attr('href'));
-
-        $secondAlbum = $mainCrawler->filter('.navbar .nav-item')->eq(1);
-        $this->assertEquals('Home Shiny', $secondAlbum->text());
-        $this->assertEquals('/album/homeshiny?lang=en', $secondAlbum->filter('.nav-link')->attr('href'));
+        $this->assertEquals('/', $firstAlbum->filter('.nav-link')->attr('href'));
     }
 
     private function assertRegularEnglish(KernelBrowser $client): void

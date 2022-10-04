@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller;
 
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
 class AdminControllerTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testAdminHomeNotConnected(): void
     {
         $client = static::createClient();
@@ -43,7 +46,7 @@ class AdminControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('h2'));
         $this->assertCount(4, $crawler->filter('.admin-item'));
         $this->assertCount(4, $crawler->filter('.admin-item a'));
-        $this->assertCount(4, $crawler->filter('i.bi'));
+        $this->assertCount(4, $crawler->filter('.admin-item i.bi'));
     }
 
     private function getAdminHomeConnected(): Crawler
@@ -56,6 +59,9 @@ class AdminControllerTest extends WebTestCase
         ]);
 
         $this->assertResponseStatusCodeSame(200);
+
+        $this->assertConnectedNavBar($crawler);
+        $this->assertLangSwitch($crawler);
 
         return $crawler;
     }

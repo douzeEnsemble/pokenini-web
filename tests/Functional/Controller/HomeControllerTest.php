@@ -4,20 +4,24 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller;
 
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class HomeControllerTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testHome(): void
     {
         $client = static::createClient();
 
-        $client->request('GET', '/');
+        $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertHomeNav($client);
+        $this->assertNoConnectedNavBar($crawler);
+        $this->assertLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
 
@@ -34,11 +38,12 @@ class HomeControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/?lang=fr');
+        $crawler = $client->request('GET', '/?lang=fr');
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertHomeNav($client);
+        $this->assertNoConnectedNavBar($crawler);
+        $this->assertLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
@@ -54,11 +59,12 @@ class HomeControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/?lang=en');
+        $crawler = $client->request('GET', '/?lang=en');
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertHomeNav($client);
+        $this->assertNoConnectedNavBar($crawler);
+        $this->assertLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
 
@@ -69,14 +75,5 @@ class HomeControllerTest extends WebTestCase
         $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
         $this->assertEquals('Home Shiny', $secondAlbum->text());
         $this->assertEquals('/album/homeshiny?lang=en', $secondAlbum->filter('a')->attr('href'));
-    }
-
-    private function assertHomeNav(KernelBrowser $client): void
-    {
-        $mainCrawler = $client->getCrawler();
-
-        $this->assertCount(1, $mainCrawler->filter('h1'));
-        $this->assertCount(4, $mainCrawler->filter('.home-item'));
-        $this->assertCount(4, $mainCrawler->filter('.home-item a'));
     }
 }

@@ -3,7 +3,7 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
     providers:
-        backend_users:
+        admin_users:
             memory:
                 users:
                     renaud: { password: '%env(ADMIN_PASSWORD)%', roles: ['ROLE_ADMIN'] }
@@ -13,7 +13,7 @@ security:
             security: false
         main:
             lazy: true
-            provider: backend_users
+            provider: admin_users
             http_basic:
                 realm: Secured Area
             logout:
