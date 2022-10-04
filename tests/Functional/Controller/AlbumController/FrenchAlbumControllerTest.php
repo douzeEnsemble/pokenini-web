@@ -149,13 +149,13 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertEquals('Non', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur select option:selected')->first();
-        $this->assertEquals('Af. évoluer', $selectedOption->text());
+        $this->assertEquals('af. évoluer', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur-f select option:selected')->first();
-        $this->assertEquals('Af. reproduire', $selectedOption->text());
+        $this->assertEquals('af. reproduire', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur-mega select option:selected')->first();
-        $this->assertEquals('À transférer', $selectedOption->text());
+        $this->assertEquals('à transférer', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur-gmax select option:selected')->first();
         $this->assertEquals('Oui', $selectedOption->text());
