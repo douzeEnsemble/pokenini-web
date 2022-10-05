@@ -134,7 +134,6 @@ class AbstractAlbumControllerTestCase extends WebTestCase
 
         $statsTitle = $mainCrawler->filter('h2#stats');
         $this->assertCount(1, $statsTitle);
-        $this->assertEquals('Stats', $statsTitle->text());
 
         $this->assertCount(1, $mainCrawler->filter('.progress'));
         $this->assertCount(6, $mainCrawler->filter('.progress-bar'));

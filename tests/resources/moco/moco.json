@@ -254,6 +254,17 @@
   {
     "request": {
       "uri": {
+        "match": "/istrateur/update/pokemons"
+      },
+      "method" : "post"
+    },
+    "response" : {
+      "status" : "200"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/istrateur/update/game_bundle_availability"
       },
       "method" : "post"

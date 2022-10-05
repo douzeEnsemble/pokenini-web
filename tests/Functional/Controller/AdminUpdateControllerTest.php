@@ -22,6 +22,11 @@ class AdminUpdateControllerTest extends WebTestCase
         $this->testAdminUpdate('games_and_dexes');
     }
 
+    public function testAdminUpdatePokemons(): void
+    {
+        $this->testAdminUpdate('pokemons');
+    }
+
     public function testAdminUpdateGameBundleAvailability(): void
     {
         $this->testAdminUpdate('game_bundle_availability');
@@ -32,15 +37,15 @@ class AdminUpdateControllerTest extends WebTestCase
         $client = static::createClient();
 
         # For testing purpose, this case will fail in API side
-        $crawler = $client->request('GET', "/fr/istrateur/update/dex_availability", [], [], [
+        $client->request('GET', "/fr/istrateur/update/dex_availability", [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);
 
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertResponseStatusCodeSame(302);
+        $crawler = $client->followRedirect();
 
         $this->assertCount(1, $crawler->filter('.flash-danger'));
-        $this->assertStringContainsString('La MAJ a échoué.', $crawler->filter('.flash-danger')->text());
     }
 
     public function testAdminUpdateUnknown(): void
@@ -60,15 +65,15 @@ class AdminUpdateControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', "/fr/istrateur/update/$name", [], [], [
+        $client->request('GET', "/fr/istrateur/update/$name", [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);
 
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertResponseStatusCodeSame(302);
+        $crawler = $client->followRedirect();
 
         $this->assertCount(1, $crawler->filter('.flash-success'));
-        $this->assertEquals('La MAJ a bien fonctionné', $crawler->filter('.flash-success')->text());
 
         $this->assertConnectedNavBar($crawler);
         $this->assertLangSwitch($crawler);
