@@ -21,23 +21,23 @@
                 </li>
                 <li class="nav-item dropup lang-switch">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ 'nav.lang_switch'|trans }}
+                        {{ 'nav.switch.lang'|trans }}
                     </a>
                     <ul class="dropdown-menu">
                         <li>
                             <a
-                                class="dropdown-item"
-                               href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': 'fr'})) }}"
+                                class="dropdown-item{{ locale == 'fr' ? ' active' : '' }}"
+                                href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': 'fr'})) }}"
                             >
-                                Français
+                                {{ 'nav.lang.fr'|trans([], 'messages', 'fr') }}
                             </a>
                         </li>
                         <li>
                             <a
-                                class="dropdown-item"
+                                class="dropdown-item{{ locale == 'en' ? ' active' : '' }}"
                                 href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': 'en'})) }}"
                             >
-                                English
+                                {{ 'nav.lang.en'|trans([], 'messages', 'en') }}
                             </a>
                         </li>
                     </ul>
@@ -45,17 +45,17 @@
                 {% if is_granted("ROLE_ADMIN") %}
                     <li class="nav-item dropup mode-switch">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Mode
+                            {{ 'nav.switch.mode'|trans }}
                         </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="dropdown-item" href="?mode=edit">
-                                    {{ locale is same as('fr') ? 'Édition' : 'Edit' }}
+                                    {{ 'nav.mode.edit'|trans }}
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="?mode=read">
-                                    {{ locale is same as('fr') ? 'Lecture' : 'Read' }}
+                                    {{ 'nav.mode.read'|trans }}
                                 </a>
                             </li>
                         </ul>
@@ -66,7 +66,7 @@
                         aria-current="page"
                         href="{{ path('app_admin_index') }}"
                     >
-                        {{ locale is same as('fr') ? 'Administration' : 'Administration' }}
+                        {{ 'nav.admin'|trans }}
                     </a>
                 </li>
                 {% endif %}
@@ -74,7 +74,7 @@
         </div>
         {% apply spaceless %}
         <div class="navbar-text d-none d-md-block">
-            Made by and for RenaudDouze
+            {{ 'nav.madebyandfor'|trans }} RenaudDouze
             &nbsp;
             <a href="https://github.com/RenaudDouze">
                 <i class="bi bi-github"></i>

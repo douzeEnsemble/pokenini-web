@@ -1,3 +1,51 @@
 nav:
-    home: Home
-    lang_switch: Language
+    home: "Home"
+    switch: 
+        lang: "Language"
+        mode: "Mode"
+    madebyandfor: "Made by and for"
+    lang:
+        fr: "French"
+        en: "English"
+    mode:
+        edit: "Edit"
+        read: "Read"
+    admin: "Backoffice"
+    
+title:
+    home: "Home"
+    report: "Report"
+    admin: "Backoffice"
+    update_data: "Update data"
+    update:
+        labels: "Update labels"
+        games_and_dexes: "Update games and dexes"
+        pokemons: "Update pokémons"
+        game_bundle_availability: "Update game bundles' availabilities"
+        dex_availability: "Update dexes availabilities"
+
+stats:
+    total: "Total"
+
+album:
+    icon:
+        alt:
+            regular: "Icon of"
+            shiny: "Shiny icon of"
+                
+update:
+    labels:
+        success: "Labels update has been done"
+        error: "Labels update has failed"
+    games_and_dexes:
+        success: "Games and dexes update has been done"
+        error: "Games and dexes update has failed"
+    pokemons:
+        success: "Pokémons update has been done"
+        error: "Pokémons update has failed"
+    game_bundle_availability:
+        success: "Game bundles' availabilities update has been done"
+        error: "Game bundles' availabilities update has failed"
+    dex_availability:
+        success: "Dex availabilities update has been done"
+        error: "Dex availabilities update has failed"
