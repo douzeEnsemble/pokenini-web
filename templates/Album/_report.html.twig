@@ -7,7 +7,7 @@
             {% set completion = (100 * count / report.total)|round(2) %}
             <div class="progress-bar catch-state-{{ line.slug }}"
                  role="progressbar"
-                 aria-label="{{ lang is same as('fr') ? line.frenchName : line.name }}"
+                 aria-label="{{ locale is same as('fr') ? line.frenchName : line.name }}"
                  style="width: {{ completion }}%;"
                  aria-valuenow="{{ completion }}"
                  aria-valuemin="0"
@@ -21,7 +21,7 @@
         <tbody>
         {% for line in report.detail %}
             <tr class="catch-state-{{ line.slug }}">
-                <th>{{ lang is same as('fr') ? line.frenchName : line.name }}</th>
+                <th>{{ locale is same as('fr') ? line.frenchName : line.name }}</th>
                 <td>{{ line.slug is same as('no') ? report.totalUncaught : line.count }}</td>
             </tr>
         {% endfor %}

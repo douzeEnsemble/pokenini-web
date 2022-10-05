@@ -16,7 +16,7 @@ class AdminControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/istrateur/');
+        $client->request('GET', '/fr/istrateur/');
 
         $this->assertResponseStatusCodeSame(401);
     }
@@ -25,7 +25,7 @@ class AdminControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/istrateur/', [], [], [
+        $client->request('GET', '/fr/istrateur/', [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => '12',
         ]);
@@ -53,7 +53,7 @@ class AdminControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/istrateur/', [], [], [
+        $crawler = $client->request('GET', '/fr/istrateur/', [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);

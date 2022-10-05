@@ -12,7 +12,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/home');
+        $client->request('GET', '/fr/album/home');
 
         $mainCrawler = $client->getCrawler();
 
@@ -22,7 +22,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/homepokemongo');
+        $client->request('GET', '/fr/album/homepokemongo');
 
         $mainCrawler = $client->getCrawler();
 

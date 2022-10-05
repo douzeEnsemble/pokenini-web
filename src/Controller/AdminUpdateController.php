@@ -24,7 +24,6 @@ class AdminUpdateController extends AbstractController
         string $name,
         HttpClientInterface $client,
         string $appApiUrl,
-        RequestStack $requestStack,
     ): Response {
         try {
             $client->request(
@@ -43,11 +42,6 @@ class AdminUpdateController extends AbstractController
             );
         }
 
-        return $this->render(
-            'Admin/index.html.twig',
-            [
-                'lang' => $requestStack->getSession()->get('app.lang', 'fr'),
-            ]
-        );
+        return $this->render('Admin/index.html.twig');
     }
 }

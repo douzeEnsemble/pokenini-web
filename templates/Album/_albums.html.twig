@@ -1,4 +1,6 @@
-{% set boxLabel = lang is same as('fr') ? 'Boite' : 'Box' %}
+{% set locale = app.request.get('_locale') %}
+{% set boxLabel = locale is same as('fr') ? 'Boite' : 'Box' %}
+
 <div class="album-container">
     <h2 class="box" id="box-1">{{ boxLabel }} 1</h2>
     <div class="row album-line">
@@ -23,20 +25,20 @@
                         #{{ item.pokemon_national_dex_number }}
                     </span>
                     <span class="album-case-name">
-                        {{ lang is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+                        {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
                     </span>
                 </label>
             </div>
             <div class="album-case-image text-center"
-                 title="#{{ item.pokemon_national_dex_number }} {{ lang is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
+                 title="#{{ item.pokemon_national_dex_number }} {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
             >
-                {{ dex.is_shiny ? _self.shinyPokemonIcon(item, lang) : _self.regularPokemonIcon(item, lang) }}
+                {{ dex.is_shiny ? _self.shinyPokemonIcon(item, locale) : _self.regularPokemonIcon(item, locale) }}
             </div>
             {% apply spaceless %}
 
             <div class="album-case-forms text-truncate text-end">
                 {% if dex.is_display_form %}
-                    {{ lang is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label }}
+                    {{ locale is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label }}
                     {% if
                         item.pokemon_forms_french_label is empty
                         and item.pokemon_forms_label is empty
@@ -54,14 +56,14 @@
                         {% for catchState in catchStates %}
                             {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
                             <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
-                                {{ lang is same as('fr') ? catchState.frenchName : catchState.name }}
+                                {{ locale is same as('fr') ? catchState.frenchName : catchState.name }}
                             </option>
                         {% endfor %}
                     </select>
                 </div>
             {% else %}
                 <div class="album-case-catch-state rounded-1 ps-2">
-                    {% if lang is same as('fr') %}
+                    {% if locale is same as('fr') %}
                         {{ item.catch_state_french_name ?? 'Non' }}
                     {% else %}
                         {{ item.catch_state_name ?? 'No' }}
@@ -73,28 +75,28 @@
     </div>
 </div>
 
-{% macro regularPokemonIcon(item, lang) %}
+{% macro regularPokemonIcon(item, locale) %}
     {{ _self.pokemonIcon(
         item,
         'regular',
-        lang
+        locale
     ) }}
 {% endmacro %}
-{% macro shinyPokemonIcon(item, lang) %}
+{% macro shinyPokemonIcon(item, locale) %}
     {{ _self.pokemonIcon(
         item,
         'shiny',
-        lang
+        locale
     ) }}
 {% endmacro %}
-{% macro pokemonIcon(item, dir, lang) %}
+{% macro pokemonIcon(item, dir, locale) %}
     {% set iconBaseUrl = 'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8' %}
     {% set iconUrl = iconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png' %}
-    {% set pokemonName = lang is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
+    {% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
     {% if dir is same as('regular') %}
-        {% set alt = lang is same as('fr') ? 'Icone de' : 'Icon of' %}
+        {% set alt = locale is same as('fr') ? 'Icone de' : 'Icon of' %}
     {% else %}
-        {% set alt = lang is same as('fr') ? 'Icone chromatique de' : 'Shiny icon of' %}
+        {% set alt = locale is same as('fr') ? 'Icone chromatique de' : 'Shiny icon of' %}
     {% endif %}
     <img
         alt="{{ alt }} {{ pokemonName }}"

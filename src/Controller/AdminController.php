@@ -14,13 +14,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class AdminController extends AbstractController
 {
     #[Route('/', methods: ['GET'])]
-    public function index(RequestStack $requestStack): Response
+    public function index(): Response
     {
-        return $this->render(
-            'Admin/index.html.twig',
-            [
-                'lang' => $requestStack->getSession()->get('app.lang', 'fr'),
-            ]
-        );
+        return $this->render('Admin/index.html.twig');
     }
 }
