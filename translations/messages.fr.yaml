@@ -1,3 +1,51 @@
 nav:
-    home: Accueil
-    lang_switch: Langage
+    home: "Accueil"
+    switch:
+        lang: "Langage"
+        mode: "Mode"
+    madebyandfor: "Fait par et pour"
+    lang:
+        fr: "Français"
+        en: "Anglais"
+    mode:
+        edit: "Édition"
+        read: "Lecture"
+    admin: "Administration"
+        
+title:
+    home: "Accueil"
+    report: "Stats"
+    admin: "Administration"
+    update_data: "Mises à jour des données"
+    update:
+        labels: "Maj des labels"
+        games_and_dexes: "Maj des jeux et dex"
+        pokemons: "Maj des pokémons"
+        game_bundle_availability: "Maj des dispo des bundles de jeux"
+        dex_availability: "Maj des dispo des dex"
+
+stats:
+    total: "Total"
+
+album:
+    icon:
+        alt:
+            regular: "Icone de"
+            shiny: "Icone chromatique de"
+
+update:
+    labels: 
+        success: "La maj des labels a été effectuée"
+        error: "La maj des labels a échouée"
+    games_and_dexes: 
+        success: "La maj des jeux et dex a été effectuée"
+        error: "La maj des jeux et dex a échouée"
+    pokemons: 
+        success: "La maj des pokémons a été effectuée"
+        error: "La maj des pokémons a échouée"
+    game_bundle_availability: 
+        success: "La maj des dispo des bundles de jeux a été effectuée"
+        error: "La maj des dispo des bundles de jeux a échouée"
+    dex_availability: 
+        success: "La maj des dispo des dex a été effectuée"
+        error: "La maj des dispo des dex a échouée"

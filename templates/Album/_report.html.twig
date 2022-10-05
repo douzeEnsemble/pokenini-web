@@ -1,5 +1,7 @@
 <div class="report-container">
-    <h2 id="stats">Stats</h2>
+    <h2 id="stats">
+        {{ 'title.report'|trans }}
+    </h2>
 
     <div class="progress mb-2">
         {% for line in report.detail %}
@@ -21,12 +23,16 @@
         <tbody>
         {% for line in report.detail %}
             <tr class="catch-state-{{ line.slug }}">
-                <th>{{ locale is same as('fr') ? line.frenchName : line.name }}</th>
-                <td>{{ line.slug is same as('no') ? report.totalUncaught : line.count }}</td>
+                <th>
+                    {{ locale is same as('fr') ? line.frenchName : line.name }}
+                </th>
+                <td>
+                    {{ line.slug is same as('no') ? report.totalUncaught : line.count }}
+                </td>
             </tr>
         {% endfor %}
         <tr class="catch-state-total">
-            <th>Total</th>
+            <th>{{ 'stat.total'|trans }}</th>
             <td>{{ report.total }}</td>
         </tr>
         </tbody>

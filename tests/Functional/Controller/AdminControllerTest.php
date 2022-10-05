@@ -44,9 +44,9 @@ class AdminControllerTest extends WebTestCase
 
         $this->assertCount(1, $crawler->filter('h1'));
         $this->assertCount(1, $crawler->filter('h2'));
-        $this->assertCount(4, $crawler->filter('.admin-item'));
-        $this->assertCount(4, $crawler->filter('.admin-item a'));
-        $this->assertCount(4, $crawler->filter('.admin-item i.bi'));
+        $this->assertCount(5, $crawler->filter('.admin-item'));
+        $this->assertCount(5, $crawler->filter('.admin-item a'));
+        $this->assertCount(5, $crawler->filter('.admin-item i.bi'));
     }
 
     private function getAdminHomeConnected(): Crawler
