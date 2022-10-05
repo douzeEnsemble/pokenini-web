@@ -32,7 +32,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $client = static::createClient();
 
         # For testing purpose, this case will fail in API side
-        $crawler = $client->request('GET', "/istrateur/update/dex_availability", [], [], [
+        $crawler = $client->request('GET', "/fr/istrateur/update/dex_availability", [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);
@@ -50,7 +50,7 @@ class AdminUpdateControllerTest extends WebTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $client->request('GET', "/istrateur/update/truc", [], [], [
+        $client->request('GET', "/fr/istrateur/update/truc", [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);
@@ -60,7 +60,7 @@ class AdminUpdateControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', "/istrateur/update/$name", [], [], [
+        $crawler = $client->request('GET', "/fr/istrateur/update/$name", [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);

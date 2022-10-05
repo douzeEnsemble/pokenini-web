@@ -12,7 +12,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/demo?lang=en');
+        $client->request('GET', '/en/album/demo');
 
         $this->assertAlbum($client);
         $this->assertReadMode($client);
@@ -30,7 +30,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/demo?lang=en&token=cb19dc668f0c426c8f3e319f9ea36ecc');
+        $client->request('GET', '/en/album/demo?token=cb19dc668f0c426c8f3e319f9ea36ecc');
 
         $this->assertAlbum($client);
         $this->assertWriteMode($client);
@@ -48,7 +48,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/homeshiny?lang=en');
+        $client->request('GET', '/en/album/homeshiny');
 
         $this->assertShiny($client);
         $this->assertShinyEnglish($client);
@@ -189,7 +189,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
 
         $firstAlbum = $mainCrawler->filter('.navbar .nav-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/', $firstAlbum->filter('.nav-link')->attr('href'));
+        $this->assertEquals('/en/', $firstAlbum->filter('.nav-link')->attr('href'));
     }
 
     private function assertRegularEnglish(KernelBrowser $client): void

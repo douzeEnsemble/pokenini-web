@@ -23,7 +23,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/')]
-    public function index(RequestStack $requestStack): Response
+    public function index(): Response
     {
         $dexes = $this->getDexes();
 
@@ -31,7 +31,6 @@ class HomeController extends AbstractController
             'Home/index.html.twig',
             [
                 'dexes' => $dexes,
-                'lang' => $requestStack->getSession()->get('app.lang', 'fr'),
             ]
         );
     }

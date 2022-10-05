@@ -1,4 +1,7 @@
 {% set currentRoute = app.request.get('_route') %}
+{% set currentRouteParameters = app.request.get('_route_params') %}
+{% set locale = app.request.get('_locale') %}
+
 <nav class="navbar fixed-bottom navbar-expand-sm bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Pokénini</a>
@@ -13,27 +16,57 @@
                         aria-current="page"
                         href="{{ path('app_home_index') }}"
                     >
-                        {{ lang is same as('fr') ? 'Accueil' : 'Home' }}
+                        {{ 'nav.home'|trans }}
                     </a>
                 </li>
                 <li class="nav-item dropup lang-switch">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ lang is same as('fr') ? 'Langage' : 'Language' }}
+                        {{ 'nav.lang_switch'|trans }}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="?lang=fr">Français</a></li>
-                        <li><a class="dropdown-item" href="?lang=en">English</a></li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                               href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': 'fr'})) }}"
+                            >
+                                Français
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': 'en'})) }}"
+                            >
+                                English
+                            </a>
+                        </li>
                     </ul>
                 </li>
-
                 {% if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item dropup mode-switch">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Mode
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="?mode=edit">
+                                    {{ locale is same as('fr') ? 'Édition' : 'Edit' }}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="?mode=read">
+                                    {{ locale is same as('fr') ? 'Lecture' : 'Read' }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 <li class="nav-item">
                     <a
                         class="nav-link {{ 'app_admin_index' == currentRoute ? ' active' : '' }}"
                         aria-current="page"
                         href="{{ path('app_admin_index') }}"
                     >
-                        {{ lang is same as('fr') ? 'Administration' : 'Administration' }}
+                        {{ locale is same as('fr') ? 'Administration' : 'Administration' }}
                     </a>
                 </li>
                 {% endif %}

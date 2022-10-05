@@ -16,7 +16,7 @@ class HomeControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/fr/');
 
         $this->assertResponseIsSuccessful();
 
@@ -27,18 +27,18 @@ class HomeControllerTest extends WebTestCase
 
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/album/home?lang=fr', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/fr/album/home', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
-        $this->assertEquals('/album/homeshiny?lang=fr', $secondAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
 
     public function testHomeFrench(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/?lang=fr');
+        $crawler = $client->request('GET', '/fr/');
 
         $this->assertResponseIsSuccessful();
 
@@ -48,18 +48,18 @@ class HomeControllerTest extends WebTestCase
         $mainCrawler = $client->getCrawler();
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/album/home?lang=fr', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/fr/album/home', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
-        $this->assertEquals('/album/homeshiny?lang=fr', $secondAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
 
     public function testHomeEnglish(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/?lang=en');
+        $crawler = $client->request('GET', '/en/');
 
         $this->assertResponseIsSuccessful();
 
@@ -70,10 +70,10 @@ class HomeControllerTest extends WebTestCase
 
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/album/home?lang=en', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/en/album/home', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
         $this->assertEquals('Home Shiny', $secondAlbum->text());
-        $this->assertEquals('/album/homeshiny?lang=en', $secondAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/en/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
 }

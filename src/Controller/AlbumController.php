@@ -28,7 +28,6 @@ class AlbumController extends AbstractController
     public function index(
         string $dexSlug,
         Request $request,
-        RequestStack $requestStack,
     ): Response {
         $mode = 'read';
         if ($request->query->get('token') === PokeniniTokenHelper::getFromDexSlug($dexSlug)) {
@@ -47,7 +46,6 @@ class AlbumController extends AbstractController
             'catchStates' => $catchStates,
             'dexes' => $dexes,
             'mode' => $mode,
-            'lang' => $requestStack->getSession()->get('app.lang', 'fr'),
         ]);
     }
 

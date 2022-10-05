@@ -1,3 +1,6 @@
+{% set currentRouteParameters = app.request.get('_route_params') %}
+{% set locale = app.request.get('_locale') %}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Pokénini Accueil{% endblock %}
@@ -20,8 +23,8 @@
                 >
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="{{ path('app_album_index', {dexSlug: dex.slug, lang: lang}) }}">
-                            {{ lang is same as('fr') ? dex.frenchName : dex.name }}
+                        <a href="{{ path('app_album_index', {dexSlug: dex.slug}) }}">
+                            {{ locale is same as('fr') ? dex.frenchName : dex.name }}
                         </a>
                     </h5>
                 </div>

@@ -12,7 +12,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/demo?token=cb19dc668f0c426c8f3e319f9ea36ecc');
+        $client->request('GET', '/fr/album/demo?token=cb19dc668f0c426c8f3e319f9ea36ecc');
 
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
@@ -30,7 +30,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/demo');
+        $client->request('GET', '/fr/album/demo');
 
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
@@ -48,7 +48,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/demo?token=kadkjazpdazpdi');
+        $client->request('GET', '/fr/album/demo?token=kadkjazpdazpdi');
 
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
@@ -66,7 +66,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/demo?lang=fr');
+        $client->request('GET', '/fr/album/demo');
 
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
@@ -84,7 +84,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/homeshiny');
+        $client->request('GET', '/fr/album/homeshiny');
 
         $this->assertShiny($client);
         $this->assertShinyFrench($client);
@@ -94,7 +94,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/album/homeshiny?lang=fr');
+        $client->request('GET', '/fr/album/homeshiny');
 
         $this->assertShiny($client);
         $this->assertShinyFrench($client);
@@ -235,7 +235,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
 
         $firstAlbum = $mainCrawler->filter('.navbar .nav-item')->first();
         $this->assertEquals('Accueil', $firstAlbum->text());
-        $this->assertEquals('/', $firstAlbum->filter('.nav-link')->attr('href'));
+        $this->assertEquals('/fr/', $firstAlbum->filter('.nav-link')->attr('href'));
     }
 
     private function assertRegularFrench(KernelBrowser $client): void
