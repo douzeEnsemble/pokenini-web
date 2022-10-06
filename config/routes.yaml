@@ -2,3 +2,10 @@ controllers:
     resource: ../src/Controller/
     type: attribute
     prefix: /{_locale}
+
+index:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: app_home_index
+        permanent: true
