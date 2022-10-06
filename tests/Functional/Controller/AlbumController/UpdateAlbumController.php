@@ -8,22 +8,27 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UpdateAlbumController extends WebTestCase
 {
-    public function testUpdatePrivate(): void
+    public function testUpdateConnected(): void
     {
         $client = static::createClient();
 
         $client->request(
             'PATCH',
-            '/album/demo/bulbasaur?token=cb19dc668f0c426c8f3e319f9ea36ecc',
+            '/album/demo/bulbasaur',
             [
                 'body' => 'yes',
+            ],
+            [],
+            [
+                'PHP_AUTH_USER' => 'renaud',
+                'PHP_AUTH_PW'   => 'douze',
             ]
         );
 
         $this->assertResponseIsSuccessful();
     }
 
-    public function testUpdatePublic(): void
+    public function testUpdateNonConnected(): void
     {
         $client = static::createClient();
 
@@ -35,21 +40,6 @@ class UpdateAlbumController extends WebTestCase
             ]
         );
 
-
-        $this->assertEquals(403, $client->getResponse()->getStatusCode());
-    }
-
-    public function testUpdateWrongToken(): void
-    {
-        $client = static::createClient();
-
-        $client->request(
-            'PATCH',
-            '/album/demo/bulbasaur?token=kadkjazpdazpdi',
-            [
-                'body' => 'yes',
-            ]
-        );
 
         $this->assertEquals(403, $client->getResponse()->getStatusCode());
     }

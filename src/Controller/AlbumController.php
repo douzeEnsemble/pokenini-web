@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Controller\Traits\DexesRequestTrait;
-use App\Helper\PokeniniTokenHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -30,7 +28,9 @@ class AlbumController extends AbstractController
         Request $request,
     ): Response {
         $mode = 'read';
-        if ($request->query->get('token') === PokeniniTokenHelper::getFromDexSlug($dexSlug)) {
+        if ('edit' === $request->query->get('mode')) {
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
             $mode = 'write';
         }
 
@@ -52,9 +52,7 @@ class AlbumController extends AbstractController
     #[Route('/{dexSlug}/{pokemonSlug}', methods: ['PATCH', 'PUT'])]
     public function upsert(string $dexSlug, string $pokemonSlug, Request $request): Response
     {
-        if ($request->query->get('token') !== PokeniniTokenHelper::getFromDexSlug($dexSlug)) {
-            return new Response('', Response::HTTP_FORBIDDEN);
-        }
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $this->client->request(
             $request->getMethod(),
