@@ -4,28 +4,22 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Controller\Traits\DexesRequestTrait;
+use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HomeController extends AbstractController
 {
-    use DexesRequestTrait;
-
     public function __construct(
-        private readonly HttpClientInterface $client,
-        private readonly string $appApiUrl
+        private readonly ApiService $apiService
     ) {
     }
 
     #[Route('/')]
     public function index(): Response
     {
-        $dexes = $this->getDexes();
+        $dexes = $this->apiService->getDexes();
 
         return $this->render(
             'Home/index.html.twig',
