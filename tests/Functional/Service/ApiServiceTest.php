@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Functional\Service;
 
 use App\Service\ApiService;
@@ -108,6 +110,26 @@ class ApiServiceTest extends KernelTestCase
         $service->getPokedex('treize');
         $service->getPokedex('douze');
         $this->assertCount(4, $cache->getValues());
+    }
+
+    public function testModifyAlbum(): void
+    {
+        $client = $this->createMock(HttpClientInterface::class);
+
+        $client
+            ->expects($this->exactly(2))
+            ->method('request')
+        ;
+
+        $cache = new ArrayAdapter();
+
+        $service = new ApiService($client, 'api', $cache);
+
+        $service->modifyAlbum('PATCH', 'a', 'b', 'c');
+        $service->modifyAlbum('PUT', 'a', 'b', 'c');
+
+        $this->expectException(\InvalidArgumentException::class);
+        $service->modifyAlbum('POST', 'a', 'b', 'c');
     }
 
     private function getService(string $url): ApiService

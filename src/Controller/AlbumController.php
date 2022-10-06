@@ -51,12 +51,11 @@ class AlbumController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $this->client->request(
+        $this->apiService->modifyAlbum(
             $request->getMethod(),
-            "{$this->appApiUrl}/album/$dexSlug/$pokemonSlug",
-            [
-                'body' => $request->getContent(),
-            ]
+            $dexSlug,
+            $pokemonSlug,
+            (string) $request->getContent()
         );
 
         return new Response();
