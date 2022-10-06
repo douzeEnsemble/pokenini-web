@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Controller\Traits\DexesRequestTrait;
+use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[Route('/album')]
 class AlbumController extends AbstractController
 {
-    use DexesRequestTrait;
-
     public function __construct(
-        private readonly HttpClientInterface $client,
-        private readonly string $appApiUrl
+        private readonly ApiService $apiService
     ) {
     }
 
@@ -34,9 +31,9 @@ class AlbumController extends AbstractController
             $mode = 'write';
         }
 
-        $pokedex = $this->getPokedex($dexSlug);
-        $catchStates = $this->getCatchStates();
-        $dexes = $this->getDexes();
+        $pokedex = $this->apiService->getPokedex($dexSlug);
+        $catchStates = $this->apiService->getCatchStates();
+        $dexes = $this->apiService->getDexes();
 
         return $this->render('Album/index.html.twig', [
             'currentDexSlug' => $dexSlug,
@@ -63,38 +60,5 @@ class AlbumController extends AbstractController
         );
 
         return new Response();
-    }
-
-    /**
-     * @return string[][]|string[][][]
-     */
-    private function getPokedex(string $dexSlug): array
-    {
-        $response = $this->client->request(
-            'GET',
-            "{$this->appApiUrl}/album/$dexSlug"
-        );
-
-        /** @var string[][]|string[][][] */
-        return json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
-    }
-
-    /**
-     * @return string[][]
-     */
-    private function getCatchStates(): array
-    {
-        $response = $this->client->request(
-            'GET',
-            "{$this->appApiUrl}/catch_states",
-            [
-                'headers' => [
-                    'accept' => 'application/json',
-                ],
-            ]
-        );
-
-        /** @var string[][] */
-        return json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
     }
 }
