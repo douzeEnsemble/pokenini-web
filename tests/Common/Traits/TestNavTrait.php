@@ -37,6 +37,12 @@ trait TestNavTrait
 
     public function assertConnectedNavBar(Crawler $crawler): void
     {
+        $this->assertCount(3, $crawler->filter('.navbar-nav .nav-item'));
+        $this->assertCount(5, $crawler->filter('.navbar-nav .nav-item a'));
+    }
+
+    public function assertConnectedAlbumNavBar(Crawler $crawler): void
+    {
         $this->assertCount(4, $crawler->filter('.navbar-nav .nav-item'));
         $this->assertCount(8, $crawler->filter('.navbar-nav .nav-item a'));
     }

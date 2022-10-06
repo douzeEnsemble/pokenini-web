@@ -24,13 +24,17 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertEnglishStatistics($client);
         $this->assertNavigationBar($client);
         $this->assertNavigationBarEnglish($client);
+        $this->assertNoConnectedNavBar($client->getCrawler());
     }
 
     public function testListLanguageEnglishWriteMode(): void
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/demo?token=cb19dc668f0c426c8f3e319f9ea36ecc');
+        $client->request('GET', '/en/album/demo?mode=edit', [], [], [
+            'PHP_AUTH_USER' => 'renaud',
+            'PHP_AUTH_PW'   => 'douze',
+        ]);
 
         $this->assertAlbum($client);
         $this->assertWriteMode($client);
@@ -40,8 +44,8 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertAlbumEnglishWriteMode($client);
         $this->assertStatistics($client);
         $this->assertEnglishStatistics($client);
-        $this->assertNavigationBar($client);
         $this->assertNavigationBarEnglish($client);
+        $this->assertConnectedAlbumNavBar($client->getCrawler());
     }
 
     public function testListShinyEnglish(): void

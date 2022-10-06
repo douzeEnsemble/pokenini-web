@@ -43,23 +43,25 @@
                     </ul>
                 </li>
                 {% if is_granted("ROLE_ADMIN") %}
-                    <li class="nav-item dropup mode-switch">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ 'nav.switch.mode'|trans }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="?mode=edit">
-                                    {{ 'nav.mode.edit'|trans }}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="?mode=read">
-                                    {{ 'nav.mode.read'|trans }}
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                {% if 'album' in currentRoute  %}
+                <li class="nav-item dropup mode-switch">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ 'nav.switch.mode'|trans }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="?mode=edit">
+                                {{ 'nav.mode.edit'|trans }}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?mode=read">
+                                {{ 'nav.mode.read'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a
                         class="nav-link {{ 'app_admin_index' == currentRoute ? ' active' : '' }}"

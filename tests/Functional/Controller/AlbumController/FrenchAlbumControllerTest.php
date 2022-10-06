@@ -8,11 +8,14 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
 {
-    public function testListPrivate(): void
+    public function testListEdit(): void
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/demo?token=cb19dc668f0c426c8f3e319f9ea36ecc');
+        $client->request('GET', '/fr/album/demo?mode=edit', [], [], [
+            'PHP_AUTH_USER' => 'renaud',
+            'PHP_AUTH_PW'   => 'douze',
+        ]);
 
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
@@ -22,11 +25,11 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertAlbumFrenchWriteMode($client);
         $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
-        $this->assertNavigationBar($client);
         $this->assertNavigationBarFrench($client);
+        $this->assertConnectedAlbumNavBar($client->getCrawler());
     }
 
-    public function testListPublic(): void
+    public function testListRead(): void
     {
         $client = static::createClient();
 
@@ -42,24 +45,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertFrenchStatistics($client);
         $this->assertNavigationBar($client);
         $this->assertNavigationBarFrench($client);
-    }
-
-    public function testListWrongToken(): void
-    {
-        $client = static::createClient();
-
-        $client->request('GET', '/fr/album/demo?token=kadkjazpdazpdi');
-
-        $this->assertAlbum($client);
-        $this->assertAlbumFrench($client);
-        $this->assertRegular($client);
-        $this->assertRegularFrench($client);
-        $this->assertReadMode($client);
-        $this->assertAlbumFrenchReadMode($client);
-        $this->assertStatistics($client);
-        $this->assertFrenchStatistics($client);
-        $this->assertNavigationBar($client);
-        $this->assertNavigationBarFrench($client);
+        $this->assertNoConnectedNavBar($client->getCrawler());
     }
 
     public function testListLanguageFrench(): void
@@ -78,6 +64,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertFrenchStatistics($client);
         $this->assertNavigationBar($client);
         $this->assertNavigationBarFrench($client);
+        $this->assertNoConnectedNavBar($client->getCrawler());
     }
 
     public function testListShiny(): void
