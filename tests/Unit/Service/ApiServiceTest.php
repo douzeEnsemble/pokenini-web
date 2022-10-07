@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Service;
+namespace App\Tests\Unit\Service;
 
 use App\Service\ApiService;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
-class ApiServiceTest extends KernelTestCase
+class ApiServiceTest extends TestCase
 {
     public function testGetDexes(): void
     {
@@ -83,7 +83,12 @@ class ApiServiceTest extends KernelTestCase
                 ['GET', 'api/album/douze'],
                 ['GET', 'api/album/treize'],
             )
-            ->willReturn($response)
+            ->willReturnOnConsecutiveCalls(
+                $response,
+                $response,
+                $response,
+                $response,
+            )
         ;
 
         $cache = new ArrayAdapter();
@@ -92,24 +97,117 @@ class ApiServiceTest extends KernelTestCase
 
         $service->getCatchStates();
         $this->assertCount(1, $cache->getValues());
+        $this->assertArrayHasKey('catch_states', $cache->getValues());
 
         $service->getCatchStates();
         $service->getCatchStates();
         $this->assertCount(1, $cache->getValues());
+        $this->assertArrayHasKey('catch_states', $cache->getValues());
 
         $service->getDexes();
         $this->assertCount(2, $cache->getValues());
+        $this->assertArrayHasKey('dexes', $cache->getValues());
 
         $service->getPokedex('douze');
         $this->assertCount(3, $cache->getValues());
+        $this->assertArrayHasKey('album_douze', $cache->getValues());
 
         $service->getPokedex('treize');
         $this->assertCount(4, $cache->getValues());
+        $this->assertArrayHasKey('album_treize', $cache->getValues());
 
         $service->getPokedex('treize');
         $service->getPokedex('treize');
         $service->getPokedex('douze');
         $this->assertCount(4, $cache->getValues());
+    }
+
+    public function testInvalidateCaches(): void
+    {
+        $client = $this->createMock(HttpClientInterface::class);
+
+        $response = $this->createMock(ResponseInterface::class);
+        $response
+            ->expects($this->exactly(3))
+            ->method('getContent')
+            ->willReturn('{}')
+        ;
+
+        $dexesJson = <<<JSON
+        [
+          {
+            "isShiny": false,
+            "isPrivate": true,
+            "isDisplayForm": true,
+            "name": "Douze",
+            "frenchName": "Douze",
+            "slug": "douze"
+          },
+          {
+            "isShiny": false,
+            "isPrivate": true,
+            "isDisplayForm": true,
+            "name": "Treize",
+            "frenchName": "Treize",
+            "slug": "treize"
+          }
+        ]
+        JSON;
+
+        $dexesReponse = $this->createMock(ResponseInterface::class);
+        $dexesReponse
+            ->expects($this->exactly(2))
+            ->method('getContent')
+            ->willReturn($dexesJson)
+        ;
+
+        $client
+            ->expects($this->exactly(5))
+            ->method('request')
+            ->withConsecutive(
+                ['GET', 'api/catch_states'],
+                ['GET', 'api/dexes'],
+                ['GET', 'api/album/douze'],
+                ['GET', 'api/album/treize'],
+                ['GET', 'api/dexes'],
+            )
+            ->willReturnOnConsecutiveCalls(
+                $response,
+                $dexesReponse,
+                $response,
+                $response,
+                $dexesReponse
+            )
+        ;
+
+        $cache = new ArrayAdapter();
+
+        $service = new ApiService($client, 'api', $cache);
+
+        $service->getCatchStates();
+        $service->getDexes();
+        $service->getPokedex('douze');
+        $service->getPokedex('treize');
+
+        $this->assertCount(4, $cache->getValues());
+        $this->assertArrayHasKey('catch_states', $cache->getValues());
+        $this->assertArrayHasKey('dexes', $cache->getValues());
+        $this->assertArrayHasKey('album_douze', $cache->getValues());
+        $this->assertArrayHasKey('album_treize', $cache->getValues());
+
+        $service->invalidateCacheDexes();
+        $this->assertCount(3, $cache->getValues());
+        $this->assertArrayNotHasKey('dexes', $cache->getValues());
+
+        $service->invalidateCacheCatchStates();
+        $this->assertCount(2, $cache->getValues());
+        $this->assertArrayNotHasKey('catch_states', $cache->getValues());
+
+        $service->invalidateCacheAlbums();
+        $this->assertCount(1, $cache->getValues());
+        $this->assertArrayHasKey('dexes', $cache->getValues());
+        $this->assertArrayNotHasKey('album_douze', $cache->getValues());
+        $this->assertArrayNotHasKey('album_treize', $cache->getValues());
     }
 
     public function testModifyAlbum(): void

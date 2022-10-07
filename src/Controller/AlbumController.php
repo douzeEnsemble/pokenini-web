@@ -47,8 +47,12 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/{dexSlug}/{pokemonSlug}', methods: ['PATCH', 'PUT'])]
-    public function upsert(string $dexSlug, string $pokemonSlug, Request $request): Response
-    {
+    public function upsert(
+        string $dexSlug,
+        string $pokemonSlug,
+        ApiService $apiService,
+        Request $request
+    ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $this->apiService->modifyAlbum(
@@ -57,6 +61,8 @@ class AlbumController extends AbstractController
             $pokemonSlug,
             (string) $request->getContent()
         );
+
+        $apiService->invalidateCacheAlbums();
 
         return new Response();
     }
