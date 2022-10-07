@@ -7,9 +7,13 @@ namespace App\Controller;
 use App\Controller\Traits\DexesRequestTrait;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 #[Route('/album')]
 class AlbumController extends AbstractController
@@ -55,14 +59,18 @@ class AlbumController extends AbstractController
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $this->apiService->modifyAlbum(
-            $request->getMethod(),
-            $dexSlug,
-            $pokemonSlug,
-            (string) $request->getContent()
-        );
+        try {
+            $this->apiService->modifyAlbum(
+                $request->getMethod(),
+                $dexSlug,
+                $pokemonSlug,
+                (string)$request->getContent()
+            );
 
-        $apiService->invalidateCacheAlbums();
+            $apiService->invalidateCacheAlbums();
+        } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
+            return new JsonResponse(['error' => $e->getMessage()], 500);
+        }
 
         return new Response();
     }

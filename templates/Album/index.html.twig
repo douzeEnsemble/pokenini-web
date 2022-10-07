@@ -54,6 +54,10 @@
 
         // Enable tooltips
         const tooltipTriggerList = document.querySelectorAll('.album-case-image')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+        // Enable toasts
+        const toastElList = document.querySelectorAll('.toast')
+        const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl))
     </script>
 {% endblock foot_javascript %}
