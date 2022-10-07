@@ -10,6 +10,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ApiService
 {
+    private const CACHE_KEY_DEXES = 'dexes';
+    private const CACHE_KEY_CATCH_STATES = 'catch_states';
+    private const CACHE_KEY_ALBUM = 'album_';
+
     public function __construct(
         private readonly HttpClientInterface $client,
         private readonly string $appApiUrl,
@@ -23,7 +27,7 @@ class ApiService
     public function getDexes(): array
     {
         /** @var string $json */
-        $json = $this->cache->get('dexes', function () {
+        $json = $this->cache->get(self::CACHE_KEY_DEXES, function () {
             $response = $this->client->request(
                 'GET',
                 "{$this->appApiUrl}/dexes",
@@ -48,7 +52,7 @@ class ApiService
     public function getPokedex(string $dexSlug): array
     {
         /** @var string $json */
-        $json = $this->cache->get("album_$dexSlug", function () use ($dexSlug) {
+        $json = $this->cache->get(self::CACHE_KEY_ALBUM . $dexSlug, function () use ($dexSlug) {
             $response = $this->client->request(
                 'GET',
                 "{$this->appApiUrl}/album/$dexSlug"
@@ -68,7 +72,7 @@ class ApiService
     public function getCatchStates(): array
     {
         /** @var string $json */
-        $json = $this->cache->get("catch_states", function () {
+        $json = $this->cache->get(self::CACHE_KEY_CATCH_STATES, function () {
             $response = $this->client->request(
                 'GET',
                 "{$this->appApiUrl}/catch_states",
@@ -104,5 +108,24 @@ class ApiService
                 'body' => $catchStateSlug,
             ]
         );
+    }
+
+    public function invalidateCacheDexes(): void
+    {
+        $this->cache->delete(self::CACHE_KEY_DEXES);
+    }
+
+    public function invalidateCacheCatchStates(): void
+    {
+        $this->cache->delete(self::CACHE_KEY_CATCH_STATES);
+    }
+
+    public function invalidateCacheAlbums(): void
+    {
+        $dexes = $this->getDexes();
+
+        foreach ($dexes as $dex) {
+            $this->cache->delete(self::CACHE_KEY_ALBUM . $dex['slug']);
+        }
     }
 }

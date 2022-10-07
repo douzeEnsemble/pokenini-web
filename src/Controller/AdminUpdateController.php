@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Service\CacheInvalidatorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpClient\Exception\ServerException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -25,7 +24,8 @@ class AdminUpdateController extends AbstractController
         string $name,
         HttpClientInterface $client,
         string $appApiUrl,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        CacheInvalidatorService $cacheInvalidatorService
     ): Response {
         try {
             $client->request(
@@ -33,11 +33,13 @@ class AdminUpdateController extends AbstractController
                 "{$appApiUrl}/istrateur/update/$name"
             );
 
+            $cacheInvalidatorService->invalidate($name);
+
             $this->addFlash(
                 'success',
                 $translator->trans("update.$name.success")
             );
-        } catch (TransportExceptionInterface | ServerException | \Exception $e) {
+        } catch (\Exception $e) {
             $this->addFlash(
                 'danger',
                 $translator->trans("update.$name.error") . ' ' . $e->getMessage()
