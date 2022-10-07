@@ -6,6 +6,9 @@ namespace App\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ApiService
@@ -91,13 +94,17 @@ class ApiService
         return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     * @throws HttpExceptionInterface
+     */
     public function modifyAlbum(
         string $method,
         string $dexSlug,
         string $pokemonSlug,
         string $catchStateSlug
     ): void {
-        if (!in_array($method, [Request::METHOD_PATCH, Request::METHOD_PUT])) {
+        if (!in_array($method, [Request::METHOD_PATCH, Request::METHOD_PUT], true)) {
             throw new \InvalidArgumentException();
         }
 

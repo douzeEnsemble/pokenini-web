@@ -32,6 +32,10 @@ album:
         alt:
             regular: "Icone de"
             shiny: "Icone chromatique de"
+    update:
+        title: "Maj"
+        success: "Enregistré"
+        error: "Échoué"
 
 update:
     labels: 

@@ -106,6 +106,12 @@ class AbstractAlbumControllerTestCase extends WebTestCase
             $mainCrawler
                 ->filter('.album-case .album-case-catch-state')
         );
+
+        $this->assertCount(
+            0,
+            $mainCrawler
+                ->filter('.toast')
+        );
     }
 
     protected function assertWriteMode(KernelBrowser $client): void
@@ -125,6 +131,12 @@ class AbstractAlbumControllerTestCase extends WebTestCase
             0,
             $mainCrawler
                 ->filter('.album-case .album-case-catch-state')
+        );
+
+        $this->assertCount(
+            2,
+            $mainCrawler
+                ->filter('.toast')
         );
     }
 

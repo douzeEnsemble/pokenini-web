@@ -32,6 +32,10 @@ album:
         alt:
             regular: "Icon of"
             shiny: "Shiny icon of"
+    update:
+        title: "Update"
+        success: "Saved"
+        error: "Failed"
                 
 update:
     labels:
