@@ -1,6 +1,9 @@
 .container {
     padding-bottom: 10rem;
 }
+#home .card-body {
+    padding: 0 0 .5rem;
+}
 .album-case {
     padding: 0 2px;
 }
