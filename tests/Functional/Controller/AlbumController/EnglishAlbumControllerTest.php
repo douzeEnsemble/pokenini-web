@@ -116,6 +116,9 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertEquals('To transfer', $selectedOption->text());
 
         $selectedOption = $mainCrawler->filter('#venusaur-gmax select option:selected')->first();
+        $this->assertEquals('To trade', $selectedOption->text());
+
+        $selectedOption = $mainCrawler->filter('#charmander select option:selected')->first();
         $this->assertEquals('Yes', $selectedOption->text());
     }
 
@@ -154,9 +157,15 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
                 ->text()
         );
         $this->assertEquals(
-            'Yes',
+            'To trade',
             $mainCrawler
                 ->filter('#venusaur-gmax .album-case-catch-state')
+                ->text()
+        );
+        $this->assertEquals(
+            'Yes',
+            $mainCrawler
+                ->filter('#charmander .album-case-catch-state')
                 ->text()
         );
     }

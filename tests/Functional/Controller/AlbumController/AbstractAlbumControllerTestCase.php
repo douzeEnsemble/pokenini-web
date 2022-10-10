@@ -68,7 +68,12 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         $this->assertCount(
             1,
             $mainCrawler
-                ->filter('#venusaur-gmax.album-case.catch-state-yes')
+                ->filter('#venusaur-gmax.album-case.catch-state-totrade')
+        );
+        $this->assertCount(
+            1,
+            $mainCrawler
+                ->filter('#charmander.album-case.catch-state-yes')
         );
 
         $this->assertStringContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
