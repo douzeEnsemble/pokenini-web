@@ -22,7 +22,8 @@
 }
 .album-case-action {
     font-size: .6rem;
+    padding-bottom: .125rem;
 }
 .album-case-action select {
-    max-width: 100%;
+    width: 100%;
 }

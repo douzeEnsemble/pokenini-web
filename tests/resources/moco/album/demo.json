@@ -123,9 +123,9 @@
       "special_form_name": "Gigantamax",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": "totrade",
+      "catch_state_name": "To trade",
+      "catch_state_french_name": "À échanger"
     },
     {
       "pokemon_slug": "charmander",
@@ -163,9 +163,9 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": null,
-      "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_slug": "yes",
+      "catch_state_name": "Yes",
+      "catch_state_french_name": "Oui"
     },
     {
       "pokemon_slug": "charizard",
@@ -34801,7 +34801,7 @@
         "slug": "totrade",
         "name": "To trade",
         "frenchName": "\u00c0 \u00e9changer",
-        "count": 0
+        "count": 1
       },
       {
         "slug": "yes",
