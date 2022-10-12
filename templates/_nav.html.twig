@@ -14,16 +14,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a
-                        class="nav-link {{ 'app_home_index' == currentRoute ? ' active' : '' }}"
-                        aria-current="page"
-                        href="{{ path('app_home_index') }}"
-                    >
-                        <i class="bi bi-house"></i>
-                        {{ 'nav.home'|trans }}
-                    </a>
-                </li>
                 <li class="nav-item lang-switch">
                     {% set langTarget = locale == 'fr' ? 'en' : 'fr' %}
                     <a
