@@ -2,11 +2,12 @@
 {% set locale = app.request.get('_locale') %}
 
 {% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
 
 {% block title %}Pokénini {{ 'title.home'|trans }}{% endblock %}
 
-{% block body %}
-<div id="home" class="row mb-5">
+{% block container %}
+<div id="home" class="row">
     <div class="col-md-8 mx-auto text-center">
         <h1>Pokénini</h1>
 

@@ -232,6 +232,8 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
         $firstAlbum = $mainCrawler->filter('.navbar .nav-item')->first();
         $this->assertEquals('Accueil', $firstAlbum->text());
         $this->assertEquals('/fr/', $firstAlbum->filter('.nav-link')->attr('href'));
+
+        $this->assertEquals('Pokénini Démo', $mainCrawler->filter('.navbar-brand')->text());
     }
 
     private function assertRegularFrench(KernelBrowser $client): void
