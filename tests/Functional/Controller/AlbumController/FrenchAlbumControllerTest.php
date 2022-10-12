@@ -229,11 +229,9 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $mainCrawler = $client->getCrawler();
 
-        $firstAlbum = $mainCrawler->filter('.navbar .nav-item')->first();
-        $this->assertEquals('Accueil', $firstAlbum->text());
-        $this->assertEquals('/fr/', $firstAlbum->filter('.nav-link')->attr('href'));
-
-        $this->assertEquals('Pokénini Démo', $mainCrawler->filter('.navbar-brand')->text());
+        $navbarTitle = $mainCrawler->filter('.navbar-brand');
+        $this->assertEquals('Pokénini Démo', $navbarTitle->text());
+        $this->assertEquals('/', $navbarTitle->attr('href'));
 
         $this->assertFrenchLangSwitch($mainCrawler);
     }
