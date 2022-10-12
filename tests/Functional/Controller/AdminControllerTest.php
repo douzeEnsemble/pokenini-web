@@ -61,7 +61,7 @@ class AdminControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
 
         $this->assertConnectedNavBar($crawler);
-        $this->assertLangSwitch($crawler);
+        $this->assertFrenchLangSwitch($crawler);
 
         return $crawler;
     }

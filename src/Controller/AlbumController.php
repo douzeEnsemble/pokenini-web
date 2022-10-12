@@ -32,7 +32,7 @@ class AlbumController extends AbstractController
         if ('edit' === $request->query->get('mode')) {
             $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-            $mode = 'write';
+            $mode = 'edit';
         }
 
         $pokedex = $this->apiService->getPokedex($dexSlug);

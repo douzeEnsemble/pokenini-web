@@ -3,6 +3,7 @@
 {% set currentRoute = app.request.get('_route') %}
 {% set currentRouteParameters = app.request.get('_route_params') %}
 {% set locale = app.request.get('_locale') %}
+
 <nav class="navbar fixed-top navbar-expand-sm bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
@@ -19,58 +20,37 @@
                         aria-current="page"
                         href="{{ path('app_home_index') }}"
                     >
+                        <i class="bi bi-house"></i>
                         {{ 'nav.home'|trans }}
                     </a>
                 </li>
-                <li class="nav-item dropdown lang-switch">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ 'nav.switch.lang'|trans }}
+                <li class="nav-item lang-switch">
+                    {% set langTarget = locale == 'fr' ? 'en' : 'fr' %}
+                    <a
+                        class="nav-link"
+                        href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': langTarget})) }}"
+                    >
+                        <i class="bi bi-translate"></i>
+                        {{ ('nav.lang.'~langTarget)|trans([], 'messages', langTarget) }}
                     </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a
-                                class="dropdown-item{{ locale == 'fr' ? ' active' : '' }}"
-                                href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': 'fr'})) }}"
-                            >
-                                {{ 'nav.lang.fr'|trans([], 'messages', 'fr') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                class="dropdown-item{{ locale == 'en' ? ' active' : '' }}"
-                                href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': 'en'})) }}"
-                            >
-                                {{ 'nav.lang.en'|trans([], 'messages', 'en') }}
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 {% if is_granted("ROLE_ADMIN") %}
                 {% if 'album' in currentRoute  %}
-                <li class="nav-item dropdown mode-switch">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ 'nav.switch.mode'|trans }}
+                <li class="nav-item mode-switch">
+                    {% set modeTarget = mode == 'edit' ? 'read' : 'edit' %}
+                    <a class="nav-link" href="?mode={{ modeTarget }}">
+                        <i class="bi bi-{{ modeTarget == 'read' ? 'book' : 'pencil-square' }}"></i>
+                        {{ (('nav.mode.'~modeTarget))|trans }}
                     </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="?mode=edit">
-                                {{ 'nav.mode.edit'|trans }}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="?mode=read">
-                                {{ 'nav.mode.read'|trans }}
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 {% endif %}
-                <li class="nav-item">
+                <li class="nav-item admin-link">
                     <a
                         class="nav-link {{ 'app_admin_index' == currentRoute ? ' active' : '' }}"
                         aria-current="page"
                         href="{{ path('app_admin_index') }}"
                     >
+                        <i class="bi bi-wrench-adjustable-circle"></i>
                         {{ 'nav.admin'|trans }}
                     </a>
                 </li>

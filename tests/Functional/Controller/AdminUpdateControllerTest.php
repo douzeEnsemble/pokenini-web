@@ -76,6 +76,6 @@ class AdminUpdateControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('.flash-success'));
 
         $this->assertConnectedNavBar($crawler);
-        $this->assertLangSwitch($crawler);
+        $this->assertFrenchLangSwitch($crawler);
     }
 }

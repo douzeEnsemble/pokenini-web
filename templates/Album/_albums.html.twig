@@ -50,7 +50,7 @@
                 {% endif %}
             </div>
             {% endapply %}
-            {% if (mode is same as('write')) %}
+            {% if (mode is same as('edit')) %}
                 <div class="album-case-action text-center mt-1">
                     <select class="catch-state-{{ currentCatchState }}" id="{{ item.pokemon_slug }}">
                         {% for catchState in catchStates %}
@@ -75,7 +75,7 @@
     </div>
 </div>
 
-{% if (mode is same as('write')) %}
+{% if (mode is same as('edit')) %}
 <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
     <div id="successToast" class="toast text-bg-success " role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
