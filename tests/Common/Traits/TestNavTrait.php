@@ -8,44 +8,49 @@ use Symfony\Component\DomCrawler\Crawler;
 
 trait TestNavTrait
 {
-    public function assertLangSwitch(Crawler $crawler): void
+    public function assertEnglishLangSwitch(Crawler $crawler): void
     {
-        $langItems = $crawler->filter('.lang-switch .dropdown-item');
-        $this->assertCount(2, $langItems);
+        $langItem = $crawler->filter('.lang-switch');
+        $this->assertCount(1, $langItem);
         $this->assertStringContainsString(
             '/fr/',
-            $langItems->eq(0)->attr('href') ?? ''
+            $langItem->filter('a')->attr('href') ?? ''
         );
         $this->assertEquals(
             'Français',
-            $langItems->eq(0)->text()
+            $langItem->filter('a')->text()
         );
+    }
 
+    public function assertFrenchLangSwitch(Crawler $crawler): void
+    {
+        $langItem = $crawler->filter('.lang-switch');
+        $this->assertCount(1, $langItem);
         $this->assertStringContainsString(
             '/en/',
-            $langItems->eq(1)->attr('href') ?? ''
+            $langItem->filter('a')->attr('href') ?? ''
         );
         $this->assertEquals(
             'English',
-            $langItems->eq(1)->text()
+            $langItem->filter('a')->text()
         );
     }
 
     public function assertNoConnectedNavBar(Crawler $crawler): void
     {
-        $this->assertCount(2, $crawler->filter('.navbar-nav .nav-item'));
-        $this->assertCount(4, $crawler->filter('.navbar-nav .nav-item a'));
+        $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
     }
 
     public function assertConnectedNavBar(Crawler $crawler): void
     {
-        $this->assertCount(3, $crawler->filter('.navbar-nav .nav-item'));
-        $this->assertCount(5, $crawler->filter('.navbar-nav .nav-item a'));
+        $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
+        $this->assertCount(1, $crawler->filter('.navbar-nav .admin-link'));
     }
 
     public function assertConnectedAlbumNavBar(Crawler $crawler): void
     {
-        $this->assertCount(4, $crawler->filter('.navbar-nav .nav-item'));
-        $this->assertCount(8, $crawler->filter('.navbar-nav .nav-item a'));
+        $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
+        $this->assertCount(1, $crawler->filter('.navbar-nav .mode-switch'));
+        $this->assertCount(1, $crawler->filter('.navbar-nav .admin-link'));
     }
 }

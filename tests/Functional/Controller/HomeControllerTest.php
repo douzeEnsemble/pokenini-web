@@ -21,7 +21,7 @@ class HomeControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertNoConnectedNavBar($crawler);
-        $this->assertLangSwitch($crawler);
+        $this->assertFrenchLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
 
@@ -43,7 +43,7 @@ class HomeControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertNoConnectedNavBar($crawler);
-        $this->assertLangSwitch($crawler);
+        $this->assertFrenchLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
@@ -64,7 +64,7 @@ class HomeControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertNoConnectedNavBar($crawler);
-        $this->assertLangSwitch($crawler);
+        $this->assertEnglishLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
 

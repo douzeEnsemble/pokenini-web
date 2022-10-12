@@ -214,7 +214,6 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         $mainCrawler = $client->getCrawler();
 
         $this->assertNoConnectedNavBar($mainCrawler);
-        $this->assertLangSwitch($mainCrawler);
     }
 
     protected function assertRegular(KernelBrowser $client): void

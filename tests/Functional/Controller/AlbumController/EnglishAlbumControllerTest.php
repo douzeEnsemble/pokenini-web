@@ -205,6 +205,8 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertEquals('/en/', $firstAlbum->filter('.nav-link')->attr('href'));
 
         $this->assertEquals('Pokénini Demo', $mainCrawler->filter('.navbar-brand')->text());
+
+        $this->assertEnglishLangSwitch($mainCrawler);
     }
 
     private function assertRegularEnglish(KernelBrowser $client): void
