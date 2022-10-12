@@ -1,10 +1,13 @@
+{% block nav %}
+
 {% set currentRoute = app.request.get('_route') %}
 {% set currentRouteParameters = app.request.get('_route_params') %}
 {% set locale = app.request.get('_locale') %}
-
-<nav class="navbar fixed-bottom navbar-expand-sm bg-light">
+<nav class="navbar fixed-top navbar-expand-sm bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Pokénini</a>
+        <a class="navbar-brand" href="/">
+            {% block navbarTitle %}Pokénini{% endblock navbarTitle %}
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,7 +22,7 @@
                         {{ 'nav.home'|trans }}
                     </a>
                 </li>
-                <li class="nav-item dropup lang-switch">
+                <li class="nav-item dropdown lang-switch">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ 'nav.switch.lang'|trans }}
                     </a>
@@ -44,7 +47,7 @@
                 </li>
                 {% if is_granted("ROLE_ADMIN") %}
                 {% if 'album' in currentRoute  %}
-                <li class="nav-item dropup mode-switch">
+                <li class="nav-item dropdown mode-switch">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ 'nav.switch.mode'|trans }}
                     </a>
@@ -89,3 +92,4 @@
         {% endapply %}
     </div>
 </nav>
+{% endblock nav %}
