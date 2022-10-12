@@ -1,8 +1,5 @@
 nav:
     home: "Accueil"
-    switch:
-        lang: "Langage"
-        mode: "Mode"
     madebyandfor: "Fait par et pour"
     lang:
         fr: "Français"

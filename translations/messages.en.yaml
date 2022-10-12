@@ -1,8 +1,5 @@
 nav:
     home: "Home"
-    switch: 
-        lang: "Language"
-        mode: "Mode"
     madebyandfor: "Made by and for"
     lang:
         fr: "French"

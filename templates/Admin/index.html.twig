@@ -5,11 +5,9 @@
 
 {% block title %}Pokénini {{ 'title.admin'|trans }}{% endblock %}
 
-{% block body %}
+{% block container %}
 <div class="row">
     <div class="col-md-8 mx-auto text-center">
-        <h1>Pokénini {{ 'title.admin'|trans }}</h1>
-
         {# read and display all flash messages #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
