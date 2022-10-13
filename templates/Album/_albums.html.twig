@@ -121,12 +121,6 @@
     {% set iconUrl = iconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png' %}
     {% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
 
-{#    {% if dir is same as('regular') %}#}
-{#        {% set alt = locale is same as('fr') ? 'Icone de' : 'Icon of' %}#}
-{#    {% else %}#}
-{#        {% set alt = locale is same as('fr') ? 'Icone chromatique de' : 'Shiny icon of' %}#}
-{#    {% endif %}#}
-
     <img
         alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"
         class="album-image img-fluid"
