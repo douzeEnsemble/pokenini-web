@@ -22,11 +22,6 @@ class AlbumController extends AbstractController
     ) {
     }
 
-//    #[Route(
-//        '/{dexSlug}',
-//        requirements: ['dexSlug' => '\w+', 'filter' => '\w?'],
-//        methods: ['GET']
-//    )]
     #[Route(
         '/{dexSlug}/{filter?}',
         name: 'app_album_index',

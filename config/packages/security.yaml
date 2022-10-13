@@ -20,6 +20,7 @@ security:
                 path: app_logout
 
     access_control:
+        - { path: ^/s/, roles: ROLE_ADMIN }
         - { path: ^/(en|fr)/istrateur/, roles: ROLE_ADMIN }
 
 when@test:
