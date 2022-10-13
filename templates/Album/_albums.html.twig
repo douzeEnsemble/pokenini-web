@@ -20,7 +20,7 @@
             id="{{ item.pokemon_slug }}"
         >
             <div class="text-center text-truncate">
-                <label for="{{ item.pokemon_slug }}">
+                <label for="catch-state-{{ item.pokemon_slug }}">
                     <span class="album-case-national-dex-number">
                         #{{ item.pokemon_national_dex_number }}
                     </span>
@@ -32,7 +32,9 @@
             <div class="album-case-image text-center"
                  title="#{{ item.pokemon_national_dex_number }} {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
             >
-                {{ dex.is_shiny ? _self.shinyPokemonIcon(item, locale) : _self.regularPokemonIcon(item, locale) }}
+                <label for="catch-state-{{ item.pokemon_slug }}">
+                    {{ dex.is_shiny ? _self.shinyPokemonIcon(item, locale) : _self.regularPokemonIcon(item, locale) }}
+                </label>
             </div>
             {% apply spaceless %}
 
@@ -52,7 +54,10 @@
             {% endapply %}
             {% if (mode is same as('edit')) %}
                 <div class="album-case-action text-center mt-1">
-                    <select class="catch-state-{{ currentCatchState }}" id="{{ item.pokemon_slug }}">
+                    <select
+                        class="catch-state-{{ currentCatchState }}"
+                        id="catch-state-{{ item.pokemon_slug }}"
+                    >
                         {% for catchState in catchStates %}
                             {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
                             <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
