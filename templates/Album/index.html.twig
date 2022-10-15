@@ -33,7 +33,7 @@
 {% block container %}
 <div class="row justify-content-lg-center">
     <div class="col-xxl-6 col-xl-12">
-        {% include 'Album/_albums.html.twig' %}
+        {% include (filter ? 'Album/_albums_filtered.html.twig' : 'Album/_albums.html.twig') %}
     </div>
     <div class="col-xxl-6">
         <div class="row justify-content-lg-center">

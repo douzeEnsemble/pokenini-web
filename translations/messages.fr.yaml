@@ -20,6 +20,7 @@ title:
         pokemons: "Maj des pokémons"
         game_bundle_availability: "Maj des dispo des bundles de jeux"
         dex_availability: "Maj des dispo des dex"
+    box: "Boite"
 
 stats:
     total: "Total"

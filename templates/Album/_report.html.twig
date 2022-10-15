@@ -24,7 +24,9 @@
         {% for line in report.detail %}
             <tr class="catch-state-{{ line.slug }}">
                 <th>
-                    {{ locale is same as('fr') ? line.frenchName : line.name }}
+                    <a href="{{ path('app_album_index', {'dexSlug': currentDexSlug, 'filter': line.slug}) }}">
+                        {{ locale is same as('fr') ? line.frenchName : line.name }}
+                    </a>
                 </th>
                 <td>
                     {{ line.slug is same as('no') ? report.totalUncaught : line.count }}
@@ -32,8 +34,14 @@
             </tr>
         {% endfor %}
         <tr class="catch-state-total">
-            <th>{{ 'stats.total'|trans }}</th>
-            <td>{{ report.total }}</td>
+            <th>
+                <a href="{{ path('app_album_index', {'dexSlug': currentDexSlug}) }}">
+                    {{ 'stats.total'|trans }}
+                </a>
+            </th>
+            <td>
+                {{ report.total }}
+            </td>
         </tr>
         </tbody>
     </table>

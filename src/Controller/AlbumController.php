@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
@@ -23,10 +22,24 @@ class AlbumController extends AbstractController
     ) {
     }
 
-    #[Route('/{dexSlug}', methods: ['GET'])]
+//    #[Route(
+//        '/{dexSlug}',
+//        requirements: ['dexSlug' => '\w+', 'filter' => '\w?'],
+//        methods: ['GET']
+//    )]
+    #[Route(
+        '/{dexSlug}/{filter?}',
+        name: 'app_album_index',
+        requirements: [
+            'dexSlug' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*',
+            'filter' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*'
+        ],
+        methods: ['GET']
+    )]
     public function index(
-        string $dexSlug,
         Request $request,
+        string $dexSlug,
+        ?string $filter = null,
     ): Response {
         $mode = 'read';
         if ('edit' === $request->query->get('mode')) {
@@ -47,6 +60,7 @@ class AlbumController extends AbstractController
             'catchStates' => $catchStates,
             'dexes' => $dexes,
             'mode' => $mode,
+            'filter' => $filter,
         ]);
     }
 

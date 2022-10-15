@@ -53,4 +53,52 @@ class AlbumControllerTest extends WebTestCase
 
         $this->assertConnectedAlbumNavBar($client->getCrawler());
     }
+
+    public function testFilterCatchStateNo(): void
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/fr/album/demo/no');
+
+        $this->assertCount(
+            1732,
+            $crawler->filter('.album-case')
+        );
+
+        $this->assertCount(0, $crawler->filter('h2.box'));
+        $this->assertCount(1, $crawler->filter('#bulbasaur'));
+        $this->assertCount(0, $crawler->filter('#venusaur-f'));
+        $this->assertCount(0, $crawler->filter('#charmander'));
+    }
+
+    public function testFilterCatchStateYes(): void
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/fr/album/demo/yes');
+
+        $this->assertCount(
+            2,
+            $crawler->filter('.album-case')
+        );
+
+        $this->assertCount(0, $crawler->filter('h2.box'));
+        $this->assertCount(0, $crawler->filter('#bulbasaur'));
+        $this->assertCount(0, $crawler->filter('#venusaur-f'));
+        $this->assertCount(1, $crawler->filter('#charmander'));
+    }
+
+    public function testFilterCatchStateUnknown(): void
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/fr/album/demo/unknown');
+
+        $this->assertCount(
+            0,
+            $crawler->filter('.album-case')
+        );
+
+        $this->assertCount(0, $crawler->filter('h2.box'));
+    }
 }

@@ -28,3 +28,8 @@
 .album-case-action select {
     width: 100%;
 }
+#report a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
