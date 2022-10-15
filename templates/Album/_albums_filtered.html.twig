@@ -1,0 +1,12 @@
+{% import "Album/_album_macros.html.twig" as macro %}
+
+<div class="album-container">
+    <div class="row album-line">
+        {% for item in list %}
+        {% set currentCatchState = item.catch_state_slug ?? 'no' %}
+        {% if filter == currentCatchState %}
+        {{ macro.albumCase(item, dex, mode, catchStates) }}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

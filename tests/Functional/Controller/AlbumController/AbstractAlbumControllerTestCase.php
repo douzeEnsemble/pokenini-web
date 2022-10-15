@@ -207,6 +207,31 @@ class AbstractAlbumControllerTestCase extends WebTestCase
             1736,
             $mainCrawler->filter('table#report tr.catch-state-total td')->text()
         );
+
+        $this->assertStringContainsString(
+            '/album/demo/no',
+            (string) $mainCrawler->filter('table#report tr.catch-state-no a')->attr('href')
+        );
+        $this->assertStringContainsString(
+            '/album/demo/toevolve',
+            (string) $mainCrawler->filter('table#report tr.catch-state-toevolve a')->attr('href')
+        );
+        $this->assertStringContainsString(
+            '/album/demo/tobreed',
+            (string) $mainCrawler->filter('table#report tr.catch-state-tobreed a')->attr('href')
+        );
+        $this->assertStringContainsString(
+            '/album/demo/totransfer',
+            (string) $mainCrawler->filter('table#report tr.catch-state-totransfer a')->attr('href')
+        );
+        $this->assertStringContainsString(
+            '/album/demo/yes',
+            (string) $mainCrawler->filter('table#report tr.catch-state-yes a')->attr('href')
+        );
+        $this->assertStringContainsString(
+            '/album/demo',
+            (string) $mainCrawler->filter('table#report tr.catch-state-total a')->attr('href')
+        );
     }
 
     protected function assertNavigationBar(KernelBrowser $client): void
