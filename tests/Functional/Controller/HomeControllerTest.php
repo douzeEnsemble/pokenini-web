@@ -27,11 +27,11 @@ class HomeControllerTest extends WebTestCase
 
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/fr/album/home', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/fr/album/r/home', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
-        $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/fr/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
 
     public function testHomeFrench(): void
@@ -48,11 +48,11 @@ class HomeControllerTest extends WebTestCase
         $mainCrawler = $client->getCrawler();
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/fr/album/home', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/fr/album/r/home', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
-        $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/fr/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
 
     public function testHomeEnglish(): void
@@ -70,10 +70,10 @@ class HomeControllerTest extends WebTestCase
 
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
         $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/en/album/home', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/en/album/r/home', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
         $this->assertEquals('Home Shiny', $secondAlbum->text());
-        $this->assertEquals('/en/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
+        $this->assertEquals('/en/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
 }

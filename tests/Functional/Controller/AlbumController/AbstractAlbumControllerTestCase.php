@@ -209,27 +209,27 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         );
 
         $this->assertStringContainsString(
-            '/album/demo/no',
+            '/album/r/demo/no',
             (string) $mainCrawler->filter('table#report tr.catch-state-no a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo/toevolve',
+            '/album/r/demo/toevolve',
             (string) $mainCrawler->filter('table#report tr.catch-state-toevolve a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo/tobreed',
+            '/album/r/demo/tobreed',
             (string) $mainCrawler->filter('table#report tr.catch-state-tobreed a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo/totransfer',
+            '/album/r/demo/totransfer',
             (string) $mainCrawler->filter('table#report tr.catch-state-totransfer a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo/yes',
+            '/album/r/demo/yes',
             (string) $mainCrawler->filter('table#report tr.catch-state-yes a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo',
+            '/album/r/demo',
             (string) $mainCrawler->filter('table#report tr.catch-state-total a')->attr('href')
         );
     }

@@ -1,3 +1,5 @@
+{% set currentRouteParameters = app.request.get('_route_params') %}
+
 <div class="report-container">
     <h2 id="stats">
         {{ 'title.report'|trans }}
@@ -24,7 +26,7 @@
         {% for line in report.detail %}
             <tr class="catch-state-{{ line.slug }}">
                 <th>
-                    <a href="{{ path('app_album_index', {'dexSlug': currentDexSlug, 'filter': line.slug}) }}">
+                    <a href="{{ path('app_album_index', {'mode': 'r', 'dexSlug': currentDexSlug, 'filter': line.slug}) }}">
                         {{ locale is same as('fr') ? line.frenchName : line.name }}
                     </a>
                 </th>
@@ -35,7 +37,7 @@
         {% endfor %}
         <tr class="catch-state-total">
             <th>
-                <a href="{{ path('app_album_index', {'dexSlug': currentDexSlug}) }}">
+                <a href="{{ path('app_album_index', {'mode': 'r', 'dexSlug': currentDexSlug}) }}">
                     {{ 'stats.total'|trans }}
                 </a>
             </th>
