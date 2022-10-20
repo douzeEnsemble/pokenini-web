@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Controller\Traits\DexesRequestTrait;
+use App\DTO\AlbumMode;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,14 +18,6 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[Route('/album')]
 class AlbumController extends AbstractController
 {
-    private const SHORT_MODE_READ = 'r';
-    private const SHORT_MODE_WRITE = 'w';
-
-    private const MODES_SHORT_LONG = [
-        self::SHORT_MODE_READ => 'read',
-        self::SHORT_MODE_WRITE => 'write',
-    ];
-
     public function __construct(
         private readonly ApiService $apiService
     ) {
@@ -41,12 +34,11 @@ class AlbumController extends AbstractController
         methods: ['GET']
     )]
     public function index(
-        Request $request,
         string $mode,
         string $dexSlug,
         ?string $filter = null,
     ): Response {
-        if (self::SHORT_MODE_WRITE === $request->query->get('mode')) {
+        if (AlbumMode::SHORT_MODE_WRITE === $mode) {
             $this->denyAccessUnlessGranted('ROLE_ADMIN');
         }
 
@@ -61,7 +53,7 @@ class AlbumController extends AbstractController
             'list' => $pokedex['pokemons'],
             'catchStates' => $catchStates,
             'dexes' => $dexes,
-            'mode' => self::MODES_SHORT_LONG[$mode],
+            'mode' => AlbumMode::MODES_SHORT_LONG[$mode],
             'filter' => $filter,
         ]);
     }

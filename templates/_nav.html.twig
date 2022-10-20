@@ -24,19 +24,27 @@
                         {{ ('nav.lang.'~langTarget)|trans([], 'messages', langTarget) }}
                     </a>
                 </li>
-                {% if is_granted("ROLE_ADMIN") %}
                 {% if 'album' in currentRoute  %}
                 <li class="nav-item mode-switch">
-                    {% set modeTarget = mode == 'write' ? 'read' : 'write' %}
+                    {% set modeTarget = attribute(constant('App\\DTO\\AlbumMode::MODES_LONG_OPPOSITE'), mode) %}
                     <a
                         class="nav-link"
-                        href="{{ path(currentRoute, currentRouteParameters|merge({'mode': (modeTarget == 'write' ? 'w' : 'r') })) }}"
+                        href="{{ path(
+                            currentRoute,
+                            currentRouteParameters|merge({
+                                'mode': attribute(constant('App\\DTO\\AlbumMode::MODES_LONG_SHORT'), modeTarget)
+                            })
+                        ) }}"
                     >
-                        <i class="bi bi-{{ modeTarget == 'write' ? 'pencil-square' : 'book' }}"></i>
+                        <i
+                            class="bi bi-{{ modeTarget == constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE')
+                                ? 'pencil-square' : 'book' }}"
+                        ></i>
                         {{ (('nav.mode.'~modeTarget))|trans }}
                     </a>
                 </li>
                 {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
                 <li class="nav-item admin-link">
                     <a
                         class="nav-link {{ 'app_admin_index' == currentRoute ? ' active' : '' }}"

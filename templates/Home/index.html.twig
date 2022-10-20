@@ -17,7 +17,7 @@
                 {% set bannerDir = '/img/dex/banner/' %}
                 {% set dexBannerPath = bannerDir ~ dex.slug ~ '.png' %}
                 {% set defaultBannerPath = bannerDir ~ 'default.png' %}
-                <a href="{{ path('app_album_index', {'mode': 'r', 'dexSlug': dex.slug}) }}">
+                <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': dex.slug}) }}">
                     <img
                         src="{{ banner_exists(dex.slug) ? dexBannerPath : defaultBannerPath }}"
                         class="card-img"
@@ -26,7 +26,7 @@
                 </a>
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="{{ path('app_album_index', {'mode': 'r', 'dexSlug': dex.slug}) }}">
+                        <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': dex.slug}) }}">
                             {{ locale is same as('fr') ? dex.frenchName : dex.name }}
                         </a>
                     </h5>
