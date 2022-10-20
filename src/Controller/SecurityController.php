@@ -19,7 +19,7 @@ class SecurityController extends AbstractController
         /** @var ?LastRoute $lastRoute */
         $lastRoute = $requestStack->getSession()->get('last_route');
 
-        if (null === $lastRoute) {
+        if (null === $lastRoute || 'app_security_login' === $lastRoute->route) {
             return $this->redirectToRoute('app_home_index');
         }
 

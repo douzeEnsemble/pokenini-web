@@ -50,4 +50,25 @@ class SecurityControllerTest extends WebTestCase
 
         $this->assertEquals('http://localhost/fr/album/demo', $crawler->getUri());
     }
+
+    public function testLoginWithPreviousPageIsLoginAndAuth(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/s/l', [], [], [
+            'PHP_AUTH_USER' => 'renaud',
+            'PHP_AUTH_PW'   => 'douze',
+        ]);
+
+        $client->request('GET', '/s/l', [], [], [
+            'PHP_AUTH_USER' => 'renaud',
+            'PHP_AUTH_PW'   => 'douze',
+        ]);
+
+        $this->assertResponseStatusCodeSame(302);
+
+        $crawler = $client->followRedirect();
+
+        $this->assertEquals('http://localhost/fr/', $crawler->getUri());
+    }
 }
