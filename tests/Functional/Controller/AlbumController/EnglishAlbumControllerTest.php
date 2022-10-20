@@ -12,7 +12,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/demo');
+        $client->request('GET', '/en/album/r/demo');
 
         $this->assertAlbum($client);
         $this->assertReadMode($client);
@@ -31,7 +31,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/demo?mode=edit', [], [], [
+        $client->request('GET', '/en/album/w/demo', [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);
@@ -52,7 +52,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/homeshiny');
+        $client->request('GET', '/en/album/r/homeshiny');
 
         $this->assertShiny($client);
         $this->assertShinyEnglish($client);

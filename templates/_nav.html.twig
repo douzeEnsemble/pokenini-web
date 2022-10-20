@@ -27,9 +27,12 @@
                 {% if is_granted("ROLE_ADMIN") %}
                 {% if 'album' in currentRoute  %}
                 <li class="nav-item mode-switch">
-                    {% set modeTarget = mode == 'edit' ? 'read' : 'edit' %}
-                    <a class="nav-link" href="?mode={{ modeTarget }}">
-                        <i class="bi bi-{{ modeTarget == 'read' ? 'book' : 'pencil-square' }}"></i>
+                    {% set modeTarget = mode == 'write' ? 'read' : 'write' %}
+                    <a
+                        class="nav-link"
+                        href="{{ path(currentRoute, currentRouteParameters|merge({'mode': (modeTarget == 'write' ? 'w' : 'r') })) }}"
+                    >
+                        <i class="bi bi-{{ modeTarget == 'write' ? 'pencil-square' : 'book' }}"></i>
                         {{ (('nav.mode.'~modeTarget))|trans }}
                     </a>
                 </li>

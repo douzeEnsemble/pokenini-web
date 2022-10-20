@@ -12,7 +12,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/demo?mode=edit', [], [], [
+        $client->request('GET', '/fr/album/w/demo', [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);
@@ -33,7 +33,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/demo');
+        $client->request('GET', '/fr/album/r/demo');
 
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
@@ -52,7 +52,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/demo');
+        $client->request('GET', '/fr/album/r/demo');
 
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
@@ -71,7 +71,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/homeshiny');
+        $client->request('GET', '/fr/album/r/homeshiny');
 
         $this->assertShiny($client);
         $this->assertShinyFrench($client);
@@ -81,7 +81,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/homeshiny');
+        $client->request('GET', '/fr/album/r/homeshiny');
 
         $this->assertShiny($client);
         $this->assertShinyFrench($client);

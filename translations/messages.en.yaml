@@ -5,7 +5,7 @@ nav:
         fr: "French"
         en: "English"
     mode:
-        edit: "Edit"
+        write: "Edit"
         read: "Read"
     admin: "Backoffice"
     

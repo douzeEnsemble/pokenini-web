@@ -15,7 +15,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/home');
+        $client->request('GET', '/fr/album/r/home');
 
         $mainCrawler = $client->getCrawler();
 
@@ -26,7 +26,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/homepokemongo');
+        $client->request('GET', '/fr/album/r/homepokemongo');
 
         $mainCrawler = $client->getCrawler();
 
@@ -37,7 +37,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/home');
+        $client->request('GET', '/fr/album/r/home');
 
         $this->assertNoConnectedNavBar($client->getCrawler());
     }
@@ -46,7 +46,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/home', [], [], [
+        $client->request('GET', '/fr/album/r/home', [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);
@@ -58,7 +58,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/demo/no');
+        $crawler = $client->request('GET', '/fr/album/r/demo/no');
 
         $this->assertCount(
             1732,
@@ -75,7 +75,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/demo/yes');
+        $crawler = $client->request('GET', '/fr/album/r/demo/yes');
 
         $this->assertCount(
             2,
@@ -92,7 +92,7 @@ class AlbumControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/demo/unknown');
+        $crawler = $client->request('GET', '/fr/album/r/demo/unknown');
 
         $this->assertCount(
             0,

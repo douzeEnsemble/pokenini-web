@@ -5,7 +5,7 @@ nav:
         fr: "Français"
         en: "Anglais"
     mode:
-        edit: "Édition"
+        write: "Édition"
         read: "Lecture"
     admin: "Administration"
         

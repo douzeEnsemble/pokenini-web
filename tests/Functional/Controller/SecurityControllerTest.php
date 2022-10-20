@@ -37,7 +37,7 @@ class SecurityControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/demo');
+        $client->request('GET', '/fr/album/r/demo');
 
         $client->request('GET', '/s/l', [], [], [
             'PHP_AUTH_USER' => 'renaud',
@@ -48,7 +48,7 @@ class SecurityControllerTest extends WebTestCase
 
         $crawler = $client->followRedirect();
 
-        $this->assertEquals('http://localhost/fr/album/demo', $crawler->getUri());
+        $this->assertEquals('http://localhost/fr/album/r/demo', $crawler->getUri());
     }
 
     public function testLoginWithPreviousPageIsLoginAndAuth(): void
