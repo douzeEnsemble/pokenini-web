@@ -33,7 +33,7 @@ class AlbumControllerTest extends WebTestCase
         $this->assertEquals(' ', $mainCrawler->filter('#deerling-spring .album-case-forms')->text());
     }
 
-    public function testNonConnected(): void
+    public function testReadNonConnected(): void
     {
         $client = static::createClient();
 
@@ -42,11 +42,32 @@ class AlbumControllerTest extends WebTestCase
         $this->assertNoConnectedNavBar($client->getCrawler());
     }
 
-    public function testConnected(): void
+    public function testReadConnected(): void
     {
         $client = static::createClient();
 
         $client->request('GET', '/fr/album/r/home', [], [], [
+            'PHP_AUTH_USER' => 'renaud',
+            'PHP_AUTH_PW'   => 'douze',
+        ]);
+
+        $this->assertConnectedAlbumNavBar($client->getCrawler());
+    }
+
+    public function testWriteNonConnected(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/fr/album/w/home');
+
+        $this->assertResponseStatusCodeSame(401);
+    }
+
+    public function testWriteConnected(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/fr/album/w/home', [], [], [
             'PHP_AUTH_USER' => 'renaud',
             'PHP_AUTH_PW'   => 'douze',
         ]);

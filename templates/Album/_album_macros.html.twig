@@ -37,7 +37,7 @@
                 {% endif %}
             </div>
         {% endapply %}
-        {% if (mode is same as('write')) %}
+        {% if (mode is same as(constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE'))) %}
             <div class="album-case-action text-center mt-1">
                 <select
                     class="catch-state-{{ currentCatchState }}"
