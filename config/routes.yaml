@@ -12,7 +12,3 @@ index:
         route: app_home_index
         permanent: true
         
-security:
-    resource: '../src/Controller/SecurityController.php'
-    type: attribute
-    prefix: /
