@@ -4,7 +4,7 @@
 {% set currentRouteParameters = app.request.get('_route_params') %}
 {% set locale = app.request.get('_locale') %}
 
-<nav class="navbar fixed-top navbar-expand-sm bg-light">
+<nav class="navbar fixed-bottom navbar-expand-sm bg-light">
     <div class="container-fluid">
         <a
             class="navbar-brand"
@@ -12,9 +12,6 @@
         >
             {% block navbarTitle %}{{ block('title') }}{% endblock navbarTitle %}
         </a>
-        <div class="navbar-text">
-            {% block navbarNonCollapsedContent %}{% endblock navbarNonCollapsedContent %}
-        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

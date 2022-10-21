@@ -1,8 +1,8 @@
 {% import "Album/_album_macros.html.twig" as macro %}
 
 <div class="album-container">
-    <div id="box-1" class="box">
-        <h2>{{ 'title.box'|trans }} 1</h2>
+    <div id="box-1" class="box row">
+        <h2 class="sticky-top">{{ 'title.box'|trans }} 1</h2>
         <div class="row album-line">
         {% for item in list %}
             {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
@@ -11,8 +11,8 @@
         {% if (loop.index0 % 5) is same as(0) %}
     </div>
     <hr>
-    <div id="box-{{ boxNumber }}" class="box">
-        <h2>{{ 'title.box'|trans }} {{ boxNumber }}</h2>
+    <div id="box-{{ boxNumber }}" class="box row">
+        <h2 class="sticky-top">{{ 'title.box'|trans }} {{ boxNumber }}</h2>
         {% endif %}
         <div class="row album-line">
             {% endif %}
