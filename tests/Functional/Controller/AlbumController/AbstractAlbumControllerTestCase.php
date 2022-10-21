@@ -92,7 +92,12 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         $this->assertCount(
             58,
             $mainCrawler
-                ->filter('h2.box')
+                ->filter('.box')
+        );
+        $this->assertCount(
+            58,
+            $mainCrawler
+                ->filter('.box h2')
         );
     }
 

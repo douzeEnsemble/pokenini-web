@@ -1,20 +1,24 @@
 {% import "Album/_album_macros.html.twig" as macro %}
 
 <div class="album-container">
-    <h2 class="box" id="box-1">{{ 'title.box'|trans }} 1</h2>
-    <div class="row album-line">
-    {% for item in list %}
-        {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
-    </div>
-    {% if (loop.index0 % 5) is same as(0) %}
+    <div id="box-1" class="box">
+        <h2>{{ 'title.box'|trans }} 1</h2>
+        <div class="row album-line">
+        {% for item in list %}
+            {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
+        </div>
         {% set boxNumber = (loop.index0 / (6*5)) + 1 %}
-        <hr>
-        <h2 class="box" id="box-{{ boxNumber }}">{{ 'title.box'|trans }} {{ boxNumber }}</h2>
-    {% endif %}
-    <div class="row album-line">
+        {% if (loop.index0 % 5) is same as(0) %}
+    </div>
+    <hr>
+    <div id="box-{{ boxNumber }}" class="box">
+        <h2>{{ 'title.box'|trans }} {{ boxNumber }}</h2>
         {% endif %}
-        {{ macro.albumCase(item, dex, mode, catchStates) }}
-    {% endfor %}
+        <div class="row album-line">
+            {% endif %}
+            {{ macro.albumCase(item, dex, mode, catchStates) }}
+        {% endfor %}
+        </div>
     </div>
 </div>
 
@@ -25,4 +29,3 @@
 {% endfor %}
 </div>
 {% endif %}
-
