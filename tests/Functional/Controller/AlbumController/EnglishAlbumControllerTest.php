@@ -202,7 +202,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
 
         $navbarTitle = $mainCrawler->filter('.navbar-brand');
         $this->assertEquals('Demo', $navbarTitle->text());
-        $this->assertEquals('/', $navbarTitle->attr('href'));
+        $this->assertEquals('/en/', $navbarTitle->attr('href'));
 
         $this->assertEnglishLangSwitch($mainCrawler);
     }
