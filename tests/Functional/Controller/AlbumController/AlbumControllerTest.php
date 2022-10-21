@@ -40,8 +40,6 @@ class AlbumControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/r/home');
 
         $this->assertNoConnectedNavBar($crawler);
-
-        $this->assertCount(1, $crawler->filter('#box-scrollspy'));
     }
 
     public function testReadConnected(): void
@@ -54,8 +52,6 @@ class AlbumControllerTest extends WebTestCase
         ]);
 
         $this->assertConnectedAlbumNavBar($crawler);
-
-        $this->assertCount(1, $crawler->filter('#box-scrollspy'));
     }
 
     public function testWriteNonConnected(): void
@@ -77,8 +73,6 @@ class AlbumControllerTest extends WebTestCase
         ]);
 
         $this->assertConnectedAlbumNavBar($crawler);
-
-        $this->assertCount(1, $crawler->filter('#box-scrollspy'));
     }
 
     public function testFilterCatchStateNo(): void
@@ -102,8 +96,6 @@ class AlbumControllerTest extends WebTestCase
             $crawler
                 ->filter('.toast')
         );
-
-        $this->assertCount(0, $crawler->filter('#box-scrollspy'));
     }
 
     public function testFilterCatchStateYes(): void
@@ -127,8 +119,6 @@ class AlbumControllerTest extends WebTestCase
             $crawler
                 ->filter('.toast')
         );
-
-        $this->assertCount(0, $crawler->filter('#box-scrollspy'));
     }
 
     public function testEditFilterCatchStateYes(): void
@@ -165,8 +155,6 @@ class AlbumControllerTest extends WebTestCase
             $crawler
                 ->filter('.toast.text-bg-danger')
         );
-
-        $this->assertCount(0, $crawler->filter('#box-scrollspy'));
     }
 
     public function testFilterCatchStateUnknown(): void

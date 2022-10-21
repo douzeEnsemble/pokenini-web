@@ -1,5 +1,4 @@
 .container {
-    padding-top: 4rem;
     padding-bottom: 4rem;
 }
 #home .card-body {
@@ -32,10 +31,6 @@
     color: inherit;
     text-decoration: inherit;
 }
-
-#box-scrollspy a {
-    display: none;
-}
-#box-scrollspy a.active {
-    display: inherit;
+.box h2 {
+    background-color: white;
 }
