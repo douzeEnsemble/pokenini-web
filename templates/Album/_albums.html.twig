@@ -3,7 +3,7 @@
 <div class="album-container">
     <h2 class="box" id="box-1">{{ 'title.box'|trans }} 1</h2>
     <div class="row album-line">
-        {% for item in list %}
+    {% for item in list %}
         {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) %}
     </div>
     {% if (loop.index0 % 5) is same as(0) %}
@@ -14,29 +14,15 @@
     <div class="row album-line">
         {% endif %}
         {{ macro.albumCase(item, dex, mode, catchStates) }}
-        {% endfor %}
+    {% endfor %}
     </div>
 </div>
 
 {% if (mode is same as(constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE'))) %}
 <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
-    <div id="successToast" class="toast text-bg-success " role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-            <div class="toast-body">
-                {{ 'album.update.success'|trans }}
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-    </div>
-
-    <div id="errorToast" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-            <div class="toast-body">
-                {{ 'album.update.error'|trans }}
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-    </div>
+{% for item in list %}
+    {{ macro.toasts(item) }}
+{% endfor %}
 </div>
 {% endif %}
 
