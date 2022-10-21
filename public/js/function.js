@@ -35,14 +35,14 @@ function saveChange(target)
       }
 
       new bootstrap.Toast(
-        document.getElementById('successToast')
+        document.getElementById('successToast-'+pokemon)
       ).show();
     })
     .catch(error => {
       console.error(error);
 
       new bootstrap.Toast(
-        document.getElementById('errorToast')
+        document.getElementById('errorToast-'+pokemon)
       ).show();
     })
   ;

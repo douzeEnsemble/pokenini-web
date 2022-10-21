@@ -139,9 +139,19 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         );
 
         $this->assertCount(
-            2,
+            3476,
             $mainCrawler
                 ->filter('.toast')
+        );
+        $this->assertCount(
+            1738,
+            $mainCrawler
+                ->filter('.toast.text-bg-success')
+        );
+        $this->assertCount(
+            1738,
+            $mainCrawler
+                ->filter('.toast.text-bg-danger')
         );
     }
 

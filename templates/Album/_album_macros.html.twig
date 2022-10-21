@@ -7,12 +7,12 @@
     >
         <div class="text-center text-truncate">
             <label for="catch-state-{{ item.pokemon_slug }}">
-                    <span class="album-case-national-dex-number">
-                        #{{ item.pokemon_national_dex_number }}
-                    </span>
+                <span class="album-case-national-dex-number">
+                    #{{ item.pokemon_national_dex_number }}
+                </span>
                 <span class="album-case-name">
-                        {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
-                    </span>
+                    {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+                </span>
             </label>
         </div>
         <div class="album-case-image text-center"
@@ -87,4 +87,30 @@
         class="album-image img-fluid"
         src="{{ iconUrl }}"
     />
+{% endmacro %}
+
+{% macro toasts(item) %}
+{% set locale = app.request.get('_locale') %}
+{% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
+<div id="successToast-{{ item.pokemon_slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            {{ 'album.update.success.prefix'|trans }}
+            <strong>{{ 'album.update.success.radical'|trans({'%pokemonName%': pokemonName}) }}</strong>
+            {{ 'album.update.success.suffix'|trans }}
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>
+
+<div id="errorToast-{{ item.pokemon_slug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            {{ 'album.update.error.prefix'|trans }}
+            <strong>{{ 'album.update.error.radical'|trans({'%pokemonName%': pokemonName}) }}</strong>
+            {{ 'album.update.error.suffix'|trans }}
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>
 {% endmacro %}
