@@ -45,6 +45,28 @@
 </div>
 {% endblock container %}
 
+{% block navbarNonCollapsedContent %}
+{% if not filter %}
+    <ul class="navbar-nav" id="box-scrollspy">
+        <li class="nav-items">
+            <a class="nav-link" href="#box-1">
+                <i class="bi bi-box"></i>
+                {{ 'title.box'|trans }} 1
+            </a>
+            {% for item in list %}
+                {% if (loop.index0) is not same as(0) and (loop.index0 % 6) is same as(0) and (loop.index0 % 5) is same as(0) %}
+                    {% set boxNumber = (loop.index0 / (6*5)) + 1 %}
+                    <a class="nav-link" href="#box-{{ boxNumber }}">
+                        <i class="bi bi-box"></i>
+                        {{ 'title.box'|trans }} {{ boxNumber }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </li>
+    </ul>
+{% endif %}
+{% endblock navbarNonCollapsedContent %}
+
 {% block foot_javascript %}
     {{ parent() }}
 

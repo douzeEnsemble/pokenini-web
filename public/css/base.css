@@ -33,3 +33,9 @@
     text-decoration: inherit;
 }
 
+#box-scrollspy a {
+    display: none;
+}
+#box-scrollspy a.active {
+    display: inherit;
+}
