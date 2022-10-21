@@ -15,8 +15,6 @@ function onChangeCatchState(event)
 
 function saveChange(target)
 {
-  const locale = window.location.pathname.substring(1, window.location.pathname.indexOf('/', 1));
-  const dex = window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1);
   const pokemon = target.closest('.album-case').getAttribute('id');
   const catchState = target.value;
 
