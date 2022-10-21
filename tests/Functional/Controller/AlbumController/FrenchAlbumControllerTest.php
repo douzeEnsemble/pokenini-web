@@ -231,7 +231,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
 
         $navbarTitle = $mainCrawler->filter('.navbar-brand');
         $this->assertEquals('Démo', $navbarTitle->text());
-        $this->assertEquals('/', $navbarTitle->attr('href'));
+        $this->assertEquals('/fr/', $navbarTitle->attr('href'));
 
         $this->assertFrenchLangSwitch($mainCrawler);
     }
