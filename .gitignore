@@ -1,3 +1,4 @@
+.DS_Store
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -12,6 +13,7 @@
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml
+tests/coverage
 ###< symfony/phpunit-bridge ###
 
 ###> phpunit/phpunit ###
