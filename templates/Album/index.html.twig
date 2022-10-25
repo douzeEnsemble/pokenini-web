@@ -33,7 +33,7 @@
 {% block container %}
 <div class="row justify-content-lg-center">
     <div class="col-xxl-6 col-xl-12">
-        {% set displayTemplateName = dex.display_template ?: 'box' %}
+        {% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
         {% set templateData = displayTemplateName|split('-') %}
         {% set mainTemplate = templateData.0 %}
         {% set nbCaseByLine = templateData.1 is defined ? templateData.1 : 0 %}

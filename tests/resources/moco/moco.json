@@ -57,7 +57,7 @@
   },
   {
     "request": {
-      "uri": "/album/demo-lite"
+      "uri": "/album/demolite"
     },
     "response": {
       "file": "/var/moco/album/demo-lite.json"
