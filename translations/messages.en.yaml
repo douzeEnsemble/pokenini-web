@@ -21,6 +21,7 @@ title:
         game_bundle_availability: "Update game bundles' availabilities"
         dex_availability: "Update dexes availabilities"
     box: "Box"
+    empty: " "
 
 stats:
     total: "Total"

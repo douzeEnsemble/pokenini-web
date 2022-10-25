@@ -78,27 +78,6 @@ class AbstractAlbumControllerTestCase extends WebTestCase
 
         $this->assertStringContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
         $this->assertStringContainsString('watchCatchStates();', $mainCrawler->outerHtml());
-
-        $this->assertCount(
-            $expectedPokemonCount,
-            $mainCrawler
-                ->filter('.album-case.col-2')
-        );
-        $this->assertCount(
-            290,
-            $mainCrawler
-                ->filter('div.row.album-line')
-        );
-        $this->assertCount(
-            58,
-            $mainCrawler
-                ->filter('.box')
-        );
-        $this->assertCount(
-            58,
-            $mainCrawler
-                ->filter('.box h2')
-        );
     }
 
     protected function assertReadMode(KernelBrowser $client): void

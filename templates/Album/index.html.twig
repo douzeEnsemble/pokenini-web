@@ -33,7 +33,13 @@
 {% block container %}
 <div class="row justify-content-lg-center">
     <div class="col-xxl-6 col-xl-12">
-        {% include (filter ? 'Album/_albums_filtered.html.twig' : 'Album/_albums.html.twig') %}
+        {% set displayTemplateName = dex.display_template ?: 'box' %}
+        {% set templateData = displayTemplateName|split('-') %}
+        {% set mainTemplate = templateData.0 %}
+        {% set nbCaseByLine = templateData.1 is defined ? templateData.1 : 0 %}
+        {% include 'Album/view/_'~(mainTemplate)~'.html.twig' with {'nbCaseByLine': nbCaseByLine} %}
+
+        {% include 'Album/_toasts.html.twig' %}
     </div>
     <div class="col-xxl-6">
         <div class="row justify-content-lg-center sticky-lg-top">

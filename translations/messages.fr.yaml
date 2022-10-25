@@ -21,6 +21,7 @@ title:
         game_bundle_availability: "Maj des dispo des bundles de jeux"
         dex_availability: "Maj des dispo des dex"
     box: "Boite"
+    empty: " "
 
 stats:
     total: "Total"
