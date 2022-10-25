@@ -46,11 +46,13 @@ class AlbumController extends AbstractController
         $catchStates = $this->apiService->getCatchStates();
         $dexes = $this->apiService->getDexes();
 
+        $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filter);
+
         return $this->render('Album/index.html.twig', [
             'currentDexSlug' => $dexSlug,
             'dex' => $pokedex['dex'],
             'report' => $pokedex['report'],
-            'list' => $pokedex['pokemons'],
+            'list' => $pokemons,
             'catchStates' => $catchStates,
             'dexes' => $dexes,
             'mode' => AlbumMode::MODES_SHORT_LONG[$mode],
@@ -81,5 +83,25 @@ class AlbumController extends AbstractController
         }
 
         return new Response();
+    }
+
+    /**
+     * @param string[][] $pokemons
+     * @return string[][]
+     */
+    private function pokemonsFilter(array $pokemons, ?string $filter): array
+    {
+        if (empty($filter)) {
+            return $pokemons;
+        }
+
+        $list = [];
+        foreach ($pokemons as $pokemon) {
+            if ($filter === ($pokemon['catch_state_slug'] ?? 'no')) {
+                $list[] = $pokemon;
+            }
+        }
+
+        return $list;
     }
 }

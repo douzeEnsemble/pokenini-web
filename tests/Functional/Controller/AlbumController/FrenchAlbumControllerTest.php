@@ -113,16 +113,6 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
             'Icone de Bulbizarre',
             $imgAlt->attr('alt')
         );
-        $titleBox1 = $mainCrawler->filter('#box-1 h2');
-        $this->assertEquals(
-            'Boite 1',
-            $titleBox1->text()
-        );
-        $titleBox58 = $mainCrawler->filter('#box-58 h2');
-        $this->assertEquals(
-            'Boite 58',
-            $titleBox58->text()
-        );
     }
 
     private function assertAlbumFrenchWriteMode(KernelBrowser $client): void

@@ -33,6 +33,30 @@
   },
   {
     "request": {
+      "uri": "/album/demolist3"
+    },
+    "response": {
+      "file": "/var/moco/album/demo_list3.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/album/demolist5"
+    },
+    "response": {
+      "file": "/var/moco/album/demo_list5.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/album/demolist7"
+    },
+    "response": {
+      "file": "/var/moco/album/demo_list7.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/album/demo-lite"
     },
     "response": {

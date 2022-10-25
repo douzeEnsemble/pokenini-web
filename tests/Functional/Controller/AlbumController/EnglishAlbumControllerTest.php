@@ -84,16 +84,6 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
             'Icon of Bulbasaur',
             $imgAlt->attr('alt')
         );
-        $titleBox1 = $mainCrawler->filter('#box-1 h2');
-        $this->assertEquals(
-            'Box 1',
-            $titleBox1->text()
-        );
-        $titleBox58 = $mainCrawler->filter('#box-58 h2');
-        $this->assertEquals(
-            'Box 58',
-            $titleBox58->text()
-        );
     }
 
     private function assertAlbumEnglishWriteMode(KernelBrowser $client): void

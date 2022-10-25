@@ -1,66 +1,66 @@
 {% macro albumCase(item, dex, mode, catchStates) %}
     {% set locale = app.request.get('_locale') %}
     {% set currentCatchState = item.catch_state_slug ?? 'no' %}
-    <div
-        class="album-case col col-2 mb-2 position-relative catch-state-{{ currentCatchState }}"
-        id="{{ item.pokemon_slug }}"
+<div
+    class="album-case col catch-state-{{ currentCatchState }}"
+    id="{{ item.pokemon_slug }}"
+>
+    <div class="text-center text-truncate">
+        <label for="catch-state-{{ item.pokemon_slug }}">
+            <span class="album-case-national-dex-number">
+                #{{ item.pokemon_national_dex_number }}
+            </span>
+            <span class="album-case-name">
+                {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+            </span>
+        </label>
+    </div>
+    <div class="album-case-image text-center"
+         title="#{{ item.pokemon_national_dex_number }} {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
     >
-        <div class="text-center text-truncate">
-            <label for="catch-state-{{ item.pokemon_slug }}">
-                <span class="album-case-national-dex-number">
-                    #{{ item.pokemon_national_dex_number }}
-                </span>
-                <span class="album-case-name">
-                    {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
-                </span>
-            </label>
-        </div>
-        <div class="album-case-image text-center"
-             title="#{{ item.pokemon_national_dex_number }} {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
-        >
-            <label for="catch-state-{{ item.pokemon_slug }}">
-                {{ dex.is_shiny ? _self.shinyPokemonIcon(item, locale) : _self.regularPokemonIcon(item, locale) }}
-            </label>
-        </div>
-        {% apply spaceless %}
+        <label for="catch-state-{{ item.pokemon_slug }}">
+            {{ dex.is_shiny ? _self.shinyPokemonIcon(item, locale) : _self.regularPokemonIcon(item, locale) }}
+        </label>
+    </div>
+    {% apply spaceless %}
 
-            <div class="album-case-forms text-truncate text-end">
-                {% if dex.is_display_form %}
-                    {{ locale is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label }}
-                    {% if
-                        item.pokemon_forms_french_label is empty
-                        and item.pokemon_forms_label is empty %}
-                        &nbsp;
-                    {% endif %}
-                {% else %}
+        <div class="album-case-forms text-truncate text-end">
+            {% if dex.is_display_form %}
+                {{ locale is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label }}
+                {% if
+                    item.pokemon_forms_french_label is empty
+                    and item.pokemon_forms_label is empty %}
                     &nbsp;
                 {% endif %}
-            </div>
-        {% endapply %}
-        {% if (mode is same as(constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE'))) %}
-            <div class="album-case-action text-center mt-1">
-                <select
-                    class="catch-state-{{ currentCatchState }}"
-                    id="catch-state-{{ item.pokemon_slug }}"
-                >
-                    {% for catchState in catchStates %}
-                        {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
-                        <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
-                            {{ locale is same as('fr') ? catchState.frenchName : catchState.name }}
-                        </option>
-                    {% endfor %}
-                </select>
-            </div>
-        {% else %}
-            <div class="album-case-catch-state rounded-1 ps-2">
-                {% if locale is same as('fr') %}
-                    {{ item.catch_state_french_name ?? 'Non' }}
-                {% else %}
-                    {{ item.catch_state_name ?? 'No' }}
-                {% endif %}
-            </div>
-        {% endif %}
-    </div>
+            {% else %}
+                &nbsp;
+            {% endif %}
+        </div>
+    {% endapply %}
+    {% if (mode is same as(constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE'))) %}
+        <div class="album-case-action text-center mt-1">
+            <select
+                class="catch-state-{{ currentCatchState }}"
+                id="catch-state-{{ item.pokemon_slug }}"
+            >
+                {% for catchState in catchStates %}
+                    {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
+                    <option value="{{ catchState.slug }}" {{ isSelected ? 'selected' : '' }}>
+                        {{ locale is same as('fr') ? catchState.frenchName : catchState.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    {% else %}
+        <div class="album-case-catch-state rounded-1 ps-2">
+            {% if locale is same as('fr') %}
+                {{ item.catch_state_french_name ?? 'Non' }}
+            {% else %}
+                {{ item.catch_state_name ?? 'No' }}
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
 {% endmacro %}
 
 {% macro regularPokemonIcon(item, locale) %}

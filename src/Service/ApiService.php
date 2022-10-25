@@ -50,7 +50,7 @@ class ApiService
     }
 
     /**
-     * @return string[][]|string[][][]
+     * @return string[][][]
      */
     public function getPokedex(string $dexSlug): array
     {
@@ -65,7 +65,7 @@ class ApiService
             return $response->getContent();
         });
 
-        /** @var string[][] */
+        /** @var string[][][] */
         return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
     }
 
