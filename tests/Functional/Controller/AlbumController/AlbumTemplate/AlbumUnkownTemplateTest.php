@@ -4,13 +4,13 @@ namespace App\Tests\Functional\Controller\AlbumController\AlbumTemplate;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AlbumNoTemplateTest extends WebTestCase
+class AlbumUnkownTemplateTest extends WebTestCase
 {
-    public function testDexNoDefinedTemplate(): void
+    public function testDexUnknownTemplate(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demonotemplate');
+        $crawler = $client->request('GET', '/fr/album/r/demounknowntemplate');
 
         $this->assertCount(
             37,
@@ -48,11 +48,11 @@ class AlbumNoTemplateTest extends WebTestCase
         );
     }
 
-    public function testFilterDexNoDefinedTemplate(): void
+    public function testFilterDexUnknownTemplate(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demonotemplate/no');
+        $crawler = $client->request('GET', '/fr/album/r/demounknowntemplate/no');
 
         $this->assertCount(
             21,
