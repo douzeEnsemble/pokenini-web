@@ -26,10 +26,10 @@ class HomeControllerTest extends WebTestCase
         $mainCrawler = $client->getCrawler();
 
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
-        $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/fr/album/r/home', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
+        $this->assertEquals('/fr/album/r/swordshield', $firstAlbum->filter('a')->attr('href'));
 
-        $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
+        $secondAlbum = $mainCrawler->filter('.home-item')->eq(2);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
         $this->assertEquals('/fr/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
@@ -47,10 +47,10 @@ class HomeControllerTest extends WebTestCase
 
         $mainCrawler = $client->getCrawler();
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
-        $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/fr/album/r/home', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
+        $this->assertEquals('/fr/album/r/swordshield', $firstAlbum->filter('a')->attr('href'));
 
-        $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
+        $secondAlbum = $mainCrawler->filter('.home-item')->eq(2);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
         $this->assertEquals('/fr/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
@@ -69,10 +69,10 @@ class HomeControllerTest extends WebTestCase
         $mainCrawler = $client->getCrawler();
 
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
-        $this->assertEquals('Home', $firstAlbum->text());
-        $this->assertEquals('/en/album/r/home', $firstAlbum->filter('a')->attr('href'));
+        $this->assertEquals('Sword, Shield', $firstAlbum->text());
+        $this->assertEquals('/en/album/r/swordshield', $firstAlbum->filter('a')->attr('href'));
 
-        $secondAlbum = $mainCrawler->filter('.home-item')->eq(1);
+        $secondAlbum = $mainCrawler->filter('.home-item')->eq(2);
         $this->assertEquals('Home Shiny', $secondAlbum->text());
         $this->assertEquals('/en/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
