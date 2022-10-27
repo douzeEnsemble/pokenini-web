@@ -81,6 +81,14 @@
   },
   {
     "request": {
+      "uri": "/album/demoliteshiny"
+    },
+    "response": {
+      "file": "/var/moco/album/demo-lite-shiny.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/album/redgreenblueyellow"
     },
     "response": {
