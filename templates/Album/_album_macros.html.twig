@@ -78,9 +78,12 @@
     ) }}
 {% endmacro %}
 {% macro pokemonIcon(item, dir, locale) %}
-    {% set iconBaseUrl = 'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8' %}
-    {% set iconUrl = iconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png' %}
     {% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
+
+    {% set defaultIconBaseUrl = 'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8' %}
+    {% set defaultIconUrl = defaultIconBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png' %}
+    {% set iconUrl = item['pokemon_'~dir~'_sprite_url'] is defined and item['pokemon_'~dir~'_sprite_url'] is not empty
+        ? item['pokemon_'~dir~'_sprite_url'] : defaultIconUrl %}
 
     <img
         alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"

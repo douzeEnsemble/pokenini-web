@@ -1,8 +1,8 @@
 {
   "dex": {
-    "name": "Demo light",
-    "french_name": "Démo, extrait",
-    "is_shiny": false,
+    "name": "Demo light shiny",
+    "french_name": "Démo, extrait, chromatique",
+    "is_shiny": true,
     "is_private": true,
     "is_display_form": true
   },
