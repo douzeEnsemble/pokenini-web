@@ -57,6 +57,22 @@
   },
   {
     "request": {
+      "uri": "/album/demonotemplate"
+    },
+    "response": {
+      "file": "/var/moco/album/demo_notemplate.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/album/demounknowntemplate"
+    },
+    "response": {
+      "file": "/var/moco/album/demo_unknowntemplate.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/album/demolite"
     },
     "response": {

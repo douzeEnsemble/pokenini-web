@@ -37,7 +37,7 @@
         {% set templateData = displayTemplateName|split('-') %}
         {% set mainTemplate = templateData.0 %}
         {% set nbCaseByLine = templateData.1 is defined ? templateData.1 : 0 %}
-        {% include 'Album/view/_'~(mainTemplate)~'.html.twig' with {'nbCaseByLine': nbCaseByLine} %}
+        {% include ['Album/view/_'~(mainTemplate)~'.html.twig', 'Album/view/_box.html.twig'] with {'nbCaseByLine': nbCaseByLine} %}
 
         {% include 'Album/_toasts.html.twig' %}
     </div>
