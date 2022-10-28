@@ -77,5 +77,10 @@ class AdminUpdateControllerTest extends WebTestCase
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
+
+        $this->assertCount(0, $crawler->filter('script[src="/js/album_edit.js"]'));
+
+        $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
+        $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
     }
 }
