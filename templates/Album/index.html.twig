@@ -9,6 +9,8 @@
 {% block stylesheets %}
     {{ parent() }}
 
+    <link rel="stylesheet" href="{{ asset('css/album.css') }}">
+
     <style>
     {% for catchState in catchStates %}
     .album-case.catch-state-{{ catchState.slug }} .album-case-catch-state {
