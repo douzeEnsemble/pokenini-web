@@ -34,3 +34,8 @@
 .box h2 {
     background-color: white;
 }
+
+.row-cols-7 > * {
+    flex: 0 0 auto;
+    width: 14.285714285714286%;
+}
