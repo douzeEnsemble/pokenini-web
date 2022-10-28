@@ -75,9 +75,6 @@ class AbstractAlbumControllerTestCase extends WebTestCase
             $mainCrawler
                 ->filter('#charmander.album-case.catch-state-yes')
         );
-
-        $this->assertStringContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
-        $this->assertStringContainsString('watchCatchStates();', $mainCrawler->outerHtml());
     }
 
     protected function assertReadMode(KernelBrowser $client): void
@@ -101,6 +98,11 @@ class AbstractAlbumControllerTestCase extends WebTestCase
             $mainCrawler
                 ->filter('.toast')
         );
+
+        $this->assertCount(0, $mainCrawler->filter('script[src="/js/album_edit.js"]'));
+
+        $this->assertStringNotContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
+        $this->assertStringNotContainsString('watchCatchStates();', $mainCrawler->outerHtml());
     }
 
     protected function assertWriteMode(KernelBrowser $client): void
@@ -137,6 +139,11 @@ class AbstractAlbumControllerTestCase extends WebTestCase
             $mainCrawler
                 ->filter('.toast.text-bg-danger')
         );
+
+        $this->assertCount(1, $mainCrawler->filter('script[src="/js/album_edit.js"]'));
+
+        $this->assertStringContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
+        $this->assertStringContainsString('watchCatchStates();', $mainCrawler->outerHtml());
     }
 
     protected function assertStatistics(KernelBrowser $client): void

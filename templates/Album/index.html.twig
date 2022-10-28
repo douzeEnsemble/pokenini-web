@@ -53,6 +53,8 @@
 
 {% block foot_javascript %}
     {{ parent() }}
+    {% if (mode is same as(constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE'))) %}
+    <script src="{{ asset('js/album_edit.js') }}"></script>
 
     <script type="application/javascript">
         const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
@@ -69,4 +71,5 @@
         const toastElList = document.querySelectorAll('.toast')
         const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl))
     </script>
+    {% endif %}
 {% endblock foot_javascript %}

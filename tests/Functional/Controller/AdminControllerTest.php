@@ -46,6 +46,11 @@ class AdminControllerTest extends WebTestCase
         $this->assertCount(5, $crawler->filter('.admin-item'));
         $this->assertCount(5, $crawler->filter('.admin-item a'));
         $this->assertCount(5, $crawler->filter('.admin-item i.bi'));
+
+        $this->assertCount(0, $crawler->filter('script[src="/js/album_edit.js"]'));
+
+        $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
+        $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
     }
 
     private function getAdminHomeConnected(): Crawler

@@ -32,6 +32,11 @@ class HomeControllerTest extends WebTestCase
         $secondAlbum = $mainCrawler->filter('.home-item')->eq(2);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
         $this->assertEquals('/fr/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
+
+        $this->assertCount(0, $mainCrawler->filter('script[src="/js/album_edit.js"]'));
+
+        $this->assertStringNotContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
+        $this->assertStringNotContainsString('watchCatchStates();', $mainCrawler->outerHtml());
     }
 
     public function testHomeFrench(): void
