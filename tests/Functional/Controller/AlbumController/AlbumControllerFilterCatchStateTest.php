@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller\AlbumController;
 
+use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -61,10 +62,11 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/w/demo/yes', [], [], [
-            'PHP_AUTH_USER' => 'renaud',
-            'PHP_AUTH_PW'   => 'douze',
-        ]);
+        $user = new User('789465465489');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/fr/album/w/demo/yes');
 
         $this->assertCount(
             2,

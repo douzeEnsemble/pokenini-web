@@ -1,27 +1,32 @@
 security:
+    enable_authenticator_manager: true
+
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
     providers:
-        admin_users:
-            memory:
-                users:
-                    renaud: { password: '%env(ADMIN_PASSWORD)%', roles: ['ROLE_ADMIN'] }
+        user_provider:
+            id: App\Security\UserProvider
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: admin_users
-            http_basic:
-                realm: Secured Area
+            provider: user_provider
             logout:
                 path: app_logout
+            custom_authenticators:
+                - App\Security\GoogleAuthenticator
 
     access_control:
-        - { path: ^/s/, roles: ROLE_ADMIN }
+        - { path: ^/(en|fr)/album/r/, roles: PUBLIC_ACCESS }
+        - { path: ^/(en|fr)/connect/, roles: PUBLIC_ACCESS }
         - { path: ^/(en|fr)/istrateur/, roles: ROLE_ADMIN }
+        - { path: ^/(en|fr)/trainer/, roles: ROLE_TRAINER }
+        - { path: ^/(en|fr)/album/w/, roles: ROLE_TRAINER }
+        - { path: ^/(en|fr)/waiting_room/, roles: ROLE_USER }
 
 when@test:
     security:

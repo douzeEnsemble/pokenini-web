@@ -1,5 +1,7 @@
+logout: "Se déconnecter"
 nav:
     home: "Accueil"
+    back_home: "Retour à l'accueil"
     madebyandfor: "Fait par et pour"
     lang:
         fr: "Français"
@@ -8,7 +10,9 @@ nav:
         write: "Édition"
         read: "Lecture"
     admin: "Administration"
-        
+    connected: "Connecté"
+    login: "Se connecter"
+
 title:
     home: "Accueil"
     report: "Stats"
@@ -22,6 +26,9 @@ title:
         dex_availability: "Maj des dispo des dex"
     box: "Boite"
     empty: " "
+    connect: "Connexion"
+    trainer: "Ton espace de dresseur"
+    outer_room: "Salle d'attente"
 
 stats:
     total: "Total"
@@ -58,3 +65,50 @@ update:
     dex_availability: 
         success: "La maj des dispo des dex a été effectuée"
         error: "La maj des dispo des dex a échouée"
+
+connect:
+    disclaimer: |
+        J'utilise la connexion uniquement pour identifier. 
+        Je ne garde AUCUNE donnée autre que l'identifiant donnée par le fournisseur.
+    help: |
+        Je supporte que la connexion via Google. Si t'en veut d'autres, dis le moi
+
+trainer:
+    welcome: |
+        Bonjour à toi jeune dresseur.
+        Ceci est ton espace. 
+
+        Bon l'instant tu peux pas y faire grand chose. 
+        Mais ça viendra.
+    personnal_data:
+        title: "Données personnelles"
+        intro: "Voici les données personnelles que j'ai te concernant"
+        outro: "Voilà. C'est tout"
+        head:
+            type: "Type"
+            value: "Valeur"
+        body:
+            id: "Identifiant"
+    logout:
+        title: "Session"
+
+outer_room:
+    message: |
+        Hey, merci de t'être connecté. Pour l'instant, tu n'as pas le droit d'aller plus loin.
+        Ce site est réservé qu'à certaine personne. Je sais c'est décevant.
+
+        Si tu veux y avoir accès, tu peux contacter mon administrateur, Renaud, 
+        par email renauddouze@gmail.com ou par un autre moyen si tu en connais.
+        Il suffit de lui transmettre cet identifiant `%id%`
+
+        Et si tu cliques en dessous, ça te fait l'email tout seul. Je suis pas gentil ?
+
+        (L'email ne sera pas conservé)
+    cancel: |
+        Si tu ne veux pas avoir d'accès, tu n'as rien à faire. Je n'ai rien enregistré.
+        Tu peux te déconnecter avec le lien en dessous.
+        Merci d'être passé
+    mail: 
+        link: "Envoyer une demande" 
+        subject: "Je peux avoir accès à Pokénini stp ?"
+        body: "Mon identifiant Google OpenId est `%id%`"

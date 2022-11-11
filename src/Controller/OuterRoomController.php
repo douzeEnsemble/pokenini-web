@@ -8,14 +8,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/istrateur')]
-class AdminController extends AbstractController
+#[Route('/outerroom')]
+class OuterRoomController extends AbstractController
 {
-    #[Route('/', methods: ['GET'])]
+    #[Route('/')]
     public function index(): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-        return $this->render('Admin/index.html.twig');
+        return $this->render(
+            'OuterRoom/index.html.twig'
+        );
     }
 }

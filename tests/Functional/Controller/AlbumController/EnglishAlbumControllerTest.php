@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller\AlbumController;
 
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
@@ -31,10 +32,11 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/w/demo', [], [], [
-            'PHP_AUTH_USER' => 'renaud',
-            'PHP_AUTH_PW'   => 'douze',
-        ]);
+        $user = new User('789465465489');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $client->request('GET', '/en/album/w/demo');
 
         $this->assertAlbum($client);
         $this->assertWriteMode($client);
@@ -45,7 +47,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertStatistics($client);
         $this->assertEnglishStatistics($client);
         $this->assertNavigationBarEnglish($client);
-        $this->assertConnectedAlbumNavBar($client->getCrawler());
+        $this->assertTrainerAlbumNavBar($client->getCrawler());
     }
 
     public function testListShinyEnglish(): void

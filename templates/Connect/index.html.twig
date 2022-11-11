@@ -1,0 +1,27 @@
+{% set locale = app.request.get('_locale') %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'title.connect'|trans }}{% endblock title %}
+
+{% block container %}
+
+<div class="row">
+    <div class="col-md-8 mx-auto text-center row">
+        <h1>{{ 'title.connect'|trans }}</h1>
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_connect_google') }}">
+                    <i class="bi bi-google"></i>
+                    Google
+                </a>
+            </li>
+        </ul>
+
+        <p class="text-muted mt-5">{{ 'connect.disclaimer'|trans|nl2br }}</p>
+        <p class="text-muted mt-5">{{ 'connect.help'|trans|nl2br }}</p>
+    </div>
+</div>
+{% endblock container %}
