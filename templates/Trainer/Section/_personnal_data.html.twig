@@ -1,0 +1,16 @@
+<p class="text-secondary">{{ 'trainer.personnal_data.intro'|trans|nl2br }}</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">{{ 'trainer.personnal_data.head.type'|trans }}</th>
+            <th scope="col">{{ 'trainer.personnal_data.head.value'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{ 'trainer.personnal_data.body.id'|trans }}</th>
+            <td>{{ app.user.userIdentifier }}</td>
+        </tr>
+    </tbody>
+</table>
+<p class="text-secondary">{{ 'trainer.personnal_data.outro'|trans|nl2br }}</p>

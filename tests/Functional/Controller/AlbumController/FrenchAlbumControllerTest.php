@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller\AlbumController;
 
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
@@ -12,10 +13,11 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/w/demo', [], [], [
-            'PHP_AUTH_USER' => 'renaud',
-            'PHP_AUTH_PW'   => 'douze',
-        ]);
+        $user = new User('789465465489');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $client->request('GET', '/fr/album/w/demo');
 
         $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
@@ -26,7 +28,7 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
         $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
         $this->assertNavigationBarFrench($client);
-        $this->assertConnectedAlbumNavBar($client->getCrawler());
+        $this->assertTrainerAlbumNavBar($client->getCrawler());
     }
 
     public function testListRead(): void

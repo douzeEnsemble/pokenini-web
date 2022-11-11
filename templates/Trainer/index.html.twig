@@ -1,0 +1,23 @@
+{% set locale = app.request.get('_locale') %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'title.connect'|trans }}{% endblock title %}
+
+{% block container %}
+	<div class="row">
+		<div class="col-md-8 mx-auto text-center row">
+			<h1>{{ 'title.trainer'|trans }}</h1>
+        </div>
+    </div>
+
+	<div class="row">
+		<div class="col-md-8 mx-auto row">
+
+			<p class="text-secondary">{{ 'trainer.welcome'|trans|nl2br }}</p>
+
+            {{ include('Trainer/_section.html.twig') }}
+		</div>
+	</div>
+{% endblock container %}

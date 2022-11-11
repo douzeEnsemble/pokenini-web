@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller\AlbumController;
 
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UpdateAlbumController extends WebTestCase
@@ -12,16 +13,15 @@ class UpdateAlbumController extends WebTestCase
     {
         $client = static::createClient();
 
+        $user = new User('789465465489');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
         $client->request(
             'PATCH',
             '/album/demo/bulbasaur',
             [
                 'body' => 'yes',
-            ],
-            [],
-            [
-                'PHP_AUTH_USER' => 'renaud',
-                'PHP_AUTH_PW'   => 'douze',
             ]
         );
 

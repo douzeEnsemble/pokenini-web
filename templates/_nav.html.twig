@@ -10,7 +10,7 @@
             class="navbar-brand"
             href="{{ path('app_home_index', {'_locale': locale}) }}"
         >
-            {% block navbarTitle %}{{ block('title') }}{% endblock navbarTitle %}
+            {% block navbarTitle %}{{ 'nav.back_home'|trans }}{% endblock navbarTitle %}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -61,8 +61,24 @@
                 {% endif %}
             </ul>
         </div>
+        
+        <ul class="navbar-nav me-5">
+            <li class="nav-item">
+                {% if is_granted("ROLE_TRAINER") %}
+                <a class="nav-link" href="{{ path('app_trainer_index') }}" title="{{ 'title.trainer'|trans }}">
+                    <i class="bi bi-person-badge"></i>
+                </a>
+                {% else %}
+                <a class="nav-link" href="{{ path('app_connect_index') }}">
+                    <i class="bi bi-person"></i>
+                    {{ 'nav.login'|trans }}
+                </a>
+                {% endif %}
+            </li>
+        </ul>
+
         {% apply spaceless %}
-        <div class="navbar-text d-none d-md-block">
+        <div class="navbar-text d-none">
             {{ 'nav.madebyandfor'|trans }} RenaudDouze
             &nbsp;
             <a href="https://github.com/RenaudDouze">

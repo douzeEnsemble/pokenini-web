@@ -39,7 +39,7 @@ class AlbumController extends AbstractController
         ?string $filter = null,
     ): Response {
         if (AlbumMode::SHORT_MODE_WRITE === $mode) {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+            $this->denyAccessUnlessGranted('ROLE_TRAINER');
         }
 
         $pokedex = $this->apiService->getPokedex($dexSlug);
@@ -67,7 +67,7 @@ class AlbumController extends AbstractController
         ApiService $apiService,
         Request $request
     ): Response {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_TRAINER');
 
         try {
             $this->apiService->modifyAlbum(

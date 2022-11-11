@@ -47,7 +47,14 @@ trait TestNavTrait
         $this->assertCount(1, $crawler->filter('.navbar-nav .admin-link'));
     }
 
-    public function assertConnectedAlbumNavBar(Crawler $crawler): void
+    public function assertTrainerAlbumNavBar(Crawler $crawler): void
+    {
+        $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
+        $this->assertCount(1, $crawler->filter('.navbar-nav .mode-switch'));
+        $this->assertCount(0, $crawler->filter('.navbar-nav .admin-link'));
+    }
+
+    public function assertAdminAlbumNavBar(Crawler $crawler): void
     {
         $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
         $this->assertCount(1, $crawler->filter('.navbar-nav .mode-switch'));

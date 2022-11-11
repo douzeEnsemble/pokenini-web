@@ -27,6 +27,8 @@ class AdminUpdateController extends AbstractController
         TranslatorInterface $translator,
         CacheInvalidatorService $cacheInvalidatorService
     ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         try {
             $client->request(
                 'POST',

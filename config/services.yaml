@@ -7,6 +7,8 @@ services:
         bind: 
             string $appApiUrl: '%env(APP_API_URL)%'
             string $projectDir: '%kernel.project_dir%'
+            string $listAdmin: '%env(LIST_ADMIN)%'
+            string $listTrainer: '%env(LIST_TRAINER)%'
 
     App\:
         resource: '../src/'

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller;
 
+use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
@@ -18,19 +19,18 @@ class AdminControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/istrateur/');
 
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertResponseStatusCodeSame(307);
     }
 
     public function testAdminHomeBadCredentials(): void
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/istrateur/', [], [], [
-            'PHP_AUTH_USER' => 'renaud',
-            'PHP_AUTH_PW'   => '12',
-        ]);
+        $client->loginUser(new User('34654656489621361987'));
 
-        $this->assertResponseStatusCodeSame(401);
+        $client->request('GET', '/fr/istrateur/');
+
+        $this->assertResponseStatusCodeSame(403);
     }
 
     public function testAdminHomeConnected(): void
@@ -57,10 +57,11 @@ class AdminControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/istrateur/', [], [], [
-            'PHP_AUTH_USER' => 'renaud',
-            'PHP_AUTH_PW'   => 'douze',
-        ]);
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/fr/istrateur/');
 
         $this->assertResponseStatusCodeSame(200);
 

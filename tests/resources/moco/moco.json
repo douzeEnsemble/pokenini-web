@@ -17,14 +17,6 @@
   },
   {
     "request": {
-      "uri": "/pokemon"
-    },
-    "response": {
-      "file": "/var/moco/pokemon.json"
-    }
-  },
-  {
-    "request": {
       "uri": "/album/demo"
     },
     "response": {

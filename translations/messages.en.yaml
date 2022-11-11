@@ -1,5 +1,7 @@
+logout: "Log out"
 nav:
     home: "Home"
+    back_home: "Back to home"
     madebyandfor: "Made by and for"
     lang:
         fr: "French"
@@ -8,7 +10,9 @@ nav:
         write: "Edit"
         read: "Read"
     admin: "Backoffice"
-    
+    connected: "Connected"
+    login: "Log in"
+
 title:
     home: "Home"
     report: "Report"
@@ -22,6 +26,9 @@ title:
         dex_availability: "Update dexes availabilities"
     box: "Box"
     empty: " "
+    connect: "Connection"
+    trainer: "Your trainer space"
+    outer_room: "Outer room"
 
 stats:
     total: "Total"
@@ -58,3 +65,49 @@ update:
     dex_availability:
         success: "Dex availabilities update has been done"
         error: "Dex availabilities update has failed"
+
+connect:
+    disclaimer: |
+        I use the connection only to identify.
+        I do not keep ANY data other than the identifier given by the supplier.
+    help: |
+        I only support logging in via Google. If you want more let me know
+trainer:
+    welcome: |
+        Hello, young trainer.
+        This is your space.
+
+        Right now you can't do much about it.
+        But it will come.
+    personnal_data:
+        title: "Personal data"
+        intro: "Here is the personal data I have about you"
+        outro: "Voilà. That's all"
+        head:
+            type: "Type"
+            value: "Value"
+        body:
+            id: "Identifier"
+    logout:
+        title: "Session"
+
+outer_room:
+    message: |
+        Hey, thanks for logging in. For the moment, you have no right to go further.
+        This site is reserved only for certain people. I know it's disappointing.
+
+        If you want to have access to it, you can contact my administrator, Renaud,
+        by email renauddouze@gmail.com or by another means if you know of one.
+        Just send it this identifier `%id%`
+
+        And if you click below, it gives you the email on its own. Am I not nice?
+
+        (The email will not be kept)
+    cancel: |
+        If you don't want access, you don't have to do anything. I didn't record anything.
+        You can log out with the link below.
+        Thanks for dropping by.
+    mail: 
+        link: "Send a request" 
+        subject: "Can I have access to Pokénini please?"
+        body: "My Google OpenId identifier is `%id%`"

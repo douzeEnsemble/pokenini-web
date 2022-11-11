@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller;
 
+use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -36,11 +37,12 @@ class AdminUpdateControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
         # For testing purpose, this case will fail in API side
-        $client->request('GET', "/fr/istrateur/update/dex_availability", [], [], [
-            'PHP_AUTH_USER' => 'renaud',
-            'PHP_AUTH_PW'   => 'douze',
-        ]);
+        $client->request('GET', "/fr/istrateur/update/dex_availability");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -51,24 +53,27 @@ class AdminUpdateControllerTest extends WebTestCase
     public function testAdminUpdateUnknown(): void
     {
         $client = static::createClient();
+
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
         $client->catchExceptions(false);
 
         $this->expectException(NotFoundHttpException::class);
 
-        $client->request('GET', "/fr/istrateur/update/truc", [], [], [
-            'PHP_AUTH_USER' => 'renaud',
-            'PHP_AUTH_PW'   => 'douze',
-        ]);
+        $client->request('GET', "/fr/istrateur/update/truc");
     }
 
     private function testAdminUpdate(string $name): void
     {
         $client = static::createClient();
 
-        $client->request('GET', "/fr/istrateur/update/$name", [], [], [
-            'PHP_AUTH_USER' => 'renaud',
-            'PHP_AUTH_PW'   => 'douze',
-        ]);
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        $client->request('GET', "/fr/istrateur/update/$name");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
