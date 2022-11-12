@@ -13,7 +13,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/r/demo');
+        $client->request('GET', '/en/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertAlbum($client);
         $this->assertReadMode($client);
@@ -36,7 +36,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $client->request('GET', '/en/album/w/demo');
+        $client->request('GET', '/en/album/w/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertAlbum($client);
         $this->assertWriteMode($client);
@@ -54,7 +54,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/r/homeshiny');
+        $client->request('GET', '/en/album/r/homeshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertShiny($client);
         $this->assertShinyEnglish($client);

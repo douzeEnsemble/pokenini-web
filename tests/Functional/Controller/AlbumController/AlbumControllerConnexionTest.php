@@ -12,11 +12,20 @@ class AlbumControllerConnexionTest extends WebTestCase
 {
     use TestNavTrait;
 
+    public function testReadNonConnectedNoToken(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/fr/album/r/home');
+
+        $this->assertResponseStatusCodeSame(404);
+    }
+
     public function testReadNonConnected(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/home');
+        $crawler = $client->request('GET', '/fr/album/r/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertNoConnectedNavBar($crawler);
     }
@@ -52,7 +61,7 @@ class AlbumControllerConnexionTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/w/home');
+        $client->request('GET', '/fr/album/w/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseStatusCodeSame(307);
     }

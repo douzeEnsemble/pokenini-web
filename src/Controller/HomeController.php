@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Exception\NoLoggedUserException;
+use App\Security\UserTokenService;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,15 +13,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends AbstractController
 {
-    public function __construct(
-        private readonly ApiService $apiService
-    ) {
-    }
-
     #[Route('/')]
-    public function index(): Response
+    public function index(ApiService $apiService, UserTokenService $userTokenService): Response
     {
-        $dexes = $this->apiService->getDexes();
+        try {
+            $userId = $userTokenService->getLoggedUserToken();
+
+            $dexes = $apiService->getDexes($userId);
+        } catch (NoLoggedUserException $e) {
+            $dexes = [];
+        }
 
         return $this->render(
             'Home/index.html.twig',

@@ -10,7 +10,7 @@ class AlbumTemplateList5Test extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demolist5');
+        $crawler = $client->request('GET', '/fr/album/r/demolist5?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCount(
             1738,
@@ -47,7 +47,7 @@ class AlbumTemplateList5Test extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demolist5/no');
+        $crawler = $client->request('GET', '/fr/album/r/demolist5/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCount(
             1732,

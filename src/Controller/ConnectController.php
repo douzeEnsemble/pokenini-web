@@ -6,19 +6,12 @@ namespace App\Controller;
 
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/connect')]
 class ConnectController extends AbstractController
 {
-    public function __construct(
-        private readonly ClientRegistry $clientRegistry
-    ) {
-    }
-
     #[Route('/logout', name: 'app_logout', methods: ['GET'])]
     public function logout(): void
     {
@@ -33,9 +26,9 @@ class ConnectController extends AbstractController
     }
 
     #[Route('/g', methods: ['GET'])]
-    public function google(): Response
+    public function google(ClientRegistry $clientRegistry): Response
     {
-        return $this->clientRegistry
+        return $clientRegistry
             ->getClient('google')
             ->redirect(['openid'], [])
         ;

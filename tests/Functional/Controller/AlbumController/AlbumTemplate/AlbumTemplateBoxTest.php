@@ -10,7 +10,7 @@ class AlbumTemplateBoxTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo');
+        $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCount(
             1738,
@@ -52,7 +52,7 @@ class AlbumTemplateBoxTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo');
+        $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $titleBox1 = $crawler->filter('#box-1 h2');
         $this->assertEquals(
@@ -70,7 +70,7 @@ class AlbumTemplateBoxTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/en/album/r/demo');
+        $crawler = $client->request('GET', '/en/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $titleBox1 = $crawler->filter('#box-1 h2');
         $this->assertEquals(
@@ -88,7 +88,7 @@ class AlbumTemplateBoxTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo/no');
+        $crawler = $client->request('GET', '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCount(
             1732,

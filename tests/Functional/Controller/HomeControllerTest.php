@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller;
 
+use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -16,11 +17,14 @@ class HomeControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
+        $user = new User('789465465489');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
         $crawler = $client->request('GET', '/fr/');
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertNoConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
@@ -39,15 +43,31 @@ class HomeControllerTest extends WebTestCase
         $this->assertStringNotContainsString('watchCatchStates();', $mainCrawler->outerHtml());
     }
 
+    public function testNonConnectedHome(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/fr/');
+
+        $this->assertResponseIsSuccessful();
+
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(0, $mainCrawler->filter('.home-item'));
+    }
+
     public function testHomeFrench(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/');
+        $user = new User('789465465489');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/fr/?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertNoConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
@@ -64,11 +84,14 @@ class HomeControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/en/');
+        $user = new User('789465465489');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/en/?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertNoConnectedNavBar($crawler);
         $this->assertEnglishLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
