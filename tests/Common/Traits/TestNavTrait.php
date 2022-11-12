@@ -39,6 +39,12 @@ trait TestNavTrait
     public function assertNoConnectedNavBar(Crawler $crawler): void
     {
         $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
+
+        $this->assertCount(1, $crawler->filter('#connect-navbar.navbar-nav li'));
+        $this->assertStringContainsString(
+            '/connect/',
+            $crawler->filter('#connect-navbar.navbar-nav li a')->attr('href') ?? ''
+        );
     }
 
     public function assertConnectedNavBar(Crawler $crawler): void
