@@ -10,7 +10,10 @@ class AlbumUnkownTemplateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demounknowntemplate');
+        $crawler = $client->request(
+            'GET',
+            '/fr/album/r/demounknowntemplate?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
+        );
 
         $this->assertCount(
             37,
@@ -52,7 +55,10 @@ class AlbumUnkownTemplateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demounknowntemplate/no');
+        $crawler = $client->request(
+            'GET',
+            '/fr/album/r/demounknowntemplate/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
+        );
 
         $this->assertCount(
             21,

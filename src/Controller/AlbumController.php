@@ -6,12 +6,16 @@ namespace App\Controller;
 
 use App\Controller\Traits\DexesRequestTrait;
 use App\DTO\AlbumMode;
+use App\Exception\NoLoggedUserException;
+use App\Security\UserTokenService;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
@@ -19,7 +23,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class AlbumController extends AbstractController
 {
     public function __construct(
-        private readonly ApiService $apiService
+        private readonly ApiService $apiService,
+        private readonly UserTokenService $userTokenService
     ) {
     }
 
@@ -34,17 +39,28 @@ class AlbumController extends AbstractController
         methods: ['GET']
     )]
     public function index(
+        Request $request,
         string $mode,
         string $dexSlug,
         ?string $filter = null,
     ): Response {
+        $userId = $request->query->getAlpha('t');
+        try {
+            $userId = $this->userTokenService->getLoggedUserToken();
+        } catch (NoLoggedUserException $e) {
+            if (empty($userId)) {
+                throw new NotFoundHttpException();
+            }
+        }
+
         if (AlbumMode::SHORT_MODE_WRITE === $mode) {
             $this->denyAccessUnlessGranted('ROLE_TRAINER');
         }
 
-        $pokedex = $this->apiService->getPokedex($dexSlug);
+
+        $pokedex = $this->apiService->getPokedex($dexSlug, $userId);
         $catchStates = $this->apiService->getCatchStates();
-        $dexes = $this->apiService->getDexes();
+        $dexes = $this->apiService->getDexes($userId);
 
         $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filter);
 
@@ -74,7 +90,8 @@ class AlbumController extends AbstractController
                 $request->getMethod(),
                 $dexSlug,
                 $pokemonSlug,
-                (string)$request->getContent()
+                (string)$request->getContent(),
+                $this->userTokenService->getLoggedUserToken()
             );
 
             $apiService->invalidateCacheAlbums();

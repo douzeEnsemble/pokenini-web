@@ -16,7 +16,7 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo/no');
+        $crawler = $client->request('GET', '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCount(
             1732,
@@ -39,7 +39,7 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo/yes');
+        $crawler = $client->request('GET', '/fr/album/r/demo/yes?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCount(
             2,
@@ -99,7 +99,7 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo/unknown');
+        $crawler = $client->request('GET', '/fr/album/r/demo/unknown?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCount(
             0,

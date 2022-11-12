@@ -15,7 +15,7 @@ class AlbumControllerCustomeIconTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/r/demolite');
+        $client->request('GET', '/fr/album/r/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $mainCrawler = $client->getCrawler();
 
@@ -39,7 +39,7 @@ class AlbumControllerCustomeIconTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/r/demoliteshiny');
+        $client->request('GET', '/fr/album/r/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $mainCrawler = $client->getCrawler();
 

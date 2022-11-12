@@ -1,0 +1,29 @@
+[
+    {
+      "isShiny": false,
+      "isPrivate": true,
+      "isDisplayForm": false,
+      "displayTemplate": "list-7",
+      "name": "Home Pokemon Go",
+      "frenchName": "Home Pokemon Go",
+      "slug": "homepokemongo"
+    },
+    {
+      "isShiny": false,
+      "isPrivate": true,
+      "isDisplayForm": true,
+      "displayTemplate": "list-3",
+      "name": "Alpha",
+      "frenchName": "Baron",
+      "slug": "alpha"
+    },
+    {
+      "isShiny": false,
+      "isPrivate": true,
+      "isDisplayForm": true,
+      "displayTemplate": "list-3",
+      "name": "Mega",
+      "frenchName": "M\u00e9ga",
+      "slug": "mega"
+    }
+]

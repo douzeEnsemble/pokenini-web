@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
+use App\Security\User;
 use App\Service\ApiService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -14,7 +16,7 @@ class ApiServiceTest extends TestCase
 {
     public function testGetDexes(): void
     {
-        $service = $this->getService('dexes');
+        $service = $this->getService('dexes/u/7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertEquals(
             [
@@ -23,15 +25,15 @@ class ApiServiceTest extends TestCase
                     'machin',
                     'chose',
                 ],
-                'url' => 'dexes',
+                'url' => 'dexes/u/7b52009b64fd0a2a49e6d8a939753077792b0554',
             ],
-            $service->getDexes(),
+            $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554'),
         );
     }
 
     public function testGetPokedex(): void
     {
-        $service = $this->getService('album/douze');
+        $service = $this->getService('album/douze/u/7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertEquals(
             [
@@ -40,9 +42,9 @@ class ApiServiceTest extends TestCase
                     'machin',
                     'chose',
                 ],
-                'url' => 'album/douze',
+                'url' => 'album/douze/u/7b52009b64fd0a2a49e6d8a939753077792b0554',
             ],
-            $service->getPokedex('douze'),
+            $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554'),
         );
     }
 
@@ -79,9 +81,9 @@ class ApiServiceTest extends TestCase
             ->method('request')
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
-                ['GET', 'api/dexes'],
-                ['GET', 'api/album/douze'],
-                ['GET', 'api/album/treize'],
+                ['GET', 'api/dexes/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
+                ['GET', 'api/album/douze/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
+                ['GET', 'api/album/treize/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
             )
             ->willReturnOnConsecutiveCalls(
                 $response,
@@ -104,22 +106,25 @@ class ApiServiceTest extends TestCase
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayHasKey('catch_states', $cache->getValues());
 
-        $service->getDexes();
-        $this->assertCount(2, $cache->getValues());
-        $this->assertArrayHasKey('dexes', $cache->getValues());
-
-        $service->getPokedex('douze');
+        $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(3, $cache->getValues());
-        $this->assertArrayHasKey('album_douze', $cache->getValues());
+        $this->assertArrayHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_dexes', $cache->getValues());
 
-        $service->getPokedex('treize');
-        $this->assertCount(4, $cache->getValues());
-        $this->assertArrayHasKey('album_treize', $cache->getValues());
+        $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $this->assertCount(5, $cache->getValues());
+        $this->assertArrayHasKey('album_douze_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_album', $cache->getValues());
 
-        $service->getPokedex('treize');
-        $service->getPokedex('treize');
-        $service->getPokedex('douze');
-        $this->assertCount(4, $cache->getValues());
+        $service->getPokedex('treize', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $this->assertCount(6, $cache->getValues());
+        $this->assertArrayHasKey('album_treize_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_album', $cache->getValues());
+
+        $service->getPokedex('treize', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getPokedex('treize', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $this->assertCount(6, $cache->getValues());
     }
 
     public function testInvalidateCaches(): void
@@ -156,20 +161,19 @@ class ApiServiceTest extends TestCase
 
         $dexesReponse = $this->createMock(ResponseInterface::class);
         $dexesReponse
-            ->expects($this->exactly(2))
+            ->expects($this->once())
             ->method('getContent')
             ->willReturn($dexesJson)
         ;
 
         $client
-            ->expects($this->exactly(5))
+            ->expects($this->exactly(4))
             ->method('request')
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
-                ['GET', 'api/dexes'],
-                ['GET', 'api/album/douze'],
-                ['GET', 'api/album/treize'],
-                ['GET', 'api/dexes'],
+                ['GET', 'api/dexes/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
+                ['GET', 'api/album/douze/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
+                ['GET', 'api/album/treize/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
             )
             ->willReturnOnConsecutiveCalls(
                 $response,
@@ -185,29 +189,29 @@ class ApiServiceTest extends TestCase
         $service = new ApiService($client, 'api', $cache);
 
         $service->getCatchStates();
-        $service->getDexes();
-        $service->getPokedex('douze');
-        $service->getPokedex('treize');
+        $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getPokedex('treize', '7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCount(4, $cache->getValues());
+        $this->assertCount(6, $cache->getValues());
         $this->assertArrayHasKey('catch_states', $cache->getValues());
-        $this->assertArrayHasKey('dexes', $cache->getValues());
-        $this->assertArrayHasKey('album_douze', $cache->getValues());
-        $this->assertArrayHasKey('album_treize', $cache->getValues());
+        $this->assertArrayHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('album_douze_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('album_treize_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_dexes', $cache->getValues());
+        $this->assertArrayHasKey('register_album', $cache->getValues());
 
         $service->invalidateCacheDexes();
-        $this->assertCount(3, $cache->getValues());
-        $this->assertArrayNotHasKey('dexes', $cache->getValues());
+        $this->assertCount(4, $cache->getValues());
+        $this->assertArrayNotHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayNotHasKey('register_dexes', $cache->getValues());
 
         $service->invalidateCacheCatchStates();
-        $this->assertCount(2, $cache->getValues());
+        $this->assertCount(3, $cache->getValues());
         $this->assertArrayNotHasKey('catch_states', $cache->getValues());
 
         $service->invalidateCacheAlbums();
-        $this->assertCount(1, $cache->getValues());
-        $this->assertArrayHasKey('dexes', $cache->getValues());
-        $this->assertArrayNotHasKey('album_douze', $cache->getValues());
-        $this->assertArrayNotHasKey('album_treize', $cache->getValues());
+        $this->assertCount(0, $cache->getValues());
     }
 
     public function testModifyAlbum(): void
@@ -223,11 +227,11 @@ class ApiServiceTest extends TestCase
 
         $service = new ApiService($client, 'api', $cache);
 
-        $service->modifyAlbum('PATCH', 'a', 'b', 'c');
-        $service->modifyAlbum('PUT', 'a', 'b', 'c');
+        $service->modifyAlbum('PATCH', 'a', 'b', 'c', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->modifyAlbum('PUT', 'a', 'b', 'c', '7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->expectException(\InvalidArgumentException::class);
-        $service->modifyAlbum('POST', 'a', 'b', 'c');
+        $service->modifyAlbum('POST', 'a', 'b', 'c', '7b52009b64fd0a2a49e6d8a939753077792b0554');
     }
 
     private function getService(string $url): ApiService
