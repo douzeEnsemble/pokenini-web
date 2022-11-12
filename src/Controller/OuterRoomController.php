@@ -14,6 +14,10 @@ class OuterRoomController extends AbstractController
     #[Route('/')]
     public function index(): Response
     {
+        if ($this->isGranted('ROLE_TRAINER') || $this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_home_index');
+        }
+
         return $this->render(
             'OuterRoom/index.html.twig'
         );

@@ -38,7 +38,7 @@ class AlbumControllerConnexionTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489');
+        $user = new User('8764532');
         $user->addTrainerRole();
         $user->addAdminRole();
         $client->loginUser($user);
@@ -74,7 +74,7 @@ class AlbumControllerConnexionTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489');
+        $user = new User('8764532');
         $user->addTrainerRole();
         $user->addAdminRole();
         $client->loginUser($user);

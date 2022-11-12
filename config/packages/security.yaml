@@ -26,7 +26,7 @@ security:
         - { path: ^/(en|fr)/istrateur/, roles: ROLE_ADMIN }
         - { path: ^/(en|fr)/trainer/, roles: ROLE_TRAINER }
         - { path: ^/(en|fr)/album/w/, roles: ROLE_TRAINER }
-        - { path: ^/(en|fr)/waiting_room/, roles: ROLE_USER }
+        - { path: ^/(en|fr)/outerroom/, roles: ROLE_USER }
 
 when@test:
     security:
