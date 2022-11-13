@@ -1,4 +1,5 @@
 logout: "Se déconnecter"
+login: "Se connecter"
 nav:
     home: "Accueil"
     back_home: "Retour à l'accueil"
@@ -30,6 +31,9 @@ title:
     trainer: "Ton espace de dresseur"
     outer_room: "Salle d'attente"
 
+home:
+    no_dex: "Y'a pas d'album à afficher."
+    
 stats:
     total: "Total"
 
@@ -48,6 +52,7 @@ album:
             prefix: "Le changement de statut de"
             radical: "%pokemonName%"
             suffix: "a échoué"
+    another_trainers_album: "Album d'un autre dresseur"
 
 update:
     labels: 

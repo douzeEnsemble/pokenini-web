@@ -44,6 +44,11 @@ class User implements UserInterface
         return $this->identifier;
     }
 
+    public function getId(): string
+    {
+        return $this->getUserIdentifier();
+    }
+
     public function isATrainer(): bool
     {
         return in_array('ROLE_TRAINER', $this->getRoles());

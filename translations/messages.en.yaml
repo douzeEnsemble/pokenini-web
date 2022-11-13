@@ -1,4 +1,5 @@
 logout: "Log out"
+login: "Log in"
 nav:
     home: "Home"
     back_home: "Back to home"
@@ -30,6 +31,9 @@ title:
     trainer: "Your trainer space"
     outer_room: "Outer room"
 
+home:
+    no_dex: "There are no albums to display."
+
 stats:
     total: "Total"
 
@@ -48,6 +52,7 @@ album:
             prefix: ""
             radical: "%pokemonName%"
             suffix: "new state has not been saved"
+    another_trainers_album: "Another trainer's album"
                 
 update:
     labels:
