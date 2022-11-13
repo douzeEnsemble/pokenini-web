@@ -32,15 +32,15 @@ class ApiService
     /**
      * @return string[][]
      */
-    public function getDexes(string $userId): array
+    public function getDexes(string $trainerId): array
     {
-        $key = self::CACHE_KEY_DEXES . self::CACHE_KEY_SEPARATOR . $userId;
+        $key = self::CACHE_KEY_DEXES . self::CACHE_KEY_SEPARATOR . $trainerId;
 
         /** @var string $json */
-        $json = $this->cache->get($key, function () use ($userId) {
+        $json = $this->cache->get($key, function () use ($trainerId) {
             $response = $this->client->request(
                 'GET',
-                "{$this->appApiUrl}/dexes/u/$userId",
+                "{$this->appApiUrl}/dexes/u/$trainerId",
                 [
                     'headers' => [
                         'accept' => 'application/json',
@@ -61,15 +61,15 @@ class ApiService
     /**
      * @return string[][][]
      */
-    public function getPokedex(string $dexSlug, string $userId): array
+    public function getPokedex(string $dexSlug, string $trainerId): array
     {
-        $key = self::CACHE_KEY_ALBUM . self::CACHE_KEY_SEPARATOR . $dexSlug . self::CACHE_KEY_SEPARATOR . $userId;
+        $key = self::CACHE_KEY_ALBUM . self::CACHE_KEY_SEPARATOR . $dexSlug . self::CACHE_KEY_SEPARATOR . $trainerId;
 
         /** @var string $json */
-        $json = $this->cache->get($key, function () use ($dexSlug, $userId) {
+        $json = $this->cache->get($key, function () use ($dexSlug, $trainerId) {
             $response = $this->client->request(
                 'GET',
-                "{$this->appApiUrl}/album/$dexSlug/u/$userId"
+                "{$this->appApiUrl}/album/$dexSlug/u/$trainerId"
             );
 
             /** @var string */
@@ -116,7 +116,7 @@ class ApiService
         string $dexSlug,
         string $pokemonSlug,
         string $catchStateSlug,
-        string $userId
+        string $trainerId
     ): void {
         if (!in_array($method, [Request::METHOD_PATCH, Request::METHOD_PUT], true)) {
             throw new \InvalidArgumentException();
@@ -124,7 +124,7 @@ class ApiService
 
         $this->client->request(
             $method,
-            "{$this->appApiUrl}/album/$dexSlug/$pokemonSlug/u/$userId",
+            "{$this->appApiUrl}/album/$dexSlug/$pokemonSlug/u/$trainerId",
             [
                 'body' => $catchStateSlug,
             ]

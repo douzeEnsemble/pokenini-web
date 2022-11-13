@@ -44,13 +44,19 @@ class AlbumController extends AbstractController
         string $dexSlug,
         ?string $filter = null,
     ): Response {
-        $userId = $request->query->getAlpha('t');
+        $loggedTrainerId = null;
+        $queryTrainerId = $request->query->getAlnum('t');
+
         try {
-            $userId = $this->userTokenService->getLoggedUserToken();
+            $loggedTrainerId = $this->userTokenService->getLoggedUserToken();
+
+            $trainerId = !empty($queryTrainerId) ? $queryTrainerId : $loggedTrainerId;
         } catch (NoLoggedUserException $e) {
-            if (empty($userId)) {
-                throw new NotFoundHttpException();
-            }
+            $trainerId = $queryTrainerId;
+        }
+
+        if (empty($trainerId)) {
+            throw new NotFoundHttpException();
         }
 
         if (AlbumMode::SHORT_MODE_WRITE === $mode) {
@@ -58,9 +64,9 @@ class AlbumController extends AbstractController
         }
 
 
-        $pokedex = $this->apiService->getPokedex($dexSlug, $userId);
+        $pokedex = $this->apiService->getPokedex($dexSlug, $trainerId);
         $catchStates = $this->apiService->getCatchStates();
-        $dexes = $this->apiService->getDexes($userId);
+        $dexes = $this->apiService->getDexes($trainerId);
 
         $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filter);
 
@@ -73,6 +79,9 @@ class AlbumController extends AbstractController
             'dexes' => $dexes,
             'mode' => AlbumMode::MODES_SHORT_LONG[$mode],
             'filter' => $filter,
+            'trainerId' => $trainerId,
+            'loggedTrainerId' => $loggedTrainerId,
+            'queryTrainerId' => $queryTrainerId,
         ]);
     }
 

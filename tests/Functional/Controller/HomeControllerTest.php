@@ -53,6 +53,42 @@ class HomeControllerTest extends WebTestCase
 
         $mainCrawler = $client->getCrawler();
 
+        $this->assertCount(1, $mainCrawler->filter('.home-item'));
+        $this->assertCount(1, $mainCrawler->filter('.home-item.login-home-item'));
+    }
+
+    public function testConnectedHomeNoDexes(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('0');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $client->request('GET', '/fr/');
+
+        $this->assertResponseIsSuccessful();
+
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(0, $mainCrawler->filter('.home-item'));
+        $this->assertCount(1, $mainCrawler->filter('.alert'));
+    }
+
+    public function testConnectedHomeNoPublicDexes(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('1');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $client->request('GET', '/fr/');
+
+        $this->assertResponseIsSuccessful();
+
+        $mainCrawler = $client->getCrawler();
+
         $this->assertCount(0, $mainCrawler->filter('.home-item'));
     }
 

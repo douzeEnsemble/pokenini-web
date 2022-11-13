@@ -14,6 +14,7 @@ class UserTest extends TestCase
         $user = new User('12');
 
         $this->assertEquals('12', $user->getUserIdentifier());
+        $this->assertEquals('12', $user->getId());
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
     }
 

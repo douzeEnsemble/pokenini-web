@@ -33,6 +33,29 @@
                     </h5>
                 </div>
             </div>
+            {% else %}
+                {% if app.user is null %}
+            <div class="card col-md-3 col-6 home-item login-home-item">
+                <a href="{{ path('app_connect_index') }}">
+                    <img
+                        src="/img/dex/banner/not_logged.png"
+                        class="card-img"
+                        alt=""
+                    >
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ path('app_connect_index') }}">
+                            {{ 'login'|trans }}
+                        </a>
+                    </h5>
+                </div>
+            </div>
+                {% else %}
+            <div class="alert alert-info mt-5" role="alert">
+                <p>{{ 'home.no_dex'|trans }}</p>
+            </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
