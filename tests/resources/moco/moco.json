@@ -9,7 +9,7 @@
   },
   {
     "request": {
-      "uri": "/dexes/u/f86cbe805674d85f7806b175b70647a6a9334631"
+      "uri": "/f86cbe805674d85f7806b175b70647a6a9334631/dexes"
     },
     "response": {
       "file": "/var/moco/dexes/f86cbe805674d85f7806b175b70647a6a9334631.json"
@@ -17,7 +17,7 @@
   },
   {
     "request": {
-      "uri": "/dexes/u/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c"
+      "uri": "/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c/dexes"
     },
     "response": {
       "file": "/var/moco/dexes/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c.json"
@@ -25,7 +25,7 @@
   },
   {
     "request": {
-      "uri": "/dexes/u/356a192b7913b04c54574d18c28d46e6395428ab"
+      "uri": "/356a192b7913b04c54574d18c28d46e6395428ab/dexes"
     },
     "response": {
       "file": "/var/moco/dexes/356a192b7913b04c54574d18c28d46e6395428ab.json"
@@ -33,7 +33,7 @@
   },
   {
     "request": {
-      "uri": "/dexes/u/3cae633f6e04077b2abf2144b79a0ce4698d8690"
+      "uri": "/3cae633f6e04077b2abf2144b79a0ce4698d8690/dexes"
     },
     "response": {
       "file": "/var/moco/dexes/3cae633f6e04077b2abf2144b79a0ce4698d8690.json"
@@ -42,7 +42,7 @@
   {
     "request": {
       "uri": {
-        "match": "/dexes/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/dexes"
       }
     },
     "response": {
@@ -52,7 +52,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demo/u/f86cbe805674d85f7806b175b70647a6a9334631"
+        "match": "/f86cbe805674d85f7806b175b70647a6a9334631/album/demo"
       }
     },
     "response": {
@@ -62,7 +62,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demo/u/6c33064427a5b419ca8eb3f7d11a0807f66cab22"
+        "match": "/6c33064427a5b419ca8eb3f7d11a0807f66cab22/album/demo"
       }
     },
     "response": {
@@ -72,7 +72,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demo/u/7b52009b64fd0a2a49e6d8a939753077792b0554"
+        "match": "/7b52009b64fd0a2a49e6d8a939753077792b0554/album/demo"
       }
     },
     "response": {
@@ -82,7 +82,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demo/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/demo"
       }
     },
     "response": {
@@ -92,7 +92,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demolist3/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/demolist3"
       }
     },
     "response": {
@@ -102,7 +102,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demolist5/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/demolist5"
       }
     },
     "response": {
@@ -112,7 +112,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demolist7/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/demolist7"
       }
     },
     "response": {
@@ -122,7 +122,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demonotemplate/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/demonotemplate"
       }
     },
     "response": {
@@ -132,7 +132,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demounknowntemplate/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/demounknowntemplate"
       }
     },
     "response": {
@@ -142,7 +142,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demolite/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/demolite"
       }
     },
     "response": {
@@ -152,7 +152,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/demoliteshiny/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/demoliteshiny"
       }
     },
     "response": {
@@ -162,7 +162,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/redgreenblueyellow/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/redgreenblueyellow"
       }
     },
     "response": {
@@ -172,7 +172,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/goldsilvercrystal/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/goldsilvercrystal"
       }
     },
     "response": {
@@ -182,7 +182,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/rubysapphireemerald/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/rubysapphireemerald"
       }
     },
     "response": {
@@ -192,7 +192,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/redfireleafgreen/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/redfireleafgreen"
       }
     },
     "response": {
@@ -202,7 +202,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/diamondpearlplatinium/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/diamondpearlplatinium"
       }
     },
     "response": {
@@ -212,7 +212,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/heartgoldsoulsilver/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/heartgoldsoulsilver"
       }
     },
     "response": {
@@ -222,7 +222,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/blackwhite/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/blackwhite"
       }
     },
     "response": {
@@ -232,7 +232,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/black2white2/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/black2white2"
       }
     },
     "response": {
@@ -242,7 +242,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/xy/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/xy"
       }
     },
     "response": {
@@ -252,7 +252,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/omegarubyalphasapphire/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/omegarubyalphasapphire"
       }
     },
     "response": {
@@ -262,7 +262,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/sunmoon/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/sunmoon"
       }
     },
     "response": {
@@ -272,7 +272,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/ultrasunultramoon/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/ultrasunultramoon"
       }
     },
     "response": {
@@ -282,7 +282,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/letsgopikachuletsgoeevee/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/letsgopikachuletsgoeevee"
       }
     },
     "response": {
@@ -292,7 +292,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/pokemongo/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/pokemongo"
       }
     },
     "response": {
@@ -302,7 +302,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/swordshield/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/swordshield"
       }
     },
     "response": {
@@ -312,7 +312,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/brillanddiamondshiningpearl/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/brillanddiamondshiningpearl"
       }
     },
     "response": {
@@ -322,7 +322,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/legendarceus/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/legendarceus"
       }
     },
     "response": {
@@ -332,7 +332,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/home/u/6c33064427a5b419ca8eb3f7d11a0807f66cab22"
+        "match": "/6c33064427a5b419ca8eb3f7d11a0807f66cab22/album/home"
       }
     },
     "response": {
@@ -342,7 +342,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/home/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/home"
       }
     },
     "response": {
@@ -352,7 +352,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/homeshiny/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/homeshiny"
       }
     },
     "response": {
@@ -362,7 +362,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/homepokemongo/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/homepokemongo"
       }
     },
     "response": {
@@ -372,7 +372,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/alpha/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/alpha"
       }
     },
     "response": {
@@ -382,7 +382,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w-]*/squirtle/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/[\\w-]*/squirtle"
       },
       "method": "patch"
     },
@@ -393,7 +393,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w-]*/wartortle/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/[\\w-]*/wartortle"
       },
       "method": "patch"
     },
@@ -404,7 +404,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w-]*/blastoise/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/[\\w-]*/blastoise"
       },
       "method": "patch"
     },
@@ -415,7 +415,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w-]*/[\\w-]*/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/[\\w-]*/[\\w-]*"
       },
       "method": "patch"
     },
@@ -426,7 +426,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w-]*/squirtle/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/[\\w-]*/squirtle"
       },
       "method": "put"
     },
@@ -437,7 +437,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w-]*/wartortle/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/[\\w-]*/wartortle"
       },
       "method": "put"
     },
@@ -448,7 +448,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w-]*/blastoise/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/[\\w-]*/blastoise"
       },
       "method": "put"
     },
@@ -459,7 +459,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w-]*/[\\w-]*/u/[\\w\\d]*"
+        "match": "/[\\w\\d]*/album/[\\w-]*/[\\w-]*"
       },
       "method": "put"
     },

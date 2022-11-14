@@ -16,7 +16,7 @@ class ApiServiceTest extends TestCase
 {
     public function testGetDexes(): void
     {
-        $service = $this->getService('dexes/u/7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service = $this->getService('7b52009b64fd0a2a49e6d8a939753077792b0554/dexes');
 
         $this->assertEquals(
             [
@@ -25,7 +25,7 @@ class ApiServiceTest extends TestCase
                     'machin',
                     'chose',
                 ],
-                'url' => 'dexes/u/7b52009b64fd0a2a49e6d8a939753077792b0554',
+                'url' => '7b52009b64fd0a2a49e6d8a939753077792b0554/dexes',
             ],
             $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554'),
         );
@@ -33,7 +33,7 @@ class ApiServiceTest extends TestCase
 
     public function testGetPokedex(): void
     {
-        $service = $this->getService('album/douze/u/7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service = $this->getService('7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze');
 
         $this->assertEquals(
             [
@@ -42,7 +42,7 @@ class ApiServiceTest extends TestCase
                     'machin',
                     'chose',
                 ],
-                'url' => 'album/douze/u/7b52009b64fd0a2a49e6d8a939753077792b0554',
+                'url' => '7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze',
             ],
             $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554'),
         );
@@ -81,9 +81,9 @@ class ApiServiceTest extends TestCase
             ->method('request')
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
-                ['GET', 'api/dexes/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
-                ['GET', 'api/album/douze/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
-                ['GET', 'api/album/treize/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
+                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/dexes'],
+                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze'],
+                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/treize'],
             )
             ->willReturnOnConsecutiveCalls(
                 $response,
@@ -171,9 +171,9 @@ class ApiServiceTest extends TestCase
             ->method('request')
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
-                ['GET', 'api/dexes/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
-                ['GET', 'api/album/douze/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
-                ['GET', 'api/album/treize/u/7b52009b64fd0a2a49e6d8a939753077792b0554'],
+                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/dexes'],
+                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze'],
+                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/treize'],
             )
             ->willReturnOnConsecutiveCalls(
                 $response,
