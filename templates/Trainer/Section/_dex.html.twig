@@ -1,0 +1,78 @@
+{% set attributes = [
+    'is_private',
+    'is_on_home',
+] %}
+{% set attributesIcons = {
+    'is_private': 'lock' ,
+    'is_on_home': 'house', 
+} %}
+<div class="row">
+    {% for dex in trainerDexes %}
+    <div 
+        class="col-6 trainer-dex-item border rounded border-opacity-50" 
+        id="trainer-dex-{{ dex.slug }}"
+    >
+        <img
+            src="{{ dex_banner(dex.slug) }}"
+            class="img-fluid"
+            alt=""
+        >
+        <h5>
+            {{ locale is same as('fr') ? dex.french_name : dex.name }}
+        </h5>
+        <h6 class="mb-2 text-muted">
+            <i class="bi bi-translate"></i>
+            {{ locale is not same as('fr') ? dex.french_name : dex.name }}
+        </h6>
+        <hr>
+        <form data-dex="{{ dex.slug }}">
+            {% for attribute in attributes %}
+            <div class="form-check form-switch">
+                <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    role="switch" 
+                    name="{{ dex.slug }}-{{ attribute }}"
+                    id="{{ dex.slug }}-{{ attribute }}"
+                    {{ dex[attribute] ? 'checked' : '' }}
+                >
+                <label class="form-check-label" for="{{ dex.slug }}-{{ attribute }}">
+                    <i class="bi bi-{{ attributesIcons[attribute] }}"></i>
+                    {{ ('trainer.dex.attributes.'~attribute~'.label')|trans }}
+                </label>
+                <p class="form-text">
+                    {{ ('trainer.dex.attributes.'~attribute~'.help')|trans }}
+                </p>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+    {% endfor %}
+
+    <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
+        {% for dex in trainerDexes %}
+            {% set dexName = locale is same as('fr') ? dex.french_name : dex.name %}
+            <div id="successToast-{{ dex.slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ 'trainer.dex.update.success.prefix'|trans }}
+                        <strong>{{ 'trainer.dex.update.success.radical'|trans({'%dexName%': dexName}) }}</strong>
+                        {{ 'trainer.dex.update.success.suffix'|trans }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div id="errorToast-{{ dex.slug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ 'trainer.dex.update.error.prefix'|trans }}
+                        <strong>{{ 'trainer.dex.update.error.radical'|trans({'%dexName%': dexName}) }}</strong>
+                        {{ 'trainer.dex.update.error.suffix'|trans }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -94,6 +94,25 @@ trainer:
             value: "Valeur"
         body:
             id: "Identifiant"
+    dex:
+        title: "Personnalise tes albums"
+        attributes:
+            is_private: 
+                label: "Album privé"
+                help: "Uniquement accessible par toi"
+            is_on_home: 
+                label: "Album visible sur la page d'accueil"
+                help: "La page d'accueil n'est visible que par toi. C'est ta page."
+        update:
+            title: "Maj"
+            success: 
+                prefix: "Le paramétrage de "
+                radical: "%dexName%"
+                suffix: "a été enregistré"
+            error:
+                prefix: "Le paramétrage de "
+                radical: "%dexName%"
+                suffix: "n'a pas été enregistré"
     logout:
         title: "Session"
 

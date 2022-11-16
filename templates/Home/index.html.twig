@@ -13,14 +13,11 @@
         <h1>Pokénini</h1>
 
         <div class="row">
-            {% for dex in dexes|filter(dex => dex.isPrivate is not same as(true)) %}
+            {% for dex in dexes|filter(dex => dex.is_private is not same as(true)) %}
             <div class="card col-md-3 col-6 home-item">
-                {% set bannerDir = '/img/dex/banner/' %}
-                {% set dexBannerPath = bannerDir ~ dex.slug ~ '.png' %}
-                {% set defaultBannerPath = bannerDir ~ 'default.png' %}
                 <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': dex.slug}) }}">
                     <img
-                        src="{{ banner_exists(dex.slug) ? dexBannerPath : defaultBannerPath }}"
+                        src="{{ dex_banner(dex.slug) }}"
                         class="card-img"
                         alt=""
                     >
@@ -28,7 +25,7 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': dex.slug}) }}">
-                            {{ locale is same as('fr') ? dex.frenchName : dex.name }}
+                            {{ locale is same as('fr') ? dex.french_name : dex.name }}
                         </a>
                     </h5>
                 </div>

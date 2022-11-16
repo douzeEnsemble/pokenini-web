@@ -93,6 +93,25 @@ trainer:
             value: "Value"
         body:
             id: "Identifier"
+    dex:
+        title: "Customize your albums"
+        attributes:
+            is_private: 
+                label: "Private album"
+                help: "Only accessible by you"
+            is_on_home: 
+                label: "Album visible on the homepage"
+                help: "The home page is only visible to you. This is your page."
+        update:
+            title: "Maj"
+            success: 
+                prefix: ""
+                radical: "%dexName%"
+                suffix: "setting have been saved"
+            error:
+                prefix: ""
+                radical: "%dexName%"
+                suffix: "setting have not been saved"
     logout:
         title: "Session"
 

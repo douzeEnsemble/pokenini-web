@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
-use App\Security\User;
 use App\Service\ApiService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -16,7 +14,7 @@ class ApiServiceTest extends TestCase
 {
     public function testGetDexes(): void
     {
-        $service = $this->getService('7b52009b64fd0a2a49e6d8a939753077792b0554/dexes');
+        $service = $this->getService('dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list');
 
         $this->assertEquals(
             [
@@ -25,7 +23,7 @@ class ApiServiceTest extends TestCase
                     'machin',
                     'chose',
                 ],
-                'url' => '7b52009b64fd0a2a49e6d8a939753077792b0554/dexes',
+                'url' => 'dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list',
             ],
             $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554'),
         );
@@ -81,7 +79,7 @@ class ApiServiceTest extends TestCase
             ->method('request')
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
-                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/dexes'],
+                ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list'],
                 ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze'],
                 ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/treize'],
             )
@@ -171,7 +169,7 @@ class ApiServiceTest extends TestCase
             ->method('request')
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
-                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/dexes'],
+                ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list'],
                 ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze'],
                 ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/treize'],
             )
@@ -232,6 +230,22 @@ class ApiServiceTest extends TestCase
 
         $this->expectException(\InvalidArgumentException::class);
         $service->modifyAlbum('POST', 'a', 'b', 'c', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+    }
+
+    public function testModifyDex(): void
+    {
+        $client = $this->createMock(HttpClientInterface::class);
+
+        $client
+            ->expects($this->exactly(1))
+            ->method('request')
+        ;
+
+        $cache = new ArrayAdapter();
+
+        $service = new ApiService($client, 'api', $cache);
+
+        $service->modifyDex('a', '{"b": "c"}', '7b52009b64fd0a2a49e6d8a939753077792b0554');
     }
 
     private function getService(string $url): ApiService

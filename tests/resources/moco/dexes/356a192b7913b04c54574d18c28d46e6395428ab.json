@@ -1,29 +1,32 @@
 [
     {
-      "isShiny": false,
-      "isPrivate": true,
-      "isDisplayForm": false,
-      "displayTemplate": "list-7",
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": false,
+      "display_template": "list-7",
       "name": "Home Pokemon Go",
-      "frenchName": "Home Pokemon Go",
+      "french_name": "Home Pokemon Go",
       "slug": "homepokemongo"
     },
     {
-      "isShiny": false,
-      "isPrivate": true,
-      "isDisplayForm": true,
-      "displayTemplate": "list-3",
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "display_template": "list-3",
       "name": "Alpha",
-      "frenchName": "Baron",
+      "french_name": "Baron",
       "slug": "alpha"
     },
     {
-      "isShiny": false,
-      "isPrivate": true,
-      "isDisplayForm": true,
-      "displayTemplate": "list-3",
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "display_template": "list-3",
       "name": "Mega",
-      "frenchName": "M\u00e9ga",
+      "french_name": "M\u00e9ga",
       "slug": "mega"
     }
 ]

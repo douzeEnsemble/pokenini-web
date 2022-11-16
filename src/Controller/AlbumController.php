@@ -89,7 +89,6 @@ class AlbumController extends AbstractController
     public function upsert(
         string $dexSlug,
         string $pokemonSlug,
-        ApiService $apiService,
         Request $request
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_TRAINER');
@@ -103,7 +102,7 @@ class AlbumController extends AbstractController
                 $this->userTokenService->getLoggedUserToken()
             );
 
-            $apiService->invalidateCacheAlbums();
+            $this->apiService->invalidateCacheAlbums();
         } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
             return new JsonResponse(['error' => $e->getMessage()], 500);
         }

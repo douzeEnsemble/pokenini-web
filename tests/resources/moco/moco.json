@@ -9,7 +9,7 @@
   },
   {
     "request": {
-      "uri": "/f86cbe805674d85f7806b175b70647a6a9334631/dexes"
+      "uri": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/list"
     },
     "response": {
       "file": "/var/moco/dexes/f86cbe805674d85f7806b175b70647a6a9334631.json"
@@ -17,7 +17,7 @@
   },
   {
     "request": {
-      "uri": "/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c/dexes"
+      "uri": "/dex/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c/list"
     },
     "response": {
       "file": "/var/moco/dexes/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c.json"
@@ -25,7 +25,7 @@
   },
   {
     "request": {
-      "uri": "/356a192b7913b04c54574d18c28d46e6395428ab/dexes"
+      "uri": "/dex/356a192b7913b04c54574d18c28d46e6395428ab/list"
     },
     "response": {
       "file": "/var/moco/dexes/356a192b7913b04c54574d18c28d46e6395428ab.json"
@@ -33,7 +33,7 @@
   },
   {
     "request": {
-      "uri": "/3cae633f6e04077b2abf2144b79a0ce4698d8690/dexes"
+      "uri": "/dex/3cae633f6e04077b2abf2144b79a0ce4698d8690/list"
     },
     "response": {
       "file": "/var/moco/dexes/3cae633f6e04077b2abf2144b79a0ce4698d8690.json"
@@ -42,7 +42,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/dexes"
+        "match": "/dex/[\\w\\d]*/list"
       }
     },
     "response": {
@@ -520,6 +520,28 @@
     },
     "response": {
       "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/redgreenblueyellow"
+      },
+      "method": "put"
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/[\\w-]*"
+      },
+      "method": "put"
+    },
+    "response": {
+      "status": "201"
     }
   }
 ]

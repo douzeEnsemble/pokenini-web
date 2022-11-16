@@ -21,3 +21,18 @@
 		</div>
 	</div>
 {% endblock container %}
+
+{% block foot_javascript %}
+    {{ parent() }}
+    <script src="{{ asset('js/trainer_dex_edit.js') }}"></script>
+
+    <script type="application/javascript">
+        const locale = '{{ locale }}';
+
+        watchAttributes();
+
+        // Enable toasts
+        const toastElList = document.querySelectorAll('.toast')
+        const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl));
+    </script>
+{% endblock foot_javascript %}

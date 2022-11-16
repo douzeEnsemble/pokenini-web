@@ -40,7 +40,7 @@ class ApiService
         $json = $this->cache->get($key, function () use ($trainerId) {
             $response = $this->client->request(
                 'GET',
-                "{$this->appApiUrl}/$trainerId/dexes",
+                "{$this->appApiUrl}/dex/$trainerId/list",
                 [
                     'headers' => [
                         'accept' => 'application/json',
@@ -127,6 +127,24 @@ class ApiService
             "{$this->appApiUrl}/album/$dexSlug/$pokemonSlug/u/$trainerId",
             [
                 'body' => $catchStateSlug,
+            ]
+        );
+    }
+
+    /**
+     * @throws TransportExceptionInterface
+     * @throws HttpExceptionInterface
+     */
+    public function modifyDex(
+        string $dexSlug,
+        string $data,
+        string $trainerId
+    ): void {
+        $this->client->request(
+            'PUT',
+            "{$this->appApiUrl}/dex/$trainerId/$dexSlug",
+            [
+                'body' => $data,
             ]
         );
     }

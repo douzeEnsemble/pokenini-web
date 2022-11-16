@@ -4,18 +4,57 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Security\UserTokenService;
+use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 #[Route('/trainer')]
 class TrainerController extends AbstractController
 {
+    public function __construct(
+        private readonly ApiService $apiService,
+        private readonly UserTokenService $userTokenService
+    ) {
+    }
+
     #[Route('/')]
     public function index(): Response
     {
+        $trainerDexes = $this->apiService->getDexes($this->userTokenService->getLoggedUserToken());
+
         return $this->render(
-            'Trainer/index.html.twig'
+            'Trainer/index.html.twig',
+            [
+                'trainerDexes' => $trainerDexes,
+            ]
         );
+    }
+
+    #[Route('/dex/{dexSlug}', methods: ['PUT'])]
+    public function upsert(
+        string $dexSlug,
+        Request $request
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_TRAINER');
+
+        try {
+            $this->apiService->modifyDex(
+                $dexSlug,
+                (string) $request->getContent(),
+                $this->userTokenService->getLoggedUserToken()
+            );
+
+            $this->apiService->invalidateCacheAlbums();
+        } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
+            return new JsonResponse(['error' => $e->getMessage()], 500);
+        }
+
+        return new Response();
     }
 }
