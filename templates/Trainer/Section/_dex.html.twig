@@ -17,6 +17,14 @@
             class="img-fluid"
             alt=""
         >
+        <a
+            class="float-end btn btn-link" 
+            href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': dex.slug}) }}"
+            title="{{ 'trainer.dex.see'|trans }}"
+        >
+            <i class="bi bi-eye-fill"></i>
+            {{ 'trainer.dex.see'|trans }}
+        </a>
         <h5>
             {{ locale is same as('fr') ? dex.french_name : dex.name }}
         </h5>

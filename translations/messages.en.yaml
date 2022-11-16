@@ -95,6 +95,7 @@ trainer:
             id: "Identifier"
     dex:
         title: "Customize your albums"
+        see: "See"
         attributes:
             is_private: 
                 label: "Private album"
