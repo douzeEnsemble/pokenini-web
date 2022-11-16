@@ -41,6 +41,14 @@
   },
   {
     "request": {
+      "uri": "/dex/da4b9237bacccdf19c0760cab7aec4a8359010b0/list"
+    },
+    "response": {
+      "file": "/var/moco/dexes/da4b9237bacccdf19c0760cab7aec4a8359010b0.json"
+    }
+  },
+  {
+    "request": {
       "uri": {
         "match": "/dex/[\\w\\d]*/list"
       }

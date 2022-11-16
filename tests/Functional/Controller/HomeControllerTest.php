@@ -6,7 +6,6 @@ namespace App\Tests\Functional\Controller;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class HomeControllerTest extends WebTestCase
@@ -28,6 +27,8 @@ class HomeControllerTest extends WebTestCase
         $this->assertFrenchLangSwitch($crawler);
 
         $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(6, $mainCrawler->filter('.home-item'));
 
         $firstAlbum = $mainCrawler->filter('.home-item')->first();
         $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
@@ -75,7 +76,7 @@ class HomeControllerTest extends WebTestCase
         $this->assertCount(1, $mainCrawler->filter('.alert'));
     }
 
-    public function testConnectedHomeNoPublicDexes(): void
+    public function testConnectedHomeNoOnHomecDexes(): void
     {
         $client = static::createClient();
 
@@ -90,6 +91,23 @@ class HomeControllerTest extends WebTestCase
         $mainCrawler = $client->getCrawler();
 
         $this->assertCount(0, $mainCrawler->filter('.home-item'));
+    }
+
+    public function testConnectedHomeSomeOnHomecDexes(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('2');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $client->request('GET', '/fr/');
+
+        $this->assertResponseIsSuccessful();
+
+        $mainCrawler = $client->getCrawler();
+
+        $this->assertCount(2, $mainCrawler->filter('.home-item'));
     }
 
     public function testHomeFrench(): void
