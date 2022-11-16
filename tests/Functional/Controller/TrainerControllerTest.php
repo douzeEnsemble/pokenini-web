@@ -42,7 +42,9 @@ class TrainerControllerTest extends WebTestCase
     {
         $this->assertCount(21, $crawler->filter('.trainer-dex-item'));
         $this->assertCount(21, $crawler->filter('.trainer-dex-item img'));
+        $this->assertCount(21, $crawler->filter('.trainer-dex-item a'));
         $this->assertCount(21, $crawler->filter('.trainer-dex-item h5'));
+        $this->assertCount(21, $crawler->filter('.trainer-dex-item h6'));
         $this->assertCount(42, $crawler->filter('.trainer-dex-item input[type="checkbox"]'));
 
         $this->assertEmpty($crawler->filter('#redgreenblueyellow-is_private')->attr('checked'));
