@@ -23,11 +23,20 @@ class AppExtensionTest extends TestCase
         }
     }
 
-    public function testFileExists(): void
+    public function testIsBannerFileExists(): void
     {
         $extension = new AppExtension('/srv/app');
 
-        $this->assertTrue($extension->bannerFileExists('default'));
-        $this->assertFalse($extension->bannerFileExists('thespoon'));
+        $this->assertTrue($extension->isBannerFileExists('default'));
+        $this->assertFalse($extension->isBannerFileExists('thespoon'));
+    }
+
+    public function testGetDexBanner(): void
+    {
+        $extension = new AppExtension('/srv/app');
+
+        $this->assertEquals('/img/dex/banner/default.png', $extension->getDexBanner('default'));
+        $this->assertEquals('/img/dex/banner/home.png', $extension->getDexBanner('home'));
+        $this->assertEquals('/img/dex/banner/default.png', $extension->getDexBanner('thespoon'));
     }
 }

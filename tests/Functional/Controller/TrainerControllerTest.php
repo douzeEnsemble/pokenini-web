@@ -28,11 +28,27 @@ class TrainerControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('table tbody tr'));
         $this->assertEquals('789465465489', $crawler->filter('table tbody tr td')->last()->text());
 
+        $this->assertCustomizeAlbumSection($crawler);
+
         $this->assertStringContainsString(
             "/connect/logout",
             $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
         );
 
         $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
+    }
+
+    public function assertCustomizeAlbumSection(Crawler $crawler): void
+    {
+        $this->assertCount(21, $crawler->filter('.trainer-dex-item'));
+        $this->assertCount(21, $crawler->filter('.trainer-dex-item img'));
+        $this->assertCount(21, $crawler->filter('.trainer-dex-item h5'));
+        $this->assertCount(42, $crawler->filter('.trainer-dex-item input[type="checkbox"]'));
+
+        $this->assertEmpty($crawler->filter('#redgreenblueyellow-is_private')->attr('checked'));
+        $this->assertNull($crawler->filter('#redgreenblueyellow-is_on_home')->attr('checked'));
+
+        $this->assertNull($crawler->filter('#home-is_private')->attr('checked'));
+        $this->assertEmpty($crawler->filter('#home-is_on_home')->attr('checked'));
     }
 }
