@@ -1,0 +1,12 @@
+{% set locale = app.request.get('_locale') %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'title.cookies'|trans }}{% endblock title %}
+
+{% block container %}
+<h1>{{ 'title.cookies'|trans }}</h1>
+
+{% include('Static/Cookies/'~locale~'.html.twig') %}
+{% endblock container %}

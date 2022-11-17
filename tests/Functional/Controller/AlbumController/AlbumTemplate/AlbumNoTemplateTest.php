@@ -37,7 +37,7 @@ class AlbumNoTemplateTest extends WebTestCase
                 ->filter('.album-case.col')
         );
         $this->assertCount(
-            8,
+            7,
             $crawler
                 ->filter('div.row.album-line')
         );
