@@ -23,6 +23,10 @@ class AlbumTemplateBoxTest extends WebTestCase
                 ->filter('.album-case.col')
         );
         $this->assertCount(
+            5,
+            $crawler->filter('#box-1 .album-line')
+        );
+        $this->assertCount(
             6,
             $crawler
                 ->filter('div.row.album-line')
@@ -37,7 +41,11 @@ class AlbumTemplateBoxTest extends WebTestCase
                 ->filter('.album-case.col')
         );
         $this->assertCount(
-            347,
+            5,
+            $crawler->filter('#box-12 .album-line')
+        );
+        $this->assertCount(
+            290,
             $crawler
                 ->filter('div.row.album-line')
         );
