@@ -199,13 +199,17 @@ class ApiServiceTest extends TestCase
         $this->assertArrayHasKey('register_dexes', $cache->getValues());
         $this->assertArrayHasKey('register_album', $cache->getValues());
 
+        $service->invalidateCacheAlbum('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $this->assertCount(5, $cache->getValues());
+        $this->assertArrayNotHasKey('album_douze_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+
         $service->invalidateCacheDexes();
-        $this->assertCount(4, $cache->getValues());
+        $this->assertCount(3, $cache->getValues());
         $this->assertArrayNotHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayNotHasKey('register_dexes', $cache->getValues());
 
         $service->invalidateCacheCatchStates();
-        $this->assertCount(3, $cache->getValues());
+        $this->assertCount(2, $cache->getValues());
         $this->assertArrayNotHasKey('catch_states', $cache->getValues());
 
         $service->invalidateCacheAlbums();
