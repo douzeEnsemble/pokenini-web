@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functional\Controller\AlbumController\AlbumTemplate;
 
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AlbumTemplateBoxTest extends WebTestCase
@@ -9,6 +10,10 @@ class AlbumTemplateBoxTest extends WebTestCase
     public function testDexBoxTemplate(): void
     {
         $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
 
         $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
@@ -52,6 +57,10 @@ class AlbumTemplateBoxTest extends WebTestCase
     {
         $client = static::createClient();
 
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
         $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $titleBox1 = $crawler->filter('#box-1 h2');
@@ -70,6 +79,10 @@ class AlbumTemplateBoxTest extends WebTestCase
     {
         $client = static::createClient();
 
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
         $crawler = $client->request('GET', '/en/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $titleBox1 = $crawler->filter('#box-1 h2');
@@ -87,6 +100,10 @@ class AlbumTemplateBoxTest extends WebTestCase
     public function testFilterDexBoxTemplate(): void
     {
         $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
 
         $crawler = $client->request('GET', '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 

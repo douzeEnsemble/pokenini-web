@@ -13,6 +13,8 @@ nav:
     admin: "Backoffice"
     connected: "Connected"
     login: "Log in"
+    share: "Share link"
+    is_private: "Private album"
 
 title:
     home: "Home"

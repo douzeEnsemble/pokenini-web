@@ -25,7 +25,7 @@ class AlbumControllerConnexionTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertNoConnectedNavBar($crawler);
     }

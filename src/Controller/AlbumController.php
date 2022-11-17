@@ -63,20 +63,23 @@ class AlbumController extends AbstractController
             $this->denyAccessUnlessGranted('ROLE_TRAINER');
         }
 
-
         $pokedex = $this->apiService->getPokedex($dexSlug, $trainerId);
+        $dex = $pokedex['dex'];
+
+        if ($dex['is_private'] && $trainerId != $loggedTrainerId) {
+            throw new NotFoundHttpException();
+        }
+
         $catchStates = $this->apiService->getCatchStates();
-        $dexes = $this->apiService->getDexes($trainerId);
 
         $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filter);
 
         return $this->render('Album/index.html.twig', [
             'currentDexSlug' => $dexSlug,
-            'dex' => $pokedex['dex'],
+            'dex' => $dex,
             'report' => $pokedex['report'],
             'list' => $pokemons,
             'catchStates' => $catchStates,
-            'dexes' => $dexes,
             'mode' => AlbumMode::MODES_SHORT_LONG[$mode],
             'filter' => $filter,
             'trainerId' => $trainerId,

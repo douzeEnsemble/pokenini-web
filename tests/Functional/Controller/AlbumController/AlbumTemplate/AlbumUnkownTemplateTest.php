@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functional\Controller\AlbumController\AlbumTemplate;
 
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AlbumUnkownTemplateTest extends WebTestCase
@@ -9,6 +10,10 @@ class AlbumUnkownTemplateTest extends WebTestCase
     public function testDexUnknownTemplate(): void
     {
         $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
 
         $crawler = $client->request(
             'GET',
@@ -54,6 +59,10 @@ class AlbumUnkownTemplateTest extends WebTestCase
     public function testFilterDexUnknownTemplate(): void
     {
         $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
 
         $crawler = $client->request(
             'GET',

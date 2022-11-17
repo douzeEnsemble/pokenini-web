@@ -17,6 +17,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                {% block navbarNavPre %}{% endblock navbarNavPre %}
                 <li class="nav-item lang-switch">
                     {% set langTarget = locale == 'fr' ? 'en' : 'fr' %}
                     <a
@@ -59,6 +60,7 @@
                     </a>
                 </li>
                 {% endif %}
+                {% block navbarNavPost %}{% endblock navbarNavPost %}
             </ul>
         </div>
         
