@@ -44,13 +44,14 @@ class TrainerController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_TRAINER');
 
         try {
+            $trainerId = $this->userTokenService->getLoggedUserToken();
             $this->apiService->modifyDex(
                 $dexSlug,
                 (string) $request->getContent(),
-                $this->userTokenService->getLoggedUserToken()
+                $trainerId
             );
 
-            $this->apiService->invalidateCacheAlbums();
+            $this->apiService->invalidateCacheAlbum($dexSlug, $trainerId);
         } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
             return new JsonResponse(['error' => $e->getMessage()], 500);
         }

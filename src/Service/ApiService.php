@@ -34,7 +34,7 @@ class ApiService
      */
     public function getDexes(string $trainerId): array
     {
-        $key = self::CACHE_KEY_DEXES . self::CACHE_KEY_SEPARATOR . $trainerId;
+        $key = self::getDexesKey($trainerId);
 
         /** @var string $json */
         $json = $this->cache->get($key, function () use ($trainerId) {
@@ -63,7 +63,7 @@ class ApiService
      */
     public function getPokedex(string $dexSlug, string $trainerId): array
     {
-        $key = self::CACHE_KEY_ALBUM . self::CACHE_KEY_SEPARATOR . $dexSlug . self::CACHE_KEY_SEPARATOR . $trainerId;
+        $key = self::getPokedexKey($dexSlug, $trainerId);
 
         /** @var string $json */
         $json = $this->cache->get($key, function () use ($dexSlug, $trainerId) {
@@ -87,8 +87,10 @@ class ApiService
      */
     public function getCatchStates(): array
     {
+        $key = self::getCatchStatesKey();
+
         /** @var string $json */
-        $json = $this->cache->get(self::CACHE_KEY_CATCH_STATES, function () {
+        $json = $this->cache->get($key, function () {
             $response = $this->client->request(
                 'GET',
                 "{$this->appApiUrl}/catch_states",
@@ -156,7 +158,7 @@ class ApiService
 
     public function invalidateCacheCatchStates(): void
     {
-        $this->cache->delete(self::CACHE_KEY_CATCH_STATES);
+        $this->cache->delete(self::getCatchStatesKey());
     }
 
     public function invalidateCacheAlbums(): void
@@ -164,9 +166,17 @@ class ApiService
         $this->invalidateCacheByType(self::CACHE_KEY_ALBUM);
     }
 
+    public function invalidateCacheAlbum(string $dexSlug, string $trainerId): void
+    {
+        $key = self::getPokedexKey($dexSlug, $trainerId);
+
+        $this->cache->delete($key);
+        $this->unregisterCache(self::CACHE_KEY_ALBUM, $key);
+    }
+
     private function registerCache(string $type, string $key): void
     {
-        $registerKey = self::CACHE_KEY_CACHE_REGISTER . self::CACHE_KEY_SEPARATOR . $type;
+        $registerKey = self::getRegisterTypeKey($type);
 
         /** @var string[] $list */
         $list = $this->cache->get($registerKey, function () {
@@ -182,12 +192,33 @@ class ApiService
         });
     }
 
+    private function unregisterCache(string $type, string $key): void
+    {
+        $registerKey = self::getRegisterTypeKey($type);
+
+        /** @var string[] $list */
+        $list = $this->cache->get($registerKey, function () {
+            return [];
+        });
+
+        $listKey = array_search($key, $list, true);
+        if (false !== $listKey) {
+            unset($list[$listKey]);
+            sort($list);
+        }
+
+        $this->cache->delete($registerKey);
+        $this->cache->get($registerKey, function () use ($list) {
+            return $list;
+        });
+    }
+
     /**
      * @return string[]
      */
     private function getRegisteredCache(string $type): array
     {
-        $key = self::CACHE_KEY_CACHE_REGISTER . self::CACHE_KEY_SEPARATOR . $type;
+        $key = self::getRegisterTypeKey($type);
 
         $list = $this->cache->get($key, function () {
             return [];
@@ -206,6 +237,26 @@ class ApiService
             $this->cache->delete($key);
         }
 
-        $this->cache->delete(self::CACHE_KEY_CACHE_REGISTER . self::CACHE_KEY_SEPARATOR . $type);
+        $this->cache->delete(self::getRegisterTypeKey($type));
+    }
+
+    private static function getDexesKey(string $trainerId): string
+    {
+        return self::CACHE_KEY_DEXES . self::CACHE_KEY_SEPARATOR . $trainerId;
+    }
+
+    private static function getPokedexKey(string $dexSlug, string $trainerId): string
+    {
+        return self::CACHE_KEY_ALBUM . self::CACHE_KEY_SEPARATOR . $dexSlug . self::CACHE_KEY_SEPARATOR . $trainerId;
+    }
+
+    private static function getCatchStatesKey(): string
+    {
+        return self::CACHE_KEY_CATCH_STATES;
+    }
+
+    private static function getRegisterTypeKey(string $type): string
+    {
+        return self::CACHE_KEY_CACHE_REGISTER . self::CACHE_KEY_SEPARATOR . $type;
     }
 }
