@@ -11,8 +11,9 @@ class AppExtension extends AbstractExtension
 {
     public const BANNER_DIR = '/img/dex/banner/';
 
-    public function __construct(private readonly string $projectDir)
-    {
+    public function __construct(
+        private readonly string $projectDir,
+    ) {
     }
 
     /**

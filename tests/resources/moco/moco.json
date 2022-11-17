@@ -350,6 +350,16 @@
   {
     "request": {
       "uri": {
+        "match": "/7b52009b64fd0a2a49e6d8a939753077792b0554/album/home"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/home.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/[\\w\\d]*/album/home"
       }
     },

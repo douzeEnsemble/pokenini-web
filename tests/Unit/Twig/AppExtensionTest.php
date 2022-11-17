@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Twig;
 
+use App\Security\User;
+use App\Security\UserTokenService;
 use App\Twig\AppExtension;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Security\Core\Security;
 use Twig\TwigFunction;
 
 class AppExtensionTest extends TestCase

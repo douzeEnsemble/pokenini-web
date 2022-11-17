@@ -7,7 +7,7 @@ namespace App\Tests\Functional\Controller\AlbumController;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AlbumControllerCustomeIconTest extends WebTestCase
+class AlbumControllerCustomIconTest extends WebTestCase
 {
     use TestNavTrait;
 
@@ -15,23 +15,23 @@ class AlbumControllerCustomeIconTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/r/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/r/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $mainCrawler = $client->getCrawler();
+        $this->assertResponseIsSuccessful();
 
         $this->assertEquals(
             'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/bulbasaur.png',
-            $mainCrawler->filter('#bulbasaur .album-image')->attr('src')
+            $crawler->filter('#bulbasaur img')->attr('src')
         );
 
         $this->assertEquals(
             'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/charmander.png',
-            $mainCrawler->filter('#charmander .album-image')->attr('src')
+            $crawler->filter('#charmander img')->attr('src')
         );
 
         $this->assertEquals(
             'https://archives.bulbagarden.net/media/upload/0/0b/HOME007.png',
-            $mainCrawler->filter('#squirtle .album-image')->attr('src')
+            $crawler->filter('#squirtle img')->attr('src')
         );
     }
 
@@ -39,23 +39,23 @@ class AlbumControllerCustomeIconTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/r/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/r/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $mainCrawler = $client->getCrawler();
+        $this->assertResponseIsSuccessful();
 
         $this->assertEquals(
             'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/bulbasaur.png',
-            $mainCrawler->filter('#bulbasaur .album-image')->attr('src')
+            $crawler->filter('#bulbasaur img')->attr('src')
         );
 
         $this->assertEquals(
             'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/charmander.png',
-            $mainCrawler->filter('#charmander .album-image')->attr('src')
+            $crawler->filter('#charmander img')->attr('src')
         );
 
         $this->assertEquals(
             'https://archives.bulbagarden.net/media/upload/0/0b/HOME007_s.png',
-            $mainCrawler->filter('#squirtle .album-image')->attr('src')
+            $crawler->filter('#squirtle img')->attr('src')
         );
     }
 }

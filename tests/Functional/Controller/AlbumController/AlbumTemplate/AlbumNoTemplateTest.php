@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functional\Controller\AlbumController\AlbumTemplate;
 
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AlbumNoTemplateTest extends WebTestCase
@@ -9,6 +10,10 @@ class AlbumNoTemplateTest extends WebTestCase
     public function testDexNoDefinedTemplate(): void
     {
         $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
 
         $crawler = $client->request('GET', '/fr/album/r/demonotemplate?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
@@ -51,6 +56,10 @@ class AlbumNoTemplateTest extends WebTestCase
     public function testFilterDexNoDefinedTemplate(): void
     {
         $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
 
         $crawler = $client->request('GET', '/fr/album/r/demonotemplate/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 

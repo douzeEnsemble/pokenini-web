@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functional\Controller\AlbumController\AlbumTemplate;
 
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AlbumTemplateList3Test extends WebTestCase
@@ -9,6 +10,10 @@ class AlbumTemplateList3Test extends WebTestCase
     public function testDexList3Template(): void
     {
         $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
 
         $crawler = $client->request('GET', '/fr/album/r/demolist3?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
@@ -46,6 +51,10 @@ class AlbumTemplateList3Test extends WebTestCase
     public function testFilterDexList3Template(): void
     {
         $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
 
         $crawler = $client->request('GET', '/fr/album/r/demolist3/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 

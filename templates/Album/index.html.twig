@@ -60,6 +60,31 @@
 </div>
 {% endblock container %}
 
+{% block navbarNavPre %}
+{% if not dex.is_private %}
+<li class="nav-item" id="share-link">
+    <a
+        class="nav-link"
+        href="{{ path('app_album_index', {
+            'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 
+            'dexSlug': currentDexSlug,
+            't': trainerId,
+        }) }}"
+    >
+        <i class="bi bi-share"></i>
+        {{ 'nav.share'|trans }}
+    </a>
+</li>
+{% else %}
+<li class="nav-item" id="private-tag">
+    <a class="nav-link disabled">
+        <i class="bi bi-lock"></i>
+        {{ 'nav.is_private'|trans }}
+    </a>
+</li>
+{% endif %}
+{% endblock navbarNavPre %}
+
 {% block foot_javascript %}
     {{ parent() }}
     {% if (mode is same as(constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE'))) %}
