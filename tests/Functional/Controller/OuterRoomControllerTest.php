@@ -61,12 +61,15 @@ class OuterRoomControllerTest extends WebTestCase
     private function assertOuterRoom(Crawler $crawler): void
     {
         $this->assertCount(1, $crawler->filter('h1'));
-        $this->assertCount(2, $crawler->filter('p'));
-        $this->assertStringContainsString('121212', $crawler->filter('p')->first()->text());
+        $this->assertCount(2, $crawler->filter('#main-container p'));
+        $this->assertStringContainsString('121212', $crawler->filter('#main-container  p')->first()->text());
         $this->assertCount(1, $crawler->filter('a.btn'));
         $this->assertStringContainsString('mailto:', $crawler->filter('a.btn')->attr('href') ?? '');
         $this->assertStringContainsString('121212', $crawler->filter('a.btn')->attr('href') ?? '');
 
-        $this->assertStringContainsString('/connect/logout', $crawler->filter('a')->last()->attr('href') ?? '');
+        $this->assertStringContainsString(
+            '/connect/logout',
+            $crawler->filter('#main-container a')->last()->attr('href') ?? ''
+        );
     }
 }

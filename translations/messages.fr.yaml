@@ -1,77 +1,80 @@
-logout: "Se déconnecter"
-login: "Se connecter"
+logout: 'Se déconnecter'
+login: 'Se connecter'
 nav:
-    home: "Accueil"
+    home: 'Accueil'
     back_home: "Retour à l'accueil"
-    madebyandfor: "Fait par et pour"
+    madebyandfor: 'Fait par et pour'
     lang:
-        fr: "Français"
-        en: "Anglais"
+        fr: 'Français'
+        en: 'Anglais'
     mode:
-        write: "Édition"
-        read: "Lecture"
-    admin: "Administration"
-    connected: "Connecté"
-    login: "Se connecter"
-    share: "Lien de partage"
-    is_private: "Album privé"
+        write: 'Édition'
+        read: 'Lecture'
+    admin: 'Administration'
+    connected: 'Connecté'
+    login: 'Se connecter'
+    share: 'Lien de partage'
+    is_private: 'Album privé'
 
 title:
-    home: "Accueil"
-    report: "Stats"
-    admin: "Administration"
-    update_data: "Mises à jour des données"
+    home: 'Accueil'
+    report: 'Stats'
+    admin: 'Administration'
+    update_data: 'Mises à jour des données'
     update:
-        labels: "Maj des labels"
-        games_and_dexes: "Maj des jeux et dex"
-        pokemons: "Maj des pokémons"
-        game_bundle_availability: "Maj des dispo des bundles de jeux"
-        dex_availability: "Maj des dispo des dex"
-    box: "Boite"
-    empty: " "
-    connect: "Connexion"
-    trainer: "Ton espace de dresseur"
+        labels: 'Maj des labels'
+        games_and_dexes: 'Maj des jeux et dex'
+        pokemons: 'Maj des pokémons'
+        game_bundle_availability: 'Maj des dispo des bundles de jeux'
+        dex_availability: 'Maj des dispo des dex'
+    box: 'Boite'
+    empty: ' '
+    connect: 'Connexion'
+    trainer: 'Ton espace de dresseur'
     outer_room: "Salle d'attente"
+    legals: 'Mentions Légales'
+    policy: 'Politique de confidentialité'
+    cookies: 'Cookies'
 
 home:
     no_dex: "Y'a pas d'album à afficher."
     
 stats:
-    total: "Total"
+    total: 'Total'
 
 album:
     icon:
         alt:
-            regular: "Icone de"
-            shiny: "Icone chromatique de"
+            regular: 'Icone de'
+            shiny: 'Icone chromatique de'
     update:
-        title: "Maj"
+        title: 'Maj'
         success: 
-            prefix: "Le changement de statut de"
-            radical: "%pokemonName%"
-            suffix: "a été enregistré"
+            prefix: 'Le changement de statut de'
+            radical: '%pokemonName%'
+            suffix: 'a été enregistré'
         error:
-            prefix: "Le changement de statut de"
-            radical: "%pokemonName%"
-            suffix: "a échoué"
+            prefix: 'Le changement de statut de'
+            radical: '%pokemonName%'
+            suffix: 'a échoué'
     another_trainers_album: "Album d'un autre dresseur"
 
 update:
     labels: 
-        success: "La maj des labels a été effectuée"
-        error: "La maj des labels a échouée"
+        success: 'La maj des labels a été effectuée'
+        error: 'La maj des labels a échouée'
     games_and_dexes: 
-        success: "La maj des jeux et dex a été effectuée"
-        error: "La maj des jeux et dex a échouée"
+        success: 'La maj des jeux et dex a été effectuée'
+        error: 'La maj des jeux et dex a échouée'
     pokemons: 
-        success: "La maj des pokémons a été effectuée"
-        error: "La maj des pokémons a échouée"
+        success: 'La maj des pokémons a été effectuée'
+        error: 'La maj des pokémons a échouée'
     game_bundle_availability: 
-        success: "La maj des dispo des bundles de jeux a été effectuée"
-        error: "La maj des dispo des bundles de jeux a échouée"
+        success: 'La maj des dispo des bundles de jeux a été effectuée'
+        error: 'La maj des dispo des bundles de jeux a échouée'
     dex_availability: 
-        success: "La maj des dispo des dex a été effectuée"
-        error: "La maj des dispo des dex a échouée"
+        success: 'La maj des dispo des dex a été effectuée'
+        error: 'La maj des dispo des dex a échouée'
 
 connect:
     disclaimer: |
@@ -88,36 +91,36 @@ trainer:
         Bon l'instant tu peux pas y faire grand chose. 
         Mais ça viendra.
     personnal_data:
-        title: "Données personnelles"
+        title: 'Données personnelles'
         intro: "Voici les données personnelles que j'ai te concernant"
         outro: "Voilà. C'est tout"
         head:
-            type: "Type"
-            value: "Valeur"
+            type: 'Type'
+            value: 'Valeur'
         body:
-            id: "Identifiant"
+            id: 'Identifiant'
     dex:
-        title: "Personnalise tes albums"
-        see: "Voir"
+        title: 'Personnalise tes albums'
+        see: 'Voir'
         attributes:
             is_private: 
-                label: "Album privé"
-                help: "Uniquement accessible par toi"
+                label: 'Album privé'
+                help: 'Uniquement accessible par toi'
             is_on_home: 
                 label: "Album visible sur la page d'accueil"
                 help: "La page d'accueil n'est visible que par toi. C'est ta page."
         update:
-            title: "Maj"
+            title: 'Maj'
             success: 
-                prefix: "Le paramétrage de "
-                radical: "%dexName%"
-                suffix: "a été enregistré"
+                prefix: 'Le paramétrage de '
+                radical: '%dexName%'
+                suffix: 'a été enregistré'
             error:
-                prefix: "Le paramétrage de "
-                radical: "%dexName%"
+                prefix: 'Le paramétrage de '
+                radical: '%dexName%'
                 suffix: "n'a pas été enregistré"
     logout:
-        title: "Session"
+        title: 'Session'
 
 outer_room:
     message: |
@@ -136,6 +139,12 @@ outer_room:
         Tu peux te déconnecter avec le lien en dessous.
         Merci d'être passé
     mail: 
-        link: "Envoyer une demande" 
-        subject: "Je peux avoir accès à Pokénini stp ?"
-        body: "Mon identifiant Google OpenId est `%id%`"
+        link: 'Envoyer une demande' 
+        subject: 'Je peux avoir accès à Pokénini stp ?'
+        body: 'Mon identifiant Google OpenId est `%id%`'
+
+footer:
+    home: 'Accueil'
+    legals: 'Mentions Légales'
+    policy: 'Politique de confidentialité'
+    cookies: 'Cookies'
