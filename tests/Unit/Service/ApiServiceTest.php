@@ -31,7 +31,7 @@ class ApiServiceTest extends TestCase
 
     public function testGetPokedex(): void
     {
-        $service = $this->getService('7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze');
+        $service = $this->getService('dex/7b52009b64fd0a2a49e6d8a939753077792b0554/douze');
 
         $this->assertEquals(
             [
@@ -40,7 +40,7 @@ class ApiServiceTest extends TestCase
                     'machin',
                     'chose',
                 ],
-                'url' => '7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze',
+                'url' => 'dex/7b52009b64fd0a2a49e6d8a939753077792b0554/douze',
             ],
             $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554'),
         );
@@ -80,8 +80,8 @@ class ApiServiceTest extends TestCase
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
                 ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list'],
-                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze'],
-                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/treize'],
+                ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/douze'],
+                ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/treize'],
             )
             ->willReturnOnConsecutiveCalls(
                 $response,
@@ -170,8 +170,8 @@ class ApiServiceTest extends TestCase
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
                 ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list'],
-                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/douze'],
-                ['GET', 'api/7b52009b64fd0a2a49e6d8a939753077792b0554/album/treize'],
+                ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/douze'],
+                ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/treize'],
             )
             ->willReturnOnConsecutiveCalls(
                 $response,
