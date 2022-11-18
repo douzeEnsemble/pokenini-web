@@ -20,7 +20,8 @@ function saveChange(target)
   var formData = new FormData(form);
   var data = {};
   for (const [key, value] of formData) {
-    data[key.replace(dexSlug+'-', '')] = value;
+    // Only checked input are returned
+    data[key.replace(dexSlug+'-', '')] = true;
   }
 
   const request = new Request(
