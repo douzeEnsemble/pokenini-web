@@ -69,7 +69,7 @@ class ApiService
         $json = $this->cache->get($key, function () use ($dexSlug, $trainerId) {
             $response = $this->client->request(
                 'GET',
-                "{$this->appApiUrl}/dex/$trainerId/$dexSlug"
+                "{$this->appApiUrl}/$trainerId/album/$dexSlug"
             );
 
             /** @var string */
