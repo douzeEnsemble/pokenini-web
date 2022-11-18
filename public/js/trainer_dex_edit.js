@@ -16,7 +16,6 @@ function saveChange(target)
 {
   const form = target.closest('form');
   const dexSlug = form.getAttribute('data-dex');
-  console.log(form);
 
   var formData = new FormData(form);
   var data = {};
@@ -28,7 +27,7 @@ function saveChange(target)
     '/'+locale+'/trainer/dex/'+dexSlug,
     {
         method: 'PUT',
-        body: data
+        body: JSON.stringify(data)
     }
   );
 
