@@ -66,17 +66,4 @@ class AlbumControllerAccessTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(404);
     }
-
-    public function testAccessNonExistingAlbum(): void
-    {
-        $client = static::createClient();
-
-        $user = new User('789465465489');
-        $user->addTrainerRole();
-        $client->loginUser($user);
-
-        $client->request('GET', '/fr/album/r/douze');
-
-        $this->assertResponseStatusCodeSame(404);
-    }
 }
