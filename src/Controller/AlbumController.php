@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Controller\Traits\DexesRequestTrait;
 use App\DTO\AlbumMode;
 use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenService;
@@ -15,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
@@ -56,18 +54,23 @@ class AlbumController extends AbstractController
         }
 
         if (empty($trainerId)) {
-            throw new NotFoundHttpException();
+            return new Response('', 404);
         }
 
         if (AlbumMode::SHORT_MODE_WRITE === $mode) {
             $this->denyAccessUnlessGranted('ROLE_TRAINER');
         }
 
-        $pokedex = $this->apiService->getPokedex($dexSlug, $trainerId);
+        try {
+            $pokedex = $this->apiService->getPokedex($dexSlug, $trainerId);
+        } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
+            return new Response('', 404);
+        }
+
         $dex = $pokedex['dex'];
 
         if ($dex['is_private'] && $trainerId != $loggedTrainerId) {
-            throw new NotFoundHttpException();
+            return new Response('', 404);
         }
 
         $catchStates = $this->apiService->getCatchStates();

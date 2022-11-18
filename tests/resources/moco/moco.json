@@ -60,7 +60,7 @@
   {
     "request": {
       "uri": {
-        "match": "/f86cbe805674d85f7806b175b70647a6a9334631/album/demo"
+        "match": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/demo"
       }
     },
     "response": {
@@ -70,7 +70,7 @@
   {
     "request": {
       "uri": {
-        "match": "/6c33064427a5b419ca8eb3f7d11a0807f66cab22/album/demo"
+        "match": "/dex/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
       }
     },
     "response": {
@@ -80,7 +80,7 @@
   {
     "request": {
       "uri": {
-        "match": "/7b52009b64fd0a2a49e6d8a939753077792b0554/album/demo"
+        "match": "/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       }
     },
     "response": {
@@ -90,257 +90,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/demo"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/demo.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/demolist3"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/demo_list3.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/demolist5"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/demo_list5.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/demolist7"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/demo_list7.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/demonotemplate"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/demo_notemplate.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/demounknowntemplate"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/demo_unknowntemplate.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/demolite"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/demo-lite.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/demoliteshiny"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/demo-lite-shiny.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/redgreenblueyellow"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/redgreenblueyellow.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/goldsilvercrystal"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/goldsilvercrystal.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/rubysapphireemerald"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/rubysapphireemerald.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/redfireleafgreen"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/redfireleafgreen.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/diamondpearlplatinium"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/diamondpearlplatinium.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/heartgoldsoulsilver"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/heartgoldsoulsilver.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/blackwhite"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/blackwhite.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/black2white2"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/black2white2.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/xy"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/xy.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/omegarubyalphasapphire"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/omegarubyalphasapphire.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/sunmoon"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/sunmoon.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/ultrasunultramoon"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/ultrasunultramoon.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/letsgopikachuletsgoeevee"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/letsgopikachuletsgoeevee.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/pokemongo"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/homepogo.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/swordshield"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/swordshield.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/brillanddiamondshiningpearl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/brillanddiamondshiningpearl.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/[\\w\\d]*/album/legendarceus"
-      }
-    },
-    "response": {
-      "file": "/var/moco/album/default/legendarceus.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/6c33064427a5b419ca8eb3f7d11a0807f66cab22/album/home"
+        "match": "/dex/6c33064427a5b419ca8eb3f7d11a0807f66cab22/home"
       }
     },
     "response": {
@@ -350,7 +100,7 @@
   {
     "request": {
       "uri": {
-        "match": "/7b52009b64fd0a2a49e6d8a939753077792b0554/album/home"
+        "match": "/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/home"
       }
     },
     "response": {
@@ -360,7 +110,267 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/home"
+        "match": "/dex/[\\w\\d]*/demo"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/demolist3"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_list3.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/demolist5"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_list5.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/demolist7"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_list7.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/demonotemplate"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_notemplate.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/demounknowntemplate"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_unknowntemplate.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/demolite"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo-lite.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/demoliteshiny"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo-lite-shiny.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/redgreenblueyellow"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/redgreenblueyellow.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/goldsilvercrystal"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/goldsilvercrystal.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/rubysapphireemerald"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/rubysapphireemerald.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/redfireleafgreen"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/redfireleafgreen.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/diamondpearlplatinium"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/diamondpearlplatinium.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/heartgoldsoulsilver"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/heartgoldsoulsilver.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/blackwhite"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/blackwhite.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/black2white2"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/black2white2.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/xy"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/xy.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/omegarubyalphasapphire"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/omegarubyalphasapphire.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/sunmoon"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/sunmoon.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/ultrasunultramoon"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/ultrasunultramoon.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/letsgopikachuletsgoeevee"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/letsgopikachuletsgoeevee.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/pokemongo"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/homepogo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/swordshield"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/swordshield.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/brillanddiamondshiningpearl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/brillanddiamondshiningpearl.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/legendarceus"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/legendarceus.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/douze"
+      }
+    },
+    "response": {
+      "status": "404"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/home"
       }
     },
     "response": {
@@ -370,7 +380,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/homeshiny"
+        "match": "/dex/[\\w\\d]*/homeshiny"
       }
     },
     "response": {
@@ -380,7 +390,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/homepokemongo"
+        "match": "/dex/[\\w\\d]*/homepokemongo"
       }
     },
     "response": {
@@ -390,7 +400,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/alpha"
+        "match": "/dex/[\\w\\d]*/alpha"
       }
     },
     "response": {
@@ -400,7 +410,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/[\\w-]*/squirtle"
+        "match": "/dex/[\\w\\d]*/[\\w-]*/squirtle"
       },
       "method": "patch"
     },
@@ -411,7 +421,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/[\\w-]*/wartortle"
+        "match": "/dex/[\\w\\d]*/[\\w-]*/wartortle"
       },
       "method": "patch"
     },
@@ -422,7 +432,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/[\\w-]*/blastoise"
+        "match": "/dex/[\\w\\d]*/[\\w-]*/blastoise"
       },
       "method": "patch"
     },
@@ -433,7 +443,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/[\\w-]*/[\\w-]*"
+        "match": "/dex/[\\w\\d]*/[\\w-]*/[\\w-]*"
       },
       "method": "patch"
     },
@@ -444,7 +454,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/[\\w-]*/squirtle"
+        "match": "/dex/[\\w\\d]*/[\\w-]*/squirtle"
       },
       "method": "put"
     },
@@ -455,7 +465,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/[\\w-]*/wartortle"
+        "match": "/dex/[\\w\\d]*/[\\w-]*/wartortle"
       },
       "method": "put"
     },
@@ -466,7 +476,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/[\\w-]*/blastoise"
+        "match": "/dex/[\\w\\d]*/[\\w-]*/blastoise"
       },
       "method": "put"
     },
@@ -477,7 +487,7 @@
   {
     "request": {
       "uri": {
-        "match": "/[\\w\\d]*/album/[\\w-]*/[\\w-]*"
+        "match": "/dex/[\\w\\d]*/[\\w-]*/[\\w-]*"
       },
       "method": "put"
     },
