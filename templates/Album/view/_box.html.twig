@@ -9,7 +9,7 @@
         {% endfor %}
     </div>
 {% else %}
-    <div id="box-1" class="box">
+    <div id="box-1" class="box row">
         <h2>{{ 'title.box'|trans }} 1</h2>
         <div class="row row-cols-6 album-line">
             {% for item in list %}
@@ -24,7 +24,7 @@
         </div>
     </div>
     <hr>
-    <div id="box-{{ boxNumber }}" class="box">
+    <div id="box-{{ boxNumber }}" class="box row">
         <h2 class="sticky-top">{{ 'title.box'|trans }} {{ boxNumber }}</h2>
         <div class="row row-cols-6 album-line">
             {% endif %}
