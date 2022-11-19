@@ -52,6 +52,7 @@ class TrainerController extends AbstractController
             );
 
             $this->apiService->invalidateCacheAlbum($dexSlug, $trainerId);
+            $this->apiService->invalidateCacheDex($trainerId);
         } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
             return new JsonResponse(['error' => $e->getMessage()], 500);
         }
