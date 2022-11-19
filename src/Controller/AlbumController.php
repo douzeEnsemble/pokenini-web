@@ -103,7 +103,7 @@ class AlbumController extends AbstractController
                 $request->getMethod(),
                 $dexSlug,
                 $pokemonSlug,
-                (string)$request->getContent(),
+                (string) $request->getContent(),
                 $this->userTokenService->getLoggedUserToken()
             );
 

@@ -93,7 +93,7 @@ class ApiServiceTest extends TestCase
 
         $cache = new ArrayAdapter();
 
-        $service = new ApiService($client, 'api', $cache);
+        $service = new ApiService($client, 'api', $cache, 'web', 'douze');
 
         $service->getCatchStates();
         $this->assertCount(1, $cache->getValues());
@@ -166,7 +166,7 @@ class ApiServiceTest extends TestCase
 
         $cache = new ArrayAdapter();
 
-        $service = new ApiService($client, 'api', $cache);
+        $service = new ApiService($client, 'api', $cache, 'web', 'douze');
 
         $service->getCatchStates();
         $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
@@ -219,7 +219,7 @@ class ApiServiceTest extends TestCase
 
         $cache = new ArrayAdapter();
 
-        $service = new ApiService($client, 'api', $cache);
+        $service = new ApiService($client, 'api', $cache, 'web', 'douze');
 
         $service->modifyAlbum('PATCH', 'a', 'b', 'c', '7b52009b64fd0a2a49e6d8a939753077792b0554');
         $service->modifyAlbum('PUT', 'a', 'b', 'c', '7b52009b64fd0a2a49e6d8a939753077792b0554');
@@ -239,7 +239,7 @@ class ApiServiceTest extends TestCase
 
         $cache = new ArrayAdapter();
 
-        $service = new ApiService($client, 'api', $cache);
+        $service = new ApiService($client, 'api', $cache, 'web', 'douze');
 
         $service->modifyDex('a', '{"b": "c"}', '7b52009b64fd0a2a49e6d8a939753077792b0554');
     }
@@ -273,7 +273,7 @@ class ApiServiceTest extends TestCase
             ->willReturn($response)
         ;
 
-        return new ApiService($client, 'api', new ArrayAdapter());
+        return new ApiService($client, 'api', new ArrayAdapter(), 'web', 'douze');
     }
 
     private function getDexesJsonSample(): string
