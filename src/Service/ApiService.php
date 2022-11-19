@@ -126,7 +126,7 @@ class ApiService
 
         $this->client->request(
             $method,
-            "{$this->appApiUrl}/album/$dexSlug/$pokemonSlug/u/$trainerId",
+            "{$this->appApiUrl}/album/$trainerId/$dexSlug/$pokemonSlug",
             [
                 'body' => $catchStateSlug,
             ]
