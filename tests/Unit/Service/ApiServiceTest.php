@@ -159,19 +159,20 @@ class ApiServiceTest extends TestCase
 
         $dexesReponse = $this->createMock(ResponseInterface::class);
         $dexesReponse
-            ->expects($this->once())
+            ->expects($this->exactly(2))
             ->method('getContent')
             ->willReturn($dexesJson)
         ;
 
         $client
-            ->expects($this->exactly(4))
+            ->expects($this->exactly(5))
             ->method('request')
             ->withConsecutive(
                 ['GET', 'api/catch_states'],
                 ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list'],
                 ['GET', 'api/album/7b52009b64fd0a2a49e6d8a939753077792b0554/douze'],
                 ['GET', 'api/album/7b52009b64fd0a2a49e6d8a939753077792b0554/treize'],
+                ['GET', 'api/dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list'],
             )
             ->willReturnOnConsecutiveCalls(
                 $response,
@@ -202,6 +203,16 @@ class ApiServiceTest extends TestCase
         $service->invalidateCacheAlbum('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(5, $cache->getValues());
         $this->assertArrayNotHasKey('album_douze_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+
+        $service->invalidateCacheDex('7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $this->assertCount(4, $cache->getValues());
+        $this->assertArrayNotHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_dexes', $cache->getValues());
+
+        $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $this->assertCount(5, $cache->getValues());
+        $this->assertArrayHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_dexes', $cache->getValues());
 
         $service->invalidateCacheDexes();
         $this->assertCount(3, $cache->getValues());

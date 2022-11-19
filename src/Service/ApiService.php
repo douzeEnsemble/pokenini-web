@@ -166,6 +166,14 @@ class ApiService
         $this->invalidateCacheByType(self::CACHE_KEY_ALBUM);
     }
 
+    public function invalidateCacheDex(string $trainerId): void
+    {
+        $key = self::getDexesKey($trainerId);
+
+        $this->cache->delete($key);
+        $this->unregisterCache(self::CACHE_KEY_DEXES, $key);
+    }
+
     public function invalidateCacheAlbum(string $dexSlug, string $trainerId): void
     {
         $key = self::getPokedexKey($dexSlug, $trainerId);
