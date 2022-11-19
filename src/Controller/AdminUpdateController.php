@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Service\ApiService;
 use App\Service\CacheInvalidatorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,18 +23,14 @@ class AdminUpdateController extends AbstractController
     )]
     public function update(
         string $name,
-        HttpClientInterface $client,
-        string $appApiUrl,
+        ApiService $apiService,
         TranslatorInterface $translator,
         CacheInvalidatorService $cacheInvalidatorService
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         try {
-            $client->request(
-                'POST',
-                "{$appApiUrl}/istration/update/$name"
-            );
+            $apiService->adminUpdate($name);
 
             $cacheInvalidatorService->invalidate($name);
 

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Security\User;
-use RuntimeException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
@@ -25,7 +23,9 @@ class ApiService
     public function __construct(
         private readonly HttpClientInterface $client,
         private readonly string $appApiUrl,
-        private readonly CacheInterface $cache
+        private readonly CacheInterface $cache,
+        private readonly string $apiLogin,
+        private readonly string $apiPassword
     ) {
     }
 
@@ -44,6 +44,10 @@ class ApiService
                 [
                     'headers' => [
                         'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
                     ],
                 ]
             );
@@ -69,7 +73,13 @@ class ApiService
         $json = $this->cache->get($key, function () use ($dexSlug, $trainerId) {
             $response = $this->client->request(
                 'GET',
-                "{$this->appApiUrl}/album/$trainerId/$dexSlug"
+                "{$this->appApiUrl}/album/$trainerId/$dexSlug",
+                [
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
             );
 
             /** @var string */
@@ -97,6 +107,10 @@ class ApiService
                 [
                     'headers' => [
                         'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
                     ],
                 ]
             );
@@ -129,6 +143,10 @@ class ApiService
             "{$this->appApiUrl}/album/$trainerId/$dexSlug/$pokemonSlug",
             [
                 'body' => $catchStateSlug,
+                'auth_basic' => [
+                    $this->apiLogin,
+                    $this->apiPassword,
+                ],
             ]
         );
     }
@@ -147,6 +165,24 @@ class ApiService
             "{$this->appApiUrl}/dex/$trainerId/$dexSlug",
             [
                 'body' => $data,
+                'auth_basic' => [
+                    $this->apiLogin,
+                    $this->apiPassword,
+                ],
+            ]
+        );
+    }
+
+    public function adminUpdate(string $type): void
+    {
+        $this->client->request(
+            'POST',
+            "{$this->appApiUrl}/istration/update/$type",
+            [
+                'auth_basic' => [
+                    $this->apiLogin,
+                    $this->apiPassword,
+                ],
             ]
         );
     }

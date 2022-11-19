@@ -1,7 +1,10 @@
 [
   {
     "request": {
-      "uri": "/catch_states"
+      "uri": "/catch_states",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "file": "/var/moco/catch_states.json"
@@ -9,7 +12,10 @@
   },
   {
     "request": {
-      "uri": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/list"
+      "uri": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/list",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "file": "/var/moco/dexes/f86cbe805674d85f7806b175b70647a6a9334631.json"
@@ -17,7 +23,10 @@
   },
   {
     "request": {
-      "uri": "/dex/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c/list"
+      "uri": "/dex/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c/list",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "file": "/var/moco/dexes/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c.json"
@@ -25,7 +34,10 @@
   },
   {
     "request": {
-      "uri": "/dex/356a192b7913b04c54574d18c28d46e6395428ab/list"
+      "uri": "/dex/356a192b7913b04c54574d18c28d46e6395428ab/list",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "file": "/var/moco/dexes/356a192b7913b04c54574d18c28d46e6395428ab.json"
@@ -33,7 +45,10 @@
   },
   {
     "request": {
-      "uri": "/dex/3cae633f6e04077b2abf2144b79a0ce4698d8690/list"
+      "uri": "/dex/3cae633f6e04077b2abf2144b79a0ce4698d8690/list",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "file": "/var/moco/dexes/3cae633f6e04077b2abf2144b79a0ce4698d8690.json"
@@ -41,7 +56,10 @@
   },
   {
     "request": {
-      "uri": "/dex/da4b9237bacccdf19c0760cab7aec4a8359010b0/list"
+      "uri": "/dex/da4b9237bacccdf19c0760cab7aec4a8359010b0/list",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "file": "/var/moco/dexes/da4b9237bacccdf19c0760cab7aec4a8359010b0.json"
@@ -51,6 +69,9 @@
     "request": {
       "uri": {
         "match": "/dex/[\\w\\d]*/list"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -61,6 +82,9 @@
     "request": {
       "uri": {
         "match": "/album/f86cbe805674d85f7806b175b70647a6a9334631/demo"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -71,6 +95,9 @@
     "request": {
       "uri": {
         "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -81,15 +108,22 @@
     "request": {
       "uri": {
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
       "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo.json"
     }
-  },{
+  },
+  {
     "request": {
       "uri": {
         "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/home"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -100,6 +134,9 @@
     "request": {
       "uri": {
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/home"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -110,6 +147,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/demo"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -120,6 +160,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/demolist3"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -130,6 +173,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/demolist5"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -140,6 +186,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/demolist7"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -150,6 +199,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/demonotemplate"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -160,6 +212,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/demounknowntemplate"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -170,6 +225,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/demolite"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -180,6 +238,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/demoliteshiny"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -190,6 +251,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/redgreenblueyellow"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -200,6 +264,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/goldsilvercrystal"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -210,6 +277,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/rubysapphireemerald"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -220,6 +290,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/redfireleafgreen"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -230,6 +303,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/diamondpearlplatinium"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -240,6 +316,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/heartgoldsoulsilver"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -250,6 +329,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/blackwhite"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -260,6 +342,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/black2white2"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -270,6 +355,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/xy"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -280,6 +368,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/omegarubyalphasapphire"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -290,6 +381,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/sunmoon"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -300,6 +394,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/ultrasunultramoon"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -310,6 +407,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/letsgopikachuletsgoeevee"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -320,6 +420,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/pokemongo"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -330,6 +433,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/swordshield"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -340,6 +446,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/brillanddiamondshiningpearl"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -350,6 +459,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/legendarceus"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -360,6 +472,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/douze"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -370,6 +485,9 @@
     "request": {
       "uri": {
         "match": "/6c33064427a5b419ca8eb3f7d11a0807f66cab22/album/home"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -380,6 +498,9 @@
     "request": {
       "uri": {
         "match": "/7b52009b64fd0a2a49e6d8a939753077792b0554/album/home"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -390,6 +511,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/home"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -400,6 +524,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/homeshiny"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -410,6 +537,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/homepokemongo"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -420,6 +550,9 @@
     "request": {
       "uri": {
         "match": "/album/[\\w\\d]*/alpha"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -431,7 +564,10 @@
       "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/squirtle"
       },
-      "method": "patch"
+      "method": "patch",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "401"
@@ -442,7 +578,10 @@
       "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/wartortle"
       },
-      "method": "patch"
+      "method": "patch",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "403"
@@ -453,7 +592,10 @@
       "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/blastoise"
       },
-      "method": "patch"
+      "method": "patch",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "500"
@@ -464,7 +606,10 @@
       "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/[\\w-]*"
       },
-      "method": "patch"
+      "method": "patch",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "200"
@@ -475,7 +620,10 @@
       "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/squirtle"
       },
-      "method": "put"
+      "method": "put",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "401"
@@ -486,7 +634,10 @@
       "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/wartortle"
       },
-      "method": "put"
+      "method": "put",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "403"
@@ -497,7 +648,10 @@
       "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/blastoise"
       },
-      "method": "put"
+      "method": "put",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "500"
@@ -508,7 +662,10 @@
       "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/[\\w-]*"
       },
-      "method": "put"
+      "method": "put",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "201"
@@ -519,7 +676,10 @@
       "uri": {
         "match": "/istration/update/labels"
       },
-      "method": "post"
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "200"
@@ -530,7 +690,10 @@
       "uri": {
         "match": "/istration/update/games_and_dexes"
       },
-      "method": "post"
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "200"
@@ -541,7 +704,10 @@
       "uri": {
         "match": "/istration/update/pokemons"
       },
-      "method": "post"
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "200"
@@ -552,7 +718,10 @@
       "uri": {
         "match": "/istration/update/game_bundle_availability"
       },
-      "method": "post"
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "200"
@@ -563,7 +732,10 @@
       "uri": {
         "match": "/istration/update/dex_availability"
       },
-      "method": "post"
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "500"
@@ -574,7 +746,10 @@
       "uri": {
         "match": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/redgreenblueyellow"
       },
-      "method": "put"
+      "method": "put",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "500"
@@ -585,7 +760,10 @@
       "uri": {
         "match": "/dex/[\\w\\d]*/[\\w-]*"
       },
-      "method": "put"
+      "method": "put",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
     },
     "response": {
       "status": "201"
