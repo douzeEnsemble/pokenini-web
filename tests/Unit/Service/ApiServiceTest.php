@@ -136,26 +136,7 @@ class ApiServiceTest extends TestCase
             ->willReturn('{}')
         ;
 
-        $dexesJson = <<<JSON
-        [
-          {
-            "isShiny": false,
-            "isPrivate": true,
-            "isDisplayForm": true,
-            "name": "Douze",
-            "frenchName": "Douze",
-            "slug": "douze"
-          },
-          {
-            "isShiny": false,
-            "isPrivate": true,
-            "isDisplayForm": true,
-            "name": "Treize",
-            "frenchName": "Treize",
-            "slug": "treize"
-          }
-        ]
-        JSON;
+        $dexesJson = $this->getDexesJsonSample();
 
         $dexesReponse = $this->createMock(ResponseInterface::class);
         $dexesReponse
@@ -293,5 +274,29 @@ class ApiServiceTest extends TestCase
         ;
 
         return new ApiService($client, 'api', new ArrayAdapter());
+    }
+
+    private function getDexesJsonSample(): string
+    {
+        return <<<JSON
+        [
+          {
+            "isShiny": false, 
+            "isPrivate": true,
+            "isDisplayForm": true,
+            "name": "Douze",
+            "frenchName": "Douze",
+            "slug": "douze"
+          },
+          {
+            "isShiny": false,
+            "isPrivate": true,
+            "isDisplayForm": true,
+            "name": "Treize",
+            "frenchName": "Treize",
+            "slug": "treize"
+          }
+        ]
+        JSON;
     }
 }
