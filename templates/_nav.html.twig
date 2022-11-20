@@ -1,8 +1,8 @@
 {% block nav %}
 
 {% set currentRoute = app.request.get('_route') %}
-{% set currentRouteParameters = app.request.get('_route_params') %}
-{% set locale = app.request.get('_locale') %}
+{% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
+{% set locale = app.request.locale %}
 
 <nav class="navbar fixed-bottom navbar-expand-sm bg-light">
     <div class="container-fluid">
@@ -22,7 +22,9 @@
                     {% set langTarget = locale == 'fr' ? 'en' : 'fr' %}
                     <a
                         class="nav-link"
-                        href="{{ path(currentRoute, currentRouteParameters|merge({'_locale': langTarget})) }}"
+                        href="{{ currentRoute 
+                            ? path(currentRoute, currentRouteParameters|merge({'_locale': langTarget}))
+                            : app.request.requesturi|replace({'/fr/': '/en/', '/en/': '/fr/'}) }}"
                     >
                         <i class="bi bi-translate"></i>
                         {{ ('nav.lang.'~langTarget)|trans([], 'messages', langTarget) }}
