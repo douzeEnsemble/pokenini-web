@@ -41,7 +41,7 @@ title:
         500: "There was a shit. It's not you, it's us"
 
 home:
-    no_dex: 'There are no albums to display.'
+    no_dex: 'There are no albums to display. You can add them to your <a>trainer space</a>'
 
 stats:
     total: 'Total'

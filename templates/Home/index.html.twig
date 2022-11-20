@@ -50,7 +50,7 @@
             </div>
                 {% else %}
             <div class="alert alert-info mt-5" role="alert">
-                <p>{{ 'home.no_dex'|trans }}</p>
+                <p>{{ 'home.no_dex'|trans|replace({'<a>': '<a href="'~path('app_trainer_index')~'">'})|raw }}</p>
             </div>
                 {% endif %}
             {% endfor %}

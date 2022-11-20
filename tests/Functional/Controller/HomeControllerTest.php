@@ -91,6 +91,8 @@ class HomeControllerTest extends WebTestCase
         $mainCrawler = $client->getCrawler();
 
         $this->assertCount(0, $mainCrawler->filter('.home-item'));
+        $this->assertCount(1, $mainCrawler->filter('.alert'));
+        $this->assertCount(1, $mainCrawler->filter('.alert a'));
     }
 
     public function testConnectedHomeSomeOnHomecDexes(): void
