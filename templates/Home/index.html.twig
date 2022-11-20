@@ -1,5 +1,5 @@
 {% set currentRouteParameters = app.request.get('_route_params') %}
-{% set locale = app.request.get('_locale') %}
+{% set locale = app.request.locale %}
 
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}

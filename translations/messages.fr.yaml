@@ -35,6 +35,10 @@ title:
     legals: 'Mentions Légales'
     policy: 'Politique de confidentialité'
     cookies: 'Cookies'
+    error:
+        unknown: "Y'a eu une erreur"
+        404: "La page n'a pas été trouvée"
+        500: "Y'a eu une merde. C'est pas toi, c'est nous"
 
 home:
     no_dex: "Y'a pas d'album à afficher."
@@ -148,3 +152,25 @@ footer:
     legals: 'Mentions Légales'
     policy: 'Politique de confidentialité'
     cookies: 'Cookies'
+
+error:
+    unknown:
+        text: |
+            Merde ! Y'a eu une erreur. Je sais pas où. 
+            Mais t'inquiète pas c'est pas toi. C'est nous ... 
+            Enfin peut être pas vu qu'on sait pas d'où vient l'erreur.
+
+            N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée, 
+            une capture, le max d'info.
+    404:
+        text: |
+            La page que tu as demandée est introuvable. Je la trouve pas. 
+            Vérifie l'URL ou reviens à la page d'accueil en utilisant le lien juste en dessous.
+    500:
+        text: |
+            Alors là c'est la merde ! Y'a eu une coui**e quelque part.
+            Elle vient de mon côté. Tu n'y ai pour rien.
+
+            N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée, 
+            une capture, le max d'info.
+        

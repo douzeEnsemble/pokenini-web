@@ -1,5 +1,5 @@
 {% macro albumCase(item, dex, mode, catchStates) %}
-    {% set locale = app.request.get('_locale') %}
+    {% set locale = app.request.locale %}
     {% set currentCatchState = item.catch_state_slug ?? 'no' %}
 <div
     class="album-case col catch-state-{{ currentCatchState }}"
@@ -93,7 +93,7 @@
 {% endmacro %}
 
 {% macro toasts(item) %}
-{% set locale = app.request.get('_locale') %}
+{% set locale = app.request.locale %}
 {% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
 <div id="successToast-{{ item.pokemon_slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">

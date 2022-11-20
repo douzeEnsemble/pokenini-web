@@ -35,6 +35,10 @@ title:
     legals: 'Legal Notice'
     policy: 'Privacy Policy'
     cookies: 'Cookies'
+    error:
+        unknown: "There was an error"
+        404: "The page was not found"
+        500: "There was a shit. It's not you, it's us"
 
 home:
     no_dex: 'There are no albums to display.'
@@ -147,3 +151,23 @@ footer:
     legals: 'Legal Notice'
     policy: 'Privacy Policy'
     cookies: 'Cookies'
+error:
+    unknown:
+        text: |
+            Shit ! There was an error. I don't know where.
+            But don't worry, it's not you. It's us ...
+            Finally can not be seen that we do not know where the error comes from.
+
+            Do not hesitate to point out the error to us. How did you meet her,
+            a capture, the max of info.
+    404:
+        text: |
+            The page you requested could not be found. I can't find her.
+            Check the URL or return to the home page using the link just below.
+    500:
+        text: |
+            So that's the shit! There was a coui**e somewhere.
+            She comes from my side. You have nothing to do with it.
+
+            Do not hesitate to point out the error to us. How did you meet her,
+            a capture, the max of info.
