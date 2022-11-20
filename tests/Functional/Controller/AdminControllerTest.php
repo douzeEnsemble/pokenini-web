@@ -17,7 +17,7 @@ class AdminControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/istrateur/');
+        $client->request('GET', '/fr/istration/');
 
         $this->assertResponseStatusCodeSame(307);
     }
@@ -28,7 +28,7 @@ class AdminControllerTest extends WebTestCase
 
         $client->loginUser(new User('34654656489621361987'));
 
-        $client->request('GET', '/fr/istrateur/');
+        $client->request('GET', '/fr/istration/');
 
         $this->assertResponseStatusCodeSame(403);
     }
@@ -61,7 +61,7 @@ class AdminControllerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/istrateur/');
+        $crawler = $client->request('GET', '/fr/istration/');
 
         $this->assertResponseStatusCodeSame(200);
 

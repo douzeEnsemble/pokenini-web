@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Route('/istrateur/update')]
+#[Route('/istration/update')]
 class AdminUpdateController extends AbstractController
 {
     #[Route(
@@ -32,7 +32,7 @@ class AdminUpdateController extends AbstractController
         try {
             $client->request(
                 'POST',
-                "{$appApiUrl}/istrateur/update/$name"
+                "{$appApiUrl}/istration/update/$name"
             );
 
             $cacheInvalidatorService->invalidate($name);
