@@ -517,7 +517,7 @@
   {
     "request": {
       "uri": {
-        "match": "/istrateur/update/labels"
+        "match": "/istration/update/labels"
       },
       "method": "post"
     },
@@ -528,7 +528,7 @@
   {
     "request": {
       "uri": {
-        "match": "/istrateur/update/games_and_dexes"
+        "match": "/istration/update/games_and_dexes"
       },
       "method": "post"
     },
@@ -539,7 +539,7 @@
   {
     "request": {
       "uri": {
-        "match": "/istrateur/update/pokemons"
+        "match": "/istration/update/pokemons"
       },
       "method": "post"
     },
@@ -550,7 +550,7 @@
   {
     "request": {
       "uri": {
-        "match": "/istrateur/update/game_bundle_availability"
+        "match": "/istration/update/game_bundle_availability"
       },
       "method": "post"
     },
@@ -561,7 +561,7 @@
   {
     "request": {
       "uri": {
-        "match": "/istrateur/update/dex_availability"
+        "match": "/istration/update/dex_availability"
       },
       "method": "post"
     },

@@ -42,7 +42,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $client->loginUser($user);
 
         # For testing purpose, this case will fail in API side
-        $client->request('GET', "/fr/istrateur/update/dex_availability");
+        $client->request('GET', "/fr/istration/update/dex_availability");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -62,7 +62,7 @@ class AdminUpdateControllerTest extends WebTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $client->request('GET', "/fr/istrateur/update/truc");
+        $client->request('GET', "/fr/istration/update/truc");
     }
 
     private function testAdminUpdate(string $name): void
@@ -73,7 +73,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $client->request('GET', "/fr/istrateur/update/$name");
+        $client->request('GET', "/fr/istration/update/$name");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
