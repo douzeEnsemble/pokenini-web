@@ -6,7 +6,11 @@
 {% block title %}Pokénini {{ 'title.cookies'|trans }}{% endblock title %}
 
 {% block container %}
-<h1>{{ 'title.cookies'|trans }}</h1>
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1>{{ 'title.cookies'|trans }}</h1>
 
-{% include('Static/Cookies/'~locale~'.html.twig') %}
+        {% include('Static/Cookies/'~locale~'.html.twig') %}
+    </div>
+</div>
 {% endblock container %}
