@@ -1,4 +1,5 @@
 {% set currentRouteParameters = app.request.get('_route_params') %}
+{% set sharedTrainerId = app.request.get('t') %}
 
 <div class="report-container">
     <h2 id="stats">
@@ -26,7 +27,7 @@
         {% for line in report.detail %}
             <tr class="catch-state-{{ line.slug }}">
                 <th>
-                    <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': currentDexSlug, 'filter': line.slug}) }}">
+                    <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': currentDexSlug, 't': sharedTrainerId, 'filter': line.slug}) }}">
                         {{ locale is same as('fr') ? line.frenchName : line.name }}
                     </a>
                 </th>
@@ -37,7 +38,7 @@
         {% endfor %}
         <tr class="catch-state-total">
             <th>
-                <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': currentDexSlug}) }}">
+                <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': currentDexSlug, 't': sharedTrainerId}) }}">
                     {{ 'stats.total'|trans }}
                 </a>
             </th>

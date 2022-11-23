@@ -18,6 +18,8 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
+        file_put_contents('/srv/app/tests/last.html', $client->getResponse()->getContent());
+
         $this->assertCount(
             1718,
             $crawler->filter('.album-case')
@@ -28,10 +30,16 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
         $this->assertCount(0, $crawler->filter('#venusaur-f'));
         $this->assertCount(0, $crawler->filter('#charmander'));
 
-        $this->assertCount(
-            0,
-            $crawler
-                ->filter('.toast')
+        $this->assertCount(0, $crawler->filter('.toast'));
+
+        $this->assertCount(7, $crawler->filter('table a'));
+        $this->assertEquals(
+            '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('table a')->first()->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('table a')->last()->attr('href')
         );
     }
 
@@ -51,10 +59,16 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
         $this->assertCount(0, $crawler->filter('#venusaur-f'));
         $this->assertCount(1, $crawler->filter('#charmander'));
 
-        $this->assertCount(
-            0,
-            $crawler
-                ->filter('.toast')
+        $this->assertCount(0, $crawler->filter('.toast'));
+
+        $this->assertCount(7, $crawler->filter('table a'));
+        $this->assertEquals(
+            '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('table a')->first()->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('table a')->last()->attr('href')
         );
     }
 
@@ -78,20 +92,18 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
         $this->assertCount(0, $crawler->filter('#venusaur-f'));
         $this->assertCount(1, $crawler->filter('#charmander'));
 
-        $this->assertCount(
-            4,
-            $crawler
-                ->filter('.toast')
+        $this->assertCount(4, $crawler->filter('.toast'));
+        $this->assertCount(2, $crawler->filter('.toast.text-bg-success'));
+        $this->assertCount(2, $crawler->filter('.toast.text-bg-danger'));
+
+        $this->assertCount(7, $crawler->filter('table a'));
+        $this->assertEquals(
+            '/fr/album/r/demo/no',
+            $crawler->filter('table a')->first()->attr('href')
         );
-        $this->assertCount(
-            2,
-            $crawler
-                ->filter('.toast.text-bg-success')
-        );
-        $this->assertCount(
-            2,
-            $crawler
-                ->filter('.toast.text-bg-danger')
+        $this->assertEquals(
+            '/fr/album/r/demo',
+            $crawler->filter('table a')->last()->attr('href')
         );
     }
 
@@ -101,11 +113,18 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo/unknown?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCount(
-            0,
-            $crawler->filter('.album-case')
-        );
+        $this->assertCount(0, $crawler->filter('.album-case'));
 
         $this->assertCount(0, $crawler->filter('h2.box'));
+
+        $this->assertCount(7, $crawler->filter('table a'));
+        $this->assertEquals(
+            '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('table a')->first()->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('table a')->last()->attr('href')
+        );
     }
 }
