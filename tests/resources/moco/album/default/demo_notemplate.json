@@ -4,7 +4,8 @@
     "french_name": "Démo, sans template",
     "is_shiny": false,
     "is_private": true,
-    "is_display_form": true
+    "is_display_form": true,
+    "region_name":null
   },
   "pokemons": [
     {

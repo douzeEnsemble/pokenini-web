@@ -5,6 +5,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Kanto",
     "name": "Red, Green, Blue, Yellow",
     "french_name": "Rouge, Vert, Bleu, Jaune",
     "slug": "redgreenblueyellow"
@@ -15,6 +16,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Johto",
     "name": "Gold, Silver, Crystal",
     "french_name": "Or, Argent, Cristal",
     "slug": "goldsilvercrystal"
@@ -25,6 +27,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Hoenn",
     "name": "Ruby, Sapphire, Emerald",
     "french_name": "Rubis, Saphir, \u00c9meraude",
     "slug": "rubysapphireemerald"
@@ -35,6 +38,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Kanto",
     "name": "Red Fire, Leaf Green",
     "french_name": "Rouge Feu, Vert Feuille",
     "slug": "redfireleafgreen"
@@ -45,6 +49,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Sinnoh",
     "name": "Diamond, Pearl, Platinium",
     "french_name": "Diamant, Perle, Platine",
     "slug": "diamondpearlplatinium"
@@ -55,6 +60,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Johto",
     "name": "Heart Gold, Soul Silver",
     "french_name": "Or HeartGold, Argent SoulSilver",
     "slug": "heartgoldsoulsilver"
@@ -65,6 +71,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Unys",
     "name": "Black, White",
     "french_name": "Noire, Blanche",
     "slug": "blackwhite"
@@ -75,6 +82,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Unys",
     "name": "Black 2, White 2",
     "french_name": "Noire 2, Blanche 2",
     "slug": "black2white2"
@@ -85,6 +93,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Kalos",
     "name": "X, Y",
     "french_name": "X, Y",
     "slug": "xy"
@@ -95,6 +104,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Hoenn",
     "name": "Omega Ruby, Alpha Sapphire",
     "french_name": "Rubis Om\u00e9ga, Saphir Alpha",
     "slug": "omegarubyalphasapphire"
@@ -105,6 +115,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Alola",
     "name": "Sun, Moon",
     "french_name": "Soleil, Lune",
     "slug": "sunmoon"
@@ -115,6 +126,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Alola",
     "name": "Ultra Sun, Ultra Moon",
     "french_name": "Ultra Soleil, Ultra Lune",
     "slug": "ultrasunultramoon"
@@ -125,6 +137,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Kanto",
     "name": "Let's Go Pikachu, Let's Go Eevee",
     "french_name": "Let's Go Pikachu, Let's Go \u00c9voli",
     "slug": "letsgopikachuletsgoeevee"
@@ -135,6 +148,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Galar",
     "name": "Sword, Shield",
     "french_name": "\u00c9p\u00e9e, Bouclier",
     "slug": "swordshield"
@@ -145,6 +159,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Sinnoh",
     "name": "Brilland Diamond, Shining Pearl",
     "french_name": "Diamant \u00c9tincelant, Perle Scintillante",
     "slug": "brillanddiamondshiningpearl"
@@ -155,6 +170,7 @@
     "is_on_home": false,
     "is_display_form": true,
     "display_template": "box",
+    "region_name": "Hisui",
     "name": "Pok\u00e9mon Legends Arceus",
     "french_name": "L\u00e9gendes Pok\u00e9mon : Arceus",
     "slug": "pokemonlegendsarceus"
