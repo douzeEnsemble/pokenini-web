@@ -25,6 +25,8 @@ title:
         labels: 'Maj des labels'
         games_and_dexes: 'Maj des jeux et dex'
         pokemons: 'Maj des pokémons'
+        game_availability: 'Maj des dispo des jeux'
+    calculate:
         game_bundle_availability: 'Maj des dispo des bundles de jeux'
         dex_availability: 'Maj des dispo des dex'
     box: 'Boite'
@@ -42,7 +44,7 @@ title:
 
 home:
     no_dex: "Y'a pas d'album à afficher. Tu peux les rajouter sur ton <a>espace dresseur</a>."
-    
+
 stats:
     total: 'Total'
 
@@ -53,7 +55,7 @@ album:
             shiny: 'Icone chromatique de'
     update:
         title: 'Maj'
-        success: 
+        success:
             prefix: 'Le changement de statut de'
             radical: '%pokemonName%'
             suffix: 'a été enregistré'
@@ -64,25 +66,29 @@ album:
     another_trainers_album: "Album d'un autre dresseur"
 
 update:
-    labels: 
+    labels:
         success: 'La maj des labels a été effectuée'
         error: 'La maj des labels a échouée'
-    games_and_dexes: 
+    games_and_dexes:
         success: 'La maj des jeux et dex a été effectuée'
         error: 'La maj des jeux et dex a échouée'
-    pokemons: 
+    pokemons:
         success: 'La maj des pokémons a été effectuée'
         error: 'La maj des pokémons a échouée'
-    game_bundle_availability: 
+    game_availability:
+        success: 'La maj des dispo des jeux a été effectuée'
+        error: 'La maj des dispo des jeux a échouée'
+calculate:
+    game_bundle_availability:
         success: 'La maj des dispo des bundles de jeux a été effectuée'
         error: 'La maj des dispo des bundles de jeux a échouée'
-    dex_availability: 
+    dex_availability:
         success: 'La maj des dispo des dex a été effectuée'
         error: 'La maj des dispo des dex a échouée'
 
 connect:
     disclaimer: |
-        J'utilise la connexion uniquement pour identifier. 
+        J'utilise la connexion uniquement pour identifier.
         Je ne garde AUCUNE donnée autre que l'identifiant donnée par le fournisseur.
     help: |
         Je supporte que la connexion via Google. Si t'en veut d'autres, dis le moi
@@ -90,9 +96,9 @@ connect:
 trainer:
     welcome: |
         Bonjour à toi jeune dresseur.
-        Ceci est ton espace. 
+        Ceci est ton espace.
 
-        Bon l'instant tu peux pas y faire grand chose. 
+        Bon l'instant tu peux pas y faire grand chose.
         Mais ça viendra.
     personnal_data:
         title: 'Données personnelles'
@@ -107,15 +113,15 @@ trainer:
         title: 'Personnalise tes albums'
         see: 'Voir'
         attributes:
-            is_private: 
+            is_private:
                 label: 'Album privé'
                 help: 'Uniquement accessible par toi'
-            is_on_home: 
+            is_on_home:
                 label: "Album visible sur la page d'accueil"
                 help: "La page d'accueil n'est visible que par toi. C'est ta page."
         update:
             title: 'Maj'
-            success: 
+            success:
                 prefix: 'Le paramétrage de '
                 radical: '%dexName%'
                 suffix: 'a été enregistré'
@@ -131,7 +137,7 @@ outer_room:
         Hey, merci de t'être connecté. Pour l'instant, tu n'as pas le droit d'aller plus loin.
         Ce site est réservé qu'à certaine personne. Je sais c'est décevant.
 
-        Si tu veux y avoir accès, tu peux contacter mon administrateur, Renaud, 
+        Si tu veux y avoir accès, tu peux contacter mon administrateur, Renaud,
         par email pokenini.app@gmail.com ou par un autre moyen si tu en connais.
         Il suffit de lui transmettre cet identifiant `%id%`
 
@@ -142,8 +148,8 @@ outer_room:
         Si tu ne veux pas avoir d'accès, tu n'as rien à faire. Je n'ai rien enregistré.
         Tu peux te déconnecter avec le lien en dessous.
         Merci d'être passé
-    mail: 
-        link: 'Envoyer une demande' 
+    mail:
+        link: 'Envoyer une demande'
         subject: 'Je peux avoir accès à Pokénini stp ?'
         body: 'Mon identifiant Google OpenId est `%id%`'
 
@@ -156,21 +162,20 @@ footer:
 error:
     unknown:
         text: |
-            Merde ! Y'a eu une erreur. Je sais pas où. 
-            Mais t'inquiète pas c'est pas toi. C'est nous ... 
+            Merde ! Y'a eu une erreur. Je sais pas où.
+            Mais t'inquiète pas c'est pas toi. C'est nous ...
             Enfin peut être pas vu qu'on sait pas d'où vient l'erreur.
 
-            N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée, 
+            N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée,
             une capture, le max d'info.
     404:
         text: |
-            La page que tu as demandée est introuvable. Je la trouve pas. 
+            La page que tu as demandée est introuvable. Je la trouve pas.
             Vérifie l'URL ou reviens à la page d'accueil en utilisant le lien juste en dessous.
     500:
         text: |
             Alors là c'est la merde ! Y'a eu une coui**e quelque part.
             Elle vient de mon côté. Tu n'y es pour rien.
 
-            N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée, 
+            N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée,
             une capture, le max d'info.
-        

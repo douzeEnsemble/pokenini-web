@@ -187,6 +187,20 @@ class ApiService
         );
     }
 
+    public function adminCalculate(string $type): void
+    {
+        $this->client->request(
+            'POST',
+            "{$this->appApiUrl}/istration/calculate/$type",
+            [
+                'auth_basic' => [
+                    $this->apiLogin,
+                    $this->apiPassword,
+                ],
+            ]
+        );
+    }
+
     public function invalidateCacheDexes(): void
     {
         $this->invalidateCacheByType(self::CACHE_KEY_DEXES);

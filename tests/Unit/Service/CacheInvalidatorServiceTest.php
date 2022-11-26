@@ -50,6 +50,20 @@ class CacheInvalidatorServiceTest extends TestCase
         $this->assertTrue(true);
     }
 
+    public function testInvalidateGameAvailability(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheAlbums')
+        ;
+
+        $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $cacheInvalidator->invalidate('game_availability');
+    }
+
     public function testInvalidateGameBundleAvailability(): void
     {
         $apiService = $this->createMock(ApiService::class);

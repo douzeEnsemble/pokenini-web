@@ -48,20 +48,29 @@
             </li>
             <li class="nav-item admin-item">
                 <a
-                    href="{{ path('app_adminupdate_update', {'name': 'game_bundle_availability'}) }}"
+                    href="{{ path('app_adminupdate_update', {'name': 'game_availability'}) }}"
                     class="nav-link"
                 >
-                    <i class="bi bi-box-seam-fill"></i>
-                    {{ 'title.update.game_bundle_availability'|trans }}
+                    <i class="bi bi-box-seam"></i>
+                    {{ 'title.update.game_availability'|trans }}
                 </a>
             </li>
             <li class="nav-item admin-item">
                 <a
-                    href="{{ path('app_adminupdate_update', {'name': 'dex_availability'}) }}"
+                    href="{{ path('app_adminupdate_calculate', {'name': 'game_bundle_availability'}) }}"
+                    class="nav-link"
+                >
+                    <i class="bi bi-box-seam-fill"></i>
+                    {{ 'title.calculate.game_bundle_availability'|trans }}
+                </a>
+            </li>
+            <li class="nav-item admin-item">
+                <a
+                    href="{{ path('app_adminupdate_calculate', {'name': 'dex_availability'}) }}"
                     class="nav-link"
                 >
                     <i class="bi bi-list-check"></i>
-                    {{ 'title.update.dex_availability'|trans }}
+                    {{ 'title.calculate.dex_availability'|trans }}
                 </a>
             </li>
         </ul>

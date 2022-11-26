@@ -25,6 +25,8 @@ title:
         labels: 'Update labels'
         games_and_dexes: 'Update games and dexes'
         pokemons: 'Update pokémons'
+        game_availability: "Update games' availabilities"
+    calculate:
         game_bundle_availability: "Update game bundles' availabilities"
         dex_availability: 'Update dexes availabilities'
     box: 'Box'
@@ -62,7 +64,7 @@ album:
             radical: '%pokemonName%'
             suffix: 'new state has not been saved'
     another_trainers_album: "Another trainer's album"
-                
+
 update:
     labels:
         success: 'Labels update has been done'
@@ -73,6 +75,10 @@ update:
     pokemons:
         success: 'Pokémons update has been done'
         error: 'Pokémons update has failed'
+    game_bundle_availability:
+        success: "Games' availabilities update has been done"
+        error: "Games' availabilities update has failed"
+calculate:
     game_bundle_availability:
         success: "Game bundles' availabilities update has been done"
         error: "Game bundles' availabilities update has failed"
@@ -106,15 +112,15 @@ trainer:
         title: 'Customize your albums'
         see: 'See'
         attributes:
-            is_private: 
+            is_private:
                 label: 'Private album'
                 help: 'Only accessible by you'
-            is_on_home: 
+            is_on_home:
                 label: 'Album visible on the homepage'
                 help: 'The home page is only visible to you. This is your page.'
         update:
             title: 'Maj'
-            success: 
+            success:
                 prefix: ''
                 radical: '%dexName%'
                 suffix: 'setting have been saved'
@@ -141,8 +147,8 @@ outer_room:
         If you don't want access, you don't have to do anything. I didn't record anything.
         You can log out with the link below.
         Thanks for dropping by.
-    mail: 
-        link: 'Send a request' 
+    mail:
+        link: 'Send a request'
         subject: 'Can I have access to Pokénini please?'
         body: 'My Google OpenId identifier is `%id%`'
 
