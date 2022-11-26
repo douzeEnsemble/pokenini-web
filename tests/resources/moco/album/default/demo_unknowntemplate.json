@@ -5,7 +5,8 @@
     "is_shiny": false,
     "is_private": true,
     "is_display_form": true,
-    "display_template": "an_unknown_template"
+    "display_template": "an_unknown_template",
+    "region_name":null
   },
   "pokemons": [
     {
