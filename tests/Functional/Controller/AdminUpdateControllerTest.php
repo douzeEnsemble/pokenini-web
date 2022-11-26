@@ -28,9 +28,14 @@ class AdminUpdateControllerTest extends WebTestCase
         $this->testAdminUpdate('pokemons');
     }
 
+    public function testAdminUpdateGameAvailability(): void
+    {
+        $this->testAdminUpdate('game_availability');
+    }
+
     public function testAdminUpdateGameBundleAvailability(): void
     {
-        $this->testAdminUpdate('game_bundle_availability');
+        $this->testAdminCalculate('game_bundle_availability');
     }
 
     public function testAdminUpdateDexAvailability(): void
@@ -42,7 +47,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $client->loginUser($user);
 
         # For testing purpose, this case will fail in API side
-        $client->request('GET', "/fr/istration/update/dex_availability");
+        $client->request('GET', "/fr/istration/calculate/dex_availability");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -65,6 +70,21 @@ class AdminUpdateControllerTest extends WebTestCase
         $client->request('GET', "/fr/istration/update/truc");
     }
 
+    public function testAdminCalculateUnknown(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        $client->catchExceptions(false);
+
+        $this->expectException(NotFoundHttpException::class);
+
+        $client->request('GET', "/fr/istration/calculate/truc");
+    }
+
     private function testAdminUpdate(string $name): void
     {
         $client = static::createClient();
@@ -74,6 +94,30 @@ class AdminUpdateControllerTest extends WebTestCase
         $client->loginUser($user);
 
         $client->request('GET', "/fr/istration/update/$name");
+
+        $this->assertResponseStatusCodeSame(302);
+        $crawler = $client->followRedirect();
+
+        $this->assertCount(1, $crawler->filter('.flash-success'));
+
+        $this->assertConnectedNavBar($crawler);
+        $this->assertFrenchLangSwitch($crawler);
+
+        $this->assertCount(0, $crawler->filter('script[src="/js/album_edit.js"]'));
+
+        $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
+        $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
+    }
+
+    private function testAdminCalculate(string $name): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        $client->request('GET', "/fr/istration/calculate/$name");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();

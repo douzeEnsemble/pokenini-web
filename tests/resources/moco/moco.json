@@ -716,7 +716,7 @@
   {
     "request": {
       "uri": {
-        "match": "/istration/update/game_bundle_availability"
+        "match": "/istration/update/game_availability"
       },
       "method": "post",
       "headers": {
@@ -730,7 +730,21 @@
   {
     "request": {
       "uri": {
-        "match": "/istration/update/dex_availability"
+        "match": "/istration/calculate/game_bundle_availability"
+      },
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "status": "200"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/istration/calculate/dex_availability"
       },
       "method": "post",
       "headers": {

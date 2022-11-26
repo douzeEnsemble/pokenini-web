@@ -25,6 +25,10 @@ class CacheInvalidatorService
             case 'pokemons':
                 return;
 
+            case 'game_availability':
+                $this->apiService->invalidateCacheAlbums();
+                return;
+
             case 'game_bundle_availability':
                 $this->apiService->invalidateCacheAlbums();
                 return;
