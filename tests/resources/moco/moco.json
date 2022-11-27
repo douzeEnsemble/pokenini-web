@@ -730,6 +730,20 @@
   {
     "request": {
       "uri": {
+        "match": "/istration/update/regional_dex_numbers"
+      },
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "status": "200"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/istration/calculate/game_bundle_availability"
       },
       "method": "post",

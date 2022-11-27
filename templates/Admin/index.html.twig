@@ -48,6 +48,15 @@
             </li>
             <li class="nav-item admin-item">
                 <a
+                    href="{{ path('app_adminupdate_update', {'name': 'regional_dex_number'}) }}"
+                    class="nav-link"
+                >
+                    <i class="bi bi-globe-asia-australia"></i>
+                    {{ 'title.update.regional_dex_number'|trans }}
+                </a>
+            </li>
+            <li class="nav-item admin-item">
+                <a
                     href="{{ path('app_adminupdate_update', {'name': 'game_availability'}) }}"
                     class="nav-link"
                 >
