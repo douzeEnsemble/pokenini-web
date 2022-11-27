@@ -26,6 +26,7 @@ title:
         games_and_dexes: 'Update games and dexes'
         pokemons: 'Update pokémons'
         game_availability: "Update games' availabilities"
+        regional_dex_number: 'Update regional dex numbers'
     calculate:
         game_bundle_availability: "Update game bundles' availabilities"
         dex_availability: 'Update dexes availabilities'
@@ -75,7 +76,10 @@ update:
     pokemons:
         success: 'Pokémons update has been done'
         error: 'Pokémons update has failed'
-    game_bundle_availability:
+    regional_dex_number:
+        success: 'Regional dex numbers update has been done'
+        error: 'Regional dex numbers update has failed'
+    game_availability:
         success: "Games' availabilities update has been done"
         error: "Games' availabilities update has failed"
 calculate:

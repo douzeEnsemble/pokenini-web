@@ -18,7 +18,7 @@ class AdminUpdateController extends AbstractController
         '/update/{name}',
         methods: ['GET'],
         condition: "params['name']
-            in ['labels', 'games_and_dexes', 'pokemons', 'game_availability']"
+            in ['labels', 'games_and_dexes', 'pokemons', 'game_availability', 'regional_dex_number']"
     )]
     public function update(
         string $name,

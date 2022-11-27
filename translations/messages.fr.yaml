@@ -26,6 +26,7 @@ title:
         games_and_dexes: 'Maj des jeux et dex'
         pokemons: 'Maj des pokémons'
         game_availability: 'Maj des dispo des jeux'
+        regional_dex_number: 'Maj des numéro des dex régionaux'
     calculate:
         game_bundle_availability: 'Maj des dispo des bundles de jeux'
         dex_availability: 'Maj des dispo des dex'
@@ -78,6 +79,9 @@ update:
     game_availability:
         success: 'La maj des dispo des jeux a été effectuée'
         error: 'La maj des dispo des jeux a échouée'
+    regional_dex_number:
+        success: 'La maj des numéros de dex régionaux a été effectuée'
+        error: 'La maj des numéros de dex régionaux a échouée'
 calculate:
     game_bundle_availability:
         success: 'La maj des dispo des bundles de jeux a été effectuée'
