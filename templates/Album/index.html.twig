@@ -66,7 +66,7 @@
     <a
         class="nav-link"
         href="{{ path('app_album_index', {
-            'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 
+            'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'),
             'dexSlug': currentDexSlug,
             't': trainerId,
         }) }}"
@@ -91,19 +91,23 @@
     <script src="{{ asset('js/album_edit.js') }}"></script>
 
     <script type="application/javascript">
+    (function() {
         const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
         const locale = '{{ locale }}';
         const dex = '{{ currentDexSlug }}';
 
         watchCatchStates();
-
-        // Enable tooltips
-        const tooltipTriggerList = document.querySelectorAll('.album-case-image')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-
         // Enable toasts
         const toastElList = document.querySelectorAll('.toast')
         const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl));
+    })();
     </script>
     {% endif %}
+    <script type="application/javascript">
+    (function() {
+        // Enable tooltips
+        const tooltipTriggerList = document.querySelectorAll('.album-case-image')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    })();
+    </script>
 {% endblock foot_javascript %}
