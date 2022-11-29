@@ -58,12 +58,6 @@ services:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
 
-  moco:
-    build:
-      context: docker/moco
-    volumes:
-      - ./tests/resources/moco/:/var/moco:ro
-
 volumes:
   php_socket:
   caddy_data:
