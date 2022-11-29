@@ -26,3 +26,4 @@ tests/coverage
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+tests/last.html
