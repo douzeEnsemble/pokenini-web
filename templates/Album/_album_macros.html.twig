@@ -5,10 +5,11 @@
     class="album-case col catch-state-{{ currentCatchState }}"
     id="{{ item.pokemon_slug }}"
 >
+    {% set dexNumber = dex.region_name is not empty ? item.pokemon_regional_dex_number : item.pokemon_national_dex_number %}
     <div class="text-center text-truncate">
         <label for="catch-state-{{ item.pokemon_slug }}">
-            <span class="album-case-national-dex-number">
-                #{{ item.pokemon_national_dex_number }}
+            <span class="album-case-dex-number">
+                #{{ dexNumber }}
             </span>
             <span class="album-case-name">
                 {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
@@ -16,7 +17,7 @@
         </label>
     </div>
     <div class="album-case-image text-center"
-         title="#{{ item.pokemon_national_dex_number }} {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
+        title="#{{ dexNumber }} {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
     >
         <label for="catch-state-{{ item.pokemon_slug }}">
             {{ dex.is_shiny ? _self.shinyPokemonIcon(item, locale) : _self.regularPokemonIcon(item, locale) }}
