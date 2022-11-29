@@ -2,7 +2,7 @@ version: "3.4"
 
 # Development environment override
 services:
-  php:   
+  php:
     build:
       target: app_php_dev
     volumes:
@@ -12,7 +12,7 @@ services:
       #  from the bind-mount for better performance by enabling the next line:
       - /srv/app/vendor
     environment:
-      # See https://xdebug.org/docs/all_settings#mode 
+      # See https://xdebug.org/docs/all_settings#mode
       XDEBUG_MODE: "${XDEBUG_MODE:-off}"
     extra_hosts:
       # Ensure that host.docker.internal is correctly defined on Linux
@@ -22,6 +22,18 @@ services:
     volumes:
       - ./public:/srv/app/public:ro
       - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+
+  moco_test:
+    build:
+      context: docker/moco/test
+    volumes:
+      - ./tests/resources/moco/:/var/moco:ro
+
+  moco_dev:
+    build:
+      context: docker/moco/dev
+    volumes:
+      - ./tests/resources/moco/:/var/moco:ro
 
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
