@@ -91,11 +91,13 @@
     <script src="{{ asset('js/album_edit.js') }}"></script>
 
     <script type="application/javascript">
+    const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
+    const locale = '{{ locale }}';
+    const dex = '{{ currentDexSlug }}';
+    </script>
+    
+    <script type="application/javascript">
     (function() {
-        const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
-        const locale = '{{ locale }}';
-        const dex = '{{ currentDexSlug }}';
-
         watchCatchStates();
         // Enable toasts
         const toastElList = document.querySelectorAll('.toast')
