@@ -9,6 +9,7 @@
         "php": ">=8.1.7",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-redis": "*",
         "knpuniversity/oauth2-client-bundle": "^2.10",
         "league/oauth2-google": "^4.0",
         "sensio/framework-extra-bundle": "^6.2",
