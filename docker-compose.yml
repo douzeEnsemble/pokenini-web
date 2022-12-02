@@ -54,6 +54,9 @@ services:
         published: ${HTTP3_PORT:-4431}
         protocol: udp
 
+  redis:
+    image: redis:7.0-alpine
+
 # Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###

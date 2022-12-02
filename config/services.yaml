@@ -4,7 +4,7 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        bind: 
+        bind:
             string $appApiUrl: '%env(APP_API_URL)%'
             string $projectDir: '%kernel.project_dir%'
             string $listAdmin: '%env(LIST_ADMIN)%'
@@ -18,3 +18,18 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    # <> Session
+    Redis:
+        class: Redis
+        calls:
+            - connect:
+                - '%env(string:key:host:url:REDISCLOUD_URL)%'
+                - '%env(int:key:port:url:REDISCLOUD_URL)%'
+            - auth:
+                - '%env(string:key:pass:url:REDISCLOUD_URL)%'
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - '@Redis'
+    # </> Session

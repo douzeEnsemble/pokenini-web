@@ -47,11 +47,13 @@ RUN set -eux; \
 	; \
 	pecl install \
 		apcu \
+		redis \
 	; \
 	pecl clear-cache; \
 	docker-php-ext-enable \
 		apcu \
 		opcache \
+		redis \
 	; \
 	\
 	runDeps="$( \
