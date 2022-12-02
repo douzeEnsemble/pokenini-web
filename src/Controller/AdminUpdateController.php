@@ -42,6 +42,8 @@ class AdminUpdateController extends AbstractController
                 'danger',
                 $translator->trans("update.$name.error") . ' ' . $e->getMessage()
             );
+
+            error_log($e->getMessage());
         }
 
         return $this->redirectToRoute('app_admin_index');
@@ -75,6 +77,8 @@ class AdminUpdateController extends AbstractController
                 'danger',
                 $translator->trans("calculate.$name.error") . ' ' . $e->getMessage()
             );
+
+            error_log($e->getMessage());
         }
 
         return $this->redirectToRoute('app_admin_index');
