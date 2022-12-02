@@ -9,7 +9,7 @@ curl -u web:douze "https://localhost:4430/dexes" --insecure --output tests/resou
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/redgreenblueyellow" --insecure --output tests/resources/moco/album/default/redgreenblueyellow.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/goldsilvercrystal" --insecure --output tests/resources/moco/album/default/goldsilvercrystal.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/rubysapphireemerald" --insecure --output tests/resources/moco/album/default/rubysapphireemerald.json
-curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/redfireleafgreen" --insecure --output tests/resources/moco/album/default/redfireleafgreen.json
+curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/fireredleafgreen" --insecure --output tests/resources/moco/album/default/fireredleafgreen.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/diamondpearlplatinium" --insecure --output tests/resources/moco/album/default/diamondpearlplatinium.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/heartgoldsoulsilver" --insecure --output tests/resources/moco/album/default/heartgoldsoulsilver.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/blackwhite" --insecure --output tests/resources/moco/album/default/blackwhite.json

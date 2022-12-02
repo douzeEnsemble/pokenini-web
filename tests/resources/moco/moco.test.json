@@ -289,14 +289,14 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/redfireleafgreen"
+        "match": "/album/[\\w\\d]*/fireredleafgreen"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
-      "file": "/var/moco/album/default/redfireleafgreen.json"
+      "file": "/var/moco/album/default/fireredleafgreen.json"
     }
   },
   {
