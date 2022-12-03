@@ -233,6 +233,63 @@ class AlbumControllerIntroTest extends WebTestCase
         $this->assertListGroupItemWithValue($crawler, 5, '3');
     }
 
+    public function testIntroDemoAnotherTrainer(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('13');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertCount(
+            1,
+            $crawler->filter('h1#album-title')
+        );
+        $this->assertEquals(
+            'Démo',
+            $crawler->filter('h1#album-title')->text()
+        );
+
+        $this->assertCount(
+            1,
+            $crawler->filter('#album-description')
+        );
+        $this->assertEquals(
+            'Tous les pokémons de la démo',
+            $crawler->filter('#album-description')->text()
+        );
+
+        $this->assertCount(
+            1,
+            $crawler->filter('#intro .list-group')
+        );
+        $this->assertCount(
+            6,
+            $crawler->filter('#intro .list-group .list-group-item')
+        );
+
+        $this->assertEquals(
+            '#box-1',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(0)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
+        );
+        $this->assertEquals(
+            "Album d'un autre dresseur",
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 2, 'National');
+        $this->assertListGroupItemWithValue($crawler, 3, 'Non');
+        $this->assertListGroupItemWithValue($crawler, 4, 'Boîtes');
+        $this->assertListGroupItemWithValue($crawler, 5, '412');
+    }
+
     private function assertListGroupItemWithValue(Crawler $crawler, int $index, string $expectedValue): void
     {
         $this->assertEquals(

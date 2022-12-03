@@ -6,10 +6,6 @@
 {% block title %}Pokénini {{ locale is same as('fr') ? dex.french_name : dex.name }}{% endblock title %}
 
 {% block navbarTitle %}
-    {% if loggedTrainerId is not same as(trainerId) %}
-    <i class="bi bi-person-rolodex another-trainer-album" title="{{ 'album.another_trainers_album'|trans }}"></i>
-    {% endif %}
-
     {{ locale is same as('fr') ? dex.french_name : dex.name }}
 {% endblock navbarTitle %}
 

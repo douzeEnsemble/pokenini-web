@@ -64,7 +64,6 @@ album:
             prefix: ''
             radical: '%pokemonName%'
             suffix: 'new state has not been saved'
-    another_trainers_album: "Another trainer's album"
     intro:
         action:
             mode:
@@ -79,6 +78,7 @@ album:
             dex: 'Dex'
             is_shiny: 'Shiny form ?'
             display_template: 'Display mode'
+            another_trainer_album: "Another trainer's album"
         value:
             national: 'National'
             shiny: 'Yes'
