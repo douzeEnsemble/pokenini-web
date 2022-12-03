@@ -11,6 +11,7 @@
   </p>
 
   <div class="list-group list-group-flush">
+    {% if loggedTrainerId is same as(trainerId) %}
     {% set modeTarget = attribute(constant('App\\DTO\\AlbumMode::MODES_LONG_OPPOSITE'), mode) %}
     <a
       class="list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center"
@@ -27,6 +28,7 @@
       ></i>
       {{ (('album.intro.action.mode.'~modeTarget))|trans }}
     </a>
+    {% endif %}
 
     {% if 'box' == displayTemplateName %}
     <a
@@ -47,6 +49,19 @@
         class="bi bi-list"
       ></i>
       {{ 'album.intro.action.goto.top_of_the_list'|trans }}
+    </a>
+    {% endif %}
+
+    {% if loggedTrainerId is not same as(trainerId) %}
+    <a
+      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      href="#"
+    >
+      {{ 'album.intro.label.another_trainer_album'|trans }}
+      <i
+        class="bi bi-person-rolodex another-trainer-album"
+        title="{{ 'album.another_trainers_album'|trans }}"
+      ></i>
     </a>
     {% endif %}
 

@@ -64,7 +64,6 @@ album:
             prefix: 'Le changement de statut de'
             radical: '%pokemonName%'
             suffix: 'a échoué'
-    another_trainers_album: "Album d'un autre dresseur"
     intro:
         action:
             mode:
@@ -79,6 +78,7 @@ album:
             dex: 'Dex'
             is_shiny: 'Version chromatique ?'
             display_template: "Mode d'affichage"
+            another_trainer_album: "Album d'un autre dresseur"
         value:
             national: 'National'
             shiny: 'Oui'
