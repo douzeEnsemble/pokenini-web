@@ -6,7 +6,10 @@
     "is_private": true,
     "is_display_form": true,
     "display_template": "list-7",
-    "region_name":null
+    "region_name":null,
+    "description":"List of pokémons for demo purpose, display as list by 7",
+    "french_description":"Tous les pok\u00e9mons de la démo affiché en liste, 7 éléments par colonnes",
+    "version": 412
   },
   "pokemons": [
     {

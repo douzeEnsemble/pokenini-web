@@ -1,0 +1,91 @@
+{% set locale = app.request.locale %}
+{% set currentRoute = app.request.get('_route') %}
+{% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
+{% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
+<div id="intro">
+  <h1 id="album-title">
+      {{ locale is same as('fr') ? dex.french_name : dex.name }}
+  </h1>
+  <p id="album-description">
+  {{ (locale is same as('fr') ? dex.french_description : dex.description)|nl2br }}
+  </p>
+
+  <div class="list-group list-group-flush">
+    {% set modeTarget = attribute(constant('App\\DTO\\AlbumMode::MODES_LONG_OPPOSITE'), mode) %}
+    <a
+      class="list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center"
+      href="{{ path(
+        currentRoute,
+        currentRouteParameters|merge({
+          'mode': attribute(constant('App\\DTO\\AlbumMode::MODES_LONG_SHORT'), modeTarget)
+        })
+      ) }}"
+    >
+      <i
+        class="bi bi-{{ modeTarget == constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE')
+          ? 'pencil-square' : 'book' }}"
+      ></i>
+      {{ (('album.intro.action.mode.'~modeTarget))|trans }}
+    </a>
+
+    {% if 'box' == displayTemplateName %}
+    <a
+      class="d-lg-none list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center"
+      href="#box-1"
+    >
+      <i
+        class="bi bi-box"
+      ></i>
+      {{ 'album.intro.action.goto.box1'|trans }}
+    </a>
+    {% elseif 'list-' in displayTemplateName %}
+    <a
+      class="d-lg-none list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center"
+      href="#top-of-the-list"
+    >
+      <i
+        class="bi bi-list"
+      ></i>
+      {{ 'album.intro.action.goto.top_of_the_list'|trans }}
+    </a>
+    {% endif %}
+
+    <a
+      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      href="#"
+    >
+    {% if dex.region_name is not empty %}
+      {{ 'album.intro.label.region'|trans }}
+      <span class="badge bg-primary rounded-pill">{{ dex.region_name }}</span>
+    {% else %}
+      {{ 'album.intro.label.dex'|trans }}
+      <span class="badge bg-primary rounded-pill">{{ 'album.intro.value.national'|trans }}</span>
+    {% endif %}
+    </a>
+
+    <a
+      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      href="#"
+    >  {{ 'album.intro.label.is_shiny'|trans }}
+      <span class="badge text-bg-{{ dex.is_shiny ? 'warning' : 'dark' }} rounded-pill">
+        {{ (dex.is_shiny ? 'album.intro.value.shiny' : 'album.intro.value.regular')|trans }}
+        </span>
+    </a>
+
+    <a
+      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      href="#"
+    >  {{ 'album.intro.label.display_template'|trans }}
+      <span class="badge text-bg-secondary rounded-pill">
+        {{ ('album.intro.value.display_template.'~displayTemplateName)|trans }}
+        </span>
+    </a>
+
+    <a
+      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      href="#"
+    >  {{ 'album.intro.label.version'|trans }}
+      <span class="badge text-bg-light rounded-pill">{{ dex.version }}</span>
+    </a>
+  </div>
+</div>

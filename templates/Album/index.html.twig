@@ -41,6 +41,18 @@
 
 {% block container %}
 <div class="row justify-content-lg-center">
+    <div class="col-xxl-6">
+        <div class="row justify-content-lg-center sticky-lg-top">
+            <div class="co-md-4 col-lg-6">
+                <div class="row">
+                    {% include 'Album/_intro.html.twig' %}
+                </div>
+                <div class="row mt-3">
+                    {% include 'Album/_report.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-xxl-6 col-xl-12">
         {% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
         {% set templateData = displayTemplateName|split('-') %}
@@ -49,13 +61,6 @@
         {% include ['Album/view/_'~(mainTemplate)~'.html.twig', 'Album/view/_box.html.twig'] with {'nbCaseByLine': nbCaseByLine} %}
 
         {% include 'Album/_toasts.html.twig' %}
-    </div>
-    <div class="col-xxl-6">
-        <div class="row justify-content-lg-center sticky-lg-top">
-            <div class="co-md-4 col-lg-6">
-                {% include 'Album/_report.html.twig' %}
-            </div>
-        </div>
     </div>
 </div>
 {% endblock container %}
@@ -95,7 +100,7 @@
     const locale = '{{ locale }}';
     const dex = '{{ currentDexSlug }}';
     </script>
-    
+
     <script type="application/javascript">
     (function() {
         watchCatchStates();

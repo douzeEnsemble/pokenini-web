@@ -2,7 +2,7 @@
 
 <div class="album-container album-list-{{ nbCaseByLine }}">
     <h2>{{ 'title.empty'|trans }}</h2>
-    <div class="row row-cols-{{ nbCaseByLine }} album-line">
+    <div class="row row-cols-{{ nbCaseByLine }} album-line" id="top-of-the-list">
         {% for item in list %}
         {% if loop.index0 is not same as(0) and (loop.index0 % nbCaseByLine) is same as(0) %}
     </div>
