@@ -22,7 +22,7 @@
                     {% set langTarget = locale == 'fr' ? 'en' : 'fr' %}
                     <a
                         class="nav-link"
-                        href="{{ currentRoute 
+                        href="{{ currentRoute
                             ? path(currentRoute, currentRouteParameters|merge({'_locale': langTarget}))
                             : app.request.requesturi|replace({'/fr/': '/en/', '/en/': '/fr/'}) }}"
                     >
@@ -30,26 +30,6 @@
                         {{ ('nav.lang.'~langTarget)|trans([], 'messages', langTarget) }}
                     </a>
                 </li>
-                {% if 'album' in currentRoute  %}
-                <li class="nav-item mode-switch">
-                    {% set modeTarget = attribute(constant('App\\DTO\\AlbumMode::MODES_LONG_OPPOSITE'), mode) %}
-                    <a
-                        class="nav-link"
-                        href="{{ path(
-                            currentRoute,
-                            currentRouteParameters|merge({
-                                'mode': attribute(constant('App\\DTO\\AlbumMode::MODES_LONG_SHORT'), modeTarget)
-                            })
-                        ) }}"
-                    >
-                        <i
-                            class="bi bi-{{ modeTarget == constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE')
-                                ? 'pencil-square' : 'book' }}"
-                        ></i>
-                        {{ (('nav.mode.'~modeTarget))|trans }}
-                    </a>
-                </li>
-                {% endif %}
                 {% if is_granted("ROLE_ADMIN") %}
                 <li class="nav-item admin-link">
                     <a
@@ -65,7 +45,7 @@
                 {% block navbarNavPost %}{% endblock navbarNavPost %}
             </ul>
         </div>
-        
+
         <ul class="navbar-nav" id="connect-navbar">
             <li class="nav-item">
                 {% if is_granted("ROLE_TRAINER") %}
