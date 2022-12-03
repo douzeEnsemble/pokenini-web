@@ -5,7 +5,10 @@
     "is_shiny": false,
     "is_private": true,
     "is_display_form": true,
-    "region_name":null
+    "region_name":null,
+    "description": "",
+    "french_description": "",
+    "version": 0
   },
   "pokemons": [
     {

@@ -8,7 +8,7 @@ nav:
         fr: 'Français'
         en: 'Anglais'
     mode:
-        write: 'Édition'
+        write: 'Modifier'
         read: 'Lecture'
     admin: 'Administration'
     connected: 'Connecté'
@@ -65,6 +65,29 @@ album:
             radical: '%pokemonName%'
             suffix: 'a échoué'
     another_trainers_album: "Album d'un autre dresseur"
+    intro:
+        action:
+            mode:
+                write: 'Modifier les statuts'
+                read: 'Passer en mode lecture'
+            goto:
+                box1: "Voir la boîte numéro 1"
+                top_of_the_list: "Voir le haut de la liste"
+        label:
+            version: 'Version'
+            region: 'Région'
+            dex: 'Dex'
+            is_shiny: 'Version chromatique ?'
+            display_template: "Mode d'affichage"
+        value:
+            national: 'National'
+            shiny: 'Oui'
+            regular: 'Non'
+            display_template:
+                box: 'Boîtes'
+                list-3: 'Liste de 3 par lignes'
+                list-5: 'Liste de 5 par lignes'
+                list-7: 'Liste de 7 par lignes'
 
 update:
     labels:

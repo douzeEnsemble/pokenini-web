@@ -6,7 +6,10 @@
     "is_private": false,
     "is_display_form": true,
     "display_template": "box",
-    "region_name": ""
+    "region_name": "",
+    "description":"List of pokémons for demo purpose",
+    "french_description":"Tous les pok\u00e9mons de la démo",
+    "version": 412
   },
   "pokemons": [
     {
