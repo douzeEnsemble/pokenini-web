@@ -18,8 +18,6 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        file_put_contents('/srv/app/tests/last.html', $client->getResponse()->getContent());
-
         $this->assertCount(
             1718,
             $crawler->filter('.album-case')
