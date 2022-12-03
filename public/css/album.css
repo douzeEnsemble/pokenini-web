@@ -24,6 +24,8 @@
 .album-image {
     max-width: 68px;
     max-height: 56px;
+    font-size: .3rem;
+    color: rgba(0 0 0 / 0%);
 }
 #report a {
     color: inherit;
