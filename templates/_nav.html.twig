@@ -17,6 +17,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                <li class="nav-item trainer-link">
+                    {% if is_granted("ROLE_TRAINER") %}
+                    <a class="nav-link" href="{{ path('app_trainer_index') }}">
+                        <i class="bi bi-person-badge"></i>
+                        {{ 'title.trainer'|trans }}
+                    </a>
+                    {% else %}
+                    <a class="nav-link" href="{{ path('app_connect_index') }}">
+                        <i class="bi bi-person"></i>
+                        {{ 'nav.login'|trans }}
+                    </a>
+                    {% endif %}
+                </li>
                 <li class="nav-item lang-switch">
                     {% set langTarget = locale == 'fr' ? 'en' : 'fr' %}
                     <a
@@ -43,21 +56,6 @@
                 {% endif %}
             </ul>
         </div>
-
-        <ul class="navbar-nav" id="connect-navbar">
-            <li class="nav-item">
-                {% if is_granted("ROLE_TRAINER") %}
-                <a class="nav-link" href="{{ path('app_trainer_index') }}" title="{{ 'title.trainer'|trans }}">
-                    <i class="bi bi-person-badge"></i>
-                </a>
-                {% else %}
-                <a class="nav-link" href="{{ path('app_connect_index') }}">
-                    <i class="bi bi-person"></i>
-                    {{ 'nav.login'|trans }}
-                </a>
-                {% endif %}
-            </li>
-        </ul>
     </div>
 </nav>
 {% endblock nav %}

@@ -40,10 +40,10 @@ trait TestNavTrait
     {
         $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
 
-        $this->assertCount(1, $crawler->filter('#connect-navbar.navbar-nav li'));
+        $this->assertCount(1, $crawler->filter('.navbar-nav .trainer-link'));
         $this->assertStringContainsString(
             '/connect/',
-            $crawler->filter('#connect-navbar.navbar-nav li a')->attr('href') ?? ''
+            $crawler->filter('.navbar-nav .trainer-link a')->attr('href') ?? ''
         );
     }
 
