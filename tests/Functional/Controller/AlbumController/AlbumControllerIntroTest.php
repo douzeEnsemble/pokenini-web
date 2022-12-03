@@ -50,7 +50,7 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group')
         );
         $this->assertCount(
-            6,
+            7,
             $crawler->filter('#intro .list-group .list-group-item')
         );
 
@@ -64,10 +64,15 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'National');
-        $this->assertListGroupItemWithValue($crawler, 3, 'Non');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Boîtes');
-        $this->assertListGroupItemWithValue($crawler, 5, '4');
+        $this->assertEquals(
+            'Album privé',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 3, 'National');
+        $this->assertListGroupItemWithValue($crawler, 4, 'Non');
+        $this->assertListGroupItemWithValue($crawler, 5, 'Boîtes');
+        $this->assertListGroupItemWithValue($crawler, 6, '4');
     }
 
     public function testIntroDemoList3(): void
@@ -103,7 +108,7 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group')
         );
         $this->assertCount(
-            6,
+            7,
             $crawler->filter('#intro .list-group .list-group-item')
         );
 
@@ -117,10 +122,15 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'National');
-        $this->assertListGroupItemWithValue($crawler, 3, 'Non');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Liste de 3 par lignes');
-        $this->assertListGroupItemWithValue($crawler, 5, '412');
+        $this->assertEquals(
+            'Album privé',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 3, 'National');
+        $this->assertListGroupItemWithValue($crawler, 4, 'Non');
+        $this->assertListGroupItemWithValue($crawler, 5, 'Liste de 3 par lignes');
+        $this->assertListGroupItemWithValue($crawler, 6, '412');
     }
 
     public function testIntroDemoLiteShiny(): void
@@ -156,7 +166,7 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group')
         );
         $this->assertCount(
-            6,
+            7,
             $crawler->filter('#intro .list-group .list-group-item')
         );
 
@@ -170,10 +180,15 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'National');
-        $this->assertListGroupItemWithValue($crawler, 3, 'Oui');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Boîtes');
-        $this->assertListGroupItemWithValue($crawler, 5, '0');
+        $this->assertEquals(
+            '/fr/album/r/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->attr('href')
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 3, 'National');
+        $this->assertListGroupItemWithValue($crawler, 4, 'Oui');
+        $this->assertListGroupItemWithValue($crawler, 5, 'Boîtes');
+        $this->assertListGroupItemWithValue($crawler, 6, '0');
     }
 
     public function testIntroGoldSilverCrystal(): void
@@ -213,7 +228,7 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group')
         );
         $this->assertCount(
-            6,
+            7,
             $crawler->filter('#intro .list-group .list-group-item')
         );
 
@@ -227,10 +242,15 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'Johto');
-        $this->assertListGroupItemWithValue($crawler, 3, 'Non');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Boîtes');
-        $this->assertListGroupItemWithValue($crawler, 5, '3');
+        $this->assertEquals(
+            'Album privé',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 3, 'Johto');
+        $this->assertListGroupItemWithValue($crawler, 4, 'Non');
+        $this->assertListGroupItemWithValue($crawler, 5, 'Boîtes');
+        $this->assertListGroupItemWithValue($crawler, 6, '3');
     }
 
     public function testIntroDemoAnotherTrainer(): void
@@ -266,7 +286,7 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#intro .list-group')
         );
         $this->assertCount(
-            6,
+            7,
             $crawler->filter('#intro .list-group .list-group-item')
         );
 
@@ -276,18 +296,23 @@ class AlbumControllerIntroTest extends WebTestCase
         );
 
         $this->assertEquals(
-            '#',
+            '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->attr('href')
         );
         $this->assertEquals(
             "Album d'un autre dresseur",
-            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->text()
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'National');
-        $this->assertListGroupItemWithValue($crawler, 3, 'Non');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Boîtes');
-        $this->assertListGroupItemWithValue($crawler, 5, '412');
+        $this->assertListGroupItemWithValue($crawler, 3, 'National');
+        $this->assertListGroupItemWithValue($crawler, 4, 'Non');
+        $this->assertListGroupItemWithValue($crawler, 5, 'Boîtes');
+        $this->assertListGroupItemWithValue($crawler, 6, '412');
     }
 
     private function assertListGroupItemWithValue(Crawler $crawler, int $index, string $expectedValue): void

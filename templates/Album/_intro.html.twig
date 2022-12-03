@@ -52,6 +52,28 @@
     </a>
     {% endif %}
 
+    {% if not dex.is_private %}
+    <a
+      class="list-group-item list-group-item-action list-group-item-success d-flex justify-content-between align-items-center"
+      href="{{ path('app_album_index', {
+        'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'),
+        'dexSlug': currentDexSlug,
+        't': trainerId,
+      }) }}"
+    >
+      <i class="bi bi-share"></i>
+      {{ 'nav.share'|trans }}
+    </a>
+    {% else %}
+    <a
+      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      href="#"
+    >
+      {{ 'nav.is_private'|trans }}
+      <i class="bi bi-lock"></i>
+    </a>
+    {% endif %}
+
     {% if loggedTrainerId is not same as(trainerId) %}
     <a
       class="list-group-item disabled d-flex justify-content-between align-items-center"
