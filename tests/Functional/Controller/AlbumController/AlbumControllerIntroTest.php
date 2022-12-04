@@ -70,8 +70,17 @@ class AlbumControllerIntroTest extends WebTestCase
         );
 
         $this->assertListGroupItemWithValue($crawler, 3, 'National');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Non');
-        $this->assertListGroupItemWithValue($crawler, 5, 'Boîtes');
+
+        $this->assertEquals(
+            'Formes normales',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+        );
+
+        $this->assertEquals(
+            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
+        );
+
         $this->assertListGroupItemWithValue($crawler, 6, '4');
     }
 
@@ -128,8 +137,17 @@ class AlbumControllerIntroTest extends WebTestCase
         );
 
         $this->assertListGroupItemWithValue($crawler, 3, 'National');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Non');
-        $this->assertListGroupItemWithValue($crawler, 5, 'Liste de 3 par lignes');
+
+        $this->assertEquals(
+            'Formes normales',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+        );
+
+        $this->assertEquals(
+            'Liste de 3 pokémons par lignes',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
+        );
+
         $this->assertListGroupItemWithValue($crawler, 6, '412');
     }
 
@@ -186,8 +204,17 @@ class AlbumControllerIntroTest extends WebTestCase
         );
 
         $this->assertListGroupItemWithValue($crawler, 3, 'National');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Oui');
-        $this->assertListGroupItemWithValue($crawler, 5, 'Boîtes');
+
+        $this->assertEquals(
+            'Formes chromatiques',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+        );
+
+        $this->assertEquals(
+            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
+        );
+
         $this->assertListGroupItemWithValue($crawler, 6, '0');
     }
 
@@ -248,8 +275,17 @@ class AlbumControllerIntroTest extends WebTestCase
         );
 
         $this->assertListGroupItemWithValue($crawler, 3, 'Johto');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Non');
-        $this->assertListGroupItemWithValue($crawler, 5, 'Boîtes');
+
+        $this->assertEquals(
+            'Formes normales',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+        );
+
+        $this->assertEquals(
+            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
+        );
+
         $this->assertListGroupItemWithValue($crawler, 6, '3');
     }
 
@@ -310,8 +346,17 @@ class AlbumControllerIntroTest extends WebTestCase
         );
 
         $this->assertListGroupItemWithValue($crawler, 3, 'National');
-        $this->assertListGroupItemWithValue($crawler, 4, 'Non');
-        $this->assertListGroupItemWithValue($crawler, 5, 'Boîtes');
+
+        $this->assertEquals(
+            'Formes normales',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+        );
+
+        $this->assertEquals(
+            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
+        );
+
         $this->assertListGroupItemWithValue($crawler, 6, '412');
     }
 
