@@ -21,6 +21,7 @@ title:
     report: 'Report'
     admin: 'Backoffice'
     update_data: 'Update data'
+    calculate_data: 'Calculate data'
     update:
         labels: 'Update labels'
         games_and_dexes: 'Update games and dexes'

@@ -52,7 +52,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        $this->assertCount(1, $crawler->filter('.flash-danger'));
+        $this->assertCount(1, $crawler->filter('.list-group-item-danger'));
     }
 
     public function testAdminUpdateUnknown(): void
@@ -98,7 +98,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        $this->assertCount(1, $crawler->filter('.flash-success'));
+        $this->assertCount(1, $crawler->filter('.list-group-item-success'));
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
@@ -122,7 +122,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        $this->assertCount(1, $crawler->filter('.flash-success'));
+        $this->assertCount(1, $crawler->filter('.list-group-item-success'));
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
