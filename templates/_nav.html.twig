@@ -3,6 +3,7 @@
 {% set currentRoute = app.request.get('_route') %}
 {% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
 {% set locale = app.request.locale %}
+{% set sharedTrainerId = app.request.get('t') %}
 
 <nav class="navbar fixed-bottom navbar-expand-sm bg-light">
     <div class="container-fluid">
@@ -32,10 +33,18 @@
                 </li>
                 <li class="nav-item lang-switch">
                     {% set langTarget = locale == 'fr' ? 'en' : 'fr' %}
+                    {% set routeParameters = currentRouteParameters|merge({
+                        '_locale': langTarget
+                    }) %}
+                    {% if sharedTrainerId is defined %}
+                        {% set routeParameters = routeParameters|merge({
+                        't': sharedTrainerId
+                    }) %}
+                    {% endif %}
                     <a
                         class="nav-link"
                         href="{{ currentRoute
-                            ? path(currentRoute, currentRouteParameters|merge({'_locale': langTarget}))
+                            ? path(currentRoute, routeParameters)
                             : app.request.requesturi|replace({'/fr/': '/en/', '/en/': '/fr/'}) }}"
                     >
                         <i class="bi bi-translate"></i>
