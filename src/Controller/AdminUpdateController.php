@@ -9,7 +9,6 @@ use App\Service\CacheInvalidatorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/istration')]
 class AdminUpdateController extends AbstractController
@@ -23,30 +22,34 @@ class AdminUpdateController extends AbstractController
     public function update(
         string $name,
         ApiService $apiService,
-        TranslatorInterface $translator,
         CacheInvalidatorService $cacheInvalidatorService
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $state = 'ok';
 
         try {
             $apiService->adminUpdate($name);
 
             $cacheInvalidatorService->invalidate($name);
+        } catch (\Exception $e) {
+            $state = 'ko';
 
             $this->addFlash(
-                'success',
-                $translator->trans("update.$name.success")
-            );
-        } catch (\Exception $e) {
-            $this->addFlash(
-                'danger',
-                $translator->trans("update.$name.error") . ' ' . $e->getMessage()
+                'update_error',
+                $e->getMessage()
             );
 
             error_log($e->getMessage());
         }
 
-        return $this->redirectToRoute('app_admin_index');
+        return $this->redirectToRoute(
+            'app_admin_index',
+            [
+                'item' => $name,
+                'state' => $state,
+            ]
+        );
     }
 
     #[Route(
@@ -58,29 +61,32 @@ class AdminUpdateController extends AbstractController
     public function calculate(
         string $name,
         ApiService $apiService,
-        TranslatorInterface $translator,
         CacheInvalidatorService $cacheInvalidatorService
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $state = 'ok';
 
         try {
             $apiService->adminCalculate($name);
 
             $cacheInvalidatorService->invalidate($name);
-
-            $this->addFlash(
-                'success',
-                $translator->trans("calculate.$name.success")
-            );
         } catch (\Exception $e) {
+            $state = 'ko';
             $this->addFlash(
-                'danger',
-                $translator->trans("calculate.$name.error") . ' ' . $e->getMessage()
+                'calculate_error',
+                $e->getMessage()
             );
 
             error_log($e->getMessage());
         }
 
-        return $this->redirectToRoute('app_admin_index');
+        return $this->redirectToRoute(
+            'app_admin_index',
+            [
+                'item' => $name,
+                'state' => $state,
+            ]
+        );
     }
 }

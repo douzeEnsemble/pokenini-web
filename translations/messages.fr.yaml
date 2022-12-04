@@ -21,6 +21,7 @@ title:
     report: 'Stats'
     admin: 'Administration'
     update_data: 'Mises à jour des données'
+    calculate_data: 'Calculs des données'
     update:
         labels: 'Maj des labels'
         games_and_dexes: 'Maj des jeux et dex'
