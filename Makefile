@@ -60,7 +60,7 @@ tests: ## Execute all tests
 tests: phpstan phpunit
 
 phpstan: ## Execute phpstan analyse
-	@$(PHP_CONT) vendor/bin/phpstan analyse
+	@$(PHP_CONT) vendor/bin/phpstan analyse --memory-limit=-1
 
 phpunit: ## Execute unit test
 	@$(PHP_CONT) bin/phpunit
@@ -96,4 +96,3 @@ deploy: ## Deployment
 		git commit --allow-empty -m "Deployment"; \
 		git push heroku main
 	rm -Rf ~/tmp/deploy/pokenini-web
-
