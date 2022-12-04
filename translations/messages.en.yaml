@@ -76,18 +76,17 @@ album:
             version: 'Version'
             region: 'Region'
             dex: 'Dex'
-            is_shiny: 'Shiny form ?'
-            display_template: 'Display mode'
+            is_shiny:
+                yes: 'Shinies forms'
+                no: 'Regular forms'
             another_trainer_album: "Another trainer's album"
+            display_template:
+                box: 'Display by box of 6 by 5 pokémons as in the games'
+                list-3: 'List of 3 pokemon by lines'
+                list-5: 'List of 5 pokemon by lines'
+                list-7: 'List of 7 pokemon by lines'
         value:
             national: 'National'
-            shiny: 'Yes'
-            regular: 'No'
-            display_template:
-                box: 'Boxes'
-                list-3: 'List 3 by rows'
-                list-5: 'List 5 by rows'
-                list-7: 'List 7 by rows'
 
 
 update:

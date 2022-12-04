@@ -76,18 +76,17 @@ album:
             version: 'Version'
             region: 'Région'
             dex: 'Dex'
-            is_shiny: 'Version chromatique ?'
-            display_template: "Mode d'affichage"
+            is_shiny:
+                yes: 'Formes chromatiques'
+                no: 'Formes normales'
             another_trainer_album: "Album d'un autre dresseur"
+            display_template:
+                box: 'Affichage par boîte de 6 par 5 pokémons comme dans les jeux'
+                list-3: 'Liste de 3 pokémons par lignes'
+                list-5: 'Liste de 5 pokémons par lignes'
+                list-7: 'Liste de 7 pokémons par lignes'
         value:
             national: 'National'
-            shiny: 'Oui'
-            regular: 'Non'
-            display_template:
-                box: 'Boîtes'
-                list-3: 'Liste de 3 par lignes'
-                list-5: 'Liste de 5 par lignes'
-                list-7: 'Liste de 7 par lignes'
 
 update:
     labels:
