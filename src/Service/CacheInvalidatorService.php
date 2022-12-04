@@ -15,10 +15,12 @@ class CacheInvalidatorService
     {
         switch ($type) {
             case 'labels':
+            case 'catch_states':
                 $this->apiService->invalidateCacheCatchStates();
                 return;
 
             case 'games_and_dexes':
+            case 'dexes':
                 $this->apiService->invalidateCacheDexes();
                 return;
 
@@ -28,6 +30,7 @@ class CacheInvalidatorService
             case 'regional_dex_number':
             case 'game_availability':
             case 'game_bundle_availability':
+            case 'albums':
                 $this->apiService->invalidateCacheAlbums();
                 return;
 

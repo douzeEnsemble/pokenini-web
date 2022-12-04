@@ -22,6 +22,7 @@ title:
     admin: 'Backoffice'
     update_data: 'Update data'
     calculate_data: 'Calculate data'
+    invalidate_data: 'Invalidate caches'
     update:
         labels: 'Update labels'
         games_and_dexes: 'Update games and dexes'
@@ -31,6 +32,10 @@ title:
     calculate:
         game_bundle_availability: "Update game bundles' availabilities"
         dex_availability: 'Update dexes availabilities'
+    invalidate:
+        catch_states: 'Invalidate status cache'
+        dexes: 'Invalidate dexes cache'
+        albums: 'Invalidate album cache'
     box: 'Box'
     empty: ' '
     connect: 'Connection'

@@ -17,7 +17,13 @@ class AdminUpdateController extends AbstractController
         '/update/{name}',
         methods: ['GET'],
         condition: "params['name']
-            in ['labels', 'games_and_dexes', 'pokemons', 'game_availability', 'regional_dex_number']"
+            in [
+                'labels',
+                'games_and_dexes',
+                'pokemons',
+                'game_availability',
+                'regional_dex_number',
+            ]"
     )]
     public function update(
         string $name,
@@ -46,6 +52,7 @@ class AdminUpdateController extends AbstractController
         return $this->redirectToRoute(
             'app_admin_index',
             [
+                'type' => 'update',
                 'item' => $name,
                 'state' => $state,
             ]
@@ -56,7 +63,10 @@ class AdminUpdateController extends AbstractController
         '/calculate/{name}',
         methods: ['GET'],
         condition: "params['name']
-            in ['game_bundle_availability', 'dex_availability']"
+            in [
+                'game_bundle_availability',
+                'dex_availability',
+            ]"
     )]
     public function calculate(
         string $name,
@@ -84,6 +94,47 @@ class AdminUpdateController extends AbstractController
         return $this->redirectToRoute(
             'app_admin_index',
             [
+                'type' => 'calculate',
+                'item' => $name,
+                'state' => $state,
+            ]
+        );
+    }
+
+    #[Route(
+        '/invalidate/{name}',
+        methods: ['GET'],
+        condition: "params['name']
+            in [
+                'catch_states',
+                'dexes',
+                'albums',
+            ]"
+    )]
+    public function invalidate(
+        string $name,
+        CacheInvalidatorService $cacheInvalidatorService
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $state = 'ok';
+
+        try {
+            $cacheInvalidatorService->invalidate($name);
+        } catch (\Exception $e) {
+            $state = 'ko';
+            $this->addFlash(
+                'invalidate_error',
+                $e->getMessage()
+            );
+
+            error_log($e->getMessage());
+        }
+
+        return $this->redirectToRoute(
+            'app_admin_index',
+            [
+                'type' => 'invalidate',
                 'item' => $name,
                 'state' => $state,
             ]
