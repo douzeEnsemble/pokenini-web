@@ -42,9 +42,9 @@ class AdminControllerTest extends WebTestCase
     {
         $crawler = $this->getAdminHomeConnected();
 
-        $this->assertCount(2, $crawler->filter('h2'));
-        $this->assertCount(7, $crawler->filter('a.admin-item'));
-        $this->assertCount(7, $crawler->filter('a.admin-item i.bi'));
+        $this->assertCount(3, $crawler->filter('h2'));
+        $this->assertCount(10, $crawler->filter('a.admin-item'));
+        $this->assertCount(10, $crawler->filter('a.admin-item i.bi'));
 
         $this->assertCount(0, $crawler->filter('script[src="/js/album_edit.js"]'));
 
