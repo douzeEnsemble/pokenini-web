@@ -32,4 +32,5 @@ services:
     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
         arguments:
             - '@Redis'
+            - { 'ttl': 86400 }
     # </> Session
