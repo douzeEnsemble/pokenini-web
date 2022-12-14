@@ -9,4 +9,4 @@ services:
     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
         arguments:
             - '@snc_redis.session'
-            - { 'ttl': 86400 }
+            - { 'ttl': "%env(SESSION_TTL)%" }
