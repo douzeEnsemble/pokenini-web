@@ -1,0 +1,22 @@
+name: PHP Install and Composer install
+description: Use to docker compose pull and up then checks if services are correctly running
+author: Renaud Douze
+runs:
+  using: "composite"
+  steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: ctype, iconv, redis
+        coverage: none
+
+    - name: Cache composer dependencies
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: composer-${{ hashFiles('composer.lock') }}
+
+    - name: Run composer install
+      shell: bash
+      run: composer install -n --prefer-dist

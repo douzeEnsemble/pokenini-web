@@ -7,46 +7,58 @@ on:
   pull_request: ~
 
 jobs:
-  build_and_tests:
-    name: All Checks (Quality & Tests & Integration)
+  phpcs:
+    name: Quality / PHPCS
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Pull images
-        run: docker compose pull --ignore-pull-failures || true
-      - name: Start services
-        run: docker compose up --build -d
-      - name: Wait for services
-        run: |
-          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php)")"; do
-            case $status in
-              starting) sleep 1;;
-              healthy) exit 0;;
-              unhealthy)
-                docker compose ps
-                docker compose logs
-                exit 1
-              ;;
-            esac
-          done
-          exit 1
-      - name: Check HTTP reachability
-        run: curl -v -o /dev/null http://localhost:8081
-      - name: Check HTTPS reachability
-        run: curl  -vk -o /dev/null https://localhost:4431
-      - name: Quality PHPCS
-        run: make phpcs
-        continue-on-error: false
-      - name: Quality PHPMD
-        run: make phpmd
-        continue-on-error: false
-      - name: Quality Psalm
-        run: make psalm
-        continue-on-error: false
-      - name: Tests PHPStan
-        run: make phpstan
-        continue-on-error: false
-      - name: Tests PHPUnit
-        run: make phpunit
-        continue-on-error: false
+      - name: Prepare
+        uses: ./.github/actions/local
+      - name: Run
+        run: ./vendor/bin/phpcs
+
+  phpmd:
+    name: Quality / PHPMD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare
+        uses: ./.github/actions/local
+      - name: Run
+        run: ./vendor/bin/phpmd src,tests text ruleset.xml
+
+  psalm:
+    name: Quality / Psalm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare
+        uses: ./.github/actions/local
+      - name: Run
+        run: ./vendor/bin/psalm --output-format=github
+
+  phpstan:
+    name: Tests / PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare
+        uses: ./.github/actions/local
+      - name: Run
+        run: ./vendor/bin/phpstan analyse --memory-limit=-1
+
+  phpunit:
+    name: Tests / PHPUnit
+    runs-on: ubuntu-latest
+    needs: [phpcs, phpmd, psalm, phpstan]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: Run
+        run: docker compose exec -T php php bin/phpunit
