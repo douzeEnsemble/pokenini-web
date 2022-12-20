@@ -4,8 +4,6 @@ author: Renaud Douze
 runs:
   using: "composite"
   steps:
-    - name: Checkout
-      uses: actions/checkout@v3
     - name: Pull images
       run: docker compose pull --ignore-pull-failures || true
     - name: Start services
