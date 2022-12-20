@@ -78,6 +78,8 @@ album:
             goto:
                 box1: "Go to box number 1"
                 top_of_the_list: "Go to the top of the list"
+            description:
+                collapse: 'Information'
         label:
             version: 'Version'
             region: 'Region'
