@@ -4,16 +4,34 @@ author: Renaud Douze
 runs:
   using: "composite"
   steps:
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-        extensions: ctype, iconv, redis
-        coverage: none
-    - name: Cache composer dependencies
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: composer-${{ hashFiles('composer.lock') }}
-    - name: Run composer install
-      run: composer install -n --prefer-dist
+    - name: Pull images
+      shell: bash
+      run: docker compose pull --ignore-pull-failures || true
+
+    - name: Start services
+      shell: bash
+      run: docker compose up --build -d
+
+    - name: Wait for services
+      shell: bash
+      run: |
+
+        while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php)")"; do
+          case $status in
+            starting) sleep 1;;
+            healthy) exit 0;;
+            unhealthy)
+              docker compose ps
+              docker compose logs
+              exit 1
+            ;;
+          esac
+        done
+        exit 1
+    - name: Check HTTP reachability
+      shell: bash
+      run: curl -v -o /dev/null http://localhost:8081
+
+    - name: Check HTTPS reachability
+      shell: bash
+      run: curl  -vk -o /dev/null https://localhost:4431
