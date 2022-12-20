@@ -52,7 +52,7 @@ jobs:
         run: ./vendor/bin/phpstan analyse --memory-limit=-1
 
   phpunit:
-    name: Tests / PHPUnit tests
+    name: Tests / PHPUnit
     runs-on: ubuntu-latest
     needs: [phpcs, phpmd, psalm, phpstan]
     steps:
