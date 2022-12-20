@@ -3,12 +3,29 @@
 {% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
 {% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
 <div id="intro">
+  <div class="float-end">
+    <a
+      class="btn btn-link btn-sm link-secondary"
+      data-bs-toggle="collapse"
+      href="#album-description"
+      role="button"
+      aria-expanded="false"
+      aria-controls="collapseExample"
+      title="{{ 'album.intro.action.description.collapse'|trans }}"
+    >
+      <i class="bi bi-info-square-fill"></i>
+    </a>
+  </div>
+
   <h1 id="album-title">
-      {{ locale is same as('fr') ? dex.french_name : dex.name }}
+    {{ locale is same as('fr') ? dex.french_name : dex.name }}
   </h1>
-  <p id="album-description">
-  {{ (locale is same as('fr') ? dex.french_description : dex.description)|nl2br }}
-  </p>
+
+  <div class="mb-2">
+    <p id="album-description" class="collapse">
+      {{ (locale is same as('fr') ? dex.french_description : dex.description)|nl2br }}
+    </p>
+  </div>
 
   <div class="list-group list-group-flush">
     {# Edit/Read mode link #}
