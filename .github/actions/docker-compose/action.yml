@@ -8,10 +8,6 @@ runs:
       shell: bash
       run: docker compose pull --ignore-pull-failures || true
 
-    # https://github.com/marketplace/actions/docker-layer-caching
-    - uses: satackey/action-docker-layer-caching@v0.0.11
-      continue-on-error: true
-
     - name: Start services
       shell: bash
       run: docker compose up --build -d
@@ -32,6 +28,7 @@ runs:
           esac
         done
         exit 1
+
     - name: Check HTTP reachability
       shell: bash
       run: curl -v -o /dev/null http://localhost:8081
@@ -39,7 +36,3 @@ runs:
     - name: Check HTTPS reachability
       shell: bash
       run: curl  -vk -o /dev/null https://localhost:4431
-
-    # https://github.com/marketplace/actions/docker-layer-caching
-    - uses: satackey/action-docker-layer-caching@v0.0.11
-      continue-on-error: true
