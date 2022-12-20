@@ -36,7 +36,7 @@ jobs:
           target_directory: 'src,tests'
           exclude: '*/Migrations/*'
           name: 'PHPMD'
-  # https://github.com/marketplace/actions/psalm-static-analysis-for-php
+  # https://dev.to/frknasir/running-psalm-with-github-actions-1ipk
   psalm:
     name: Psalm
     runs-on: ubuntu-latest
@@ -44,7 +44,18 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: docker://vimeo/psalm-github-actions
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          composer_require_dev: true
-          composer_ignore_platform_reqs: true
+          php-version: '8.1'
+          extensions: ctype, iconv, redis
+          coverage: none
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+      - name: Run composer install
+        run: composer install -n --prefer-dist
+      - name: Run psalm
+        run: ./vendor/bin/psalm --output-format=github
