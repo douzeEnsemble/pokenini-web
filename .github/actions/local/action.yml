@@ -10,10 +10,13 @@ runs:
         php-version: '8.1'
         extensions: ctype, iconv, redis
         coverage: none
+
     - name: Cache composer dependencies
       uses: actions/cache@v2
       with:
         path: vendor
         key: composer-${{ hashFiles('composer.lock') }}
+
     - name: Run composer install
+      shell: bash
       run: composer install -n --prefer-dist
