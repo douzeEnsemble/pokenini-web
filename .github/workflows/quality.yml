@@ -8,6 +8,7 @@ on:
 
 jobs:
   phpcs:
+    name: PHPCS
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -26,10 +27,12 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
       - name: Run composer install
         run: composer install -n --prefer-dist
+      - run: ls -l ./vendor/bin
       - name: Run phpcs
         run: ./vendor/bin/phpcs
 
   phpmd:
+    name: PHPMD
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
