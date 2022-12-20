@@ -7,36 +7,50 @@ on:
   pull_request: ~
 
 jobs:
-  # https://github.com/marketplace/actions/phpcs-code-review
   phpcs:
-    name: PHPCS
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    - uses: rtCamp/action-phpcs-code-review@v2
-      env:
-        GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
-        PHP_LINT: false
-  # https://github.com/marketplace/actions/run-phpmd-with-reviewdog
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: ctype, iconv, redis
+          coverage: none
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+      - name: Run composer install
+        run: composer install -n --prefer-dist
+      - name: Run phpcs
+        run: ./vendor/bin/phpcs
+
   phpmd:
-    name: PHPMD
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    - uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
-      with:
-          github_token: '${{ github.token }}'
-          level: 'warning'
-          reporter: 'github-pr-check'
-          standard: 'ruleset.xml'
-          target_directory: 'src,tests'
-          exclude: '*/Migrations/*'
-          name: 'PHPMD'
-  # https://dev.to/frknasir/running-psalm-with-github-actions-1ipk
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: ctype, iconv, redis
+          coverage: none
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+      - name: Run composer install
+        run: composer install -n --prefer-dist
+      - name: Run psalm
+        run: ./vendor/bin/phpmd src,tests text ruleset.xml
+
   psalm:
     name: Psalm
     runs-on: ubuntu-latest
