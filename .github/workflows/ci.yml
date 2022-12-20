@@ -7,59 +7,31 @@ on:
   pull_request: ~
 
 jobs:
-  phpcs:
-    name: Quality PHPCS
+  quality:
+    name: Quality
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Prepare
         uses: ./.github/actions/docker-compose
-      - name: Execution
+      - name: PHPCS
         run: make phpcs
-
-  phpmd:
-    name: Quality PHPMD
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Prepare
-        uses: ./.github/actions/docker-compose
-      - name: Execution
+      - name: PHPMD
         run: make phpmd
-
-  psalm:
-    name: Quality Psalm
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Prepare
-        uses: ./.github/actions/docker-compose
-      - name: Execution
+      - name: Psalm
         run: make psalm
 
-  phpstan:
-    needs: [phpcs, phpmd, psalm]
-    name: Test PHPStan
+  tests:
+    needs: [quality]
+    name: Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Prepare
         uses: ./.github/actions/docker-compose
-      - name: Execution
+      - name: PHPStan
         run: make phpstan
-
-  phpunit:
-    needs: [phpcs, phpmd, psalm]
-    name: Test PHPUnit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Prepare
-        uses: ./.github/actions/docker-compose
-      - name: Execution
+      - name: PHPUnit
         run: make phpunit
