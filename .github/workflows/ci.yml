@@ -35,6 +35,7 @@ jobs:
         run: make psalm
 
   phpstan:
+    needs: [phpcs, phpmd, psalm]
     name: Test PHPStan
     runs-on: ubuntu-latest
     steps:
@@ -44,6 +45,7 @@ jobs:
         run: make phpstan
 
   phpunit:
+    needs: [phpcs, phpmd, psalm]
     name: Test PHPUnit
     runs-on: ubuntu-latest
     steps:
