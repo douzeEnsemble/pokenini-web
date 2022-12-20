@@ -1,4 +1,4 @@
-name: Quality Inspections
+name: Quality
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   # https://github.com/marketplace/actions/phpcs-code-review
   phpcs:
-    name: Quality PHPCS
+    name: PHPCS
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
         PHP_LINT: false
   # https://github.com/marketplace/actions/run-phpmd-with-reviewdog
   phpmd:
-    name: Quality PHPMD
+    name: PHPMD
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -36,15 +36,15 @@ jobs:
           target_directory: 'src,tests'
           exclude: '*/Migrations/*'
           name: 'PHPMD'
-  # # https://github.com/marketplace/actions/psalm-static-analysis-for-php
-  # psalm:
-  #   name: Quality Psalm
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         ref: ${{ github.event.pull_request.head.sha }}
-  #     - uses: docker://vimeo/psalm-github-actions
-  #       with:
-  #         composer_require_dev: true
-  #         composer_ignore_platform_reqs: true
+  # https://github.com/marketplace/actions/psalm-static-analysis-for-php
+  psalm:
+    name: Psalm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: docker://vimeo/psalm-github-actions
+        with:
+          composer_require_dev: true
+          composer_ignore_platform_reqs: true
