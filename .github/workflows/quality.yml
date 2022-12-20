@@ -1,4 +1,4 @@
-name: Quality
+name: Quality Inspections
 
 on:
   push:
@@ -6,7 +6,6 @@ on:
       - main
   pull_request: ~
 
-name: Quality Inspections
 jobs:
   # https://github.com/marketplace/actions/phpcs-code-review
   phpcs:

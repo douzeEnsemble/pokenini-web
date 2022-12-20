@@ -1,4 +1,4 @@
-name: Security
+name: Security Scans
 
 on:
   push:
@@ -6,7 +6,6 @@ on:
       - main
   pull_request: ~
 
-name: Security Scans
 jobs:
   # https://github.com/marketplace/actions/psalm-security-scanner-for-php
   psalm:
