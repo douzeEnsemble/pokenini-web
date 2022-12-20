@@ -61,4 +61,4 @@ jobs:
       - name: Prepare
         uses: ./.github/actions/docker-compose
       - name: Run
-        run: docker-compose exec -T php bin/console bin/phpunit
+        run: docker-compose exec -T php php bin/phpunit
