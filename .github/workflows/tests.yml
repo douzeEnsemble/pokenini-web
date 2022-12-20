@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: ~
+
+name: Tests Run
+jobs:
+  # https://github.com/marketplace/actions/phpstan-php-actions
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+    - uses: php-actions/phpstan@v3
+      with:
+        path: src/
+        php_version: 8.1
+        php_extensions: 'ctype iconv redis'
+        memory_limit: -1
+  # https://github.com/marketplace/actions/phpunit-php-actions
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+    - uses: php-actions/phpunit@v3
+      with:
+        php_version: 8.1

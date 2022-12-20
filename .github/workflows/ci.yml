@@ -7,31 +7,42 @@ on:
   pull_request: ~
 
 jobs:
-  quality:
-    name: Quality
+  docker-compose:
+    name: Docker Composer checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Prepare
-        uses: ./.github/actions/docker-compose
-      - name: PHPCS
-        run: make phpcs
-      - name: PHPMD
-        run: make phpmd
-      - name: Psalm
-        run: make psalm
 
-  tests:
-    needs: [quality]
-    name: Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Prepare
-        uses: ./.github/actions/docker-compose
-      - name: PHPStan
-        run: make phpstan
-      - name: PHPUnit
-        run: make phpunit
+      - name: Pull images
+        shell: bash
+        run: docker compose pull --ignore-pull-failures || true
+
+      - name: Start services
+        shell: bash
+        run: docker compose up --build -d
+
+      - name: Wait for services
+        shell: bash
+        run: |
+
+          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php)")"; do
+            case $status in
+              starting) sleep 1;;
+              healthy) exit 0;;
+              unhealthy)
+                docker compose ps
+                docker compose logs
+                exit 1
+              ;;
+            esac
+          done
+          exit 1
+
+      - name: Check HTTP reachability
+        shell: bash
+        run: curl -v -o /dev/null http://localhost:8081
+
+      - name: Check HTTPS reachability
+        shell: bash
+        run: curl  -vk -o /dev/null https://localhost:4431

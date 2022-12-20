@@ -1,0 +1,47 @@
+name: Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: ~
+
+name: Quality Inspections
+jobs:
+  # https://github.com/marketplace/actions/phpcs-code-review
+  phpcs:
+    name: Quality PHPCS
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - uses: rtCamp/action-phpcs-code-review@v2
+      env:
+        GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+  # https://github.com/marketplace/actions/run-phpmd-with-reviewdog
+  phpmd:
+    name: Quality PHPMD
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
+      with:
+          github_token: '${{ github.token }}'
+          level: 'warning'
+          reporter: 'github-pr-check'
+          standard: 'ruleset.xml'
+          target_directory: 'src,tests'
+          exclude: '*/Migrations/*'
+          name: 'PHPMD'
+  # https://github.com/marketplace/actions/psalm-static-analysis-for-php
+  psalm:
+    name: Quality Psalm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: docker://vimeo/psalm-github-actions
