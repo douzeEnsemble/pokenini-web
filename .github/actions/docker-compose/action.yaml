@@ -5,11 +5,17 @@ runs:
   using: "composite"
   steps:
     - name: Pull images
+      shell: bash
       run: docker compose pull --ignore-pull-failures || true
+
     - name: Start services
+      shell: bash
       run: docker compose up --build -d
+
     - name: Wait for services
+      shell: bash
       run: |
+
         while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php)")"; do
           case $status in
             starting) sleep 1;;
@@ -23,6 +29,9 @@ runs:
         done
         exit 1
     - name: Check HTTP reachability
+      shell: bash
       run: curl -v -o /dev/null http://localhost:8081
+
     - name: Check HTTPS reachability
+      shell: bash
       run: curl  -vk -o /dev/null https://localhost:4431
