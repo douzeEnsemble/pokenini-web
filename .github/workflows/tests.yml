@@ -11,7 +11,8 @@ jobs:
     name: PHPStan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup PHP
@@ -30,11 +31,12 @@ jobs:
       - name: Run
         run: ./vendor/bin/phpstan analyse --memory-limit=-1
 
-  phpunit:
-    name: PHPUnit
+  phpunit_unit:
+    name: PHPUnit Units tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup PHP
@@ -51,4 +53,35 @@ jobs:
       - name: Run composer install
         run: composer install -n --prefer-dist
       - name: Run
-        run: ./bin/phpunit
+        run: ./bin/phpunit tests/Unit
+
+  phpunit_functional:
+    name: PHPUnit Functionals tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Pull images
+        run: docker compose pull --ignore-pull-failures || true
+      - name: Start services
+        run: docker compose up --build -d
+      - name: Wait for services
+        run: |
+          while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php)")"; do
+            case $status in
+              starting) sleep 1;;
+              healthy) exit 0;;
+              unhealthy)
+                docker compose ps
+                docker compose logs
+                exit 1
+              ;;
+            esac
+          done
+          exit 1
+      - name: Check HTTP reachability
+        run: curl -v -o /dev/null http://localhost:8081
+      - name: Check HTTPS reachability
+        run: curl  -vk -o /dev/null https://localhost:4431
+      - name: Run
+        run: ./bin/phpunit tests/Functional
