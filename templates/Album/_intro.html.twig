@@ -15,7 +15,9 @@
     {% if loggedTrainerId is same as(trainerId) %}
     {% set modeTarget = attribute(constant('App\\DTO\\AlbumMode::MODES_LONG_OPPOSITE'), mode) %}
     <a
-      class="list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center"
+      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center
+      list-group-item-{{ modeTarget == constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE')
+          ? 'warning' : 'primary' }}"
       href="{{ path(
         currentRoute,
         currentRouteParameters|merge({
