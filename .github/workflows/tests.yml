@@ -1,4 +1,4 @@
-name: Quality
+name: Tests
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
   pull_request: ~
 
 jobs:
-  phpcs:
-    name: PHPCS
+  phpstan:
+    name: PHPStan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,12 +27,11 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
       - name: Run composer install
         run: composer install -n --prefer-dist
-      - run: ls -l ./vendor/bin
       - name: Run
-        run: ./vendor/bin/phpcs
+        run: ./vendor/bin/phpstan analyse --memory-limit=-1
 
-  phpmd:
-    name: PHPMD
+  phpunit:
+    name: PHPUnit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -52,27 +51,4 @@ jobs:
       - name: Run composer install
         run: composer install -n --prefer-dist
       - name: Run
-        run: ./vendor/bin/phpmd src,tests text ruleset.xml
-
-  psalm:
-    name: Psalm
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          extensions: ctype, iconv, redis
-          coverage: none
-      - name: Cache composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: vendor
-          key: composer-${{ hashFiles('composer.lock') }}
-      - name: Run composer install
-        run: composer install -n --prefer-dist
-      - name: Run
-        run: ./vendor/bin/psalm --output-format=github
+        run: ./bin/phpunit
