@@ -30,6 +30,7 @@ runs:
         exit 1
 
     - name: Check Moco logs
+      shell: bash
       run: docker compose logs moco_test
 
     - name: Check HTTP reachability
