@@ -29,6 +29,9 @@ runs:
         done
         exit 1
 
+    - name: Check Moco logs
+      run: docker compose logs moco_test
+
     - name: Check HTTP reachability
       shell: bash
       run: curl -v -o /dev/null http://localhost:8081
