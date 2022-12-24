@@ -9,36 +9,36 @@ use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class AdminUpdateControllerTest extends WebTestCase
+class AdminActionControllerTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAdminUpdateLabels(): void
+    public function testAdminActionLabels(): void
     {
-        $this->testAdminUpdate('labels');
+        $this->testAdminAction('labels');
     }
 
-    public function testAdminUpdateGamesAndDexes(): void
+    public function testAdminActionGamesAndDexes(): void
     {
-        $this->testAdminUpdate('games_and_dexes');
+        $this->testAdminAction('games_and_dexes');
     }
 
-    public function testAdminUpdatePokemons(): void
+    public function testAdminActionPokemons(): void
     {
-        $this->testAdminUpdate('pokemons');
+        $this->testAdminAction('pokemons');
     }
 
-    public function testAdminUpdateGameAvailability(): void
+    public function testAdminActionGameAvailability(): void
     {
-        $this->testAdminUpdate('game_availability');
+        $this->testAdminAction('game_availability');
     }
 
-    public function testAdminUpdateGameBundleAvailability(): void
+    public function testAdminActionGameBundleAvailability(): void
     {
         $this->testAdminCalculate('game_bundle_availability');
     }
 
-    public function testAdminUpdateDexAvailability(): void
+    public function testAdminActionDexAvailability(): void
     {
         $client = static::createClient();
 
@@ -47,7 +47,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $client->loginUser($user);
 
         # For testing purpose, this case will fail in API side
-        $client->request('GET', "/fr/istration/calculate/dex_availability");
+        $client->request('GET', "/fr/istration/action/calculate/dex_availability");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -55,7 +55,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('.list-group-item-danger'));
     }
 
-    public function testAdminUpdateUnknown(): void
+    public function testAdminActionUnknown(): void
     {
         $client = static::createClient();
 
@@ -67,7 +67,7 @@ class AdminUpdateControllerTest extends WebTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $client->request('GET', "/fr/istration/update/truc");
+        $client->request('GET', "/fr/istration/action/update/truc");
     }
 
     public function testAdminCalculateUnknown(): void
@@ -82,10 +82,10 @@ class AdminUpdateControllerTest extends WebTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $client->request('GET', "/fr/istration/calculate/truc");
+        $client->request('GET', "/fr/istration/action/calculate/truc");
     }
 
-    private function testAdminUpdate(string $name): void
+    private function testAdminAction(string $name): void
     {
         $client = static::createClient();
 
@@ -93,7 +93,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $client->request('GET', "/fr/istration/update/$name");
+        $client->request('GET', "/fr/istration/action/update/$name");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -117,7 +117,7 @@ class AdminUpdateControllerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $client->request('GET', "/fr/istration/calculate/$name");
+        $client->request('GET', "/fr/istration/action/calculate/$name");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
