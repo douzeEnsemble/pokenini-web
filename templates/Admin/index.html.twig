@@ -1,5 +1,13 @@
 {% set locale = app.request.locale %}
 
+{% set items = app.flashes('item') %}
+{% set actions = app.flashes('action') %}
+{% set states = app.flashes('state') %}
+
+{% set updatedItem = items[0] is defined ? items[0] : null %}
+{% set updatedAction = actions[0] is defined ? actions[0] : null %}
+{% set updatedState = states[0] is defined ? states[0] : null %}
+
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 
@@ -28,7 +36,7 @@
         } %}
         <div class="list-group">
             {% for item, icon in updateItems %}
-                {{ _self.adminItem('update', item, icon) }}
+                {{ _self.adminItem('update', item, icon, updatedItem, updatedAction, updatedState) }}
             {% endfor %}
         </div>
 
@@ -49,7 +57,7 @@
         } %}
         <div class="list-group">
             {% for item, icon in calculateItems %}
-                {{ _self.adminItem('calculate', item, icon) }}
+                {{ _self.adminItem('calculate', item, icon, updatedItem, updatedAction, updatedState) }}
             {% endfor %}
         </div>
 
@@ -71,28 +79,25 @@
         } %}
         <div class="list-group">
             {% for item, icon in invalidateItems %}
-                {{ _self.adminItem('invalidate', item, icon) }}
+                {{ _self.adminItem('invalidate', item, icon, updatedItem, updatedAction, updatedState) }}
             {% endfor %}
         </div>
     </div>
 {% endblock %}
 
-{% macro adminItem(type, item, icon) %}
-    {% set updatedItem = app.request.get('item') %}
-    {% set updatedType = app.request.get('type') %}
-    {% set updatedState = app.request.get('state') %}
+{% macro adminItem(action, item, icon, updatedItem, updatedAction, updatedState) %}
     {% set stateColor = {
 'ok': 'success',
 'ko': 'danger',
 } %}
 
     {% set listGroupItem = 'light' %}
-    {% if updatedType is same as(type) and updatedItem is same as(item) %}
+    {% if updatedAction is same as(action) and updatedItem is same as(item) %}
         {% set listGroupItem = stateColor[updatedState] %}
     {% endif %}
 
-    <a class="admin-item list-group-item list-group-item-action list-group-item-{{ listGroupItem }} d-flex justify-content-between align-items-center" href="{{ path('app_adminupdate_'~type, {'name': item}) }}">
-        {{ ('title.'~type~'.'~item)|trans }}
+    <a class="admin-item list-group-item list-group-item-action list-group-item-{{ listGroupItem }} d-flex justify-content-between align-items-center" href="{{ path('app_adminaction_'~action, {'name': item}) }}">
+        {{ ('title.'~action~'.'~item)|trans }}
         <i class="text-primary bi bi-{{ icon }}"></i>
     </a>
 {% endmacro %}
