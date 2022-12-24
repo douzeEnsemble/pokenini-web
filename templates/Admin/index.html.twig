@@ -9,7 +9,7 @@
 
 {% block container %}
 <div class="row">
-    <div class="col-md-4 mx-auto text-center">
+    <div class="col-md-4">
 
         <h2 class="mt-3">{{ 'title.update_data'|trans }}</h2>
 
@@ -32,6 +32,9 @@
             {% endfor %}
         </div>
 
+    </div>
+    <div class="col-md-4">
+
         <h2 class="mt-3">{{ 'title.calculate_data'|trans }}</h2>
 
         {% for message in app.flashes('calculate_error') %}
@@ -49,6 +52,9 @@
                 {{ _self.adminItem('calculate', item, icon) }}
             {% endfor %}
         </div>
+
+    </div>
+    <div class="col-md-4">
 
         <h2 class="mt-3">{{ 'title.invalidate_data'|trans }}</h2>
 
