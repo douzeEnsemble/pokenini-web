@@ -185,7 +185,7 @@ outer_room:
     mail:
         link: 'Send a request'
         subject: 'Can I have access to Pokénini please?'
-        body: 'My Google OpenId identifier is `%id%`'
+        body: 'My Google OpenId identifier is %id%'
 
 footer:
     home: 'Home'

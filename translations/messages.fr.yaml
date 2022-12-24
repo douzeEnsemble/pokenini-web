@@ -185,7 +185,7 @@ outer_room:
     mail:
         link: 'Envoyer une demande'
         subject: 'Je peux avoir accès à Pokénini stp ?'
-        body: 'Mon identifiant Google OpenId est `%id%`'
+        body: 'Mon identifiant Google OpenId est %id%'
 
 footer:
     home: 'Accueil'
