@@ -118,7 +118,9 @@
     >
     {% if dex.region_name is not empty %}
       {{ 'album.intro.label.region'|trans }}
-      <span class="badge bg-primary rounded-pill">{{ dex.region_name }}</span>
+      <span class="badge bg-primary rounded-pill">
+        {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}
+      </span>
     {% else %}
       {{ 'album.intro.label.dex'|trans }}
       <span class="badge bg-primary rounded-pill">{{ 'album.intro.value.national'|trans }}</span>
