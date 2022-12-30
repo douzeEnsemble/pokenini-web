@@ -7,6 +7,7 @@
     "is_display_form": true,
     "display_template": "an_unknown_template",
     "region_name":null,
+    "region_french_name":null,
     "french_description": "",
     "version": 0
   },

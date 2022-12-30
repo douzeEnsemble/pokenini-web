@@ -289,6 +289,152 @@ class AlbumControllerIntroTest extends WebTestCase
         $this->assertListGroupItemWithValue($crawler, 6, '3');
     }
 
+    public function testIntroBlackWhiteFrench(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/fr/album/r/blackwhite');
+
+        file_put_contents('tests/last.html', $crawler->html());
+
+        $this->assertCount(
+            1,
+            $crawler->filter('h1#album-title')
+        );
+        $this->assertEquals(
+            'Noire, Blanche',
+            $crawler->filter('h1#album-title')->text()
+        );
+
+        $this->assertCount(
+            1,
+            $crawler->filter('#album-description')
+        );
+        $this->assertStringContainsString(
+            'La liste des pokémons obtenable dans les jeux Noire et Blanche.',
+            $crawler->filter('#album-description')->text()
+        );
+        $this->assertStringContainsString(
+            "Les pokémons ont des formes différentes en fonction du genre ou pas.",
+            $crawler->filter('#album-description')->text()
+        );
+
+        $this->assertCount(
+            1,
+            $crawler->filter('#intro .list-group')
+        );
+        $this->assertCount(
+            7,
+            $crawler->filter('#intro .list-group .list-group-item')
+        );
+
+        $this->assertEquals(
+            '/fr/album/w/blackwhite',
+            $crawler->filter('#intro .list-group .list-group-item')->first()->attr('href')
+        );
+
+        $this->assertEquals(
+            '#box-1',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
+        );
+
+        $this->assertEquals(
+            'Album privé',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 3, 'Unys');
+
+        $this->assertEquals(
+            'Formes normales',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+        );
+
+        $this->assertEquals(
+            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 6, '2');
+    }
+
+    public function testIntroBlackWhiteEnglish(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/en/album/r/blackwhite');
+
+        file_put_contents('tests/last.html', $crawler->html());
+
+        $this->assertCount(
+            1,
+            $crawler->filter('h1#album-title')
+        );
+        $this->assertEquals(
+            'Black, White',
+            $crawler->filter('h1#album-title')->text()
+        );
+
+        $this->assertCount(
+            1,
+            $crawler->filter('#album-description')
+        );
+        $this->assertStringContainsString(
+            'The list of obtainable Pokémons in Black and White games.',
+            $crawler->filter('#album-description')->text()
+        );
+        $this->assertStringContainsString(
+            "Pokémons have different shapes depending on the gender or not.",
+            $crawler->filter('#album-description')->text()
+        );
+
+        $this->assertCount(
+            1,
+            $crawler->filter('#intro .list-group')
+        );
+        $this->assertCount(
+            7,
+            $crawler->filter('#intro .list-group .list-group-item')
+        );
+
+        $this->assertEquals(
+            '/en/album/w/blackwhite',
+            $crawler->filter('#intro .list-group .list-group-item')->first()->attr('href')
+        );
+
+        $this->assertEquals(
+            '#box-1',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
+        );
+
+        $this->assertEquals(
+            'Private album',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 3, 'Unova');
+
+        $this->assertEquals(
+            'Regular forms',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+        );
+
+        $this->assertEquals(
+            'Display by box of 6 by 5 pokémons as in the games',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 6, '2');
+    }
+
     public function testIntroDemoAnotherTrainer(): void
     {
         $client = static::createClient();
