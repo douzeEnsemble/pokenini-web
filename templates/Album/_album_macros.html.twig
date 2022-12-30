@@ -118,3 +118,15 @@
     </div>
 </div>
 {% endmacro %}
+
+{% macro boxTitle(boxNumber) %}
+<div class="box-title sticky-top">
+    {% set title = ('title.box'|trans)~' '~boxNumber %}
+    <h2 class="float-start">
+        {{ title }}
+    </h2>
+    <a class="ms-1" href="#box-{{ boxNumber }}" title="{{ title }}">
+        <i class="bi bi-link-45deg"></i>
+    </a>
+</div>
+{% endmacro %}

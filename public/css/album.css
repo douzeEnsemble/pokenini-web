@@ -31,7 +31,7 @@
     color: inherit;
     text-decoration: inherit;
 }
-.box h2 {
+.box .box-title {
     background-color: white;
 }
 
