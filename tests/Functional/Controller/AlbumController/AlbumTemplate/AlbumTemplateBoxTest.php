@@ -57,7 +57,27 @@ class AlbumTemplateBoxTest extends WebTestCase
         $this->assertCount(
             58,
             $crawler
-                ->filter('.box h2')
+                ->filter('.box .box-title h2')
+        );
+        $this->assertCount(
+            58,
+            $crawler
+                ->filter('.box .box-title a')
+        );
+
+        $this->assertEquals(
+            '#box-1',
+            $crawler
+                ->filter('.box .box-title a')
+                ->eq(0)
+                ->attr('href')
+        );
+        $this->assertEquals(
+            '#box-11',
+            $crawler
+                ->filter('.box .box-title a')
+                ->eq(10)
+                ->attr('href')
         );
     }
 

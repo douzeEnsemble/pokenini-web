@@ -10,7 +10,7 @@
     </div>
 {% else %}
     <div id="box-1" class="box row">
-        <h2 class="sticky-top">{{ 'title.box'|trans }} 1</h2>
+        {{ macro.boxTitle(1) }}
         <div class="row row-cols-6 album-line">
             {% for item in list %}
             {% set boxNumber = (loop.index0 / (6*5)) + 1 %}
@@ -25,7 +25,7 @@
     </div>
     <hr>
     <div id="box-{{ boxNumber }}" class="box row">
-        <h2 class="sticky-top">{{ 'title.box'|trans }} {{ boxNumber }}</h2>
+        {{ macro.boxTitle(boxNumber) }}
         <div class="row row-cols-6 album-line">
             {% endif %}
 
