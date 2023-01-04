@@ -682,7 +682,15 @@
       }
     },
     "response": {
-      "status": "200"
+      "status": "200",
+      "json": {
+        "catch_state": 6,
+        "region": 0,
+        "category_form": 4,
+        "regional_form": 4,
+        "special_form": 5,
+        "variant_form": 8
+      }
     }
   },
   {
@@ -696,7 +704,13 @@
       }
     },
     "response": {
-      "status": "200"
+      "status": "200",
+      "json": {
+        "game_generation": 9,
+        "game_bundle": 17,
+        "game": 36,
+        "dex": 21
+      }
     }
   },
   {
@@ -710,13 +724,33 @@
       }
     },
     "response": {
-      "status": "200"
+      "status": "200",
+      "json": {
+        "pokemon": 1815
+      }
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/istration/update/game_availability"
+        "match": "/istration/update/games_availabilities"
+      },
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "game_availability": 7980
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/istration/update/regional_dexes_numbers"
       },
       "method": "post",
       "headers": {
@@ -730,7 +764,7 @@
   {
     "request": {
       "uri": {
-        "match": "/istration/update/regional_dex_numbers"
+        "match": "/istration/calculate/games_bundles_availabilities"
       },
       "method": "post",
       "headers": {
@@ -738,27 +772,16 @@
       }
     },
     "response": {
-      "status": "200"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/istration/calculate/game_bundle_availability"
-      },
-      "method": "post",
-      "headers": {
-        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      "status": "200",
+      "json": {
+        "game_bundle_availability": 18
       }
-    },
-    "response": {
-      "status": "200"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/istration/calculate/dex_availability"
+        "match": "/istration/calculate/dexes_availabilities"
       },
       "method": "post",
       "headers": {

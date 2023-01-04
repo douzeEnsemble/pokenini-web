@@ -4,18 +4,23 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\DTO\AdminAction;
 use App\Service\ApiService;
 use App\Service\CacheInvalidatorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/istration/action')]
 class AdminActionController extends AbstractController
 {
+    public const SESSION_ACTION_DATA = 'admin.action.response.content';
+
     public function __construct(
         private readonly CacheInvalidatorService $cacheInvalidatorService,
         private readonly ApiService $apiService,
+        private readonly RequestStack $requestStack,
     ) {
     }
 
@@ -27,8 +32,8 @@ class AdminActionController extends AbstractController
                 'labels',
                 'games_and_dexes',
                 'pokemons',
-                'game_availability',
-                'regional_dex_number',
+                'games_availabilities',
+                'regional_dexes_numbers',
             ]"
     )]
     public function update(
@@ -42,8 +47,8 @@ class AdminActionController extends AbstractController
         methods: ['GET'],
         condition: "params['name']
             in [
-                'game_bundle_availability',
-                'dex_availability',
+                'games_bundles_availabilities',
+                'dexes_availabilities',
             ]"
     )]
     public function calculate(
@@ -70,28 +75,32 @@ class AdminActionController extends AbstractController
 
     private function execute(
         string $name,
-        string $action,
+        string $action
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $state = 'ok';
+        $content = '';
+        $error = '';
 
         try {
-            $this->doAction($name, $action);
+            $content = $this->doAction($name, $action);
         } catch (\Exception $e) {
             $state = 'ko';
 
-            $this->addFlash(
-                "{$action}_error",
-                $e->getMessage()
-            );
+            $error = $e->getMessage();
 
             error_log($e->getMessage());
         }
 
-        $this->addFlash('action', $action);
-        $this->addFlash('item', $name);
-        $this->addFlash('state', $state);
+        $adminAction = new AdminAction(
+            $action,
+            $name,
+            $state,
+            $content,
+            $error
+        );
+        $this->requestStack->getSession()->set(self::SESSION_ACTION_DATA, $adminAction);
 
         return $this->redirectToRoute('app_admin_index');
     }
@@ -99,13 +108,15 @@ class AdminActionController extends AbstractController
     private function doAction(
         string $name,
         string $action,
-    ): void {
+    ): string {
+        $responseContent = '';
+
         switch ($action) {
             case 'update':
-                $this->apiService->adminUpdate($name);
+                $responseContent = $this->apiService->adminUpdate($name);
                 break;
             case 'calculate':
-                $this->apiService->adminCalculate($name);
+                $responseContent = $this->apiService->adminCalculate($name);
                 break;
             default:
                 // nothing
@@ -113,5 +124,7 @@ class AdminActionController extends AbstractController
         }
 
         $this->cacheInvalidatorService->invalidate($name);
+
+        return $responseContent;
     }
 }

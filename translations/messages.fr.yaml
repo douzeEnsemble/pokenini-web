@@ -27,11 +27,11 @@ title:
         labels: 'Maj des labels'
         games_and_dexes: 'Maj des jeux et dex'
         pokemons: 'Maj des pokémons'
-        game_availability: 'Maj des dispo des jeux'
-        regional_dex_number: 'Maj des numéro des dex régionaux'
+        games_availabilities: 'Maj des dispo des jeux'
+        regional_dexes_numbers: 'Maj des numéro des dex régionaux'
     calculate:
-        game_bundle_availability: 'Maj des dispo des bundles de jeux'
-        dex_availability: 'Maj des dispo des dex'
+        games_bundles_availabilities: 'Maj des dispo des bundles de jeux'
+        dexes_availabilities: 'Maj des dispo des dex'
     invalidate:
         catch_states: 'Invalidation du cache des statuts'
         dexes: 'Invalidation du cache des dex'
@@ -106,17 +106,17 @@ update:
     pokemons:
         success: 'La maj des pokémons a été effectuée'
         error: 'La maj des pokémons a échouée'
-    game_availability:
+    games_availabilities:
         success: 'La maj des dispo des jeux a été effectuée'
         error: 'La maj des dispo des jeux a échouée'
-    regional_dex_number:
+    regional_dexes_numbers:
         success: 'La maj des numéros de dex régionaux a été effectuée'
         error: 'La maj des numéros de dex régionaux a échouée'
 calculate:
-    game_bundle_availability:
+    games_bundles_availabilities:
         success: 'La maj des dispo des bundles de jeux a été effectuée'
         error: 'La maj des dispo des bundles de jeux a échouée'
-    dex_availability:
+    dexes_availabilities:
         success: 'La maj des dispo des dex a été effectuée'
         error: 'La maj des dispo des dex a échouée'
 
@@ -213,3 +213,24 @@ error:
 
             N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée,
             une capture, le max d'info.
+
+
+admin:
+    update:
+        game_availability: "Dispo des jeux"
+        regional_dex_number: "Numéros de dex régionaux"
+        game_generation: "Générations"
+        game_bundle: "Bundles de jeux"
+        game: "Jeux"
+        dex: "Dex"
+        catch_state: "Statuts"
+        region: "Régions"
+        category_form: "Catégories"
+        regional_form: "Formes régionales"
+        special_form: "Formes spéciales"
+        variant_form: "Variantes"
+        pokemon: "Pokémons"
+
+    calculate:
+        game_bundle_availability: "Dispo des bundles"
+        dex_availability: "Dispo des dex"

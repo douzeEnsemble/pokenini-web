@@ -15,6 +15,12 @@
 	{{ 'title.admin'|trans }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock stylesheets %}
+
 {% block container %}
 <div class="row">
     <div class="col-md-4">
@@ -31,12 +37,12 @@
             'labels': 'tags-fill',
             'games_and_dexes': 'joystick',
             'pokemons': 'bug-fill',
-            'regional_dex_number': 'globe-asia-australia',
-            'game_availability': 'box-seam',
+            'regional_dexes_numbers': 'globe-asia-australia',
+            'games_availabilities': 'box-seam',
         } %}
         <div class="list-group">
             {% for item, icon in updateItems %}
-                {{ _self.adminItem('update', item, icon, updatedItem, updatedAction, updatedState) }}
+                {{ _self.adminItem('update', item, icon, updatedItem, updatedAction, updatedState, responseData) }}
             {% endfor %}
         </div>
 
@@ -52,12 +58,12 @@
         {% endfor %}
 
         {% set calculateItems = {
-            'game_bundle_availability': 'box-seam-fill',
-            'dex_availability': 'list-check',
+            'games_bundles_availabilities': 'box-seam-fill',
+            'dexes_availabilities': 'list-check',
         } %}
         <div class="list-group">
             {% for item, icon in calculateItems %}
-                {{ _self.adminItem('calculate', item, icon, updatedItem, updatedAction, updatedState) }}
+                {{ _self.adminItem('calculate', item, icon, updatedItem, updatedAction, updatedState, responseData) }}
             {% endfor %}
         </div>
 
@@ -79,13 +85,13 @@
         } %}
         <div class="list-group">
             {% for item, icon in invalidateItems %}
-                {{ _self.adminItem('invalidate', item, icon, updatedItem, updatedAction, updatedState) }}
+                {{ _self.adminItem('invalidate', item, icon, updatedItem, updatedAction, updatedState, responseData) }}
             {% endfor %}
         </div>
     </div>
 {% endblock %}
 
-{% macro adminItem(action, item, icon, updatedItem, updatedAction, updatedState) %}
+{% macro adminItem(action, item, icon, updatedItem, updatedAction, updatedState, updateData) %}
     {% set stateColor = {
 'ok': 'success',
 'ko': 'danger',
@@ -96,8 +102,30 @@
         {% set listGroupItem = stateColor[updatedState] %}
     {% endif %}
 
-    <a class="admin-item list-group-item list-group-item-action list-group-item-{{ listGroupItem }} d-flex justify-content-between align-items-center" href="{{ path('app_adminaction_'~action, {'name': item}) }}">
-        {{ ('title.'~action~'.'~item)|trans }}
-        <i class="text-primary bi bi-{{ icon }}"></i>
+    <a class="admin-item list-group-item list-group-item-action list-group-item-{{ listGroupItem }}" href="{{ path('app_adminaction_'~action, {'name': item}) }}">
+        <div class="d-flex w-100 justify-content-between align-items-center">
+            {{ ('title.'~action~'.'~item)|trans }}
+
+            <i class="text-primary bi bi-{{ icon }}"></i>
+        </div>
+
+        {% if updateData is not empty
+            and updatedAction is same as(action)
+            and updatedItem is same as(item)
+        %}
+        <div class="row justify-content-start ms-3">
+            <dl class="col-8 row admin-item-report mt-1 mb-0">
+                {% for slug, value in updateData %}
+                <dt class="col-8">
+                    {{ ('admin.'~action~'.'~slug)|trans }}
+                </dt>
+                <dd class="col-4 text-end mb-0">
+                    {{ value|number_format(0, '.', ' ') }}
+                </d>
+                {% endfor %}
+            </dl>
+        </div>
+        {% endif %}
     </a>
+
 {% endmacro %}

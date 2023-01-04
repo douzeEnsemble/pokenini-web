@@ -173,9 +173,9 @@ class ApiService
         );
     }
 
-    public function adminUpdate(string $type): void
+    public function adminUpdate(string $type): string
     {
-        $this->client->request(
+        $response = $this->client->request(
             'POST',
             "{$this->appApiUrl}/istration/update/$type",
             [
@@ -185,11 +185,14 @@ class ApiService
                 ],
             ]
         );
+
+        /** @var string */
+        return $response->getContent();
     }
 
-    public function adminCalculate(string $type): void
+    public function adminCalculate(string $type): string
     {
-        $this->client->request(
+        $response = $this->client->request(
             'POST',
             "{$this->appApiUrl}/istration/calculate/$type",
             [
@@ -199,6 +202,9 @@ class ApiService
                 ],
             ]
         );
+
+        /** @var string */
+        return $response->getContent();
     }
 
     public function invalidateCacheDexes(): void
