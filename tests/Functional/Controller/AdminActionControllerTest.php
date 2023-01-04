@@ -7,38 +7,82 @@ namespace App\Tests\Functional\Controller;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminActionControllerTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAdminActionLabels(): void
+    public function testAdminUpdateLabels(): void
     {
-        $this->testAdminAction('labels');
+        $this->testAdminUpdate(
+            'labels',
+            [
+                'Statuts' => 6,
+                'Régions' => 0,
+                'Catégories' => 4,
+                'Formes régionales' => 4,
+                'Formes spéciales' => 5,
+                'Variantes' => 8,
+            ]
+        );
     }
 
-    public function testAdminActionGamesAndDexes(): void
+    public function testAdminUpdateGamesAndDexes(): void
     {
-        $this->testAdminAction('games_and_dexes');
+        $this->testAdminUpdate(
+            'games_and_dexes',
+            [
+                'Générations' => 9,
+                'Bundles de jeux' => 17,
+                'Jeux' => 36,
+                'Dex' => 21,
+            ]
+        );
     }
 
-    public function testAdminActionPokemons(): void
+    public function testAdminUpdatePokemons(): void
     {
-        $this->testAdminAction('pokemons');
+        $this->testAdminUpdate(
+            'pokemons',
+            [
+                'Pokémons' => 1815,
+            ]
+        );
     }
 
-    public function testAdminActionGameAvailability(): void
+    public function testAdminUpdateRegionalDexesNumbers(): void
     {
-        $this->testAdminAction('game_availability');
+        $this->testAdminUpdate(
+            'regional_dexes_numbers',
+            [
+                // Empty for testing purpose
+            ]
+        );
     }
 
-    public function testAdminActionGameBundleAvailability(): void
+    public function testAdminUpdateGamesAvailabilities(): void
     {
-        $this->testAdminCalculate('game_bundle_availability');
+        $this->testAdminUpdate(
+            'games_availabilities',
+            [
+                'Dispo des jeux' => 7980,
+            ]
+        );
     }
 
-    public function testAdminActionDexAvailability(): void
+    public function testAdminCalculateGamesBundlesAvailabilities(): void
+    {
+        $this->testAdminCalculate(
+            'games_bundles_availabilities',
+            [
+                'Dispo des bundles' => 18,
+            ]
+        );
+    }
+
+    public function testAdminCalculateDexesAvailabilities(): void
     {
         $client = static::createClient();
 
@@ -47,7 +91,7 @@ class AdminActionControllerTest extends WebTestCase
         $client->loginUser($user);
 
         # For testing purpose, this case will fail in API side
-        $client->request('GET', "/fr/istration/action/calculate/dex_availability");
+        $client->request('GET', "/fr/istration/action/calculate/dexes_availabilities");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -55,7 +99,7 @@ class AdminActionControllerTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('.list-group-item-danger'));
     }
 
-    public function testAdminActionUnknown(): void
+    public function testAdminUpdateUnknown(): void
     {
         $client = static::createClient();
 
@@ -85,7 +129,10 @@ class AdminActionControllerTest extends WebTestCase
         $client->request('GET', "/fr/istration/action/calculate/truc");
     }
 
-    private function testAdminAction(string $name): void
+    /**
+     * @param array<string, int> $expectedReport
+     */
+    private function testAdminUpdate(string $name, array $expectedReport = []): void
     {
         $client = static::createClient();
 
@@ -107,9 +154,14 @@ class AdminActionControllerTest extends WebTestCase
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
+
+        $this->assertReport($crawler, $expectedReport);
     }
 
-    private function testAdminCalculate(string $name): void
+    /**
+     * @param array<string, int> $expectedReport
+     */
+    private function testAdminCalculate(string $name, array $expectedReport = []): void
     {
         $client = static::createClient();
 
@@ -131,5 +183,35 @@ class AdminActionControllerTest extends WebTestCase
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
+
+        $this->assertReport($crawler, $expectedReport);
+    }
+
+    /**
+     * @param array<string, int> $expectedReport
+     */
+    private function assertReport(Crawler $crawler, array $expectedReport): void
+    {
+        if (empty($expectedReport)) {
+            $this->assertCount(0, $crawler->filter('.admin-item-report'));
+
+            return;
+        }
+
+        $this->assertCount(1, $crawler->filter('.admin-item-report'));
+
+        $index = 0;
+        foreach ($expectedReport as $label => $value) {
+            $this->assertEquals(
+                $label,
+                $crawler->filter('.admin-item-report dt')->eq($index)->text()
+            );
+            $this->assertEquals(
+                $value,
+                $crawler->filter('.admin-item-report dd')->eq($index)->text()
+            );
+
+            $index++;
+        }
     }
 }

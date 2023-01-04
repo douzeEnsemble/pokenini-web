@@ -79,7 +79,7 @@ phpmd: ## Execute phpmd
 	@$(PHP_CONT) vendor/bin/phpmd src,tests text ruleset.xml
 
 psalm: ## Execute psalm
-	@$(PHP_CONT) vendor/bin/psalm --show-info=true
+	@$(PHP_CONT) vendor/bin/psalm --show-info=false
 
 
 ## —— Deployment 🚀 ————————————————————————————————————————————————————————————————

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\DTO\AdminAction;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,10 +14,40 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     #[Route('/', methods: ['GET'])]
-    public function index(): Response
+    public function index(RequestStack $requestStack): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        return $this->render('Admin/index.html.twig');
+        $session = $requestStack->getSession();
+
+        /** @var AdminAction $adminAction */
+        $adminAction = $session->get(AdminActionController::SESSION_ACTION_DATA);
+        $session->remove(AdminActionController::SESSION_ACTION_DATA);
+
+        $responseData = [];
+
+        if (null !== $adminAction) {
+            if ('' !== $adminAction->error) {
+                $this->addFlash(
+                    "{$adminAction->action}_error",
+                    $adminAction->error
+                );
+            }
+
+            $this->addFlash('action', $adminAction->action);
+            $this->addFlash('item', $adminAction->item);
+            $this->addFlash('state', $adminAction->state);
+
+            if ('' !== $adminAction->content) {
+                $responseData = json_decode($adminAction->content, true);
+            }
+        }
+
+        return $this->render(
+            'Admin/index.html.twig',
+            [
+                'responseData' => $responseData,
+            ]
+        );
     }
 }

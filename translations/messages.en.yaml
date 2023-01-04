@@ -27,11 +27,11 @@ title:
         labels: 'Update labels'
         games_and_dexes: 'Update games and dexes'
         pokemons: 'Update pokémons'
-        game_availability: "Update games' availabilities"
-        regional_dex_number: 'Update regional dex numbers'
+        games_availabilities: "Update games' availabilities"
+        regional_dexes_numbers: 'Update regional dex numbers'
     calculate:
-        game_bundle_availability: "Update game bundles' availabilities"
-        dex_availability: 'Update dexes availabilities'
+        games_bundles_availabilities: "Update game bundles' availabilities"
+        dexes_availabilities: 'Update dexes availabilities'
     invalidate:
         catch_states: 'Invalidate status cache'
         dexes: 'Invalidate dexes cache'
@@ -107,17 +107,17 @@ update:
     pokemons:
         success: 'Pokémons update has been done'
         error: 'Pokémons update has failed'
-    regional_dex_number:
+    regional_dexesnumbers:
         success: 'Regional dex numbers update has been done'
         error: 'Regional dex numbers update has failed'
-    game_availability:
+    games_availabilities:
         success: "Games' availabilities update has been done"
         error: "Games' availabilities update has failed"
 calculate:
-    game_bundle_availability:
+    games_bundles_availabilities:
         success: "Game bundles' availabilities update has been done"
         error: "Game bundles' availabilities update has failed"
-    dex_availability:
+    dexes_availabilities:
         success: 'Dex availabilities update has been done'
         error: 'Dex availabilities update has failed'
 
@@ -212,3 +212,23 @@ error:
 
             Do not hesitate to point out the error to us. How did you meet her,
             a capture, the max of info.
+
+admin:
+    update:
+        game_availability: "Games' availabilities"
+        regional_dex_number: "Regional Dex numbers"
+        game_generation: "Game's generations"
+        game_bundle: "Game's bundles"
+        game: "Games"
+        dex: "Dexes"
+        catch_state: "Catch's states"
+        region: "Regions"
+        category_form: "Category forms"
+        regional_form: "Regional forms"
+        special_form: "Special forms"
+        variant_form: "Variant forms"
+        pokemon: "Pokémons"
+
+    calculate:
+        game_bundle_availability: "Bundles' availabilities"
+        dex_availability: "Dex' availabilities"
