@@ -30,10 +30,10 @@ class AdminActionController extends AbstractController
         condition: "params['name']
             in [
                 'labels',
-                'games_and_dexes',
+                'games_and_dex',
                 'pokemons',
                 'games_availabilities',
-                'regional_dexes_numbers',
+                'regional_dex_numbers',
             ]"
     )]
     public function update(
@@ -47,8 +47,8 @@ class AdminActionController extends AbstractController
         methods: ['GET'],
         condition: "params['name']
             in [
-                'games_bundles_availabilities',
-                'dexes_availabilities',
+                'game_bundles_availabilities',
+                'dex_availabilities',
             ]"
     )]
     public function calculate(
@@ -63,7 +63,7 @@ class AdminActionController extends AbstractController
         condition: "params['name']
             in [
                 'catch_states',
-                'dexes',
+                'dex',
                 'albums',
             ]"
     )]

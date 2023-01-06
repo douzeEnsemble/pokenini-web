@@ -684,19 +684,19 @@
     "response": {
       "status": "200",
       "json": {
-        "catch_state": 6,
-        "region": 0,
-        "category_form": 4,
-        "regional_form": 4,
-        "special_form": 5,
-        "variant_form": 8
+        "catch_states": 6,
+        "regions": 0,
+        "category_forms": 4,
+        "regional_forms": 4,
+        "special_forms": 5,
+        "variant_forms": 8
       }
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/istration/update/games_and_dexes"
+        "match": "/istration/update/games_and_dex"
       },
       "method": "post",
       "headers": {
@@ -706,9 +706,9 @@
     "response": {
       "status": "200",
       "json": {
-        "game_generation": 9,
-        "game_bundle": 17,
-        "game": 36,
+        "game_generations": 9,
+        "game_bundles": 17,
+        "games": 36,
         "dex": 21
       }
     }
@@ -726,7 +726,7 @@
     "response": {
       "status": "200",
       "json": {
-        "pokemon": 1815
+        "pokemons": 1815
       }
     }
   },
@@ -743,14 +743,14 @@
     "response": {
       "status": "200",
       "json": {
-        "game_availability": 7980
+        "games_availabilities": 7980
       }
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/istration/update/regional_dexes_numbers"
+        "match": "/istration/update/regional_dex_numbers"
       },
       "method": "post",
       "headers": {
@@ -764,7 +764,7 @@
   {
     "request": {
       "uri": {
-        "match": "/istration/calculate/games_bundles_availabilities"
+        "match": "/istration/calculate/game_bundles_availabilities"
       },
       "method": "post",
       "headers": {
@@ -774,14 +774,14 @@
     "response": {
       "status": "200",
       "json": {
-        "game_bundle_availability": 18
+        "game_bundles_availabilities": 18
       }
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/istration/calculate/dexes_availabilities"
+        "match": "/istration/calculate/dex_availabilities"
       },
       "method": "post",
       "headers": {
@@ -791,7 +791,7 @@
     "response": {
       "status": "200",
       "json": {
-        "dex_availability": 61
+        "dex_availabilities": 61
       }
     }
   },

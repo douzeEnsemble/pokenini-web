@@ -19,25 +19,25 @@ class AdminActionControllerTest extends WebTestCase
         $this->testAdminUpdate(
             'labels',
             [
-                'Statuts' => 6,
-                'Régions' => 0,
-                'Catégories' => 4,
-                'Formes régionales' => 4,
-                'Formes spéciales' => 5,
-                'Variantes' => 8,
+                'Statuts' => '6',
+                'Régions' => '0',
+                'Catégories' => '4',
+                'Formes régionales' => '4',
+                'Formes spéciales' => '5',
+                'Variantes' => '8',
             ]
         );
     }
 
-    public function testAdminUpdateGamesAndDexes(): void
+    public function testAdminUpdateGamesAndDex(): void
     {
         $this->testAdminUpdate(
-            'games_and_dexes',
+            'games_and_dex',
             [
-                'Générations' => 9,
-                'Bundles de jeux' => 17,
-                'Jeux' => 36,
-                'Dex' => 21,
+                'Générations' => '9',
+                'Bundles de jeux' => '17',
+                'Jeux' => '36',
+                'Dex' => '21',
             ]
         );
     }
@@ -47,15 +47,15 @@ class AdminActionControllerTest extends WebTestCase
         $this->testAdminUpdate(
             'pokemons',
             [
-                'Pokémons' => 1815,
+                'Pokémons' => '1 815',
             ]
         );
     }
 
-    public function testAdminUpdateRegionalDexesNumbers(): void
+    public function testAdminUpdateRegionalDexNumbers(): void
     {
         $this->testAdminUpdate(
-            'regional_dexes_numbers',
+            'regional_dex_numbers',
             [
                 // Empty for testing purpose
             ]
@@ -67,7 +67,7 @@ class AdminActionControllerTest extends WebTestCase
         $this->testAdminUpdate(
             'games_availabilities',
             [
-                'Dispo des jeux' => 7980,
+                'Dispo des jeux' => '7 980',
             ]
         );
     }
@@ -75,14 +75,14 @@ class AdminActionControllerTest extends WebTestCase
     public function testAdminCalculateGamesBundlesAvailabilities(): void
     {
         $this->testAdminCalculate(
-            'games_bundles_availabilities',
+            'game_bundles_availabilities',
             [
-                'Dispo des bundles' => 18,
+                'Dispo des bundles' => '18',
             ]
         );
     }
 
-    public function testAdminCalculateDexesAvailabilities(): void
+    public function testAdminCalculateDexAvailabilities(): void
     {
         $client = static::createClient();
 
@@ -91,7 +91,7 @@ class AdminActionControllerTest extends WebTestCase
         $client->loginUser($user);
 
         # For testing purpose, this case will fail in API side
-        $client->request('GET', "/fr/istration/action/calculate/dexes_availabilities");
+        $client->request('GET', "/fr/istration/action/calculate/dex_availabilities");
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -130,7 +130,7 @@ class AdminActionControllerTest extends WebTestCase
     }
 
     /**
-     * @param array<string, int> $expectedReport
+     * @param array<string, string> $expectedReport
      */
     private function testAdminUpdate(string $name, array $expectedReport = []): void
     {
@@ -159,7 +159,7 @@ class AdminActionControllerTest extends WebTestCase
     }
 
     /**
-     * @param array<string, int> $expectedReport
+     * @param array<string, string> $expectedReport
      */
     private function testAdminCalculate(string $name, array $expectedReport = []): void
     {
@@ -188,7 +188,7 @@ class AdminActionControllerTest extends WebTestCase
     }
 
     /**
-     * @param array<string, int> $expectedReport
+     * @param array<string, string> $expectedReport
      */
     private function assertReport(Crawler $crawler, array $expectedReport): void
     {

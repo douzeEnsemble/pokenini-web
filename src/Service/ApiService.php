@@ -16,7 +16,7 @@ class ApiService
 
     private const CACHE_KEY_CACHE_REGISTER = 'register';
 
-    private const CACHE_KEY_DEXES = 'dexes';
+    private const CACHE_KEY_DEX = 'dex';
     private const CACHE_KEY_CATCH_STATES = 'catch_states';
     private const CACHE_KEY_ALBUM = 'album';
 
@@ -56,7 +56,7 @@ class ApiService
             return $response->getContent();
         });
 
-        $this->registerCache(self::CACHE_KEY_DEXES, $key);
+        $this->registerCache(self::CACHE_KEY_DEX, $key);
 
         /** @var string[][] */
         return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
@@ -209,7 +209,7 @@ class ApiService
 
     public function invalidateCacheDexes(): void
     {
-        $this->invalidateCacheByType(self::CACHE_KEY_DEXES);
+        $this->invalidateCacheByType(self::CACHE_KEY_DEX);
     }
 
     public function invalidateCacheCatchStates(): void
@@ -227,7 +227,7 @@ class ApiService
         $key = self::getDexesKey($trainerId);
 
         $this->cache->delete($key);
-        $this->unregisterCache(self::CACHE_KEY_DEXES, $key);
+        $this->unregisterCache(self::CACHE_KEY_DEX, $key);
     }
 
     public function invalidateCacheAlbum(string $dexSlug, string $trainerId): void
@@ -306,7 +306,7 @@ class ApiService
 
     private static function getDexesKey(string $trainerId): string
     {
-        return self::CACHE_KEY_DEXES . self::CACHE_KEY_SEPARATOR . $trainerId;
+        return self::CACHE_KEY_DEX . self::CACHE_KEY_SEPARATOR . $trainerId;
     }
 
     private static function getPokedexKey(string $dexSlug, string $trainerId): string

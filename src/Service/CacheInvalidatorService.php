@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+/**
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ */
 class CacheInvalidatorService
 {
     public function __construct(
@@ -19,7 +22,7 @@ class CacheInvalidatorService
                 $this->apiService->invalidateCacheCatchStates();
                 return;
 
-            case 'games_and_dexes':
+            case 'games_and_dex':
             case 'dexes':
                 $this->apiService->invalidateCacheDexes();
                 return;
@@ -27,14 +30,14 @@ class CacheInvalidatorService
             case 'pokemons':
                 return;
 
-            case 'regional_dexes_numbers':
+            case 'regional_dex_numbers':
             case 'games_availabilities':
-            case 'games_bundles_availabilities':
+            case 'game_bundles_availabilities':
             case 'albums':
                 $this->apiService->invalidateCacheAlbums();
                 return;
 
-            case 'dexes_availabilities':
+            case 'dex_availabilities':
                 $this->apiService->invalidateCacheDexes();
                 $this->apiService->invalidateCacheAlbums();
                 return;
