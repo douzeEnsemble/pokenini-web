@@ -35,7 +35,7 @@ class CacheInvalidatorServiceTest extends TestCase
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
-        $cacheInvalidator->invalidate('games_and_dexes');
+        $cacheInvalidator->invalidate('games_and_dex');
     }
 
     public function testInvalidatePokemons(): void
@@ -75,7 +75,7 @@ class CacheInvalidatorServiceTest extends TestCase
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
-        $cacheInvalidator->invalidate('games_bundles_availabilities');
+        $cacheInvalidator->invalidate('game_bundles_availabilities');
     }
 
     public function testInvalidateDexAvailability(): void
@@ -93,7 +93,7 @@ class CacheInvalidatorServiceTest extends TestCase
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
-        $cacheInvalidator->invalidate('dexes_availabilities');
+        $cacheInvalidator->invalidate('dex_availabilities');
     }
 
     public function testInvalidateUnknown(): void

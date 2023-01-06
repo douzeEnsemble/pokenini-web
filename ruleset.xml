@@ -15,24 +15,41 @@
         <exclude name="StaticAccess" />
     </rule>
 
-    <rule ref="rulesets/naming.xml">
-        <exclude name="LongVariable" />
+    <rule ref="rulesets/codesize.xml">
+        <exclude name="TooManyPublicMethods" />
     </rule>
-    <rule ref="rulesets/naming.xml/LongVariable">
+    <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
         <properties>
-            <property name="maximum" value="32" />
+            <property name="maxmethods" description="The method count reporting threshold" value="20"/>
+            <property name="ignorepattern" description="Ignore methods matching this regex" value="(^(set|get|is|has|with))i"/>
         </properties>
     </rule>
 
     <rule ref="rulesets/controversial.xml" />
-    <rule ref="rulesets/design.xml" />
+
+    <rule ref="rulesets/design.xml">
+        <exclude name="NumberOfChildren" />
+    </rule>
+    <rule ref="rulesets/design.xml/NumberOfChildren">
+        <properties>
+            <property name="minimum" value="16" />
+        </properties>
+    </rule>
 
     <rule ref="rulesets/naming.xml">
         <exclude name="LongVariable" />
+        <exclude name="LongClassName" />
     </rule>
     <rule ref="rulesets/naming.xml/LongVariable">
         <properties>
-            <property name="maximum" value="32" />
+            <property name="maximum" value="42" />
+            <property name="subtract-suffixes" value="Command,Controller,Exception,Repository,Service,Test" />
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/LongClassName">
+        <properties>
+            <property name="maximum" value="42" />
+            <property name="subtract-suffixes" value="Command,Controller,Exception,Repository,Service,Test" />
         </properties>
     </rule>
 

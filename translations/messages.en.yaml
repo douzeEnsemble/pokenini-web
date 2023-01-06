@@ -25,13 +25,13 @@ title:
     invalidate_data: 'Invalidate caches'
     update:
         labels: 'Update labels'
-        games_and_dexes: 'Update games and dexes'
+        games_and_dex: 'Update games and dexes'
         pokemons: 'Update pokémons'
         games_availabilities: "Update games' availabilities"
-        regional_dexes_numbers: 'Update regional dex numbers'
+        regional_dex_numbers: 'Update regional dex numbers'
     calculate:
-        games_bundles_availabilities: "Update game bundles' availabilities"
-        dexes_availabilities: 'Update dexes availabilities'
+        game_bundles_availabilities: "Update game bundles' availabilities"
+        dex_availabilities: 'Update dexes availabilities'
     invalidate:
         catch_states: 'Invalidate status cache'
         dexes: 'Invalidate dexes cache'
@@ -101,23 +101,23 @@ update:
     labels:
         success: 'Labels update has been done'
         error: 'Labels update has failed'
-    games_and_dexes:
+    games_and_dex:
         success: 'Games and dexes update has been done'
         error: 'Games and dexes update has failed'
     pokemons:
         success: 'Pokémons update has been done'
         error: 'Pokémons update has failed'
-    regional_dexesnumbers:
+    regional_dexnumbers:
         success: 'Regional dex numbers update has been done'
         error: 'Regional dex numbers update has failed'
     games_availabilities:
         success: "Games' availabilities update has been done"
         error: "Games' availabilities update has failed"
 calculate:
-    games_bundles_availabilities:
+    game_bundles_availabilities:
         success: "Game bundles' availabilities update has been done"
         error: "Game bundles' availabilities update has failed"
-    dexes_availabilities:
+    dex_availabilities:
         success: 'Dex availabilities update has been done'
         error: 'Dex availabilities update has failed'
 
@@ -215,20 +215,20 @@ error:
 
 admin:
     update:
-        game_availability: "Games' availabilities"
-        regional_dex_number: "Regional Dex numbers"
-        game_generation: "Game's generations"
-        game_bundle: "Game's bundles"
-        game: "Games"
+        games_availabilities: "Games' availabilities"
+        regional_dex_numbers: "Regional Dex numbers"
+        game_generations: "Game's generations"
+        game_bundles: "Game's bundles"
+        games: "Games"
         dex: "Dexes"
-        catch_state: "Catch's states"
-        region: "Regions"
-        category_form: "Category forms"
-        regional_form: "Regional forms"
-        special_form: "Special forms"
-        variant_form: "Variant forms"
-        pokemon: "Pokémons"
+        catch_states: "Catch's states"
+        regions: "Regions"
+        category_forms: "Category forms"
+        regional_forms: "Regional forms"
+        special_forms: "Special forms"
+        variant_forms: "Variant forms"
+        pokemons: "Pokémons"
 
     calculate:
-        game_bundle_availability: "Bundles' availabilities"
-        dex_availability: "Dex' availabilities"
+        game_bundles_availabilities: "Bundles' availabilities"
+        dex_availabilities: "Dex' availabilities"

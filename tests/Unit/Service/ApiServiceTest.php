@@ -106,8 +106,8 @@ class ApiServiceTest extends TestCase
 
         $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(3, $cache->getValues());
-        $this->assertArrayHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
-        $this->assertArrayHasKey('register_dexes', $cache->getValues());
+        $this->assertArrayHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_dex', $cache->getValues());
 
         $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(5, $cache->getValues());
@@ -175,10 +175,10 @@ class ApiServiceTest extends TestCase
 
         $this->assertCount(6, $cache->getValues());
         $this->assertArrayHasKey('catch_states', $cache->getValues());
-        $this->assertArrayHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayHasKey('album_douze_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayHasKey('album_treize_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
-        $this->assertArrayHasKey('register_dexes', $cache->getValues());
+        $this->assertArrayHasKey('register_dex', $cache->getValues());
         $this->assertArrayHasKey('register_album', $cache->getValues());
 
         $service->invalidateCacheAlbum('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
@@ -187,18 +187,18 @@ class ApiServiceTest extends TestCase
 
         $service->invalidateCacheDex('7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(4, $cache->getValues());
-        $this->assertArrayNotHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
-        $this->assertArrayHasKey('register_dexes', $cache->getValues());
+        $this->assertArrayNotHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_dex', $cache->getValues());
 
         $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(5, $cache->getValues());
-        $this->assertArrayHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
-        $this->assertArrayHasKey('register_dexes', $cache->getValues());
+        $this->assertArrayHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayHasKey('register_dex', $cache->getValues());
 
         $service->invalidateCacheDexes();
         $this->assertCount(3, $cache->getValues());
-        $this->assertArrayNotHasKey('dexes_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
-        $this->assertArrayNotHasKey('register_dexes', $cache->getValues());
+        $this->assertArrayNotHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
+        $this->assertArrayNotHasKey('register_dex', $cache->getValues());
 
         $service->invalidateCacheCatchStates();
         $this->assertCount(2, $cache->getValues());
@@ -281,7 +281,7 @@ class ApiServiceTest extends TestCase
         return <<<JSON
         [
           {
-            "isShiny": false, 
+            "isShiny": false,
             "isPrivate": true,
             "isDisplayForm": true,
             "name": "Douze",
