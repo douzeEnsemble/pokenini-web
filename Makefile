@@ -22,7 +22,7 @@ help: ## Outputs this help screen
 	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
 install: ## Install requirements
-install: build
+install: build start waitup stop
 
 ## —— Docker 🐳 ————————————————————————————————————————————————————————————————
 build: ## Builds the Docker images
@@ -36,6 +36,12 @@ stop: ## Stop the project
 
 sh: ## Connect to the PHP FPM container
 	@$(PHP_CONT) sh
+
+waitup:
+	while ! $(PHP_CONT) /usr/local/bin/docker-healthcheck; do \
+		sleep 1; \
+	done
+	echo 'Wait is over'
 
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 composer: ## Run composer, pass the parameter "c=" to run a given command, example: make composer c='req symfony/orm-pack'
@@ -53,7 +59,6 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 
 cc: c=c:c ## Clear the cache
 cc: sf
-
 
 ## —— Tests 🧪 ———————————————————————————————————————————————————————————————
 tests: ## Execute all tests
