@@ -25,16 +25,16 @@ title:
     invalidate_data: 'Invalidate caches'
     update:
         labels: 'Update labels'
-        games_and_dex: 'Update games and dexes'
+        games_and_dex: 'Update games and dex'
         pokemons: 'Update pokémons'
         games_availabilities: "Update games' availabilities"
         regional_dex_numbers: 'Update regional dex numbers'
     calculate:
         game_bundles_availabilities: "Update game bundles' availabilities"
-        dex_availabilities: 'Update dexes availabilities'
+        dex_availabilities: 'Update dex availabilities'
     invalidate:
         catch_states: 'Invalidate status cache'
-        dexes: 'Invalidate dexes cache'
+        dex: 'Invalidate dex cache'
         albums: 'Invalidate album cache'
     box: 'Box'
     empty: ' '
@@ -102,8 +102,8 @@ update:
         success: 'Labels update has been done'
         error: 'Labels update has failed'
     games_and_dex:
-        success: 'Games and dexes update has been done'
-        error: 'Games and dexes update has failed'
+        success: 'Games and dex update has been done'
+        error: 'Games and dex update has failed'
     pokemons:
         success: 'Pokémons update has been done'
         error: 'Pokémons update has failed'
@@ -220,7 +220,7 @@ admin:
         game_generations: "Game's generations"
         game_bundles: "Game's bundles"
         games: "Games"
-        dex: "Dexes"
+        dex: "Dex"
         catch_states: "Catch's states"
         regions: "Regions"
         category_forms: "Category forms"

@@ -23,8 +23,8 @@ class CacheInvalidatorService
                 return;
 
             case 'games_and_dex':
-            case 'dexes':
-                $this->apiService->invalidateCacheDexes();
+            case 'dex':
+                $this->apiService->invalidateCacheDex();
                 return;
 
             case 'pokemons':
@@ -38,7 +38,7 @@ class CacheInvalidatorService
                 return;
 
             case 'dex_availabilities':
-                $this->apiService->invalidateCacheDexes();
+                $this->apiService->invalidateCacheDex();
                 $this->apiService->invalidateCacheAlbums();
                 return;
         }

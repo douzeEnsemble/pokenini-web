@@ -13,19 +13,19 @@
         <h1>Pokénini</h1>
 
         <div class="row">
-            {% for dex in dexes|filter(dex => dex.is_on_home is same as(true)) %}
+            {% for item in dex|filter(item => item.is_on_home is same as(true)) %}
             <div class="card col-md-3 col-6 home-item">
-                <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': dex.slug}) }}">
+                <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': item.slug}) }}">
                     <img
-                        src="{{ dex_banner(dex.slug) }}"
+                        src="{{ dex_banner(item.slug) }}"
                         class="card-img"
                         alt=""
                     >
                 </a>
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': dex.slug}) }}">
-                            {{ locale is same as('fr') ? dex.french_name : dex.name }}
+                        <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': item.slug}) }}">
+                            {{ locale is same as('fr') ? item.french_name : item.name }}
                         </a>
                     </h5>
                 </div>

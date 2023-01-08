@@ -32,9 +32,9 @@ class ApiService
     /**
      * @return string[][]
      */
-    public function getDexes(string $trainerId): array
+    public function getDex(string $trainerId): array
     {
-        $key = self::getDexesKey($trainerId);
+        $key = self::getDexKey($trainerId);
 
         /** @var string $json */
         $json = $this->cache->get($key, function () use ($trainerId) {
@@ -207,7 +207,7 @@ class ApiService
         return $response->getContent();
     }
 
-    public function invalidateCacheDexes(): void
+    public function invalidateCacheDex(): void
     {
         $this->invalidateCacheByType(self::CACHE_KEY_DEX);
     }
@@ -222,9 +222,9 @@ class ApiService
         $this->invalidateCacheByType(self::CACHE_KEY_ALBUM);
     }
 
-    public function invalidateCacheDex(string $trainerId): void
+    public function invalidateCacheDexByTrainerId(string $trainerId): void
     {
-        $key = self::getDexesKey($trainerId);
+        $key = self::getDexKey($trainerId);
 
         $this->cache->delete($key);
         $this->unregisterCache(self::CACHE_KEY_DEX, $key);
@@ -304,7 +304,7 @@ class ApiService
         $this->cache->delete(self::getRegisterTypeKey($type));
     }
 
-    private static function getDexesKey(string $trainerId): string
+    private static function getDexKey(string $trainerId): string
     {
         return self::CACHE_KEY_DEX . self::CACHE_KEY_SEPARATOR . $trainerId;
     }

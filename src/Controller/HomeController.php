@@ -19,15 +19,15 @@ class HomeController extends AbstractController
         try {
             $userId = $userTokenService->getLoggedUserToken();
 
-            $dexes = $apiService->getDexes($userId);
+            $dex = $apiService->getDex($userId);
         } catch (NoLoggedUserException $e) {
-            $dexes = [];
+            $dex = [];
         }
 
         return $this->render(
             'Home/index.html.twig',
             [
-                'dexes' => $dexes,
+                'dex' => $dex,
             ]
         );
     }

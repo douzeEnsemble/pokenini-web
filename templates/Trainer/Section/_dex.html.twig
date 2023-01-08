@@ -4,12 +4,12 @@
 ] %}
 {% set attributesIcons = {
     'is_private': 'lock' ,
-    'is_on_home': 'house', 
+    'is_on_home': 'house',
 } %}
 <div class="row">
-    {% for dex in trainerDexes %}
-    <div 
-        class="col-6 trainer-dex-item border rounded border-opacity-50" 
+    {% for dex in trainerDex %}
+    <div
+        class="col-6 trainer-dex-item border rounded border-opacity-50"
         id="trainer-dex-{{ dex.slug }}"
     >
         <img
@@ -18,7 +18,7 @@
             alt=""
         >
         <a
-            class="float-end btn btn-link" 
+            class="float-end btn btn-link"
             href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': dex.slug}) }}"
             title="{{ 'trainer.dex.see'|trans }}"
         >
@@ -36,10 +36,10 @@
         <form data-dex="{{ dex.slug }}">
             {% for attribute in attributes %}
             <div class="form-check form-switch">
-                <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    role="switch" 
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
                     name="{{ dex.slug }}-{{ attribute }}"
                     id="{{ dex.slug }}-{{ attribute }}"
                     {{ dex[attribute] ? 'checked' : '' }}
@@ -58,7 +58,7 @@
     {% endfor %}
 
     <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
-        {% for dex in trainerDexes %}
+        {% for dex in trainerDex %}
             {% set dexName = locale is same as('fr') ? dex.french_name : dex.name %}
             <div id="successToast-{{ dex.slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="d-flex">

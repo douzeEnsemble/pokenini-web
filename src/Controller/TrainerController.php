@@ -26,12 +26,12 @@ class TrainerController extends AbstractController
     #[Route('/')]
     public function index(): Response
     {
-        $trainerDexes = $this->apiService->getDexes($this->userTokenService->getLoggedUserToken());
+        $trainerDex = $this->apiService->getDex($this->userTokenService->getLoggedUserToken());
 
         return $this->render(
             'Trainer/index.html.twig',
             [
-                'trainerDexes' => $trainerDexes,
+                'trainerDex' => $trainerDex,
             ]
         );
     }
@@ -52,7 +52,7 @@ class TrainerController extends AbstractController
             );
 
             $this->apiService->invalidateCacheAlbum($dexSlug, $trainerId);
-            $this->apiService->invalidateCacheDex($trainerId);
+            $this->apiService->invalidateCacheDexByTrainerId($trainerId);
         } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
             return new JsonResponse(['error' => $e->getMessage()], 500);
         }
