@@ -12,7 +12,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class ApiServiceTest extends TestCase
 {
-    public function testGetDexes(): void
+    public function testGetDex(): void
     {
         $service = $this->getService('dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list');
 
@@ -25,7 +25,7 @@ class ApiServiceTest extends TestCase
                 ],
                 'url' => 'dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list',
             ],
-            $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554'),
+            $service->getDex('7b52009b64fd0a2a49e6d8a939753077792b0554'),
         );
     }
 
@@ -104,7 +104,7 @@ class ApiServiceTest extends TestCase
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayHasKey('catch_states', $cache->getValues());
 
-        $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getDex('7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(3, $cache->getValues());
         $this->assertArrayHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayHasKey('register_dex', $cache->getValues());
@@ -136,13 +136,13 @@ class ApiServiceTest extends TestCase
             ->willReturn('{}')
         ;
 
-        $dexesJson = $this->getDexesJsonSample();
+        $dexJson = $this->getDexJsonSample();
 
-        $dexesReponse = $this->createMock(ResponseInterface::class);
-        $dexesReponse
+        $dexReponse = $this->createMock(ResponseInterface::class);
+        $dexReponse
             ->expects($this->exactly(2))
             ->method('getContent')
-            ->willReturn($dexesJson)
+            ->willReturn($dexJson)
         ;
 
         $client
@@ -157,10 +157,10 @@ class ApiServiceTest extends TestCase
             )
             ->willReturnOnConsecutiveCalls(
                 $response,
-                $dexesReponse,
+                $dexReponse,
                 $response,
                 $response,
-                $dexesReponse
+                $dexReponse
             )
         ;
 
@@ -169,7 +169,7 @@ class ApiServiceTest extends TestCase
         $service = new ApiService($client, 'api', $cache, 'web', 'douze');
 
         $service->getCatchStates();
-        $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getDex('7b52009b64fd0a2a49e6d8a939753077792b0554');
         $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
         $service->getPokedex('treize', '7b52009b64fd0a2a49e6d8a939753077792b0554');
 
@@ -185,17 +185,17 @@ class ApiServiceTest extends TestCase
         $this->assertCount(5, $cache->getValues());
         $this->assertArrayNotHasKey('album_douze_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
 
-        $service->invalidateCacheDex('7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->invalidateCacheDexByTrainerId('7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(4, $cache->getValues());
         $this->assertArrayNotHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayHasKey('register_dex', $cache->getValues());
 
-        $service->getDexes('7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getDex('7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertCount(5, $cache->getValues());
         $this->assertArrayHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayHasKey('register_dex', $cache->getValues());
 
-        $service->invalidateCacheDexes();
+        $service->invalidateCacheDex();
         $this->assertCount(3, $cache->getValues());
         $this->assertArrayNotHasKey('dex_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayNotHasKey('register_dex', $cache->getValues());
@@ -276,7 +276,7 @@ class ApiServiceTest extends TestCase
         return new ApiService($client, 'api', new ArrayAdapter(), 'web', 'douze');
     }
 
-    private function getDexesJsonSample(): string
+    private function getDexJsonSample(): string
     {
         return <<<JSON
         [

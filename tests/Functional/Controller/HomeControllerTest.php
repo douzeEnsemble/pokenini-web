@@ -58,7 +58,7 @@ class HomeControllerTest extends WebTestCase
         $this->assertCount(1, $mainCrawler->filter('.home-item.login-home-item'));
     }
 
-    public function testConnectedHomeNoDexes(): void
+    public function testConnectedHomeNoDex(): void
     {
         $client = static::createClient();
 
@@ -76,7 +76,7 @@ class HomeControllerTest extends WebTestCase
         $this->assertCount(1, $mainCrawler->filter('.alert'));
     }
 
-    public function testConnectedHomeNoOnHomecDexes(): void
+    public function testConnectedHomeNoOnHomecDex(): void
     {
         $client = static::createClient();
 
@@ -95,7 +95,7 @@ class HomeControllerTest extends WebTestCase
         $this->assertCount(1, $mainCrawler->filter('.alert a'));
     }
 
-    public function testConnectedHomeSomeOnHomecDexes(): void
+    public function testConnectedHomeSomeOnHomecDex(): void
     {
         $client = static::createClient();
 

@@ -34,7 +34,7 @@ title:
         dex_availabilities: 'Maj des dispo des dex'
     invalidate:
         catch_states: 'Invalidation du cache des statuts'
-        dexes: 'Invalidation du cache des dex'
+        dex: 'Invalidation du cache des dex'
         albums: 'Invalidation du cache des albums'
     box: 'Boite'
     empty: ' '

@@ -24,13 +24,13 @@ class CacheInvalidatorServiceTest extends TestCase
         $cacheInvalidator->invalidate('labels');
     }
 
-    public function testInvalidateGamesAndDexes(): void
+    public function testInvalidateGamesAndDex(): void
     {
         $apiService = $this->createMock(ApiService::class);
 
         $apiService
             ->expects($this->once())
-            ->method('invalidateCacheDexes')
+            ->method('invalidateCacheDex')
         ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
@@ -88,7 +88,7 @@ class CacheInvalidatorServiceTest extends TestCase
         ;
         $apiService
             ->expects($this->once())
-            ->method('invalidateCacheDexes')
+            ->method('invalidateCacheDex')
         ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
