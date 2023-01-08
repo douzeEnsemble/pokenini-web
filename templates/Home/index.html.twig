@@ -14,40 +14,43 @@
 
         <div class="row">
             {% for item in dex|filter(item => item.is_on_home is same as(true)) %}
-            <div class="card col-md-3 col-6 home-item">
-                <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': item.slug}) }}">
-                    <img
-                        src="{{ dex_banner(item.slug) }}"
-                        class="card-img"
-                        alt=""
-                    >
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{ path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': item.slug}) }}">
-                            {{ locale is same as('fr') ? item.french_name : item.name }}
-                        </a>
-                    </h5>
-                </div>
-            </div>
+            {{ _self.homeItem(
+                path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': item.slug}),
+                item.slug,
+                item.name,
+                item.french_name,
+                locale
+            ) }}
             {% else %}
                 {% if app.user is null %}
-            <div class="card col-md-3 col-6 home-item login-home-item">
-                <a href="{{ path('app_connect_index') }}">
-                    <img
-                        src="/img/dex/banner/not_logged.png"
-                        class="card-img"
-                        alt=""
-                    >
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{ path('app_connect_index') }}">
-                            {{ 'login'|trans }}
-                        </a>
-                    </h5>
-                </div>
-            </div>
+                    {{ _self.homeItem(
+                        path('app_connect_index'),
+                        'not_logged',
+                        'login'|trans,
+                        'login'|trans,
+                        locale
+                    ) }}
+                    {{ _self.homeItem(
+                        '/'~locale~'/album/r/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
+                        'home',
+                        'Home (demo)',
+                        'Home (démo)',
+                        locale
+                    ) }}
+                    {{ _self.homeItem(
+                        '/'~locale~'/album/r/homeshiny?t=f86cbe805674d85f7806b175b70647a6a9334631',
+                        'homeshiny',
+                        'Home Shiny (demo)',
+                        'Home Chromatique (démo)',
+                        locale
+                    ) }}
+                    {{ _self.homeItem(
+                        '/'~locale~'/album/r/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
+                        'scarletviolet',
+                        'Scarlet, Violet (demo)',
+                        'Écarlate, Violet (démo)',
+                        locale
+                    ) }}
                 {% else %}
             <div class="alert alert-info mt-5" role="alert">
                 <p>{{ 'home.no_dex'|trans|replace({'<a>': '<a href="'~path('app_trainer_index')~'">'})|raw }}</p>
@@ -58,3 +61,22 @@
     </div>
 </div>
 {% endblock %}
+
+{% macro homeItem(url, bannerSlug, name, frenchName, locale) %}
+<div class="card col-md-3 col-6 home-item">
+    <a href="{{ url }}">
+        <img
+            src="{{ dex_banner(bannerSlug) }}"
+            class="card-img"
+            alt=""
+        >
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{{ url }}">
+                {{ locale is same as('fr') ? frenchName : name }}
+            </a>
+        </h5>
+    </div>
+</div>
+{% endmacro %}

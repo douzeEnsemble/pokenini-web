@@ -54,8 +54,23 @@ class HomeControllerTest extends WebTestCase
 
         $mainCrawler = $client->getCrawler();
 
-        $this->assertCount(1, $mainCrawler->filter('.home-item'));
-        $this->assertCount(1, $mainCrawler->filter('.home-item.login-home-item'));
+        $this->assertCount(4, $mainCrawler->filter('.home-item'));
+        $this->assertEquals(
+            '/fr/connect/',
+            $mainCrawler->filter('.home-item')->eq(0)->filter('a')->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/r/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
+            $mainCrawler->filter('.home-item')->eq(1)->filter('a')->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/r/homeshiny?t=f86cbe805674d85f7806b175b70647a6a9334631',
+            $mainCrawler->filter('.home-item')->eq(2)->filter('a')->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/r/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
+            $mainCrawler->filter('.home-item')->eq(3)->filter('a')->attr('href')
+        );
     }
 
     public function testConnectedHomeNoDex(): void
