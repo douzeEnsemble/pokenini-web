@@ -1,5 +1,49 @@
 # Pokénini
 
+## To Begin
+
+### TL;DR
+
+```
+make stop install start quality tests
+```
+
+or
+
+```
+make quality tests
+```
+
+### Install
+
+```
+make install start
+```
+
+### Restart
+
+```
+make stop start
+```
+
+## Tips
+
+### Open bash into php  container
+
+```
+make sh
+```
+
+`exit` in it to quit.
+
+### Composer
+
+To install a package
+
+```
+make composer c="require gedmo/doctrine-extensions"
+```
+
 ## Update moco mock from Pokénin-Api
 
 ```
