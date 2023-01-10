@@ -54,7 +54,8 @@ class HomeControllerTest extends WebTestCase
 
         $mainCrawler = $client->getCrawler();
 
-        $this->assertCount(4, $mainCrawler->filter('.home-item'));
+        $this->assertCount(5, $mainCrawler->filter('.home-item'));
+
         $this->assertEquals(
             '/fr/connect/',
             $mainCrawler->filter('.home-item')->eq(0)->filter('a')->attr('href')
@@ -68,8 +69,12 @@ class HomeControllerTest extends WebTestCase
             $mainCrawler->filter('.home-item')->eq(2)->filter('a')->attr('href')
         );
         $this->assertEquals(
-            '/fr/album/r/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
+            '/fr/album/r/pokemongo?t=f86cbe805674d85f7806b175b70647a6a9334631',
             $mainCrawler->filter('.home-item')->eq(3)->filter('a')->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/r/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
+            $mainCrawler->filter('.home-item')->eq(4)->filter('a')->attr('href')
         );
     }
 
