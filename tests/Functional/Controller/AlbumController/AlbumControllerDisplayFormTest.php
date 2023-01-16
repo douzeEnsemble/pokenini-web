@@ -22,9 +22,9 @@ class AlbumControllerDisplayFormTest extends WebTestCase
 
         $client->request('GET', '/fr/album/r/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $this->assertEquals('Printemps', $mainCrawler->filter('#deerling-spring .album-case-forms')->text());
+        $this->assertEquals('Printemps', $crawler->filter('#deerling-spring .album-case-forms')->text());
     }
 
     public function testNonDisplayForm(): void
@@ -37,8 +37,8 @@ class AlbumControllerDisplayFormTest extends WebTestCase
 
         $client->request('GET', '/fr/album/r/homepokemongo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $this->assertEquals(' ', $mainCrawler->filter('#deerling-spring .album-case-forms')->text());
+        $this->assertEquals(' ', $crawler->filter('#deerling-spring .album-case-forms')->text());
     }
 }

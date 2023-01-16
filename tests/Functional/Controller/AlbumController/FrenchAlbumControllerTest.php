@@ -91,26 +91,26 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
 
     private function assertAlbumFrench(KernelBrowser $client): void
     {
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
         $this->assertPageTitleSame('Pokénini Démo');
 
         $this->assertEquals(
             'Bulbizarre',
-            $mainCrawler->filter('#bulbasaur .album-case-name')->text()
+            $crawler->filter('#bulbasaur .album-case-name')->text()
         );
 
         $this->assertEquals(
             'Baron ♀️',
-            $mainCrawler->filter('#pikachu-alpha-f .album-case-forms')->text()
+            $crawler->filter('#pikachu-alpha-f .album-case-forms')->text()
         );
 
-        $tooltip = $mainCrawler->filter('#bulbasaur .album-case-image');
+        $tooltip = $crawler->filter('#bulbasaur .album-case-image');
         $this->assertEquals(
             '#1 Bulbizarre',
             $tooltip->attr('title')
         );
-        $imgAlt = $mainCrawler->filter('#bulbasaur .album-image');
+        $imgAlt = $crawler->filter('#bulbasaur .album-image');
         $this->assertEquals(
             'Icone de Bulbizarre',
             $imgAlt->attr('alt')
@@ -119,73 +119,73 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
 
     private function assertAlbumFrenchWriteMode(KernelBrowser $client): void
     {
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $selectedOption = $mainCrawler->filter('#bulbasaur select option:selected')->first();
+        $selectedOption = $crawler->filter('#bulbasaur select option:selected')->first();
         $this->assertEquals('Non', $selectedOption->text());
 
-        $selectedOption = $mainCrawler->filter('#ivysaur select option:selected')->first();
+        $selectedOption = $crawler->filter('#ivysaur select option:selected')->first();
         $this->assertEquals('Non', $selectedOption->text());
 
-        $selectedOption = $mainCrawler->filter('#venusaur select option:selected')->first();
+        $selectedOption = $crawler->filter('#venusaur select option:selected')->first();
         $this->assertEquals('af. évoluer', $selectedOption->text());
 
-        $selectedOption = $mainCrawler->filter('#venusaur-f select option:selected')->first();
+        $selectedOption = $crawler->filter('#venusaur-f select option:selected')->first();
         $this->assertEquals('af. reproduire', $selectedOption->text());
 
-        $selectedOption = $mainCrawler->filter('#venusaur-mega select option:selected')->first();
+        $selectedOption = $crawler->filter('#venusaur-mega select option:selected')->first();
         $this->assertEquals('à transférer', $selectedOption->text());
 
-        $selectedOption = $mainCrawler->filter('#venusaur-gmax select option:selected')->first();
+        $selectedOption = $crawler->filter('#venusaur-gmax select option:selected')->first();
         $this->assertEquals('À échanger', $selectedOption->text());
 
-        $selectedOption = $mainCrawler->filter('#charmander select option:selected')->first();
+        $selectedOption = $crawler->filter('#charmander select option:selected')->first();
         $this->assertEquals('Oui', $selectedOption->text());
     }
 
     private function assertAlbumFrenchReadMode(KernelBrowser $client): void
     {
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
         $this->assertEquals(
             'Non',
-            $mainCrawler
+            $crawler
                 ->filter('#bulbasaur .album-case-catch-state')
                 ->text()
         );
         $this->assertEquals(
             'Non',
-            $mainCrawler
+            $crawler
                 ->filter('#ivysaur .album-case-catch-state')
                 ->text()
         );
         $this->assertEquals(
             'af. évoluer',
-            $mainCrawler
+            $crawler
                 ->filter('#venusaur .album-case-catch-state')
                 ->text()
         );
         $this->assertEquals(
             'Af. reproduire',
-            $mainCrawler
+            $crawler
                 ->filter('#venusaur-f .album-case-catch-state')
                 ->text()
         );
         $this->assertEquals(
             'à transférer',
-            $mainCrawler
+            $crawler
                 ->filter('#venusaur-mega .album-case-catch-state')
                 ->text()
         );
         $this->assertEquals(
             'À échanger',
-            $mainCrawler
+            $crawler
                 ->filter('#venusaur-gmax .album-case-catch-state')
                 ->text()
         );
         $this->assertEquals(
             'Oui',
-            $mainCrawler
+            $crawler
                 ->filter('#charmander .album-case-catch-state')
                 ->text()
         );
@@ -193,58 +193,58 @@ class FrenchAlbumControllerTest extends AbstractAlbumControllerTestCase
 
     private function assertFrenchStatistics(KernelBrowser $client): void
     {
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
         $this->assertEquals(
             'Non',
-            $mainCrawler->filter('table#report tr.catch-state-no th')->text()
+            $crawler->filter('table#report tr.catch-state-no th')->text()
         );
         $this->assertEquals(
             'Af. évoluer',
-            $mainCrawler->filter('table#report tr.catch-state-toevolve th')->text()
+            $crawler->filter('table#report tr.catch-state-toevolve th')->text()
         );
         $this->assertEquals(
             'Af. reproduire',
-            $mainCrawler->filter('table#report tr.catch-state-tobreed th')->text()
+            $crawler->filter('table#report tr.catch-state-tobreed th')->text()
         );
         $this->assertEquals(
             'À transférer',
-            $mainCrawler->filter('table#report tr.catch-state-totransfer th')->text()
+            $crawler->filter('table#report tr.catch-state-totransfer th')->text()
         );
         $this->assertEquals(
             'Oui',
-            $mainCrawler->filter('table#report tr.catch-state-yes th')->text()
+            $crawler->filter('table#report tr.catch-state-yes th')->text()
         );
     }
 
     private function assertNavigationBarFrench(KernelBrowser $client): void
     {
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $navbarTitle = $mainCrawler->filter('.navbar-brand');
+        $navbarTitle = $crawler->filter('.navbar-brand');
         $this->assertEquals('Démo', $navbarTitle->text());
         $this->assertEquals('/fr/', $navbarTitle->attr('href'));
 
-        $this->assertFrenchLangSwitch($mainCrawler);
+        $this->assertFrenchLangSwitch($crawler);
     }
 
     private function assertRegularFrench(KernelBrowser $client): void
     {
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
         $this->assertStringContainsString(
             'Icone de ',
-            $mainCrawler->filter('.album-image')->first()->attr('alt') ?? ''
+            $crawler->filter('.album-image')->first()->attr('alt') ?? ''
         );
     }
 
     private function assertShinyFrench(KernelBrowser $client): void
     {
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
         $this->assertStringContainsString(
             'Icone chromatique de ',
-            $mainCrawler->filter('.album-image')->first()->attr('alt') ?? ''
+            $crawler->filter('.album-image')->first()->attr('alt') ?? ''
         );
     }
 }
