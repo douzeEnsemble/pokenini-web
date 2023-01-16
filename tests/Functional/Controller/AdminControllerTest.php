@@ -42,16 +42,16 @@ class AdminControllerTest extends WebTestCase
     {
         $crawler = $this->getAdminHomeConnected();
 
-        $this->assertCount(2, $crawler->filter('h2'));
-        $this->assertCount(7, $crawler->filter('h3'));
-        $this->assertCount(11, $crawler->filter('a.admin-item'));
-        $this->assertCount(11, $crawler->filter('a.admin-item i.bi'));
+        $this->assertCountFilter($crawler, 2, 'h2');
+        $this->assertCountFilter($crawler, 7, 'h3');
+        $this->assertCountFilter($crawler, 11, 'a.admin-item');
+        $this->assertCountFilter($crawler, 11, 'a.admin-item i.bi');
 
-        $this->assertCount(5, $crawler->filter('.list-group-update a.admin-item'));
-        $this->assertCount(2, $crawler->filter('.list-group-calculate a.admin-item'));
-        $this->assertCount(3, $crawler->filter('.list-group-invalidate a.admin-item'));
+        $this->assertCountFilter($crawler, 5, '.list-group-update a.admin-item');
+        $this->assertCountFilter($crawler, 2, '.list-group-calculate a.admin-item');
+        $this->assertCountFilter($crawler, 3, '.list-group-invalidate a.admin-item');
 
-        $this->assertCount(0, $crawler->filter('script[src="/js/album_edit.js"]'));
+        $this->assertCountFilter($crawler, 0, 'script[src="/js/album_edit.js"]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());

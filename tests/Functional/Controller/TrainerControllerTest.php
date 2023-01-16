@@ -11,6 +11,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class TrainerControllerTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testTrainerPage(): void
     {
         $client = static::createClient();
@@ -23,9 +25,9 @@ class TrainerControllerTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
-        $this->assertCount(1, $crawler->filter('h1'));
-        $this->assertCount(2, $crawler->filter('table thead th'));
-        $this->assertCount(1, $crawler->filter('table tbody tr'));
+        $this->assertCountFilter($crawler, 1, 'h1');
+        $this->assertCountFilter($crawler, 2, 'table thead th');
+        $this->assertCountFilter($crawler, 1, 'table tbody tr');
         $this->assertEquals('789465465489', $crawler->filter('table tbody tr td')->last()->text());
 
         $this->assertCustomizeAlbumSection($crawler);
@@ -40,12 +42,12 @@ class TrainerControllerTest extends WebTestCase
 
     public function assertCustomizeAlbumSection(Crawler $crawler): void
     {
-        $this->assertCount(21, $crawler->filter('.trainer-dex-item'));
-        $this->assertCount(21, $crawler->filter('.trainer-dex-item img'));
-        $this->assertCount(21, $crawler->filter('.trainer-dex-item a'));
-        $this->assertCount(21, $crawler->filter('.trainer-dex-item h5'));
-        $this->assertCount(21, $crawler->filter('.trainer-dex-item h6'));
-        $this->assertCount(42, $crawler->filter('.trainer-dex-item input[type="checkbox"]'));
+        $this->assertCountFilter($crawler, 21, '.trainer-dex-item');
+        $this->assertCountFilter($crawler, 21, '.trainer-dex-item img');
+        $this->assertCountFilter($crawler, 21, '.trainer-dex-item a');
+        $this->assertCountFilter($crawler, 21, '.trainer-dex-item h5');
+        $this->assertCountFilter($crawler, 21, '.trainer-dex-item h6');
+        $this->assertCountFilter($crawler, 42, '.trainer-dex-item input[type="checkbox"]');
 
         $this->assertEmpty($crawler->filter('#redgreenblueyellow-is_private')->attr('checked'));
         $this->assertNull($crawler->filter('#redgreenblueyellow-is_on_home')->attr('checked'));

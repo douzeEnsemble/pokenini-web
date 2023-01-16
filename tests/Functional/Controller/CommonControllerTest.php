@@ -30,11 +30,11 @@ class CommonControllerTest extends WebTestCase
     {
         $crawler = $client->request('GET', $url);
 
-        $this->assertCount(1, $crawler->filter('link[sizes="180x180"]'));
-        $this->assertCount(1, $crawler->filter('link[sizes="32x32"]'));
-        $this->assertCount(1, $crawler->filter('link[sizes="16x16"]'));
-        $this->assertCount(1, $crawler->filter('link[rel="manifest"]'));
+        $this->assertCountFilter($crawler, 1, 'link[sizes="180x180"]');
+        $this->assertCountFilter($crawler, 1, 'link[sizes="32x32"]');
+        $this->assertCountFilter($crawler, 1, 'link[sizes="16x16"]');
+        $this->assertCountFilter($crawler, 1, 'link[rel="manifest"]');
 
-        $this->assertCount(1, $crawler->filter('.navbar-brand img'));
+        $this->assertCountFilter($crawler, 1, '.navbar-brand img');
     }
 }

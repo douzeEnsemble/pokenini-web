@@ -3,10 +3,13 @@
 namespace App\Tests\Functional\Controller\AlbumController\AlbumTemplate;
 
 use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AlbumUnkownTemplateTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testDexUnknownTemplate(): void
     {
         $client = static::createClient();
@@ -20,40 +23,12 @@ class AlbumUnkownTemplateTest extends WebTestCase
             '/fr/album/r/demounknowntemplate?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
-        $this->assertCount(
-            37,
-            $crawler
-                ->filter('.album-case.col')
-        );
-        $this->assertCount(
-            6,
-            $crawler
-                ->filter('div.row.album-line')
-                ->eq(0)
-                ->filter('.album-case.col')
-        );
-        $this->assertCount(
-            6,
-            $crawler
-                ->filter('div.row.album-line')
-                ->eq(2)
-                ->filter('.album-case.col')
-        );
-        $this->assertCount(
-            7,
-            $crawler
-                ->filter('div.row.album-line')
-        );
-        $this->assertCount(
-            2,
-            $crawler
-                ->filter('.box')
-        );
-        $this->assertCount(
-            2,
-            $crawler
-                ->filter('.box h2')
-        );
+        $this->assertCountFilter($crawler, 37, '.album-case.col');
+        $this->assertCountFilter($crawler, 6, 'div.row.album-line', 0, '.album-case.col');
+        $this->assertCountFilter($crawler, 6, 'div.row.album-line', 2, '.album-case.col');
+        $this->assertCountFilter($crawler, 7, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 2, '.box');
+        $this->assertCountFilter($crawler, 2, '.box h2');
     }
 
     public function testFilterDexUnknownTemplate(): void
@@ -69,32 +44,10 @@ class AlbumUnkownTemplateTest extends WebTestCase
             '/fr/album/r/demounknowntemplate/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
-        $this->assertCount(
-            21,
-            $crawler
-                ->filter('.album-case.col')
-        );
-        $this->assertCount(
-            21,
-            $crawler
-                ->filter('div.row.album-line')
-                ->eq(0)
-                ->filter('.album-case.col')
-        );
-        $this->assertCount(
-            1,
-            $crawler
-                ->filter('div.row.album-line')
-        );
-        $this->assertCount(
-            0,
-            $crawler
-                ->filter('.box')
-        );
-        $this->assertCount(
-            0,
-            $crawler
-                ->filter('.box h2')
-        );
+        $this->assertCountFilter($crawler, 21, '.album-case.col');
+        $this->assertCountFilter($crawler, 21, 'div.row.album-line', 0, '.album-case.col');
+        $this->assertCountFilter($crawler, 1, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 0, '.box');
+        $this->assertCountFilter($crawler, 0, '.box h2');
     }
 }

@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller\AlbumController;
 
 use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AlbumControllerTrainerTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testAlbumTrainerLogged(): void
     {
         $client = static::createClient();
@@ -21,16 +24,16 @@ class AlbumControllerTrainerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertCount(1738, $crawler->filter('.album-case'));
+        $this->assertCountFilter($crawler, 1738, '.album-case');
 
-        $this->assertCount(1732, $crawler->filter('.album-case.catch-state-no'));
-        $this->assertCount(1, $crawler->filter('.album-case.catch-state-toevolve'));
-        $this->assertCount(1, $crawler->filter('.album-case.catch-state-tobreed'));
-        $this->assertCount(1, $crawler->filter('.album-case.catch-state-totransfer'));
-        $this->assertCount(1, $crawler->filter('.album-case.catch-state-totrade'));
-        $this->assertCount(2, $crawler->filter('.album-case.catch-state-yes'));
+        $this->assertCountFilter($crawler, 1732, '.album-case.catch-state-no');
+        $this->assertCountFilter($crawler, 1, '.album-case.catch-state-toevolve');
+        $this->assertCountFilter($crawler, 1, '.album-case.catch-state-tobreed');
+        $this->assertCountFilter($crawler, 1, '.album-case.catch-state-totransfer');
+        $this->assertCountFilter($crawler, 1, '.album-case.catch-state-totrade');
+        $this->assertCountFilter($crawler, 2, '.album-case.catch-state-yes');
 
-        $this->assertCount(0, $crawler->filter('.another-trainer-album'));
+        $this->assertCountFilter($crawler, 0, '.another-trainer-album');
     }
 
     public function testAlbumTrainerGiven(): void
@@ -41,16 +44,16 @@ class AlbumControllerTrainerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertCount(1738, $crawler->filter('.album-case'));
+        $this->assertCountFilter($crawler, 1738, '.album-case');
 
-        $this->assertCount(1718, $crawler->filter('.album-case.catch-state-no'));
-        $this->assertCount(3, $crawler->filter('.album-case.catch-state-toevolve'));
-        $this->assertCount(3, $crawler->filter('.album-case.catch-state-tobreed'));
-        $this->assertCount(3, $crawler->filter('.album-case.catch-state-totransfer'));
-        $this->assertCount(2, $crawler->filter('.album-case.catch-state-totrade'));
-        $this->assertCount(9, $crawler->filter('.album-case.catch-state-yes'));
+        $this->assertCountFilter($crawler, 1718, '.album-case.catch-state-no');
+        $this->assertCountFilter($crawler, 3, '.album-case.catch-state-toevolve');
+        $this->assertCountFilter($crawler, 3, '.album-case.catch-state-tobreed');
+        $this->assertCountFilter($crawler, 3, '.album-case.catch-state-totransfer');
+        $this->assertCountFilter($crawler, 2, '.album-case.catch-state-totrade');
+        $this->assertCountFilter($crawler, 9, '.album-case.catch-state-yes');
 
-        $this->assertCount(1, $crawler->filter('.another-trainer-album'));
+        $this->assertCountFilter($crawler, 1, '.another-trainer-album');
     }
 
     public function testAlbumTrainerLoggedAndGiven(): void
@@ -65,15 +68,15 @@ class AlbumControllerTrainerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertCount(1738, $crawler->filter('.album-case'));
+        $this->assertCountFilter($crawler, 1738, '.album-case');
 
-        $this->assertCount(1718, $crawler->filter('.album-case.catch-state-no'));
-        $this->assertCount(3, $crawler->filter('.album-case.catch-state-toevolve'));
-        $this->assertCount(3, $crawler->filter('.album-case.catch-state-tobreed'));
-        $this->assertCount(3, $crawler->filter('.album-case.catch-state-totransfer'));
-        $this->assertCount(2, $crawler->filter('.album-case.catch-state-totrade'));
-        $this->assertCount(9, $crawler->filter('.album-case.catch-state-yes'));
+        $this->assertCountFilter($crawler, 1718, '.album-case.catch-state-no');
+        $this->assertCountFilter($crawler, 3, '.album-case.catch-state-toevolve');
+        $this->assertCountFilter($crawler, 3, '.album-case.catch-state-tobreed');
+        $this->assertCountFilter($crawler, 3, '.album-case.catch-state-totransfer');
+        $this->assertCountFilter($crawler, 2, '.album-case.catch-state-totrade');
+        $this->assertCountFilter($crawler, 9, '.album-case.catch-state-yes');
 
-        $this->assertCount(1, $crawler->filter('.another-trainer-album'));
+        $this->assertCountFilter($crawler, 1, '.another-trainer-album');
     }
 }

@@ -26,22 +26,22 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertFrenchLangSwitch($crawler);
 
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $this->assertCount(6, $mainCrawler->filter('.home-item'));
+        $this->assertCountFilter($crawler, 6, '.home-item');
 
-        $firstAlbum = $mainCrawler->filter('.home-item')->first();
+        $firstAlbum = $crawler->filter('.home-item')->first();
         $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
         $this->assertEquals('/fr/album/r/swordshield', $firstAlbum->filter('a')->attr('href'));
 
-        $secondAlbum = $mainCrawler->filter('.home-item')->eq(2);
+        $secondAlbum = $crawler->filter('.home-item')->eq(2);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
         $this->assertEquals('/fr/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
-        $this->assertCount(0, $mainCrawler->filter('script[src="/js/album_edit.js"]'));
+        $this->assertCountFilter($crawler, 0, 'script[src="/js/album_edit.js"]');
 
-        $this->assertStringNotContainsString('const catchStates = JSON.parse', $mainCrawler->outerHtml());
-        $this->assertStringNotContainsString('watchCatchStates();', $mainCrawler->outerHtml());
+        $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
+        $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
     }
 
     public function testNonConnectedHome(): void
@@ -52,29 +52,29 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $this->assertCount(5, $mainCrawler->filter('.home-item'));
+        $this->assertCountFilter($crawler, 5, '.home-item');
 
         $this->assertEquals(
             '/fr/connect/',
-            $mainCrawler->filter('.home-item')->eq(0)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq(0)->filter('a')->attr('href')
         );
         $this->assertEquals(
             '/fr/album/r/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $mainCrawler->filter('.home-item')->eq(1)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq(1)->filter('a')->attr('href')
         );
         $this->assertEquals(
             '/fr/album/r/homeshiny?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $mainCrawler->filter('.home-item')->eq(2)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq(2)->filter('a')->attr('href')
         );
         $this->assertEquals(
             '/fr/album/r/pokemongo?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $mainCrawler->filter('.home-item')->eq(3)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq(3)->filter('a')->attr('href')
         );
         $this->assertEquals(
             '/fr/album/r/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $mainCrawler->filter('.home-item')->eq(4)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq(4)->filter('a')->attr('href')
         );
     }
 
@@ -90,10 +90,10 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $this->assertCount(0, $mainCrawler->filter('.home-item'));
-        $this->assertCount(1, $mainCrawler->filter('.alert'));
+        $this->assertCountFilter($crawler, 0, '.home-item');
+        $this->assertCountFilter($crawler, 1, '.alert');
     }
 
     public function testConnectedHomeNoOnHomecDex(): void
@@ -108,11 +108,11 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $this->assertCount(0, $mainCrawler->filter('.home-item'));
-        $this->assertCount(1, $mainCrawler->filter('.alert'));
-        $this->assertCount(1, $mainCrawler->filter('.alert a'));
+        $this->assertCountFilter($crawler, 0, '.home-item');
+        $this->assertCountFilter($crawler, 1, '.alert');
+        $this->assertCountFilter($crawler, 1, '.alert a');
     }
 
     public function testConnectedHomeSomeOnHomecDex(): void
@@ -127,9 +127,9 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $this->assertCount(2, $mainCrawler->filter('.home-item'));
+        $this->assertCountFilter($crawler, 2, '.home-item');
     }
 
     public function testHomeFrench(): void
@@ -146,12 +146,12 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertFrenchLangSwitch($crawler);
 
-        $mainCrawler = $client->getCrawler();
-        $firstAlbum = $mainCrawler->filter('.home-item')->first();
+        $crawler = $client->getCrawler();
+        $firstAlbum = $crawler->filter('.home-item')->first();
         $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
         $this->assertEquals('/fr/album/r/swordshield', $firstAlbum->filter('a')->attr('href'));
 
-        $secondAlbum = $mainCrawler->filter('.home-item')->eq(2);
+        $secondAlbum = $crawler->filter('.home-item')->eq(2);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
         $this->assertEquals('/fr/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
@@ -170,13 +170,13 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertEnglishLangSwitch($crawler);
 
-        $mainCrawler = $client->getCrawler();
+        $crawler = $client->getCrawler();
 
-        $firstAlbum = $mainCrawler->filter('.home-item')->first();
+        $firstAlbum = $crawler->filter('.home-item')->first();
         $this->assertEquals('Sword, Shield', $firstAlbum->text());
         $this->assertEquals('/en/album/r/swordshield', $firstAlbum->filter('a')->attr('href'));
 
-        $secondAlbum = $mainCrawler->filter('.home-item')->eq(2);
+        $secondAlbum = $crawler->filter('.home-item')->eq(2);
         $this->assertEquals('Home Shiny', $secondAlbum->text());
         $this->assertEquals('/en/album/r/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }

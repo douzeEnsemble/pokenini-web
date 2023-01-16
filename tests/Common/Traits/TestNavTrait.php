@@ -38,9 +38,9 @@ trait TestNavTrait
 
     public function assertNoConnectedNavBar(Crawler $crawler): void
     {
-        $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .lang-switch');
 
-        $this->assertCount(1, $crawler->filter('.navbar-nav .trainer-link'));
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .trainer-link');
         $this->assertStringContainsString(
             '/connect/',
             $crawler->filter('.navbar-nav .trainer-link a')->attr('href') ?? ''
@@ -49,29 +49,43 @@ trait TestNavTrait
 
     public function assertConnectedNavBar(Crawler $crawler): void
     {
-        $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
-        $this->assertCount(1, $crawler->filter('.navbar-nav .admin-link'));
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .lang-switch');
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link');
     }
 
     public function assertTrainerAlbumNavBar(Crawler $crawler): void
     {
-        $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
-        $this->assertCount(0, $crawler->filter('.navbar-nav .mode-switch'));
-        $this->assertCount(0, $crawler->filter('.navbar-nav .admin-link'));
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .lang-switch');
+        $this->assertCountFilter($crawler, 0, '.navbar-nav .mode-switch');
+        $this->assertCountFilter($crawler, 0, '.navbar-nav .admin-link');
     }
 
     public function assertAdminAlbumNavBar(Crawler $crawler): void
     {
-        $this->assertCount(1, $crawler->filter('.navbar-nav .lang-switch'));
-        $this->assertCount(0, $crawler->filter('.navbar-nav .mode-switch'));
-        $this->assertCount(1, $crawler->filter('.navbar-nav .admin-link'));
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .lang-switch');
+        $this->assertCountFilter($crawler, 0, '.navbar-nav .mode-switch');
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link');
     }
 
     public function assertCountFilter(
         Crawler $crawler,
         int $expectedValue,
-        string $selector
+        string $selector,
+        int $index = null,
+        string $innerSelector = ''
     ): void {
-        $this->assertCount($expectedValue, $crawler->filter($selector));
+        if (null === $index) {
+            $this->assertCount($expectedValue, $crawler->filter($selector));
+
+            return;
+        }
+
+        $this->assertCount(
+            $expectedValue,
+            $crawler
+                ->filter($selector)
+                ->eq($index)
+                ->filter($innerSelector)
+        );
     }
 }
