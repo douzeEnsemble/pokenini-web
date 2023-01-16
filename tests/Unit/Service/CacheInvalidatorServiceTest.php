@@ -96,6 +96,20 @@ class CacheInvalidatorServiceTest extends TestCase
         $cacheInvalidator->invalidate('dex_availabilities');
     }
 
+    public function testInvalidateReports(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheReports')
+        ;
+
+        $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $cacheInvalidator->invalidate('reports');
+    }
+
     public function testInvalidateUnknown(): void
     {
         $apiService = $this->createMock(ApiService::class);
