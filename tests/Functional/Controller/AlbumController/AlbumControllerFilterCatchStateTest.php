@@ -18,19 +18,16 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCount(
-            1718,
-            $crawler->filter('.album-case')
-        );
+        $this->assertCountFilter($crawler, 1718, '.album-case');
 
-        $this->assertCount(0, $crawler->filter('h2.box'));
-        $this->assertCount(1, $crawler->filter('#bulbasaur'));
-        $this->assertCount(0, $crawler->filter('#venusaur-f'));
-        $this->assertCount(0, $crawler->filter('#charmander'));
+        $this->assertCountFilter($crawler, 0, 'h2.box');
+        $this->assertCountFilter($crawler, 1, '#bulbasaur');
+        $this->assertCountFilter($crawler, 0, '#venusaur-f');
+        $this->assertCountFilter($crawler, 0, '#charmander');
 
-        $this->assertCount(0, $crawler->filter('.toast'));
+        $this->assertCountFilter($crawler, 0, '.toast');
 
-        $this->assertCount(7, $crawler->filter('table a'));
+        $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
             '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
@@ -47,19 +44,16 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo/yes?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCount(
-            9,
-            $crawler->filter('.album-case')
-        );
+        $this->assertCountFilter($crawler, 9, '.album-case');
 
-        $this->assertCount(0, $crawler->filter('h2.box'));
-        $this->assertCount(0, $crawler->filter('#bulbasaur'));
-        $this->assertCount(0, $crawler->filter('#venusaur-f'));
-        $this->assertCount(1, $crawler->filter('#charmander'));
+        $this->assertCountFilter($crawler, 0, 'h2.box');
+        $this->assertCountFilter($crawler, 0, '#bulbasaur');
+        $this->assertCountFilter($crawler, 0, '#venusaur-f');
+        $this->assertCountFilter($crawler, 1, '#charmander');
 
-        $this->assertCount(0, $crawler->filter('.toast'));
+        $this->assertCountFilter($crawler, 0, '.toast');
 
-        $this->assertCount(7, $crawler->filter('table a'));
+        $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
             '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
@@ -80,21 +74,18 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/w/demo/yes');
 
-        $this->assertCount(
-            2,
-            $crawler->filter('.album-case')
-        );
+        $this->assertCountFilter($crawler, 2, '.album-case');
 
-        $this->assertCount(0, $crawler->filter('h2.box'));
-        $this->assertCount(0, $crawler->filter('#bulbasaur'));
-        $this->assertCount(0, $crawler->filter('#venusaur-f'));
-        $this->assertCount(1, $crawler->filter('#charmander'));
+        $this->assertCountFilter($crawler, 0, 'h2.box');
+        $this->assertCountFilter($crawler, 0, '#bulbasaur');
+        $this->assertCountFilter($crawler, 0, '#venusaur-f');
+        $this->assertCountFilter($crawler, 1, '#charmander');
 
-        $this->assertCount(4, $crawler->filter('.toast'));
-        $this->assertCount(2, $crawler->filter('.toast.text-bg-success'));
-        $this->assertCount(2, $crawler->filter('.toast.text-bg-danger'));
+        $this->assertCountFilter($crawler, 4, '.toast');
+        $this->assertCountFilter($crawler, 2, '.toast.text-bg-success');
+        $this->assertCountFilter($crawler, 2, '.toast.text-bg-danger');
 
-        $this->assertCount(7, $crawler->filter('table a'));
+        $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
             '/fr/album/r/demo/no',
             $crawler->filter('table a')->first()->attr('href')
@@ -111,11 +102,11 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo/unknown?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCount(0, $crawler->filter('.album-case'));
+        $this->assertCountFilter($crawler, 0, '.album-case');
 
-        $this->assertCount(0, $crawler->filter('h2.box'));
+        $this->assertCountFilter($crawler, 0, 'h2.box');
 
-        $this->assertCount(7, $crawler->filter('table a'));
+        $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
             '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')

@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller;
 
 use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
 class OuterRoomControllerTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testOuterRoomPageNonConnected(): void
     {
         $client = static::createClient();
@@ -60,10 +63,10 @@ class OuterRoomControllerTest extends WebTestCase
 
     private function assertOuterRoom(Crawler $crawler): void
     {
-        $this->assertCount(1, $crawler->filter('h1'));
-        $this->assertCount(2, $crawler->filter('#main-container p'));
+        $this->assertCountFilter($crawler, 1, 'h1');
+        $this->assertCountFilter($crawler, 2, '#main-container p');
         $this->assertStringContainsString('121212', $crawler->filter('#main-container  p')->first()->text());
-        $this->assertCount(1, $crawler->filter('a.btn'));
+        $this->assertCountFilter($crawler, 1, 'a.btn');
         $this->assertStringContainsString('mailto:', $crawler->filter('a.btn')->attr('href') ?? '');
         $this->assertStringContainsString('121212', $crawler->filter('a.btn')->attr('href') ?? '');
 

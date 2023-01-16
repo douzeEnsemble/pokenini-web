@@ -23,19 +23,13 @@ class AlbumControllerIntroTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/home');
 
-        $this->assertCount(
-            1,
-            $crawler->filter('h1#album-title')
-        );
+        $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Home',
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#album-description')
-        );
+        $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
             'Tous les pokémons pouvant être transférés sur Pokémon Home.',
             $crawler->filter('#album-description')->text()
@@ -45,14 +39,8 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#album-description')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#intro .list-group')
-        );
-        $this->assertCount(
-            7,
-            $crawler->filter('#intro .list-group .list-group-item')
-        );
+        $this->assertCountFilter($crawler, 1, '#intro .list-group');
+        $this->assertCountFilter($crawler, 7, '#intro .list-group .list-group-item');
 
         $this->assertEquals(
             '/fr/album/w/home',
@@ -94,32 +82,20 @@ class AlbumControllerIntroTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demolist3');
 
-        $this->assertCount(
-            1,
-            $crawler->filter('h1#album-title')
-        );
+        $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Démo',
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#album-description')
-        );
+        $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
             'Tous les pokémons de la démo affiché en liste, 3 éléments par colonnes',
             $crawler->filter('#album-description')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#intro .list-group')
-        );
-        $this->assertCount(
-            7,
-            $crawler->filter('#intro .list-group .list-group-item')
-        );
+        $this->assertCountFilter($crawler, 1, '#intro .list-group');
+        $this->assertCountFilter($crawler, 7, '#intro .list-group .list-group-item');
 
         $this->assertEquals(
             '/fr/album/w/demolist3',
@@ -161,32 +137,20 @@ class AlbumControllerIntroTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demoliteshiny');
 
-        $this->assertCount(
-            1,
-            $crawler->filter('h1#album-title')
-        );
+        $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Démo, extrait, chromatique',
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#album-description')
-        );
+        $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
             '',
             $crawler->filter('#album-description')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#intro .list-group')
-        );
-        $this->assertCount(
-            7,
-            $crawler->filter('#intro .list-group .list-group-item')
-        );
+        $this->assertCountFilter($crawler, 1, '#intro .list-group');
+        $this->assertCountFilter($crawler, 7, '#intro .list-group .list-group-item');
 
         $this->assertEquals(
             '/fr/album/w/demoliteshiny',
@@ -228,19 +192,13 @@ class AlbumControllerIntroTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/goldsilvercrystal');
 
-        $this->assertCount(
-            1,
-            $crawler->filter('h1#album-title')
-        );
+        $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Or, Argent, Cristal',
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#album-description')
-        );
+        $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
             'La liste des pokémons obtenable dans les jeux Or, Argent et Cristal.',
             $crawler->filter('#album-description')->text()
@@ -250,14 +208,8 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#album-description')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#intro .list-group')
-        );
-        $this->assertCount(
-            7,
-            $crawler->filter('#intro .list-group .list-group-item')
-        );
+        $this->assertCountFilter($crawler, 1, '#intro .list-group');
+        $this->assertCountFilter($crawler, 7, '#intro .list-group .list-group-item');
 
         $this->assertEquals(
             '/fr/album/w/goldsilvercrystal',
@@ -301,19 +253,13 @@ class AlbumControllerIntroTest extends WebTestCase
 
         file_put_contents('tests/last.html', $crawler->html());
 
-        $this->assertCount(
-            1,
-            $crawler->filter('h1#album-title')
-        );
+        $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Noire, Blanche',
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#album-description')
-        );
+        $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
             'La liste des pokémons obtenable dans les jeux Noire et Blanche.',
             $crawler->filter('#album-description')->text()
@@ -323,14 +269,8 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#album-description')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#intro .list-group')
-        );
-        $this->assertCount(
-            7,
-            $crawler->filter('#intro .list-group .list-group-item')
-        );
+        $this->assertCountFilter($crawler, 1, '#intro .list-group');
+        $this->assertCountFilter($crawler, 7, '#intro .list-group .list-group-item');
 
         $this->assertEquals(
             '/fr/album/w/blackwhite',
@@ -374,19 +314,13 @@ class AlbumControllerIntroTest extends WebTestCase
 
         file_put_contents('tests/last.html', $crawler->html());
 
-        $this->assertCount(
-            1,
-            $crawler->filter('h1#album-title')
-        );
+        $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Black, White',
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#album-description')
-        );
+        $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
             'The list of obtainable Pokémons in Black and White games.',
             $crawler->filter('#album-description')->text()
@@ -396,14 +330,8 @@ class AlbumControllerIntroTest extends WebTestCase
             $crawler->filter('#album-description')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#intro .list-group')
-        );
-        $this->assertCount(
-            7,
-            $crawler->filter('#intro .list-group .list-group-item')
-        );
+        $this->assertCountFilter($crawler, 1, '#intro .list-group');
+        $this->assertCountFilter($crawler, 7, '#intro .list-group .list-group-item');
 
         $this->assertEquals(
             '/en/album/w/blackwhite',
@@ -445,32 +373,20 @@ class AlbumControllerIntroTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCount(
-            1,
-            $crawler->filter('h1#album-title')
-        );
+        $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Démo',
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#album-description')
-        );
+        $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
             'Tous les pokémons de la démo',
             $crawler->filter('#album-description')->text()
         );
 
-        $this->assertCount(
-            1,
-            $crawler->filter('#intro .list-group')
-        );
-        $this->assertCount(
-            7,
-            $crawler->filter('#intro .list-group .list-group-item')
-        );
+        $this->assertCountFilter($crawler, 1, '#intro .list-group');
+        $this->assertCountFilter($crawler, 7, '#intro .list-group .list-group-item');
 
         $this->assertEquals(
             '#box-1',

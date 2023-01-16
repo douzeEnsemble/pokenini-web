@@ -22,8 +22,8 @@ class AlbumControllerAccessTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/home');
 
-        $this->assertCount(0, $crawler->filter('.navbar-nav #share-link'));
-        $this->assertCount(0, $crawler->filter('.navbar-nav #private-tag'));
+        $this->assertCountFilter($crawler, 0, '.navbar-nav #share-link');
+        $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
     }
 
     public function testAccessOwnPrivateAlbum(): void
@@ -36,8 +36,8 @@ class AlbumControllerAccessTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo');
 
-        $this->assertCount(0, $crawler->filter('.navbar-nav #share-link'));
-        $this->assertCount(0, $crawler->filter('.navbar-nav #private-tag'));
+        $this->assertCountFilter($crawler, 0, '.navbar-nav #share-link');
+        $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
     }
 
     public function testAccessAnotherPublicAlbum(): void
@@ -50,8 +50,8 @@ class AlbumControllerAccessTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCount(0, $crawler->filter('.navbar-nav #share-link'));
-        $this->assertCount(0, $crawler->filter('.navbar-nav #private-tag'));
+        $this->assertCountFilter($crawler, 0, '.navbar-nav #share-link');
+        $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
     }
 
     public function testAccessAnotherPrivateAlbum(): void

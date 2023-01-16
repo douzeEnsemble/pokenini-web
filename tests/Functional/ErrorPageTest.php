@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ErrorPageTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testError404(): void
     {
         $client = static::createClient();
@@ -18,9 +21,9 @@ class ErrorPageTest extends WebTestCase
 
         $this->assertEquals("Pokénini La page n'a pas été trouvée", $crawler->filter('title')->text());
 
-        $this->assertCount(1, $crawler->filter('#main-container h1'));
-        $this->assertCount(1, $crawler->filter('#main-container p'));
-        $this->assertCount(1, $crawler->filter('#main-container a'));
+        $this->assertCountFilter($crawler, 1, '#main-container h1');
+        $this->assertCountFilter($crawler, 1, '#main-container p');
+        $this->assertCountFilter($crawler, 1, '#main-container a');
     }
 
     public function testError500(): void
@@ -33,9 +36,9 @@ class ErrorPageTest extends WebTestCase
 
         $this->assertEquals("Pokénini Y'a eu une merde. C'est pas toi, c'est nous", $crawler->filter('title')->text());
 
-        $this->assertCount(1, $crawler->filter('#main-container h1'));
-        $this->assertCount(1, $crawler->filter('#main-container p'));
-        $this->assertCount(1, $crawler->filter('#main-container a'));
+        $this->assertCountFilter($crawler, 1, '#main-container h1');
+        $this->assertCountFilter($crawler, 1, '#main-container p');
+        $this->assertCountFilter($crawler, 1, '#main-container a');
     }
 
     public function testError512(): void
@@ -48,8 +51,8 @@ class ErrorPageTest extends WebTestCase
 
         $this->assertEquals("Pokénini Y'a eu une erreur", $crawler->filter('title')->text());
 
-        $this->assertCount(1, $crawler->filter('#main-container h1'));
-        $this->assertCount(1, $crawler->filter('#main-container p'));
-        $this->assertCount(1, $crawler->filter('#main-container a'));
+        $this->assertCountFilter($crawler, 1, '#main-container h1');
+        $this->assertCountFilter($crawler, 1, '#main-container p');
+        $this->assertCountFilter($crawler, 1, '#main-container a');
     }
 }

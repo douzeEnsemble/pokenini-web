@@ -96,7 +96,7 @@ class AdminActionControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        $this->assertCount(1, $crawler->filter('.list-group-item-danger'));
+        $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
     }
 
     public function testAdminUpdateUnknown(): void
@@ -145,12 +145,12 @@ class AdminActionControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        $this->assertCount(1, $crawler->filter('.list-group-item-success'));
+        $this->assertCountFilter($crawler, 1, '.list-group-item-success');
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
 
-        $this->assertCount(0, $crawler->filter('script[src="/js/album_edit.js"]'));
+        $this->assertCountFilter($crawler, 0, 'script[src="/js/album_edit.js"]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
@@ -174,12 +174,12 @@ class AdminActionControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        $this->assertCount(1, $crawler->filter('.list-group-item-success'));
+        $this->assertCountFilter($crawler, 1, '.list-group-item-success');
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
 
-        $this->assertCount(0, $crawler->filter('script[src="/js/album_edit.js"]'));
+        $this->assertCountFilter($crawler, 0, 'script[src="/js/album_edit.js"]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
@@ -193,12 +193,12 @@ class AdminActionControllerTest extends WebTestCase
     private function assertReport(Crawler $crawler, array $expectedReport): void
     {
         if (empty($expectedReport)) {
-            $this->assertCount(0, $crawler->filter('.admin-item-report'));
+            $this->assertCountFilter($crawler, 0, '.admin-item-report');
 
             return;
         }
 
-        $this->assertCount(1, $crawler->filter('.admin-item-report'));
+        $this->assertCountFilter($crawler, 1, '.admin-item-report');
 
         $index = 0;
         foreach ($expectedReport as $label => $value) {

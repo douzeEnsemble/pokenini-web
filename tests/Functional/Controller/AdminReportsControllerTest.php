@@ -32,19 +32,19 @@ class AdminReportsControllerTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 5, 'table#report-table-catch_state_counts_defined_by_trainer thead tr th');
         $this->assertCountFilter($crawler, 3, 'table#report-table-catch_state_counts_defined_by_trainer tbody tr');
-        $this->assertCount(
+        $this->assertCountFilter(
+            $crawler,
             4,
-            $crawler
-                ->filter('table#report-table-catch_state_counts_defined_by_trainer tbody tr')
-                ->eq(0)
-                ->filter('td')
+            'table#report-table-catch_state_counts_defined_by_trainer tbody tr',
+            0,
+            'td'
         );
-        $this->assertCount(
+        $this->assertCountFilter(
+            $crawler,
             1,
-            $crawler
-                ->filter('table#report-table-catch_state_counts_defined_by_trainer tbody tr')
-                ->eq(0)
-                ->filter('th')
+            'table#report-table-catch_state_counts_defined_by_trainer tbody tr',
+            0,
+            'th'
         );
         $this->assertCountFilter($crawler, 3, 'table#report-table-catch_state_counts_defined_by_trainer tbody button');
         $this->assertCountFilter($crawler, 3, 'table#report-table-catch_state_counts_defined_by_trainer tbody canvas');
@@ -75,20 +75,8 @@ class AdminReportsControllerTest extends WebTestCase
         $this->assertCountFilter($crawler, 5, 'table#report-table-catch_state_usage thead tr th');
         $this->assertCountFilter($crawler, 6, 'table#report-table-catch_state_usage tbody tr');
 
-        $this->assertCount(
-            4,
-            $crawler
-                ->filter('table#report-table-catch_state_usage tbody tr')
-                ->eq(0)
-                ->filter('td')
-        );
-        $this->assertCount(
-            1,
-            $crawler
-                ->filter('table#report-table-catch_state_usage tbody tr')
-                ->eq(0)
-                ->filter('th')
-        );
+        $this->assertCountFilter($crawler, 4, 'table#report-table-catch_state_usage tbody tr', 0, 'td');
+        $this->assertCountFilter($crawler, 1, 'table#report-table-catch_state_usage tbody tr', 0, 'th');
         $this->assertCountFilter($crawler, 6, 'table#report-table-catch_state_usage tbody button');
         $this->assertCountFilter($crawler, 6, 'table#report-table-catch_state_usage tbody canvas');
         $this->assertCountFilter($crawler, 6, 'table#report-table-catch_state_usage tbody a');
