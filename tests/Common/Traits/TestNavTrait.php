@@ -66,4 +66,12 @@ trait TestNavTrait
         $this->assertCount(0, $crawler->filter('.navbar-nav .mode-switch'));
         $this->assertCount(1, $crawler->filter('.navbar-nav .admin-link'));
     }
+
+    public function assertCountFilter(
+        Crawler $crawler,
+        int $expectedValue,
+        string $selector
+    ): void {
+        $this->assertCount($expectedValue, $crawler->filter($selector));
+    }
 }

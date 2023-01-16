@@ -41,6 +41,10 @@ class CacheInvalidatorService
                 $this->apiService->invalidateCacheDex();
                 $this->apiService->invalidateCacheAlbums();
                 return;
+
+            case 'reports':
+                $this->apiService->invalidateCacheReports();
+                return;
         }
 
         throw new \InvalidArgumentException();

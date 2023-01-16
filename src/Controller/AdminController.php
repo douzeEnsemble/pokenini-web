@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\DTO\AdminAction;
+use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/istration')]
 class AdminController extends AbstractController
 {
+    public function __construct(
+        private readonly ApiService $apiService
+    ) {
+    }
+
     #[Route('/', methods: ['GET'])]
     public function index(RequestStack $requestStack): Response
     {
@@ -43,10 +49,13 @@ class AdminController extends AbstractController
             }
         }
 
+        $reportsData = $this->apiService->getReports();
+
         return $this->render(
             'Admin/index.html.twig',
             [
                 'responseData' => $responseData,
+                'reportsData' => $reportsData,
             ]
         );
     }

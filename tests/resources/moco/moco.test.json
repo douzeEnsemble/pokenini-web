@@ -819,5 +819,20 @@
     "response": {
       "status": "201"
     }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/reports"
+      },
+      "method": "get",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/reports.json"
+    }
   }
 ]

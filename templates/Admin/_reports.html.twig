@@ -1,0 +1,180 @@
+{% set locale = app.request.locale %}
+
+{% import "Admin/_macros.html.twig" as admin %}
+
+<h2>{{ 'title.admin_reports'|trans }}</h2>
+
+<h3 class="mt-3">{{ 'admin.reports.catch_state_counts_defined_by_trainer.title'|trans }}</h3>
+<div class="row align-items-center justify-content-center">
+    <div class="col-3">
+        <canvas id="catch_state_counts_defined_by_trainer"></canvas>
+    </div>
+    <div class="col-6">
+        <table
+            class="report-table table table-striped table-hover table-borderless"
+            id="report-table-catch_state_counts_defined_by_trainer"
+        >
+            <thead>
+                <tr>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_counts_defined_by_trainer.toggle'|trans }}
+                    </th>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_counts_defined_by_trainer.color'|trans }}
+                    </th>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_counts_defined_by_trainer.trainer'|trans }}
+                    </th>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_counts_defined_by_trainer.nb'|trans }}
+                    </th>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_counts_defined_by_trainer.part'|trans }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% set total = reportsData.catch_state_counts_defined_by_trainer|reduce((total, d) => total + d.nb) %}
+            {% for row in reportsData.catch_state_counts_defined_by_trainer %}
+                <tr
+                    class="active align-middle"
+                    id="catch_state_counts_defined_by_trainer-row-{{ row.trainer }}"
+                >
+                    <td>
+                        <button
+                            type="button"
+                            class="btn btn-light"
+                            id="catch_state_counts_defined_by_trainer-toggle-{{ row.trainer }}"
+                        >
+                            <i
+                                title="{{ 'admin.reports.table.hide'|trans }}"
+                                class="bi bi-eye-slash toggle-icon disable-icon"
+                            ></i>
+                            <i
+                                title="{{ 'admin.reports.table.show'|trans }}"
+                                class="bi bi-eye toggle-icon active-icon"
+                            ></i>
+                        </button>
+                    </td>
+                    <td>
+                        <canvas
+                            id="catch_state_counts_defined_by_trainer-legend-{{ row.trainer }}"
+                        ></canvas>
+                    </td>
+                    <th scope="row">
+                        <a
+                            class="link-dark"
+                            href="#catch_state_counts_defined_by_trainer"
+                            id="catch_state_counts_defined_by_trainer-text-{{ row.trainer }}"
+                        >
+                            {{ row.trainer }}
+                        </a>
+                    </th>
+                    <td>
+                        {{ row.nb|number_format(0, '.', ' ') }}
+                    </td>
+                    <td>
+                        {{ (row.nb*100/total)|number_format(2, '.', ' ') }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h3 class="mt-3">{{ 'admin.reports.dex_usage.title'|trans }}</h3>
+<div class="row align-items-center justify-content-center">
+    <div class="col-6">
+        <canvas id="dex_usage"></canvas>
+    </div>
+</div>
+
+<h3 class="mt-3">{{ 'admin.reports.catch_state_usage.title'|trans }}</h3>
+<div class="row align-items-center justify-content-center">
+    <div class="col-3">
+        <canvas id="catch_state_usage"></canvas>
+    </div>
+    <div class="col-6">
+        <table
+            class="report-table table table-striped table-hover table-borderless"
+            id="report-table-catch_state_usage"
+        >
+            <thead>
+                <tr>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_usage.toggle'|trans }}
+                    </th>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_usage.color'|trans }}
+                    </th>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_usage.catch_state'|trans }}
+                    </th>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_usage.nb'|trans }}
+                    </th>
+                    <th scope="col">
+                        {{ 'admin.reports.catch_state_usage.part'|trans }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% set total = reportsData.catch_state_usage|reduce((total, d) => total + d.nb) %}
+            {% for row in reportsData.catch_state_usage %}
+                {% set label = locale is same as('fr') ? row.french_name : row.name %}
+                <tr
+                    class="active align-middle"
+                    id="catch_state_usage-row-{{ label }}"
+                >
+                    <td>
+                        <button
+                            type="button"
+                            class="btn btn-light"
+                            id="catch_state_usage-toggle-{{ label }}"
+                        >
+                            <i
+                                title="{{ 'admin.reports.table.hide'|trans }}"
+                                class="bi bi-eye-slash toggle-icon disable-icon"
+                            ></i>
+                            <i
+                                title="{{ 'admin.reports.table.show'|trans }}"
+                                class="bi bi-eye toggle-icon active-icon"
+                            ></i>
+                        </button>
+                    </td>
+                    <td>
+                        <canvas
+                            id="catch_state_usage-legend-{{ label }}"
+                        ></canvas>
+                    </td>
+                    <th scope="row">
+                        <a
+                            class="link-dark"
+                            href="#catch_state_usage"
+                            id="catch_state_usage-text-{{ label }}"
+                        >
+                            {{ label }}
+                        </a>
+                    </th>
+                    <td>
+                        {{ row.nb|number_format(0, '.', ' ') }}
+                    </td>
+                    <td>
+                        {{ (row.nb*100/total)|number_format(2, '.', ' ') }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row align-items-center justify-content-start">
+    <div class="col-md-4">
+        <h3 class="mt-3">{{ 'admin.reports.cache.title'|trans }}</h3>
+        <div class="list-group list-group-report-invalidate">
+            {{ admin.action('invalidate', 'reports', 'bar-chart', updatedItem, updatedAction, updatedState, responseData) }}
+        </div>
+    </div>
+</div>
