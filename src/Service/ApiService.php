@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Cache\KeyMaker;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
@@ -12,14 +13,6 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ApiService
 {
-    private const CACHE_KEY_SEPARATOR = '_';
-
-    private const CACHE_KEY_CACHE_REGISTER = 'register';
-
-    private const CACHE_KEY_DEX = 'dex';
-    private const CACHE_KEY_CATCH_STATES = 'catch_states';
-    private const CACHE_KEY_ALBUM = 'album';
-
     public function __construct(
         private readonly HttpClientInterface $client,
         private readonly string $appApiUrl,
@@ -34,7 +27,7 @@ class ApiService
      */
     public function getDex(string $trainerId): array
     {
-        $key = self::getDexKey($trainerId);
+        $key = KeyMaker::getDexKeyForTrainer($trainerId);
 
         /** @var string $json */
         $json = $this->cache->get($key, function () use ($trainerId) {
@@ -56,7 +49,7 @@ class ApiService
             return $response->getContent();
         });
 
-        $this->registerCache(self::CACHE_KEY_DEX, $key);
+        $this->registerCache(KeyMaker::getDexKey(), $key);
 
         /** @var string[][] */
         return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
@@ -67,7 +60,7 @@ class ApiService
      */
     public function getPokedex(string $dexSlug, string $trainerId): array
     {
-        $key = self::getPokedexKey($dexSlug, $trainerId);
+        $key = KeyMaker::getPokedexKey($dexSlug, $trainerId);
 
         /** @var string $json */
         $json = $this->cache->get($key, function () use ($dexSlug, $trainerId) {
@@ -86,7 +79,7 @@ class ApiService
             return $response->getContent();
         });
 
-        $this->registerCache(self::CACHE_KEY_ALBUM, $key);
+        $this->registerCache(KeyMaker::getAlbumKey(), $key);
 
         /** @var string[][][] */
         return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
@@ -97,7 +90,7 @@ class ApiService
      */
     public function getCatchStates(): array
     {
-        $key = self::getCatchStatesKey();
+        $key = KeyMaker::getCatchStatesKey();
 
         /** @var string $json */
         $json = $this->cache->get($key, function () {
@@ -207,40 +200,76 @@ class ApiService
         return $response->getContent();
     }
 
+    /**
+     * @return string[][]
+     */
+    public function getReports(): array
+    {
+        $key = KeyMaker::getReportsKey();
+
+        /** @var string $json */
+        $json = $this->cache->get($key, function () {
+            $response = $this->client->request(
+                'GET',
+                "{$this->appApiUrl}/reports",
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
+            );
+
+            /** @var string */
+            return $response->getContent();
+        });
+
+        /** @var string[][] */
+        return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+    }
+
     public function invalidateCacheDex(): void
     {
-        $this->invalidateCacheByType(self::CACHE_KEY_DEX);
+        $this->invalidateCacheByType(KeyMaker::getDexKey());
     }
 
     public function invalidateCacheCatchStates(): void
     {
-        $this->cache->delete(self::getCatchStatesKey());
+        $this->cache->delete(KeyMaker::getCatchStatesKey());
     }
 
     public function invalidateCacheAlbums(): void
     {
-        $this->invalidateCacheByType(self::CACHE_KEY_ALBUM);
+        $this->invalidateCacheByType(KeyMaker::getAlbumKey());
     }
 
     public function invalidateCacheDexByTrainerId(string $trainerId): void
     {
-        $key = self::getDexKey($trainerId);
+        $key = KeyMaker::getDexKeyForTrainer($trainerId);
 
         $this->cache->delete($key);
-        $this->unregisterCache(self::CACHE_KEY_DEX, $key);
+        $this->unregisterCache(KeyMaker::getDexKey(), $key);
     }
 
     public function invalidateCacheAlbum(string $dexSlug, string $trainerId): void
     {
-        $key = self::getPokedexKey($dexSlug, $trainerId);
+        $key = KeyMaker::getPokedexKey($dexSlug, $trainerId);
 
         $this->cache->delete($key);
-        $this->unregisterCache(self::CACHE_KEY_ALBUM, $key);
+        $this->unregisterCache(KeyMaker::getAlbumKey(), $key);
+    }
+
+    public function invalidateCacheReports(): void
+    {
+        $this->cache->delete(KeyMaker::getReportsKey());
     }
 
     private function registerCache(string $type, string $key): void
     {
-        $registerKey = self::getRegisterTypeKey($type);
+        $registerKey = KeyMaker::getRegisterTypeKey($type);
 
         /** @var string[] $list */
         $list = $this->cache->get($registerKey, function () {
@@ -258,7 +287,7 @@ class ApiService
 
     private function unregisterCache(string $type, string $key): void
     {
-        $registerKey = self::getRegisterTypeKey($type);
+        $registerKey = KeyMaker::getRegisterTypeKey($type);
 
         /** @var string[] $list */
         $list = $this->cache->get($registerKey, function () {
@@ -282,7 +311,7 @@ class ApiService
      */
     private function getRegisteredCache(string $type): array
     {
-        $key = self::getRegisterTypeKey($type);
+        $key = KeyMaker::getRegisterTypeKey($type);
 
         $list = $this->cache->get($key, function () {
             return [];
@@ -301,26 +330,6 @@ class ApiService
             $this->cache->delete($key);
         }
 
-        $this->cache->delete(self::getRegisterTypeKey($type));
-    }
-
-    private static function getDexKey(string $trainerId): string
-    {
-        return self::CACHE_KEY_DEX . self::CACHE_KEY_SEPARATOR . $trainerId;
-    }
-
-    private static function getPokedexKey(string $dexSlug, string $trainerId): string
-    {
-        return self::CACHE_KEY_ALBUM . self::CACHE_KEY_SEPARATOR . $dexSlug . self::CACHE_KEY_SEPARATOR . $trainerId;
-    }
-
-    private static function getCatchStatesKey(): string
-    {
-        return self::CACHE_KEY_CATCH_STATES;
-    }
-
-    private static function getRegisterTypeKey(string $type): string
-    {
-        return self::CACHE_KEY_CACHE_REGISTER . self::CACHE_KEY_SEPARATOR . $type;
+        $this->cache->delete(KeyMaker::getRegisterTypeKey($type));
     }
 }

@@ -1,3 +1,19 @@
 .admin-item-report {
     font-size: .75rem;
 }
+
+.report-table canvas {
+}
+.report-table tr .toggle-icon.active-icon {
+    display: inherit;
+}
+.report-table tr .toggle-icon.disable-icon {
+    display: none;
+}
+
+.report-table tr.active .toggle-icon.active-icon {
+    display: none;
+}
+.report-table tr.active .toggle-icon.disable-icon {
+    display: inherit;
+}

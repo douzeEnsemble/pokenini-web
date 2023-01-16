@@ -36,6 +36,9 @@ title:
         catch_states: 'Invalidate status cache'
         dex: 'Invalidate dex cache'
         albums: 'Invalidate album cache'
+        reports: 'Invalidate reports cache'
+    admin_actions: 'Data and caches'
+    admin_reports: 'Reporting'
     box: 'Box'
     empty: ' '
     connect: 'Connection'
@@ -232,3 +235,27 @@ admin:
     calculate:
         game_bundles_availabilities: "Bundles' availabilities"
         dex_availabilities: "Dex' availabilities"
+    reports:
+        cache:
+            title: "Cache"
+        table:
+            hide: "Hide data"
+            show: "Show data"
+        catch_state_counts_defined_by_trainer:
+            title: "Distributions of catch statuses defined by trainers"
+            trainer: "Trainer"
+            nb: "Count"
+            color: "Color"
+            part: "%"
+            toggle: ""
+        dex_usage:
+            title: "Dex usage"
+            dex: "Dex"
+            nb: "Trainers count"
+        catch_state_usage:
+            title: "Catch state usage"
+            catch_state: "Catch state"
+            nb: "Count"
+            color: "Color"
+            part: "%"
+            toggle: ""

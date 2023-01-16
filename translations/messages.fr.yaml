@@ -36,6 +36,9 @@ title:
         catch_states: 'Invalidation du cache des statuts'
         dex: 'Invalidation du cache des dex'
         albums: 'Invalidation du cache des albums'
+        reports: 'Invalidate reports cache'
+    admin_actions: 'Données et caches'
+    admin_reports: 'Rapports'
     box: 'Boite'
     empty: ' '
     connect: 'Connexion'
@@ -234,3 +237,27 @@ admin:
     calculate:
         game_bundles_availabilities: "Dispo des bundles"
         dex_availabilities: "Dispo des dex"
+    reports:
+        cache:
+            title: "Cache"
+        table:
+            hide: "Cacher la donnée"
+            show: "Afficher la donnée"
+        catch_state_counts_defined_by_trainer:
+            title: "Répartition des statuts de capture définis par les dresseurs"
+            trainer: "Dresseur"
+            nb: "Compteur"
+            color: "Couleur"
+            part: "%"
+            toggle: ""
+        dex_usage:
+            title: "Utilisation des dex"
+            dex: "Dex"
+            nb: "Nombre de dresseurs"
+        catch_state_usage:
+            title: "Utilisation des statuts de capture"
+            catch_state: "Statut de capture"
+            nb: "Compteur"
+            color: "Couleur"
+            part: "%"
+            toggle: ""

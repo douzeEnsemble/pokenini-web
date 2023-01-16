@@ -822,5 +822,20 @@
     "response": {
       "status": "201"
     }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/reports"
+      },
+      "method": "get",
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/reports.json"
+    }
   }
 ]

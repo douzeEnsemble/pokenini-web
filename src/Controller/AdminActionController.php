@@ -65,6 +65,7 @@ class AdminActionController extends AbstractController
                 'catch_states',
                 'dex',
                 'albums',
+                'reports',
             ]"
     )]
     public function invalidate(
