@@ -14,4 +14,11 @@
     <file>tests/</file>
     <exclude-pattern>*/tests/bootstrap.php$</exclude-pattern>
 
+    <rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/Sniffs/TypeHints/DeclareStrictTypesSniff.php" />
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="spacesCountAroundEqualsSign" value="0"/>
+        </properties>
+    </rule>
+
 </ruleset>
