@@ -34,6 +34,3 @@ services:
       context: docker/moco/dev
     volumes:
       - ./tests/resources/moco/:/var/moco:ro
-
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
