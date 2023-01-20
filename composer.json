@@ -9,7 +9,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
-        "ext-opcache": "*",
         "ext-redis": "*",
         "ext-zip": "*",
         "knpuniversity/oauth2-client-bundle": "^2.10",
