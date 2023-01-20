@@ -6,10 +6,12 @@
 
 <h3 class="mt-3">{{ 'admin.reports.catch_state_counts_defined_by_trainer.title'|trans }}</h3>
 <div class="row align-items-center justify-content-center">
-    <div class="col-3">
-        <canvas id="catch_state_counts_defined_by_trainer"></canvas>
+    <div class="col-md-3">
+        <div class="wrapper">
+            <canvas id="catch_state_counts_defined_by_trainer"></canvas>
+        </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <table
             class="report-table table table-striped table-hover table-borderless"
             id="report-table-catch_state_counts_defined_by_trainer"
@@ -85,17 +87,21 @@
 
 <h3 class="mt-3">{{ 'admin.reports.dex_usage.title'|trans }}</h3>
 <div class="row align-items-center justify-content-center">
-    <div class="col-6">
-        <canvas id="dex_usage"></canvas>
+    <div class="col-md-6">
+        <div class="wrapper">
+            <canvas id="dex_usage"></canvas>
+        </div>
     </div>
 </div>
 
 <h3 class="mt-3">{{ 'admin.reports.catch_state_usage.title'|trans }}</h3>
 <div class="row align-items-center justify-content-center">
-    <div class="col-3">
-        <canvas id="catch_state_usage"></canvas>
+    <div class="col-md-3">
+        <div class="wrapper">
+            <canvas id="catch_state_usage"></canvas>
+        </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <table
             class="report-table table table-striped table-hover table-borderless"
             id="report-table-catch_state_usage"
@@ -171,7 +177,7 @@
 </div>
 
 <div class="row align-items-center justify-content-start">
-    <div class="col-md-4">
+    <div class="col-md-md-4">
         <h3 class="mt-3">{{ 'admin.reports.cache.title'|trans }}</h3>
         <div class="list-group list-group-report-invalidate">
             {{ admin.action('invalidate', 'reports', 'bar-chart', updatedItem, updatedAction, updatedState, responseData) }}
