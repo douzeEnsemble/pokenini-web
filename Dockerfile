@@ -32,11 +32,13 @@ RUN apk add --no-cache \
 
 RUN set -eux; \
     install-php-extensions \
-    	intl \
-    	zip \
-    	apcu \
-		opcache \
-		redis \
+        intl \
+        zip \
+        apcu \
+        opcache \
+        redis \
+        iconv \
+        ctype \
     ;
 
 ##> recipes ###
