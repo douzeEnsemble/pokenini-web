@@ -23,7 +23,7 @@ class TrainerController extends AbstractController
     ) {
     }
 
-    #[Route('/')]
+    #[Route('')]
     public function index(): Response
     {
         $trainerDex = $this->apiService->getDex($this->userTokenService->getLoggedUserToken());

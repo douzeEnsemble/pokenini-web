@@ -63,8 +63,8 @@
 
 {% block foot_javascript %}
     {{ parent() }}
-    {% if (mode is same as(constant('App\\DTO\\AlbumMode::LONG_MODE_WRITE'))) %}
-    <script src="{{ asset('js/album_edit.js') }}"></script>
+    {% if allowedToEdit %}
+    <script src="{{ asset('js/album.js') }}"></script>
 
     <script type="application/javascript">
     const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
@@ -74,7 +74,9 @@
 
     <script type="application/javascript">
     (function() {
+        watchToggleEditMode();
         watchCatchStates();
+
         // Enable toasts
         const toastElList = document.querySelectorAll('.toast')
         const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl));

@@ -20,7 +20,7 @@ class AlbumControllerDisplayFormTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $client->request('GET', '/fr/album/r/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/fr/album/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $crawler = $client->getCrawler();
 
@@ -35,7 +35,7 @@ class AlbumControllerDisplayFormTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $client->request('GET', '/fr/album/r/homepokemongo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/fr/album/homepokemongo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $crawler = $client->getCrawler();
 

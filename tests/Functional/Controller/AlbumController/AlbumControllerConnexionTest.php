@@ -16,7 +16,7 @@ class AlbumControllerConnexionTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/r/home');
+        $client->request('GET', '/fr/album/home');
 
         $this->assertResponseStatusCodeSame(404);
     }
@@ -25,7 +25,7 @@ class AlbumControllerConnexionTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertNoConnectedNavBar($crawler);
     }
@@ -38,7 +38,7 @@ class AlbumControllerConnexionTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/r/home');
+        $crawler = $client->request('GET', '/fr/album/home');
 
         $this->assertTrainerAlbumNavBar($crawler);
     }
@@ -52,7 +52,7 @@ class AlbumControllerConnexionTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/r/home');
+        $crawler = $client->request('GET', '/fr/album/home');
 
         $this->assertAdminAlbumNavBar($crawler);
     }
@@ -61,9 +61,9 @@ class AlbumControllerConnexionTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/w/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/fr/album/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertResponseStatusCodeSame(307);
+        $this->assertResponseStatusCodeSame(404);
     }
 
     public function testWriteTrainer(): void
@@ -74,7 +74,7 @@ class AlbumControllerConnexionTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/w/home');
+        $crawler = $client->request('GET', '/fr/album/home');
 
         $this->assertTrainerAlbumNavBar($crawler);
     }
@@ -88,7 +88,7 @@ class AlbumControllerConnexionTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/w/home');
+        $crawler = $client->request('GET', '/fr/album/home');
 
         $this->assertAdminAlbumNavBar($crawler);
     }

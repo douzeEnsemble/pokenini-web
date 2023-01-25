@@ -19,7 +19,7 @@ class UpdateAlbumController extends WebTestCase
 
         $client->request(
             'PATCH',
-            '/album/demo/bulbasaur',
+            '/fr/album/demo/bulbasaur',
             [
                 'body' => 'yes',
             ]
@@ -34,13 +34,18 @@ class UpdateAlbumController extends WebTestCase
 
         $client->request(
             'PATCH',
-            '/album/demo/bulbasaur',
+            '/fr/album/demo/bulbasaur',
             [
                 'body' => 'yes',
             ]
         );
 
+        $this->assertTrue($client->getResponse()->isRedirect());
+        $this->assertEquals(307, $client->getResponse()->getStatusCode());
 
-        $this->assertEquals(403, $client->getResponse()->getStatusCode());
+        $crawler = $client->followRedirect();
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals('http://localhost/fr/', $crawler->getBaseHref());
     }
 }

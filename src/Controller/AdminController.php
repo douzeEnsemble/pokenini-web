@@ -19,7 +19,7 @@ class AdminController extends AbstractController
     ) {
     }
 
-    #[Route('/', methods: ['GET'])]
+    #[Route('', methods: ['GET'])]
     public function index(RequestStack $requestStack): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

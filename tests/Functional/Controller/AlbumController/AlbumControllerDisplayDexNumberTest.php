@@ -20,7 +20,7 @@ class AlbumControllerDisplayDexNumberTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/r/goldsilvercrystal');
+        $crawler = $client->request('GET', '/fr/album/goldsilvercrystal');
 
         $this->assertCountFilter($crawler, 278, '.album-case');
 

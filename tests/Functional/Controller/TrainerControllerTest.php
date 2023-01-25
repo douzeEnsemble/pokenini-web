@@ -21,7 +21,7 @@ class TrainerControllerTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/trainer/');
+        $crawler = $client->request('GET', '/fr/trainer');
 
         $this->assertResponseStatusCodeSame(200);
 

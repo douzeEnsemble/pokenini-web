@@ -20,7 +20,7 @@ class AdminReportsControllerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/istration/');
+        $crawler = $client->request('GET', '/fr/istration');
 
         $this->assertResponseStatusCodeSame(200);
 

@@ -5,12 +5,26 @@ function watchCatchStates()
   });
 }
 
+function watchToggleEditMode()
+{
+  document.querySelectorAll('.album-case-catch-state-edit-action').forEach(function(element) {
+    element.addEventListener('click', onToggleEditMode)
+  });
+}
+
 function onChangeCatchState(event)
 {
   const target = event.target;
 
   saveChange(target);
   changeClass(target);
+}
+
+function onToggleEditMode(event)
+{
+  const target = event.target;
+
+  toggleEditMode(target);
 }
 
 function saveChange(target)
@@ -20,7 +34,7 @@ function saveChange(target)
 
   const request = new Request(
     '/'+locale+'/album/'+dex+'/'+pokemon,
-{
+    {
         method: 'PATCH',
         body: catchState
     }
@@ -61,4 +75,13 @@ function changeClass(target)
 
   target.classList.add('catch-state-'+currentCatchState.value);
   albumCase.classList.add('catch-state-'+currentCatchState.value);
+}
+
+function toggleEditMode(target)
+{
+  const albumCatchState = target.closest('.album-case-catch-state');
+  const albumAction = albumCatchState.parentNode.querySelector('.album-case-action');
+
+  albumCatchState.toggleAttribute('hidden');
+  albumAction.toggleAttribute('hidden');
 }

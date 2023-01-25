@@ -55,7 +55,7 @@ class AbstractAlbumControllerTestCase extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.toast');
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album_edit.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
@@ -69,13 +69,13 @@ class AbstractAlbumControllerTestCase extends WebTestCase
 
         $this->assertCountFilter($crawler, 6, '#bulbasaur select option');
 
-        $this->assertCountFilter($crawler, 0, '.album-case .album-case-catch-state');
+        $this->assertCountFilter($crawler, 1738, '.album-case .album-case-catch-state');
 
         $this->assertCountFilter($crawler, 3476, '.toast');
         $this->assertCountFilter($crawler, 1738, '.toast.text-bg-success');
         $this->assertCountFilter($crawler, 1738, '.toast.text-bg-danger');
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album_edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src="/js/album.js"]');
 
         $this->assertStringContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringContainsString('watchCatchStates();', $crawler->outerHtml());
@@ -144,27 +144,27 @@ class AbstractAlbumControllerTestCase extends WebTestCase
         );
 
         $this->assertStringContainsString(
-            '/album/r/demo/no',
+            '/album/demo/no',
             (string) $crawler->filter('table#report tr.catch-state-no a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/r/demo/toevolve',
+            '/album/demo/toevolve',
             (string) $crawler->filter('table#report tr.catch-state-toevolve a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/r/demo/tobreed',
+            '/album/demo/tobreed',
             (string) $crawler->filter('table#report tr.catch-state-tobreed a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/r/demo/totransfer',
+            '/album/demo/totransfer',
             (string) $crawler->filter('table#report tr.catch-state-totransfer a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/r/demo/yes',
+            '/album/demo/yes',
             (string) $crawler->filter('table#report tr.catch-state-yes a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/r/demo',
+            '/album/demo',
             (string) $crawler->filter('table#report tr.catch-state-total a')->attr('href')
         );
     }
