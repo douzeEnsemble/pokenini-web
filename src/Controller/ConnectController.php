@@ -19,7 +19,7 @@ class ConnectController extends AbstractController
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 
-    #[Route('/', methods: ['GET'])]
+    #[Route('', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('Connect/index.html.twig');

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/outerroom')]
 class OuterRoomController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('')]
     public function index(): Response
     {
         if ($this->isGranted('ROLE_TRAINER') || $this->isGranted('ROLE_ADMIN')) {

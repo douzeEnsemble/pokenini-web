@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\DTO\AlbumMode;
 use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenService;
 use App\Service\ApiService;
@@ -23,71 +22,6 @@ class AlbumController extends AbstractController
         private readonly ApiService $apiService,
         private readonly UserTokenService $userTokenService
     ) {
-    }
-
-    #[Route(
-        '/{mode}/{dexSlug}/{filter?}',
-        name: 'app_album_index',
-        requirements: [
-            'mode' => '[rw]',
-            'dexSlug' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*',
-            'filter' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*'
-        ],
-        methods: ['GET']
-    )]
-    public function index(
-        Request $request,
-        string $mode,
-        string $dexSlug,
-        ?string $filter = null,
-    ): Response {
-        $loggedTrainerId = null;
-        $queryTrainerId = $request->query->getAlnum('t');
-
-        try {
-            $loggedTrainerId = $this->userTokenService->getLoggedUserToken();
-
-            $trainerId = !empty($queryTrainerId) ? $queryTrainerId : $loggedTrainerId;
-        } catch (NoLoggedUserException $e) {
-            $trainerId = $queryTrainerId;
-        }
-
-        if (empty($trainerId)) {
-            throw $this->createNotFoundException();
-        }
-
-        if (AlbumMode::SHORT_MODE_WRITE === $mode) {
-            $this->denyAccessUnlessGranted('ROLE_TRAINER');
-        }
-
-        try {
-            $pokedex = $this->apiService->getPokedex($dexSlug, $trainerId);
-        } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
-            throw $this->createNotFoundException();
-        }
-
-        $dex = $pokedex['dex'];
-
-        if ($dex['is_private'] && $trainerId != $loggedTrainerId) {
-            throw $this->createNotFoundException();
-        }
-
-        $catchStates = $this->apiService->getCatchStates();
-
-        $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filter);
-
-        return $this->render('Album/index.html.twig', [
-            'currentDexSlug' => $dexSlug,
-            'dex' => $dex,
-            'report' => $pokedex['report'],
-            'list' => $pokemons,
-            'catchStates' => $catchStates,
-            'mode' => AlbumMode::MODES_SHORT_LONG[$mode],
-            'filter' => $filter,
-            'trainerId' => $trainerId,
-            'loggedTrainerId' => $loggedTrainerId,
-            'queryTrainerId' => $queryTrainerId,
-        ]);
     }
 
     #[Route('/{dexSlug}/{pokemonSlug}', methods: ['PATCH', 'PUT'])]
@@ -133,5 +67,65 @@ class AlbumController extends AbstractController
         }
 
         return $list;
+    }
+
+    #[Route(
+        '/{dexSlug}/{filter?}',
+        name: 'app_album_index',
+        requirements: [
+            'dexSlug' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*',
+            'filter' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*'
+        ],
+        methods: ['GET']
+    )]
+    public function index(
+        Request $request,
+        string $dexSlug,
+        ?string $filter = null,
+    ): Response {
+        $loggedTrainerId = null;
+        $queryTrainerId = $request->query->getAlnum('t');
+
+        try {
+            $loggedTrainerId = $this->userTokenService->getLoggedUserToken();
+
+            $trainerId = !empty($queryTrainerId) ? $queryTrainerId : $loggedTrainerId;
+        } catch (NoLoggedUserException $e) {
+            $trainerId = $queryTrainerId;
+        }
+
+        if (empty($trainerId)) {
+            throw $this->createNotFoundException();
+        }
+
+        try {
+            $pokedex = $this->apiService->getPokedex($dexSlug, $trainerId);
+        } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
+            throw $this->createNotFoundException();
+        }
+
+        $dex = $pokedex['dex'];
+
+        if ($dex['is_private'] && $trainerId != $loggedTrainerId) {
+            throw $this->createNotFoundException();
+        }
+
+        $catchStates = $this->apiService->getCatchStates();
+
+        $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filter);
+
+        return $this->render('Album/index.html.twig', [
+            'currentDexSlug' => $dexSlug,
+            'dex' => $dex,
+            'report' => $pokedex['report'],
+            'list' => $pokemons,
+            'catchStates' => $catchStates,
+            'mode' => 'read',
+            'filter' => $filter,
+            'trainerId' => $trainerId,
+            'loggedTrainerId' => $loggedTrainerId,
+            'queryTrainerId' => $queryTrainerId,
+            'allowedToEdit' => $trainerId === $loggedTrainerId,
+        ]);
     }
 }

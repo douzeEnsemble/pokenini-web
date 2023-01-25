@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('')]
     public function index(ApiService $apiService, UserTokenService $userTokenService): Response
     {
         try {

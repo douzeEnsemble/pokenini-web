@@ -17,7 +17,7 @@ class AdminControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/istration/');
+        $client->request('GET', '/fr/istration');
 
         $this->assertResponseStatusCodeSame(307);
     }
@@ -28,7 +28,7 @@ class AdminControllerTest extends WebTestCase
 
         $client->loginUser(new User('34654656489621361987'));
 
-        $client->request('GET', '/fr/istration/');
+        $client->request('GET', '/fr/istration');
 
         $this->assertResponseStatusCodeSame(403);
     }
@@ -51,7 +51,7 @@ class AdminControllerTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '.list-group-calculate a.admin-item');
         $this->assertCountFilter($crawler, 3, '.list-group-invalidate a.admin-item');
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album_edit.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
@@ -65,7 +65,7 @@ class AdminControllerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/istration/');
+        $crawler = $client->request('GET', '/fr/istration');
 
         $this->assertResponseStatusCodeSame(200);
 

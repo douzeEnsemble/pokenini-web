@@ -3,6 +3,7 @@ controllers:
     exclude: '../src/Controller/{SecurityController}.php'
     type: attribute
     prefix: /{_locale}
+    trailing_slash_on_root: false
     requirements:
         _locale: 'en|fr'
 

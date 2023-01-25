@@ -15,7 +15,7 @@ class AlbumControllerCustomIconTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
 
@@ -39,7 +39,7 @@ class AlbumControllerCustomIconTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
 

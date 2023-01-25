@@ -13,7 +13,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/en/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertAlbum($client);
         $this->assertReadMode($client);
@@ -32,11 +32,11 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489');
+        $user = new User('12');
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $client->request('GET', '/en/album/w/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/en/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertAlbum($client);
         $this->assertWriteMode($client);
@@ -54,7 +54,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/en/album/r/homeshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/en/album/homeshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertShiny($client);
         $this->assertShinyEnglish($client);
@@ -194,7 +194,7 @@ class EnglishAlbumControllerTest extends AbstractAlbumControllerTestCase
 
         $navbarTitle = $crawler->filter('.navbar-brand');
         $this->assertEquals('Demo', $navbarTitle->text());
-        $this->assertEquals('/en/', $navbarTitle->attr('href'));
+        $this->assertEquals('/en', $navbarTitle->attr('href'));
 
         $this->assertEnglishLangSwitch($crawler);
     }

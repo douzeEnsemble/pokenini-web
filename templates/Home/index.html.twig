@@ -15,7 +15,7 @@
         <div class="row">
             {% for item in dex|filter(item => item.is_on_home is same as(true)) %}
             {{ _self.homeItem(
-                path('app_album_index', {'mode': constant('App\\DTO\\AlbumMode::SHORT_MODE_READ'), 'dexSlug': item.slug}),
+                path('app_album_index', {'dexSlug': item.slug}),
                 item.slug,
                 item.name,
                 item.french_name,
@@ -31,28 +31,28 @@
                         locale
                     ) }}
                     {{ _self.homeItem(
-                        '/'~locale~'/album/r/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
+                        '/'~locale~'/album/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
                         'home',
                         'Home (demo)',
                         'Home (démo)',
                         locale
                     ) }}
                     {{ _self.homeItem(
-                        '/'~locale~'/album/r/homeshiny?t=f86cbe805674d85f7806b175b70647a6a9334631',
+                        '/'~locale~'/album/homeshiny?t=f86cbe805674d85f7806b175b70647a6a9334631',
                         'homeshiny',
                         'Home Shiny (demo)',
                         'Home Chromatique (démo)',
                         locale
                     ) }}
                     {{ _self.homeItem(
-                        '/'~locale~'/album/r/pokemongo?t=f86cbe805674d85f7806b175b70647a6a9334631',
+                        '/'~locale~'/album/pokemongo?t=f86cbe805674d85f7806b175b70647a6a9334631',
                         'pokemongo',
                         'Pokémon Go (demo)',
                         'Pokémon Go (démo)',
                         locale
                     ) }}
                     {{ _self.homeItem(
-                        '/'~locale~'/album/r/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
+                        '/'~locale~'/album/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
                         'scarletviolet',
                         'Scarlet, Violet (demo)',
                         'Écarlate, Violet (démo)',

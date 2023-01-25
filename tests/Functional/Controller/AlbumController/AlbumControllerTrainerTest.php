@@ -20,7 +20,7 @@ class AlbumControllerTrainerTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/r/demo');
+        $crawler = $client->request('GET', '/fr/album/demo');
 
         $this->assertResponseIsSuccessful();
 
@@ -40,7 +40,7 @@ class AlbumControllerTrainerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
 
@@ -64,7 +64,7 @@ class AlbumControllerTrainerTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
 

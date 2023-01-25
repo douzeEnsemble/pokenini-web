@@ -21,14 +21,32 @@ class CommonControllerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $this->assertCommonItems($client, '/fr/');
-        $this->assertCommonItems($client, '/fr/connect/');
-        $this->assertCommonItems($client, '/fr/istration/');
+        $this->assertCommonItems($client, '/fr');
+    }
+
+    public function testConnect(): void
+    {
+        $client = static::createClient();
+
+        $this->assertCommonItems($client, '/fr/connect');
+    }
+
+    public function testAdministration(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        $this->assertCommonItems($client, '/fr/istration');
     }
 
     private function assertCommonItems(KernelBrowser $client, string $url): void
     {
         $crawler = $client->request('GET', $url);
+
+        file_put_contents('tests/last.html', $crawler->html());
 
         $this->assertCountFilter($crawler, 1, 'link[sizes="180x180"]');
         $this->assertCountFilter($crawler, 1, 'link[sizes="32x32"]');

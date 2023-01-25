@@ -27,6 +27,13 @@
     font-size: .3rem;
     color: rgba(0 0 0 / 0%);
 }
+a.album-case-catch-state-edit-action {
+    color: inherit;
+}
+a.album-case-catch-state-edit-action:hover {
+    color: black;
+}
+
 #report a {
     color: inherit;
     text-decoration: inherit;

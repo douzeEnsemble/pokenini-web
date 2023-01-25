@@ -17,6 +17,6 @@ class IndexRedirectionTest extends WebTestCase
         $this->assertResponseStatusCodeSame(301);
         $crawler = $client->followRedirect();
 
-        $this->assertEquals('http://localhost/fr/', $crawler->getUri());
+        $this->assertEquals('http://localhost/fr', $crawler->getUri());
     }
 }

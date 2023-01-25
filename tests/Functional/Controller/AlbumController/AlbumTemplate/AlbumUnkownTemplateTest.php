@@ -22,7 +22,7 @@ class AlbumUnkownTemplateTest extends WebTestCase
 
         $crawler = $client->request(
             'GET',
-            '/fr/album/r/demounknowntemplate?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
+            '/fr/album/demounknowntemplate?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
         $this->assertCountFilter($crawler, 37, '.album-case.col');
@@ -43,7 +43,7 @@ class AlbumUnkownTemplateTest extends WebTestCase
 
         $crawler = $client->request(
             'GET',
-            '/fr/album/r/demounknowntemplate/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
+            '/fr/album/demounknowntemplate/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
         $this->assertCountFilter($crawler, 21, '.album-case.col');

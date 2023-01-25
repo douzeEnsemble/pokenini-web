@@ -16,7 +16,7 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 1718, '.album-case');
 
@@ -29,11 +29,11 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '/fr/album/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
-            '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->last()->attr('href')
         );
     }
@@ -42,7 +42,7 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo/yes?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo/yes?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 9, '.album-case');
 
@@ -55,11 +55,11 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '/fr/album/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
-            '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->last()->attr('href')
         );
     }
@@ -72,7 +72,7 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/w/demo/yes');
+        $crawler = $client->request('GET', '/fr/album/demo/yes');
 
         $this->assertCountFilter($crawler, 2, '.album-case');
 
@@ -87,11 +87,11 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/r/demo/no',
+            '/fr/album/demo/no',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
-            '/fr/album/r/demo',
+            '/fr/album/demo',
             $crawler->filter('table a')->last()->attr('href')
         );
     }
@@ -100,7 +100,7 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/r/demo/unknown?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo/unknown?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 0, '.album-case');
 
@@ -108,11 +108,11 @@ class AlbumControllerFilterCatchStateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/r/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '/fr/album/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
-            '/fr/album/r/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->last()->attr('href')
         );
     }

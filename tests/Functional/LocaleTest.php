@@ -12,7 +12,7 @@ class LocaleTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/');
+        $client->request('GET', '/fr');
 
         $this->assertResponseStatusCodeSame(200);
     }
@@ -21,7 +21,7 @@ class LocaleTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/it/');
+        $client->request('GET', '/it');
 
         $this->assertResponseStatusCodeSame(404);
     }

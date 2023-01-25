@@ -13,7 +13,7 @@ trait TestNavTrait
         $langItem = $crawler->filter('.lang-switch');
         $this->assertCount(1, $langItem);
         $this->assertStringContainsString(
-            '/fr/',
+            '/fr',
             $langItem->filter('a')->attr('href') ?? ''
         );
         $this->assertEquals(
@@ -27,7 +27,7 @@ trait TestNavTrait
         $langItem = $crawler->filter('.lang-switch');
         $this->assertCount(1, $langItem);
         $this->assertStringContainsString(
-            '/en/',
+            '/en',
             $langItem->filter('a')->attr('href') ?? ''
         );
         $this->assertEquals(
@@ -42,7 +42,7 @@ trait TestNavTrait
 
         $this->assertCountFilter($crawler, 1, '.navbar-nav .trainer-link');
         $this->assertStringContainsString(
-            '/connect/',
+            '/connect',
             $crawler->filter('.navbar-nav .trainer-link a')->attr('href') ?? ''
         );
     }

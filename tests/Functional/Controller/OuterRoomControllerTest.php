@@ -17,7 +17,7 @@ class OuterRoomControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/outerroom/');
+        $client->request('GET', '/fr/outerroom');
 
         $this->assertResponseStatusCodeSame(307);
     }
@@ -30,7 +30,7 @@ class OuterRoomControllerTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $client->request('GET', '/fr/outerroom/');
+        $client->request('GET', '/fr/outerroom');
 
         $this->assertResponseStatusCodeSame(302);
     }
@@ -43,7 +43,7 @@ class OuterRoomControllerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $client->request('GET', '/fr/outerroom/');
+        $client->request('GET', '/fr/outerroom');
 
         $this->assertResponseStatusCodeSame(302);
     }
@@ -54,7 +54,7 @@ class OuterRoomControllerTest extends WebTestCase
 
         $client->loginUser(new User('121212'));
 
-        $crawler = $client->request('GET', '/fr/outerroom/');
+        $crawler = $client->request('GET', '/fr/outerroom');
 
         $this->assertResponseStatusCodeSame(200);
 

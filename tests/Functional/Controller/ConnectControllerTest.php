@@ -15,7 +15,7 @@ class ConnectControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/connect/');
+        $crawler = $client->request('GET', '/fr/connect');
 
         $this->assertResponseStatusCodeSame(200);
 

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit\DTO;
 
 use App\Cache\KeyMaker;
-use App\DTO\AlbumMode;
 use PHPUnit\Framework\TestCase;
 
 class KeyMakerTest extends TestCase
