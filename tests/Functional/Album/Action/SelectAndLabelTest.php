@@ -7,7 +7,7 @@ namespace App\Tests\Functional\Album\Action;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Functional\AbstractBrowserTestCase;
-use Facebook\WebDriver\WebDriverKeys;
+use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
 class SelectAndLabelTest extends AbstractBrowserTestCase
 {
@@ -133,7 +133,9 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         );
 
         $form = $client->getCrawler()->filter('#album-form')->form();
-        $form['catch-state[bulbasaur]']->setValue('totrade');
+        /** @var ChoiceFormField $field */
+        $field = $form->get('catch-state[bulbasaur]');
+        $field->setValue('totrade');
 
         $this->assertSelectorWillBeVisible('#successToast-bulbasaur');
         $this->assertSelectorWillNotBeVisible('#successToast-bulbasaur');
@@ -168,7 +170,9 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         );
 
         $form = $client->getCrawler()->filter('#album-form')->form();
-        $form['catch-state[squirtle]']->setValue('totrade');
+        /** @var ChoiceFormField $field */
+        $field = $form->get('catch-state[squirtle]');
+        $field->setValue('totrade');
 
         $this->assertSelectorWillBeVisible('#errorToast-squirtle');
         $this->assertSelectorWillNotBeVisible('#errorToast-squirtle');

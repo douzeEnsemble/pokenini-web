@@ -6,13 +6,14 @@ namespace App\Tests\Functional;
 
 use App\Security\User;
 use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\HttpFoundation\Session\SessionFactory;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\PantherTestCase;
 use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 
 abstract class AbstractBrowserTestCase extends PantherTestCase
 {
-    protected static function getClient()
+    protected static function getClient(): Client
     {
         return static::createPantherClient(
             ['browser' => static::CHROME],
@@ -27,13 +28,15 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
 
     protected function loginUser(Client $client, User $user): void
     {
-        $session = $this->getContainer()->get('session.factory')->createSession();
+        /** @var SessionFactory $sessionFactory **/
+        $sessionFactory = $this->getContainer()->get('session.factory');
+        $session = $sessionFactory->createSession();
 
         $firewallName = 'main';
         $firewallContext = 'main';
 
         $token = new PostAuthenticationToken($user, $firewallName, $user->getRoles());
-        $session->set('_security_'.$firewallContext, serialize($token));
+        $session->set('_security_' . $firewallContext, serialize($token));
         $session->save();
 
         $client->request('GET', '/');
