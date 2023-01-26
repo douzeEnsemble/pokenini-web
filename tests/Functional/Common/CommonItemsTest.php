@@ -46,8 +46,6 @@ class CommonItemsTest extends WebTestCase
     {
         $crawler = $client->request('GET', $url);
 
-        file_put_contents('tests/last.html', $crawler->html());
-
         $this->assertCountFilter($crawler, 1, 'link[sizes="180x180"]');
         $this->assertCountFilter($crawler, 1, 'link[sizes="32x32"]');
         $this->assertCountFilter($crawler, 1, 'link[sizes="16x16"]');
