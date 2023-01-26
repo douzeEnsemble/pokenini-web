@@ -1,14 +1,14 @@
 function watchCatchStates()
 {
   document.querySelectorAll('select').forEach(function(element) {
-    element.addEventListener('change', onChangeCatchState)
+    element.addEventListener('change', onChangeCatchState);
   });
 }
 
 function watchToggleEditMode()
 {
   document.querySelectorAll('.album-case-catch-state-edit-action').forEach(function(element) {
-    element.addEventListener('click', onToggleEditMode)
+    element.addEventListener('click', onToggleEditMode);
   });
 }
 
@@ -22,6 +22,8 @@ function onChangeCatchState(event)
 
 function onToggleEditMode(event)
 {
+  event.preventDefault();
+
   const target = event.target;
 
   toggleEditMode(target);
