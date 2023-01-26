@@ -6,19 +6,20 @@ namespace App\Tests\Functional\Album\Action;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\Functional\AbstractBrowserTestCase;
+use Facebook\WebDriver\WebDriverKeys;
 
-class SelectAndLabelTest extends WebTestCase
+class SelectAndLabelTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
     public function testActionCatchStateGoldSilverCrystal(): void
     {
-        $client = static::createClient();
+        $client = $this->getClient();
 
         $user = new User('109903422692691643666');
         $user->addTrainerRole();
-        $client->loginUser($user);
+        $this->loginUser($client, $user);
 
         $crawler = $client->request('GET', '/fr/album/goldsilvercrystal');
 
@@ -37,11 +38,11 @@ class SelectAndLabelTest extends WebTestCase
 
     public function testActionCatchStateDemo(): void
     {
-        $client = static::createClient();
+        $client = $this->getClient();
 
         $user = new User('109903422692691643666');
         $user->addTrainerRole();
-        $client->loginUser($user);
+        $this->loginUser($client, $user);
 
         $crawler = $client->request('GET', '/fr/album/demo');
 
@@ -60,11 +61,11 @@ class SelectAndLabelTest extends WebTestCase
 
     public function testActionCatchStateDemoList3(): void
     {
-        $client = static::createClient();
+        $client = $this->getClient();
 
         $user = new User('109903422692691643666');
         $user->addTrainerRole();
-        $client->loginUser($user);
+        $this->loginUser($client, $user);
 
         $crawler = $client->request('GET', '/fr/album/demolist3');
 
@@ -79,5 +80,101 @@ class SelectAndLabelTest extends WebTestCase
             1738,
             '.album-case-catch-state .album-case-catch-state-label .album-case-catch-state-edit-action'
         );
+    }
+
+    public function testActionCatchStateToggle(): void
+    {
+        $client = $this->getClient();
+
+        $user = new User('109903422692691643666');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demo');
+
+        $client->takeScreenshot('/srv/tests/screen.png'); // Yeah, screenshot!
+
+        $this->assertSelectorIsVisible('#bulbasaur .album-case-catch-state');
+        $this->assertSelectorIsNotVisible('#bulbasaur .album-case-action');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('#bulbasaur-catch-state-edit-action')
+            ->link()
+        );
+
+        $this->assertSelectorIsNotVisible('#bulbasaur .album-case-catch-state');
+        $this->assertSelectorIsVisible('#bulbasaur .album-case-action');
+    }
+
+    public function testActionCatchStateChangeSuccess(): void
+    {
+        $client = $this->getClient();
+
+        $user = new User('109903422692691643666');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demo');
+
+        $client->takeScreenshot('/srv/tests/screen.png'); // Yeah, screenshot!
+
+        $this->assertSelectorIsNotVisible('#successToast-bulbasaur');
+        $this->assertSelectorIsNotVisible('#errorToast-bulbasaur');
+        $this->assertSelectorAttributeContains('#bulbasaur', 'class', 'catch-state-no');
+        $this->assertSelectorAttributeNotContains('#bulbasaur', 'class', 'catch-state-totrade');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('#bulbasaur-catch-state-edit-action')
+            ->link()
+        );
+
+        $form = $client->getCrawler()->filter('#album-form')->form();
+        $form['catch-state[bulbasaur]']->setValue('totrade');
+
+        $this->assertSelectorWillBeVisible('#successToast-bulbasaur');
+        $this->assertSelectorWillNotBeVisible('#successToast-bulbasaur');
+        $this->assertSelectorWillNotBeVisible('#errorToast-bulbasaur');
+
+        $this->assertSelectorAttributeNotContains('#bulbasaur', 'class', 'catch-state-no');
+        $this->assertSelectorAttributeContains('#bulbasaur', 'class', 'catch-state-totrade');
+    }
+
+    public function testActionCatchStateChangeError(): void
+    {
+        $client = $this->getClient();
+
+        $user = new User('109903422692691643666');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demo');
+
+        $client->takeScreenshot('/srv/tests/screen.png'); // Yeah, screenshot!
+
+        $this->assertSelectorIsNotVisible('#errorToast-squirtle');
+        $this->assertSelectorIsNotVisible('#successToast-squirtle');
+        $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-no');
+        $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-totrade');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('#squirtle-catch-state-edit-action')
+            ->link()
+        );
+
+        $form = $client->getCrawler()->filter('#album-form')->form();
+        $form['catch-state[squirtle]']->setValue('totrade');
+
+        $this->assertSelectorWillBeVisible('#errorToast-squirtle');
+        $this->assertSelectorWillNotBeVisible('#errorToast-squirtle');
+        $this->assertSelectorWillNotBeVisible('#successToast-squirtle');
+
+        $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-no');
+        $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-totrade');
     }
 }

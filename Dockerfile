@@ -111,6 +111,20 @@ RUN set -eux; \
 
 RUN rm -f .env.local.php
 
+#<! Panther
+ENV PANTHER_NO_SANDBOX 1
+
+ARG GECKODRIVER_VERSION=0.32.0
+RUN apk add --no-cache firefox libzip-dev; \
+    docker-php-ext-install zip
+RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v$GECKODRIVER_VERSION/geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz; \
+    tar -zxf geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz -C /usr/bin; \
+    rm geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz
+
+ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
+RUN apk add --no-cache chromium chromium-chromedriver
+#>! Panther
+
 # Build Cadd
 FROM caddy:2.6-builder-alpine AS app_caddy_builder
 

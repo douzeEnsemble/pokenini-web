@@ -44,6 +44,21 @@ To install a package
 make composer c="require gedmo/doctrine-extensions"
 ```
 
+### Debug easily
+
+To save html into a file that you can open with your browser
+
+```php
+file_put_contents('tests/last.html', $crawler->html());
+```
+
+### Panther x Firefox fix
+
+```php
+// Tricks to avoid issue whe clicking on obscured elements on Firefox
+// $client->executeScript("document.getElementById('squirtle').scrollIntoView();");
+```
+
 ## Update moco mock from Pokénin-Api
 
 ```
