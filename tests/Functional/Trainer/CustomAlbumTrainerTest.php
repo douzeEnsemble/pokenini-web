@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Trainer;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Functional\AbstractBrowserTestCase;
+use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
 class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 {
@@ -27,7 +28,9 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->assertSelectorIsNotVisible('#successToast-goldsilvercrystal');
 
         $form = $crawler->filter('form[data-dex="goldsilvercrystal"]')->form();
-        $form['goldsilvercrystal-is_on_home']->tick();
+        /** @var ChoiceFormField $field */
+        $field = $form->get('goldsilvercrystal-is_on_home');
+        $field->tick();
 
         $this->assertSelectorWillBeVisible('#successToast-goldsilvercrystal');
         $this->assertSelectorWillNotBeVisible('#successToast-goldsilvercrystal');
@@ -47,7 +50,9 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->assertSelectorIsNotVisible('#successToast-goldsilvercrystal');
 
         $form = $crawler->filter('form[data-dex="goldsilvercrystal"]')->form();
-        $form['goldsilvercrystal-is_private']->untick();
+        /** @var ChoiceFormField $field */
+        $field = $form->get('goldsilvercrystal-is_private');
+        $field->untick();
 
         $this->assertSelectorWillBeVisible('#successToast-goldsilvercrystal');
         $this->assertSelectorWillNotBeVisible('#successToast-goldsilvercrystal');
@@ -69,7 +74,9 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->assertSelectorIsNotVisible('#errorToast-redgreenblueyellow');
 
         $form = $crawler->filter('form[data-dex="redgreenblueyellow"]')->form();
-        $form['redgreenblueyellow-is_on_home']->tick();
+        /** @var ChoiceFormField $field */
+        $field = $form->get('redgreenblueyellow-is_on_home');
+        $field->tick();
 
         $this->assertSelectorWillBeVisible('#errorToast-redgreenblueyellow');
         $this->assertSelectorWillNotBeVisible('#errorToast-redgreenblueyellow');
@@ -89,7 +96,9 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->assertSelectorIsNotVisible('#errorToast-redgreenblueyellow');
 
         $form = $crawler->filter('form[data-dex="redgreenblueyellow"]')->form();
-        $form['redgreenblueyellow-is_private']->untick();
+        /** @var ChoiceFormField $field */
+        $field = $form->get('redgreenblueyellow-is_private');
+        $field->untick();
 
         $this->assertSelectorWillBeVisible('#errorToast-redgreenblueyellow');
         $this->assertSelectorWillNotBeVisible('#errorToast-redgreenblueyellow');
