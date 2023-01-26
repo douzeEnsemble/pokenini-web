@@ -27,3 +27,4 @@ tests/coverage
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
 tests/last.html
+tests/screen.png
