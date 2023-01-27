@@ -85,22 +85,6 @@ phpmd: ## Execute phpmd
 psalm: ## Execute psalm
 	@$(PHP_CONT) vendor/bin/psalm --show-info=false
 
-
-## —— Deployment 🚀 ————————————————————————————————————————————————————————————————
-deploy: ## Deployment
-	rm -Rf ~/tmp/deploy/pokenini-web
-	mkdir -p ~/tmp/deploy/pokenini-web
-	heroku git:clone -a pokenini-web ~/tmp/deploy/pokenini-web/heroku
-	git clone git@github.com:RenaudDouze/pokenini-web.git ~/tmp/deploy/pokenini-web/project
-	rm -Rf ~/tmp/deploy/pokenini-web/project/.git
-	cp -R ~/tmp/deploy/pokenini-web/project/* ~/tmp/deploy/pokenini-web/heroku/
-	cp -R ~/tmp/deploy/pokenini-web/project/.env ~/tmp/deploy/pokenini-web/heroku/.env
-	cd ~/tmp/deploy/pokenini-web/heroku; \
-        git add --all; \
-		git commit --allow-empty -m "Deployment"; \
-		git push heroku main
-	rm -Rf ~/tmp/deploy/pokenini-web
-
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 measures: ## Execute all measures tools
 measures: clovercoverage
