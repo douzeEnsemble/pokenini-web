@@ -15,7 +15,7 @@ SYMFONY  = $(PHP_CONT) bin/console
 
 # Misc
 .DEFAULT_GOAL = help
-.PHONY        : help build up start down logs sh composer vendor sf cc deploy
+.PHONY        : help build up start down logs sh composer vendor sf cc tests quality measures
 
 ## —— 🎵 🐳 The Symfony-docker Makefile 🐳 🎵 ——————————————————————————————————
 help: ## Outputs this help screen
@@ -70,7 +70,6 @@ phpstan: ## Execute phpstan analyse
 phpunit: ## Execute unit test
 	@$(PHP_CONT) bin/phpunit
 
-
 ## —— Quality 👌 ———————————————————————————————————————————————————————————————
 quality: ## Execute all quality analyses
 quality: phpcs phpmd psalm
@@ -101,3 +100,14 @@ deploy: ## Deployment
 		git commit --allow-empty -m "Deployment"; \
 		git push heroku main
 	rm -Rf ~/tmp/deploy/pokenini-web
+
+## —— Measures 📏 ———————————————————————————————————————————————————————————————
+measures: ## Execute all measures tools
+measures: clovercoverage
+
+clovercoverage: ## Execute PHPUnit Coverage to check the score
+	$(DOCKER_COMP) exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --coverage-clover=coverage.xml
+	@$(PHP_CONT) php tests/tools/coverage.php coverage.xml 50 true
+
+htmlcoverage: ## Execute PHPUnit Coverage in HTML
+	$(DOCKER_COMP) exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --coverage-html=tests/coverage

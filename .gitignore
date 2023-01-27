@@ -13,7 +13,6 @@
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml
-tests/coverage
 ###< symfony/phpunit-bridge ###
 
 ###> phpunit/phpunit ###
@@ -26,5 +25,7 @@ tests/coverage
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+
+tests/coverage
 tests/last.html
 tests/screen.png

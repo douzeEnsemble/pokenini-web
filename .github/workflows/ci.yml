@@ -62,3 +62,16 @@ jobs:
         uses: ./.github/actions/docker-compose
       - name: Run
         run: docker compose exec -T php php bin/phpunit
+
+  coverage:
+    name: Tests / Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: Run
+        run: docker compose exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --coverage-clover=coverage.xml
+      - name: Coverage Test
+        run: docker compose exec -T php php tests/tools/coverage.php coverage.xml 85 true
