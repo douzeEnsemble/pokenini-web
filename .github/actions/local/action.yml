@@ -9,7 +9,7 @@ runs:
       with:
         php-version: '8.1'
         extensions: ctype, iconv, redis
-        coverage: none
+        coverage: xdebug
 
     - name: Cache composer dependencies
       uses: actions/cache@v2
