@@ -10,6 +10,13 @@ function watchToggleEditMode()
   document.querySelectorAll('.album-case-catch-state-edit-action').forEach(function(element) {
     element.addEventListener('click', onToggleEditMode);
   });
+
+  document.querySelectorAll('.album-all-catch-state-edit-action').forEach(function(element) {
+    element.addEventListener('click', onToggleAllMode);
+  });
+  document.querySelectorAll('.album-all-catch-state-read-action').forEach(function(element) {
+    element.addEventListener('click', onToggleAllMode);
+  });
 }
 
 function onChangeCatchState(event)
@@ -27,6 +34,23 @@ function onToggleEditMode(event)
   const target = event.target;
 
   toggleEditMode(target);
+}
+
+function onToggleAllMode(event)
+{
+  event.preventDefault();
+
+  document.querySelectorAll('.album-case-catch-state-edit-action').forEach(function(element) {
+    toggleEditMode(element);
+  });
+
+  const target = event.target;
+
+  const editMode = target.parentElement.querySelector('.album-all-catch-state-edit-action');
+  editMode.toggleAttribute('hidden');
+
+  const readMode = target.parentElement.querySelector('.album-all-catch-state-read-action');
+  readMode.toggleAttribute('hidden');
 }
 
 function saveChange(target)

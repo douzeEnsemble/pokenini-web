@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674981834">
-  <project timestamp="1674981834">
+<coverage generated="1674997905">
+  <project timestamp="1674997905">
     <file name="/srv/src/Cache/KeyMaker.php">
       <class name="App\Cache\KeyMaker" namespace="global">
         <metrics complexity="7" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="14" coveredelements="14"/>

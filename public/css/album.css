@@ -46,3 +46,7 @@ a.album-case-catch-state-edit-action:hover {
     flex: 0 0 auto;
     width: 14.285714285714286%;
 }
+
+.d-flex[hidden] {
+    display: none !important;
+}

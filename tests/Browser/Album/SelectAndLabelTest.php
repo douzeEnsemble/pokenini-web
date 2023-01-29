@@ -95,8 +95,6 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
-        $client->takeScreenshot('/srv/tests/screen.png'); // Yeah, screenshot!
-
         $this->assertSelectorIsVisible('#bulbasaur .album-case-catch-state');
         $this->assertSelectorIsNotVisible('#bulbasaur .album-case-action');
 
@@ -111,6 +109,74 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorIsVisible('#bulbasaur .album-case-action');
     }
 
+    public function testActionCatchStateToggleAllEdit(): void
+    {
+        $client = $this->getClient();
+
+        $user = new User('109903422692691643666');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $crawler = $client->request('GET', '/fr/album/demo');
+
+        $this->assertCountFilter($crawler, 1738, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('.album-all-catch-state-edit-action')
+            ->link()
+        );
+
+        $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 1738, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
+    }
+
+    public function testActionCatchStateToggleAllEditThenRead(): void
+    {
+        $client = $this->getClient();
+
+        $user = new User('109903422692691643666');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $crawler = $client->request('GET', '/fr/album/demo');
+
+        $this->assertCountFilter($crawler, 1738, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('.album-all-catch-state-edit-action')
+            ->link()
+        );
+
+        $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 1738, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('.album-all-catch-state-read-action')
+            ->link()
+        );
+
+        $this->assertCountFilter($crawler, 1738, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
+    }
+
     public function testActionCatchStateChangeSuccess(): void
     {
         $client = $this->getClient();
@@ -121,12 +187,12 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
-        $client->takeScreenshot('/srv/tests/screen.png'); // Yeah, screenshot!
-
         $this->assertSelectorIsNotVisible('#successToast-bulbasaur');
         $this->assertSelectorIsNotVisible('#errorToast-bulbasaur');
         $this->assertSelectorAttributeContains('#bulbasaur', 'class', 'catch-state-no');
         $this->assertSelectorAttributeNotContains('#bulbasaur', 'class', 'catch-state-totrade');
+
+        $client->executeScript("document.getElementById('bulbasaur').scrollIntoView();");
 
         $client->click(
             $client
@@ -158,12 +224,12 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
-        $client->takeScreenshot('/srv/tests/screen.png'); // Yeah, screenshot!
-
         $this->assertSelectorIsNotVisible('#errorToast-squirtle');
         $this->assertSelectorIsNotVisible('#successToast-squirtle');
         $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-no');
         $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-totrade');
+
+        $client->executeScript("document.getElementById('squirtle').scrollIntoView();");
 
         $client->click(
             $client

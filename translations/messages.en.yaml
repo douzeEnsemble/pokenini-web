@@ -7,9 +7,6 @@ nav:
     lang:
         fr: 'French'
         en: 'English'
-    mode:
-        write: 'Modify'
-        read: 'Read'
     admin: 'Backoffice'
     connected: 'Connected'
     login: 'Log in'
@@ -76,7 +73,7 @@ album:
     intro:
         action:
             mode:
-                write: 'Modify statuses'
+                write: 'Modify all statuses'
                 read: 'Switch to reading mode'
             goto:
                 box1: "Go to box number 1"

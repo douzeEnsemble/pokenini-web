@@ -40,31 +40,42 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 6, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 8, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 1, '#intro .list-group .list-group-item[hidden]');
 
         $this->assertEquals(
-            '#box-1',
+            '#',
             $crawler->filter('#intro .list-group .list-group-item')->eq(0)->attr('href')
         );
 
         $this->assertEquals(
-            'Album privé',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->text()
+            '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'National');
+        $this->assertEquals(
+            '#box-1',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->attr('href')
+        );
+
+        $this->assertEquals(
+            'Album privé',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 4, 'National');
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
         );
 
         $this->assertEquals(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(6)->text()
         );
 
-        $this->assertListGroupItemWithValue($crawler, 5, '4');
+        $this->assertListGroupItemWithValue($crawler, 7, '4');
     }
 
     public function testIntroDemoList3(): void
@@ -90,31 +101,42 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 6, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 8, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 1, '#intro .list-group .list-group-item[hidden]');
 
         $this->assertEquals(
-            '#top-of-the-list',
+            '#',
             $crawler->filter('#intro .list-group .list-group-item')->eq(0)->attr('href')
         );
 
         $this->assertEquals(
-            'Album privé',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->text()
+            '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'National');
+        $this->assertEquals(
+            '#top-of-the-list',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->attr('href')
+        );
+
+        $this->assertEquals(
+            'Album privé',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 4, 'National');
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
         );
 
         $this->assertEquals(
             'Liste de 3 pokémons par lignes',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(6)->text()
         );
 
-        $this->assertListGroupItemWithValue($crawler, 5, '412');
+        $this->assertListGroupItemWithValue($crawler, 7, '412');
     }
 
     public function testIntroDemoLiteShiny(): void
@@ -140,31 +162,42 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 6, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 8, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 1, '#intro .list-group .list-group-item[hidden]');
 
         $this->assertEquals(
-            '#box-1',
+            '#',
             $crawler->filter('#intro .list-group .list-group-item')->eq(0)->attr('href')
         );
 
         $this->assertEquals(
-            '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '#',
             $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'National');
+        $this->assertEquals(
+            '#box-1',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->attr('href')
+        );
+
+        $this->assertEquals(
+            '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->attr('href')
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 4, 'National');
 
         $this->assertEquals(
             'Formes chromatiques',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
         );
 
         $this->assertEquals(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(6)->text()
         );
 
-        $this->assertListGroupItemWithValue($crawler, 5, '0');
+        $this->assertListGroupItemWithValue($crawler, 7, '0');
     }
 
     public function testIntroGoldSilverCrystal(): void
@@ -194,31 +227,42 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 6, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 8, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 1, '#intro .list-group .list-group-item[hidden]');
 
         $this->assertEquals(
-            '#box-1',
+            '#',
             $crawler->filter('#intro .list-group .list-group-item')->eq(0)->attr('href')
         );
 
         $this->assertEquals(
-            'Album privé',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->text()
+            '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'Johto');
+        $this->assertEquals(
+            '#box-1',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->attr('href')
+        );
+
+        $this->assertEquals(
+            'Album privé',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 4, 'Johto');
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
         );
 
         $this->assertEquals(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(6)->text()
         );
 
-        $this->assertListGroupItemWithValue($crawler, 5, '3');
+        $this->assertListGroupItemWithValue($crawler, 7, '3');
     }
 
     public function testIntroBlackWhiteFrench(): void
@@ -248,31 +292,42 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 6, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 8, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 1, '#intro .list-group .list-group-item[hidden]');
 
         $this->assertEquals(
-            '#box-1',
+            '#',
             $crawler->filter('#intro .list-group .list-group-item')->eq(0)->attr('href')
         );
 
         $this->assertEquals(
-            'Album privé',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->text()
+            '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'Unys');
+        $this->assertEquals(
+            '#box-1',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->attr('href')
+        );
+
+        $this->assertEquals(
+            'Album privé',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 4, 'Unys');
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
         );
 
         $this->assertEquals(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(6)->text()
         );
 
-        $this->assertListGroupItemWithValue($crawler, 5, '2');
+        $this->assertListGroupItemWithValue($crawler, 7, '2');
     }
 
     public function testIntroBlackWhiteEnglish(): void
@@ -302,31 +357,42 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 6, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 8, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 1, '#intro .list-group .list-group-item[hidden]');
 
         $this->assertEquals(
-            '#box-1',
+            '#',
             $crawler->filter('#intro .list-group .list-group-item')->eq(0)->attr('href')
         );
 
         $this->assertEquals(
-            'Private album',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->text()
+            '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(1)->attr('href')
         );
 
-        $this->assertListGroupItemWithValue($crawler, 2, 'Unova');
+        $this->assertEquals(
+            '#box-1',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(2)->attr('href')
+        );
+
+        $this->assertEquals(
+            'Private album',
+            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+        );
+
+        $this->assertListGroupItemWithValue($crawler, 4, 'Unova');
 
         $this->assertEquals(
             'Regular forms',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(3)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(5)->text()
         );
 
         $this->assertEquals(
             'Display by box of 6 by 5 pokémons as in the games',
-            $crawler->filter('#intro .list-group .list-group-item')->eq(4)->text()
+            $crawler->filter('#intro .list-group .list-group-item')->eq(6)->text()
         );
 
-        $this->assertListGroupItemWithValue($crawler, 5, '2');
+        $this->assertListGroupItemWithValue($crawler, 7, '2');
     }
 
     public function testIntroDemoAnotherTrainer(): void
@@ -353,6 +419,7 @@ class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
         $this->assertCountFilter($crawler, 7, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 0, '#intro .list-group .list-group-item[hidden]');
 
         $this->assertEquals(
             '#box-1',
