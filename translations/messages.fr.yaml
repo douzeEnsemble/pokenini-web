@@ -7,9 +7,6 @@ nav:
     lang:
         fr: 'Français'
         en: 'Anglais'
-    mode:
-        write: 'Modifier'
-        read: 'Lecture'
     admin: 'Administration'
     connected: 'Connecté'
     login: 'Se connecter'
@@ -76,7 +73,7 @@ album:
     intro:
         action:
             mode:
-                write: 'Modifier les statuts'
+                write: 'Modifier tous les statuts'
                 read: 'Passer en mode lecture'
             goto:
                 box1: "Voir la boîte numéro 1"
