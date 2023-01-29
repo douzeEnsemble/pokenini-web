@@ -34,6 +34,9 @@ class User implements UserInterface
         $this->roles = array_unique($this->roles);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function eraseCredentials(): void
     {
         // nothing sensitive

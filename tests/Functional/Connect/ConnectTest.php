@@ -28,4 +28,19 @@ class ConnectTest extends WebTestCase
 
         $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
     }
+
+    public function testGoogleConnectPage(): void
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/fr/connect/g');
+
+        $this->assertResponseStatusCodeSame(302);
+        $crawler = $client->followRedirect();
+
+        $this->assertStringStartsWith(
+            'https://accounts.google.com/o/oauth2/v2/auth?scope=openid%20email%20profile&state=',
+            (string) $crawler->getUri()
+        );
+    }
 }

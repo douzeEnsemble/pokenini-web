@@ -6,9 +6,12 @@ namespace App\Tests\Functional\Trainer;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use App\Tests\Functional\AbstractBrowserTestCase;
+use App\Tests\Browser\AbstractBrowserTestCase;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
+/**
+ * @group browser-testing
+ */
 class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;

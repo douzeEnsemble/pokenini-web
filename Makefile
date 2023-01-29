@@ -67,8 +67,17 @@ tests: phpstan phpunit
 phpstan: ## Execute phpstan analyse
 	@$(PHP_CONT) vendor/bin/phpstan analyse --memory-limit=-1
 
-phpunit: ## Execute unit test
+phpunit: ## Execute tests with PHPUnit
 	@$(PHP_CONT) bin/phpunit
+
+testsunit: ## Execute unit tests
+	@$(PHP_CONT) bin/phpunit tests/Unit
+
+testsfunctional: ## Execute functional tests
+	@$(PHP_CONT) bin/phpunit tests/Functional
+
+testsbrowser: ## Execute browser tests
+	@$(PHP_CONT) bin/phpunit tests/Browser
 
 ## —— Quality 👌 ———————————————————————————————————————————————————————————————
 quality: ## Execute all quality analyses
@@ -90,8 +99,8 @@ measures: ## Execute all measures tools
 measures: clovercoverage
 
 clovercoverage: ## Execute PHPUnit Coverage to check the score
-	$(DOCKER_COMP) exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --coverage-clover=coverage.xml
-	@$(PHP_CONT) php tests/tools/coverage.php coverage.xml 50 true
+	$(DOCKER_COMP) exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --exclude-group="browser-testing" --coverage-clover=coverage.xml
+	@$(PHP_CONT) php tests/tools/coverage.php coverage.xml 100 true
 
 htmlcoverage: ## Execute PHPUnit Coverage in HTML
-	$(DOCKER_COMP) exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --coverage-html=tests/coverage
+	$(DOCKER_COMP) exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --exclude-group="browser-testing" --coverage-html=tests/coverage

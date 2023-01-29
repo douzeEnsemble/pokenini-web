@@ -9,7 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
-class TrainerTest extends WebTestCase
+class TrainerPageTest extends WebTestCase
 {
     use TestNavTrait;
 
@@ -40,7 +40,7 @@ class TrainerTest extends WebTestCase
         $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
     }
 
-    public function assertCustomizeAlbumSection(Crawler $crawler): void
+    private function assertCustomizeAlbumSection(Crawler $crawler): void
     {
         $this->assertCountFilter($crawler, 21, '.trainer-dex-item');
         $this->assertCountFilter($crawler, 21, '.trainer-dex-item img');

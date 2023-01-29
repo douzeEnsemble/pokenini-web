@@ -34,6 +34,9 @@ class ConnectController extends AbstractController
         ;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     #[Route('/g/c', methods: ['GET'])]
     public function googleCheck(): void
     {

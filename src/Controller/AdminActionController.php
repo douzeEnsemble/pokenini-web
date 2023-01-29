@@ -119,9 +119,6 @@ class AdminActionController extends AbstractController
             case 'calculate':
                 $responseContent = $this->apiService->adminCalculate($name);
                 break;
-            default:
-                // nothing
-                break;
         }
 
         $this->cacheInvalidatorService->invalidate($name);

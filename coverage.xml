@@ -1,122 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674810225">
-  <project timestamp="1674810225">
+<coverage generated="1674981834">
+  <project timestamp="1674981834">
     <file name="/srv/src/Cache/KeyMaker.php">
       <class name="App\Cache\KeyMaker" namespace="global">
         <metrics complexity="7" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="14" coveredelements="14"/>
       </class>
-      <line num="18" type="method" name="getDexKey" visibility="public" complexity="1" crap="1" count="13"/>
-      <line num="20" type="stmt" count="13"/>
-      <line num="23" type="method" name="getCatchStatesKey" visibility="public" complexity="1" crap="1" count="53"/>
-      <line num="25" type="stmt" count="53"/>
-      <line num="28" type="method" name="getAlbumKey" visibility="public" complexity="1" crap="1" count="57"/>
-      <line num="30" type="stmt" count="57"/>
-      <line num="33" type="method" name="getReportsKey" visibility="public" complexity="1" crap="1" count="12"/>
-      <line num="35" type="stmt" count="12"/>
-      <line num="38" type="method" name="getDexKeyForTrainer" visibility="public" complexity="1" crap="1" count="12"/>
-      <line num="40" type="stmt" count="12"/>
-      <line num="43" type="method" name="getPokedexKey" visibility="public" complexity="1" crap="1" count="55"/>
-      <line num="45" type="stmt" count="55"/>
-      <line num="48" type="method" name="getRegisterTypeKey" visibility="public" complexity="1" crap="1" count="67"/>
-      <line num="50" type="stmt" count="67"/>
+      <line num="18" type="method" name="getDexKey" visibility="public" complexity="1" crap="1" count="16"/>
+      <line num="20" type="stmt" count="16"/>
+      <line num="23" type="method" name="getCatchStatesKey" visibility="public" complexity="1" crap="1" count="55"/>
+      <line num="25" type="stmt" count="55"/>
+      <line num="28" type="method" name="getAlbumKey" visibility="public" complexity="1" crap="1" count="61"/>
+      <line num="30" type="stmt" count="61"/>
+      <line num="33" type="method" name="getReportsKey" visibility="public" complexity="1" crap="1" count="20"/>
+      <line num="35" type="stmt" count="20"/>
+      <line num="38" type="method" name="getDexKeyForTrainer" visibility="public" complexity="1" crap="1" count="13"/>
+      <line num="40" type="stmt" count="13"/>
+      <line num="43" type="method" name="getPokedexKey" visibility="public" complexity="1" crap="1" count="56"/>
+      <line num="45" type="stmt" count="56"/>
+      <line num="48" type="method" name="getRegisterTypeKey" visibility="public" complexity="1" crap="1" count="73"/>
+      <line num="50" type="stmt" count="73"/>
       <metrics loc="53" ncloc="53" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="14" coveredelements="14"/>
     </file>
     <file name="/srv/src/Controller/AdminActionController.php">
       <class name="App\Controller\AdminActionController" namespace="global">
-        <metrics complexity="10" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="30" elements="38" coveredelements="34"/>
+        <metrics complexity="9" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="31" elements="37" coveredelements="37"/>
       </class>
-      <line num="20" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="7"/>
-      <line num="25" type="stmt" count="7"/>
+      <line num="20" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="15"/>
+      <line num="25" type="stmt" count="15"/>
       <line num="27" type="method" name="update" visibility="public" complexity="1" crap="1" count="5"/>
       <line num="42" type="stmt" count="5"/>
       <line num="45" type="method" name="calculate" visibility="public" complexity="1" crap="1" count="2"/>
       <line num="57" type="stmt" count="2"/>
-      <line num="60" type="method" name="invalidate" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="74" type="stmt" count="0"/>
-      <line num="77" type="method" name="execute" visibility="private" complexity="2" crap="2" count="7"/>
-      <line num="81" type="stmt" count="7"/>
-      <line num="83" type="stmt" count="7"/>
-      <line num="84" type="stmt" count="7"/>
-      <line num="85" type="stmt" count="7"/>
-      <line num="88" type="stmt" count="7"/>
+      <line num="60" type="method" name="invalidate" visibility="public" complexity="1" crap="1" count="8"/>
+      <line num="74" type="stmt" count="8"/>
+      <line num="77" type="method" name="execute" visibility="private" complexity="2" crap="2" count="15"/>
+      <line num="81" type="stmt" count="15"/>
+      <line num="83" type="stmt" count="15"/>
+      <line num="84" type="stmt" count="15"/>
+      <line num="85" type="stmt" count="15"/>
+      <line num="88" type="stmt" count="15"/>
       <line num="89" type="stmt" count="1"/>
       <line num="90" type="stmt" count="1"/>
       <line num="92" type="stmt" count="1"/>
       <line num="94" type="stmt" count="1"/>
-      <line num="97" type="stmt" count="7"/>
-      <line num="98" type="stmt" count="7"/>
-      <line num="99" type="stmt" count="7"/>
-      <line num="100" type="stmt" count="7"/>
-      <line num="101" type="stmt" count="7"/>
-      <line num="102" type="stmt" count="7"/>
-      <line num="103" type="stmt" count="7"/>
-      <line num="104" type="stmt" count="7"/>
-      <line num="106" type="stmt" count="7"/>
-      <line num="109" type="method" name="doAction" visibility="private" complexity="4" crap="4.02" count="7"/>
-      <line num="113" type="stmt" count="7"/>
-      <line num="116" type="stmt" count="7"/>
+      <line num="97" type="stmt" count="15"/>
+      <line num="98" type="stmt" count="15"/>
+      <line num="99" type="stmt" count="15"/>
+      <line num="100" type="stmt" count="15"/>
+      <line num="101" type="stmt" count="15"/>
+      <line num="102" type="stmt" count="15"/>
+      <line num="103" type="stmt" count="15"/>
+      <line num="104" type="stmt" count="15"/>
+      <line num="106" type="stmt" count="15"/>
+      <line num="109" type="method" name="doAction" visibility="private" complexity="3" crap="3" count="15"/>
+      <line num="113" type="stmt" count="15"/>
+      <line num="116" type="stmt" count="15"/>
       <line num="117" type="stmt" count="5"/>
       <line num="118" type="stmt" count="5"/>
-      <line num="119" type="stmt" count="2"/>
+      <line num="119" type="stmt" count="10"/>
       <line num="120" type="stmt" count="2"/>
       <line num="121" type="stmt" count="1"/>
-      <line num="124" type="stmt" count="0"/>
-      <line num="127" type="stmt" count="6"/>
-      <line num="129" type="stmt" count="6"/>
-      <metrics loc="132" ncloc="131" classes="1" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="30" elements="38" coveredelements="34"/>
+      <line num="124" type="stmt" count="14"/>
+      <line num="126" type="stmt" count="14"/>
+      <metrics loc="129" ncloc="129" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="31" elements="37" coveredelements="37"/>
     </file>
     <file name="/srv/src/Controller/AdminController.php">
       <class name="App\Controller\AdminController" namespace="global">
         <metrics complexity="5" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="27" coveredelements="27"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
-      <line num="20" type="stmt" count="11"/>
-      <line num="22" type="method" name="index" visibility="public" complexity="4" crap="4" count="11"/>
-      <line num="25" type="stmt" count="11"/>
-      <line num="27" type="stmt" count="11"/>
-      <line num="30" type="stmt" count="11"/>
-      <line num="31" type="stmt" count="11"/>
-      <line num="33" type="stmt" count="11"/>
-      <line num="35" type="stmt" count="11"/>
-      <line num="36" type="stmt" count="7"/>
+      <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="19"/>
+      <line num="20" type="stmt" count="19"/>
+      <line num="22" type="method" name="index" visibility="public" complexity="4" crap="4" count="19"/>
+      <line num="25" type="stmt" count="19"/>
+      <line num="27" type="stmt" count="19"/>
+      <line num="30" type="stmt" count="19"/>
+      <line num="31" type="stmt" count="19"/>
+      <line num="33" type="stmt" count="19"/>
+      <line num="35" type="stmt" count="19"/>
+      <line num="36" type="stmt" count="15"/>
       <line num="37" type="stmt" count="1"/>
       <line num="38" type="stmt" count="1"/>
       <line num="39" type="stmt" count="1"/>
       <line num="40" type="stmt" count="1"/>
-      <line num="43" type="stmt" count="7"/>
-      <line num="44" type="stmt" count="7"/>
-      <line num="45" type="stmt" count="7"/>
-      <line num="47" type="stmt" count="7"/>
+      <line num="43" type="stmt" count="15"/>
+      <line num="44" type="stmt" count="15"/>
+      <line num="45" type="stmt" count="15"/>
+      <line num="47" type="stmt" count="15"/>
       <line num="48" type="stmt" count="5"/>
-      <line num="52" type="stmt" count="11"/>
-      <line num="54" type="stmt" count="11"/>
-      <line num="55" type="stmt" count="11"/>
-      <line num="56" type="stmt" count="11"/>
-      <line num="57" type="stmt" count="11"/>
-      <line num="58" type="stmt" count="11"/>
-      <line num="59" type="stmt" count="11"/>
-      <line num="60" type="stmt" count="11"/>
+      <line num="52" type="stmt" count="19"/>
+      <line num="54" type="stmt" count="19"/>
+      <line num="55" type="stmt" count="19"/>
+      <line num="56" type="stmt" count="19"/>
+      <line num="57" type="stmt" count="19"/>
+      <line num="58" type="stmt" count="19"/>
+      <line num="59" type="stmt" count="19"/>
+      <line num="60" type="stmt" count="19"/>
       <metrics loc="63" ncloc="62" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="27" coveredelements="27"/>
     </file>
     <file name="/srv/src/Controller/AlbumController.php">
       <class name="App\Controller\AlbumController" namespace="global">
-        <metrics complexity="14" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="37" elements="53" coveredelements="40"/>
+        <metrics complexity="14" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="49" elements="53" coveredelements="53"/>
       </class>
-      <line num="21" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="52"/>
-      <line num="25" type="stmt" count="52"/>
-      <line num="27" type="method" name="upsert" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
+      <line num="21" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="55"/>
+      <line num="25" type="stmt" count="55"/>
+      <line num="27" type="method" name="upsert" visibility="public" complexity="2" crap="2" count="3"/>
+      <line num="33" type="stmt" count="3"/>
+      <line num="36" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="38" type="stmt" count="2"/>
+      <line num="39" type="stmt" count="2"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="41" type="stmt" count="2"/>
+      <line num="42" type="stmt" count="2"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="49" type="stmt" count="1"/>
       <line num="56" type="method" name="pokemonsFilter" visibility="private" complexity="4" crap="4" count="48"/>
       <line num="58" type="stmt" count="48"/>
       <line num="59" type="stmt" count="38"/>
@@ -155,40 +154,38 @@
       <line num="127" type="stmt" count="48"/>
       <line num="128" type="stmt" count="48"/>
       <line num="129" type="stmt" count="48"/>
-      <metrics loc="132" ncloc="128" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="37" elements="53" coveredelements="40"/>
+      <metrics loc="132" ncloc="128" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="49" elements="53" coveredelements="53"/>
     </file>
     <file name="/srv/src/Controller/ConnectController.php">
       <class name="App\Controller\ConnectController" namespace="global">
-        <metrics complexity="4" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="1" elements="11" coveredelements="2"/>
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
       </class>
-      <line num="15" type="method" name="logout" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="19" type="stmt" count="0"/>
+      <line num="15" type="method" name="logout" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="19" type="stmt" count="1"/>
       <line num="22" type="method" name="index" visibility="public" complexity="1" crap="1" count="2"/>
       <line num="25" type="stmt" count="2"/>
-      <line num="28" type="method" name="google" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="37" type="method" name="googleCheck" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <metrics loc="43" ncloc="41" classes="1" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="1" elements="11" coveredelements="2"/>
+      <line num="28" type="method" name="google" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <metrics loc="46" ncloc="41" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
     </file>
     <file name="/srv/src/Controller/HomeController.php">
       <class name="App\Controller\HomeController" namespace="global">
         <metrics complexity="2" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="11" coveredelements="11"/>
       </class>
-      <line num="16" type="method" name="index" visibility="public" complexity="2" crap="2" count="10"/>
-      <line num="20" type="stmt" count="10"/>
+      <line num="16" type="method" name="index" visibility="public" complexity="2" crap="2" count="11"/>
+      <line num="20" type="stmt" count="11"/>
       <line num="22" type="stmt" count="7"/>
-      <line num="23" type="stmt" count="3"/>
-      <line num="24" type="stmt" count="3"/>
-      <line num="27" type="stmt" count="10"/>
-      <line num="28" type="stmt" count="10"/>
-      <line num="29" type="stmt" count="10"/>
-      <line num="30" type="stmt" count="10"/>
-      <line num="31" type="stmt" count="10"/>
-      <line num="32" type="stmt" count="10"/>
+      <line num="23" type="stmt" count="4"/>
+      <line num="24" type="stmt" count="4"/>
+      <line num="27" type="stmt" count="11"/>
+      <line num="28" type="stmt" count="11"/>
+      <line num="29" type="stmt" count="11"/>
+      <line num="30" type="stmt" count="11"/>
+      <line num="31" type="stmt" count="11"/>
+      <line num="32" type="stmt" count="11"/>
       <metrics loc="35" ncloc="35" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="11" coveredelements="11"/>
     </file>
     <file name="/srv/src/Controller/OuterRoomController.php">
@@ -217,10 +214,10 @@
     </file>
     <file name="/srv/src/Controller/TrainerController.php">
       <class name="App\Controller\TrainerController" namespace="global">
-        <metrics complexity="4" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="8" elements="23" coveredelements="10"/>
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="23" coveredelements="23"/>
       </class>
-      <line num="20" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="24" type="stmt" count="1"/>
+      <line num="20" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="24" type="stmt" count="3"/>
       <line num="26" type="method" name="index" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="29" type="stmt" count="1"/>
       <line num="31" type="stmt" count="1"/>
@@ -229,27 +226,27 @@
       <line num="34" type="stmt" count="1"/>
       <line num="35" type="stmt" count="1"/>
       <line num="36" type="stmt" count="1"/>
-      <line num="39" type="method" name="upsert" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="47" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="0"/>
-      <line num="51" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <line num="56" type="stmt" count="0"/>
-      <line num="57" type="stmt" count="0"/>
-      <line num="60" type="stmt" count="0"/>
-      <metrics loc="63" ncloc="63" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="8" elements="23" coveredelements="10"/>
+      <line num="39" type="method" name="upsert" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="47" type="stmt" count="2"/>
+      <line num="48" type="stmt" count="2"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="50" type="stmt" count="2"/>
+      <line num="51" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="55" type="stmt" count="1"/>
+      <line num="56" type="stmt" count="1"/>
+      <line num="57" type="stmt" count="1"/>
+      <line num="60" type="stmt" count="1"/>
+      <metrics loc="63" ncloc="63" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="23" coveredelements="23"/>
     </file>
     <file name="/srv/src/DTO/AdminAction.php">
       <class name="App\DTO\AdminAction" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="7"/>
-      <line num="16" type="stmt" count="7"/>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="15"/>
+      <line num="16" type="stmt" count="15"/>
       <metrics loc="18" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/srv/src/DTO/LastRoute.php">
@@ -274,120 +271,118 @@
     </file>
     <file name="/srv/src/Security/GoogleAuthenticator.php">
       <class name="App\Security\GoogleAuthenticator" namespace="global">
-        <metrics complexity="9" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="6" elements="32" coveredelements="9"/>
+        <metrics complexity="9" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="32" coveredelements="32"/>
       </class>
-      <line num="23" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="91"/>
-      <line num="29" type="stmt" count="91"/>
-      <line num="31" type="method" name="supports" visibility="public" complexity="1" crap="1" count="91"/>
-      <line num="33" type="stmt" count="91"/>
-      <line num="39" type="method" name="authenticate" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="47" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="51" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <line num="58" type="stmt" count="0"/>
-      <line num="59" type="stmt" count="0"/>
-      <line num="60" type="stmt" count="0"/>
-      <line num="66" type="method" name="onAuthenticationSuccess" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="69" type="stmt" count="0"/>
-      <line num="71" type="stmt" count="0"/>
-      <line num="72" type="stmt" count="0"/>
-      <line num="73" type="stmt" count="0"/>
-      <line num="76" type="stmt" count="0"/>
-      <line num="82" type="method" name="onAuthenticationFailure" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="84" type="stmt" count="0"/>
-      <line num="86" type="stmt" count="0"/>
-      <line num="95" type="method" name="start" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="97" type="stmt" count="2"/>
-      <line num="98" type="stmt" count="2"/>
-      <line num="99" type="stmt" count="2"/>
-      <line num="100" type="stmt" count="2"/>
-      <metrics loc="103" ncloc="86" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="6" elements="32" coveredelements="9"/>
+      <line num="23" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="113"/>
+      <line num="29" type="stmt" count="113"/>
+      <line num="31" type="method" name="supports" visibility="public" complexity="1" crap="1" count="106"/>
+      <line num="33" type="stmt" count="106"/>
+      <line num="39" type="method" name="authenticate" visibility="public" complexity="3" crap="3" count="4"/>
+      <line num="41" type="stmt" count="4"/>
+      <line num="42" type="stmt" count="4"/>
+      <line num="44" type="stmt" count="4"/>
+      <line num="45" type="stmt" count="4"/>
+      <line num="47" type="stmt" count="4"/>
+      <line num="49" type="stmt" count="4"/>
+      <line num="51" type="stmt" count="4"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="4"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="58" type="stmt" count="4"/>
+      <line num="59" type="stmt" count="4"/>
+      <line num="60" type="stmt" count="4"/>
+      <line num="66" type="method" name="onAuthenticationSuccess" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="69" type="stmt" count="2"/>
+      <line num="71" type="stmt" count="2"/>
+      <line num="72" type="stmt" count="2"/>
+      <line num="73" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="2"/>
+      <line num="82" type="method" name="onAuthenticationFailure" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="84" type="stmt" count="1"/>
+      <line num="86" type="stmt" count="1"/>
+      <line num="95" type="method" name="start" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="97" type="stmt" count="4"/>
+      <line num="98" type="stmt" count="4"/>
+      <line num="99" type="stmt" count="4"/>
+      <line num="100" type="stmt" count="4"/>
+      <metrics loc="103" ncloc="86" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="32" coveredelements="32"/>
     </file>
     <file name="/srv/src/Security/User.php">
       <class name="App\Security\User" namespace="global">
-        <metrics complexity="9" methods="9" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="10" elements="20" coveredelements="18"/>
+        <metrics complexity="9" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="18" coveredelements="18"/>
       </class>
-      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="81"/>
-      <line num="16" type="stmt" count="81"/>
-      <line num="18" type="method" name="getRoles" visibility="public" complexity="1" crap="1" count="80"/>
-      <line num="20" type="stmt" count="80"/>
-      <line num="23" type="method" name="addAdminRole" visibility="public" complexity="1" crap="1" count="21"/>
-      <line num="25" type="stmt" count="21"/>
-      <line num="27" type="stmt" count="21"/>
-      <line num="30" type="method" name="addTrainerRole" visibility="public" complexity="1" crap="1" count="60"/>
-      <line num="32" type="stmt" count="60"/>
-      <line num="34" type="stmt" count="60"/>
-      <line num="37" type="method" name="eraseCredentials" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="42" type="method" name="getUserIdentifier" visibility="public" complexity="1" crap="1" count="63"/>
-      <line num="44" type="stmt" count="63"/>
-      <line num="47" type="method" name="getId" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="49" type="stmt" count="1"/>
-      <line num="52" type="method" name="isATrainer" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="54" type="stmt" count="2"/>
-      <line num="57" type="method" name="isAnAdmin" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="59" type="stmt" count="2"/>
-      <metrics loc="62" ncloc="60" classes="1" methods="9" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="10" elements="20" coveredelements="18"/>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="104"/>
+      <line num="16" type="stmt" count="104"/>
+      <line num="18" type="method" name="getRoles" visibility="public" complexity="1" crap="1" count="102"/>
+      <line num="20" type="stmt" count="102"/>
+      <line num="23" type="method" name="addAdminRole" visibility="public" complexity="1" crap="1" count="45"/>
+      <line num="25" type="stmt" count="45"/>
+      <line num="27" type="stmt" count="45"/>
+      <line num="30" type="method" name="addTrainerRole" visibility="public" complexity="1" crap="1" count="57"/>
+      <line num="32" type="stmt" count="57"/>
+      <line num="34" type="stmt" count="57"/>
+      <line num="45" type="method" name="getUserIdentifier" visibility="public" complexity="1" crap="1" count="79"/>
+      <line num="47" type="stmt" count="79"/>
+      <line num="50" type="method" name="getId" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="52" type="stmt" count="5"/>
+      <line num="55" type="method" name="isATrainer" visibility="public" complexity="1" crap="1" count="8"/>
+      <line num="57" type="stmt" count="8"/>
+      <line num="60" type="method" name="isAnAdmin" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="62" type="stmt" count="6"/>
+      <metrics loc="65" ncloc="60" classes="1" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="18" coveredelements="18"/>
     </file>
     <file name="/srv/src/Security/UserProvider.php">
       <class name="App\Security\UserProvider" namespace="global">
-        <metrics complexity="6" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="3" elements="10" coveredelements="4"/>
+        <metrics complexity="6" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
       </class>
-      <line num="18" type="method" name="loadUserByIdentifier" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="20" type="stmt" count="0"/>
-      <line num="23" type="method" name="refreshUser" visibility="public" complexity="2" crap="2.15" count="61"/>
-      <line num="25" type="stmt" count="61"/>
-      <line num="26" type="stmt" count="0"/>
-      <line num="29" type="stmt" count="61"/>
-      <line num="32" type="method" name="supportsClass" visibility="public" complexity="2" crap="2" count="61"/>
-      <line num="34" type="stmt" count="61"/>
-      <line num="41" type="method" name="upgradePassword" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <metrics loc="46" ncloc="39" classes="1" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="3" elements="10" coveredelements="4"/>
+      <line num="18" type="method" name="loadUserByIdentifier" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="23" type="method" name="refreshUser" visibility="public" complexity="2" crap="2" count="75"/>
+      <line num="25" type="stmt" count="75"/>
+      <line num="26" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="74"/>
+      <line num="32" type="method" name="supportsClass" visibility="public" complexity="2" crap="2" count="73"/>
+      <line num="34" type="stmt" count="73"/>
+      <line num="41" type="method" name="upgradePassword" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <metrics loc="46" ncloc="39" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
     </file>
     <file name="/srv/src/Security/UserTokenService.php">
       <class name="App\Security\UserTokenService" namespace="global">
         <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
       </class>
-      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="65"/>
-      <line num="15" type="stmt" count="65"/>
-      <line num="17" type="method" name="getLoggedUserToken" visibility="public" complexity="2" crap="2" count="65"/>
-      <line num="20" type="stmt" count="65"/>
-      <line num="22" type="stmt" count="65"/>
-      <line num="23" type="stmt" count="18"/>
-      <line num="26" type="stmt" count="47"/>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="70"/>
+      <line num="15" type="stmt" count="70"/>
+      <line num="17" type="method" name="getLoggedUserToken" visibility="public" complexity="2" crap="2" count="70"/>
+      <line num="20" type="stmt" count="70"/>
+      <line num="22" type="stmt" count="70"/>
+      <line num="23" type="stmt" count="19"/>
+      <line num="26" type="stmt" count="51"/>
       <metrics loc="29" ncloc="28" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
     </file>
     <file name="/srv/src/Service/ApiService.php">
       <class name="App\Service\ApiService" namespace="global">
-        <metrics complexity="23" methods="19" coveredmethods="15" conditionals="0" coveredconditionals="0" statements="160" coveredstatements="143" elements="179" coveredelements="158"/>
+        <metrics complexity="23" methods="19" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="158" coveredstatements="158" elements="177" coveredelements="177"/>
       </class>
-      <line num="16" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="81"/>
-      <line num="23" type="stmt" count="81"/>
+      <line num="16" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="94"/>
+      <line num="23" type="stmt" count="94"/>
       <line num="28" type="method" name="getDex" visibility="public" complexity="1" crap="1" count="11"/>
       <line num="30" type="stmt" count="11"/>
       <line num="33" type="stmt" count="11"/>
-      <line num="34" type="stmt" count="8"/>
-      <line num="35" type="stmt" count="8"/>
-      <line num="36" type="stmt" count="8"/>
-      <line num="37" type="stmt" count="8"/>
-      <line num="38" type="stmt" count="8"/>
-      <line num="39" type="stmt" count="8"/>
-      <line num="40" type="stmt" count="8"/>
-      <line num="41" type="stmt" count="8"/>
-      <line num="42" type="stmt" count="8"/>
-      <line num="43" type="stmt" count="8"/>
-      <line num="44" type="stmt" count="8"/>
-      <line num="45" type="stmt" count="8"/>
-      <line num="46" type="stmt" count="8"/>
-      <line num="49" type="stmt" count="8"/>
+      <line num="34" type="stmt" count="9"/>
+      <line num="35" type="stmt" count="9"/>
+      <line num="36" type="stmt" count="9"/>
+      <line num="37" type="stmt" count="9"/>
+      <line num="38" type="stmt" count="9"/>
+      <line num="39" type="stmt" count="9"/>
+      <line num="40" type="stmt" count="9"/>
+      <line num="41" type="stmt" count="9"/>
+      <line num="42" type="stmt" count="9"/>
+      <line num="43" type="stmt" count="9"/>
+      <line num="44" type="stmt" count="9"/>
+      <line num="45" type="stmt" count="9"/>
+      <line num="46" type="stmt" count="9"/>
+      <line num="49" type="stmt" count="9"/>
       <line num="50" type="stmt" count="11"/>
       <line num="52" type="stmt" count="11"/>
       <line num="55" type="stmt" count="11"/>
@@ -427,32 +422,32 @@
       <line num="112" type="stmt" count="4"/>
       <line num="113" type="stmt" count="51"/>
       <line num="116" type="stmt" count="51"/>
-      <line num="123" type="method" name="modifyAlbum" visibility="public" complexity="2" crap="2" count="1"/>
-      <line num="130" type="stmt" count="1"/>
+      <line num="123" type="method" name="modifyAlbum" visibility="public" complexity="2" crap="2" count="3"/>
+      <line num="130" type="stmt" count="3"/>
       <line num="131" type="stmt" count="1"/>
-      <line num="134" type="stmt" count="1"/>
-      <line num="135" type="stmt" count="1"/>
-      <line num="136" type="stmt" count="1"/>
-      <line num="137" type="stmt" count="1"/>
-      <line num="138" type="stmt" count="1"/>
-      <line num="139" type="stmt" count="1"/>
-      <line num="140" type="stmt" count="1"/>
-      <line num="141" type="stmt" count="1"/>
-      <line num="142" type="stmt" count="1"/>
-      <line num="143" type="stmt" count="1"/>
-      <line num="144" type="stmt" count="1"/>
-      <line num="151" type="method" name="modifyDex" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="156" type="stmt" count="1"/>
-      <line num="157" type="stmt" count="1"/>
-      <line num="158" type="stmt" count="1"/>
-      <line num="159" type="stmt" count="1"/>
-      <line num="160" type="stmt" count="1"/>
-      <line num="161" type="stmt" count="1"/>
-      <line num="162" type="stmt" count="1"/>
-      <line num="163" type="stmt" count="1"/>
-      <line num="164" type="stmt" count="1"/>
-      <line num="165" type="stmt" count="1"/>
-      <line num="166" type="stmt" count="1"/>
+      <line num="134" type="stmt" count="3"/>
+      <line num="135" type="stmt" count="3"/>
+      <line num="136" type="stmt" count="3"/>
+      <line num="137" type="stmt" count="3"/>
+      <line num="138" type="stmt" count="3"/>
+      <line num="139" type="stmt" count="3"/>
+      <line num="140" type="stmt" count="3"/>
+      <line num="141" type="stmt" count="3"/>
+      <line num="142" type="stmt" count="3"/>
+      <line num="143" type="stmt" count="3"/>
+      <line num="144" type="stmt" count="3"/>
+      <line num="151" type="method" name="modifyDex" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="156" type="stmt" count="3"/>
+      <line num="157" type="stmt" count="3"/>
+      <line num="158" type="stmt" count="3"/>
+      <line num="159" type="stmt" count="3"/>
+      <line num="160" type="stmt" count="3"/>
+      <line num="161" type="stmt" count="3"/>
+      <line num="162" type="stmt" count="3"/>
+      <line num="163" type="stmt" count="3"/>
+      <line num="164" type="stmt" count="3"/>
+      <line num="165" type="stmt" count="3"/>
+      <line num="166" type="stmt" count="3"/>
       <line num="169" type="method" name="adminUpdate" visibility="public" complexity="1" crap="1" count="5"/>
       <line num="171" type="stmt" count="5"/>
       <line num="172" type="stmt" count="5"/>
@@ -477,109 +472,107 @@
       <line num="196" type="stmt" count="2"/>
       <line num="197" type="stmt" count="2"/>
       <line num="200" type="stmt" count="2"/>
-      <line num="206" type="method" name="getReports" visibility="public" complexity="1" crap="1.47" count="11"/>
-      <line num="208" type="stmt" count="11"/>
-      <line num="211" type="stmt" count="11"/>
-      <line num="212" type="stmt" count="0"/>
-      <line num="213" type="stmt" count="0"/>
-      <line num="214" type="stmt" count="0"/>
-      <line num="215" type="stmt" count="0"/>
-      <line num="216" type="stmt" count="0"/>
-      <line num="217" type="stmt" count="0"/>
-      <line num="218" type="stmt" count="0"/>
-      <line num="219" type="stmt" count="0"/>
-      <line num="220" type="stmt" count="0"/>
-      <line num="221" type="stmt" count="0"/>
-      <line num="222" type="stmt" count="0"/>
-      <line num="223" type="stmt" count="0"/>
-      <line num="224" type="stmt" count="0"/>
-      <line num="227" type="stmt" count="0"/>
-      <line num="228" type="stmt" count="11"/>
-      <line num="231" type="stmt" count="11"/>
-      <line num="234" type="method" name="invalidateCacheDex" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="236" type="stmt" count="2"/>
-      <line num="239" type="method" name="invalidateCacheCatchStates" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="241" type="stmt" count="2"/>
-      <line num="244" type="method" name="invalidateCacheAlbums" visibility="public" complexity="1" crap="1" count="4"/>
-      <line num="246" type="stmt" count="4"/>
-      <line num="249" type="method" name="invalidateCacheDexByTrainerId" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="251" type="stmt" count="1"/>
-      <line num="253" type="stmt" count="1"/>
-      <line num="254" type="stmt" count="1"/>
-      <line num="257" type="method" name="invalidateCacheAlbum" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="259" type="stmt" count="1"/>
-      <line num="261" type="stmt" count="1"/>
-      <line num="262" type="stmt" count="1"/>
-      <line num="265" type="method" name="invalidateCacheReports" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="267" type="stmt" count="0"/>
-      <line num="270" type="method" name="registerCache" visibility="private" complexity="1" crap="1" count="62"/>
-      <line num="272" type="stmt" count="62"/>
-      <line num="275" type="stmt" count="62"/>
-      <line num="276" type="stmt" count="5"/>
-      <line num="277" type="stmt" count="62"/>
-      <line num="279" type="stmt" count="62"/>
-      <line num="280" type="stmt" count="62"/>
-      <line num="282" type="stmt" count="62"/>
-      <line num="283" type="stmt" count="62"/>
+      <line num="206" type="method" name="getReports" visibility="public" complexity="1" crap="1" count="19"/>
+      <line num="208" type="stmt" count="19"/>
+      <line num="211" type="stmt" count="19"/>
+      <line num="212" type="stmt" count="2"/>
+      <line num="213" type="stmt" count="2"/>
+      <line num="214" type="stmt" count="2"/>
+      <line num="215" type="stmt" count="2"/>
+      <line num="216" type="stmt" count="2"/>
+      <line num="217" type="stmt" count="2"/>
+      <line num="218" type="stmt" count="2"/>
+      <line num="219" type="stmt" count="2"/>
+      <line num="220" type="stmt" count="2"/>
+      <line num="221" type="stmt" count="2"/>
+      <line num="222" type="stmt" count="2"/>
+      <line num="223" type="stmt" count="2"/>
+      <line num="224" type="stmt" count="2"/>
+      <line num="227" type="stmt" count="2"/>
+      <line num="228" type="stmt" count="19"/>
+      <line num="231" type="stmt" count="19"/>
+      <line num="234" type="method" name="invalidateCacheDex" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="236" type="stmt" count="4"/>
+      <line num="239" type="method" name="invalidateCacheCatchStates" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="241" type="stmt" count="4"/>
+      <line num="244" type="method" name="invalidateCacheAlbums" visibility="public" complexity="1" crap="1" count="7"/>
+      <line num="246" type="stmt" count="7"/>
+      <line num="249" type="method" name="invalidateCacheDexByTrainerId" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="251" type="stmt" count="2"/>
+      <line num="253" type="stmt" count="2"/>
+      <line num="254" type="stmt" count="2"/>
+      <line num="257" type="method" name="invalidateCacheAlbum" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="259" type="stmt" count="2"/>
+      <line num="261" type="stmt" count="2"/>
+      <line num="262" type="stmt" count="2"/>
+      <line num="265" type="method" name="invalidateCacheReports" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="267" type="stmt" count="2"/>
+      <line num="270" type="method" name="invalidateCacheByType" visibility="public" complexity="2" crap="2" count="10"/>
+      <line num="272" type="stmt" count="10"/>
+      <line num="273" type="stmt" count="4"/>
+      <line num="276" type="stmt" count="10"/>
+      <line num="279" type="method" name="registerCache" visibility="private" complexity="1" crap="1" count="62"/>
+      <line num="281" type="stmt" count="62"/>
       <line num="284" type="stmt" count="62"/>
-      <line num="285" type="stmt" count="62"/>
-      <line num="288" type="method" name="unregisterCache" visibility="private" complexity="2" crap="2.00" count="1"/>
-      <line num="290" type="stmt" count="1"/>
-      <line num="293" type="stmt" count="1"/>
-      <line num="294" type="stmt" count="0"/>
-      <line num="295" type="stmt" count="1"/>
-      <line num="297" type="stmt" count="1"/>
-      <line num="298" type="stmt" count="1"/>
-      <line num="299" type="stmt" count="1"/>
-      <line num="300" type="stmt" count="1"/>
-      <line num="303" type="stmt" count="1"/>
-      <line num="304" type="stmt" count="1"/>
-      <line num="305" type="stmt" count="1"/>
-      <line num="306" type="stmt" count="1"/>
-      <line num="312" type="method" name="getRegisteredCache" visibility="private" complexity="2" crap="2.01" count="5"/>
-      <line num="314" type="stmt" count="5"/>
-      <line num="316" type="stmt" count="5"/>
+      <line num="285" type="stmt" count="7"/>
+      <line num="286" type="stmt" count="62"/>
+      <line num="288" type="stmt" count="62"/>
+      <line num="289" type="stmt" count="62"/>
+      <line num="291" type="stmt" count="62"/>
+      <line num="292" type="stmt" count="62"/>
+      <line num="293" type="stmt" count="62"/>
+      <line num="294" type="stmt" count="62"/>
+      <line num="297" type="method" name="unregisterCache" visibility="private" complexity="2" crap="2" count="2"/>
+      <line num="299" type="stmt" count="2"/>
+      <line num="302" type="stmt" count="2"/>
+      <line num="306" type="stmt" count="2"/>
+      <line num="308" type="stmt" count="2"/>
+      <line num="309" type="stmt" count="2"/>
+      <line num="310" type="stmt" count="2"/>
+      <line num="311" type="stmt" count="2"/>
+      <line num="314" type="stmt" count="2"/>
+      <line num="315" type="stmt" count="2"/>
+      <line num="316" type="stmt" count="2"/>
       <line num="317" type="stmt" count="2"/>
-      <line num="318" type="stmt" count="5"/>
-      <line num="320" type="stmt" count="5"/>
-      <line num="321" type="stmt" count="0"/>
-      <line num="324" type="stmt" count="5"/>
-      <line num="327" type="method" name="invalidateCacheByType" visibility="public" complexity="2" crap="2" count="5"/>
-      <line num="329" type="stmt" count="5"/>
-      <line num="330" type="stmt" count="3"/>
-      <line num="333" type="stmt" count="5"/>
-      <metrics loc="336" ncloc="297" classes="1" methods="19" coveredmethods="15" conditionals="0" coveredconditionals="0" statements="160" coveredstatements="143" elements="179" coveredelements="158"/>
+      <line num="323" type="method" name="getRegisteredCache" visibility="private" complexity="2" crap="2" count="10"/>
+      <line num="325" type="stmt" count="10"/>
+      <line num="327" type="stmt" count="10"/>
+      <line num="328" type="stmt" count="6"/>
+      <line num="329" type="stmt" count="10"/>
+      <line num="331" type="stmt" count="10"/>
+      <line num="337" type="stmt" count="10"/>
+      <metrics loc="340" ncloc="297" classes="1" methods="19" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="158" coveredstatements="158" elements="177" coveredelements="177"/>
     </file>
     <file name="/srv/src/Service/CacheInvalidatorService.php">
       <class name="App\Service\CacheInvalidatorService" namespace="global">
         <metrics complexity="13" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="27" coveredelements="27"/>
       </class>
-      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="15"/>
-      <line num="15" type="stmt" count="15"/>
-      <line num="17" type="method" name="invalidate" visibility="public" complexity="12" crap="12" count="14"/>
-      <line num="20" type="stmt" count="14"/>
-      <line num="21" type="stmt" count="12"/>
-      <line num="22" type="stmt" count="2"/>
-      <line num="23" type="stmt" count="2"/>
-      <line num="25" type="stmt" count="12"/>
-      <line num="26" type="stmt" count="10"/>
-      <line num="27" type="stmt" count="2"/>
-      <line num="28" type="stmt" count="2"/>
-      <line num="30" type="stmt" count="10"/>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="23"/>
+      <line num="15" type="stmt" count="23"/>
+      <line num="17" type="method" name="invalidate" visibility="public" complexity="12" crap="12" count="22"/>
+      <line num="20" type="stmt" count="22"/>
+      <line num="21" type="stmt" count="20"/>
+      <line num="22" type="stmt" count="4"/>
+      <line num="23" type="stmt" count="4"/>
+      <line num="25" type="stmt" count="18"/>
+      <line num="26" type="stmt" count="16"/>
+      <line num="27" type="stmt" count="4"/>
+      <line num="28" type="stmt" count="4"/>
+      <line num="30" type="stmt" count="14"/>
       <line num="31" type="stmt" count="2"/>
-      <line num="33" type="stmt" count="8"/>
-      <line num="34" type="stmt" count="7"/>
-      <line num="35" type="stmt" count="5"/>
-      <line num="36" type="stmt" count="3"/>
-      <line num="37" type="stmt" count="5"/>
-      <line num="38" type="stmt" count="5"/>
-      <line num="40" type="stmt" count="3"/>
+      <line num="33" type="stmt" count="12"/>
+      <line num="34" type="stmt" count="11"/>
+      <line num="35" type="stmt" count="9"/>
+      <line num="36" type="stmt" count="7"/>
+      <line num="37" type="stmt" count="7"/>
+      <line num="38" type="stmt" count="7"/>
+      <line num="40" type="stmt" count="5"/>
       <line num="41" type="stmt" count="1"/>
       <line num="42" type="stmt" count="1"/>
       <line num="43" type="stmt" count="1"/>
-      <line num="45" type="stmt" count="2"/>
-      <line num="46" type="stmt" count="1"/>
-      <line num="47" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="4"/>
+      <line num="46" type="stmt" count="3"/>
+      <line num="47" type="stmt" count="3"/>
       <line num="50" type="stmt" count="1"/>
       <metrics loc="53" ncloc="50" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="27" coveredelements="27"/>
     </file>
@@ -587,21 +580,21 @@
       <class name="App\Twig\AppExtension" namespace="global">
         <metrics complexity="5" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="13" coveredelements="13"/>
       </class>
-      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="95"/>
-      <line num="17" type="stmt" count="95"/>
-      <line num="22" type="method" name="getFunctions" visibility="public" complexity="1" crap="1" count="83"/>
-      <line num="24" type="stmt" count="83"/>
-      <line num="25" type="stmt" count="83"/>
-      <line num="26" type="stmt" count="83"/>
-      <line num="27" type="stmt" count="83"/>
-      <line num="30" type="method" name="isBannerFileExists" visibility="public" complexity="1" crap="1" count="11"/>
-      <line num="32" type="stmt" count="11"/>
-      <line num="35" type="method" name="getDexBanner" visibility="public" complexity="2" crap="2" count="10"/>
-      <line num="37" type="stmt" count="10"/>
-      <line num="38" type="stmt" count="10"/>
-      <line num="40" type="stmt" count="10"/>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="117"/>
+      <line num="17" type="stmt" count="117"/>
+      <line num="22" type="method" name="getFunctions" visibility="public" complexity="1" crap="1" count="92"/>
+      <line num="24" type="stmt" count="92"/>
+      <line num="25" type="stmt" count="92"/>
+      <line num="26" type="stmt" count="92"/>
+      <line num="27" type="stmt" count="92"/>
+      <line num="30" type="method" name="isBannerFileExists" visibility="public" complexity="1" crap="1" count="12"/>
+      <line num="32" type="stmt" count="12"/>
+      <line num="35" type="method" name="getDexBanner" visibility="public" complexity="2" crap="2" count="11"/>
+      <line num="37" type="stmt" count="11"/>
+      <line num="38" type="stmt" count="11"/>
+      <line num="40" type="stmt" count="11"/>
       <metrics loc="43" ncloc="40" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="13" coveredelements="13"/>
     </file>
-    <metrics files="20" loc="1312" ncloc="1229" classes="18" methods="79" coveredmethods="61" conditionals="0" coveredconditionals="0" statements="402" coveredstatements="329" elements="481" coveredelements="390"/>
+    <metrics files="20" loc="1319" ncloc="1227" classes="18" methods="77" coveredmethods="77" conditionals="0" coveredconditionals="0" statements="397" coveredstatements="397" elements="474" coveredelements="474"/>
   </project>
 </coverage>

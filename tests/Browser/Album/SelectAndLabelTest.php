@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Album\Action;
+namespace App\Tests\Browser\Album;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use App\Tests\Functional\AbstractBrowserTestCase;
+use App\Tests\Browser\AbstractBrowserTestCase;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
+/**
+ * @group browser-testing
+ */
 class SelectAndLabelTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;

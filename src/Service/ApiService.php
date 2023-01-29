@@ -267,6 +267,15 @@ class ApiService
         $this->cache->delete(KeyMaker::getReportsKey());
     }
 
+    public function invalidateCacheByType(string $type): void
+    {
+        foreach ($this->getRegisteredCache($type) as $key) {
+            $this->cache->delete($key);
+        }
+
+        $this->cache->delete(KeyMaker::getRegisterTypeKey($type));
+    }
+
     private function registerCache(string $type, string $key): void
     {
         $registerKey = KeyMaker::getRegisterTypeKey($type);
@@ -291,7 +300,9 @@ class ApiService
 
         /** @var string[] $list */
         $list = $this->cache->get($registerKey, function () {
+            // @codeCoverageIgnoreStart
             return [];
+            // @codeCoverageIgnoreEnd
         });
 
         $listKey = array_search($key, $list, true);
@@ -318,18 +329,11 @@ class ApiService
         });
 
         if (!is_array($list)) {
+            // @codeCoverageIgnoreStart
             return [];
+            // @codeCoverageIgnoreEnd
         }
 
         return $list;
-    }
-
-    public function invalidateCacheByType(string $type): void
-    {
-        foreach ($this->getRegisteredCache($type) as $key) {
-            $this->cache->delete($key);
-        }
-
-        $this->cache->delete(KeyMaker::getRegisterTypeKey($type));
     }
 }
