@@ -52,7 +52,7 @@ jobs:
         run: ./vendor/bin/phpstan analyse --memory-limit=-1
 
   phpunit:
-    name: Tests / PHPUnit
+    name: Tests / PHPUnit (Unit & Functionnal)
     runs-on: ubuntu-latest
     needs: [phpcs, phpmd, psalm, phpstan]
     steps:
@@ -61,7 +61,19 @@ jobs:
       - name: Prepare
         uses: ./.github/actions/docker-compose
       - name: Run
-        run: docker compose exec -T php php bin/phpunit
+        run: docker compose exec -T php php bin/phpunit --exclude-group="browser-testing"
+
+  phpunit-browser:
+    name: Tests / PHPUnit (Browser)
+    runs-on: ubuntu-latest
+    needs: [phpcs, phpmd, psalm, phpstan]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: Run
+        run: docker compose exec -T php php bin/phpunit --group="browser-testing"
 
   coverage:
     name: Tests / Coverage
@@ -72,6 +84,6 @@ jobs:
       - name: Prepare
         uses: ./.github/actions/docker-compose
       - name: Run
-        run: docker compose exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --coverage-clover=coverage.xml
+        run: docker compose exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --exclude-group="browser-testing" --coverage-clover=coverage.xml
       - name: Coverage Test
-        run: docker compose exec -T php php tests/tools/coverage.php coverage.xml 85 true
+        run: docker compose exec -T php php tests/tools/coverage.php coverage.xml 100 true

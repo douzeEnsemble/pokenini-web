@@ -95,6 +95,8 @@ class ApiServiceTest extends TestCase
 
         $service = new ApiService($client, 'api', $cache, 'web', 'douze');
 
+        $this->assertEmpty($cache->getValues());
+
         $service->getCatchStates();
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayHasKey('catch_states', $cache->getValues());

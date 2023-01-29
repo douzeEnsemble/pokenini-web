@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional;
+namespace App\Tests\Browser;
 
 use App\Security\User;
 use Symfony\Component\BrowserKit\Cookie;
