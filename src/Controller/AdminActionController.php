@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\DTO\AdminAction;
 use App\Service\ApiService;
 use App\Service\CacheInvalidatorService;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,7 @@ class AdminActionController extends AbstractController
         private readonly CacheInvalidatorService $cacheInvalidatorService,
         private readonly ApiService $apiService,
         private readonly RequestStack $requestStack,
+        private readonly LoggerInterface $logger,
     ) {
     }
 
@@ -76,7 +78,7 @@ class AdminActionController extends AbstractController
 
     private function execute(
         string $name,
-        string $action
+        string $action,
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
@@ -91,7 +93,13 @@ class AdminActionController extends AbstractController
 
             $error = $e->getMessage();
 
-            error_log($e->getMessage());
+            $this->logger->critical(
+                $e->getMessage(),
+                [
+                    'name' => $name,
+                    'action' => $action,
+                ]
+            );
         }
 
         $adminAction = new AdminAction(
