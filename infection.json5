@@ -1,0 +1,14 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "mutators": {
+        "@default": true
+    },
+    "timeout": 60,
+    "testFramework": "phpunit",
+    "testFrameworkOptions": '--exclude-group="browser" --filter=testAdminCalculateDexAvailabilities',
+}

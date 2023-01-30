@@ -76,7 +76,7 @@ jobs:
         run: docker compose exec -T php php bin/phpunit --group="browser-testing"
 
   coverage:
-    name: Tests / Coverage
+    name: Measures / Coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -87,3 +87,14 @@ jobs:
         run: docker compose exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --exclude-group="browser-testing" --coverage-clover=coverage.xml
       - name: Coverage Test
         run: docker compose exec -T php php tests/tools/coverage.php coverage.xml 100 true
+
+  mutation:
+    name: Measures / Mutation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: Run
+        run: docker compose exec -T php php vendor/bin/infection --min-msi=100 --min-covered-msi=100
