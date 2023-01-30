@@ -96,11 +96,15 @@ psalm: ## Execute psalm
 
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 measures: ## Execute all measures tools
-measures: clovercoverage
+measures: coverage infection
 
-clovercoverage: ## Execute PHPUnit Coverage to check the score
+coverage: ## Execute PHPUnit Coverage to check the score
 	$(DOCKER_COMP) exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --exclude-group="browser-testing" --coverage-clover=coverage.xml
 	@$(PHP_CONT) php tests/tools/coverage.php coverage.xml 100 true
 
 htmlcoverage: ## Execute PHPUnit Coverage in HTML
 	$(DOCKER_COMP) exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --exclude-group="browser-testing" --coverage-html=tests/coverage
+html=tests/coverage
+
+infection: ## Execute Infection (Mutation testing)
+	@$(PHP) vendor/bin/infection --threads=4 --show-mutations --min-msi=100 --min-covered-msi=100 --logger-html='tests/mutation/index.html'

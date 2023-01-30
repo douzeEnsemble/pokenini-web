@@ -30,3 +30,4 @@ coverage.xml
 tests/coverage
 tests/last.html
 tests/screen.png
+tests/mutation/index.html
