@@ -177,6 +177,58 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
     }
 
+    public function testActionCatchStateToggleAllEditWithAlreadyInEditMode(): void
+    {
+        $client = $this->getClient();
+
+        $user = new User('109903422692691643666');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $crawler = $client->request('GET', '/fr/album/demo');
+
+        $this->assertCountFilter($crawler, 1738, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('#bulbasaur-catch-state-edit-action')
+            ->link()
+        );
+
+        $this->assertCountFilter($crawler, 1737, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('.album-all-catch-state-edit-action')
+            ->link()
+        );
+
+        $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 1738, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('.album-all-catch-state-read-action')
+            ->link()
+        );
+
+        $this->assertCountFilter($crawler, 1738, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
+        $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
+    }
+
     public function testActionCatchStateChangeSuccess(): void
     {
         $client = $this->getClient();

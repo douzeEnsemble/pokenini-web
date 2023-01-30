@@ -8,14 +8,14 @@ function watchCatchStates()
 function watchToggleEditMode()
 {
   document.querySelectorAll('.album-case-catch-state-edit-action').forEach(function(element) {
-    element.addEventListener('click', onToggleEditMode);
+    element.addEventListener('click', onActivateEditMode);
   });
 
   document.querySelectorAll('.album-all-catch-state-edit-action').forEach(function(element) {
-    element.addEventListener('click', onToggleAllMode);
+    element.addEventListener('click', onActivateAllEditMode);
   });
   document.querySelectorAll('.album-all-catch-state-read-action').forEach(function(element) {
-    element.addEventListener('click', onToggleAllMode);
+    element.addEventListener('click', onActivateAllReadMode);
   });
 }
 
@@ -27,30 +27,47 @@ function onChangeCatchState(event)
   changeClass(target);
 }
 
-function onToggleEditMode(event)
+function onActivateEditMode(event)
 {
   event.preventDefault();
 
   const target = event.target;
 
-  toggleEditMode(target);
+  activateEditMode(target);
 }
 
-function onToggleAllMode(event)
+function onActivateAllEditMode(event)
 {
   event.preventDefault();
 
   document.querySelectorAll('.album-case-catch-state-edit-action').forEach(function(element) {
-    toggleEditMode(element);
+    activateEditMode(element);
   });
 
   const target = event.target;
 
   const editMode = target.parentElement.querySelector('.album-all-catch-state-edit-action');
-  editMode.toggleAttribute('hidden');
+  editMode.setAttribute('hidden', true);
 
   const readMode = target.parentElement.querySelector('.album-all-catch-state-read-action');
-  readMode.toggleAttribute('hidden');
+  readMode.removeAttribute('hidden');
+}
+
+function onActivateAllReadMode(event)
+{
+  event.preventDefault();
+
+  document.querySelectorAll('.album-case-catch-state-edit-action').forEach(function(element) {
+    activateReadMode(element);
+  });
+
+  const target = event.target;
+
+  const editMode = target.parentElement.querySelector('.album-all-catch-state-edit-action');
+  editMode.removeAttribute('hidden');
+
+  const readMode = target.parentElement.querySelector('.album-all-catch-state-read-action');
+  readMode.setAttribute('hidden', true);
 }
 
 function saveChange(target)
@@ -103,11 +120,20 @@ function changeClass(target)
   albumCase.classList.add('catch-state-'+currentCatchState.value);
 }
 
-function toggleEditMode(target)
+function activateEditMode(target)
 {
   const albumCatchState = target.closest('.album-case-catch-state');
   const albumAction = albumCatchState.parentNode.querySelector('.album-case-action');
 
-  albumCatchState.toggleAttribute('hidden');
-  albumAction.toggleAttribute('hidden');
+  albumCatchState.setAttribute('hidden', true);
+  albumAction.removeAttribute('hidden');
+}
+
+function activateReadMode(target)
+{
+  const albumCatchState = target.closest('.album-case-catch-state');
+  const albumAction = albumCatchState.parentNode.querySelector('.album-case-action');
+
+  albumCatchState.removeAttribute('hidden');
+  albumAction.setAttribute('hidden', true);
 }
