@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Cache\KeyMaker;
+use App\Utils\JsonDecoder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
@@ -52,7 +53,7 @@ class ApiService
         $this->registerCache(KeyMaker::getDexKey(), $key);
 
         /** @var string[][] */
-        return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        return JsonDecoder::decode($json);
     }
 
     /**
@@ -82,7 +83,7 @@ class ApiService
         $this->registerCache(KeyMaker::getAlbumKey(), $key);
 
         /** @var string[][][] */
-        return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        return JsonDecoder::decode($json);
     }
 
     /**
@@ -113,7 +114,7 @@ class ApiService
         });
 
         /** @var string[][] */
-        return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        return JsonDecoder::decode($json);
     }
 
     /**
@@ -228,7 +229,7 @@ class ApiService
         });
 
         /** @var string[][] */
-        return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        return JsonDecoder::decode($json);
     }
 
     public function invalidateCacheDex(): void
@@ -267,7 +268,7 @@ class ApiService
         $this->cache->delete(KeyMaker::getReportsKey());
     }
 
-    public function invalidateCacheByType(string $type): void
+    private function invalidateCacheByType(string $type): void
     {
         foreach ($this->getRegisteredCache($type) as $key) {
             $this->cache->delete($key);
@@ -306,10 +307,8 @@ class ApiService
         });
 
         $listKey = array_search($key, $list, true);
-        if (false !== $listKey) {
-            unset($list[$listKey]);
-            sort($list);
-        }
+        unset($list[$listKey]);
+        sort($list);
 
         $this->cache->delete($registerKey);
         $this->cache->get($registerKey, function () use ($list) {

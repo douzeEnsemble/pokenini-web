@@ -6,7 +6,6 @@ namespace App\Tests\Functional\Admin;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use ErrorException;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AdminInvalidateTest extends WebTestCase

@@ -8,6 +8,7 @@ use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ActionInvalidateTest extends WebTestCase
 {
@@ -49,6 +50,20 @@ class ActionInvalidateTest extends WebTestCase
         $this->expectException(NotFoundHttpException::class);
 
         $client->request('GET', "/fr/istration/action/invalidate/$name");
+    }
+
+    public function testAdminNonAdmin(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $client->loginUser($user);
+
+        $client->catchExceptions(false);
+
+        $this->expectException(AccessDeniedException::class);
+
+        $client->request('GET', "/fr/istration/action/invalidate/catch_states");
     }
 
     /**

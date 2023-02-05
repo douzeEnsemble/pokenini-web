@@ -14,6 +14,7 @@
     "request": {
       "uri": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/list",
       "headers": {
+        "accept" : "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -25,6 +26,7 @@
     "request": {
       "uri": "/dex/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c/list",
       "headers": {
+        "accept" : "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -36,6 +38,7 @@
     "request": {
       "uri": "/dex/356a192b7913b04c54574d18c28d46e6395428ab/list",
       "headers": {
+        "accept" : "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -47,6 +50,7 @@
     "request": {
       "uri": "/dex/3cae633f6e04077b2abf2144b79a0ce4698d8690/list",
       "headers": {
+        "accept" : "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -58,6 +62,7 @@
     "request": {
       "uri": "/dex/da4b9237bacccdf19c0760cab7aec4a8359010b0/list",
       "headers": {
+        "accept" : "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -71,6 +76,7 @@
         "match": "/dex/[\\w\\d]*/list"
       },
       "headers": {
+        "accept" : "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -567,6 +573,9 @@
       "method": "patch",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "tobreed"
       }
     },
     "response": {
@@ -581,6 +590,9 @@
       "method": "patch",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "tobreed"
       }
     },
     "response": {
@@ -595,6 +607,9 @@
       "method": "patch",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "tobreed"
       }
     },
     "response": {
@@ -609,6 +624,9 @@
       "method": "patch",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "no|toevolve|tobreed|totransfer|totrade|yes"
       }
     },
     "response": {
@@ -623,6 +641,9 @@
       "method": "put",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "tobreed"
       }
     },
     "response": {
@@ -637,6 +658,9 @@
       "method": "put",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "tobreed"
       }
     },
     "response": {
@@ -651,6 +675,9 @@
       "method": "put",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "tobreed"
       }
     },
     "response": {
@@ -665,6 +692,9 @@
       "method": "put",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "no|toevolve|tobreed|totransfer|totrade|yes"
       }
     },
     "response": {
@@ -800,6 +830,9 @@
       "method": "put",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "\\{(\"is_private\": ?(?:true|false),? ?)?(\"is_on_home\": ?(?:true|false))?\\}"
       }
     },
     "response": {
@@ -814,6 +847,9 @@
       "method": "put",
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "\\{(\"is_private\": ?(?:true|false),? ?)?(\"is_on_home\": ?(?:true|false))?\\}"
       }
     },
     "response": {
@@ -827,6 +863,7 @@
       },
       "method": "get",
       "headers": {
+        "accept" : "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },

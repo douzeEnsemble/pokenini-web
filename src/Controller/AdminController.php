@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\DTO\AdminAction;
 use App\Service\ApiService;
+use App\Utils\JsonDecoder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,8 +23,6 @@ class AdminController extends AbstractController
     #[Route('', methods: ['GET'])]
     public function index(RequestStack $requestStack): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $session = $requestStack->getSession();
 
         /** @var AdminAction $adminAction */
@@ -45,7 +44,7 @@ class AdminController extends AbstractController
             $this->addFlash('state', $adminAction->state);
 
             if ('' !== $adminAction->content) {
-                $responseData = json_decode($adminAction->content, true);
+                $responseData = JsonDecoder::decode($adminAction->content);
             }
         }
 

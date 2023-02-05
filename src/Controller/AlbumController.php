@@ -33,12 +33,13 @@ class AlbumController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_TRAINER');
 
         try {
+            $trainerId = $this->userTokenService->getLoggedUserToken();
             $this->apiService->modifyAlbum(
                 $request->getMethod(),
                 $dexSlug,
                 $pokemonSlug,
                 (string) $request->getContent(),
-                $this->userTokenService->getLoggedUserToken()
+                $trainerId
             );
 
             $this->apiService->invalidateCacheAlbums();

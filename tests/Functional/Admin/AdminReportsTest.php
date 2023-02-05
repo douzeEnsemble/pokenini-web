@@ -6,11 +6,13 @@ namespace App\Tests\Functional\Admin;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AdminReportsTest extends WebTestCase
 {
     use TestNavTrait;
+    use TestSetUp;
 
     public function testAdminHome(): void
     {

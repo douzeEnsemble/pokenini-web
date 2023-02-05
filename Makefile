@@ -57,15 +57,13 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 	@$(eval c ?=)
 	@$(SYMFONY) $(c)
 
-cc: c=c:c ## Clear the cache
-cc: sf
+cc: ## Clear the cache
+	@$(SYMFONY) cache:clear --env=dev
+	@$(SYMFONY) cache:clear --env=test
 
 ## —— Tests 🧪 ———————————————————————————————————————————————————————————————
 tests: ## Execute all tests
-tests: phpstan phpunit
-
-phpstan: ## Execute phpstan analyse
-	@$(PHP_CONT) vendor/bin/phpstan analyse --memory-limit=-1
+tests: phpunit
 
 phpunit: ## Execute tests with PHPUnit
 	@$(PHP_CONT) bin/phpunit
@@ -81,7 +79,7 @@ testsbrowser: ## Execute browser tests
 
 ## —— Quality 👌 ———————————————————————————————————————————————————————————————
 quality: ## Execute all quality analyses
-quality: phpcs phpmd psalm
+quality: phpcs phpmd psalm phpstan
 
 phpcs: ## Execute phpcs
 	@$(PHP_CONT) vendor/bin/phpcs
@@ -93,6 +91,9 @@ phpmd: ## Execute phpmd
 
 psalm: ## Execute psalm
 	@$(PHP_CONT) vendor/bin/psalm --show-info=false
+
+phpstan: ## Execute phpstan analyse
+	@$(PHP_CONT) vendor/bin/phpstan analyse --memory-limit=-1
 
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 measures: ## Execute all measures tools

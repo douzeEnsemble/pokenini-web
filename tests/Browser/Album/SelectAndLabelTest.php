@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Browser\Album;
+namespace App\Tests\Browser\Trainer;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
@@ -279,7 +279,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorIsNotVisible('#errorToast-squirtle');
         $this->assertSelectorIsNotVisible('#successToast-squirtle');
         $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-no');
-        $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-totrade');
+        $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-tobreed');
 
         $client->executeScript("document.getElementById('squirtle').scrollIntoView();");
 
@@ -293,13 +293,13 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $form = $client->getCrawler()->filter('#album-form')->form();
         /** @var ChoiceFormField $field */
         $field = $form->get('catch-state[squirtle]');
-        $field->setValue('totrade');
+        $field->setValue('tobreed');
 
         $this->assertSelectorWillBeVisible('#errorToast-squirtle');
         $this->assertSelectorWillNotBeVisible('#errorToast-squirtle');
         $this->assertSelectorWillNotBeVisible('#successToast-squirtle');
 
         $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-no');
-        $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-totrade');
+        $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-tobreed');
     }
 }

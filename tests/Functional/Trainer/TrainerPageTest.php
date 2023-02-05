@@ -40,6 +40,18 @@ class TrainerPageTest extends WebTestCase
         $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
     }
 
+    public function testTrainerPageNotAllowed(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('789465465489');
+        $client->loginUser($user);
+
+        $client->request('GET', '/fr/trainer');
+
+        $this->assertResponseStatusCodeSame(403);
+    }
+
     private function assertCustomizeAlbumSection(Crawler $crawler): void
     {
         $this->assertCountFilter($crawler, 21, '.trainer-dex-item');
