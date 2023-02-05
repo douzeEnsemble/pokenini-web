@@ -8,6 +8,7 @@ use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ActionUpdateTest extends WebTestCase
 {
@@ -85,6 +86,42 @@ class ActionUpdateTest extends WebTestCase
         $this->expectException(NotFoundHttpException::class);
 
         $client->request('GET', "/fr/istration/action/update/truc");
+    }
+
+    public function testAdminNonAdmin(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $client->loginUser($user);
+
+        $client->catchExceptions(false);
+
+        $this->expectException(AccessDeniedException::class);
+
+        $client->request('GET', "/fr/istration/action/update/labels");
+    }
+
+    public function testAdminUpdateThenGoToIndex(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        $client->request('GET', "/fr/istration/action/update/labels");
+
+        $this->assertResponseStatusCodeSame(302);
+        $crawler = $client->followRedirect();
+
+        $this->assertCountFilter($crawler, 1, '.list-group-item-success');
+        $this->assertCountFilter($crawler, 0, '.list-group-item-warning');
+
+        $crawler = $client->request('GET', "/fr/istration");
+
+        $this->assertCountFilter($crawler, 0, '.list-group-item-success');
+        $this->assertCountFilter($crawler, 0, '.list-group-item-warning');
     }
 
     /**

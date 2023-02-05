@@ -8,6 +8,7 @@ use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ActionCalculateTest extends WebTestCase
 {
@@ -38,7 +39,34 @@ class ActionCalculateTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
+        $this->assertCountFilter($crawler, 0, '.list-group-item-success');
         $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
+        $this->assertCountFilter($crawler, 1, '.alert-danger');
+    }
+
+    public function testAdminCalculateWithErrorsThenGoToIndex(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        # For testing purpose, this case will fail in API side
+        $client->request('GET', '/fr/istration/action/calculate/dex_availabilities');
+
+        $this->assertResponseStatusCodeSame(302);
+        $crawler = $client->followRedirect();
+
+        $this->assertCountFilter($crawler, 0, '.list-group-item-success');
+        $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
+        $this->assertCountFilter($crawler, 1, '.alert-danger');
+
+        $crawler = $client->request('GET', '/fr/istration');
+
+        $this->assertCountFilter($crawler, 0, '.list-group-item-success');
+        $this->assertCountFilter($crawler, 0, '.list-group-item-danger');
+        $this->assertCountFilter($crawler, 0, '.alert-danger');
     }
 
     public function testAdminCalculateUnknown(): void
@@ -54,6 +82,20 @@ class ActionCalculateTest extends WebTestCase
         $this->expectException(NotFoundHttpException::class);
 
         $client->request('GET', "/fr/istration/action/calculate/truc");
+    }
+
+    public function testAdminNonAdmin(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $client->loginUser($user);
+
+        $client->catchExceptions(false);
+
+        $this->expectException(AccessDeniedException::class);
+
+        $client->request('GET', "/fr/istration/action/calculate/dex_availabilities");
     }
 
     /**
@@ -73,6 +115,7 @@ class ActionCalculateTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         $this->assertCountFilter($crawler, 1, '.list-group-item-success');
+        $this->assertCountFilter($crawler, 0, '.list-group-item-danger');
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);

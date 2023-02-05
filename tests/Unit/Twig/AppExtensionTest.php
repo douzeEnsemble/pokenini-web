@@ -17,9 +17,12 @@ class AppExtensionTest extends TestCase
         $functions = $extension->getFunctions();
 
         $this->assertIsArray($functions);
+        $this->assertCount(2, $functions);
 
         foreach ($functions as $function) {
             $this->assertInstanceOf(TwigFunction::class, $function);
+
+            $this->assertIsCallable($function->getCallable());
         }
     }
 

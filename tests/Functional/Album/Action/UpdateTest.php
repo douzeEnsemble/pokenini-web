@@ -20,9 +20,10 @@ class UpdateTest extends WebTestCase
         $client->request(
             'PATCH',
             '/fr/album/demo/bulbasaur',
-            [
-                'body' => 'yes',
-            ]
+            [],
+            [],
+            [],
+            'yes'
         );
 
         $this->assertResponseIsSuccessful();
@@ -35,9 +36,10 @@ class UpdateTest extends WebTestCase
         $client->request(
             'PATCH',
             '/fr/album/demo/bulbasaur',
-            [
-                'body' => 'yes',
-            ]
+            [],
+            [],
+            [],
+            'yes'
         );
 
         $this->assertTrue($client->getResponse()->isRedirect());
@@ -60,9 +62,10 @@ class UpdateTest extends WebTestCase
         $client->request(
             'PATCH',
             '/fr/album/demo/blastoise',
-            [
-                'body' => 'yes',
-            ]
+            [],
+            [],
+            [],
+            'tobreed'
         );
 
         $this->assertEquals(500, $client->getResponse()->getStatusCode());

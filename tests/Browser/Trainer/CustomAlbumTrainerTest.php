@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Trainer;
+namespace App\Tests\Browser\Album;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
@@ -25,8 +25,6 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->loginUser($client, $user);
 
         $crawler = $client->request('GET', '/fr/trainer');
-
-        file_put_contents('tests/last.html', $crawler->html());
 
         $this->assertSelectorIsNotVisible('#successToast-goldsilvercrystal');
 
@@ -71,8 +69,6 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->loginUser($client, $user);
 
         $crawler = $client->request('GET', '/fr/trainer');
-
-        file_put_contents('tests/last.html', $crawler->html());
 
         $this->assertSelectorIsNotVisible('#errorToast-redgreenblueyellow');
 

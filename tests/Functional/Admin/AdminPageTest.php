@@ -13,6 +13,7 @@ class AdminPageTest extends WebTestCase
 {
     use TestNavTrait;
 
+
     public function testAdminHomeNotConnected(): void
     {
         $client = static::createClient();
@@ -27,6 +28,18 @@ class AdminPageTest extends WebTestCase
         $client = static::createClient();
 
         $client->loginUser(new User('34654656489621361987'));
+
+        $client->request('GET', '/fr/istration');
+
+        $this->assertResponseStatusCodeSame(403);
+    }
+
+    public function testAdminHomeNotAllowed(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $client->loginUser($user);
 
         $client->request('GET', '/fr/istration');
 
