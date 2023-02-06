@@ -56,7 +56,10 @@
     </div>
     {% endif %}
     <div class="album-case-catch-state rounded-1 ps-2 overflow-auto">
-        <span class="album-case-catch-state-label">
+        <a
+            href="#{{ item.pokemon_slug }}"
+            class="link-dark album-case-catch-state-label"
+        >
             {% if locale is same as('fr') %}
                 {{ item.catch_state_french_name ?? 'Non' }}
             {% else %}
@@ -71,7 +74,7 @@
                 <i class="bi bi-pencil-square"></i>
             </a>
             {% endif %}
-        </span>
+        </a>
     </div>
 </div>
 {% endmacro %}
