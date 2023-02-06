@@ -60,6 +60,17 @@ class UserTest extends TestCase
         $this->assertEquals(['ROLE_USER', 'ROLE_TRAINER'], $user->getRoles());
     }
 
+    public function testAddAdminRoleTwice(): void
+    {
+        $user = new User('12');
+        $this->assertEquals(['ROLE_USER'], $user->getRoles());
+
+        $user->addAdminRole();
+        $user->addAdminRole();
+
+        $this->assertEquals(['ROLE_USER', 'ROLE_ADMIN'], $user->getRoles());
+    }
+
     public function testIsATrainer(): void
     {
         $user = new User('12');
