@@ -37,6 +37,13 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
             278,
             '.album-case-catch-state .album-case-catch-state-label .album-case-catch-state-edit-action'
         );
+
+        $this->assertEquals(
+            '#bulbasaur',
+            $crawler
+                ->filter('#bulbasaur .album-case-catch-state-edit-action')
+                ->attr('href')
+        );
     }
 
     public function testActionCatchStateDemo(): void
@@ -60,6 +67,13 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
             1738,
             '.album-case-catch-state .album-case-catch-state-label .album-case-catch-state-edit-action'
         );
+
+        $this->assertEquals(
+            '#bulbasaur',
+            $crawler
+                ->filter('#bulbasaur .album-case-catch-state-edit-action')
+                ->attr('href')
+        );
     }
 
     public function testActionCatchStateDemoList3(): void
@@ -82,6 +96,13 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
             $crawler,
             1738,
             '.album-case-catch-state .album-case-catch-state-label .album-case-catch-state-edit-action'
+        );
+
+        $this->assertEquals(
+            '#bulbasaur',
+            $crawler
+                ->filter('#bulbasaur .album-case-catch-state-edit-action')
+                ->attr('href')
         );
     }
 
