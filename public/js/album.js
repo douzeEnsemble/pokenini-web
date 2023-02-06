@@ -10,6 +10,9 @@ function watchToggleEditMode()
   document.querySelectorAll('.album-case-catch-state-edit-action').forEach(function(element) {
     element.addEventListener('click', onActivateEditMode);
   });
+  document.querySelectorAll('.album-case-catch-state-label').forEach(function(element) {
+    element.addEventListener('click', onActivateEditMode);
+  });
 
   document.querySelectorAll('.album-all-catch-state-edit-action').forEach(function(element) {
     element.addEventListener('click', onActivateAllEditMode);

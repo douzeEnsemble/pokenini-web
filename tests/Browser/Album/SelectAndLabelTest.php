@@ -130,6 +130,30 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorIsVisible('#bulbasaur .album-case-action');
     }
 
+    public function testActionCatchStateToggleWithLabel(): void
+    {
+        $client = $this->getClient();
+
+        $user = new User('109903422692691643666');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demo');
+
+        $this->assertSelectorIsVisible('#bulbasaur .album-case-catch-state');
+        $this->assertSelectorIsNotVisible('#bulbasaur .album-case-action');
+
+        $client->click(
+            $client
+            ->getCrawler()
+            ->filter('#bulbasaur .album-case-catch-state .album-case-catch-state-label')
+            ->link()
+        );
+
+        $this->assertSelectorIsNotVisible('#bulbasaur .album-case-catch-state');
+        $this->assertSelectorIsVisible('#bulbasaur .album-case-action');
+    }
+
     public function testActionCatchStateToggleAllEdit(): void
     {
         $client = $this->getClient();
