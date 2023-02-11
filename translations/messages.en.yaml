@@ -60,6 +60,9 @@ album:
         alt:
             regular: 'Icon of'
             shiny: 'Shiny icon of'
+        title:
+            regular: 'Regular'
+            shiny: 'Shiny'
     update:
         title: 'Update'
         success:
@@ -95,6 +98,14 @@ album:
                 list-7: 'List of 7 pokemon by lines'
         value:
             national: 'National'
+    modal:
+        national_dex_number: National dex number
+        regional_dex_number: Regional dex number
+        forms: Form
+        no_forms: Regular
+        link:
+            pokepedia: Poképédia's page (french)
+            bulbapedia: Bulbapedia's page
 
 
 update:

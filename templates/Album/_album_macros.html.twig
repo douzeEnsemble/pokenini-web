@@ -7,7 +7,12 @@
 >
     {% set dexNumber = dex.region_name is not empty ? item.pokemon_regional_dex_number : item.pokemon_national_dex_number %}
     <div class="text-center text-truncate">
-        <label for="catch-state-{{ item.pokemon_slug }}">
+        <label
+            class="album-case-title"
+            for="catch-state-{{ item.pokemon_slug }}"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-{{ item.pokemon_slug }}"
+        >
             <span class="album-case-dex-number">
                 #{{ dexNumber }}
             </span>
@@ -19,9 +24,12 @@
     <div class="album-case-image text-center"
         title="#{{ dexNumber }} {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
     >
-        <label for="catch-state-{{ item.pokemon_slug }}">
+        <span
+            data-bs-toggle="modal"
+            data-bs-target="#modal-{{ item.pokemon_slug }}"
+        >
             {{ dex.is_shiny ? _self.shinyPokemonIcon(item, locale) : _self.regularPokemonIcon(item, locale) }}
-        </label>
+        </span>
     </div>
     {% apply spaceless %}
 
@@ -65,35 +73,137 @@
             {% else %}
                 {{ item.catch_state_name ?? 'No' }}
             {% endif %}
-            {% if canEdit %}
-            <a
-                id="{{ item.pokemon_slug }}-catch-state-edit-action"
-                class="album-case-catch-state-edit-action float-end pe-1"
-                href="#{{ item.pokemon_slug }}"
-            >
-                <i class="bi bi-pencil-square"></i>
-            </a>
-            {% endif %}
         </a>
+        {% if canEdit %}
+        <a
+            id="{{ item.pokemon_slug }}-catch-state-edit-action"
+            class="album-case-catch-state-edit-action float-end pe-1"
+            href="#{{ item.pokemon_slug }}"
+        >
+            <i class="bi bi-pencil-square"></i>
+        </a>
+        {% endif %}
     </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modal-{{ item.pokemon_slug }}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+            {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}
+
+            <span class="modal-subtitle ms-6 fs-6">
+                /
+                {{ locale is same as('fr') ? item.pokemon_name : item.pokemon_french_name}}
+            </span>
+        </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <span class="album-modal-image-container-regular" {{ dex.is_shiny ? 'hidden': '' }}>
+                        {{ _self.regularPokemonImage(item, locale) }}
+                    </span>
+                    <span class="album-modal-image-container-shiny" {{ dex.is_shiny ? '': 'hidden' }}>
+                        {{ _self.shinyPokemonImage(item, locale) }}
+                    </span>
+                </div>
+                <div class="col-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>
+                                {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+                            </strong>
+                            /
+                            <em>
+                                {{ locale is same as('fr') ? item.pokemon_simplified_name : item.pokemon_simplified_french_name }}
+                            </em>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{{ 'album.modal.forms'|trans }}</strong>
+                            <span>
+                                {% set forms = locale is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label %}
+                                {{ forms ? forms : 'album.modal.no_forms'|trans }}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{{ 'album.modal.national_dex_number'|trans }}</strong>
+                            <span>
+                                {{ item.pokemon_national_dex_number }}
+                            </span>
+                        </li>
+                        {% if item.pokemon_regional_dex_number is defined and item.pokemon_regional_dex_number %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{{ 'album.modal.regional_dex_number'|trans }}</strong>
+                            <span>
+                                {{ item.pokemon_regional_dex_number }}
+                            </span>
+                        </li>
+                        {% endif %}
+                        <li class="list-group-item">
+                            <a
+                                href="https://www.pokepedia.fr/{{ item.pokemon_simplified_french_name }}"
+                                target="_blank"
+                            >
+                                {{ 'album.modal.link.pokepedia'|trans }}
+                                <i class="bi bi-box-arrow-up-right"></i>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a
+                                href="https://bulbapedia.bulbagarden.net/wiki/{{ item.pokemon_simplified_name }}_(Pokémon)"
+                                target="_blank"
+                            >
+                                {{ 'album.modal.link.bulbapedia'|trans }}
+                                <i class="bi bi-box-arrow-up-right"></i>
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-center">
+                            <a
+                                href="#modal-{{ item.pokemon_slug }}"
+                                class="album-modal-icon album-modal-icon-regular {{ dex.is_shiny ? '': 'active' }}"
+                            >
+                                {{ _self.regularPokemonIcon(item, locale, 'img-thumbnail') }}
+                                {{ 'album.icon.title.regular'|trans }}
+                            </a>
+                            <a
+                                href="#modal-{{ item.pokemon_slug }}"
+                                class="album-modal-icon album-modal-icon-shiny {{ dex.is_shiny ? 'active' : '' }}"
+                            >
+                                {{ _self.shinyPokemonIcon(item, locale, 'img-thumbnail') }}
+                                {{ 'album.icon.title.shiny'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endmacro %}
 
-{% macro regularPokemonIcon(item, locale) %}
+{% macro regularPokemonIcon(item, locale, classMore) %}
     {{ _self.pokemonIcon(
         item,
         'regular',
-        locale
+        locale,
+        classMore,
     ) }}
 {% endmacro %}
-{% macro shinyPokemonIcon(item, locale) %}
+{% macro shinyPokemonIcon(item, locale, classMore) %}
     {{ _self.pokemonIcon(
         item,
         'shiny',
-        locale
+        locale,
+        classMore,
     ) }}
 {% endmacro %}
-{% macro pokemonIcon(item, dir, locale) %}
+{% macro pokemonIcon(item, dir, locale, classMore) %}
     {% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
 
     {% set defaultIconBaseUrl = 'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8' %}
@@ -103,8 +213,35 @@
 
     <img
         alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"
-        class="album-image img-fluid"
+        class="album-image img-fluid {{ classMore }}"
         src="{{ iconUrl }}"
+    />
+{% endmacro %}
+
+{% macro regularPokemonImage(item, locale) %}
+    {{ _self.pokemonImage(
+        item,
+        'regular',
+        locale
+    ) }}
+{% endmacro %}
+{% macro shinyPokemonImage(item, locale) %}
+    {{ _self.pokemonImage(
+        item,
+        'shiny',
+        locale
+    ) }}
+{% endmacro %}
+{% macro pokemonImage(item, dir, locale) %}
+    {% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
+
+    {% set defaultImageBaseUrl = '/img/pokemons' %}
+    {% set defaultImageUrl = defaultImageBaseUrl~'/'~dir~'/'~item.pokemon_icon~'.png' %}
+
+    <img
+        alt="{{ ('album.image.alt.'~dir)|trans }} {{ pokemonName }}"
+        class="album-modal-image img-fluid"
+        src="{{ defaultImageUrl }}"
     />
 {% endmacro %}
 

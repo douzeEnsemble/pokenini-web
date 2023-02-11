@@ -1,4 +1,6 @@
 .DS_Store
+namespace App\Tests\Browser\Album;
+/.idea/
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -20,7 +22,6 @@
 .phpunit.result.cache
 coverage.xml
 ###< phpunit/phpunit ###
-/.idea/
 
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
@@ -31,3 +32,6 @@ tests/coverage
 tests/last.html
 tests/screen.png
 tests/mutation/index.html
+
+public/img/pokemons
+resources/sprites
