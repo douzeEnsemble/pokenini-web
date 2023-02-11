@@ -22,8 +22,8 @@
       "pokemon_simplified_french_name": "Bulbizarre",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "bulbasaur",
-      "pokemon_regular_sprite_url":"https:\/\/raw.githubusercontent.com\/msikma\/pokesprite\/master\/pokemon-gen8\/regular\/bulbasaur.png",
-      "pokemon_shiny_sprite_url":"https:\/\/raw.githubusercontent.com\/msikma\/pokesprite\/master\/pokemon-gen8\/shiny\/bulbasaur.png",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/bulbasaur.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/bulbasaur.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -32,7 +32,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0001-00"
     },
     {
       "pokemon_slug": "ivysaur",
@@ -52,9 +54,11 @@
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "no",
-      "catch_state_name": "No",
-      "catch_state_french_name": "Non"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0002-01"
     },
     {
       "pokemon_slug": "venusaur",
@@ -66,17 +70,19 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "\u2642\ufe0f",
       "pokemon_icon": "venusaur",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/venusaur.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/venusaur.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "toevolve",
-      "catch_state_name": "To evolve",
-      "catch_state_french_name": "af. évoluer"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-02"
     },
     {
       "pokemon_slug": "venusaur-f",
@@ -88,17 +94,19 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "\u2640\ufe0f",
       "pokemon_icon": "venusaur",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/venusaur.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/venusaur.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": "gender",
       "variant_form_name": "Gender",
-      "catch_state_slug": "tobreed",
-      "catch_state_name": "To breed",
-      "catch_state_french_name": "Af. reproduire"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-03"
     },
     {
       "pokemon_slug": "venusaur-mega",
@@ -110,17 +118,19 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "Mega",
       "pokemon_icon": "venusaur-mega",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/venusaur-mega.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/venusaur-mega.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
       "special_form_name": "Mega",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "totransfer",
-      "catch_state_name": "To transfer",
-      "catch_state_french_name": "à transférer"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-04"
     },
     {
       "pokemon_slug": "venusaur-gmax",
@@ -132,17 +142,19 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "venusaur-gmax",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/venusaur-gmax.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/venusaur-gmax.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
       "special_form_name": "Gigantamax",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-05"
     },
     {
       "pokemon_slug": "charmander",
@@ -154,17 +166,19 @@
       "pokemon_simplified_french_name": "Salam\u00e8che",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charmander",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/charmander.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/charmander.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0004-00"
     },
     {
       "pokemon_slug": "charmeleon",
@@ -176,8 +190,8 @@
       "pokemon_simplified_french_name": "Reptincel",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charmeleon",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/charmeleon.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/charmeleon.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -186,7 +200,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0005-01"
     },
     {
       "pokemon_slug": "charizard",
@@ -198,8 +214,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charizard",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/charizard.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/charizard.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -208,7 +224,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-02"
     },
     {
       "pokemon_slug": "charizard-mega-x",
@@ -220,8 +238,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Mega X",
       "pokemon_icon": "charizard-mega-x",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/charizard-mega-x.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/charizard-mega-x.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -230,7 +248,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-03"
     },
     {
       "pokemon_slug": "charizard-mega-y",
@@ -242,8 +262,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Mega Y",
       "pokemon_icon": "charizard-mega-y",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/charizard-mega-y.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/charizard-mega-y.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -252,7 +272,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-04"
     },
     {
       "pokemon_slug": "charizard-gmax",
@@ -264,8 +286,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "charizard-gmax",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/charizard-gmax.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/charizard-gmax.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -274,7 +296,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-05"
     },
     {
       "pokemon_slug": "squirtle",
@@ -296,7 +320,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0007-00"
     },
     {
       "pokemon_slug": "wartortle",
@@ -308,8 +334,8 @@
       "pokemon_simplified_french_name": "Carabaffe",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "wartortle",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/wartortle.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/wartortle.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -318,7 +344,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0008-01"
     },
     {
       "pokemon_slug": "blastoise",
@@ -330,8 +358,8 @@
       "pokemon_simplified_french_name": "Tortank",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "blastoise",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/blastoise.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/blastoise.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -340,7 +368,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0009-02"
     },
     {
       "pokemon_slug": "blastoise-mega",
@@ -352,8 +382,8 @@
       "pokemon_simplified_french_name": "Tortank",
       "pokemon_forms_french_label": "Mega",
       "pokemon_icon": "blastoise-mega",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/blastoise-mega.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/blastoise-mega.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -362,7 +392,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0009-03"
     },
     {
       "pokemon_slug": "blastoise-gmax",
@@ -374,8 +406,8 @@
       "pokemon_simplified_french_name": "Tortank",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "blastoise-gmax",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/blastoise-gmax.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/blastoise-gmax.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -384,7 +416,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0009-04"
     },
     {
       "pokemon_slug": "caterpie",
@@ -396,8 +430,8 @@
       "pokemon_simplified_french_name": "Chenipan",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "caterpie",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/caterpie.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/caterpie.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -406,7 +440,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0010-00"
     },
     {
       "pokemon_slug": "metapod",
@@ -418,8 +454,8 @@
       "pokemon_simplified_french_name": "Chrysacier",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "metapod",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/metapod.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/metapod.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -428,7 +464,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0011-01"
     },
     {
       "pokemon_slug": "butterfree",
@@ -440,8 +478,8 @@
       "pokemon_simplified_french_name": "Papilusion",
       "pokemon_forms_french_label": "\u2642\ufe0f",
       "pokemon_icon": "butterfree",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/butterfree.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/butterfree.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -450,7 +488,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0012-02"
     },
     {
       "pokemon_slug": "butterfree-f",
@@ -462,8 +502,8 @@
       "pokemon_simplified_french_name": "Papilusion",
       "pokemon_forms_french_label": "\u2640\ufe0f",
       "pokemon_icon": "butterfree",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/butterfree.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/butterfree.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -472,7 +512,9 @@
       "variant_form_name": "Gender",
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0012-03"
     },
     {
       "pokemon_slug": "butterfree-gmax",
@@ -484,8 +526,8 @@
       "pokemon_simplified_french_name": "Papilusion",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "butterfree-gmax",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/butterfree-gmax.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/butterfree-gmax.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -494,7 +536,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0012-04"
     },
     {
       "pokemon_slug": "weedle",
@@ -506,8 +550,8 @@
       "pokemon_simplified_french_name": "Aspicot",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "weedle",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/weedle.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/weedle.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -516,7 +560,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0013-00"
     },
     {
       "pokemon_slug": "kakuna",
@@ -528,8 +574,8 @@
       "pokemon_simplified_french_name": "Coconfort",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "kakuna",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/kakuna.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/kakuna.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -538,7 +584,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0014-01"
     },
     {
       "pokemon_slug": "beedrill",
@@ -550,8 +598,8 @@
       "pokemon_simplified_french_name": "Dardargnan",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "beedrill",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/beedrill.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/beedrill.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -560,7 +608,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0015-02"
     },
     {
       "pokemon_slug": "beedrill-mega",
@@ -572,8 +622,8 @@
       "pokemon_simplified_french_name": "Dardargnan",
       "pokemon_forms_french_label": "Mega",
       "pokemon_icon": "beedrill-mega",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/beedrill-mega.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/beedrill-mega.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -582,7 +632,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0015-03"
     },
     {
       "pokemon_slug": "pidgey",
@@ -594,17 +646,19 @@
       "pokemon_simplified_french_name": "Roucool",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "pidgey",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/pidgey.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/pidgey.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0016-00"
     },
     {
       "pokemon_slug": "pidgeotto",
@@ -616,17 +670,19 @@
       "pokemon_simplified_french_name": "Roucoups",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "pidgeotto",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/pidgeotto.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/pidgeotto.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0017-01"
     },
     {
       "pokemon_slug": "pidgeot",
@@ -638,17 +694,19 @@
       "pokemon_simplified_french_name": "Roucarnage",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "pidgeot",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/pidgeot.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/pidgeot.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0018-02"
     },
     {
       "pokemon_slug": "pidgeot-mega",
@@ -660,17 +718,19 @@
       "pokemon_simplified_french_name": "Roucarnage",
       "pokemon_forms_french_label": "Mega",
       "pokemon_icon": "pidgeot-mega",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/pidgeot-mega.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/pidgeot-mega.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
       "special_form_name": "Mega",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0018-03"
     },
     {
       "pokemon_slug": "rattata",
@@ -682,17 +742,19 @@
       "pokemon_simplified_french_name": "Rattata",
       "pokemon_forms_french_label": "\u2642\ufe0f",
       "pokemon_icon": "rattata",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/rattata.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/rattata.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0019-04"
     },
     {
       "pokemon_slug": "rattata-f",
@@ -704,17 +766,19 @@
       "pokemon_simplified_french_name": "Rattata",
       "pokemon_forms_french_label": "\u2640\ufe0f",
       "pokemon_icon": "rattata",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/rattata.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/rattata.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": "gender",
       "variant_form_name": "Gender",
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0019-05"
     },
     {
       "pokemon_slug": "rattata-alola",
@@ -726,17 +790,19 @@
       "pokemon_simplified_french_name": "Rattata",
       "pokemon_forms_french_label": "d\u0027Alola",
       "pokemon_icon": "rattata-alola",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/rattata-alola.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/rattata-alola.png",
       "regional_form_slug": "alolan",
       "regional_form_name": "Alolan",
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0019-06"
     },
     {
       "pokemon_slug": "raticate",
@@ -748,17 +814,19 @@
       "pokemon_simplified_french_name": "Rattatac",
       "pokemon_forms_french_label": "\u2642\ufe0f",
       "pokemon_icon": "raticate",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/raticate.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/raticate.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0020-07"
     },
     {
       "pokemon_slug": "raticate-f",
@@ -770,17 +838,19 @@
       "pokemon_simplified_french_name": "Rattatac",
       "pokemon_forms_french_label": "\u2640\ufe0f",
       "pokemon_icon": "raticate",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/raticate.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/raticate.png",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": "gender",
       "variant_form_name": "Gender",
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0020-08"
     },
     {
       "pokemon_slug": "raticate-alola",
@@ -792,17 +862,19 @@
       "pokemon_simplified_french_name": "Rattatac",
       "pokemon_forms_french_label": "d\u0027Alola",
       "pokemon_icon": "raticate-alola",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/raticate-alola.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/raticate-alola.png",
       "regional_form_slug": "alolan",
       "regional_form_name": "Alolan",
       "special_form_slug": null,
       "special_form_name": null,
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0020-09"
     },
     {
       "pokemon_slug": "raticate-alola-totem",
@@ -814,17 +886,19 @@
       "pokemon_simplified_french_name": "Rattatac",
       "pokemon_forms_french_label": "Totem d\u0027Alola",
       "pokemon_icon": "raticate-alola",
-      "pokemon_regular_sprite_url":"",
-      "pokemon_shiny_sprite_url":"",
+      "pokemon_regular_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/raticate-alola.png",
+      "pokemon_shiny_sprite_url": "https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/shiny/raticate-alola.png",
       "regional_form_slug": "alolan",
       "regional_form_name": "Alolan",
       "special_form_slug": "totem",
       "special_form_name": "Totem",
       "variant_form_slug": null,
       "variant_form_name": null,
-      "catch_state_slug": "yes",
-      "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_slug": null,
+      "catch_state_name": null,
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0020-10"
     }
   ],
   "report": {

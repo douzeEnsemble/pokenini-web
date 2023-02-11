@@ -34,6 +34,24 @@ a.album-case-catch-state-edit-action:hover {
     color: black;
 }
 
+.modal-body .list-group {
+    font-size: 0.85rem;
+}
+.modal-body .list-group .list-group-item {
+    padding: 0.2rem;
+}
+.modal-body a.album-modal-icon {
+    text-decoration: none;
+    color: #aab7b8;
+}
+.modal-body a.album-modal-icon.active {
+    text-decoration: underline;
+    color: #212529;
+}
+.modal-body .active .img-thumbnail {
+    border-color: #212529;
+}
+
 #report a {
     color: inherit;
     text-decoration: inherit;

@@ -60,6 +60,9 @@ album:
         alt:
             regular: 'Icone de'
             shiny: 'Icone chromatique de'
+        title:
+            regular: 'Normal'
+            shiny: 'Chromatique'
     update:
         title: 'Maj'
         success:
@@ -95,6 +98,14 @@ album:
                 list-7: 'Liste de 7 pokémons par lignes'
         value:
             national: 'National'
+    modal:
+        national_dex_number: Numéro de dex national
+        regional_dex_number: Numéro de dex régional
+        forms: Forme
+        no_forms: Normale
+        link:
+            pokepedia: Fiche Poképédia
+            bulbapedia: Fiche Bulbapedia (anglais)
 
 update:
     labels:

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Browser\Trainer;
+namespace App\Tests\Browser\Album;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
@@ -35,7 +35,12 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter(
             $crawler,
             278,
-            '.album-case-catch-state .album-case-catch-state-label .album-case-catch-state-edit-action'
+            '.album-case-catch-state .album-case-catch-state-edit-action'
+        );
+        $this->assertCountFilter(
+            $crawler,
+            278,
+            '.album-case-catch-state .album-case-catch-state-label'
         );
 
         $this->assertEquals(
@@ -65,7 +70,12 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter(
             $crawler,
             1738,
-            '.album-case-catch-state .album-case-catch-state-label .album-case-catch-state-edit-action'
+            '.album-case-catch-state .album-case-catch-state-edit-action'
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1738,
+            '.album-case-catch-state .album-case-catch-state-label'
         );
 
         $this->assertEquals(
@@ -95,7 +105,12 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter(
             $crawler,
             1738,
-            '.album-case-catch-state .album-case-catch-state-label .album-case-catch-state-edit-action'
+            '.album-case-catch-state .album-case-catch-state-edit-action'
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1738,
+            '.album-case-catch-state .album-case-catch-state-label'
         );
 
         $this->assertEquals(
