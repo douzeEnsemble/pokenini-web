@@ -24,7 +24,7 @@ class AbstractAlbumLocalizationTestCase extends WebTestCase
 
         $icon = $crawler->filter('#bulbasaur .album-case-image img');
         $this->assertEquals(
-            'https://raw.githubusercontent.com/msikma/pokesprite/master/pokemon-gen8/regular/bulbasaur.png',
+            'https://icon.pokenini.fr/small/regular/bulbasaur.png',
             $icon->attr('src')
         );
 

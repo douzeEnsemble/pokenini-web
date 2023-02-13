@@ -1,5 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        pokemonIconUrl: '%env(POKEMON_ICON_URL)%'
+        pokemonImageUrl: '%env(POKEMON_IMAGE_URL)%'
 
 when@test:
     twig:
