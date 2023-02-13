@@ -212,10 +212,19 @@ class ApiServiceRequestCacheTest extends TestCase
         $this->assertEquals('a:0:{}', $cacheValues['register_album']);
 
         $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getPokedex('douze', '7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $service->getPokedex('treize', '7b52009b64fd0a2a49e6d8a939753077792b0554');
         $service->getPokedex('treize', '7b52009b64fd0a2a49e6d8a939753077792b0554');
         $this->assertArrayHasKey('album_douze_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayHasKey('album_treize_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayHasKey('register_album', $cache->getValues());
+        /** @var string[] $cacheValues */
+        $cacheValues = $cache->getValues();
+        $this->assertEquals(
+            'a:2:{i:1;s:52:"album_douze_7b52009b64fd0a2a49e6d8a939753077792b0554";'
+            . 'i:2;s:53:"album_treize_7b52009b64fd0a2a49e6d8a939753077792b0554";}',
+            $cacheValues['register_album']
+        );
 
         $service->invalidateCacheAlbums();
         $this->assertCount(1, $cache->getValues());
@@ -223,6 +232,7 @@ class ApiServiceRequestCacheTest extends TestCase
         $this->assertArrayNotHasKey('album_treize_7b52009b64fd0a2a49e6d8a939753077792b0554', $cache->getValues());
         $this->assertArrayNotHasKey('register_album', $cache->getValues());
     }
+
     public function testReportsCache(): void
     {
         $client = $this->createMock(HttpClientInterface::class);

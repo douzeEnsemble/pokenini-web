@@ -7,7 +7,6 @@ namespace App\Tests\Functional\Album\Display;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DomCrawler\Crawler;
 
 class ModalTest extends WebTestCase
 {
@@ -24,7 +23,7 @@ class ModalTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/home');
 
-        $this->assertCountFilter($crawler, 1740, '.modal');
+        $this->assertCountFilter($crawler, 6, '.modal');
     }
 
     public function testRegularModal(): void
@@ -37,24 +36,24 @@ class ModalTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/home');
 
-        $this->assertCountFilter($crawler, 1, '#modal-charmander');
+        $this->assertCountFilter($crawler, 1, '#modal-bulbasaur');
 
-        $this->assertModalTitle($crawler, 'charmander', 'Salamèche', 'Charmander');
+        $this->assertModalTitle($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
 
-        $this->assertModalImages($crawler, 'charmander');
+        $this->assertModalImages($crawler, 'bulbasaur');
 
-        $this->assertCountFilter($crawler, 6, '#modal-charmander .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
 
-        $this->assertModalItemNames($crawler, 'charmander', 'Salamèche', 'Charmander');
+        $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
 
-        $this->assertModalItemForms($crawler, 'charmander', 'fr', 'Normale');
+        $this->assertModalItemForms($crawler, 'bulbasaur', 'fr', 'Normale');
 
-        $this->assertModalItemNationalDexNumber($crawler, 'charmander', 'fr', 4);
+        $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'fr', 1);
 
-        $this->assertModalItemPokepediaLink($crawler, 'charmander', 'fr', 'Salamèche', false);
-        $this->assertModalItemBulbapediaLink($crawler, 'charmander', 'fr', 'Charmander', false);
+        $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'fr', 'Bulbizarre', false);
+        $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'fr', 'Bulbasaur', false);
 
-        $this->assertModalItemIcons($crawler, 'charmander', 'fr', false);
+        $this->assertModalItemIcons($crawler, 'bulbasaur', 'fr', false);
     }
 
     public function testRegularModalInEnglish(): void
@@ -67,24 +66,24 @@ class ModalTest extends WebTestCase
 
         $crawler = $client->request('GET', '/en/album/home');
 
-        $this->assertCountFilter($crawler, 1, '#modal-charmander');
+        $this->assertCountFilter($crawler, 1, '#modal-bulbasaur');
 
-        $this->assertModalTitle($crawler, 'charmander', 'Charmander', 'Salamèche');
+        $this->assertModalTitle($crawler, 'bulbasaur', 'Bulbasaur', 'Bulbizarre');
 
-        $this->assertModalImages($crawler, 'charmander');
+        $this->assertModalImages($crawler, 'bulbasaur');
 
-        $this->assertCountFilter($crawler, 6, '#modal-charmander .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
 
-        $this->assertModalItemNames($crawler, 'charmander', 'Charmander', 'Salamèche');
+        $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbasaur', 'Bulbizarre');
 
-        $this->assertModalItemForms($crawler, 'charmander', 'en', 'Regular');
+        $this->assertModalItemForms($crawler, 'bulbasaur', 'en', 'Regular');
 
-        $this->assertModalItemNationalDexNumber($crawler, 'charmander', 'en', 4);
+        $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'en', 1);
 
-        $this->assertModalItemPokepediaLink($crawler, 'charmander', 'en', 'Salamèche', false);
-        $this->assertModalItemBulbapediaLink($crawler, 'charmander', 'en', 'Charmander', false);
+        $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'en', 'Bulbizarre', false);
+        $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'en', 'Bulbasaur', false);
 
-        $this->assertModalItemIcons($crawler, 'charmander', 'en', false);
+        $this->assertModalItemIcons($crawler, 'bulbasaur', 'en', false);
     }
 
     public function testRegionalWithFormsModal(): void
@@ -130,23 +129,23 @@ class ModalTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/home');
 
-        $this->assertCountFilter($crawler, 1, '#modal-charizard-mega-y');
+        $this->assertCountFilter($crawler, 1, '#modal-venusaur-mega');
 
-        $this->assertModalTitle($crawler, 'charizard-mega-y', 'Mega Dracaufeu Y', 'Mega Charizard Y');
+        $this->assertModalTitle($crawler, 'venusaur-mega', 'Mega Florizarre', 'Mega Venusaur');
 
-        $this->assertModalImages($crawler, 'charizard-mega-y');
+        $this->assertModalImages($crawler, 'venusaur-mega');
 
-        $this->assertCountFilter($crawler, 6, '#modal-charizard-mega-y .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 6, '#modal-venusaur-mega .modal-body .list-group-item');
 
-        $this->assertModalItemNames($crawler, 'charizard-mega-y', 'Dracaufeu', 'Charizard');
+        $this->assertModalItemNames($crawler, 'venusaur-mega', 'Florizarre', 'Venusaur');
 
-        $this->assertModalItemForms($crawler, 'charizard-mega-y', 'fr', 'Mega Y');
+        $this->assertModalItemForms($crawler, 'venusaur-mega', 'fr', 'Mega');
 
-        $this->assertModalItemNationalDexNumber($crawler, 'charizard-mega-y', 'fr', 6);
+        $this->assertModalItemNationalDexNumber($crawler, 'venusaur-mega', 'fr', 3);
 
-        $this->assertModalItemPokepediaLink($crawler, 'charizard-mega-y', 'fr', 'Dracaufeu', false);
-        $this->assertModalItemBulbapediaLink($crawler, 'charizard-mega-y', 'fr', 'Charizard', false);
+        $this->assertModalItemPokepediaLink($crawler, 'venusaur-mega', 'fr', 'Florizarre', false);
+        $this->assertModalItemBulbapediaLink($crawler, 'venusaur-mega', 'fr', 'Venusaur', false);
 
-        $this->assertModalItemIcons($crawler, 'charizard-mega-y', 'fr', false);
+        $this->assertModalItemIcons($crawler, 'venusaur-mega', 'fr', false);
     }
 }

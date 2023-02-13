@@ -40,3 +40,7 @@ runs:
     - name: Check HTTPS reachability
       shell: bash
       run: curl  -vk -o /dev/null https://localhost:4431
+
+    - name: Clean cache
+      shell: bash
+      run: rm -Rf var/cache/*

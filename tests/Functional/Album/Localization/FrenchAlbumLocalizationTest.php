@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Album\Localization;
 
 use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class FrenchAlbumLocalizationTest extends AbstractAlbumLocalizationTestCase
+class FrenchAlbumLocalizationTest extends WebTestCase
 {
+    use TestNavTrait;
+
     public function testListEdit(): void
     {
         $client = static::createClient();
@@ -17,65 +21,47 @@ class FrenchAlbumLocalizationTest extends AbstractAlbumLocalizationTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
-        $this->assertRegular($client);
         $this->assertRegularFrench($client);
-        $this->assertWriteMode($client);
         $this->assertAlbumFrenchWriteMode($client);
-        $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
         $this->assertNavigationBarFrench($client);
-        $this->assertTrainerAlbumNavBar($client->getCrawler());
     }
 
     public function testListRead(): void
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
-        $this->assertRegular($client);
         $this->assertRegularFrench($client);
-        $this->assertReadMode($client);
         $this->assertAlbumFrenchReadMode($client);
-        $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
-        $this->assertNavigationBar($client);
         $this->assertNavigationBarFrench($client);
-        $this->assertNoConnectedNavBar($client->getCrawler());
     }
 
     public function testListLanguage(): void
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertAlbum($client);
         $this->assertAlbumFrench($client);
-        $this->assertRegular($client);
         $this->assertRegularFrench($client);
-        $this->assertReadMode($client);
         $this->assertAlbumFrenchReadMode($client);
-        $this->assertStatistics($client);
         $this->assertFrenchStatistics($client);
-        $this->assertNavigationBar($client);
         $this->assertNavigationBarFrench($client);
-        $this->assertNoConnectedNavBar($client->getCrawler());
     }
 
     public function testListShiny(): void
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/homeshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $client->request('GET', '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertShiny($client);
         $this->assertShinyFrench($client);
     }
 
@@ -83,7 +69,7 @@ class FrenchAlbumLocalizationTest extends AbstractAlbumLocalizationTestCase
     {
         $crawler = $client->getCrawler();
 
-        $this->assertPageTitleSame('Pokénini Démo');
+        $this->assertPageTitleSame('Pokénini Démo, extrait');
 
         $this->assertEquals(
             'Bulbizarre',
@@ -91,8 +77,8 @@ class FrenchAlbumLocalizationTest extends AbstractAlbumLocalizationTestCase
         );
 
         $this->assertEquals(
-            'Baron ♀️',
-            $crawler->filter('#pikachu-alpha-f .album-case-forms')->text()
+            'Gigamax',
+            $crawler->filter('#butterfree-gmax .album-case-forms')->text()
         );
 
         $tooltip = $crawler->filter('#bulbasaur .album-case-image');
@@ -212,7 +198,7 @@ class FrenchAlbumLocalizationTest extends AbstractAlbumLocalizationTestCase
         $crawler = $client->getCrawler();
 
         $navbarTitle = $crawler->filter('.navbar-brand');
-        $this->assertEquals('Démo', $navbarTitle->text());
+        $this->assertEquals('Démo, extrait', $navbarTitle->text());
         $this->assertEquals('/fr', $navbarTitle->attr('href'));
 
         $this->assertFrenchLangSwitch($crawler);

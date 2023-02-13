@@ -20,17 +20,17 @@ class BoxTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCountFilter($crawler, 1738, '.album-case.col');
+        $this->assertCountFilter($crawler, 37, '.album-case.col');
         $this->assertCountFilter($crawler, 5, '#box-1 .album-line');
         $this->assertCountFilter($crawler, 6, 'div.row.album-line', 0, '.album-case.col');
-        $this->assertCountFilter($crawler, 6, 'div.row.album-line', 12, '.album-case.col');
-        $this->assertCountFilter($crawler, 5, '#box-12 .album-line');
-        $this->assertCountFilter($crawler, 290, 'div.row.album-line');
-        $this->assertCountFilter($crawler, 58, '.box');
-        $this->assertCountFilter($crawler, 58, '.box .box-title h2');
-        $this->assertCountFilter($crawler, 58, '.box .box-title a');
+        $this->assertCountFilter($crawler, 6, 'div.row.album-line', 2, '.album-case.col');
+        $this->assertCountFilter($crawler, 2, '#box-2 .album-line');
+        $this->assertCountFilter($crawler, 7, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 2, '.box');
+        $this->assertCountFilter($crawler, 2, '.box .box-title h2');
+        $this->assertCountFilter($crawler, 2, '.box .box-title a');
 
         $this->assertEquals(
             '#box-1',
@@ -40,10 +40,10 @@ class BoxTest extends WebTestCase
                 ->attr('href')
         );
         $this->assertEquals(
-            '#box-11',
+            '#box-2',
             $crawler
                 ->filter('.box .box-title a')
-                ->eq(10)
+                ->eq(1)
                 ->attr('href')
         );
     }
@@ -56,17 +56,15 @@ class BoxTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $titleBox1 = $crawler->filter('#box-1 h2');
         $this->assertEquals(
             'Boite 1',
-            $titleBox1->text()
+            $crawler->filter('#box-1 h2')->text()
         );
-        $titleBox58 = $crawler->filter('#box-58 h2');
         $this->assertEquals(
-            'Boite 58',
-            $titleBox58->text()
+            'Boite 2',
+            $crawler->filter('#box-2 h2')->text()
         );
     }
 
@@ -78,17 +76,15 @@ class BoxTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/en/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/en/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $titleBox1 = $crawler->filter('#box-1 h2');
         $this->assertEquals(
             'Box 1',
-            $titleBox1->text()
+            $crawler->filter('#box-1 h2')->text()
         );
-        $titleBox58 = $crawler->filter('#box-58 h2');
         $this->assertEquals(
-            'Box 58',
-            $titleBox58->text()
+            'Box 2',
+            $crawler->filter('#box-2 h2')->text()
         );
     }
 
@@ -100,9 +96,9 @@ class BoxTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demolite/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCountFilter($crawler, 1718, '.album-case.col');
+        $this->assertCountFilter($crawler, 31, '.album-case.col');
         $this->assertCountFilter($crawler, 1, 'div.row.album-line');
         $this->assertCountFilter($crawler, 0, '.box');
         $this->assertCountFilter($crawler, 1, '.album-container h2');

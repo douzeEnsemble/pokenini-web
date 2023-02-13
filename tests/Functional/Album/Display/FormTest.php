@@ -24,7 +24,7 @@ class FormTest extends WebTestCase
 
         $crawler = $client->getCrawler();
 
-        $this->assertEquals('Printemps', $crawler->filter('#deerling-spring .album-case-forms')->text());
+        $this->assertEquals('♂️', $crawler->filter('#venusaur .album-case-forms')->text());
     }
 
     public function testNonDisplayForm(): void
@@ -39,6 +39,6 @@ class FormTest extends WebTestCase
 
         $crawler = $client->getCrawler();
 
-        $this->assertEquals(' ', $crawler->filter('#deerling-spring .album-case-forms')->text());
+        $this->assertEquals(' ', $crawler->filter('#venusaur .album-case-forms')->text());
     }
 }

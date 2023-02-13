@@ -2,30 +2,70 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Album\Localization;
+namespace App\Tests\Functional\Album\Display;
 
+use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AbstractAlbumLocalizationTestCase extends WebTestCase
+class CommonTest extends WebTestCase
 {
     use TestNavTrait;
 
-    protected function assertAlbum(KernelBrowser $client): void
+    public function testListRead(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertAlbum($client);
+        $this->assertReadMode($client);
+        $this->assertRegular($client);
+        $this->assertStatistics($client);
+        $this->assertNavigationBar($client);
+        $this->assertNoConnectedNavBar($client->getCrawler());
+    }
+
+    public function testListEdit(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertAlbum($client);
+        $this->assertWriteMode($client);
+        $this->assertRegular($client);
+        $this->assertStatistics($client);
+        $this->assertTrainerAlbumNavBar($client->getCrawler());
+    }
+
+    public function testListShiny(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertShiny($client);
+    }
+
+    private function assertAlbum(KernelBrowser $client): void
     {
         $this->assertResponseIsSuccessful();
 
         $crawler = $client->getCrawler();
 
-        $expectedPokemonCount = 1738;
+        $expectedPokemonCount = 37;
 
         $this->assertCountFilter($crawler, $expectedPokemonCount, '.album-case');
 
-        $icon = $crawler->filter('#bulbasaur .album-case-image img');
         $this->assertEquals(
             'https://icon.pokenini.fr/small/regular/bulbasaur.png',
-            $icon->attr('src')
+            $crawler->filter('#bulbasaur .album-case-image img')->attr('src')
         );
 
         $this->assertEquals(
@@ -46,12 +86,12 @@ class AbstractAlbumLocalizationTestCase extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#charmander.album-case.catch-state-yes');
     }
 
-    protected function assertReadMode(KernelBrowser $client): void
+    private function assertReadMode(KernelBrowser $client): void
     {
         $crawler = $client->getCrawler();
 
         $this->assertCountFilter($crawler, 0, '.album-case select');
-        $this->assertCountFilter($crawler, 1738, '.album-case .album-case-catch-state');
+        $this->assertCountFilter($crawler, 37, '.album-case .album-case-catch-state');
 
         $this->assertCountFilter($crawler, 0, '.toast');
 
@@ -61,19 +101,19 @@ class AbstractAlbumLocalizationTestCase extends WebTestCase
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
     }
 
-    protected function assertWriteMode(KernelBrowser $client): void
+    private function assertWriteMode(KernelBrowser $client): void
     {
         $crawler = $client->getCrawler();
 
-        $this->assertCountFilter($crawler, 1738, '.album-case select');
+        $this->assertCountFilter($crawler, 37, '.album-case select');
 
         $this->assertCountFilter($crawler, 6, '#bulbasaur select option');
 
-        $this->assertCountFilter($crawler, 1738, '.album-case .album-case-catch-state');
+        $this->assertCountFilter($crawler, 37, '.album-case .album-case-catch-state');
 
-        $this->assertCountFilter($crawler, 3476, '.toast');
-        $this->assertCountFilter($crawler, 1738, '.toast.text-bg-success');
-        $this->assertCountFilter($crawler, 1738, '.toast.text-bg-danger');
+        $this->assertCountFilter($crawler, 74, '.toast');
+        $this->assertCountFilter($crawler, 37, '.toast.text-bg-success');
+        $this->assertCountFilter($crawler, 37, '.toast.text-bg-danger');
 
         $this->assertCountFilter($crawler, 1, 'script[src="/js/album.js"]');
 
@@ -81,7 +121,7 @@ class AbstractAlbumLocalizationTestCase extends WebTestCase
         $this->assertStringContainsString('watchCatchStates();', $crawler->outerHtml());
     }
 
-    protected function assertStatistics(KernelBrowser $client): void
+    private function assertStatistics(KernelBrowser $client): void
     {
         $crawler = $client->getCrawler();
 
@@ -91,7 +131,7 @@ class AbstractAlbumLocalizationTestCase extends WebTestCase
         $this->assertCountFilter($crawler, 6, '.progress-bar');
 
         $this->assertEquals(
-            '99.71%',
+            '45.95%',
             $crawler->filter('.progress-bar.catch-state-no')->text()
         );
         $this->assertEmpty(
@@ -104,7 +144,7 @@ class AbstractAlbumLocalizationTestCase extends WebTestCase
             $crawler->filter('.progress-bar.catch-state-totransfer')->text()
         );
         $this->assertEquals(
-            '0.12%',
+            '54.05%',
             $crawler->filter('.progress-bar.catch-state-yes')->text()
         );
 
@@ -119,64 +159,64 @@ class AbstractAlbumLocalizationTestCase extends WebTestCase
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-total');
 
         $this->assertEquals(
-            1731,
+            '17',
             $crawler->filter('table#report tr.catch-state-no td')->text()
         );
         $this->assertEquals(
-            1,
+            '1',
             $crawler->filter('table#report tr.catch-state-toevolve td')->text()
         );
         $this->assertEquals(
-            1,
+            '1',
             $crawler->filter('table#report tr.catch-state-tobreed td')->text()
         );
         $this->assertEquals(
-            1,
+            '1',
             $crawler->filter('table#report tr.catch-state-totransfer td')->text()
         );
         $this->assertEquals(
-            2,
+            '20',
             $crawler->filter('table#report tr.catch-state-yes td')->text()
         );
         $this->assertEquals(
-            1736,
+            '37',
             $crawler->filter('table#report tr.catch-state-total td')->text()
         );
 
         $this->assertStringContainsString(
-            '/album/demo/no',
+            '/album/demolite/no',
             (string) $crawler->filter('table#report tr.catch-state-no a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo/toevolve',
+            '/album/demolite/toevolve',
             (string) $crawler->filter('table#report tr.catch-state-toevolve a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo/tobreed',
+            '/album/demolite/tobreed',
             (string) $crawler->filter('table#report tr.catch-state-tobreed a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo/totransfer',
+            '/album/demolite/totransfer',
             (string) $crawler->filter('table#report tr.catch-state-totransfer a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo/yes',
+            '/album/demolite/yes',
             (string) $crawler->filter('table#report tr.catch-state-yes a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demo',
+            '/album/demolite',
             (string) $crawler->filter('table#report tr.catch-state-total a')->attr('href')
         );
     }
 
-    protected function assertNavigationBar(KernelBrowser $client): void
+    private function assertNavigationBar(KernelBrowser $client): void
     {
         $crawler = $client->getCrawler();
 
         $this->assertNoConnectedNavBar($crawler);
     }
 
-    protected function assertRegular(KernelBrowser $client): void
+    private function assertRegular(KernelBrowser $client): void
     {
         $crawler = $client->getCrawler();
 
@@ -186,7 +226,7 @@ class AbstractAlbumLocalizationTestCase extends WebTestCase
         );
     }
 
-    protected function assertShiny(KernelBrowser $client): void
+    private function assertShiny(KernelBrowser $client): void
     {
         $crawler = $client->getCrawler();
 

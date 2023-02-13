@@ -14,5 +14,5 @@
     "tmpDir": "/srv/var/cache",
     "timeout": 60,
     "testFramework": "phpunit",
-    "testFrameworkOptions": '--exclude-group="browser"',
+    "testFrameworkOptions": '--exclude-group="browser-testing"',
 }
