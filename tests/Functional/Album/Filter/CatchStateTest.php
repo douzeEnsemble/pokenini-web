@@ -18,7 +18,7 @@ class CatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/demo/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCountFilter($crawler, 1718, '.album-case');
+        $this->assertCountFilter($crawler, 11, '.album-case');
 
         $this->assertCountFilter($crawler, 0, 'h2.box');
         $this->assertCountFilter($crawler, 1, '#bulbasaur');
@@ -44,7 +44,7 @@ class CatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/demo/yes?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCountFilter($crawler, 9, '.album-case');
+        $this->assertCountFilter($crawler, 2, '.album-case');
 
         $this->assertCountFilter($crawler, 0, 'h2.box');
         $this->assertCountFilter($crawler, 0, '#bulbasaur');
@@ -64,7 +64,7 @@ class CatchStateTest extends WebTestCase
         );
     }
 
-    public function testEditFilterCatchStateYes(): void
+    public function testOwnerFilterCatchStateYes(): void
     {
         $client = static::createClient();
 

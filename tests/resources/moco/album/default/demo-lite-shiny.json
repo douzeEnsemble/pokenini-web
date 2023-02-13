@@ -8,6 +8,7 @@
     "display_template": "box",
     "region_name":null,
     "region_french_name":null,
+    "description": "",
     "french_description": "",
     "version": 0
   },

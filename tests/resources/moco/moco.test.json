@@ -3,6 +3,7 @@
     "request": {
       "uri": "/catch_states",
       "headers": {
+        "accept" : "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -269,6 +270,19 @@
   {
     "request": {
       "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/goldsilvercrystal"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/goldsilvercrystal.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/album/[\\w\\d]*/goldsilvercrystal"
       },
       "headers": {
@@ -329,6 +343,19 @@
     },
     "response": {
       "file": "/var/moco/album/default/heartgoldsoulsilver.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/blackwhite"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/blackwhite.json"
     }
   },
   {
@@ -537,6 +564,19 @@
     },
     "response": {
       "file": "/var/moco/album/default/homeshiny.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/homepokemongo"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/homepokemongo.json"
     }
   },
   {

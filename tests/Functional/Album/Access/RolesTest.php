@@ -52,7 +52,7 @@ class RolesTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/home');
+        $crawler = $client->request('GET', '/fr/album/demolite');
 
         $this->assertAdminAlbumNavBar($crawler);
     }
@@ -88,7 +88,7 @@ class RolesTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/home');
+        $crawler = $client->request('GET', '/fr/album/demolite');
 
         $this->assertAdminAlbumNavBar($crawler);
     }
