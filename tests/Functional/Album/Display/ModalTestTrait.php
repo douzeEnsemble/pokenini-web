@@ -27,7 +27,7 @@ trait ModalTestTrait
         );
     }
 
-    public function assertModalImages(
+    public function assertModalImagesRegularAtFirst(
         Crawler $crawler,
         string $pokemonSlug,
     ): void {
@@ -45,11 +45,38 @@ trait ModalTestTrait
         $this->assertCountFilter(
             $crawler,
             1,
-            "#modal-$pokemonSlug .modal-body .album-modal-image-container-shiny[hidden]"
+            "#modal-$pokemonSlug .modal-body .album-modal-image-container-shiny"
         );
         $this->assertCountFilter(
             $crawler,
             1,
+            "#modal-$pokemonSlug .modal-body .album-modal-image-container-shiny[hidden]"
+        );
+    }
+
+    public function assertModalImagesShinyAtFirst(
+        Crawler $crawler,
+        string $pokemonSlug,
+    ): void {
+        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug .modal-body .album-modal-image");
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .album-modal-image-container-regular"
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .album-modal-image-container-regular[hidden]"
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .album-modal-image-container-shiny"
+        );
+        $this->assertCountFilter(
+            $crawler,
+            0,
             "#modal-$pokemonSlug .modal-body .album-modal-image-container-shiny[hidden]"
         );
     }
