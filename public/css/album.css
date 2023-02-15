@@ -60,9 +60,12 @@ a.album-case-catch-state-edit-action:hover {
     background-color: white;
 }
 
-.row-cols-7 > * {
+.album-line.row-cols-7 > * {
     flex: 0 0 auto;
     width: 14.285714285714286%;
+}
+.album-line.row-cols-7 .modal {
+    width: 100%;
 }
 
 .d-flex[hidden] {
