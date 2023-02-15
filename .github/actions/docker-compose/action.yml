@@ -40,3 +40,11 @@ runs:
     - name: Check HTTPS reachability
       shell: bash
       run: curl  -vk -o /dev/null https://localhost:4431
+
+    - name: Delete the cache
+      shell: bash
+      run: rm -Rf var/cache/*
+
+    - name: Warmup the SF cache
+      shell: bash
+      run: docker compose exec -T php bin/console cache:clear --env=test
