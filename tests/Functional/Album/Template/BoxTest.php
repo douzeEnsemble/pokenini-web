@@ -6,11 +6,13 @@ namespace App\Tests\Functional\Album\Template;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BoxTest extends WebTestCase
 {
     use TestNavTrait;
+    use TestSetUp;
 
     public function testDexBoxTemplate(): void
     {

@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\StaticPage;
 
+use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class StaticPageTest extends WebTestCase
 {
+    use TestSetUp;
+
     public function testFrenchLegals(): void
     {
         $client = static::createClient();
