@@ -6,12 +6,14 @@ namespace App\Tests\Functional\Album\Display;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CommonTest extends WebTestCase
 {
     use TestNavTrait;
+    use TestSetUp;
 
     public function testListRead(): void
     {

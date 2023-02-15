@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Album\Action;
 
 use App\Security\User;
+use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UpdateTest extends WebTestCase
 {
+    use TestSetUp;
+
     public function testUpdateConnected(): void
     {
         $client = static::createClient();
