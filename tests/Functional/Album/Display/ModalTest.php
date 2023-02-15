@@ -40,7 +40,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalTitle($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
 
-        $this->assertModalImages($crawler, 'bulbasaur');
+        $this->assertModalImagesRegularAtFirst($crawler, 'bulbasaur');
 
         $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
 
@@ -70,7 +70,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalTitle($crawler, 'bulbasaur', 'Bulbasaur', 'Bulbizarre');
 
-        $this->assertModalImages($crawler, 'bulbasaur');
+        $this->assertModalImagesRegularAtFirst($crawler, 'bulbasaur');
 
         $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
 
@@ -84,6 +84,36 @@ class ModalTest extends WebTestCase
         $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'en', 'Bulbasaur', false);
 
         $this->assertModalItemIcons($crawler, 'bulbasaur', 'en', false);
+    }
+
+    public function testShinyModal(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/fr/album/demoliteshiny');
+
+        $this->assertCountFilter($crawler, 1, '#modal-bulbasaur');
+
+        $this->assertModalTitle($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
+
+        $this->assertModalImagesShinyAtFirst($crawler, 'bulbasaur');
+
+        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
+
+        $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
+
+        $this->assertModalItemForms($crawler, 'bulbasaur', 'fr', 'Normale');
+
+        $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'fr', 1);
+
+        $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'fr', 'Bulbizarre', false);
+        $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'fr', 'Bulbasaur', false);
+
+        $this->assertModalItemIcons($crawler, 'bulbasaur', 'fr', false);
     }
 
     public function testRegionalWithFormsModal(): void
@@ -102,7 +132,7 @@ class ModalTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 2, '#modal-meganium .modal-body .album-modal-image');
 
-        $this->assertModalImages($crawler, 'meganium');
+        $this->assertModalImagesRegularAtFirst($crawler, 'meganium');
 
         $this->assertCountFilter($crawler, 7, '#modal-meganium .modal-body .list-group-item');
 
@@ -133,7 +163,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalTitle($crawler, 'venusaur-mega', 'Mega Florizarre', 'Mega Venusaur');
 
-        $this->assertModalImages($crawler, 'venusaur-mega');
+        $this->assertModalImagesRegularAtFirst($crawler, 'venusaur-mega');
 
         $this->assertCountFilter($crawler, 6, '#modal-venusaur-mega .modal-body .list-group-item');
 
