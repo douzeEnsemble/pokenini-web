@@ -76,11 +76,13 @@
     {% if not dex.is_private %}
     <a
       class="list-group-item list-group-item-action list-group-item-success d-flex justify-content-between align-items-center"
-      href="{{ path('app_album_index', {
-        'dexSlug': currentDexSlug,
-        't': trainerId,
-        'filter': filter,
-      }) }}"
+      href="{{
+        path('app_album_index',
+          filters|merge({
+            'dexSlug': currentDexSlug,
+            't': trainerId,
+          })
+        ) }}"
     >
       <i class="bi bi-share"></i>
       {{ 'nav.share'|trans }}

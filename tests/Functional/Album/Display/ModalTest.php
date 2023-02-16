@@ -171,7 +171,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemNames($crawler, 'venusaur-mega', 'Florizarre', 'Venusaur');
 
-        $this->assertModalItemForms($crawler, 'venusaur-mega', 'fr', 'Mega');
+        $this->assertModalItemForms($crawler, 'venusaur-mega', 'fr', 'mega');
 
         $this->assertModalItemNationalDexNumber($crawler, 'venusaur-mega', 'fr', 3);
 

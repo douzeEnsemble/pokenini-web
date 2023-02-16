@@ -50,39 +50,17 @@ class AlbumController extends AbstractController
         return new Response();
     }
 
-    /**
-     * @param string[][] $pokemons
-     * @return string[][]
-     */
-    private function pokemonsFilter(array $pokemons, ?string $filter): array
-    {
-        if (empty($filter)) {
-            return $pokemons;
-        }
-
-        $list = [];
-        foreach ($pokemons as $pokemon) {
-            if ($filter === ($pokemon['catch_state_slug'] ?? 'no')) {
-                $list[] = $pokemon;
-            }
-        }
-
-        return $list;
-    }
-
     #[Route(
-        '/{dexSlug}/{filter?}',
+        '/{dexSlug}',
         name: 'app_album_index',
         requirements: [
             'dexSlug' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*',
-            'filter' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*'
         ],
         methods: ['GET']
     )]
     public function index(
         Request $request,
         string $dexSlug,
-        ?string $filter = null,
     ): Response {
         $loggedTrainerId = null;
         $queryTrainerId = $request->query->getAlnum('t');
@@ -113,7 +91,8 @@ class AlbumController extends AbstractController
 
         $catchStates = $this->apiService->getCatchStates();
 
-        $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filter);
+        $filters = $this->getFilters($request);
+        $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filters);
 
         return $this->render('Album/index.html.twig', [
             'currentDexSlug' => $dexSlug,
@@ -122,11 +101,47 @@ class AlbumController extends AbstractController
             'list' => $pokemons,
             'catchStates' => $catchStates,
             'mode' => 'read',
-            'filter' => $filter,
+            'filters' => $filters,
             'trainerId' => $trainerId,
             'loggedTrainerId' => $loggedTrainerId,
             'queryTrainerId' => $queryTrainerId,
             'allowedToEdit' => $trainerId === $loggedTrainerId,
         ]);
+    }
+
+    /**
+     * @param string[][] $pokemons
+     * @param string[] $filters
+     *
+     * @return string[][]
+     */
+    private function pokemonsFilter(array $pokemons, array $filters): array
+    {
+        if (empty($filters)) {
+            return $pokemons;
+        }
+
+        $list = [];
+        foreach ($pokemons as $pokemon) {
+            if ($filters['cs'] === ($pokemon['catch_state_slug'] ?? 'no')) {
+                $list[] = $pokemon;
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getFilters(Request $request): array
+    {
+        $filter = [];
+
+        if ($request->query->has('cs')) {
+            $filter['cs'] = $request->query->getAlpha('cs');
+        }
+
+        return $filter;
     }
 }
