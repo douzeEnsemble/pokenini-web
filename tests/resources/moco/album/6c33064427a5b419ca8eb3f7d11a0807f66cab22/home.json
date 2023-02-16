@@ -23,6 +23,8 @@
       "pokemon_simplified_french_name": "Bulbizarre",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "bulbasaur",
+      "pokemon_family_order": 0,
+      "family_lead_slug": null,
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -31,7 +33,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0001-00"
     },
     {
       "pokemon_slug": "ivysaur",
@@ -43,6 +47,8 @@
       "pokemon_simplified_french_name": "Herbizarre",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "ivysaur",
+      "pokemon_family_order": 1,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -51,7 +57,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0002-01"
     },
     {
       "pokemon_slug": "venusaur",
@@ -63,6 +71,8 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "\u2642\ufe0f",
       "pokemon_icon": "venusaur",
+      "pokemon_family_order": 2,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -71,7 +81,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-02"
     },
     {
       "pokemon_slug": "venusaur-f",
@@ -83,6 +95,8 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "\u2640\ufe0f",
       "pokemon_icon": "venusaur",
+      "pokemon_family_order": 3,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -91,18 +105,22 @@
       "variant_form_name": "Gender",
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-03"
     },
     {
       "pokemon_slug": "venusaur-mega",
       "pokemon_name": "Mega Venusaur",
       "pokemon_national_dex_number": 3,
       "pokemon_simplified_name": "Venusaur",
-      "pokemon_forms_label": "Mega",
+      "pokemon_forms_label": "mega",
       "pokemon_french_name": "Mega Florizarre",
       "pokemon_simplified_french_name": "Florizarre",
-      "pokemon_forms_french_label": "Mega",
+      "pokemon_forms_french_label": "mega",
       "pokemon_icon": "venusaur-mega",
+      "pokemon_family_order": 4,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -111,18 +129,22 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-04"
     },
     {
       "pokemon_slug": "venusaur-gmax",
       "pokemon_name": "Gigantamax Venusaur",
       "pokemon_national_dex_number": 3,
       "pokemon_simplified_name": "Venusaur",
-      "pokemon_forms_label": "Gigantamax",
+      "pokemon_forms_label": "gigantamax",
       "pokemon_french_name": "Gigamax Florizarre",
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "venusaur-gmax",
+      "pokemon_family_order": 5,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -131,7 +153,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-05"
     }
   ],
   "report": {

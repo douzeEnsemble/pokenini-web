@@ -23,6 +23,8 @@
       "pokemon_simplified_french_name": "Bulbizarre",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "bulbasaur",
+      "pokemon_family_order": 0,
+      "family_lead_slug": null,
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -31,7 +33,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0001-00"
     },
     {
       "pokemon_slug": "ivysaur",
@@ -43,6 +47,8 @@
       "pokemon_simplified_french_name": "Herbizarre",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "ivysaur",
+      "pokemon_family_order": 1,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -51,7 +57,9 @@
       "variant_form_name": null,
       "catch_state_slug": "no",
       "catch_state_name": "No",
-      "catch_state_french_name": "Non"
+      "catch_state_french_name": "Non",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0002-01"
     },
     {
       "pokemon_slug": "venusaur",
@@ -63,6 +71,8 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "\u2642\ufe0f",
       "pokemon_icon": "venusaur",
+      "pokemon_family_order": 2,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -71,7 +81,9 @@
       "variant_form_name": null,
       "catch_state_slug": "toevolve",
       "catch_state_name": "To evolve",
-      "catch_state_french_name": "af. évoluer"
+      "catch_state_french_name": "af. évoluer",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-02"
     },
     {
       "pokemon_slug": "venusaur-f",
@@ -83,6 +95,8 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "\u2640\ufe0f",
       "pokemon_icon": "venusaur",
+      "pokemon_family_order": 3,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -91,18 +105,22 @@
       "variant_form_name": "Gender",
       "catch_state_slug": "tobreed",
       "catch_state_name": "To breed",
-      "catch_state_french_name": "Af. reproduire"
+      "catch_state_french_name": "Af. reproduire",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-03"
     },
     {
       "pokemon_slug": "venusaur-mega",
       "pokemon_name": "Mega Venusaur",
       "pokemon_national_dex_number": 3,
       "pokemon_simplified_name": "Venusaur",
-      "pokemon_forms_label": "Mega",
+      "pokemon_forms_label": "mega",
       "pokemon_french_name": "Mega Florizarre",
       "pokemon_simplified_french_name": "Florizarre",
-      "pokemon_forms_french_label": "Mega",
+      "pokemon_forms_french_label": "mega",
       "pokemon_icon": "venusaur-mega",
+      "pokemon_family_order": 4,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -111,18 +129,22 @@
       "variant_form_name": null,
       "catch_state_slug": "totransfer",
       "catch_state_name": "To transfer",
-      "catch_state_french_name": "à transférer"
+      "catch_state_french_name": "à transférer",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-04"
     },
     {
       "pokemon_slug": "venusaur-gmax",
       "pokemon_name": "Gigantamax Venusaur",
       "pokemon_national_dex_number": 3,
       "pokemon_simplified_name": "Venusaur",
-      "pokemon_forms_label": "Gigantamax",
+      "pokemon_forms_label": "gigantamax",
       "pokemon_french_name": "Gigamax Florizarre",
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "venusaur-gmax",
+      "pokemon_family_order": 5,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -131,7 +153,9 @@
       "variant_form_name": null,
       "catch_state_slug": "totrade",
       "catch_state_name": "To trade",
-      "catch_state_french_name": "À échanger"
+      "catch_state_french_name": "À échanger",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-05"
     },
     {
       "pokemon_slug": "charmander",
@@ -143,6 +167,8 @@
       "pokemon_simplified_french_name": "Salam\u00e8che",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charmander",
+      "pokemon_family_order": 0,
+      "family_lead_slug": null,
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -151,7 +177,9 @@
       "variant_form_name": null,
       "catch_state_slug": "yes",
       "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_french_name": "Oui",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0004-00"
     },
     {
       "pokemon_slug": "charmeleon",
@@ -163,6 +191,8 @@
       "pokemon_simplified_french_name": "Reptincel",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charmeleon",
+      "pokemon_family_order": 1,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -171,7 +201,9 @@
       "variant_form_name": null,
       "catch_state_slug": "yes",
       "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_french_name": "Oui",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0005-01"
     },
     {
       "pokemon_slug": "charizard",
@@ -183,6 +215,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charizard",
+      "pokemon_family_order": 2,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -191,7 +225,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-02"
     },
     {
       "pokemon_slug": "charizard-mega-x",
@@ -203,6 +239,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Mega X",
       "pokemon_icon": "charizard-mega-x",
+      "pokemon_family_order": 3,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -211,7 +249,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-03"
     },
     {
       "pokemon_slug": "charizard-mega-y",
@@ -223,6 +263,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Mega Y",
       "pokemon_icon": "charizard-mega-y",
+      "pokemon_family_order": 4,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -231,18 +273,22 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-04"
     },
     {
       "pokemon_slug": "charizard-gmax",
       "pokemon_name": "Gigantamax Charizard",
       "pokemon_national_dex_number": 6,
       "pokemon_simplified_name": "Charizard",
-      "pokemon_forms_label": "Gigantamax",
+      "pokemon_forms_label": "gigantamax",
       "pokemon_french_name": "Gigamax Dracaufeu",
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "charizard-gmax",
+      "pokemon_family_order": 5,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -251,7 +297,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-05"
     },
     {
       "pokemon_slug": "squirtle",
@@ -263,6 +311,8 @@
       "pokemon_simplified_french_name": "Carapuce",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "squirtle",
+      "pokemon_family_order": 0,
+      "family_lead_slug": null,
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -271,7 +321,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0007-00"
     },
     {
       "pokemon_slug": "wartortle",
@@ -283,6 +335,8 @@
       "pokemon_simplified_french_name": "Carabaffe",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "wartortle",
+      "pokemon_family_order": 1,
+      "family_lead_slug": "squirtle",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -291,7 +345,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0008-01"
     },
     {
       "pokemon_slug": "blastoise",
@@ -303,6 +359,8 @@
       "pokemon_simplified_french_name": "Tortank",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "blastoise",
+      "pokemon_family_order": 2,
+      "family_lead_slug": "squirtle",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -311,18 +369,22 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0009-02"
     },
     {
       "pokemon_slug": "blastoise-mega",
       "pokemon_name": "Mega Blastoise",
       "pokemon_national_dex_number": 9,
       "pokemon_simplified_name": "Blastoise",
-      "pokemon_forms_label": "Mega",
+      "pokemon_forms_label": "mega",
       "pokemon_french_name": "Mega Tortank",
       "pokemon_simplified_french_name": "Tortank",
-      "pokemon_forms_french_label": "Mega",
+      "pokemon_forms_french_label": "mega",
       "pokemon_icon": "blastoise-mega",
+      "pokemon_family_order": 3,
+      "family_lead_slug": "squirtle",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -331,18 +393,22 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0009-03"
     },
     {
       "pokemon_slug": "blastoise-gmax",
       "pokemon_name": "Gigantamax Blastoise",
       "pokemon_national_dex_number": 9,
       "pokemon_simplified_name": "Blastoise",
-      "pokemon_forms_label": "Gigantamax",
+      "pokemon_forms_label": "gigantamax",
       "pokemon_french_name": "Gigamax Tortank",
       "pokemon_simplified_french_name": "Tortank",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "blastoise-gmax",
+      "pokemon_family_order": 4,
+      "family_lead_slug": "squirtle",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -351,7 +417,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0009-04"
     }
   ],
   "report": {

@@ -23,6 +23,8 @@
       "pokemon_simplified_french_name": "Bulbizarre",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "bulbasaur",
+      "pokemon_family_order": 0,
+      "family_lead_slug": null,
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -31,7 +33,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0001-00"
     },
     {
       "pokemon_slug": "ivysaur",
@@ -43,6 +47,8 @@
       "pokemon_simplified_french_name": "Herbizarre",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "ivysaur",
+      "pokemon_family_order": 1,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -51,7 +57,9 @@
       "variant_form_name": null,
       "catch_state_slug": "no",
       "catch_state_name": "No",
-      "catch_state_french_name": "Non"
+      "catch_state_french_name": "Non",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0002-01"
     },
     {
       "pokemon_slug": "venusaur",
@@ -63,6 +71,8 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "\u2642\ufe0f",
       "pokemon_icon": "venusaur",
+      "pokemon_family_order": 2,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -71,7 +81,9 @@
       "variant_form_name": null,
       "catch_state_slug": "toevolve",
       "catch_state_name": "To evolve",
-      "catch_state_french_name": "af. évoluer"
+      "catch_state_french_name": "af. évoluer",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-02"
     },
     {
       "pokemon_slug": "venusaur-f",
@@ -83,6 +95,8 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "\u2640\ufe0f",
       "pokemon_icon": "venusaur",
+      "pokemon_family_order": 3,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -91,7 +105,9 @@
       "variant_form_name": "Gender",
       "catch_state_slug": "tobreed",
       "catch_state_name": "To breed",
-      "catch_state_french_name": "Af. reproduire"
+      "catch_state_french_name": "Af. reproduire",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-03"
     },
     {
       "pokemon_slug": "venusaur-mega",
@@ -103,6 +119,8 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "Mega",
       "pokemon_icon": "venusaur-mega",
+      "pokemon_family_order": 4,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -111,7 +129,9 @@
       "variant_form_name": null,
       "catch_state_slug": "totransfer",
       "catch_state_name": "To transfer",
-      "catch_state_french_name": "à transférer"
+      "catch_state_french_name": "à transférer",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-04"
     },
     {
       "pokemon_slug": "venusaur-gmax",
@@ -123,6 +143,8 @@
       "pokemon_simplified_french_name": "Florizarre",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "venusaur-gmax",
+      "pokemon_family_order": 5,
+      "family_lead_slug": "bulbasaur",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -131,7 +153,9 @@
       "variant_form_name": null,
       "catch_state_slug": "totrade",
       "catch_state_name": "To trade",
-      "catch_state_french_name": "À échanger"
+      "catch_state_french_name": "À échanger",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-05"
     },
     {
       "pokemon_slug": "charmander",
@@ -143,6 +167,8 @@
       "pokemon_simplified_french_name": "Salam\u00e8che",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charmander",
+      "pokemon_family_order": 0,
+      "family_lead_slug": null,
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -151,7 +177,9 @@
       "variant_form_name": null,
       "catch_state_slug": "yes",
       "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_french_name": "Oui",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0004-00"
     },
     {
       "pokemon_slug": "charmeleon",
@@ -163,6 +191,8 @@
       "pokemon_simplified_french_name": "Reptincel",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charmeleon",
+      "pokemon_family_order": 1,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -171,7 +201,9 @@
       "variant_form_name": null,
       "catch_state_slug": "yes",
       "catch_state_name": "Yes",
-      "catch_state_french_name": "Oui"
+      "catch_state_french_name": "Oui",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0005-01"
     },
     {
       "pokemon_slug": "charizard",
@@ -183,6 +215,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "",
       "pokemon_icon": "charizard",
+      "pokemon_family_order": 2,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": null,
@@ -191,7 +225,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-02"
     },
     {
       "pokemon_slug": "charizard-mega-x",
@@ -203,6 +239,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Mega X",
       "pokemon_icon": "charizard-mega-x",
+      "pokemon_family_order": 3,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -211,7 +249,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-03"
     },
     {
       "pokemon_slug": "charizard-mega-y",
@@ -223,6 +263,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Mega Y",
       "pokemon_icon": "charizard-mega-y",
+      "pokemon_family_order": 4,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "mega",
@@ -231,7 +273,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-04"
     },
     {
       "pokemon_slug": "charizard-gmax",
@@ -243,6 +287,8 @@
       "pokemon_simplified_french_name": "Dracaufeu",
       "pokemon_forms_french_label": "Gigamax",
       "pokemon_icon": "charizard-gmax",
+      "pokemon_family_order": 5,
+      "family_lead_slug": "charmander",
       "regional_form_slug": null,
       "regional_form_name": null,
       "special_form_slug": "gigantamax",
@@ -251,7 +297,9 @@
       "variant_form_name": null,
       "catch_state_slug": null,
       "catch_state_name": null,
-      "catch_state_french_name": null
+      "catch_state_french_name": null,
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0006-05"
     }
   ],
   "report": {
