@@ -71,7 +71,7 @@ curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/ultrasunultramoon" --insecure --output tests/resources/moco/album/default/ultrasunultramoon.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/letsgopikachuletsgoeevee" --insecure --output tests/resources/moco/album/default/letsgopikachuletsgoeevee.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/swordshield" --insecure --output tests/resources/moco/album/default/swordshield.json
-curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/brillanddiamondshiningpearl" --insecure --output tests/resources/moco/album/default/brillanddiamondshiningpearl.json
+curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/brilliantdiamondshiningpearl" --insecure --output tests/resources/moco/album/default/brilliantdiamondshiningpearl.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/legendarceus" --insecure --output tests/resources/moco/album/default/legendarceus.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/home" --insecure --output tests/resources/moco/album/default/home.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/homeshiny" --insecure --output tests/resources/moco/album/default/homeshiny.json
