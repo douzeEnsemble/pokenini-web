@@ -30,11 +30,11 @@
                     <a href="{{
                         path(
                             'app_album_index',
-                            filters|merge({
+                            {
                                 'dexSlug': currentDexSlug,
                                 't': sharedTrainerId,
                                 'cs': line.slug
-                            })
+                            }
                         )
                     }}">
                         {{ locale is same as('fr') ? line.frenchName : line.name }}
@@ -47,7 +47,15 @@
         {% endfor %}
         <tr class="catch-state-total">
             <th>
-                <a href="{{ path('app_album_index', {'dexSlug': currentDexSlug, 't': sharedTrainerId}) }}">
+                <a href="{{
+                    path(
+                        'app_album_index',
+                        {
+                            'dexSlug': currentDexSlug,
+                            't': sharedTrainerId,
+                        }
+                    )
+                }}">
                     {{ 'stats.total'|trans }}
                 </a>
             </th>

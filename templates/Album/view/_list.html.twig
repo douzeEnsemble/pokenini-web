@@ -1,4 +1,5 @@
 {% import "Album/_album_macros.html.twig" as macro %}
+{% set sharedTrainerId = app.request.get('t') %}
 
 <div class="album-container album-list-{{ nbCaseByLine }}">
     <h2>{{ 'title.empty'|trans }}</h2>
@@ -8,7 +9,7 @@
     </div>
     <div class="row row-cols-{{ nbCaseByLine }} album-line">
         {% endif %}
-        {{ macro.albumCase(item, dex, allowedToEdit, catchStates) }}
+        {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId) }}
         {% endfor %}
     </div>
 </div>

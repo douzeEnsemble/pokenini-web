@@ -44,7 +44,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalImagesRegularAtFirst($crawler, 'bulbasaur');
 
-        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 7, '#modal-bulbasaur .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
 
@@ -52,10 +52,10 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'fr', 1);
 
+        $this->assertModalItemIcons($crawler, 'bulbasaur', 'fr', false);
+
         $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'fr', 'Bulbizarre', false);
         $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'fr', 'Bulbasaur', false);
-
-        $this->assertModalItemIcons($crawler, 'bulbasaur', 'fr', false);
     }
 
     public function testRegularModalInEnglish(): void
@@ -74,7 +74,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalImagesRegularAtFirst($crawler, 'bulbasaur');
 
-        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 7, '#modal-bulbasaur .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbasaur', 'Bulbizarre');
 
@@ -82,10 +82,10 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'en', 1);
 
+        $this->assertModalItemIcons($crawler, 'bulbasaur', 'en', false);
+
         $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'en', 'Bulbizarre', false);
         $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'en', 'Bulbasaur', false);
-
-        $this->assertModalItemIcons($crawler, 'bulbasaur', 'en', false);
     }
 
     public function testShinyModal(): void
@@ -104,7 +104,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalImagesShinyAtFirst($crawler, 'bulbasaur');
 
-        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 7, '#modal-bulbasaur .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
 
@@ -112,10 +112,10 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'fr', 1);
 
+        $this->assertModalItemIcons($crawler, 'bulbasaur', 'fr', false);
+
         $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'fr', 'Bulbizarre', false);
         $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'fr', 'Bulbasaur', false);
-
-        $this->assertModalItemIcons($crawler, 'bulbasaur', 'fr', false);
     }
 
     public function testRegionalWithFormsModal(): void
@@ -136,7 +136,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalImagesRegularAtFirst($crawler, 'meganium');
 
-        $this->assertCountFilter($crawler, 7, '#modal-meganium .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 8, '#modal-meganium .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'meganium', 'Méganium', 'Meganium');
 
@@ -145,10 +145,10 @@ class ModalTest extends WebTestCase
         $this->assertModalItemNationalDexNumber($crawler, 'meganium', 'fr', 154);
         $this->assertModalItemRegionalDexNumber($crawler, 'meganium', 'fr', 3);
 
+        $this->assertModalItemIcons($crawler, 'meganium', 'fr', true);
+
         $this->assertModalItemPokepediaLink($crawler, 'meganium', 'fr', 'Méganium', true);
         $this->assertModalItemBulbapediaLink($crawler, 'meganium', 'fr', 'Meganium', true);
-
-        $this->assertModalItemIcons($crawler, 'meganium', 'fr', true);
     }
 
     public function testWithFormsModal(): void
@@ -167,7 +167,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalImagesRegularAtFirst($crawler, 'venusaur-mega');
 
-        $this->assertCountFilter($crawler, 6, '#modal-venusaur-mega .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 7, '#modal-venusaur-mega .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'venusaur-mega', 'Florizarre', 'Venusaur');
 
@@ -175,9 +175,9 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemNationalDexNumber($crawler, 'venusaur-mega', 'fr', 3);
 
+        $this->assertModalItemIcons($crawler, 'venusaur-mega', 'fr', false);
+
         $this->assertModalItemPokepediaLink($crawler, 'venusaur-mega', 'fr', 'Florizarre', false);
         $this->assertModalItemBulbapediaLink($crawler, 'venusaur-mega', 'fr', 'Venusaur', false);
-
-        $this->assertModalItemIcons($crawler, 'venusaur-mega', 'fr', false);
     }
 }

@@ -1,5 +1,6 @@
 {
   "dex": {
+    "slug": "demoliteshiny",
     "name": "Demo light shiny",
     "french_name": "Démo, extrait, chromatique",
     "is_shiny": true,

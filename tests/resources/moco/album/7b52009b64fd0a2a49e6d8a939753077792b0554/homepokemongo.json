@@ -1,5 +1,6 @@
 {
   "dex": {
+    "slug": "homepokemongo",
     "name": "Home Pokemon Go",
     "french_name": "Home Pokemon Go",
     "is_shiny": false,

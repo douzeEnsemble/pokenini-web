@@ -97,7 +97,8 @@ class CommonTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.toast');
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src="/js/album-edit.js"]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
@@ -186,23 +187,23 @@ class CommonTest extends WebTestCase
         );
 
         $this->assertStringContainsString(
-            '/album/demolite/no',
+            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
             (string) $crawler->filter('table#report tr.catch-state-no a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demolite/toevolve',
+            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=toevolve',
             (string) $crawler->filter('table#report tr.catch-state-toevolve a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demolite/tobreed',
+            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=tobreed',
             (string) $crawler->filter('table#report tr.catch-state-tobreed a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demolite/totransfer',
+            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=totransfer',
             (string) $crawler->filter('table#report tr.catch-state-totransfer a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demolite/yes',
+            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=yes',
             (string) $crawler->filter('table#report tr.catch-state-yes a')->attr('href')
         );
         $this->assertStringContainsString(

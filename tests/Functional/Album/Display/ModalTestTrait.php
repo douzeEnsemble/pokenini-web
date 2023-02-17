@@ -211,6 +211,38 @@ trait ModalTestTrait
         );
     }
 
+    public function assertModalItemFamilyLink(
+        Crawler $crawler,
+        string $pokemonSlug,
+        string $lang,
+        string $familyLeadSlug,
+        bool $withRegionalItem,
+    ): void {
+        $index = $withRegionalItem ? 4 : 3;
+
+        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
+
+        $this->assertEquals(
+            ('fr' === $lang ? 'Afficher la famille ' : 'Filter this family only'),
+            $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
+                ->eq($index)
+                ->text()
+        );
+        $this->assertEquals(
+            "/fr/album/demo?f=$familyLeadSlug",
+            $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
+                ->eq($index)
+                ->filter('a')
+                ->attr('href')
+        );
+        $this->assertNull(
+            $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
+                ->eq($index)
+                ->filter('a')
+                ->attr('target')
+        );
+    }
+
     public function assertModalItemPokepediaLink(
         Crawler $crawler,
         string $pokemonSlug,
@@ -218,7 +250,7 @@ trait ModalTestTrait
         string $pokemonFrenchName,
         bool $withRegionalItem,
     ): void {
-        $index = $withRegionalItem ? 4 : 3;
+        $index = $withRegionalItem ? 6 : 5;
 
         $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
 
@@ -251,7 +283,7 @@ trait ModalTestTrait
         string $pokemonEnglishName,
         bool $withRegionalItem,
     ): void {
-        $index = $withRegionalItem ? 5 : 4;
+        $index = $withRegionalItem ? 7 : 6;
 
         $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
 
@@ -283,7 +315,7 @@ trait ModalTestTrait
         string $lang,
         bool $withRegionalItem,
     ): void {
-        $index = $withRegionalItem ? 6 : 5;
+        $index = $withRegionalItem ? 5 : 4;
 
         $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
         $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'img');

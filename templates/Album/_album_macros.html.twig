@@ -1,6 +1,8 @@
-{% macro albumCase(item, dex, canEdit, catchStates) %}
-    {% set locale = app.request.locale %}
-    {% set currentCatchState = item.catch_state_slug ?? 'no' %}
+{% macro albumCase(item, dex, canEdit, catchStates, trainerId) %}
+
+{% set locale = app.request.locale %}
+{% set currentCatchState = item.catch_state_slug ?? 'no' %}
+
 <div
     class="album-case col catch-state-{{ currentCatchState }}"
     id="{{ item.pokemon_slug }}"
@@ -145,20 +147,18 @@
                         {% endif %}
                         <li class="list-group-item">
                             <a
-                                href="https://www.pokepedia.fr/{{ item.pokemon_simplified_french_name }}"
-                                target="_blank"
-                            >
-                                {{ 'album.modal.link.pokepedia'|trans }}
-                                <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a
-                                href="https://bulbapedia.bulbagarden.net/wiki/{{ item.pokemon_simplified_name }}_(Pokémon)"
-                                target="_blank"
-                            >
-                                {{ 'album.modal.link.bulbapedia'|trans }}
-                                <i class="bi bi-box-arrow-up-right"></i>
+                                class="album-modal-filter-family"
+                                href="{{
+                                    path('app_album_index',
+                                        {
+                                            'dexSlug': dex.slug,
+                                            't': trainerId,
+                                            'f': item.family_lead_slug ?? item.pokemon_slug
+                                        }
+                                    ) }}"
+                                >
+                                <i class="bi bi-filter-square"></i>
+                                {{ 'album.modal.link.family'|trans }}
                             </a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center text-center">
@@ -175,6 +175,24 @@
                             >
                                 {{ _self.shinyPokemonIcon(item, locale, 'img-thumbnail') }}
                                 {{ 'album.icon.title.shiny'|trans }}
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a
+                                href="https://www.pokepedia.fr/{{ item.pokemon_simplified_french_name }}"
+                                target="_blank"
+                            >
+                                {{ 'album.modal.link.pokepedia'|trans }}
+                                <i class="bi bi-box-arrow-up-right"></i>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a
+                                href="https://bulbapedia.bulbagarden.net/wiki/{{ item.pokemon_simplified_name }}_(Pokémon)"
+                                target="_blank"
+                            >
+                                {{ 'album.modal.link.bulbapedia'|trans }}
+                                <i class="bi bi-box-arrow-up-right"></i>
                             </a>
                         </li>
                     </ul>

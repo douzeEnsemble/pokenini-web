@@ -1,5 +1,6 @@
 {
   "dex": {
+    "slug": "goldsilvercrystal",
     "name": "Gold, Silver, Crystal",
     "french_name": "Or, Argent, Cristal",
     "is_shiny": false,
