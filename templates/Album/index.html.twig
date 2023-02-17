@@ -65,8 +65,15 @@
 
 {% block foot_javascript %}
     {{ parent() }}
-    {% if allowedToEdit %}
     <script src="{{ asset('js/album.js') }}"></script>
+    <script type="application/javascript">
+    (function() {
+        watchToggleShinyMode();
+    })();
+    </script>
+
+    {% if allowedToEdit %}
+    <script src="{{ asset('js/album-edit.js') }}"></script>
 
     <script type="application/javascript">
     const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
