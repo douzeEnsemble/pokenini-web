@@ -40,7 +40,7 @@ class NoTemplateTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/demonotemplate/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demonotemplate?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 21, '.album-case.col');
         $this->assertCountFilter($crawler, 21, 'div.row.album-line', 0, '.album-case.col');

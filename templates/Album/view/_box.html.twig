@@ -1,11 +1,12 @@
 {% import "Album/_album_macros.html.twig" as macro %}
+{% set sharedTrainerId = app.request.get('t') %}
 
 <div class="album-container album-box">
 {% if filters is not empty %}
     <h2 class="sticky-top">{{ 'title.empty'|trans }}</h2>
     <div class="row row-cols-6 album-line">
         {% for item in list %}
-            {{ macro.albumCase(item, dex, allowedToEdit, catchStates, 2) }}
+            {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId) }}
         {% endfor %}
     </div>
 {% else %}
@@ -29,7 +30,7 @@
         <div class="row row-cols-6 album-line">
             {% endif %}
 
-            {{ macro.albumCase(item, dex, allowedToEdit, catchStates) }}
+            {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId) }}
 
             {% endfor %}
         </div>

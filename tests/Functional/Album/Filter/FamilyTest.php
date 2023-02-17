@@ -9,23 +9,24 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CatchStateTest extends WebTestCase
+class FamilyTest extends WebTestCase
 {
     use TestNavTrait;
     use TestSetUp;
 
-    public function testFilterCatchStateNo(): void
+    public function testFilterFamilyBulbasaur(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/demo?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo?f=bulbasaur&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCountFilter($crawler, 11, '.album-case');
+        $this->assertCountFilter($crawler, 6, '.album-case');
 
         $this->assertCountFilter($crawler, 0, 'h2.box');
         $this->assertCountFilter($crawler, 1, '#bulbasaur');
-        $this->assertCountFilter($crawler, 0, '#venusaur-f');
+        $this->assertCountFilter($crawler, 1, '#venusaur-f');
         $this->assertCountFilter($crawler, 0, '#charmander');
+        $this->assertCountFilter($crawler, 0, '#wartortle');
 
         $this->assertCountFilter($crawler, 0, '.toast');
 
@@ -40,18 +41,19 @@ class CatchStateTest extends WebTestCase
         );
     }
 
-    public function testFilterCatchStateYes(): void
+    public function testFilterFamilySquirtle(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/demo?cs=yes&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo?f=squirtle&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCountFilter($crawler, 2, '.album-case');
+        $this->assertCountFilter($crawler, 5, '.album-case');
 
         $this->assertCountFilter($crawler, 0, 'h2.box');
         $this->assertCountFilter($crawler, 0, '#bulbasaur');
         $this->assertCountFilter($crawler, 0, '#venusaur-f');
-        $this->assertCountFilter($crawler, 1, '#charmander');
+        $this->assertCountFilter($crawler, 0, '#charmander');
+        $this->assertCountFilter($crawler, 1, '#wartortle');
 
         $this->assertCountFilter($crawler, 0, '.toast');
 
@@ -66,7 +68,7 @@ class CatchStateTest extends WebTestCase
         );
     }
 
-    public function testOwnerFilterCatchStateYes(): void
+    public function testOwnerFilterFamilyBulbasaur(): void
     {
         $client = static::createClient();
 
@@ -74,18 +76,19 @@ class CatchStateTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user);
 
-        $crawler = $client->request('GET', '/fr/album/demo?cs=yes');
+        $crawler = $client->request('GET', '/fr/album/demo?f=bulbasaur');
 
-        $this->assertCountFilter($crawler, 2, '.album-case');
+        $this->assertCountFilter($crawler, 6, '.album-case');
 
         $this->assertCountFilter($crawler, 0, 'h2.box');
-        $this->assertCountFilter($crawler, 0, '#bulbasaur');
-        $this->assertCountFilter($crawler, 0, '#venusaur-f');
-        $this->assertCountFilter($crawler, 1, '#charmander');
+        $this->assertCountFilter($crawler, 1, '#bulbasaur');
+        $this->assertCountFilter($crawler, 1, '#venusaur-f');
+        $this->assertCountFilter($crawler, 0, '#charmander');
+        $this->assertCountFilter($crawler, 0, '#wartortle');
 
-        $this->assertCountFilter($crawler, 4, '.toast');
-        $this->assertCountFilter($crawler, 2, '.toast.text-bg-success');
-        $this->assertCountFilter($crawler, 2, '.toast.text-bg-danger');
+        $this->assertCountFilter($crawler, 12, '.toast');
+        $this->assertCountFilter($crawler, 6, '.toast.text-bg-success');
+        $this->assertCountFilter($crawler, 6, '.toast.text-bg-danger');
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
@@ -98,11 +101,11 @@ class CatchStateTest extends WebTestCase
         );
     }
 
-    public function testFilterCatchStateUnknown(): void
+    public function testFilterFamilyUnknown(): void
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/album/demo?cs=unknown&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demo?f=unknown&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 0, '.album-case');
 

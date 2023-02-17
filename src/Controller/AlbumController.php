@@ -121,10 +121,20 @@ class AlbumController extends AbstractController
             return $pokemons;
         }
 
-        $list = [];
-        foreach ($pokemons as $pokemon) {
-            if ($filters['cs'] === ($pokemon['catch_state_slug'] ?? 'no')) {
-                $list[] = $pokemon;
+        $list = $pokemons;
+        if (!empty($filters['cs'])) {
+            foreach ($list as $index => $pokemon) {
+                if ($filters['cs'] !== ($pokemon['catch_state_slug'] ?? 'no')) {
+                    unset($list[$index]);
+                }
+            }
+        }
+
+        if (!empty($filters['f'])) {
+            foreach ($list as $index => $pokemon) {
+                if ($filters['f'] !== ($pokemon['family_lead_slug'] ?? $pokemon['pokemon_slug'])) {
+                    unset($list[$index]);
+                }
             }
         }
 
@@ -140,6 +150,10 @@ class AlbumController extends AbstractController
 
         if ($request->query->has('cs')) {
             $filter['cs'] = $request->query->getAlpha('cs');
+        }
+
+        if ($request->query->has('f')) {
+            $filter['f'] = $request->query->getAlpha('f');
         }
 
         return $filter;

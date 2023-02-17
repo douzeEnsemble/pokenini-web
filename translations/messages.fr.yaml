@@ -106,6 +106,7 @@ album:
         link:
             pokepedia: Fiche Poképédia
             bulbapedia: Fiche Bulbapedia (anglais)
+            family: Afficher la famille
 
 update:
     labels:

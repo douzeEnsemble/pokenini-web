@@ -1,5 +1,6 @@
 {
   "dex": {
+    "slug": "demounknowntemplate",
     "name": "Demo unknown template",
     "french_name": "Démo, template inconnu",
     "is_shiny": false,

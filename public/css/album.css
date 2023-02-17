@@ -44,12 +44,26 @@ a.album-case-catch-state-edit-action:hover {
     text-decoration: none;
     color: #aab7b8;
 }
+.modal-body a.album-modal-icon:hover {
+    color: #408b91;
+}
+.modal-body a.album-modal-icon:hover .img-thumbnail {
+    border-color: #408b91;
+}
 .modal-body a.album-modal-icon.active {
     text-decoration: underline;
     color: #212529;
 }
 .modal-body .active .img-thumbnail {
     border-color: #212529;
+}
+
+a.album-modal-filter-family {
+    text-decoration: none;
+    color: #408b91;
+}
+a.album-modal-filter-family:hover {
+    color: black;
 }
 
 #report a {

@@ -1,5 +1,6 @@
 {
   "dex": {
+    "slug": "demonotemplate",
     "name": "Demo no template",
     "french_name": "Démo, sans template",
     "is_shiny": false,

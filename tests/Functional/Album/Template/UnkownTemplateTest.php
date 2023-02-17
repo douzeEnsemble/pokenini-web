@@ -45,7 +45,7 @@ class UnkownTemplateTest extends WebTestCase
 
         $crawler = $client->request(
             'GET',
-            '/fr/album/demounknowntemplate/no?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
+            '/fr/album/demounknowntemplate?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
         $this->assertCountFilter($crawler, 21, '.album-case.col');
