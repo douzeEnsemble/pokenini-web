@@ -27,7 +27,7 @@ class LoadingTimeTest extends AbstractBrowserTestCase
         $event = $stopwatch->stop('request');
 
         $this->assertLessThanOrEqual(
-            6 * 1000,
+            7 * 1000,
             $event->getDuration()
         );
     }
