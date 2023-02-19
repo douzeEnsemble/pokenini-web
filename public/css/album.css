@@ -58,14 +58,6 @@ a.album-case-catch-state-edit-action:hover {
     border-color: #212529;
 }
 
-a.album-modal-filter-family {
-    text-decoration: none;
-    color: #408b91;
-}
-a.album-modal-filter-family:hover {
-    color: black;
-}
-
 #report a {
     color: inherit;
     text-decoration: inherit;
