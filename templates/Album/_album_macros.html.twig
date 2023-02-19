@@ -230,6 +230,7 @@
         alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"
         class="album-image img-fluid {{ classMore }}"
         src="{{ iconUrl }}"
+        loading="lazy"
     />
 {% endmacro %}
 
@@ -256,6 +257,7 @@
         alt="{{ ('album.image.alt.'~dir)|trans }} {{ pokemonName }}"
         class="album-modal-image img-fluid"
         src="{{ imageUrl }}"
+        loading="lazy"
     />
 {% endmacro %}
 
