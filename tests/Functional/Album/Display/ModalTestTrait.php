@@ -250,7 +250,7 @@ trait ModalTestTrait
         string $pokemonFrenchName,
         bool $withRegionalItem,
     ): void {
-        $index = $withRegionalItem ? 6 : 5;
+        $index = $withRegionalItem ? 5 : 4;
 
         $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
 
@@ -283,7 +283,7 @@ trait ModalTestTrait
         string $pokemonEnglishName,
         bool $withRegionalItem,
     ): void {
-        $index = $withRegionalItem ? 7 : 6;
+        $index = $withRegionalItem ? 6 : 5;
 
         $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
 
@@ -312,28 +312,21 @@ trait ModalTestTrait
     public function assertModalItemIcons(
         Crawler $crawler,
         string $pokemonSlug,
-        string $lang,
-        bool $withRegionalItem,
+        string $lang
     ): void {
-        $index = $withRegionalItem ? 5 : 4;
-
-        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
-        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'img');
+        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug a.album-modal-icon");
+        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-regular");
+        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-regular");
+        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug img.album-image");
 
         $this->assertEquals(
             ('fr' === $lang ? 'Normal' : 'Regular'),
-            $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
-                ->filter('a')
-                ->eq(0)
+            $crawler->filter("#modal-$pokemonSlug .album-modal-icon-regular")
                 ->text()
         );
         $this->assertEquals(
             ('fr' === $lang ? 'Chromatique' : 'Shiny'),
-            $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
-                ->filter('a')
-                ->eq(1)
+            $crawler->filter("#modal-$pokemonSlug .album-modal-icon-shiny")
                 ->text()
         );
     }
