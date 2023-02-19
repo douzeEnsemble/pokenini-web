@@ -7,7 +7,6 @@ namespace App\Tests\Browser\Album;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Browser\AbstractBrowserTestCase;
-use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
 /**
  * @group browser-testing
