@@ -63,6 +63,10 @@ album:
         title:
             regular: 'Normal'
             shiny: 'Chromatique'
+    image:
+        alt:
+            regular: 'Image de'
+            shiny: 'Image chromatique de'
     update:
         title: 'Maj'
         success:
