@@ -7,7 +7,8 @@
       "display_template": "list-7",
       "name": "Home Pokemon Go",
       "french_name": "Home Pokemon Go",
-      "slug": "homepokemongo"
+      "slug": "homepokemongo",
+      "is_released": true
     },
     {
       "is_shiny": false,
@@ -17,7 +18,8 @@
       "display_template": "list-3",
       "name": "Alpha",
       "french_name": "Baron",
-      "slug": "alpha"
+      "slug": "alpha",
+      "is_released": true
     },
     {
       "is_shiny": false,
@@ -27,6 +29,7 @@
       "display_template": "list-3",
       "name": "Mega",
       "french_name": "M\u00e9ga",
-      "slug": "mega"
+      "slug": "mega",
+      "is_released": true
     }
 ]

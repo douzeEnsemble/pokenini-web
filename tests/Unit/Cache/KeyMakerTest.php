@@ -35,6 +35,12 @@ class KeyMakerTest extends TestCase
         $this->assertEquals('dex_12', KeyMaker::getDexKeyForTrainer('12'));
     }
 
+    public function testGetDexKeyForTrainerWithAlt(): void
+    {
+        $this->assertEquals('dex_11=1', KeyMaker::getDexKeyForTrainer('1', '1=1'));
+        $this->assertEquals('dex_121=1&2=2', KeyMaker::getDexKeyForTrainer('12', '1=1&2=2'));
+    }
+
     public function testGetPokedexKey(): void
     {
         $this->assertEquals('album_douze_12', KeyMaker::getPokedexKey('douze', '12'));

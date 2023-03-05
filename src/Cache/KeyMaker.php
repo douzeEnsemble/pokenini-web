@@ -35,9 +35,9 @@ class KeyMaker
         return self::CACHE_KEY_REPORTS;
     }
 
-    public static function getDexKeyForTrainer(string $trainerId): string
+    public static function getDexKeyForTrainer(string $trainerId, string $alt = ''): string
     {
-        return self::CACHE_KEY_DEX . self::CACHE_KEY_SEPARATOR . $trainerId;
+        return self::CACHE_KEY_DEX . self::CACHE_KEY_SEPARATOR . $trainerId . $alt;
     }
 
     public static function getPokedexKey(string $dexSlug, string $trainerId): string

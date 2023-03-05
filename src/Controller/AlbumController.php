@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\NoLoggedUserException;
+use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -86,6 +87,13 @@ class AlbumController extends AbstractController
         $dex = $pokedex['dex'];
 
         if ($dex['is_private'] && $trainerId != $loggedTrainerId) {
+            throw $this->createNotFoundException();
+        }
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$dex['is_released'] && !$user->isAnAdmin()) {
             throw $this->createNotFoundException();
         }
 

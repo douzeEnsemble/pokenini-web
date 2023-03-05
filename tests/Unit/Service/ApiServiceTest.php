@@ -29,6 +29,23 @@ class ApiServiceTest extends TestCase
         );
     }
 
+    public function testGetDexWithUnreleased(): void
+    {
+        $service = $this->getService('dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list?include_unreleased_dex=1');
+
+        $this->assertEquals(
+            [
+                'trucs' => [
+                    'bidule',
+                    'machin',
+                    'chose',
+                ],
+                'url' => 'dex/7b52009b64fd0a2a49e6d8a939753077792b0554/list?include_unreleased_dex=1',
+            ],
+            $service->getDexWithUnreleased('7b52009b64fd0a2a49e6d8a939753077792b0554'),
+        );
+    }
+
     public function testGetPokedex(): void
     {
         $service = $this->getService('album/7b52009b64fd0a2a49e6d8a939753077792b0554/douze');

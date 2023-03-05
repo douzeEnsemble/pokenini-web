@@ -13,7 +13,8 @@
     "is_on_home": false,
     "description": "All Pok\u00e9mons that can be transferred to Pok\u00e9mon Home.\n\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pok\u00e9mons anyway, in case it changes)",
     "french_description": "Tous les pok\u00e9mons pouvant \u00eatre transf\u00e9r\u00e9s sur Pok\u00e9mon Home. \n\nIncluant les m\u00e2les/femelles, les formes diff\u00e9rentes et les transformations (certains ne sont pas conserv\u00e9s lors du transfert, mais je voulais avoir les pok\u00e9mons quand m\u00eame, au cas o\u00f9 \u00e7a change)",
-    "version": 4
+    "version": 4,
+    "is_released": true
   },
   "pokemons": [
     {

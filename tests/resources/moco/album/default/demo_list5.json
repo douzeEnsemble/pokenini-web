@@ -11,7 +11,8 @@
     "region_french_name":null,
     "description":"List of pokémons for demo purpose, display as list by 5",
     "french_description":"Tous les pok\u00e9mons de la démo affiché en liste, 5 éléments par colonnes",
-    "version": 412
+    "version": 412,
+    "is_released": true
   },
   "pokemons": [
     {

@@ -12,7 +12,8 @@
     },
     "name": "Red, Green, Blue, Yellow",
     "french_name": "Rouge, Vert, Bleu, Jaune",
-    "slug": "redgreenblueyellow"
+    "slug": "redgreenblueyellow",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -27,7 +28,8 @@
     },
     "name": "Gold, Silver, Crystal",
     "french_name": "Or, Argent, Cristal",
-    "slug": "goldsilvercrystal"
+    "slug": "goldsilvercrystal",
+    "is_released": false
   },
   {
     "is_shiny": false,
@@ -42,7 +44,8 @@
     },
     "name": "Ruby, Sapphire, Emerald",
     "french_name": "Rubis, Saphir, \u00c9meraude",
-    "slug": "rubysapphireemerald"
+    "slug": "rubysapphireemerald",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -57,7 +60,8 @@
     },
     "name": "Red Fire, Leaf Green",
     "french_name": "Rouge Feu, Vert Feuille",
-    "slug": "fireredleafgreen"
+    "slug": "fireredleafgreen",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -72,7 +76,8 @@
     },
     "name": "Diamond, Pearl, Platinium",
     "french_name": "Diamant, Perle, Platine",
-    "slug": "diamondpearlplatinium"
+    "slug": "diamondpearlplatinium",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -87,7 +92,8 @@
     },
     "name": "Heart Gold, Soul Silver",
     "french_name": "Or HeartGold, Argent SoulSilver",
-    "slug": "heartgoldsoulsilver"
+    "slug": "heartgoldsoulsilver",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -102,7 +108,8 @@
     },
     "name": "Black, White",
     "french_name": "Noire, Blanche",
-    "slug": "blackwhite"
+    "slug": "blackwhite",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -117,7 +124,8 @@
     },
     "name": "Black 2, White 2",
     "french_name": "Noire 2, Blanche 2",
-    "slug": "black2white2"
+    "slug": "black2white2",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -132,7 +140,8 @@
     },
     "name": "X, Y",
     "french_name": "X, Y",
-    "slug": "xy"
+    "slug": "xy",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -147,7 +156,8 @@
     },
     "name": "Omega Ruby, Alpha Sapphire",
     "french_name": "Rubis Om\u00e9ga, Saphir Alpha",
-    "slug": "omegarubyalphasapphire"
+    "slug": "omegarubyalphasapphire",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -162,7 +172,8 @@
     },
     "name": "Sun, Moon",
     "french_name": "Soleil, Lune",
-    "slug": "sunmoon"
+    "slug": "sunmoon",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -177,7 +188,8 @@
     },
     "name": "Ultra Sun, Ultra Moon",
     "french_name": "Ultra Soleil, Ultra Lune",
-    "slug": "ultrasunultramoon"
+    "slug": "ultrasunultramoon",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -192,7 +204,8 @@
     },
     "name": "Let's Go Pikachu, Let's Go Eevee",
     "french_name": "Let's Go Pikachu, Let's Go \u00c9voli",
-    "slug": "letsgopikachuletsgoeevee"
+    "slug": "letsgopikachuletsgoeevee",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -207,7 +220,8 @@
     },
     "name": "Sword, Shield",
     "french_name": "\u00c9p\u00e9e, Bouclier",
-    "slug": "swordshield"
+    "slug": "swordshield",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -222,7 +236,8 @@
     },
     "name": "Brilland Diamond, Shining Pearl",
     "french_name": "Diamant \u00c9tincelant, Perle Scintillante",
-    "slug": "brillanddiamondshiningpearl"
+    "slug": "brillanddiamondshiningpearl",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -237,7 +252,8 @@
     },
     "name": "Pok\u00e9mon Legends Arceus",
     "french_name": "L\u00e9gendes Pok\u00e9mon : Arceus",
-    "slug": "pokemonlegendsarceus"
+    "slug": "pokemonlegendsarceus",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -247,7 +263,8 @@
     "display_template": "box",
     "name": "Home",
     "french_name": "Home",
-    "slug": "home"
+    "slug": "home",
+    "is_released": true
   },
   {
     "is_shiny": true,
@@ -257,7 +274,8 @@
     "display_template": "box",
     "name": "Home Shiny",
     "french_name": "Home Chromatique",
-    "slug": "homeshiny"
+    "slug": "homeshiny",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -267,7 +285,8 @@
     "display_template": "list-7",
     "name": "Home Pokemon Go",
     "french_name": "Home Pokemon Go",
-    "slug": "homepokemongo"
+    "slug": "homepokemongo",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -277,7 +296,8 @@
     "display_template": "list-3",
     "name": "Alpha",
     "french_name": "Baron",
-    "slug": "alpha"
+    "slug": "alpha",
+    "is_released": true
   },
   {
     "is_shiny": false,
@@ -287,6 +307,7 @@
     "display_template": "list-3",
     "name": "Mega",
     "french_name": "M\u00e9ga",
-    "slug": "mega"
+    "slug": "mega",
+    "is_released": true
   }
 ]
