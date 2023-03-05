@@ -73,6 +73,21 @@
   },
   {
     "request": {
+      "uri": "/dex/159bb9b6d090a313087d2f26135970c2db49ee72/list",
+      "queries": {
+        "include_unreleased_dex": "1"
+      },
+      "headers": {
+        "accept" : "application/json",
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/dexes/159bb9b6d090a313087d2f26135970c2db49ee72.json"
+    }
+  },
+  {
+    "request": {
       "uri": {
         "match": "/dex/[\\w\\d]*/list"
       },
@@ -148,6 +163,19 @@
     },
     "response": {
       "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/home.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/159bb9b6d090a313087d2f26135970c2db49ee72/goldsilvercrystal"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/159bb9b6d090a313087d2f26135970c2db49ee72/goldsilvercrystal.json"
     }
   },
   {

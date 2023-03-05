@@ -11,7 +11,8 @@
     "region_french_name": "",
     "description":"List of pokémons for demo purpose",
     "french_description":"Tous les pok\u00e9mons de la démo",
-    "version": 4
+    "version": 4,
+    "is_released": true
   },
   "pokemons": [
     {

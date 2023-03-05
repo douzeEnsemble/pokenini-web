@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,14 +20,25 @@ class TrainerController extends AbstractController
 {
     public function __construct(
         private readonly ApiService $apiService,
-        private readonly UserTokenService $userTokenService
+        private readonly UserTokenService $userTokenService,
     ) {
     }
 
     #[Route('')]
     public function index(): Response
     {
-        $trainerDex = $this->apiService->getDex($this->userTokenService->getLoggedUserToken());
+        /** @var ?User $user */
+        $user = $this->getUser();
+
+        if (null === $user) {
+            return new Response('', Response::HTTP_UNAUTHORIZED);
+        }
+
+        $userToken = $this->userTokenService->getLoggedUserToken();
+
+        $trainerDex = $user->isAnAdmin()
+            ? $this->apiService->getDexWithUnreleased($userToken)
+            : $this->apiService->getDex($userToken);
 
         return $this->render(
             'Trainer/index.html.twig',
@@ -39,7 +51,7 @@ class TrainerController extends AbstractController
     #[Route('/dex/{dexSlug}', methods: ['PUT'])]
     public function upsert(
         string $dexSlug,
-        Request $request
+        Request $request,
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_TRAINER');
 

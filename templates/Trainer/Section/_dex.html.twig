@@ -3,11 +3,12 @@
     'is_on_home',
 ] %}
 {% set attributesIcons = {
-    'is_private': 'lock' ,
+    'is_private': 'incognito' ,
     'is_on_home': 'house',
 } %}
 <div class="row">
     {% for dex in trainerDex %}
+    {{ dump(dex) }}
     <div
         class="col-6 trainer-dex-item border rounded border-opacity-50"
         id="trainer-dex-{{ dex.slug }}"
@@ -33,6 +34,17 @@
             <i class="bi bi-translate"></i>
             {{ locale is not same as('fr') ? dex.french_name : dex.name }}
         </h6>
+        {% if not dex.is_released %}
+        <div class="dex_not_released">
+            <span>
+                <i class="bi bi-lock"></i>
+                {{ ('trainer.dex.attributes.is_not_released.label')|trans }}
+            </span>
+            <p class="form-text">
+                {{ ('trainer.dex.attributes.is_not_released.help')|trans }}
+            </p>
+        </div>
+        {% endif %}
         <hr>
         <form data-dex="{{ dex.slug }}">
             {% for attribute in attributes %}

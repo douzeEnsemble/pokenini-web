@@ -13,7 +13,8 @@
     "is_on_home": false,
     "description": "The list of obtainable Pok\u00e9mons in Black and White games.\n\nPok\u00e9mons have different shapes depending on the gender or not. We also have transformations as for Giratina or Shaymin.",
     "french_description": "La liste des pok\u00e9mons obtenable dans les jeux Noire et Blanche.\n\nLes pok\u00e9mons ont des formes diff\u00e9rentes en fonction du genre ou pas. On a aussi des transformations comme pour Giratina ou Shaymin.",
-    "version": 2
+    "version": 2,
+    "is_released": true
   },
   "pokemons": [
     {

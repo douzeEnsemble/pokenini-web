@@ -40,6 +40,38 @@ class TrainerPageTest extends WebTestCase
         );
 
         $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
+
+        $this->assertCountFilter($crawler, 0, '.dex_not_released');
+    }
+
+    public function testAdminTrainerPage(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $user->addTrainerRole();
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/fr/trainer');
+
+        $this->assertResponseStatusCodeSame(200);
+
+        $this->assertCountFilter($crawler, 1, 'h1');
+        $this->assertCountFilter($crawler, 2, 'table thead th');
+        $this->assertCountFilter($crawler, 1, 'table tbody tr');
+        $this->assertEquals('8764532', $crawler->filter('table tbody tr td')->last()->text());
+
+        $this->assertCustomizeAlbumSection($crawler);
+
+        $this->assertStringContainsString(
+            "/connect/logout",
+            $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
+        );
+
+        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
+
+        $this->assertCountFilter($crawler, 1, '.dex_not_released');
     }
 
     public function testTrainerPageNotAllowed(): void

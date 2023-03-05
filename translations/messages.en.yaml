@@ -169,6 +169,9 @@ trainer:
             is_on_home:
                 label: 'Album visible on the homepage'
                 help: 'The home page is only visible to you. This is your page.'
+            is_not_released:
+                label: 'Album can be seen only for admin user'
+                help: 'The album is not released yet for public'
         update:
             title: 'Maj'
             success:

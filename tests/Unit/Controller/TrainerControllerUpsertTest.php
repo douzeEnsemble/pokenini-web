@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-class TrainerControllerTest extends TestCase
+class TrainerControllerUpsertTest extends TestCase
 {
     public function testUpsert(): void
     {

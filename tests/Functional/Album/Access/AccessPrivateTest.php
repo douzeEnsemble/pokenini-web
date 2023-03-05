@@ -9,7 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AccessTest extends WebTestCase
+class AccessPrivateTest extends WebTestCase
 {
     use TestNavTrait;
     use TestSetUp;

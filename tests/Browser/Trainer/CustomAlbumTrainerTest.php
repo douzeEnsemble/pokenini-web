@@ -28,6 +28,8 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 
         $this->assertSelectorIsNotVisible('#successToast-goldsilvercrystal');
 
+        $client->executeScript("document.getElementById('trainer-dex-goldsilvercrystal').scrollIntoView();");
+
         $form = $crawler->filter('form[data-dex="goldsilvercrystal"]')->form();
         /** @var ChoiceFormField $field */
         $field = $form->get('goldsilvercrystal-is_on_home');
@@ -49,6 +51,8 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $crawler = $client->request('GET', '/fr/trainer');
 
         $this->assertSelectorIsNotVisible('#successToast-goldsilvercrystal');
+
+        $client->executeScript("document.getElementById('trainer-dex-goldsilvercrystal').scrollIntoView();");
 
         $form = $crawler->filter('form[data-dex="goldsilvercrystal"]')->form();
         /** @var ChoiceFormField $field */
@@ -72,6 +76,8 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 
         $this->assertSelectorIsNotVisible('#errorToast-redgreenblueyellow');
 
+        $client->executeScript("document.getElementById('trainer-dex-redgreenblueyellow').scrollIntoView();");
+
         $form = $crawler->filter('form[data-dex="redgreenblueyellow"]')->form();
         /** @var ChoiceFormField $field */
         $field = $form->get('redgreenblueyellow-is_on_home');
@@ -93,6 +99,8 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $crawler = $client->request('GET', '/fr/trainer');
 
         $this->assertSelectorIsNotVisible('#errorToast-redgreenblueyellow');
+
+        $client->executeScript("document.getElementById('trainer-dex-redgreenblueyellow').scrollIntoView();");
 
         $form = $crawler->filter('form[data-dex="redgreenblueyellow"]')->form();
         /** @var ChoiceFormField $field */

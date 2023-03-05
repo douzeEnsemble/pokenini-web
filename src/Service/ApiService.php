@@ -28,32 +28,15 @@ class ApiService
      */
     public function getDex(string $trainerId): array
     {
-        $key = KeyMaker::getDexKeyForTrainer($trainerId);
+        return $this->getDexWithParam($trainerId, '');
+    }
 
-        /** @var string $json */
-        $json = $this->cache->get($key, function () use ($trainerId) {
-            $response = $this->client->request(
-                'GET',
-                "{$this->appApiUrl}/dex/$trainerId/list",
-                [
-                    'headers' => [
-                        'accept' => 'application/json',
-                    ],
-                    'auth_basic' => [
-                        $this->apiLogin,
-                        $this->apiPassword,
-                    ],
-                ]
-            );
-
-            /** @var string */
-            return $response->getContent();
-        });
-
-        $this->registerCache(KeyMaker::getDexKey(), $key);
-
-        /** @var string[][] */
-        return JsonDecoder::decode($json);
+    /**
+     * @return string[][]
+     */
+    public function getDexWithUnreleased(string $trainerId): array
+    {
+        return $this->getDexWithParam($trainerId, 'include_unreleased_dex=1');
     }
 
     /**
@@ -334,5 +317,38 @@ class ApiService
         }
 
         return $list;
+    }
+
+    /**
+     * @return string[][]
+     */
+    private function getDexWithParam(string $trainerId, string $queryParams = ''): array
+    {
+        $key = KeyMaker::getDexKeyForTrainer($trainerId, $queryParams);
+
+        /** @var string $json */
+        $json = $this->cache->get($key, function () use ($trainerId, $queryParams) {
+            $response = $this->client->request(
+                'GET',
+                "{$this->appApiUrl}/dex/$trainerId/list" . (!empty($queryParams) ? '?' . $queryParams : ''),
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
+            );
+
+            /** @var string */
+            return $response->getContent();
+        });
+
+        $this->registerCache(KeyMaker::getDexKey(), $key);
+
+        /** @var string[][] */
+        return JsonDecoder::decode($json);
     }
 }

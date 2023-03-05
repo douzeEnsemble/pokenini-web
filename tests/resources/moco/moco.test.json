@@ -3,7 +3,7 @@
     "request": {
       "uri": "/catch_states",
       "headers": {
-        "accept" : "application/json",
+        "accept": "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -15,7 +15,7 @@
     "request": {
       "uri": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/list",
       "headers": {
-        "accept" : "application/json",
+        "accept": "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -27,7 +27,7 @@
     "request": {
       "uri": "/dex/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c/list",
       "headers": {
-        "accept" : "application/json",
+        "accept": "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -39,7 +39,7 @@
     "request": {
       "uri": "/dex/356a192b7913b04c54574d18c28d46e6395428ab/list",
       "headers": {
-        "accept" : "application/json",
+        "accept": "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -51,7 +51,7 @@
     "request": {
       "uri": "/dex/3cae633f6e04077b2abf2144b79a0ce4698d8690/list",
       "headers": {
-        "accept" : "application/json",
+        "accept": "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -63,7 +63,7 @@
     "request": {
       "uri": "/dex/da4b9237bacccdf19c0760cab7aec4a8359010b0/list",
       "headers": {
-        "accept" : "application/json",
+        "accept": "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -73,11 +73,26 @@
   },
   {
     "request": {
+      "uri": "/dex/159bb9b6d090a313087d2f26135970c2db49ee72/list",
+      "queries": {
+        "include_unreleased_dex": "1"
+      },
+      "headers": {
+        "accept": "application/json",
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/dexes/159bb9b6d090a313087d2f26135970c2db49ee72.json"
+    }
+  },
+  {
+    "request": {
       "uri": {
         "match": "/dex/[\\w\\d]*/list"
       },
       "headers": {
-        "accept" : "application/json",
+        "accept": "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
@@ -148,6 +163,19 @@
     },
     "response": {
       "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/home.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/159bb9b6d090a313087d2f26135970c2db49ee72/goldsilvercrystal"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/159bb9b6d090a313087d2f26135970c2db49ee72/goldsilvercrystal.json"
     }
   },
   {
@@ -903,7 +931,7 @@
       },
       "method": "get",
       "headers": {
-        "accept" : "application/json",
+        "accept": "application/json",
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
