@@ -8,13 +8,13 @@
 } %}
 <div class="row">
     {% for dex in trainerDex %}
-    {{ dump(dex) }}
     <div
         class="col-6 trainer-dex-item border rounded border-opacity-50"
         id="trainer-dex-{{ dex.slug }}"
     >
+        {% set bannerUrl = dexBannerUrl|format(dex.slug) %}
         <img
-            src="{{ dex_banner(dex.slug) }}"
+            src="{{ bannerUrl }}"
             class="img-fluid"
             alt=""
             loading="lazy"
