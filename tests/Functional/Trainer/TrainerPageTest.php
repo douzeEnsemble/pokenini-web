@@ -100,5 +100,10 @@ class TrainerPageTest extends WebTestCase
 
         $this->assertNull($crawler->filter('#home-is_private')->attr('checked'));
         $this->assertEmpty($crawler->filter('#home-is_on_home')->attr('checked'));
+
+        $this->assertStringContainsString(
+            'https://icon.pokenini.fr/banner/',
+            $crawler->filter('.trainer-dex-item img')->eq(0)->attr('src')
+        );
     }
 }
