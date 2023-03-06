@@ -103,7 +103,7 @@ class TrainerPageTest extends WebTestCase
 
         $this->assertStringContainsString(
             'https://icon.pokenini.fr/banner/',
-            $crawler->filter('.trainer-dex-item img')->eq(0)->attr('src')
+            (string) $crawler->filter('.trainer-dex-item img')->eq(0)->attr('src')
         );
     }
 }
