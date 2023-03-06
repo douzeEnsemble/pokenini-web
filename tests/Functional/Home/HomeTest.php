@@ -100,7 +100,6 @@ class HomeTest extends WebTestCase
             'https://icon.pokenini.fr/banner/scarletviolet.png',
             $crawler->filter('.home-item')->eq(4)->filter('img')->attr('src')
         );
-
     }
 
     public function testConnectedHomeNoDex(): void
