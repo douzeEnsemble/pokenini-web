@@ -3,6 +3,7 @@ twig:
     globals:
         pokemonIconUrl: '%env(POKEMON_ICON_URL)%'
         pokemonImageUrl: '%env(POKEMON_IMAGE_URL)%'
+        dexBannerUrl: '%env(DEX_BANNER_URL)%'
 
 when@test:
     twig:

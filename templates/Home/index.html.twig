@@ -72,8 +72,9 @@
 {% macro homeItem(url, bannerSlug, name, frenchName, locale) %}
 <div class="card col-md-3 col-6 home-item">
     <a href="{{ url }}">
+        {% set bannerUrl = dexBannerUrl|format(bannerSlug) %}
         <img
-            src="{{ dex_banner(bannerSlug) }}"
+            src="{{ bannerUrl }}"
             class="card-img"
             alt=""
             loading="lazy"
