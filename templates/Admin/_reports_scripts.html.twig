@@ -197,7 +197,7 @@
     {% set catchStateUsageData = reportsData.catch_state_usage|map(d => d.nb) %}
     {% set catchStateUsageColors = reportsData.catch_state_usage|map(d => d.color) %}
 
-    const catchStatePatterns = pattern.generate({{ catchStateUsageColors|json_encode()|raw }}.reverse());
+    const catchStatePatterns = pattern.generate({{ catchStateUsageColors|json_encode()|raw }});
 
     const tableLegendPlugin = {
         id: 'tableLegend',
@@ -285,3 +285,7 @@
     );
 })();
 </script>
+
+{{ dump (catchStateUsageLabels )}}
+{{ dump (catchStateUsageData )}}
+{{ dump (catchStateUsageColors )}}
