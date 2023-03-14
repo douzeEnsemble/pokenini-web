@@ -636,6 +636,32 @@
   {
     "request": {
       "uri": {
+        "match": "/album/[\\w\\d]*/all"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/all.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w\\d]*/allshinies"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/allshinies.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/album/[\\w\\d]*/[\\w-]*/squirtle"
       },
       "method": "patch",

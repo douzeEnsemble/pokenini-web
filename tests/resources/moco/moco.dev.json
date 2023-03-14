@@ -545,6 +545,32 @@
   {
     "request": {
       "uri": {
+        "match": "/album/[\\w\\d]*/all"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/all.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w\\d]*/allshinies"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/allshinies.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/6c33064427a5b419ca8eb3f7d11a0807f66cab22/album/home"
       },
       "headers": {
