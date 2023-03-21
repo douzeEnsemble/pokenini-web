@@ -1,41 +1,93 @@
-{% macro action(action, item, icon, updatedItem, updatedAction, updatedState, updateData) %}
+{% macro action(
+    action,
+    item,
+    icon,
+    updatedItem,
+    updatedAction,
+    updatedState,
+    actionsData
+) %}
+    {% set actionItem = action~'_'~item %}
+
     {% set stateColor = {
 'ok': 'success',
 'ko': 'danger',
+'done': 'light',
+'pending': 'info',
 } %}
 
     {% set listGroupItem = 'light' %}
-    {% if updatedAction is same as(action) and updatedItem is same as(item) %}
+
+    {% if actionsData is not empty
+        and actionsData[actionItem] is defined
+        and actionsData[actionItem] is not empty
+        and actionsData[actionItem]['done_at'] is defined
+        and actionsData[actionItem]['done_at'] is not empty
+    %}
+        {% set listGroupItem = stateColor['done'] %}
+    {% elseif actionsData is not empty
+        and actionsData[actionItem] is defined
+        and actionsData[actionItem] is not empty
+        and actionsData[actionItem]['created_at'] is defined
+        and actionsData[actionItem]['created_at'] is not empty
+    %}
+        {% set listGroupItem = stateColor['pending'] %}
+    {% endif %}
+
+    {% if updatedAction is same as(action)
+        and updatedItem is same as(item)
+    %}
         {% set listGroupItem = stateColor[updatedState] %}
     {% endif %}
 
-    <a
-        class="admin-item list-group-item list-group-item-action list-group-item-{{ listGroupItem }}"
-        href="{{ path('app_adminaction_'~action, {'name': item}) }}"
-    >
-        <div class="d-flex w-100 justify-content-between align-items-center">
+    <div class="admin-item admin-item-{{ actionItem }} list-group-item list-group-item-action list-group-item-{{ listGroupItem }}">
+        <a
+            class="admin-item-cta d-flex w-100 justify-content-between align-items-center"
+            href="{{ path('app_adminaction_'~action, {'name': item}) }}"
+        >
             {{ ('title.'~action~'.'~item)|trans }}
 
             <i class="text-primary bi bi-{{ icon }}"></i>
-        </div>
+        </a>
 
-        {% if updateData is not empty
-            and updatedAction is same as(action)
-            and updatedItem is same as(item)
+
+        {% if actionsData is not empty
+            and actionsData[actionItem] is defined
+            and actionsData[actionItem] is not empty
         %}
+            {% set actionData = actionsData[actionItem] %}
         <div class="row justify-content-start ms-3">
-            <dl class="col-8 row admin-item-report mt-1 mb-0">
-                {% for slug, value in updateData %}
+            {% if actionData['details'] is defined
+                and actionData['details'] is not empty
+            %}
+            <dl class="col-8 row admin-item-report mt-1 mb-3">
+                    {% for slug, value in actionData['details'] %}
                 <dt class="col-8">
                     {{ ('admin.'~action~'.'~slug)|trans }}
                 </dt>
                 <dd class="col-4 text-end mb-0">
                     {{ value|number_format(0, '.', ' ') }}
                 </d>
-                {% endfor %}
+                    {% endfor %}
             </dl>
+            {% endif %}
+            <div class="col-12 row admin-item-report-date mt-1 mb-0 text-muted">
+                {% set date = 'created_at' %}
+                {% if actionData['done_at'] is defined
+                    and actionData['done_at'] is not empty
+                %}
+                {% set date = 'done_at' %}
+                {% endif %}
+
+                <strong class="col-6">
+                    {{ ('admin.action.'~date)|trans }}
+                </strong>
+                <em class="col-6 text-start mb-0">
+                    {{ actionData[date]|date('d/m/Y h:i:s') }}
+                </em>
+            </div>
         </div>
         {% endif %}
-    </a>
+    </div>
 
 {% endmacro %}

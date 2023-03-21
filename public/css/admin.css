@@ -1,9 +1,18 @@
 .admin-item-report {
     font-size: .75rem;
 }
-
-.report-table canvas {
+.admin-item-report-date {
+    font-size: .75rem;
 }
+
+.admin-item-cta {
+    text-decoration: none;
+    color: inherit;
+}
+.admin-item-cta:hover {
+    text-decoration: underline;
+}
+
 .report-table tr .toggle-icon.active-icon {
     display: inherit;
 }

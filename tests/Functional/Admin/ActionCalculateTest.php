@@ -13,16 +13,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ActionCalculateTest extends WebTestCase
 {
     use TestNavTrait;
-    use ReportsAssertionTrait;
 
     public function testAdminCalculateGamesBundlesAvailabilities(): void
     {
-        $this->testAdminCalculate(
-            'game_bundles_availabilities',
-            [
-                'Dispo des bundles' => '18',
-            ]
-        );
+        $this->testAdminCalculate('game_bundles_availabilities');
     }
 
     public function testAdminCalculateDexAvailabilities(): void
@@ -98,10 +92,7 @@ class ActionCalculateTest extends WebTestCase
         $client->request('GET', "/fr/istration/action/calculate/dex_availabilities");
     }
 
-    /**
-     * @param array<string, string> $expectedReport
-     */
-    private function testAdminCalculate(string $name, array $expectedReport = []): void
+    private function testAdminCalculate(string $name): void
     {
         $client = static::createClient();
 
@@ -124,7 +115,5 @@ class ActionCalculateTest extends WebTestCase
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
-
-        $this->assertReport($crawler, $expectedReport);
     }
 }
