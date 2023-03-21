@@ -215,6 +215,37 @@ class ApiService
         return JsonDecoder::decode($json);
     }
 
+    /**
+     * @return string[][]
+     */
+    public function getActions(): array
+    {
+        $key = KeyMaker::getActionsKey();
+
+        /** @var string $json */
+        $json = $this->cache->get($key, function () {
+            $response = $this->client->request(
+                'GET',
+                "{$this->appApiUrl}/messenger_actions",
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
+            );
+
+            /** @var string */
+            return $response->getContent();
+        });
+
+        /** @var string[][] */
+        return JsonDecoder::decode($json);
+    }
+
     public function invalidateCacheDex(): void
     {
         $this->invalidateCacheByType(KeyMaker::getDexKey());
@@ -249,6 +280,11 @@ class ApiService
     public function invalidateCacheReports(): void
     {
         $this->cache->delete(KeyMaker::getReportsKey());
+    }
+
+    public function invalidateCacheActions(): void
+    {
+        $this->cache->delete(KeyMaker::getActionsKey());
     }
 
     private function invalidateCacheByType(string $type): void

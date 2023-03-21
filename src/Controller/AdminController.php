@@ -29,8 +29,6 @@ class AdminController extends AbstractController
         $adminAction = $session->get(AdminActionController::SESSION_ACTION_DATA);
         $session->remove(AdminActionController::SESSION_ACTION_DATA);
 
-        $responseData = [];
-
         if (null !== $adminAction) {
             if ('' !== $adminAction->error) {
                 $this->addFlash(
@@ -42,19 +40,16 @@ class AdminController extends AbstractController
             $this->addFlash('action', $adminAction->action);
             $this->addFlash('item', $adminAction->item);
             $this->addFlash('state', $adminAction->state);
-
-            if ('' !== $adminAction->content) {
-                $responseData = JsonDecoder::decode($adminAction->content);
-            }
         }
 
         $reportsData = $this->apiService->getReports();
+        $actionsData = $this->apiService->getActions();
 
         return $this->render(
             'Admin/index.html.twig',
             [
-                'responseData' => $responseData,
                 'reportsData' => $reportsData,
+                'actionsData' => $actionsData,
             ]
         );
     }

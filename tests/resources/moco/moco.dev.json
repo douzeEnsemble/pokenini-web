@@ -806,15 +806,7 @@
       }
     },
     "response": {
-      "status": "200",
-      "json": {
-        "catch_states": 6,
-        "regions": 0,
-        "category_forms": 4,
-        "regional_forms": 4,
-        "special_forms": 5,
-        "variant_forms": 8
-      }
+      "status": "201"
     }
   },
   {
@@ -828,13 +820,7 @@
       }
     },
     "response": {
-      "status": "200",
-      "json": {
-        "game_generations": 9,
-        "game_bundles": 17,
-        "games": 36,
-        "dex": 21
-      }
+      "status": "201"
     }
   },
   {
@@ -848,10 +834,7 @@
       }
     },
     "response": {
-      "status": "200",
-      "json": {
-        "pokemons": 1815
-      }
+      "status": "201"
     }
   },
   {
@@ -865,10 +848,7 @@
       }
     },
     "response": {
-      "status": "200",
-      "json": {
-        "games_availabilities": 7980
-      }
+      "status": "201"
     }
   },
   {
@@ -896,10 +876,7 @@
       }
     },
     "response": {
-      "status": "200",
-      "json": {
-        "game_bundles_availabilities": 18
-      }
+      "status": "201"
     }
   },
   {
@@ -913,10 +890,7 @@
       }
     },
     "response": {
-      "status": "200",
-      "json": {
-        "dex_availabilities": 61
-      }
+      "status": "201"
     }
   },
   {
@@ -967,6 +941,22 @@
     "response": {
       "status": "200",
       "file": "/var/moco/reports.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/messenger_actions"
+      },
+      "method": "get",
+      "headers": {
+        "accept" : "application/json",
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/messenger_actions.json"
     }
   }
 ]

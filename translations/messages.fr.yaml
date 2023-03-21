@@ -33,7 +33,8 @@ title:
         catch_states: 'Invalidation du cache des statuts'
         dex: 'Invalidation du cache des dex'
         albums: 'Invalidation du cache des albums'
-        reports: 'Invalidate reports cache'
+        reports: 'Invalidation du cache des rapports'
+        actions: 'Invalidation du cache des actions'
     admin_actions: 'Données et caches'
     admin_reports: 'Rapports'
     box: 'Boite'
@@ -277,3 +278,6 @@ admin:
             color: "Couleur"
             part: "%"
             toggle: ""
+    action:
+        created_at: "Démarré le"
+        done_at: "Terminé le"

@@ -13,64 +13,30 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ActionUpdateTest extends WebTestCase
 {
     use TestNavTrait;
-    use ReportsAssertionTrait;
 
     public function testAdminUpdateLabels(): void
     {
-        $this->testAdminUpdate(
-            'labels',
-            [
-                'Statuts' => '6',
-                'Régions' => '0',
-                'Catégories' => '4',
-                'Formes régionales' => '4',
-                'Formes spéciales' => '5',
-                'Variantes' => '8',
-            ]
-        );
+        $this->testAdminUpdate('labels');
     }
 
     public function testAdminUpdateGamesAndDex(): void
     {
-        $this->testAdminUpdate(
-            'games_and_dex',
-            [
-                'Générations' => '9',
-                'Bundles de jeux' => '17',
-                'Jeux' => '36',
-                'Dex' => '21',
-            ]
-        );
+        $this->testAdminUpdate('games_and_dex');
     }
 
     public function testAdminUpdatePokemons(): void
     {
-        $this->testAdminUpdate(
-            'pokemons',
-            [
-                'Pokémons' => '1 815',
-            ]
-        );
+        $this->testAdminUpdate('pokemons');
     }
 
     public function testAdminUpdateRegionalDexNumbers(): void
     {
-        $this->testAdminUpdate(
-            'regional_dex_numbers',
-            [
-                // Empty for testing purpose
-            ]
-        );
+        $this->testAdminUpdate('regional_dex_numbers');
     }
 
     public function testAdminUpdateGamesAvailabilities(): void
     {
-        $this->testAdminUpdate(
-            'games_availabilities',
-            [
-                'Dispo des jeux' => '7 980',
-            ]
-        );
+        $this->testAdminUpdate('games_availabilities');
     }
 
     public function testAdminUpdateUnknown(): void
@@ -124,10 +90,7 @@ class ActionUpdateTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.list-group-item-warning');
     }
 
-    /**
-     * @param array<string, string> $expectedReport
-     */
-    private function testAdminUpdate(string $name, array $expectedReport = []): void
+    private function testAdminUpdate(string $name): void
     {
         $client = static::createClient();
 
@@ -149,7 +112,5 @@ class ActionUpdateTest extends WebTestCase
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
-
-        $this->assertReport($crawler, $expectedReport);
     }
 }

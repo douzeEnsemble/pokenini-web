@@ -68,6 +68,7 @@ class AdminActionController extends AbstractController
                 'dex',
                 'albums',
                 'reports',
+                'actions',
             ]"
     )]
     public function invalidate(
@@ -87,7 +88,7 @@ class AdminActionController extends AbstractController
         $error = '';
 
         try {
-            $content = $this->doAction($name, $action);
+            $this->doAction($name, $action);
         } catch (\Exception $e) {
             $state = 'ko';
 
@@ -117,20 +118,16 @@ class AdminActionController extends AbstractController
     private function doAction(
         string $name,
         string $action,
-    ): string {
-        $responseContent = '';
-
+    ): void {
         switch ($action) {
             case 'update':
-                $responseContent = $this->apiService->adminUpdate($name);
+                $this->apiService->adminUpdate($name);
                 break;
             case 'calculate':
-                $responseContent = $this->apiService->adminCalculate($name);
+                $this->apiService->adminCalculate($name);
                 break;
         }
 
         $this->cacheInvalidatorService->invalidate($name);
-
-        return $responseContent;
     }
 }

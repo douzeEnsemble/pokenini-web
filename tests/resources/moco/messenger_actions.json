@@ -1,0 +1,43 @@
+{
+  "calculate_dex_availabilities": {
+    "created_at": "2023-03-21 09:14:36",
+    "done_at": "2023-03-21 10:05:08",
+    "details": {
+      "dex_availabilities": 22472
+    }
+  },
+  "calculate_game_bundles_availabilities": {
+    "created_at": "2023-03-21 07:15:04",
+    "done_at": null,
+    "details": {}
+  },
+  "update_games_and_dex": {
+    "created_at": "2023-03-21 09:00:20",
+    "done_at": null,
+    "details": null
+  },
+  "update_games_availabilities": {
+    "created_at": "2023-03-21 08:51:00",
+    "done_at": "2023-03-21 09:25:38",
+    "details": {}
+  },
+  "update_labels": {
+    "created_at": "2023-03-21 08:51:39",
+    "done_at": "2023-03-21 09:53:07",
+    "details": {
+      "catch_states": 6,
+      "regions": 0,
+      "category_forms": 6,
+      "regional_forms": 4,
+      "special_forms": 7,
+      "variant_forms": 7
+    }
+  },
+  "update_pokemons": {
+    "created_at": "2023-03-21 08:34:47",
+    "done_at": "2023-03-21 09:38:03",
+    "details": {
+      "pokemons": 1934
+    }
+  }
+}

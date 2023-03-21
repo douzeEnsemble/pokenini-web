@@ -27,7 +27,7 @@ class AdminReportsTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
 
         $this->assertCountFilter($crawler, 2, 'table.report-table');
-        $this->assertCountFilter($crawler, 1, '.list-group-report-invalidate a.admin-item');
+        $this->assertCountFilter($crawler, 1, '.list-group-report-invalidate .admin-item a.admin-item-cta');
 
         $this->assertCountFilter($crawler, 1, 'canvas#catch_state_counts_defined_by_trainer');
         $this->assertCountFilter($crawler, 1, 'table#report-table-catch_state_counts_defined_by_trainer');

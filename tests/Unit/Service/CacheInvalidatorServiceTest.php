@@ -18,6 +18,10 @@ class CacheInvalidatorServiceTest extends TestCase
             ->expects($this->once())
             ->method('invalidateCacheCatchStates')
         ;
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheActions')
+        ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
@@ -32,6 +36,10 @@ class CacheInvalidatorServiceTest extends TestCase
             ->expects($this->once())
             ->method('invalidateCacheDex')
         ;
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheActions')
+        ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
@@ -41,6 +49,11 @@ class CacheInvalidatorServiceTest extends TestCase
     public function testInvalidatePokemons(): void
     {
         $apiService = $this->createMock(ApiService::class);
+
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheActions')
+        ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
@@ -58,6 +71,10 @@ class CacheInvalidatorServiceTest extends TestCase
             ->expects($this->once())
             ->method('invalidateCacheAlbums')
         ;
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheActions')
+        ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
@@ -71,6 +88,10 @@ class CacheInvalidatorServiceTest extends TestCase
         $apiService
             ->expects($this->once())
             ->method('invalidateCacheAlbums')
+        ;
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheActions')
         ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
@@ -90,6 +111,10 @@ class CacheInvalidatorServiceTest extends TestCase
             ->expects($this->once())
             ->method('invalidateCacheDex')
         ;
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheActions')
+        ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
@@ -108,6 +133,20 @@ class CacheInvalidatorServiceTest extends TestCase
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
         $cacheInvalidator->invalidate('reports');
+    }
+
+    public function testInvalidateActions(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheActions')
+        ;
+
+        $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $cacheInvalidator->invalidate('actions');
     }
 
     public function testInvalidateUnknown(): void

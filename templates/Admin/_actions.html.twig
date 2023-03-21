@@ -23,7 +23,7 @@
         } %}
         <div class="list-group list-group-update">
             {% for item, icon in updateItems %}
-                {{ admin.action('update', item, icon, updatedItem, updatedAction, updatedState, responseData) }}
+                {{ admin.action('update', item, icon, updatedItem, updatedAction, updatedState, actionsData) }}
             {% endfor %}
         </div>
 
@@ -44,7 +44,7 @@
         } %}
         <div class="list-group list-group-calculate">
             {% for item, icon in calculateItems %}
-                {{ admin.action('calculate', item, icon, updatedItem, updatedAction, updatedState, responseData) }}
+                {{ admin.action('calculate', item, icon, updatedItem, updatedAction, updatedState, actionsData) }}
             {% endfor %}
         </div>
 
@@ -63,10 +63,11 @@
             'catch_states': 'tag',
             'dex': 'journals',
             'albums': 'journal-album',
+            'actions': 'activity',
         } %}
         <div class="list-group list-group-invalidate">
             {% for item, icon in invalidateItems %}
-                {{ admin.action('invalidate', item, icon, updatedItem, updatedAction, updatedState, responseData) }}
+                {{ admin.action('invalidate', item, icon, updatedItem, updatedAction, updatedState, actionsData) }}
             {% endfor %}
         </div>
     </div>
