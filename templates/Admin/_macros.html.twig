@@ -5,7 +5,7 @@
     updatedItem,
     updatedAction,
     updatedState,
-    actionsData
+    actionLogsData
 ) %}
     {% set actionItem = action~'_'~item %}
 
@@ -18,18 +18,18 @@
 
     {% set listGroupItem = 'light' %}
 
-    {% if actionsData is not empty
-        and actionsData[actionItem] is defined
-        and actionsData[actionItem] is not empty
-        and actionsData[actionItem]['done_at'] is defined
-        and actionsData[actionItem]['done_at'] is not empty
+    {% if actionLogsData is not empty
+        and actionLogsData[actionItem] is defined
+        and actionLogsData[actionItem] is not empty
+        and actionLogsData[actionItem]['done_at'] is defined
+        and actionLogsData[actionItem]['done_at'] is not empty
     %}
         {% set listGroupItem = stateColor['done'] %}
-    {% elseif actionsData is not empty
-        and actionsData[actionItem] is defined
-        and actionsData[actionItem] is not empty
-        and actionsData[actionItem]['created_at'] is defined
-        and actionsData[actionItem]['created_at'] is not empty
+    {% elseif actionLogsData is not empty
+        and actionLogsData[actionItem] is defined
+        and actionLogsData[actionItem] is not empty
+        and actionLogsData[actionItem]['created_at'] is defined
+        and actionLogsData[actionItem]['created_at'] is not empty
     %}
         {% set listGroupItem = stateColor['pending'] %}
     {% endif %}
@@ -51,11 +51,11 @@
         </a>
 
 
-        {% if actionsData is not empty
-            and actionsData[actionItem] is defined
-            and actionsData[actionItem] is not empty
+        {% if actionLogsData is not empty
+            and actionLogsData[actionItem] is defined
+            and actionLogsData[actionItem] is not empty
         %}
-            {% set actionData = actionsData[actionItem] %}
+            {% set actionData = actionLogsData[actionItem] %}
         <div class="row justify-content-start ms-3">
             {% if actionData['details'] is defined
                 and actionData['details'] is not empty

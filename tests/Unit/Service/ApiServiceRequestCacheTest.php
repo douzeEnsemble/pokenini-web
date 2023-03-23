@@ -294,7 +294,7 @@ class ApiServiceRequestCacheTest extends TestCase
             ->expects($this->exactly(2))
             ->method('request')
             ->withConsecutive(
-                ['GET', 'api/messenger_actions'],
+                ['GET', 'api/action_logs'],
                 // Additionnal call to pollute requests and caches
                 ['GET', 'api/catch_states'],
             )
@@ -307,12 +307,12 @@ class ApiServiceRequestCacheTest extends TestCase
 
         $this->assertEmpty($cache->getValues());
 
-        $service->getActions();
+        $service->getActionLogs();
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayHasKey('actions', $cache->getValues());
 
-        $service->getActions();
-        $service->getActions();
+        $service->getActionLogs();
+        $service->getActionLogs();
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayHasKey('actions', $cache->getValues());
 
