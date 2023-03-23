@@ -43,13 +43,13 @@ class AdminController extends AbstractController
         }
 
         $reportsData = $this->apiService->getReports();
-        $actionsData = $this->apiService->getActions();
+        $actionLogsData = $this->apiService->getActionLogs();
 
         return $this->render(
             'Admin/index.html.twig',
             [
                 'reportsData' => $reportsData,
-                'actionsData' => $actionsData,
+                'actionLogsData' => $actionLogsData,
             ]
         );
     }

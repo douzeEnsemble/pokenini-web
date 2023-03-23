@@ -949,7 +949,7 @@
   {
     "request": {
       "uri": {
-        "match": "/messenger_actions"
+        "match": "/action_logs"
       },
       "method": "get",
       "headers": {
@@ -959,7 +959,7 @@
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/messenger_actions.json"
+      "file": "/var/moco/action_logs.json"
     }
   }
 ]

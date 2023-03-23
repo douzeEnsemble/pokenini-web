@@ -218,15 +218,15 @@ class ApiService
     /**
      * @return string[][]
      */
-    public function getActions(): array
+    public function getActionLogs(): array
     {
-        $key = KeyMaker::getActionsKey();
+        $key = KeyMaker::getActionLogsKey();
 
         /** @var string $json */
         $json = $this->cache->get($key, function () {
             $response = $this->client->request(
                 'GET',
-                "{$this->appApiUrl}/messenger_actions",
+                "{$this->appApiUrl}/action_logs",
                 [
                     'headers' => [
                         'accept' => 'application/json',
@@ -284,7 +284,7 @@ class ApiService
 
     public function invalidateCacheActions(): void
     {
-        $this->cache->delete(KeyMaker::getActionsKey());
+        $this->cache->delete(KeyMaker::getActionLogsKey());
     }
 
     private function invalidateCacheByType(string $type): void

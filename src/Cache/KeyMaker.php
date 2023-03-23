@@ -36,7 +36,7 @@ class KeyMaker
         return self::CACHE_KEY_REPORTS;
     }
 
-    public static function getActionsKey(): string
+    public static function getActionLogsKey(): string
     {
         return self::CACHE_KEY_ACTIONS;
     }
