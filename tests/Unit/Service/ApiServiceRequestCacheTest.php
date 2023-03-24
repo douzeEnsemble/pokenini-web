@@ -285,15 +285,17 @@ class ApiServiceRequestCacheTest extends TestCase
 
         $response = $this->createMock(ResponseInterface::class);
         $response
-            ->expects($this->exactly(2))
+            ->expects($this->exactly(4))
             ->method('getContent')
             ->willReturn('{}')
         ;
 
         $client
-            ->expects($this->exactly(2))
+            ->expects($this->exactly(4))
             ->method('request')
             ->withConsecutive(
+                ['GET', 'api/action_logs'],
+                ['GET', 'api/action_logs'],
                 ['GET', 'api/action_logs'],
                 // Additionnal call to pollute requests and caches
                 ['GET', 'api/catch_states'],
@@ -308,19 +310,15 @@ class ApiServiceRequestCacheTest extends TestCase
         $this->assertEmpty($cache->getValues());
 
         $service->getActionLogs();
-        $this->assertCount(1, $cache->getValues());
-        $this->assertArrayHasKey('actions', $cache->getValues());
+        $this->assertCount(0, $cache->getValues());
+        $this->assertArrayNotHasKey('actions', $cache->getValues());
 
         $service->getActionLogs();
         $service->getActionLogs();
-        $this->assertCount(1, $cache->getValues());
-        $this->assertArrayHasKey('actions', $cache->getValues());
+        $this->assertCount(0, $cache->getValues());
+        $this->assertArrayNotHasKey('actions', $cache->getValues());
 
         $service->getCatchStates();
-        $this->assertCount(2, $cache->getValues());
-        $this->assertArrayHasKey('actions', $cache->getValues());
-
-        $service->invalidateCacheActions();
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayNotHasKey('actions', $cache->getValues());
     }

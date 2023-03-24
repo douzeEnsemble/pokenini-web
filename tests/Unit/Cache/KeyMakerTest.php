@@ -29,11 +29,6 @@ class KeyMakerTest extends TestCase
         $this->assertEquals('reports', KeyMaker::getReportsKey());
     }
 
-    public function testgetActionLogsKey(): void
-    {
-        $this->assertEquals('actions', KeyMaker::getActionLogsKey());
-    }
-
     public function testGetDexKeyForTrainer(): void
     {
         $this->assertEquals('dex_1', KeyMaker::getDexKeyForTrainer('1'));

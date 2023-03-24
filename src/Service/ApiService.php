@@ -220,27 +220,22 @@ class ApiService
      */
     public function getActionLogs(): array
     {
-        $key = KeyMaker::getActionLogsKey();
+        $response = $this->client->request(
+            'GET',
+            "{$this->appApiUrl}/action_logs",
+            [
+                'headers' => [
+                    'accept' => 'application/json',
+                ],
+                'auth_basic' => [
+                    $this->apiLogin,
+                    $this->apiPassword,
+                ],
+            ]
+        );
 
-        /** @var string $json */
-        $json = $this->cache->get($key, function () {
-            $response = $this->client->request(
-                'GET',
-                "{$this->appApiUrl}/action_logs",
-                [
-                    'headers' => [
-                        'accept' => 'application/json',
-                    ],
-                    'auth_basic' => [
-                        $this->apiLogin,
-                        $this->apiPassword,
-                    ],
-                ]
-            );
-
-            /** @var string */
-            return $response->getContent();
-        });
+        /** @var string */
+        $json = $response->getContent();
 
         /** @var string[][] */
         return JsonDecoder::decode($json);
@@ -280,11 +275,6 @@ class ApiService
     public function invalidateCacheReports(): void
     {
         $this->cache->delete(KeyMaker::getReportsKey());
-    }
-
-    public function invalidateCacheActions(): void
-    {
-        $this->cache->delete(KeyMaker::getActionLogsKey());
     }
 
     private function invalidateCacheByType(string $type): void
