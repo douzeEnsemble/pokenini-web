@@ -14,7 +14,6 @@ class KeyMaker
     private const CACHE_KEY_CATCH_STATES = 'catch_states';
     private const CACHE_KEY_ALBUM = 'album';
     private const CACHE_KEY_REPORTS = 'reports';
-    private const CACHE_KEY_ACTIONS = 'actions';
 
     public static function getDexKey(): string
     {
@@ -34,11 +33,6 @@ class KeyMaker
     public static function getReportsKey(): string
     {
         return self::CACHE_KEY_REPORTS;
-    }
-
-    public static function getActionLogsKey(): string
-    {
-        return self::CACHE_KEY_ACTIONS;
     }
 
     public static function getDexKeyForTrainer(string $trainerId, string $alt = ''): string

@@ -20,17 +20,14 @@ class CacheInvalidatorService
             case 'labels':
             case 'catch_states':
                 $this->apiService->invalidateCacheCatchStates();
-                $this->apiService->invalidateCacheActions();
                 return;
 
             case 'games_and_dex':
             case 'dex':
                 $this->apiService->invalidateCacheDex();
-                $this->apiService->invalidateCacheActions();
                 return;
 
             case 'pokemons':
-                $this->apiService->invalidateCacheActions();
                 return;
 
             case 'regional_dex_numbers':
@@ -38,17 +35,11 @@ class CacheInvalidatorService
             case 'game_bundles_availabilities':
             case 'albums':
                 $this->apiService->invalidateCacheAlbums();
-                $this->apiService->invalidateCacheActions();
                 return;
 
             case 'dex_availabilities':
                 $this->apiService->invalidateCacheDex();
                 $this->apiService->invalidateCacheAlbums();
-                $this->apiService->invalidateCacheActions();
-                return;
-
-            case 'actions':
-                $this->apiService->invalidateCacheActions();
                 return;
 
             case 'reports':
