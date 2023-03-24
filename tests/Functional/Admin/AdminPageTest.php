@@ -61,7 +61,7 @@ class AdminPageTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 5, '.list-group-update .admin-item a.admin-item-cta');
         $this->assertCountFilter($crawler, 2, '.list-group-calculate .admin-item a.admin-item-cta');
-        $this->assertCountFilter($crawler, 3ssss, '.list-group-invalidate .admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 3, '.list-group-invalidate .admin-item a.admin-item-cta');
         $this->assertCountFilter($crawler, 2, 'table.report-table');
         $this->assertCountFilter($crawler, 1, '.list-group-report-invalidate .admin-item a.admin-item-cta');
 
