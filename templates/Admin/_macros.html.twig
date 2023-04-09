@@ -83,7 +83,7 @@
                     {{ ('admin.action.'~date)|trans }}
                 </strong>
                 <em class="col-6 text-start mb-0">
-                    {{ actionData[date]|date('d/m/Y h:i:s') }}
+                    {{ actionData[date]|date('d/m/Y H:i:s', 'Europe/Paris') }}
                 </em>
             </div>
         </div>
