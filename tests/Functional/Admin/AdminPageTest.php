@@ -83,7 +83,7 @@ class AdminPageTest extends WebTestCase
             ],
             [
                 'label' => 'Terminé le',
-                'value' => '21/03/2023 09:53:07',
+                'value' => '21/03/2023 13:53:07',
             ]
         );
         $this->assertReport(
@@ -92,7 +92,7 @@ class AdminPageTest extends WebTestCase
             [],
             [
                 'label' => 'Démarré le',
-                'value' => '21/03/2023 09:00:20',
+                'value' => '21/03/2023 15:00:20',
             ]
         );
         $this->assertReport(
@@ -103,7 +103,7 @@ class AdminPageTest extends WebTestCase
             ],
             [
                 'label' => 'Terminé le',
-                'value' => '21/03/2023 09:38:03',
+                'value' => '21/03/2023 10:38:03',
             ]
         );
         $this->assertReport(
@@ -118,7 +118,7 @@ class AdminPageTest extends WebTestCase
             [],
             [
                 'label' => 'Terminé le',
-                'value' => '21/03/2023 09:25:38',
+                'value' => '21/03/2023 10:25:38',
             ]
         );
         $this->assertReport(
@@ -127,7 +127,7 @@ class AdminPageTest extends WebTestCase
             [],
             [
                 'label' => 'Démarré le',
-                'value' => '21/03/2023 07:15:04',
+                'value' => '21/03/2023 08:15:04',
             ]
         );
         $this->assertReport(
@@ -138,7 +138,7 @@ class AdminPageTest extends WebTestCase
             ],
             [
                 'label' => 'Terminé le',
-                'value' => '21/03/2023 10:05:08',
+                'value' => '21/03/2023 11:05:08',
             ]
         );
     }
