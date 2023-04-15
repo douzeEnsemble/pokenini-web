@@ -610,6 +610,19 @@
   {
     "request": {
       "uri": {
+        "match": "/album/[\\w\\d]*/homeot"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/homeot.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/album/[\\w\\d]*/homeshiny"
       },
       "headers": {
@@ -908,6 +921,23 @@
     },
     "response": {
       "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/[\\w-]*/[\\w-]*"
+      },
+      "method": "put",
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      },
+      "text": {
+        "match": "\\{(\"is_private\": ?(?:true|false),? ?)?(\"is_on_home\": ?(?:true|false))?\\}"
+      }
+    },
+    "response": {
+      "status": "201"
     }
   },
   {
