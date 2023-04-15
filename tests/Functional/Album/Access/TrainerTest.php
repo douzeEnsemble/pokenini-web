@@ -39,7 +39,7 @@ class TrainerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertCountFilter($crawler, 17, '.album-case');
+        $this->assertCountFilter($crawler, 21, '.album-case');
 
         $this->assertCountFilter($crawler, 1, '.another-trainer-album');
     }
@@ -56,7 +56,7 @@ class TrainerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertCountFilter($crawler, 17, '.album-case');
+        $this->assertCountFilter($crawler, 21, '.album-case');
 
         $this->assertCountFilter($crawler, 1, '.another-trainer-album');
     }
