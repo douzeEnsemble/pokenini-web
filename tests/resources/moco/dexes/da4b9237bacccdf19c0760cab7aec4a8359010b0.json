@@ -8,6 +8,7 @@
       "name": "Home Pokemon Go",
       "french_name": "Home Pokemon Go",
       "slug": "homepokemongo",
+      "original_slug": "homepokemongo",
       "is_released": true
     },
     {
@@ -19,6 +20,7 @@
       "name": "Alpha",
       "french_name": "Baron",
       "slug": "alpha",
+      "original_slug": "alpha",
       "is_released": true
     },
     {
@@ -30,6 +32,7 @@
       "name": "Mega",
       "french_name": "M\u00e9ga",
       "slug": "mega",
+      "original_slug": "mega",
       "is_released": true
     }
 ]

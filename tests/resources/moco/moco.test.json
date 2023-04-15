@@ -584,6 +584,19 @@
   {
     "request": {
       "uri": {
+        "match": "/album/[\\w\\d]*/homeot"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/homeot.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/album/[\\w\\d]*/homeshiny"
       },
       "headers": {
@@ -911,6 +924,23 @@
     },
     "response": {
       "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w\\d]*/[\\w-]*/[\\w-]*"
+      },
+      "method": "put",
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      },
+      "text": {
+        "match": "\\{(\"is_private\": ?(?:true|false),? ?)?(\"is_on_home\": ?(?:true|false))?\\}"
+      }
+    },
+    "response": {
+      "status": "201"
     }
   },
   {

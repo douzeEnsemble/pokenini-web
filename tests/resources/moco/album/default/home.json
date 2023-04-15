@@ -1,6 +1,7 @@
 {
   "dex": {
     "slug": "home",
+    "original_slug": "home",
     "name": "Home",
     "french_name": "Home",
     "is_shiny": false,
