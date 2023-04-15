@@ -101,6 +101,39 @@ class FamilyTest extends WebTestCase
         );
     }
 
+    public function testFilterFamilyMimeJr(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('12');
+        $user->addTrainerRole();
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/fr/album/demo?f=mime-jr');
+
+        $this->assertCountFilter($crawler, 4, '.album-case');
+
+        $this->assertCountFilter($crawler, 0, 'h2.box');
+        $this->assertCountFilter($crawler, 0, '#bulbasaur');
+        $this->assertCountFilter($crawler, 0, '#venusaur-f');
+        $this->assertCountFilter($crawler, 0, '#charmander');
+        $this->assertCountFilter($crawler, 0, '#wartortle');
+        $this->assertCountFilter($crawler, 1, '#mr-mime');
+        $this->assertCountFilter($crawler, 1, '#mime-jr');
+
+        $this->assertCountFilter($crawler, 8, '.toast');
+
+        $this->assertCountFilter($crawler, 7, 'table a');
+        $this->assertEquals(
+            '/fr/album/demo?cs=no',
+            $crawler->filter('table a')->first()->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/demo',
+            $crawler->filter('table a')->last()->attr('href')
+        );
+    }
+
     public function testFilterFamilyUnknown(): void
     {
         $client = static::createClient();
