@@ -54,51 +54,46 @@ class HomeTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertCountFilter($crawler, 5, '.home-item');
+        $this->assertCountFilter($crawler, 4, '.home-item');
 
-        $this->assertEquals(
-            '/fr/connect',
-            $crawler->filter('.home-item')->eq(0)->filter('a')->attr('href')
-        );
-        $this->assertEquals(
-            'https://icon.pokenini.fr/banner/not_logged.png',
-            $crawler->filter('.home-item')->eq(0)->filter('img')->attr('src')
-        );
-
+        $index = 0;
         $this->assertEquals(
             '/fr/album/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $crawler->filter('.home-item')->eq(1)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq($index)->filter('a')->attr('href')
         );
         $this->assertEquals(
             'https://icon.pokenini.fr/banner/home.png',
-            $crawler->filter('.home-item')->eq(1)->filter('img')->attr('src')
+            $crawler->filter('.home-item')->eq($index)->filter('img')->attr('src')
         );
 
+        $index++;
         $this->assertEquals(
             '/fr/album/homeshiny?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $crawler->filter('.home-item')->eq(2)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq($index)->filter('a')->attr('href')
         );
         $this->assertEquals(
             'https://icon.pokenini.fr/banner/homeshiny.png',
-            $crawler->filter('.home-item')->eq(2)->filter('img')->attr('src')
+            $crawler->filter('.home-item')->eq($index)->filter('img')->attr('src')
         );
 
+        $index++;
         $this->assertEquals(
             '/fr/album/pokemongo?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $crawler->filter('.home-item')->eq(3)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq($index)->filter('a')->attr('href')
         );
         $this->assertEquals(
             'https://icon.pokenini.fr/banner/pokemongo.png',
-            $crawler->filter('.home-item')->eq(3)->filter('img')->attr('src')
+            $crawler->filter('.home-item')->eq($index)->filter('img')->attr('src')
         );
 
+        $index++;
         $this->assertEquals(
             '/fr/album/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $crawler->filter('.home-item')->eq(4)->filter('a')->attr('href')
+            $crawler->filter('.home-item')->eq($index)->filter('a')->attr('href')
         );
         $this->assertEquals(
             'https://icon.pokenini.fr/banner/scarletviolet.png',
-            $crawler->filter('.home-item')->eq(4)->filter('img')->attr('src')
+            $crawler->filter('.home-item')->eq($index)->filter('img')->attr('src')
         );
     }
 
