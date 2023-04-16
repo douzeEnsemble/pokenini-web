@@ -24,13 +24,6 @@
             {% else %}
                 {% if app.user is null %}
                     {{ _self.homeItem(
-                        path('app_connect_index'),
-                        'not_logged',
-                        'login'|trans,
-                        'login'|trans,
-                        locale
-                    ) }}
-                    {{ _self.homeItem(
                         '/'~locale~'/album/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
                         'home',
                         'Home (demo)',
