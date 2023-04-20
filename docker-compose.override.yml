@@ -23,13 +23,13 @@ services:
       - ./public:/srv/public:ro
       - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
 
-  moco_test:
+  test.moco:
     build:
       context: docker/moco/test
     volumes:
       - ./tests/resources/moco/:/var/moco:ro
 
-  moco_dev:
+  dev.moco:
     build:
       context: docker/moco/dev
     volumes:

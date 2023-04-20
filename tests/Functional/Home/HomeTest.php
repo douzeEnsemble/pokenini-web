@@ -54,47 +54,31 @@ class HomeTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertCountFilter($crawler, 4, '.home-item');
+        $this->assertCountFilter($crawler, 8, '.home-item');
 
-        $index = 0;
-        $this->assertEquals(
-            '/fr/album/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $crawler->filter('.home-item')->eq($index)->filter('a')->attr('href')
-        );
-        $this->assertEquals(
-            'https://icon.pokenini.fr/banner/home.png',
-            $crawler->filter('.home-item')->eq($index)->filter('img')->attr('src')
-        );
+        $dex = [
+            'home',
+            'homeshiny',
+            'swordshieldapriball',
+            'pokemonlegendsarceuspokeball',
+            'scarletviolet',
+            'newmonsscarletviolet',
+            'pokemongoshiny',
+            'totem',
+        ];
 
-        $index++;
-        $this->assertEquals(
-            '/fr/album/homeshiny?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $crawler->filter('.home-item')->eq($index)->filter('a')->attr('href')
-        );
-        $this->assertEquals(
-            'https://icon.pokenini.fr/banner/homeshiny.png',
-            $crawler->filter('.home-item')->eq($index)->filter('img')->attr('src')
-        );
+        for ($i = 0; $i < \count($dex); $i++) {
+            $dexSlug = $dex[$i];
 
-        $index++;
-        $this->assertEquals(
-            '/fr/album/pokemongo?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $crawler->filter('.home-item')->eq($index)->filter('a')->attr('href')
-        );
-        $this->assertEquals(
-            'https://icon.pokenini.fr/banner/pokemongo.png',
-            $crawler->filter('.home-item')->eq($index)->filter('img')->attr('src')
-        );
-
-        $index++;
-        $this->assertEquals(
-            '/fr/album/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
-            $crawler->filter('.home-item')->eq($index)->filter('a')->attr('href')
-        );
-        $this->assertEquals(
-            'https://icon.pokenini.fr/banner/scarletviolet.png',
-            $crawler->filter('.home-item')->eq($index)->filter('img')->attr('src')
-        );
+            $this->assertEquals(
+                "/fr/album/$dexSlug?t=0a286c2c78b485e1bcecf68febbda17084d0b2be",
+                $crawler->filter('.home-item')->eq($i)->filter('a')->attr('href')
+            );
+            $this->assertEquals(
+                "https://icon.pokenini.fr/banner/$dexSlug.png",
+                $crawler->filter('.home-item')->eq($i)->filter('img')->attr('src')
+            );
+        }
     }
 
     public function testConnectedHomeNoDex(): void
