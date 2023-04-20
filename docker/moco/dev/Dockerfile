@@ -17,4 +17,4 @@ RUN apk add --no-cache \
 ENTRYPOINT ["java", "-jar", "/usr/local/bin/moco.jar"]
 
 EXPOSE 8000
-CMD ["start", "-p", "80", "-c", "/var/moco/moco.dev.json"]
+CMD ["start", "-p", "80", "-c", "/var/moco/dev.moco.json"]

@@ -10,6 +10,7 @@ services:
             string $listTrainer: '%env(LIST_TRAINER)%'
             string $apiLogin: '%env(API_LOGIN)%'
             string $apiPassword: '%env(API_PASSWORD)%'
+            string $demoUserId: '%env(DEMO_USER_ID)%'
 
     App\:
         resource: '../src/'

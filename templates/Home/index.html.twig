@@ -15,54 +15,23 @@
         <div class="row">
             {% for item in dex|filter(item => item.is_on_home is same as(true)) %}
             {{ _self.homeItem(
-                path('app_album_index', {'dexSlug': item.slug}),
+                path('app_album_index', {'dexSlug': item.slug, 't': connectedUserId is not null ? null : userId}),
                 item.slug,
                 item.name,
                 item.french_name,
                 locale
             ) }}
             {% else %}
-                {% if app.user is null %}
-                    {{ _self.homeItem(
-                        '/'~locale~'/album/home?t=f86cbe805674d85f7806b175b70647a6a9334631',
-                        'home',
-                        'Home (demo)',
-                        'Home (démo)',
-                        locale
-                    ) }}
-                    {{ _self.homeItem(
-                        '/'~locale~'/album/homeshiny?t=f86cbe805674d85f7806b175b70647a6a9334631',
-                        'homeshiny',
-                        'Home Shiny (demo)',
-                        'Home Chromatique (démo)',
-                        locale
-                    ) }}
-                    {{ _self.homeItem(
-                        '/'~locale~'/album/pokemongo?t=f86cbe805674d85f7806b175b70647a6a9334631',
-                        'pokemongo',
-                        'Pokémon Go (demo)',
-                        'Pokémon Go (démo)',
-                        locale
-                    ) }}
-                    {{ _self.homeItem(
-                        '/'~locale~'/album/scarletviolet?t=f86cbe805674d85f7806b175b70647a6a9334631',
-                        'scarletviolet',
-                        'Scarlet, Violet (demo)',
-                        'Écarlate, Violet (démo)',
-                        locale
-                    ) }}
-                {% else %}
             <div class="alert alert-info mt-5" role="alert">
                 <p>{{ 'home.no_dex'|trans|replace({'<a>': '<a href="'~path('app_trainer_index')~'">'})|raw }}</p>
             </div>
-                {% endif %}
             {% endfor %}
         </div>
     </div>
 </div>
 {% endblock %}
 
-{% macro homeItem(url, bannerSlug, name, frenchName, locale) %}
+{% macro homeItem(url, bannerSlug, name, frenchName, locale, trainerId) %}
 <div class="card col-md-3 col-6 home-item">
     <a href="{{ url }}">
         {% set bannerUrl = dexBannerUrl|format(bannerSlug) %}

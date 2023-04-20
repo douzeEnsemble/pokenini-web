@@ -31,7 +31,7 @@ runs:
 
     - name: Check Moco logs
       shell: bash
-      run: docker compose logs moco_test
+      run: docker compose logs test.moco
 
     - name: Check HTTP reachability
       shell: bash

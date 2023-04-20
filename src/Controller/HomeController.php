@@ -14,20 +14,27 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController extends AbstractController
 {
     #[Route('')]
-    public function index(ApiService $apiService, UserTokenService $userTokenService): Response
-    {
-        try {
-            $userId = $userTokenService->getLoggedUserToken();
+    public function index(
+        ApiService $apiService,
+        UserTokenService $userTokenService,
+        string $demoUserId,
+    ): Response {
+        $connectedUserId = null;
 
-            $dex = $apiService->getDex($userId);
+        try {
+            $userId = $connectedUserId = $userTokenService->getLoggedUserToken();
         } catch (NoLoggedUserException $e) {
-            $dex = [];
+            $userId = $demoUserId;
         }
+
+        $dex = $apiService->getDex($userId);
 
         return $this->render(
             'Home/index.html.twig',
             [
                 'dex' => $dex,
+                'userId' => $userId,
+                'connectedUserId' => $connectedUserId,
             ]
         );
     }
