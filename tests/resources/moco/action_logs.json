@@ -11,6 +11,13 @@
     "done_at": null,
     "details": {}
   },
+  "calculate_game_bundles_shinies_availabilities": {
+    "created_at": "2023-04-21 15:24:18+00",
+    "done_at": "2023-04-21 15:27:18+00",
+    "details": {
+      "game_bundles_shinies_availabilities": 1234
+    }
+  },
   "update_games_and_dex": {
     "created_at": "2023-03-21 14:00:20+00",
     "done_at": null,
@@ -19,6 +26,11 @@
   "update_games_availabilities": {
     "created_at": "2023-03-21 08:51:00+00",
     "done_at": "2023-03-21 09:25:38+00",
+    "details": {}
+  },
+  "update_games_shinies_availabilities": {
+    "created_at": "2023-03-21 08:51:00+00",
+    "done_at": "2023-04-20 00:52:59+00",
     "details": {}
   },
   "update_labels": {

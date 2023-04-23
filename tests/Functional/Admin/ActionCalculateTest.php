@@ -19,6 +19,11 @@ class ActionCalculateTest extends WebTestCase
         $this->testAdminCalculate('game_bundles_availabilities');
     }
 
+    public function testAdminCalculateGamesBundlesShiniesAvailabilities(): void
+    {
+        $this->testAdminCalculate('game_bundles_shinies_availabilities');
+    }
+
     public function testAdminCalculateDexAvailabilities(): void
     {
         $client = static::createClient();

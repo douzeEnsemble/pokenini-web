@@ -879,6 +879,20 @@
   {
     "request": {
       "uri": {
+        "match": "/istration/update/games_shinies_availabilities"
+      },
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "status": "201"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/istration/update/regional_dex_numbers"
       },
       "method": "post",
@@ -894,6 +908,20 @@
     "request": {
       "uri": {
         "match": "/istration/calculate/game_bundles_availabilities"
+      },
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "status": "201"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/istration/calculate/game_bundles_shinies_availabilities"
       },
       "method": "post",
       "headers": {

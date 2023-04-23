@@ -35,6 +35,7 @@ class AdminActionController extends AbstractController
                 'games_and_dex',
                 'pokemons',
                 'games_availabilities',
+                'games_shinies_availabilities',
                 'regional_dex_numbers',
             ]"
     )]
@@ -50,6 +51,7 @@ class AdminActionController extends AbstractController
         condition: "params['name']
             in [
                 'game_bundles_availabilities',
+                'game_bundles_shinies_availabilities',
                 'dex_availabilities',
             ]"
     )]

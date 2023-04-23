@@ -65,6 +65,20 @@ class CacheInvalidatorServiceTest extends TestCase
         $cacheInvalidator->invalidate('games_availabilities');
     }
 
+    public function testInvalidateGameShinyAvailability(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheAlbums')
+        ;
+
+        $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $cacheInvalidator->invalidate('games_shinies_availabilities');
+    }
+
     public function testInvalidateGameBundleAvailability(): void
     {
         $apiService = $this->createMock(ApiService::class);
@@ -77,6 +91,20 @@ class CacheInvalidatorServiceTest extends TestCase
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
         $cacheInvalidator->invalidate('game_bundles_availabilities');
+    }
+
+    public function testInvalidateGameBundleShinyAvailability(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheAlbums')
+        ;
+
+        $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $cacheInvalidator->invalidate('game_bundles_shinies_availabilities');
     }
 
     public function testInvalidateDexAvailability(): void
