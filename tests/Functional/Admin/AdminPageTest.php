@@ -56,11 +56,11 @@ class AdminPageTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 2, 'h2');
         $this->assertCountFilter($crawler, 7, 'h3');
-        $this->assertCountFilter($crawler, 11, '.admin-item a.admin-item-cta');
-        $this->assertCountFilter($crawler, 11, '.admin-item a.admin-item-cta i.bi');
+        $this->assertCountFilter($crawler, 13, '.admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 13, '.admin-item a.admin-item-cta i.bi');
 
-        $this->assertCountFilter($crawler, 5, '.list-group-update .admin-item a.admin-item-cta');
-        $this->assertCountFilter($crawler, 2, '.list-group-calculate .admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 6, '.list-group-update .admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 3, '.list-group-calculate .admin-item a.admin-item-cta');
         $this->assertCountFilter($crawler, 3, '.list-group-invalidate .admin-item a.admin-item-cta');
         $this->assertCountFilter($crawler, 2, 'table.report-table');
         $this->assertCountFilter($crawler, 1, '.list-group-report-invalidate .admin-item a.admin-item-cta');
@@ -70,77 +70,14 @@ class AdminPageTest extends WebTestCase
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
 
-        $this->assertReport(
-            $crawler,
-            'update_labels',
-            [
-                'Statuts' => '6',
-                'Régions' => '0',
-                'Catégories' => '6',
-                'Formes régionales' => '4',
-                'Formes spéciales' => '7',
-                'Variantes' => '7',
-            ],
-            [
-                'label' => 'Terminé le',
-                'value' => '21/03/2023 13:53:07',
-            ]
-        );
-        $this->assertReport(
-            $crawler,
-            'update_games_and_dex',
-            [],
-            [
-                'label' => 'Démarré le',
-                'value' => '21/03/2023 15:00:20',
-            ]
-        );
-        $this->assertReport(
-            $crawler,
-            'update_pokemons',
-            [
-                'Pokémons' => '1 934',
-            ],
-            [
-                'label' => 'Terminé le',
-                'value' => '21/03/2023 10:38:03',
-            ]
-        );
-        $this->assertReport(
-            $crawler,
-            'update_regional_dex_numbers',
-            [],
-            []
-        );
-        $this->assertReport(
-            $crawler,
-            'update_games_availabilities',
-            [],
-            [
-                'label' => 'Terminé le',
-                'value' => '21/03/2023 10:25:38',
-            ]
-        );
-        $this->assertReport(
-            $crawler,
-            'calculate_game_bundles_availabilities',
-            [],
-            [
-                'label' => 'Démarré le',
-                'value' => '21/03/2023 08:15:04',
-            ]
-        );
-        $this->assertReport(
-            $crawler,
-            'calculate_dex_availabilities',
-            [
-                'Dispo des dex' => '22 472',
-            ],
-            [
-                'label' => 'Terminé le',
-                'value' => '21/03/2023 11:05:08',
-            ]
-        );
+        foreach ($this->getHomeReportData() as $slug => $report) {
+            $this->assertReport(
+                $crawler,
+                $slug,
+                $report['data'],
+                $report['datatime']
+            );
+        }
     }
 
     private function getAdminHomeConnected(): Crawler
@@ -204,5 +141,87 @@ class AdminPageTest extends WebTestCase
                 $crawler->filter(".admin-item-$item .admin-item-report-date em")->text()
             );
         }
+    }
+
+    /**
+     * @return string[][][]
+     */
+    private function getHomeReportData(): array
+    {
+        return [
+            'update_labels' => [
+                'data' => [
+                    'Statuts' => '6',
+                    'Régions' => '0',
+                    'Catégories' => '6',
+                    'Formes régionales' => '4',
+                    'Formes spéciales' => '7',
+                    'Variantes' => '7',
+                ],
+                'datatime' => [
+                    'label' => 'Terminé le',
+                    'value' => '21/03/2023 13:53:07',
+                ],
+            ],
+            'update_games_and_dex' => [
+                'data' => [],
+                'datatime' => [
+                    'label' => 'Démarré le',
+                    'value' => '21/03/2023 15:00:20',
+                ],
+            ],
+            'update_pokemons' => [
+                'data' => [
+                    'Pokémons' => '1 934',
+                ],
+                'datatime' => [
+                    'label' => 'Terminé le',
+                    'value' => '21/03/2023 10:38:03',
+                ],
+            ],
+            'update_regional_dex_numbers' => [
+                'data' => [],
+                'datatime' => []
+            ],
+            'update_games_availabilities' => [
+                'data' => [],
+                'datatime' => [
+                    'label' => 'Terminé le',
+                    'value' => '21/03/2023 10:25:38',
+                ],
+            ],
+            'update_games_shinies_availabilities' => [
+                'data' => [],
+                'datatime' => [
+                    'label' => 'Terminé le',
+                    'value' => '20/04/2023 02:52:59',
+                ],
+            ],
+            'calculate_game_bundles_availabilities' => [
+                'data' => [],
+                'datatime' => [
+                    'label' => 'Démarré le',
+                    'value' => '21/03/2023 08:15:04',
+                ],
+            ],
+            'calculate_game_bundles_shinies_availabilities' => [
+                'data' => [
+                    'Dispo des bundles des chromatiques' => '1 234',
+                ],
+                'datatime' => [
+                    'label' => 'Terminé le',
+                    'value' => '21/04/2023 17:27:18',
+                ],
+            ],
+            'calculate_dex_availabilities' => [
+                'data' => [
+                    'Dispo des dex' => '22 472',
+                ],
+                'datatime' => [
+                    'label' => 'Terminé le',
+                    'value' => '21/03/2023 11:05:08',
+                ],
+            ],
+        ];
     }
 }

@@ -71,7 +71,9 @@ class AdminInvalidateTest extends WebTestCase
             ['pokemons'],
             ['regional_dex_numbers'],
             ['games_availabilities'],
+            ['games_shinies_availabilities'],
             ['game_bundles_availabilities'],
+            ['game_bundles_shinies_availabilities'],
             ['dex_availabilities'],
         ];
     }

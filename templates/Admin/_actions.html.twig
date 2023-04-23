@@ -19,7 +19,8 @@
             'games_and_dex': 'joystick',
             'pokemons': 'bug-fill',
             'regional_dex_numbers': 'globe-asia-australia',
-            'games_availabilities': 'box-seam',
+            'games_availabilities': 'box2',
+            'games_shinies_availabilities': 'box2-fill',
         } %}
         <div class="list-group list-group-update">
             {% for item, icon in updateItems %}
@@ -39,7 +40,8 @@
         {% endfor %}
 
         {% set calculateItems = {
-            'game_bundles_availabilities': 'box-seam-fill',
+            'game_bundles_availabilities': 'box-seam',
+            'game_bundles_shinies_availabilities': 'box-seam-fill',
             'dex_availabilities': 'list-check',
         } %}
         <div class="list-group list-group-calculate">

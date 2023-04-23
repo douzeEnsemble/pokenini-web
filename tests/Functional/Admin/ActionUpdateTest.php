@@ -39,6 +39,12 @@ class ActionUpdateTest extends WebTestCase
         $this->testAdminUpdate('games_availabilities');
     }
 
+
+    public function testAdminUpdateGamesShiniesAvailabilities(): void
+    {
+        $this->testAdminUpdate('games_shinies_availabilities');
+    }
+
     public function testAdminUpdateUnknown(): void
     {
         $client = static::createClient();

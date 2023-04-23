@@ -25,9 +25,11 @@ title:
         games_and_dex: 'Update games and dex'
         pokemons: 'Update pokémons'
         games_availabilities: "Update games' availabilities"
+        games_shinies_availabilities: "Update games' shinies' availabilities"
         regional_dex_numbers: 'Update regional dex numbers'
     calculate:
         game_bundles_availabilities: "Update game bundles' availabilities"
+        game_bundles_shinies_availabilities: "Update game bundles' shinies' availabilities"
         dex_availabilities: 'Update dex availabilities'
     invalidate:
         catch_states: 'Invalidate status cache'
@@ -130,10 +132,16 @@ update:
     games_availabilities:
         success: "Games' availabilities update has been done"
         error: "Games' availabilities update has failed"
+    games_shinies_availabilities:
+        success: "Games' shinies' availabilities update has been done"
+        error: "Games' shinies' availabilities update has failed"
 calculate:
     game_bundles_availabilities:
         success: "Game bundles' availabilities update has been done"
         error: "Game bundles' availabilities update has failed"
+    game_bundles_shinies_availabilities:
+        success: "Game bundles' shinies' availabilities update has been done"
+        error: "Game bundles' shinies' availabilities update has failed"
     dex_availabilities:
         success: 'Dex availabilities update has been done'
         error: 'Dex availabilities update has failed'
@@ -236,6 +244,7 @@ error:
 admin:
     update:
         games_availabilities: "Games' availabilities"
+        games_shinies_availabilities: "Games' shinies' availabilities"
         regional_dex_numbers: "Regional Dex numbers"
         game_generations: "Game's generations"
         game_bundles: "Game's bundles"
@@ -251,6 +260,7 @@ admin:
 
     calculate:
         game_bundles_availabilities: "Bundles' availabilities"
+        game_bundles_shinies_availabilities: "Bundles' shinies' availabilities"
         dex_availabilities: "Dex' availabilities"
     reports:
         cache:

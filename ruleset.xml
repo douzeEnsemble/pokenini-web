@@ -20,8 +20,14 @@
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
         <properties>
-            <property name="maxmethods" description="The method count reporting threshold" value="20"/>
-            <property name="ignorepattern" description="Ignore methods matching this regex" value="(^(set|get|is|has|with))i"/>
+            <property
+                name="maxmethods"
+                description="The method count reporting threshold" value="20"
+            />
+            <property
+                name="ignorepattern"
+                description="Ignore methods matching this regex" value="(^(set|get|is|has|with))i"
+            />
         </properties>
     </rule>
 
@@ -43,13 +49,19 @@
     <rule ref="rulesets/naming.xml/LongVariable">
         <properties>
             <property name="maximum" value="42" />
-            <property name="subtract-suffixes" value="Command,Controller,Exception,Repository,Service,Test" />
+            <property
+                name="subtract-suffixes"
+                value="Command,Controller,Exception,Repository,Service,Test"
+            />
         </properties>
     </rule>
     <rule ref="rulesets/naming.xml/LongClassName">
         <properties>
             <property name="maximum" value="51" />
-            <property name="subtract-suffixes" value="Command,Controller,Exception,Repository,Service,Test" />
+            <property
+                name="subtract-suffixes"
+                value="Command,Controller,Exception,Repository,Service,Test,ActionStarter"
+            />
         </properties>
     </rule>
 

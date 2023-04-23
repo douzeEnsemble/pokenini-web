@@ -32,7 +32,9 @@ class CacheInvalidatorService
 
             case 'regional_dex_numbers':
             case 'games_availabilities':
+            case 'games_shinies_availabilities':
             case 'game_bundles_availabilities':
+            case 'game_bundles_shinies_availabilities':
             case 'albums':
                 $this->apiService->invalidateCacheAlbums();
                 return;
