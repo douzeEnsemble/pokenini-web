@@ -157,8 +157,8 @@ trainer:
         Bonjour à toi jeune dresseur.
         Ceci est ton espace.
 
-        Bon l'instant tu peux pas y faire grand chose.
-        Mais ça viendra.
+        Tu peux y personnaliser tes albums, consulter les données personnelles et te déconnecter.
+        Amuse toi bien.
     personnal_data:
         title: 'Données personnelles'
         intro: "Voici les données personnelles que j'ai te concernant"

@@ -157,8 +157,8 @@ trainer:
         Hello, young trainer.
         This is your space.
 
-        Right now you can't do much about it.
-        But it will come.
+        Here you can personalize your albums, view personal data and log out.
+        Have fun.
     personnal_data:
         title: 'Personal data'
         intro: 'Here is the personal data I have about you'
