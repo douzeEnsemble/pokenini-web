@@ -9,7 +9,7 @@
 <div class="row">
     {% for dex in trainerDex %}
     <div
-        class="col-6 trainer-dex-item border rounded border-opacity-50"
+        class="col-4 trainer-dex-item border rounded border-opacity-50"
         id="trainer-dex-{{ dex.slug }}"
     >
         {% set bannerUrl = dexBannerUrl|format(dex.slug) %}
