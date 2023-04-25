@@ -55,11 +55,23 @@ class TrainerController extends AbstractController
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_TRAINER');
 
+        $content = $request->getContent();
+
+        if (! is_string($content) || empty($content)) {
+            return new JsonResponse(
+                [
+                    'error' => 'Content must be a non-empty string'
+                ],
+                400
+            );
+        }
+
+        $trainerId = $this->userTokenService->getLoggedUserToken();
+
         try {
-            $trainerId = $this->userTokenService->getLoggedUserToken();
             $this->apiService->modifyDex(
                 $dexSlug,
-                (string) $request->getContent(),
+                $content,
                 $trainerId
             );
 

@@ -94,11 +94,6 @@ class AlbumControllerTest extends TestCase
         $apiService = $this->createMock(ApiService::class);
 
         $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('1234567890')
-        ;
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
@@ -131,16 +126,63 @@ class AlbumControllerTest extends TestCase
             ->method('getContent')
             ->willReturn([])
         ;
-        $request
+
+        $response = $controller->upsert('douze', 'machi', $request);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals(400, $response->getStatusCode());
+        $this->assertEquals(
+            '{"error":"Content must be a non-empty string"}',
+            $response->getContent()
+        );
+    }
+
+    public function testUpsertEmptyContent(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $userTokenService = $this->createMock(UserTokenService::class);
+
+        $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
+        $authorizationChecker
             ->expects($this->once())
-            ->method('getMethod')
-            ->willReturn('PATCH')
+            ->method('isGranted')
+            ->willReturn(true)
         ;
 
-        $this->expectError();
-        $this->expectErrorMessage('Array to string conversion');
+        $container = $this->createMock(ContainerInterface::class);
+        $container
+            ->expects($this->once())
+            ->method('has')
+            ->willReturn(true)
+        ;
+        $container
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn($authorizationChecker)
+        ;
 
-        $controller->upsert('douze', 'machi', $request);
+        $controller = new AlbumController(
+            $apiService,
+            $userTokenService
+        );
+        $controller->setContainer($container);
+
+        $request = $this->createMock(Request::class);
+        $request
+            ->expects($this->once())
+            ->method('getContent')
+            ->willReturn('')
+        ;
+
+        $response = $controller->upsert('douze', 'machi', $request);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals(400, $response->getStatusCode());
+        $this->assertEquals(
+            '{"error":"Content must be a non-empty string"}',
+            $response->getContent()
+        );
     }
 
     public function testUpsertApiException(): void
