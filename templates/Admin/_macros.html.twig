@@ -59,18 +59,18 @@
             {% if actionData['details'] is defined
                 and actionData['details'] is not empty
             %}
-            <dl class="col-8 row admin-item-report mt-1 mb-3">
+            <dl class="col-10 row admin-item-report mt-1 mb-3">
                     {% for slug, value in actionData['details'] %}
-                <dt class="col-8">
+                <dt class="col-6">
                     {{ ('admin.'~action~'.'~slug)|trans }}
                 </dt>
-                <dd class="col-4 text-end mb-0">
+                <dd class="col-6 text-end mb-0">
                     {{ value|number_format(0, '.', ' ') }}
                 </d>
                     {% endfor %}
             </dl>
             {% endif %}
-            <div class="col-12 row admin-item-report-date mt-1 mb-0 text-muted">
+            <div class="col-12 row admin-item-report-meta admin-item-report-date mt-1 mb-0 text-muted">
                 {% set date = 'created_at' %}
                 {% if actionData['done_at'] is defined
                     and actionData['done_at'] is not empty
@@ -85,6 +85,17 @@
                     {{ actionData[date]|date('d/m/Y H:i:s', 'Europe/Paris') }}
                 </em>
             </div>
+            {% if actionData['execution_time'] is defined
+                and actionData['execution_time'] is not null %}
+            <div class="col-12 row admin-item-report-meta admin-item-report-execution mt-1 mb-0 text-muted">
+                <strong class="col-6">
+                    {{ ('admin.action.execution_time')|trans }}
+                </strong>
+                <em class="col-6 text-start mb-0">
+                    {{ (actionData['execution_time'])|date('H:i:s') }}
+                </em>
+            </div>
+            {% endif %}
         </div>
         {% endif %}
     </div>

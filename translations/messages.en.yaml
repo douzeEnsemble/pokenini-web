@@ -289,3 +289,4 @@ admin:
     action:
         created_at: "Start at"
         done_at: "End at"
+        execution_time: "Execution time"

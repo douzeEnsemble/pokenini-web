@@ -75,7 +75,8 @@ class AdminPageTest extends WebTestCase
                 $crawler,
                 $slug,
                 $report['data'],
-                $report['datatime']
+                $report['datatime'],
+                $report['exectime'][0],
             );
         }
     }
@@ -107,6 +108,7 @@ class AdminPageTest extends WebTestCase
         string $item,
         array $expectedReport,
         array $expectedDateTime,
+        string $executionTime,
     ): void {
         $index = 0;
 
@@ -141,6 +143,19 @@ class AdminPageTest extends WebTestCase
                 $crawler->filter(".admin-item-$item .admin-item-report-date em")->text()
             );
         }
+
+        if (!empty($executionTime)) {
+            $this->assertCountFilter($crawler, 1, ".admin-item-$item .admin-item-report-execution");
+
+            $this->assertEquals(
+                'Terminé en',
+                $crawler->filter(".admin-item-$item .admin-item-report-execution strong")->text()
+            );
+            $this->assertEquals(
+                $executionTime,
+                $crawler->filter(".admin-item-$item .admin-item-report-execution em")->text()
+            );
+        }
     }
 
     /**
@@ -162,6 +177,7 @@ class AdminPageTest extends WebTestCase
                     'label' => 'Terminé le',
                     'value' => '21/03/2023 13:53:07',
                 ],
+                'exectime' => ['00:01:28'],
             ],
             'update_games_and_dex' => [
                 'data' => [],
@@ -169,6 +185,7 @@ class AdminPageTest extends WebTestCase
                     'label' => 'Démarré le',
                     'value' => '21/03/2023 15:00:20',
                 ],
+                'exectime' => [''],
             ],
             'update_pokemons' => [
                 'data' => [
@@ -178,10 +195,12 @@ class AdminPageTest extends WebTestCase
                     'label' => 'Terminé le',
                     'value' => '21/03/2023 10:38:03',
                 ],
+                'exectime' => ['00:01:28'],
             ],
             'update_regional_dex_numbers' => [
                 'data' => [],
-                'datatime' => []
+                'datatime' => [],
+                'exectime' => [''],
             ],
             'update_games_availabilities' => [
                 'data' => [],
@@ -189,6 +208,7 @@ class AdminPageTest extends WebTestCase
                     'label' => 'Terminé le',
                     'value' => '21/03/2023 10:25:38',
                 ],
+                'exectime' => ['00:34:38'],
             ],
             'update_games_shinies_availabilities' => [
                 'data' => [],
@@ -196,6 +216,7 @@ class AdminPageTest extends WebTestCase
                     'label' => 'Terminé le',
                     'value' => '20/04/2023 02:52:59',
                 ],
+                'exectime' => ['15:01:59'],
             ],
             'calculate_game_bundles_availabilities' => [
                 'data' => [],
@@ -203,6 +224,7 @@ class AdminPageTest extends WebTestCase
                     'label' => 'Démarré le',
                     'value' => '21/03/2023 08:15:04',
                 ],
+                'exectime' => [''],
             ],
             'calculate_game_bundles_shinies_availabilities' => [
                 'data' => [
@@ -212,6 +234,7 @@ class AdminPageTest extends WebTestCase
                     'label' => 'Terminé le',
                     'value' => '21/04/2023 17:27:18',
                 ],
+                'exectime' => ['00:03:00'],
             ],
             'calculate_dex_availabilities' => [
                 'data' => [
@@ -221,6 +244,7 @@ class AdminPageTest extends WebTestCase
                     'label' => 'Terminé le',
                     'value' => '21/03/2023 11:05:08',
                 ],
+                'exectime' => ['00:50:32'],
             ],
         ];
     }
