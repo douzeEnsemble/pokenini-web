@@ -13,6 +13,7 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Twig\Environment;
 
 class TrainerControllerIndexTest extends TestCase
@@ -35,6 +36,8 @@ class TrainerControllerIndexTest extends TestCase
             ->method('getLoggedUserToken')
             ->willReturn('1234567890')
         ;
+
+        $validator = $this->createMock(ValidatorInterface::class);
 
         $user = new User('1234567890');
         $user->addTrainerRole();
@@ -80,7 +83,11 @@ class TrainerControllerIndexTest extends TestCase
             )
         ;
 
-        $controller = new TrainerController($apiService, $userTokenService);
+        $controller = new TrainerController(
+            $apiService,
+            $userTokenService,
+            $validator,
+        );
         $controller->setContainer($container);
 
         $response = $controller->index();
@@ -108,6 +115,8 @@ class TrainerControllerIndexTest extends TestCase
             ->method('getLoggedUserToken')
             ->willReturn('1234567890')
         ;
+
+        $validator = $this->createMock(ValidatorInterface::class);
 
         $user = new User('1234567890');
         $user->addAdminRole();
@@ -153,7 +162,11 @@ class TrainerControllerIndexTest extends TestCase
             )
         ;
 
-        $controller = new TrainerController($apiService, $userTokenService);
+        $controller = new TrainerController(
+            $apiService,
+            $userTokenService,
+            $validator,
+        );
         $controller->setContainer($container);
 
         $response = $controller->index();
@@ -185,6 +198,8 @@ class TrainerControllerIndexTest extends TestCase
             ->method('getLoggedUserToken')
             ->willReturn('1234567890')
         ;
+
+        $validator = $this->createMock(ValidatorInterface::class);
 
         $user = new User('1234567890');
 
@@ -229,7 +244,11 @@ class TrainerControllerIndexTest extends TestCase
             )
         ;
 
-        $controller = new TrainerController($apiService, $userTokenService);
+        $controller = new TrainerController(
+            $apiService,
+            $userTokenService,
+            $validator,
+        );
         $controller->setContainer($container);
 
         $response = $controller->index();
@@ -244,6 +263,8 @@ class TrainerControllerIndexTest extends TestCase
         $apiService = $this->createMock(ApiService::class);
 
         $userTokenService = $this->createMock(UserTokenService::class);
+
+        $validator = $this->createMock(ValidatorInterface::class);
 
         $token = $this->createMock(TokenInterface::class);
         $token
@@ -271,7 +292,11 @@ class TrainerControllerIndexTest extends TestCase
             ->willReturn($tokenStorage)
         ;
 
-        $controller = new TrainerController($apiService, $userTokenService);
+        $controller = new TrainerController(
+            $apiService,
+            $userTokenService,
+            $validator,
+        );
         $controller->setContainer($container);
 
         $response = $controller->index();
