@@ -2,6 +2,7 @@
   "calculate_dex_availabilities": {
     "created_at": "2023-03-21 09:14:36+00",
     "done_at": "2023-03-21 10:05:08+00",
+    "execution_time": 3032,
     "details": {
       "dex_availabilities": 22472
     }
@@ -14,6 +15,7 @@
   "calculate_game_bundles_shinies_availabilities": {
     "created_at": "2023-04-21 15:24:18+00",
     "done_at": "2023-04-21 15:27:18+00",
+    "execution_time": 180,
     "details": {
       "game_bundles_shinies_availabilities": 1234
     }
@@ -21,21 +23,25 @@
   "update_games_and_dex": {
     "created_at": "2023-03-21 14:00:20+00",
     "done_at": null,
+    "execution_time": null,
     "details": null
   },
   "update_games_availabilities": {
     "created_at": "2023-03-21 08:51:00+00",
     "done_at": "2023-03-21 09:25:38+00",
+    "execution_time": 2078,
     "details": {}
   },
   "update_games_shinies_availabilities": {
     "created_at": "2023-03-21 08:51:00+00",
     "done_at": "2023-04-20 00:52:59+00",
+    "execution_time": 2559719,
     "details": {}
   },
   "update_labels": {
     "created_at": "2023-03-21 12:51:39+00",
     "done_at": "2023-03-21 12:53:07+00",
+    "execution_time": 88,
     "details": {
       "catch_states": 6,
       "regions": 0,
@@ -48,6 +54,7 @@
   "update_pokemons": {
     "created_at": "2023-03-21 08:34:47+00",
     "done_at": "2023-03-21 09:38:03+00",
+    "execution_time": 88,
     "details": {
       "pokemons": 1934
     }
