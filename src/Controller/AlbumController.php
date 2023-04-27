@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\NoLoggedUserException;
+use App\Exception\ToJsonResponseException;
 use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\ApiService;
+use App\Validator\CatchStates;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
@@ -21,7 +24,8 @@ class AlbumController extends AbstractController
 {
     public function __construct(
         private readonly ApiService $apiService,
-        private readonly UserTokenService $userTokenService
+        private readonly UserTokenService $userTokenService,
+        private readonly ValidatorInterface $validator,
     ) {
     }
 
@@ -33,18 +37,20 @@ class AlbumController extends AbstractController
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_TRAINER');
 
-        $content = $request->getContent();
+        try {
+            $content = $this->getContentFromRequest($request);
 
-        if (! is_string($content) || empty($content)) {
+            $trainerId = $this->userTokenService->getLoggedUserToken();
+
+            $this->validateCatchState($content);
+        } catch (ToJsonResponseException $e) {
             return new JsonResponse(
                 [
-                    'error' => 'Content must be a non-empty string'
+                    'error' => $e->getMessage()
                 ],
-                400
+                $e->getCode()
             );
         }
-
-        $trainerId = $this->userTokenService->getLoggedUserToken();
 
         try {
             $this->apiService->modifyAlbum(
@@ -177,5 +183,36 @@ class AlbumController extends AbstractController
         }
 
         return $filter;
+    }
+
+    private function getContentFromRequest(Request $request): string
+    {
+        $content = $request->getContent();
+
+        if (! is_string($content) || empty($content)) {
+            throw new ToJsonResponseException(
+                'Content must be a non-empty string',
+                400
+            );
+        }
+
+        return $content;
+    }
+
+    private function validateCatchState(string $catchState): void
+    {
+        $errors = $this->validator->validate(
+            $catchState,
+            new CatchStates()
+        );
+
+        if (!$errors->count()) {
+            return;
+        }
+
+        throw new ToJsonResponseException(
+            (string) $errors[0]?->getMessage(),
+            400
+        );
     }
 }
