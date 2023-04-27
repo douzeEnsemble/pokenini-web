@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class TrainerControllerUpsertTest extends TestCase
 {
@@ -52,6 +55,15 @@ class TrainerControllerUpsertTest extends TestCase
             ->willReturn('1234567890')
         ;
 
+        $validator = $this->createMock(ValidatorInterface::class);
+        $validator
+            ->expects($this->once())
+            ->method('validate')
+            ->willReturn(
+                new ConstraintViolationList([])
+            )
+        ;
+
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
             ->expects($this->once())
@@ -73,7 +85,8 @@ class TrainerControllerUpsertTest extends TestCase
 
         $controller = new TrainerController(
             $apiService,
-            $userTokenService
+            $userTokenService,
+            $validator,
         );
         $controller->setContainer($container);
 
@@ -97,6 +110,8 @@ class TrainerControllerUpsertTest extends TestCase
 
         $userTokenService = $this->createMock(UserTokenService::class);
 
+        $validator = $this->createMock(ValidatorInterface::class);
+
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
             ->expects($this->once())
@@ -118,7 +133,8 @@ class TrainerControllerUpsertTest extends TestCase
 
         $controller = new TrainerController(
             $apiService,
-            $userTokenService
+            $userTokenService,
+            $validator,
         );
         $controller->setContainer($container);
 
@@ -145,6 +161,8 @@ class TrainerControllerUpsertTest extends TestCase
 
         $userTokenService = $this->createMock(UserTokenService::class);
 
+        $validator = $this->createMock(ValidatorInterface::class);
+
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
             ->expects($this->once())
@@ -166,7 +184,8 @@ class TrainerControllerUpsertTest extends TestCase
 
         $controller = new TrainerController(
             $apiService,
-            $userTokenService
+            $userTokenService,
+            $validator,
         );
         $controller->setContainer($container);
 
@@ -183,6 +202,73 @@ class TrainerControllerUpsertTest extends TestCase
         $this->assertEquals(400, $response->getStatusCode());
         $this->assertEquals(
             '{"error":"Content must be a non-empty string"}',
+            $response->getContent()
+        );
+    }
+
+    public function testUpsertInvalidContent(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $userTokenService = $this->createMock(UserTokenService::class);
+
+        $validator = $this->createMock(ValidatorInterface::class);
+        $validator
+            ->expects($this->once())
+            ->method('validate')
+            ->willReturn(
+                new ConstraintViolationList([
+                    new ConstraintViolation(
+                        'Alors en fait, non',
+                        null,
+                        [],
+                        'douze',
+                        null,
+                        'what?'
+                    ),
+                ])
+            )
+        ;
+
+        $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
+        $authorizationChecker
+            ->expects($this->once())
+            ->method('isGranted')
+            ->willReturn(true)
+        ;
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container
+            ->expects($this->once())
+            ->method('has')
+            ->willReturn(true)
+        ;
+        $container
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn($authorizationChecker)
+        ;
+
+        $controller = new TrainerController(
+            $apiService,
+            $userTokenService,
+            $validator,
+        );
+        $controller->setContainer($container);
+
+        $request = $this->createMock(Request::class);
+        $request
+            ->expects($this->once())
+            ->method('getContent')
+            ->willReturn('{not": "a valid, json')
+        ;
+
+        $response = $controller->upsert('douze', $request);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals(400, $response->getStatusCode());
+        $this->assertEquals(
+            '{"error":"Alors en fait, non"}',
             $response->getContent()
         );
     }
@@ -210,6 +296,8 @@ class TrainerControllerUpsertTest extends TestCase
             ->willReturn('1234567890')
         ;
 
+        $validator = $this->createMock(ValidatorInterface::class);
+
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
             ->expects($this->once())
@@ -231,7 +319,8 @@ class TrainerControllerUpsertTest extends TestCase
 
         $controller = new TrainerController(
             $apiService,
-            $userTokenService
+            $userTokenService,
+            $validator,
         );
         $controller->setContainer($container);
 

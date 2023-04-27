@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Exception\ToJsonResponseException;
 use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\ApiService;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Json;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
@@ -21,6 +24,7 @@ class TrainerController extends AbstractController
     public function __construct(
         private readonly ApiService $apiService,
         private readonly UserTokenService $userTokenService,
+        private readonly ValidatorInterface $validator,
     ) {
     }
 
@@ -55,18 +59,20 @@ class TrainerController extends AbstractController
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_TRAINER');
 
-        $content = $request->getContent();
+        try {
+            $content = $this->getContentFromRequest($request);
 
-        if (! is_string($content) || empty($content)) {
+            $trainerId = $this->userTokenService->getLoggedUserToken();
+
+            $this->validateDexData($content);
+        } catch (ToJsonResponseException $e) {
             return new JsonResponse(
                 [
-                    'error' => 'Content must be a non-empty string'
+                    'error' => $e->getMessage()
                 ],
-                400
+                $e->getCode()
             );
         }
-
-        $trainerId = $this->userTokenService->getLoggedUserToken();
 
         try {
             $this->apiService->modifyDex(
@@ -82,5 +88,36 @@ class TrainerController extends AbstractController
         }
 
         return new Response();
+    }
+
+    private function getContentFromRequest(Request $request): string
+    {
+        $content = $request->getContent();
+
+        if (! is_string($content) || empty($content)) {
+            throw new ToJsonResponseException(
+                'Content must be a non-empty string',
+                400
+            );
+        }
+
+        return $content;
+    }
+
+    private function validateDexData(string $dexData): void
+    {
+        $errors = $this->validator->validate(
+            $dexData,
+            new Json()
+        );
+
+        if (!$errors->count()) {
+            return;
+        }
+
+        throw new ToJsonResponseException(
+            (string) $errors[0]?->getMessage(),
+            400
+        );
     }
 }

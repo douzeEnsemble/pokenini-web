@@ -7,6 +7,10 @@ namespace App\Tests\Unit\Validator;
 use App\Service\ApiService;
 use App\Validator\CatchStates;
 use App\Validator\CatchStatesValidator;
+use DateTime;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use Symfony\Component\Validator\Exception\UnexpectedValueException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
@@ -57,6 +61,20 @@ class CatchStatesValidatorTest extends ConstraintValidatorTestCase
     public function provideValidConstraints(): iterable
     {
         yield [new CatchStates()];
+    }
+
+    public function testUnexpectedType(): void
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        $this->validator->validate('maybenot', new NotNull());
+    }
+
+    public function testUnexpectedValue(): void
+    {
+        $this->expectException(UnexpectedValueException::class);
+
+        $this->validator->validate(new DateTime(), new CatchStates());
     }
 
     protected function createValidator(): CatchStatesValidator
