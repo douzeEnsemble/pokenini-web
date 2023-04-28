@@ -13,6 +13,13 @@
     text-decoration: underline;
 }
 
+.admin-item .alert  {
+    font-size: .75rem;
+    padding: .3rem;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
+
 .report-table tr .toggle-icon.active-icon {
     display: inherit;
 }

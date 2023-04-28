@@ -31,10 +31,7 @@ class AdminController extends AbstractController
 
         if (null !== $adminAction) {
             if ('' !== $adminAction->error) {
-                $this->addFlash(
-                    "{$adminAction->action}_error",
-                    $adminAction->error
-                );
+                $this->addFlash('error', $adminAction->error);
             }
 
             $this->addFlash('action', $adminAction->action);

@@ -210,9 +210,9 @@ class AlbumController extends AbstractController
             return;
         }
 
-        throw new ToJsonResponseException(
-            (string) $errors[0]?->getMessage(),
-            400
-        );
+        /** @var string $message */
+        $message = $errors->get(0)->getMessage();
+
+        throw new ToJsonResponseException($message, 400);
     }
 }
