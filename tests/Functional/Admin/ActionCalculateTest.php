@@ -39,8 +39,12 @@ class ActionCalculateTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         $this->assertCountFilter($crawler, 0, '.list-group-item-success');
-        $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
-        $this->assertCountFilter($crawler, 1, '.alert-danger');
+        $this->assertCountFilter($crawler, 2, '.list-group-item-danger');
+        $this->assertCountFilter($crawler, 2, '.alert-danger');
+        $this->assertSelectorTextSame(
+            '.admin-item-calculate_dex_availabilities .alert',
+            'HTTP/1.1 500 Internal Server Error returned for "http://test.moco/istration/calculate/dex_availabilities".'
+        );
     }
 
     public function testAdminCalculateWithErrorsThenGoToIndex(): void
@@ -57,15 +61,22 @@ class ActionCalculateTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
+        file_put_contents('tests/last.html', $crawler->html());
+
         $this->assertCountFilter($crawler, 0, '.list-group-item-success');
-        $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
-        $this->assertCountFilter($crawler, 1, '.alert-danger');
+        $this->assertCountFilter($crawler, 2, '.list-group-item-danger');
+        $this->assertCountFilter($crawler, 2, '.alert-danger');
+        $this->assertCountFilter($crawler, 1, '.admin-item-calculate_dex_availabilities .alert');
+        $this->assertSelectorTextSame(
+            '.admin-item-calculate_dex_availabilities .alert',
+            'HTTP/1.1 500 Internal Server Error returned for "http://test.moco/istration/calculate/dex_availabilities".'
+        );
 
         $crawler = $client->request('GET', '/fr/istration');
 
         $this->assertCountFilter($crawler, 0, '.list-group-item-success');
-        $this->assertCountFilter($crawler, 0, '.list-group-item-danger');
-        $this->assertCountFilter($crawler, 0, '.alert-danger');
+        $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
+        $this->assertCountFilter($crawler, 1, '.alert-danger');
     }
 
     public function testAdminCalculateUnknown(): void
@@ -111,7 +122,7 @@ class ActionCalculateTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         $this->assertCountFilter($crawler, 1, '.list-group-item-success');
-        $this->assertCountFilter($crawler, 0, '.list-group-item-danger');
+        $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);

@@ -39,10 +39,32 @@ class ActionUpdateTest extends WebTestCase
         $this->testAdminUpdate('games_availabilities');
     }
 
-
     public function testAdminUpdateGamesShiniesAvailabilities(): void
     {
-        $this->testAdminUpdate('games_shinies_availabilities');
+        $client = static::createClient();
+
+        $user = new User('8764532');
+        $user->addAdminRole();
+        $client->loginUser($user);
+
+        // We don't have to call 'action/update/games_shinies_availabilities' to see error
+        // because it's the last action log we looking for
+        $crawler = $client->request('GET', '/fr/istration');
+
+        $this->assertResponseStatusCodeSame(200);
+
+        $this->assertCountFilter($crawler, 0, '.list-group-item-success');
+        $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
+        $this->assertCountFilter($crawler, 1, '.alert-danger');
+        $this->assertSelectorTextSame('.alert-danger', 'Exception has been thrown for X reason');
+
+        $this->assertConnectedNavBar($crawler);
+        $this->assertFrenchLangSwitch($crawler);
+
+        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
+
+        $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
+        $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
     }
 
     public function testAdminUpdateUnknown(): void
