@@ -21,6 +21,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[Route('/trainer')]
 class TrainerController extends AbstractController
 {
+    use ValidatorJsonResponseTrait;
+
     public function __construct(
         private readonly ApiService $apiService,
         private readonly UserTokenService $userTokenService,
@@ -64,7 +66,7 @@ class TrainerController extends AbstractController
 
             $trainerId = $this->userTokenService->getLoggedUserToken();
 
-            $this->validateDexData($content);
+            $this->validate($content, new Json());
         } catch (ToJsonResponseException $e) {
             return new JsonResponse(
                 [
@@ -102,22 +104,5 @@ class TrainerController extends AbstractController
         }
 
         return $content;
-    }
-
-    private function validateDexData(string $dexData): void
-    {
-        $errors = $this->validator->validate(
-            $dexData,
-            new Json()
-        );
-
-        if (!$errors->count()) {
-            return;
-        }
-
-        /** @var string $message */
-        $message = $errors->get(0)->getMessage();
-
-        throw new ToJsonResponseException($message, 400);
     }
 }

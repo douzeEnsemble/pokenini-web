@@ -22,6 +22,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[Route('/album')]
 class AlbumController extends AbstractController
 {
+    use ValidatorJsonResponseTrait;
+
     public function __construct(
         private readonly ApiService $apiService,
         private readonly UserTokenService $userTokenService,
@@ -42,7 +44,7 @@ class AlbumController extends AbstractController
 
             $trainerId = $this->userTokenService->getLoggedUserToken();
 
-            $this->validateCatchState($content);
+            $this->validate($content, new CatchStates());
         } catch (ToJsonResponseException $e) {
             return new JsonResponse(
                 [
@@ -197,22 +199,5 @@ class AlbumController extends AbstractController
         }
 
         return $content;
-    }
-
-    private function validateCatchState(string $catchState): void
-    {
-        $errors = $this->validator->validate(
-            $catchState,
-            new CatchStates()
-        );
-
-        if (!$errors->count()) {
-            return;
-        }
-
-        /** @var string $message */
-        $message = $errors->get(0)->getMessage();
-
-        throw new ToJsonResponseException($message, 400);
     }
 }
