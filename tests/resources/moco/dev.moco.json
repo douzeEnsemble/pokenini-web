@@ -297,6 +297,19 @@
   {
     "request": {
       "uri": {
+        "match": "/album/[\\w\\d]*/virgin"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/virgin.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/album/[\\w\\d]*/redgreenblueyellow"
       },
       "headers": {
