@@ -9,7 +9,7 @@
     <div class="progress mb-2">
         {% for line in report.detail %}
             {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
-            {% set completion = (100 * count / report.total)|round(2) %}
+            {% set completion = report.total ? (100 * count / report.total)|round(2) : 0 %}
             <div class="progress-bar catch-state-{{ line.slug }}"
                  role="progressbar"
                  aria-label="{{ locale is same as('fr') ? line.frenchName : line.name }}"
