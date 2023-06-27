@@ -48,6 +48,26 @@
     </a>
     {% endif %}
 
+    <a
+      class="list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center screenshot-mode screenshot-mode-on"
+      href="#screenshot-on"
+    >
+      <i
+        class="bi bi-camera2"
+      ></i>
+      {{ 'album.intro.action.screenshot.enable'|trans }}
+    </a>
+    <a
+      class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-between align-items-center screenshot-mode screenshot-mode-off"
+      href="#screenshot-off"
+      hidden
+    >
+      <i
+        class="bi bi-camera2"
+      ></i>
+      {{ 'album.intro.action.screenshot.disable'|trans }}
+    </a>
+
     {# Link to box 1 or top of the list #}
     {% if 'box' == displayTemplateName %}
     <a

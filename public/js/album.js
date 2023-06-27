@@ -50,3 +50,61 @@ function onToggleIntroDetails(event) {
       element.toggleAttribute('hidden');
     });
 }
+
+function watchScreenshotMode() {
+  document
+    .querySelectorAll('.screenshot-mode-on')
+    .forEach(function (element) {
+      element.addEventListener("click", onEnableScreenshotMode);
+    });
+
+  document
+      .querySelectorAll('.screenshot-mode-off')
+      .forEach(function (element) {
+        element.addEventListener("click", onDisableScreenshotMode);
+      });
+}
+
+function onEnableScreenshotMode(event) {
+  event.preventDefault();
+
+  document
+    .querySelectorAll('.album-case-catch-state')
+    .forEach(function (element) {
+      element.setAttribute('hidden', '');
+    });
+
+  document
+    .querySelectorAll('.screenshot-mode-on')
+    .forEach(function (element) {
+      element.setAttribute('hidden', '');
+    });
+
+  document
+    .querySelectorAll('.screenshot-mode-off')
+    .forEach(function (element) {
+      element.removeAttribute('hidden');
+    });
+}
+
+function onDisableScreenshotMode(event) {
+  event.preventDefault();
+
+  document
+    .querySelectorAll('.album-case-catch-state')
+    .forEach(function (element) {
+      element.removeAttribute('hidden');
+    });
+
+  document
+    .querySelectorAll('.screenshot-mode-off')
+    .forEach(function (element) {
+      element.setAttribute('hidden', '');
+    });
+
+  document
+    .querySelectorAll('.screenshot-mode-on')
+    .forEach(function (element) {
+      element.removeAttribute('hidden');
+    });
+}

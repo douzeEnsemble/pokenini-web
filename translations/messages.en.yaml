@@ -90,6 +90,9 @@ album:
                 top_of_the_list: "Go to the top of the list"
             description:
                 collapse: 'Information'
+            screenshot:
+                enable: Screenshot mode
+                disable: Status mode
         label:
             version: 'Version'
             region: 'Region'
