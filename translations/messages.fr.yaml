@@ -90,6 +90,9 @@ album:
                 top_of_the_list: "Voir le haut de la liste"
             description:
                 collapse: 'Informations'
+            screenshot:
+                enable: Mode capture
+                disable: Revenir à la normale
         label:
             version: 'Version'
             region: 'Région'

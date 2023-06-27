@@ -32,8 +32,8 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 9, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 4, '#intro .list-group .list-group-item[hidden]');
+        $this->assertCountFilter($crawler, 11, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 5, '#intro .list-group .list-group-item[hidden]');
 
         $index = 0;
         $this->assertEquals(
@@ -57,6 +57,16 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-on',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-off',
             $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
         );
 
@@ -102,8 +112,8 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 9, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 4, '#intro .list-group .list-group-item[hidden]');
+        $this->assertCountFilter($crawler, 11, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 5, '#intro .list-group .list-group-item[hidden]');
 
         $index = 0;
         $this->assertEquals(
@@ -124,6 +134,16 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-on',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-off',
             $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
         );
 
@@ -169,8 +189,8 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 9, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 4, '#intro .list-group .list-group-item[hidden]');
+        $this->assertCountFilter($crawler, 11, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 5, '#intro .list-group .list-group-item[hidden]');
 
         $index = 0;
         $this->assertEquals(
@@ -191,6 +211,16 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-on',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-off',
             $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
         );
 
@@ -236,8 +266,8 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 9, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 4, '#intro .list-group .list-group-item[hidden]');
+        $this->assertCountFilter($crawler, 11, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 5, '#intro .list-group .list-group-item[hidden]');
 
         $index = 0;
         $this->assertEquals(
@@ -262,6 +292,16 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-on',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-off',
             $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
         );
 
@@ -307,8 +347,8 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 9, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 4, '#intro .list-group .list-group-item[hidden]');
+        $this->assertCountFilter($crawler, 11, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 5, '#intro .list-group .list-group-item[hidden]');
 
         $index = 0;
         $this->assertEquals(
@@ -333,6 +373,16 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-on',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-off',
             $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
         );
 
@@ -378,8 +428,8 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 9, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 4, '#intro .list-group .list-group-item[hidden]');
+        $this->assertCountFilter($crawler, 11, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 5, '#intro .list-group .list-group-item[hidden]');
 
         $index = 0;
         $this->assertEquals(
@@ -404,6 +454,16 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             '#',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-on',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-off',
             $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
         );
 
@@ -449,8 +509,8 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .list-group');
-        $this->assertCountFilter($crawler, 8, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 3, '#intro .list-group .list-group-item[hidden]');
+        $this->assertCountFilter($crawler, 10, '#intro .list-group .list-group-item');
+        $this->assertCountFilter($crawler, 4, '#intro .list-group .list-group-item[hidden]');
 
         $index = 0;
         $this->assertEquals(
@@ -462,6 +522,16 @@ class IntroTest extends WebTestCase
         $this->assertEquals(
             'Tous les pokémons de la démo',
             $crawler->filter('#album-description')->text()
+        );
+
+        $this->assertEquals(
+            '#screenshot-on',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
+        );
+
+        $this->assertEquals(
+            '#screenshot-off',
+            $crawler->filter('#intro .list-group .list-group-item')->eq($index++)->attr('href')
         );
 
         $this->assertEquals(
