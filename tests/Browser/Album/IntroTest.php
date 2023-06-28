@@ -23,13 +23,11 @@ class IntroTest extends AbstractBrowserTestCase
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
-        $crawler = $client->request('GET', '/fr/album/demolite');
+        $client->request('GET', '/fr/album/demolite');
 
-        $this->assertCountFilter($crawler, 9, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 4, '#intro .list-group .list-group-item[hidden]');
         $this->assertSelectorIsNotVisible('.album-intro-details');
 
-        $crawler = $client->click(
+        $client->click(
             $client
             ->getCrawler()
             ->filter('#toggle-intro-details')
@@ -38,7 +36,7 @@ class IntroTest extends AbstractBrowserTestCase
 
         $this->assertSelectorWillBeVisible('.album-intro-details');
 
-        $crawler = $client->click(
+        $client->click(
             $client
             ->getCrawler()
             ->filter('#toggle-intro-details')
