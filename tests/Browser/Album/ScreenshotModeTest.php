@@ -30,7 +30,6 @@ class ScreenshotModeTest extends AbstractBrowserTestCase
 
         $this->assertSelectorIsVisible('.screenshot-mode-on');
         $this->assertSelectorIsNotVisible('.screenshot-mode-off');
-        
         $this->assertSelectorIsVisible('.album-case-catch-state');
 
         $crawler = $client->click(

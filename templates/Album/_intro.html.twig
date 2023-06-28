@@ -71,7 +71,7 @@
     {# Link to box 1 or top of the list #}
     {% if 'box' == displayTemplateName %}
     <a
-      class="d-lg-none list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center"
+      class="d-lg-none list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center goto goto-box1"
       href="#box-1"
     >
       <i
@@ -81,7 +81,7 @@
     </a>
     {% elseif 'list-' in displayTemplateName %}
     <a
-      class="d-lg-none list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center"
+      class="d-lg-none list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center goto goto-topofthelist"
       href="#top-of-the-list"
     >
       <i
@@ -94,7 +94,7 @@
     {# Is private text or share link #}
     {% if not dex.is_private %}
     <a
-      class="list-group-item list-group-item-action list-group-item-success d-flex justify-content-between align-items-center"
+      class="list-group-item list-group-item-action list-group-item-success d-flex justify-content-between align-items-center share"
       href="{{
         path('app_album_index',
           filters|merge({
@@ -108,7 +108,7 @@
     </a>
     {% else %}
     <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      class="list-group-item disabled d-flex justify-content-between align-items-center album-private"
       href="#"
     >
       {{ 'nav.is_private'|trans }}
@@ -119,7 +119,7 @@
     {# Text for another trainer #}
     {% if loggedTrainerId is not same as(trainerId) %}
     <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      class="list-group-item disabled d-flex justify-content-between align-items-center album-another-trainer"
       href="#"
     >
       {{ 'album.intro.label.another_trainer_album'|trans }}
@@ -132,7 +132,7 @@
 
     {# Region name or national #}
     <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      class="list-group-item disabled d-flex justify-content-between align-items-center dex-type"
       href="#"
     >
     {% if dex.region_name is not empty %}
@@ -148,7 +148,7 @@
 
     {# Shiny or not #}
     <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center"
+      class="list-group-item disabled d-flex justify-content-between align-items-center dex-shiny-or-not"
       href="#"
     >
       {% if dex.is_shiny %}
@@ -162,7 +162,7 @@
 
     {# Template text #}
     <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center album-intro-details"
+      class="list-group-item disabled d-flex justify-content-between align-items-center album-intro-details dex-template"
       href="#"
       hidden
     >
@@ -171,7 +171,7 @@
 
     {# Version #}
     <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center album-intro-details"
+      class="list-group-item disabled d-flex justify-content-between align-items-center album-intro-details dex-version"
       href="#"
       hidden
     >  {{ 'album.intro.label.version'|trans }}
