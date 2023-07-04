@@ -23,16 +23,13 @@ class ScreenshotModeTest extends AbstractBrowserTestCase
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
-        $crawler = $client->request('GET', '/fr/album/demolite');
-
-        $this->assertCountFilter($crawler, 11, '#intro .list-group .list-group-item');
-        $this->assertCountFilter($crawler, 5, '#intro .list-group .list-group-item[hidden]');
+        $client->request('GET', '/fr/album/demolite');
 
         $this->assertSelectorIsVisible('.screenshot-mode-on');
         $this->assertSelectorIsNotVisible('.screenshot-mode-off');
         $this->assertSelectorIsVisible('.album-case-catch-state');
 
-        $crawler = $client->click(
+        $client->click(
             $client
             ->getCrawler()
             ->filter('.screenshot-mode-on')
@@ -43,7 +40,7 @@ class ScreenshotModeTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('.screenshot-mode-on');
         $this->assertSelectorWillNotBeVisible('.album-case-catch-state');
 
-        $crawler = $client->click(
+        $client->click(
             $client
             ->getCrawler()
             ->filter('.screenshot-mode-off')

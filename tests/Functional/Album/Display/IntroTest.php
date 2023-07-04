@@ -32,10 +32,6 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#album-description');
-        $this->assertEquals(
-            '#',
-            $crawler->filter('#intro #album-description')->attr('href')
-        );
         $this->assertStringContainsString(
             'Tous les pokémons pouvant être transférés sur Pokémon Home.',
             $crawler->filter('#album-description')->text()
@@ -45,9 +41,12 @@ class IntroTest extends WebTestCase
             $crawler->filter('#album-description')->text()
         );
 
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-read-action');
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-edit-action');
+
         $this->assertCountFilter($crawler, 2, '#intro .screenshot-mode');
         $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-on');
-        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off[hidden]');
+        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off');
 
         $this->assertCountFilter($crawler, 1, '#intro .goto');
         $this->assertCountFilter($crawler, 1, '#intro .goto.goto-box1');
@@ -57,18 +56,18 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#intro .album-private');
         $this->assertEquals(
             'Album privé',
-            $crawler->filter('#intro .album-private')->text()
+            $crawler->filter('#intro .album-private')->attr('title')
         );
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
 
         $this->assertEquals(
             'Dex National',
-            $crawler->filter('#intro .dex-type')->text()
+            $crawler->filter('#intro .dex-type')->attr('title')
         );
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->text()
+            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
         );
 
         $this->assertEquals(
@@ -78,7 +77,7 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Version 4',
-            $crawler->filter('#intro .dex-version')->text()
+            $crawler->filter('#intro .dex-version')->attr('title')
         );
     }
 
@@ -100,17 +99,16 @@ class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
-            '#',
-            $crawler->filter('#intro #album-description')->attr('href')
-        );
-        $this->assertEquals(
             'Tous les pokémons de la démo affiché en liste, 3 éléments par colonnes',
             $crawler->filter('#album-description')->text()
         );
 
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-read-action');
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-edit-action');
+
         $this->assertCountFilter($crawler, 2, '#intro .screenshot-mode');
         $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-on');
-        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off[hidden]');
+        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off');
 
         $this->assertCountFilter($crawler, 1, '#intro .goto');
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-box1');
@@ -120,18 +118,18 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#intro .album-private');
         $this->assertEquals(
             'Album privé',
-            $crawler->filter('#intro .album-private')->text()
+            $crawler->filter('#intro .album-private')->attr('title')
         );
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
 
         $this->assertEquals(
             'Dex National',
-            $crawler->filter('#intro .dex-type')->text()
+            $crawler->filter('#intro .dex-type')->attr('title')
         );
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->text()
+            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
         );
 
         $this->assertEquals(
@@ -141,7 +139,7 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Version 412',
-            $crawler->filter('#intro .dex-version')->text()
+            $crawler->filter('#intro .dex-version')->attr('title')
         );
     }
 
@@ -163,17 +161,16 @@ class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
-            '#',
-            $crawler->filter('#intro #album-description')->attr('href')
-        );
-        $this->assertEquals(
             '',
             $crawler->filter('#album-description')->text()
         );
 
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-read-action');
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-edit-action');
+
         $this->assertCountFilter($crawler, 2, '#intro .screenshot-mode');
         $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-on');
-        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off[hidden]');
+        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off');
 
         $this->assertCountFilter($crawler, 1, '#intro .goto');
         $this->assertCountFilter($crawler, 1, '#intro .goto.goto-box1');
@@ -188,12 +185,12 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Dex National',
-            $crawler->filter('#intro .dex-type')->text()
+            $crawler->filter('#intro .dex-type')->attr('title')
         );
 
         $this->assertEquals(
             'Formes chromatiques',
-            $crawler->filter('#intro .dex-shiny-or-not')->text()
+            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
         );
 
         $this->assertEquals(
@@ -203,7 +200,7 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Version 0',
-            $crawler->filter('#intro .dex-version')->text()
+            $crawler->filter('#intro .dex-version')->attr('title')
         );
     }
 
@@ -224,10 +221,6 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#album-description');
-        $this->assertEquals(
-            '#',
-            $crawler->filter('#intro #album-description')->attr('href')
-        );
         $this->assertStringContainsString(
             'La liste des pokémons obtenable dans les jeux Or, Argent et Cristal.',
             $crawler->filter('#album-description')->text()
@@ -237,9 +230,12 @@ class IntroTest extends WebTestCase
             $crawler->filter('#album-description')->text()
         );
 
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-read-action');
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-edit-action');
+
         $this->assertCountFilter($crawler, 2, '#intro .screenshot-mode');
         $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-on');
-        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off[hidden]');
+        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off');
 
         $this->assertCountFilter($crawler, 1, '#intro .goto');
         $this->assertCountFilter($crawler, 1, '#intro .goto.goto-box1');
@@ -249,18 +245,18 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#intro .album-private');
         $this->assertEquals(
             'Album privé',
-            $crawler->filter('#intro .album-private')->text()
+            $crawler->filter('#intro .album-private')->attr('title')
         );
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
 
         $this->assertEquals(
             'Région Johto',
-            $crawler->filter('#intro .dex-type')->text()
+            $crawler->filter('#intro .dex-type')->attr('title')
         );
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->text()
+            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
         );
 
         $this->assertEquals(
@@ -270,7 +266,7 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Version 3',
-            $crawler->filter('#intro .dex-version')->text()
+            $crawler->filter('#intro .dex-version')->attr('title')
         );
     }
 
@@ -291,10 +287,6 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#album-description');
-        $this->assertEquals(
-            '#',
-            $crawler->filter('#intro #album-description')->attr('href')
-        );
         $this->assertStringContainsString(
             'La liste des pokémons obtenable dans les jeux Noire et Blanche.',
             $crawler->filter('#album-description')->text()
@@ -304,9 +296,12 @@ class IntroTest extends WebTestCase
             $crawler->filter('#album-description')->text()
         );
 
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-read-action');
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-edit-action');
+
         $this->assertCountFilter($crawler, 2, '#intro .screenshot-mode');
         $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-on');
-        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off[hidden]');
+        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off');
 
         $this->assertCountFilter($crawler, 1, '#intro .goto');
         $this->assertCountFilter($crawler, 1, '#intro .goto.goto-box1');
@@ -316,18 +311,18 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#intro .album-private');
         $this->assertEquals(
             'Album privé',
-            $crawler->filter('#intro .album-private')->text()
+            $crawler->filter('#intro .album-private')->attr('title')
         );
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
 
         $this->assertEquals(
             'Région Unys',
-            $crawler->filter('#intro .dex-type')->text()
+            $crawler->filter('#intro .dex-type')->attr('title')
         );
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->text()
+            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
         );
 
         $this->assertEquals(
@@ -337,7 +332,7 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Version 2',
-            $crawler->filter('#intro .dex-version')->text()
+            $crawler->filter('#intro .dex-version')->attr('title')
         );
     }
 
@@ -358,10 +353,6 @@ class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, '#album-description');
-        $this->assertEquals(
-            '#',
-            $crawler->filter('#intro #album-description')->attr('href')
-        );
         $this->assertStringContainsString(
             'The list of obtainable Pokémons in Black and White games.',
             $crawler->filter('#album-description')->text()
@@ -371,9 +362,12 @@ class IntroTest extends WebTestCase
             $crawler->filter('#album-description')->text()
         );
 
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-read-action');
+        $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-edit-action');
+
         $this->assertCountFilter($crawler, 2, '#intro .screenshot-mode');
         $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-on');
-        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off[hidden]');
+        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off');
 
         $this->assertCountFilter($crawler, 1, '#intro .goto');
         $this->assertCountFilter($crawler, 1, '#intro .goto.goto-box1');
@@ -383,18 +377,18 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#intro .album-private');
         $this->assertEquals(
             'Private album',
-            $crawler->filter('#intro .album-private')->text()
+            $crawler->filter('#intro .album-private')->attr('title')
         );
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
 
         $this->assertEquals(
             'Region Unova',
-            $crawler->filter('#intro .dex-type')->text()
+            $crawler->filter('#intro .dex-type')->attr('title')
         );
 
         $this->assertEquals(
             'Regular forms',
-            $crawler->filter('#intro .dex-shiny-or-not')->text()
+            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
         );
 
         $this->assertEquals(
@@ -404,7 +398,7 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Version 2',
-            $crawler->filter('#intro .dex-version')->text()
+            $crawler->filter('#intro .dex-version')->attr('title')
         );
     }
 
@@ -426,17 +420,16 @@ class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
-            '#',
-            $crawler->filter('#intro #album-description')->attr('href')
-        );
-        $this->assertEquals(
             'Tous les pokémons de la démo',
             $crawler->filter('#album-description')->text()
         );
 
+        $this->assertCountFilter($crawler, 0, '#intro .album-all-catch-state-read-action');
+        $this->assertCountFilter($crawler, 0, '#intro .album-all-catch-state-edit-action');
+
         $this->assertCountFilter($crawler, 2, '#intro .screenshot-mode');
         $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-on');
-        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off[hidden]');
+        $this->assertCountFilter($crawler, 1, '#intro .screenshot-mode.screenshot-mode-off');
 
         $this->assertCountFilter($crawler, 1, '#intro .goto');
         $this->assertCountFilter($crawler, 1, '#intro .goto.goto-box1');
@@ -452,12 +445,12 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Dex National',
-            $crawler->filter('#intro .dex-type')->text()
+            $crawler->filter('#intro .dex-type')->attr('title')
         );
 
         $this->assertEquals(
             'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->text()
+            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
         );
 
         $this->assertEquals(
@@ -467,7 +460,7 @@ class IntroTest extends WebTestCase
 
         $this->assertEquals(
             'Version 412',
-            $crawler->filter('#intro .dex-version')->text()
+            $crawler->filter('#intro .dex-version')->attr('title')
         );
     }
 }

@@ -2,180 +2,190 @@
 {% set currentRoute = app.request.get('_route') %}
 {% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
 {% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
-<div id="intro">
-  <div class="float-end">
-    <a
-      class="btn btn-link btn-sm link-secondary"
-      id="toggle-intro-details"
-      href="#"
-      title="{{ 'album.intro.action.description.collapse'|trans }}"
-    >
-      <i class="bi bi-info-square-fill"></i>
-    </a>
-  </div>
+<div
+    id="intro">
 
-  <h1 id="album-title">
-    {{ locale is same as('fr') ? dex.french_name : dex.name }}
-  </h1>
+    {# Top icons #}
+    <div class="float-end">
+        <a
+            class="btn btn-link btn-sm link-secondary"
+            id="toggle-intro-details"
+            href="#"
+            title="{{ 'album.intro.action.description.collapse'|trans }}"
+            data-bs-toggle="tooltip"
+        >
+            <i class="bi bi-info-square-fill"></i>
+        </a>
 
-  <div class="list-group list-group-flush">
-    <a
-      id="album-description"
-      class="list-group-item disabled list-group-item-action d-flex justify-content-between align-items-center album-intro-details"
-      href="#"
-      hidden
-    >
-      {{ (locale is same as('fr') ? dex.french_description : dex.description)|nl2br }}
-    </a>
-    {# Edit/Read mode link #}
-    {% if loggedTrainerId is same as(trainerId) %}
-    <a
-      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center
-      list-group-item-warning album-all-catch-state-edit-action"
-      href="#"
-    >
-      <i class="bi bi-pencil-square"></i>
-      {{ (('album.intro.action.mode.write'))|trans }}
-    </a>
-    <a
-      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center
-      list-group-item-primary album-all-catch-state-read-action"
-      href="#"
-      hidden
-    >
-      <i class="bi bi-book"></i>
-      {{ (('album.intro.action.mode.read'))|trans }}
-    </a>
-    {% endif %}
+        {# Link to box 1 or top of the list #}
+        {% if 'box' == displayTemplateName %}
+        <a
+            class="btn btn-link btn-sm link-secondary goto goto-box1"
+            href="#box-1" 
+            title="{{ 'album.intro.action.goto.box1'|trans }}"
+            data-bs-toggle="tooltip"
+        >
+            <i class="bi bi-box"></i>
+        </a>
+        {% elseif 'list-' in displayTemplateName %}
+        <a
+            class="btn btn-link btn-sm link-secondary goto goto-topofthelist"
+            href="#top-of-the-list" 
+            title="{{ 'album.intro.action.goto.top_of_the_list'|trans }}"
+            data-bs-toggle="tooltip"
+        >
+            <i class="bi bi-list"></i>
+        </a>
+        {% endif %}
 
-    <a
-      class="list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center screenshot-mode screenshot-mode-on"
-      href="#screenshot-on"
-    >
-      <i
-        class="bi bi-camera2"
-      ></i>
-      {{ 'album.intro.action.screenshot.enable'|trans }}
-    </a>
-    <a
-      class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-between align-items-center screenshot-mode screenshot-mode-off"
-      href="#screenshot-off"
-      hidden
-    >
-      <i
-        class="bi bi-camera2"
-      ></i>
-      {{ 'album.intro.action.screenshot.disable'|trans }}
-    </a>
+        {# Version #}
+        <span
+            class="btn btn-link btn-sm link-secondary dex-version"
+            href="#"
+            title="{{ 'album.intro.label.version'|trans }} {{ dex.version }}"
+            data-bs-toggle="tooltip"
+        >
+            <i class="bi bi-tag"></i>
+        </span>
+    </div>
 
-    {# Link to box 1 or top of the list #}
-    {% if 'box' == displayTemplateName %}
-    <a
-      class="d-lg-none list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center goto goto-box1"
-      href="#box-1"
-    >
-      <i
-        class="bi bi-box"
-      ></i>
-      {{ 'album.intro.action.goto.box1'|trans }}
-    </a>
-    {% elseif 'list-' in displayTemplateName %}
-    <a
-      class="d-lg-none list-group-item list-group-item-action list-group-item-primary d-flex justify-content-between align-items-center goto goto-topofthelist"
-      href="#top-of-the-list"
-    >
-      <i
-        class="bi bi-list"
-      ></i>
-      {{ 'album.intro.action.goto.top_of_the_list'|trans }}
-    </a>
-    {% endif %}
+    <h1
+        id="album-title">
+        {{ locale is same as('fr') ? dex.french_name : dex.name }}
+    </h1>
 
-    {# Is private text or share link #}
-    {% if not dex.is_private %}
-    <a
-      class="list-group-item list-group-item-action list-group-item-success d-flex justify-content-between align-items-center share"
-      href="{{
-        path('app_album_index',
-          filters|merge({
-            'dexSlug': currentDexSlug,
-            't': trainerId,
-          })
-        ) }}"
-    >
-      <i class="bi bi-share"></i>
-      {{ 'nav.share'|trans }}
-    </a>
-    {% else %}
-    <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center album-private"
-      href="#"
-    >
-      {{ 'nav.is_private'|trans }}
-      <i class="bi bi-lock"></i>
-    </a>
-    {% endif %}
+    <ul class="list-group list-group-flush">
+        {# Description #}
+        <li
+            id="album-description"
+            class="list-group-item disabled list-group-item-action d-flex justify-content-between align-items-center album-intro-details"
+            hidden
+        >
+            {{ (locale is same as('fr') ? dex.french_description : dex.description)|nl2br }}
+        </li>
 
-    {# Text for another trainer #}
-    {% if loggedTrainerId is not same as(trainerId) %}
-    <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center album-another-trainer"
-      href="#"
-    >
-      {{ 'album.intro.label.another_trainer_album'|trans }}
-      <i
-        class="bi bi-person-rolodex another-trainer-album"
-        title="{{ 'album.intro.label.another_trainer_album'|trans }}"
-      ></i>
-    </a>
-    {% endif %}
+        {# Template text #}
+        <li
+            class="list-group-item disabled d-flex justify-content-between align-items-center album-intro-details dex-template"
+            hidden
+        >
+            {{ ('album.intro.label.display_template.'~displayTemplateName)|trans }}
+        </li>
+    </ul>
 
-    {# Region name or national #}
-    <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center dex-type"
-      href="#"
-    >
-    {% if dex.region_name is not empty %}
-      {{ 'album.intro.label.region'|trans }}
-      <span class="badge bg-primary rounded-pill">
-        {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}
-      </span>
-    {% else %}
-      {{ 'album.intro.label.dex'|trans }}
-      <span class="badge bg-primary rounded-pill">{{ 'album.intro.value.national'|trans }}</span>
-    {% endif %}
-    </a>
+    <div class="list-group list-group-horizontal group-actions">
+        {# Edit/Read mode link #}
+        {% if loggedTrainerId is same as(trainerId) %}
+            <a
+                href="#"
+                class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-read-action"
+                title="{{ (('album.intro.action.mode.write'))|trans }}"
+                data-bs-toggle="tooltip"
+                hidden
+            >
+                <i class="bi bi-pencil-square"></i>
+            </a>
+            <a
+                href="#"
+                class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-edit-action"
+                title="{{ (('album.intro.action.mode.read'))|trans }}" 
+                data-bs-toggle="tooltip"
+            >
+                <i class="bi bi-book"></i>
+            </a>
+        {% endif %}
 
-    {# Shiny or not #}
-    <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center dex-shiny-or-not"
-      href="#"
-    >
-      {% if dex.is_shiny %}
-      {{ 'album.intro.label.is_shiny.yes'|trans }}
-      <i class="bi bi-stars"></i>
-      {% else %}
-      {{ 'album.intro.label.is_shiny.no'|trans }}
-      <i class="bi bi-bug"></i>
-      {% endif %}
-    </a>
+        {# Screeshot mode #}
+        <a
+            class="list-group-item list-group-item-action list-group-item-secondary flex-fill screenshot-mode screenshot-mode-off"
+            href="#"
+            title="{{ 'album.intro.action.screenshot.disable'|trans }}"
+            data-bs-toggle="tooltip"
+            hidden
+        >
+            <i class="bi bi-camera2"></i>
+        </a>
+        <a
+            class="list-group-item list-group-item-action list-group-item-primary flex-fill screenshot-mode screenshot-mode-on"
+            href="#"
+            title="{{ 'album.intro.action.screenshot.enable'|trans }}"
+            data-bs-toggle="tooltip"
+        >
+            <i class="bi bi-camera2"></i>
+        </a>
 
-    {# Template text #}
-    <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center album-intro-details dex-template"
-      href="#"
-      hidden
-    >
-      {{ ('album.intro.label.display_template.'~displayTemplateName)|trans }}
-    </a>
+        {# Share link #}
+        {% if not dex.is_private %}
+            <a
+                class="list-group-item list-group-item-action list-group-item-success flex-fill share"
+                href="{{ path('app_album_index', filters|merge({ 'dexSlug': currentDexSlug, 't': trainerId, }) ) }}" 
+                title="{{ 'nav.share'|trans }}"
+                data-bs-toggle="tooltip"
+            >
+                <i class="bi bi-share"></i>
+            </a>
+        {% endif %}
+    </div>
 
-    {# Version #}
-    <a
-      class="list-group-item disabled d-flex justify-content-between align-items-center album-intro-details dex-version"
-      href="#"
-      hidden
-    >  {{ 'album.intro.label.version'|trans }}
-      <span class="badge text-bg-light rounded-pill">{{ dex.version }}</span>
-    </a>
-  </div>
+    <ul class="list-group list-group-horizontal group-icons">
+        {# Is private icon #}
+        {% if dex.is_private %}
+            <li
+                class="list-group-item flex-fill album-private"
+                href="#"
+                title="{{ 'nav.is_private'|trans }}"
+                data-bs-toggle="tooltip"
+            >
+                <i class="bi bi-lock"></i>
+            </li>
+        {% endif %}
+
+        {# Text for another trainer #}
+        {% if loggedTrainerId is not same as(trainerId) %}
+            <li
+                class="list-group-item flex-fill album-another-trainer"
+                href="#"
+                title="{{ 'album.intro.label.another_trainer_album'|trans }}"
+                data-bs-toggle="tooltip"
+            >
+                
+                <i class="bi bi-person-rolodex another-trainer-album"></i>
+            </li>
+        {% endif %}
+
+        {# Region name or national #}
+        {% if dex.region_name is not empty %}
+        <li
+            class="list-group-item flex-fill dex-type dex-type-regional"
+            href="#"
+            title="{{ 'album.intro.label.region'|trans }} {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}"
+            data-bs-toggle="tooltip"
+        >
+            {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}
+        </li>
+        {% else %}
+        <li
+            class="list-group-item flex-fill dex-type dex-type-national"
+            href="#"
+            title="{{ 'album.intro.label.dex'|trans }} {{ 'album.intro.value.national'|trans }}"
+            data-bs-toggle="tooltip"
+        >
+           {{ 'album.intro.value.national'|trans }}
+        </li>
+        {% endif %}
+
+        {# Shiny or not #}
+        <li
+            class="list-group-item flex-fill dex-shiny-or-not"
+            href="#"
+            title="{{ (dex.is_shiny ? 'album.intro.label.is_shiny.yes' : 'album.intro.label.is_shiny.no')|trans }}"
+            data-bs-toggle="tooltip"
+        >
+            {% if dex.is_shiny %}
+            <i class="bi bi-stars"></i>
+            {% else %}
+            <i class="bi bi-bug"></i>
+            {% endif %}
+        </li>
+    </ul>
 </div>
