@@ -77,3 +77,9 @@ a.album-case-catch-state-edit-action:hover {
 .d-flex[hidden] {
     display: none !important;
 }
+
+.list-group-horizontal > .list-group-item:first-child[hidden] + .list-group-item {
+    border-bottom-left-radius: var(--bs-list-group-border-radius);
+    border-top-left-radius: inherit;
+    border-left-width: var(--bs-list-group-border-width);
+}

@@ -69,7 +69,7 @@ function onEnableScreenshotMode(event) {
   event.preventDefault();
 
   document
-    .querySelectorAll('.album-case-catch-state')
+    .querySelectorAll('.album-case-catch-state-container')
     .forEach(function (element) {
       element.setAttribute('hidden', '');
     });
@@ -85,13 +85,18 @@ function onEnableScreenshotMode(event) {
     .forEach(function (element) {
       element.removeAttribute('hidden');
     });
+
+  swapNode(
+    document.querySelector('.screenshot-mode-off'), 
+    document.querySelector('.screenshot-mode-on')
+  );
 }
 
 function onDisableScreenshotMode(event) {
   event.preventDefault();
 
   document
-    .querySelectorAll('.album-case-catch-state')
+    .querySelectorAll('.album-case-catch-state-container')
     .forEach(function (element) {
       element.removeAttribute('hidden');
     });
@@ -107,4 +112,18 @@ function onDisableScreenshotMode(event) {
     .forEach(function (element) {
       element.removeAttribute('hidden');
     });
+
+    swapNode(
+      document.querySelector('.screenshot-mode-on'), 
+      document.querySelector('.screenshot-mode-off')
+    );
+}
+
+// https://stackoverflow.com/a/45657360
+function swapNode(firstNode, secondNode) {
+  const afterSecondNode = secondNode.nextElementSibling;
+  const parent = secondNode.parentNode;
+
+  firstNode.replaceWith(secondNode);
+  parent.insertBefore(firstNode, afterSecondNode);
 }
