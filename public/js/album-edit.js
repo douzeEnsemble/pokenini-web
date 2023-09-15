@@ -138,6 +138,8 @@ function activateEditMode(target) {
 
   albumCatchState.setAttribute("hidden", true);
   albumAction.removeAttribute("hidden");
+
+  bootstrap.Tooltip.getInstance('.album-all-catch-state-read-action').hide();
 }
 
 function activateReadMode(target) {
@@ -147,4 +149,6 @@ function activateReadMode(target) {
 
   albumCatchState.removeAttribute("hidden");
   albumAction.setAttribute("hidden", true);
+
+  bootstrap.Tooltip.getInstance('.album-all-catch-state-edit-action').hide();
 }
