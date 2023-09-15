@@ -86,6 +86,8 @@ function onEnableScreenshotMode(event) {
       element.removeAttribute('hidden');
     });
 
+  bootstrap.Tooltip.getInstance('.screenshot-mode-on').hide();
+
   swapNode(
     document.querySelector('.screenshot-mode-off'), 
     document.querySelector('.screenshot-mode-on')
@@ -113,10 +115,12 @@ function onDisableScreenshotMode(event) {
       element.removeAttribute('hidden');
     });
 
-    swapNode(
-      document.querySelector('.screenshot-mode-on'), 
-      document.querySelector('.screenshot-mode-off')
-    );
+  bootstrap.Tooltip.getInstance('.screenshot-mode-off').hide();
+
+  swapNode(
+    document.querySelector('.screenshot-mode-on'), 
+    document.querySelector('.screenshot-mode-off')
+  );
 }
 
 // https://stackoverflow.com/a/45657360
