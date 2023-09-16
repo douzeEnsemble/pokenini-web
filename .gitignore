@@ -35,3 +35,6 @@ tests/mutation/index.html
 
 public/img/pokemons
 resources/sprites
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

@@ -46,7 +46,10 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
                 /** @var GoogleUser $authUser */
                 $authUser = $client->fetchUserFromToken($accessToken);
 
-                $user = new User(strval($authUser->getId()));
+                /** @var string $userId */
+                $userId = $authUser->getId();
+
+                $user = new User($userId);
 
                 if (in_array($user->getUserIdentifier(), explode(',', $this->listAdmin))) {
                     $user->addAdminRole();
