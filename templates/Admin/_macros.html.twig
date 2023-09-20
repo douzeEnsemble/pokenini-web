@@ -16,28 +16,29 @@
 'pending': 'info',
 } %}
 
-    {% set listGroupItem = 'light' %}
+    {% set currentActionLog = null %}
+    {% set lastActionLog = null %}
+    
+    {% if actionLogsData is empty %}
+        {% set currentActionLog = null %}
+        {% set lastActionLog = null %}
+    {% elseif actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
+        and actionLogsData[actionItem].current is defined and actionLogsData[actionItem].current is not empty
+    %}
+        {% set currentActionLog = actionLogsData[actionItem].current %}
+    {% elseif actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
+        and actionLogsData[actionItem].last is defined and actionLogsData[actionItem].last is not empty
+    %}
+        {% set lastActionLog = actionLogsData[actionItem].last %}
+    {% endif %}
 
-    {% if actionLogsData is not empty
-        and actionLogsData[actionItem] is defined
-        and actionLogsData[actionItem] is not empty
-        and actionLogsData[actionItem]['error_trace'] is defined
-        and actionLogsData[actionItem]['error_trace'] is not empty
-    %}
+    {% if currentActionLog is null %}
+        {% set listGroupItem = 'light' %}
+    {% elseif currentActionLog.errorTrace is not empty %}
         {% set listGroupItem = stateColor['ko'] %}
-    {% elseif actionLogsData is not empty
-        and actionLogsData[actionItem] is defined
-        and actionLogsData[actionItem] is not empty
-        and actionLogsData[actionItem]['done_at'] is defined
-        and actionLogsData[actionItem]['done_at'] is not empty
-    %}
+    {% elseif currentActionLog.doneAt is not empty %}
         {% set listGroupItem = stateColor['done'] %}
-    {% elseif actionLogsData is not empty
-        and actionLogsData[actionItem] is defined
-        and actionLogsData[actionItem] is not empty
-        and actionLogsData[actionItem]['created_at'] is defined
-        and actionLogsData[actionItem]['created_at'] is not empty
-    %}
+    {% elseif currentActionLog.createdAt is not empty %}
         {% set listGroupItem = stateColor['pending'] %}
     {% endif %}
 
@@ -68,58 +69,50 @@
         {% endfor %}
         {% endif %}
 
-        {% if actionLogsData is not empty
-            and actionLogsData[actionItem] is defined
-            and actionLogsData[actionItem] is not empty
-        %}
-        {% set actionData = actionLogsData[actionItem] %}
+        {% if currentActionLog is not empty %}
+        {% set actionData = currentActionLog %}
 
-        {% if actionData['error_trace'] is defined
-            and actionData['error_trace'] is not empty
-        %}
+        {% if actionData.errorTrace is defined and actionData.errorTrace is not empty  %}
         <div class="alert alert-danger">
-            {{ actionData['error_trace'] }}
+            {{ actionData.errorTrace }}
         </div>
         {% endif %}
 
         <div class="row justify-content-start ms-3">
-            {% if actionData['details'] is defined
-                and actionData['details'] is not empty
-            %}
+            {% if actionData.details is not empty %}
             <dl class="col-10 row admin-item-report mt-1 mb-3">
-                    {% for slug, value in actionData['details'] %}
+                {% for slug, value in actionData.details %}
                 <dt class="col-6">
                     {{ ('admin.'~action~'.'~slug)|trans }}
                 </dt>
                 <dd class="col-6 text-end mb-0">
                     {{ value|number_format(0, '.', ' ') }}
                 </d>
-                    {% endfor %}
+                {% endfor %}
             </dl>
             {% endif %}
             <div class="col-12 row admin-item-report-meta admin-item-report-date mt-1 mb-0 text-muted">
                 {% set date = 'created_at' %}
-                {% if actionData['done_at'] is defined
-                    and actionData['done_at'] is not empty
-                %}
+                {% set dateValue = actionData.createdAt %}
+                {% if actionData.doneAt is not empty %}
                 {% set date = 'done_at' %}
+                {% set dateValue = actionData.doneAt %}
                 {% endif %}
 
                 <strong class="col-6">
                     {{ ('admin.action.'~date)|trans }}
                 </strong>
                 <em class="col-6 text-start mb-0">
-                    {{ actionData[date]|date('d/m/Y H:i:s', 'Europe/Paris') }}
+                    {{ dateValue|date('d/m/Y H:i:s', 'Europe/Paris') }}
                 </em>
             </div>
-            {% if actionData['execution_time'] is defined
-                and actionData['execution_time'] is not null %}
+            {% if actionData.executionTime is defined and actionData.executionTime is not null %}
             <div class="col-12 row admin-item-report-meta admin-item-report-execution mt-1 mb-0 text-muted">
                 <strong class="col-6">
                     {{ ('admin.action.execution_time')|trans }}
                 </strong>
                 <em class="col-6 text-start mb-0">
-                    {{ (actionData['execution_time'])|date('H:i:s') }}
+                    {{ (actionData.executionTime)|date('H:i:s') }}
                 </em>
             </div>
             {% endif %}
