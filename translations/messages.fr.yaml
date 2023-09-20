@@ -295,3 +295,6 @@ admin:
         created_at: "Démarré le"
         done_at: "Terminé le"
         execution_time: "Terminé en"
+    toggle:
+        last: "Voir l'action précédente"
+        current: "Voir la dernière action"

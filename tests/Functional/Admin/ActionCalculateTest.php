@@ -40,7 +40,7 @@ class ActionCalculateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.list-group-item-success');
         $this->assertCountFilter($crawler, 2, '.list-group-item-danger');
-        $this->assertCountFilter($crawler, 2, '.alert-danger');
+        $this->assertCountFilter($crawler, 3, '.alert-danger');
         $this->assertSelectorTextSame(
             '.admin-item-calculate_dex_availabilities .alert',
             'HTTP/1.1 500 Internal Server Error returned for "http://test.moco/istration/calculate/dex_availabilities".'
@@ -65,7 +65,7 @@ class ActionCalculateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.list-group-item-success');
         $this->assertCountFilter($crawler, 2, '.list-group-item-danger');
-        $this->assertCountFilter($crawler, 2, '.alert-danger');
+        $this->assertCountFilter($crawler, 3, '.alert-danger');
         $this->assertCountFilter($crawler, 1, '.admin-item-calculate_dex_availabilities .alert');
         $this->assertSelectorTextSame(
             '.admin-item-calculate_dex_availabilities .alert',
@@ -76,7 +76,7 @@ class ActionCalculateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.list-group-item-success');
         $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
-        $this->assertCountFilter($crawler, 1, '.alert-danger');
+        $this->assertCountFilter($crawler, 2, '.alert-danger');
     }
 
     public function testAdminCalculateUnknown(): void

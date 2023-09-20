@@ -55,7 +55,7 @@ class ActionUpdateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.list-group-item-success');
         $this->assertCountFilter($crawler, 1, '.list-group-item-danger');
-        $this->assertCountFilter($crawler, 1, '.alert-danger');
+        $this->assertCountFilter($crawler, 2, '.alert-danger');
         $this->assertSelectorTextSame('.alert-danger', 'Exception has been thrown for X reason');
 
         $this->assertConnectedNavBar($crawler);

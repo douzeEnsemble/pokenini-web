@@ -293,3 +293,6 @@ admin:
         created_at: "Start at"
         done_at: "End at"
         execution_time: "Execution time"
+    toggle:
+        last: "Show last action"
+        current: "Show current action"

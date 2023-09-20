@@ -70,14 +70,28 @@ class AdminPageTest extends WebTestCase
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
 
-        foreach ($this->getHomeReportData() as $slug => $report) {
-            $this->assertReport(
-                $crawler,
-                $slug,
-                $report['data'],
-                $report['datatime'],
-                $report['exectime'][0],
-            );
+        foreach ($this->getHomeReportData() as $slug => $data) {
+            foreach ($data as $type => $report) {
+                if (null === $report) {
+                    $this->assertNoReport(
+                        $crawler,
+                        $slug,
+                        $type,
+                    );
+
+                    continue;
+                }
+
+                $this->assertReport(
+                    $crawler,
+                    $slug,
+                    $type,
+                    $report['data'],
+                    $report['datatime'],
+                    $report['exectime'][0],
+                    $report['error'][0] ?? '',
+                );
+            }
         }
     }
 
@@ -99,6 +113,26 @@ class AdminPageTest extends WebTestCase
         return $crawler;
     }
 
+    private function assertNoReport(
+        Crawler $crawler,
+        string $item,
+        string $type,
+    ): void {
+        $this->assertCountFilter(
+            $crawler,
+            0,
+            ".admin-item-$item .admin-item-$type"
+        );
+
+        $oppositeType = ('current' == $type) ? 'last' : 'current';
+
+        $this->assertCountFilter(
+            $crawler,
+            0,
+            ".admin-item-$item .admin-item-$oppositeType .admin-item-toggle"
+        );
+    }
+
     /**
      * @param array<string, string> $expectedReport
      * @param array<string, string> $expectedDateTime
@@ -106,145 +140,263 @@ class AdminPageTest extends WebTestCase
     private function assertReport(
         Crawler $crawler,
         string $item,
+        string $type,
         array $expectedReport,
         array $expectedDateTime,
         string $executionTime,
+        string $errorMessage = '',
     ): void {
         $index = 0;
 
         $this->assertCountFilter(
             $crawler,
             ((empty($expectedReport)) ?  0 : 1),
-            ".admin-item-$item .admin-item-report"
+            ".admin-item-$item .admin-item-$type .admin-item-report"
         );
 
         foreach ($expectedReport as $label => $value) {
             $this->assertEquals(
                 $label,
-                $crawler->filter(".admin-item-$item .admin-item-report dt")->eq($index)->text()
+                $crawler->filter(".admin-item-$item .admin-item-$type .admin-item-report dt")->eq($index)->text()
             );
             $this->assertEquals(
                 $value,
-                $crawler->filter(".admin-item-$item .admin-item-report dd")->eq($index)->text()
+                $crawler->filter(".admin-item-$item .admin-item-$type .admin-item-report dd")->eq($index)->text()
             );
 
             $index++;
         }
 
         if (!empty($expectedDateTime)) {
-            $this->assertCountFilter($crawler, 1, ".admin-item-$item .admin-item-report-date");
+            $this->assertCountFilter($crawler, 1, ".admin-item-$item .admin-item-$type .admin-item-report-date");
 
             $this->assertEquals(
                 $expectedDateTime['label'],
-                $crawler->filter(".admin-item-$item .admin-item-report-date strong")->text()
+                $crawler->filter(".admin-item-$item .admin-item-$type .admin-item-report-date strong")->text()
             );
             $this->assertEquals(
                 $expectedDateTime['value'],
-                $crawler->filter(".admin-item-$item .admin-item-report-date em")->text()
+                $crawler->filter(".admin-item-$item .admin-item-$type .admin-item-report-date em")->text()
             );
         }
 
         if (!empty($executionTime)) {
-            $this->assertCountFilter($crawler, 1, ".admin-item-$item .admin-item-report-execution");
+            $this->assertCountFilter($crawler, 1, ".admin-item-$item .admin-item-$type .admin-item-report-execution");
 
             $this->assertEquals(
                 'Terminé en',
-                $crawler->filter(".admin-item-$item .admin-item-report-execution strong")->text()
+                $crawler->filter(".admin-item-$item .admin-item-$type .admin-item-report-execution strong")->text()
             );
             $this->assertEquals(
                 $executionTime,
-                $crawler->filter(".admin-item-$item .admin-item-report-execution em")->text()
+                $crawler->filter(".admin-item-$item .admin-item-$type .admin-item-report-execution em")->text()
+            );
+        }
+
+        if (!empty($errorMessage)) {
+            $this->assertCountFilter($crawler, 1, ".admin-item-$item .admin-item-$type .alert.alert-danger");
+
+            $this->assertEquals(
+                $errorMessage,
+                $crawler->filter(".admin-item-$item .admin-item-$type .alert.alert-danger")->text()
             );
         }
     }
 
     /**
-     * @return string[][][]
+     * @return string[][][][]|null[][]
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function getHomeReportData(): array
     {
         return [
             'update_labels' => [
-                'data' => [
-                    'Statuts' => '6',
-                    'Régions' => '0',
-                    'Catégories' => '6',
-                    'Formes régionales' => '4',
-                    'Formes spéciales' => '7',
-                    'Variantes' => '7',
+                'current' => [
+                    'data' => [
+                        'Statuts' => '6',
+                        'Régions' => '0',
+                        'Catégories' => '6',
+                        'Formes régionales' => '4',
+                        'Formes spéciales' => '7',
+                        'Variantes' => '7',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '21/03/2023 13:53:07',
+                    ],
+                    'exectime' => ['00:01:28'],
+                    'error' => [''],
                 ],
-                'datatime' => [
-                    'label' => 'Terminé le',
-                    'value' => '21/03/2023 13:53:07',
+                'last' => [
+                    'data' => [
+                        'Statuts' => '5',
+                        'Régions' => '0',
+                        'Catégories' => '5',
+                        'Formes régionales' => '4',
+                        'Formes spéciales' => '6',
+                        'Variantes' => '6',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/03/2023 13:53:07',
+                    ],
+                    'exectime' => ['00:00:08'],
+                    'error' => [''],
                 ],
-                'exectime' => ['00:01:28'],
             ],
             'update_games_and_dex' => [
-                'data' => [],
-                'datatime' => [
-                    'label' => 'Démarré le',
-                    'value' => '21/03/2023 15:00:20',
+                'current' => [
+                    'data' => [],
+                    'datatime' => [
+                        'label' => 'Démarré le',
+                        'value' => '21/03/2023 15:00:20',
+                    ],
+                    'exectime' => [''],
+                    'error' => [''],
                 ],
-                'exectime' => [''],
+                'last' => [
+                    'data' => [],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/04/2023 02:52:59',
+                    ],
+                    'exectime' => ['15:01:59'],
+                    'error' => ['Exception has been thrown for X reason'],
+                ],
             ],
             'update_pokemons' => [
-                'data' => [
-                    'Pokémons' => '1 934',
+                'current' => [
+                    'data' => [
+                        'Pokémons' => '1 934',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '21/03/2023 10:38:03',
+                    ],
+                    'exectime' => ['00:01:28'],
+                    'error' => [''],
                 ],
-                'datatime' => [
-                    'label' => 'Terminé le',
-                    'value' => '21/03/2023 10:38:03',
+                'last' => [
+                    'data' => [
+                        'Pokémons' => '1 930',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/03/2023 10:38:03',
+                    ],
+                    'exectime' => ['00:01:18'],
+                    'error' => [''],
                 ],
-                'exectime' => ['00:01:28'],
             ],
             'update_regional_dex_numbers' => [
-                'data' => [],
-                'datatime' => [],
-                'exectime' => [''],
+                'current' => [
+                    'data' => [],
+                    'datatime' => [],
+                    'exectime' => [''],
+                    'error' => [''],
+                ],
+                'last' => null,
             ],
             'update_games_availabilities' => [
-                'data' => [],
-                'datatime' => [
-                    'label' => 'Terminé le',
-                    'value' => '21/03/2023 10:25:38',
+                'current' => [
+                    'data' => [],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '21/03/2023 10:25:38',
+                    ],
+                    'exectime' => ['00:34:38'],
+                    'error' => [''],
                 ],
-                'exectime' => ['00:34:38'],
+                'last' => [
+                    'data' => [],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/03/2023 20:25:38',
+                    ],
+                    'exectime' => ['00:33:32'],
+                    'error' => [''],
+                ],
             ],
             'update_games_shinies_availabilities' => [
-                'data' => [],
-                'datatime' => [
-                    'label' => 'Terminé le',
-                    'value' => '20/04/2023 02:52:59',
+                'current' => [
+                    'data' => [],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '22/04/2023 02:52:59',
+                    ],
+                    'exectime' => ['15:01:59'],
+                    'error' => ['Exception has been thrown for X reason'],
                 ],
-                'exectime' => ['15:01:59'],
+                'last' => [
+                    'data' => [
+                        'Dispo des jeux des chromatiques' => '41 691',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/03/2023 10:25:38',
+                    ],
+                    'exectime' => ['00:34:38'],
+                    'error' => [''],
+                ],
             ],
             'calculate_game_bundles_availabilities' => [
-                'data' => [],
-                'datatime' => [
-                    'label' => 'Démarré le',
-                    'value' => '21/03/2023 08:15:04',
+                'current' => [
+                    'data' => [],
+                    'datatime' => [
+                        'label' => 'Démarré le',
+                        'value' => '21/03/2023 08:15:04',
+                    ],
+                    'exectime' => [''],
+                    'error' => [''],
                 ],
-                'exectime' => [''],
+                'last' => null,
             ],
             'calculate_game_bundles_shinies_availabilities' => [
-                'data' => [
-                    'Dispo des bundles des chromatiques' => '1 234',
+                'current' => [
+                    'data' => [
+                        'Dispo des bundles des chromatiques' => '1 234',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '21/04/2023 17:27:18',
+                    ],
+                    'exectime' => ['00:03:00'],
+                    'error' => [''],
                 ],
-                'datatime' => [
-                    'label' => 'Terminé le',
-                    'value' => '21/04/2023 17:27:18',
+                'last' => [
+                    'data' => [
+                        'Dispo des bundles des chromatiques' => '321',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/04/2023 17:28:18',
+                    ],
+                    'exectime' => ['00:03:20'],
+                    'error' => [''],
                 ],
-                'exectime' => ['00:03:00'],
             ],
             'calculate_dex_availabilities' => [
-                'data' => [
-                    'Dispo des dex' => '22 472',
+                'current' => [
+                    'data' => [],
+                    'datatime' => [
+                        'label' => 'Démarré le',
+                        'value' => '21/03/2023 10:14:36',
+                    ],
+                    'exectime' => [''],
+                    'error' => [''],
                 ],
-                'datatime' => [
-                    'label' => 'Terminé le',
-                    'value' => '21/03/2023 11:05:08',
+                'last' => [
+                    'data' => [
+                        'Dispo des dex' => '22 472',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/03/2023 11:05:08',
+                    ],
+                    'exectime' => ['00:50:32'],
+                    'error' => [''],
                 ],
-                'exectime' => ['00:50:32'],
             ],
         ];
     }
