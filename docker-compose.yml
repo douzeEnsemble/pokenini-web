@@ -37,7 +37,7 @@ services:
     ports:
       # HTTP
       - target: 80
-        published: ${HTTP_PORT:-8081}
+        published: ${HTTP_PORT:-8981}
         protocol: tcp
       # HTTPS
       - target: 443
