@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Cache\KeyMaker;
+use App\DTO\ActionLog;
+use App\DTO\ActionLogData;
 use App\Utils\JsonDecoder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -216,7 +218,7 @@ class ApiService
     }
 
     /**
-     * @return string[][]
+     * @return array<string, ActionLogData>
      */
     public function getActionLogs(): array
     {
@@ -237,8 +239,24 @@ class ApiService
         /** @var string */
         $json = $response->getContent();
 
-        /** @var string[][] */
-        return JsonDecoder::decode($json);
+        /** @var string[][]|int[][]|int[][][] */
+        $actionLogsData = JsonDecoder::decode($json);
+
+        $list = [];
+        foreach ($actionLogsData as $item => $data) {
+            /** @var string[]|int[]|int[][] */
+            $currentData = $data['current'];
+            /** @var string[]|int[]|int[][] */
+            $lastData = $data['last'] ?? null;
+
+            $list[$item] = new ActionLogData(
+                $item,
+                ActionLog::createFromArray($currentData),
+                $lastData ? ActionLog::createFromArray($lastData) : null,
+            );
+        }
+
+        return $list;
     }
 
     public function invalidateCacheDex(): void
