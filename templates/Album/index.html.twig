@@ -63,9 +63,13 @@
 </div>
 {% endblock container %}
 
-{% block foot_javascript %}
+{% block head_javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/album.js') }}"></script>
+{% endblock head_javascripts %}
+
+{% block foot_javascript %}
+    {{ parent() }}
     <script type="application/javascript">
     (function() {
         watchToggleIntroDetails();

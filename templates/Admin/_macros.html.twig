@@ -15,109 +15,191 @@
 'done': 'light',
 'pending': 'info',
 } %}
-
     {% set currentActionLog = null %}
     {% set lastActionLog = null %}
     
-    {% if actionLogsData is empty %}
-        {% set currentActionLog = null %}
-        {% set lastActionLog = null %}
-    {% elseif actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
+    {% if actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
         and actionLogsData[actionItem].current is defined and actionLogsData[actionItem].current is not empty
     %}
         {% set currentActionLog = actionLogsData[actionItem].current %}
-    {% elseif actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
+    {% endif %}
+    
+    {% if actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
         and actionLogsData[actionItem].last is defined and actionLogsData[actionItem].last is not empty
     %}
         {% set lastActionLog = actionLogsData[actionItem].last %}
     {% endif %}
 
     {% if currentActionLog is null %}
-        {% set listGroupItem = 'light' %}
+        {% set currentListGroupItem = 'light' %}
     {% elseif currentActionLog.errorTrace is not empty %}
-        {% set listGroupItem = stateColor['ko'] %}
+        {% set currentListGroupItem = stateColor['ko'] %}
     {% elseif currentActionLog.doneAt is not empty %}
-        {% set listGroupItem = stateColor['done'] %}
+        {% set currentListGroupItem = stateColor['done'] %}
     {% elseif currentActionLog.createdAt is not empty %}
-        {% set listGroupItem = stateColor['pending'] %}
+        {% set currentListGroupItem = stateColor['pending'] %}
+    {% endif %}
+    {% if lastActionLog is null %}
+        {% set lastListGroupItem = 'light' %}
+    {% elseif lastActionLog.errorTrace is not empty %}
+        {% set lastListGroupItem = stateColor['ko'] %}
+    {% elseif lastActionLog.doneAt is not empty %}
+        {% set lastListGroupItem = stateColor['done'] %}
+    {% elseif lastActionLog.createdAt is not empty %}
+        {% set lastListGroupItem = stateColor['pending'] %}
     {% endif %}
 
     {% if updatedAction is same as(action)
         and updatedItem is same as(item)
     %}
-        {% set listGroupItem = stateColor[updatedState] %}
+        {% set currentListGroupItem = stateColor[updatedState] %}
     {% endif %}
 
-    <div class="admin-item admin-item-{{ actionItem }} list-group-item list-group-item-action list-group-item-{{ listGroupItem }}">
-        <a
-            class="admin-item-cta d-flex w-100 justify-content-between align-items-center"
-            href="{{ path('app_adminaction_'~action, {'name': item}) }}"
-        >
-            {{ ('title.'~action~'.'~item)|trans }}
+    <div 
+        class="admin-item admin-item-{{ actionItem }} list-group-item list-group-item-action list-group-item-{{ currentListGroupItem }}"
+        data-current-list-group-item="{{ currentListGroupItem }}"
+        data-last-list-group-item="{{ lastListGroupItem }}"
+    >
+        {{ _self.actionTitle(action, item, icon) }}
 
-            <i class="text-primary bi bi-{{ icon }}"></i>
-        </a>
+        {{ _self.actionFlashError(action, item, updatedItem, updatedAction, updatedState) }}
+        
+        {{ _self.actionContainer(action, item, currentActionLog, lastActionLog) }}
+    </div>
+{% endmacro %}
 
-        {% if 'ko' == updatedState
-            and updatedAction is same as(action)
-            and updatedItem is same as(item)
-        %}
-        {% for message in app.flashes('error') %}
-        <div class="flash-danger alert alert-danger">
-            {{ message|trans }}
-        </div>
-        {% endfor %}
+{% macro actionTitle (
+    action,
+    item,
+    icon,
+) %}
+<a
+    class="admin-item-cta d-flex w-100 justify-content-between align-items-center"
+    href="{{ path('app_adminaction_'~action, {'name': item}) }}"
+>
+    {{ ('title.'~action~'.'~item)|trans }}
+
+    <i class="text-primary bi bi-{{ icon }}"></i>
+</a>
+{% endmacro %}
+
+{% macro actionFlashError(
+    action,
+    item,
+    updatedItem,
+    updatedAction,
+    updatedState,
+) %}
+{% if 'ko' == updatedState
+    and updatedAction is same as(action)
+    and updatedItem is same as(item)
+%}
+{% for message in app.flashes('error') %}
+<div class="flash-danger alert alert-danger">
+    {{ message|trans }}
+</div>
+{% endfor %}
+{% endif %}
+{% endmacro %}
+
+{% macro actionContainer(
+    action,
+    item,
+    currentActionLog,
+    lastActionLog,
+) %}
+{% set actionItem = action~'_'~item %}
+{% if currentActionLog is null %}
+    {% set state = 'default' %}
+{% elseif currentActionLog.errorTrace is not empty %}
+    {% set state = 'error' %}
+{% elseif currentActionLog.doneAt is not empty %}
+    {% set state = 'done' %}
+{% elseif currentActionLog.createdAt is not empty %}
+    {% set state = 'pending' %}
+{% endif %}
+
+{% if currentActionLog is not empty %}
+    <div class="admin-item-current">
+        {% if lastActionLog is not null %}
+        {{ _self.toggleActions('last') }}
         {% endif %}
-
-        {% if currentActionLog is not empty %}
-        {% set actionData = currentActionLog %}
-
-        {% if actionData.errorTrace is defined and actionData.errorTrace is not empty  %}
-        <div class="alert alert-danger">
-            {{ actionData.errorTrace }}
-        </div>
-        {% endif %}
-
-        <div class="row justify-content-start ms-3">
-            {% if actionData.details is not empty %}
-            <dl class="col-10 row admin-item-report mt-1 mb-3">
-                {% for slug, value in actionData.details %}
-                <dt class="col-6">
-                    {{ ('admin.'~action~'.'~slug)|trans }}
-                </dt>
-                <dd class="col-6 text-end mb-0">
-                    {{ value|number_format(0, '.', ' ') }}
-                </d>
-                {% endfor %}
-            </dl>
-            {% endif %}
-            <div class="col-12 row admin-item-report-meta admin-item-report-date mt-1 mb-0 text-muted">
-                {% set date = 'created_at' %}
-                {% set dateValue = actionData.createdAt %}
-                {% if actionData.doneAt is not empty %}
-                {% set date = 'done_at' %}
-                {% set dateValue = actionData.doneAt %}
-                {% endif %}
-
-                <strong class="col-6">
-                    {{ ('admin.action.'~date)|trans }}
-                </strong>
-                <em class="col-6 text-start mb-0">
-                    {{ dateValue|date('d/m/Y H:i:s', 'Europe/Paris') }}
-                </em>
-            </div>
-            {% if actionData.executionTime is defined and actionData.executionTime is not null %}
-            <div class="col-12 row admin-item-report-meta admin-item-report-execution mt-1 mb-0 text-muted">
-                <strong class="col-6">
-                    {{ ('admin.action.execution_time')|trans }}
-                </strong>
-                <em class="col-6 text-start mb-0">
-                    {{ (actionData.executionTime)|date('H:i:s') }}
-                </em>
-            </div>
-            {% endif %}
-        </div>
-        {% endif %}
+        {{ _self.actionDetail(action, currentActionLog )}}
     </div>
 
+    {% if lastActionLog is not null %}
+    <div class="admin-item-last" hidden>
+        {% if currentActionLog is not null %}
+        {{ _self.toggleActions('current') }}
+        {% endif %} 
+        {{ _self.actionDetail(action, lastActionLog )}}
+    </div>
+    {% endif %}
+
+{% endif %}
+{% endmacro %}
+
+{% macro actionDetail(
+    action,
+    actionData,
+) %}
+<div class="row justify-content-start ms-3">
+    {% if actionData.errorTrace is not empty %}
+    <div class="alert alert-danger">
+        {{ actionData.errorTrace }}
+    </div>
+    {% endif %}
+    
+    {% if actionData.details is not empty %}
+    <dl class="col-10 row admin-item-report mt-1 mb-3">
+        {% for slug, value in actionData.details %}
+        <dt class="col-6">
+            {{ ('admin.'~action~'.'~slug)|trans }}
+        </dt>
+        <dd class="col-6 text-end mb-0">
+            {{ value|number_format(0, '.', ' ') }}
+        </d>
+        {% endfor %}
+    </dl>
+    {% endif %}
+    <div class="col-12 row admin-item-report-meta admin-item-report-date mt-1 mb-0 text-muted">
+        {% set date = 'created_at' %}
+        {% set dateValue = actionData.createdAt %}
+        {% if actionData.doneAt is not empty %}
+        {% set date = 'done_at' %}
+        {% set dateValue = actionData.doneAt %}
+        {% endif %}
+
+        <strong class="col-6">
+            {{ ('admin.action.'~date)|trans }}
+        </strong>
+        <em class="col-6 text-start mb-0">
+            {{ dateValue|date('d/m/Y H:i:s', 'Europe/Paris') }}
+        </em>
+    </div>
+    {% if actionData.executionTime is defined and actionData.executionTime is not null %}
+    <div class="col-12 row admin-item-report-meta admin-item-report-execution mt-1 mb-0 text-muted">
+        <strong class="col-6">
+            {{ ('admin.action.execution_time')|trans }}
+        </strong>
+        <em class="col-6 text-start mb-0">
+            {{ (actionData.executionTime)|date('H:i:s') }}
+        </em>
+    </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro toggleActions(type) %}
+<a 
+    class="admin-item-toggle float-end link-body-emphasis link-opacity-50-hover" 
+    title="{{ ('admin.toggle.'~type)|trans }}"
+    href="#" role="button"
+>
+    {% if 'last' == type %}
+    <i class="bi bi-chevron-right"></i>
+    {% else %} 
+    <i class="bi bi-chevron-bar-left"></i>
+    {% endif %} 
+</a>
 {% endmacro %}
