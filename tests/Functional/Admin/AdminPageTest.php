@@ -82,14 +82,26 @@ class AdminPageTest extends WebTestCase
                     continue;
                 }
 
+                /** @var array<string, string> */
+                $reportData = $report['data'] ?? [];
+                /** @var array<string, string> */
+                $reportDatatime = $report['datatime'] ?? [];
+                /** @var string */
+                $reportExectime = $report['exectime'] ?? '';
+                /** @var string */
+                $reportError = $report['error'] ?? '';
+                /** @var bool */
+                $reportProgress = $report['progress'] ?? false;
+
                 $this->assertReport(
                     $crawler,
                     $slug,
                     $type,
-                    $report['data'],
-                    $report['datatime'],
-                    $report['exectime'][0],
-                    $report['error'][0] ?? '',
+                    $reportData,
+                    $reportDatatime,
+                    $reportExectime,
+                    $reportError,
+                    $reportProgress,
                 );
             }
         }
@@ -136,6 +148,8 @@ class AdminPageTest extends WebTestCase
     /**
      * @param array<string, string> $expectedReport
      * @param array<string, string> $expectedDateTime
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
     private function assertReport(
         Crawler $crawler,
@@ -145,6 +159,7 @@ class AdminPageTest extends WebTestCase
         array $expectedDateTime,
         string $executionTime,
         string $errorMessage = '',
+        bool $hasProcessBar = false,
     ): void {
         $index = 0;
 
@@ -201,10 +216,12 @@ class AdminPageTest extends WebTestCase
                 $crawler->filter(".admin-item-$item .admin-item-$type .alert.alert-danger")->text()
             );
         }
+
+        $this->assertCountFilter($crawler, ($hasProcessBar ? 1 : 0), ".admin-item-$item .admin-item-$type .progress");
     }
 
     /**
-     * @return string[][][][]|null[][]
+     * @return string[][][][]|string[][][]|null[][]|bool[][][]
      *
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
@@ -225,8 +242,7 @@ class AdminPageTest extends WebTestCase
                         'label' => 'Terminé le',
                         'value' => '21/03/2023 13:53:07',
                     ],
-                    'exectime' => ['00:01:28'],
-                    'error' => [''],
+                    'exectime' => '00:01:28',
                 ],
                 'last' => [
                     'data' => [
@@ -241,28 +257,24 @@ class AdminPageTest extends WebTestCase
                         'label' => 'Terminé le',
                         'value' => '20/03/2023 13:53:07',
                     ],
-                    'exectime' => ['00:00:08'],
-                    'error' => [''],
+                    'exectime' => '00:00:08',
                 ],
             ],
             'update_games_and_dex' => [
                 'current' => [
-                    'data' => [],
                     'datatime' => [
                         'label' => 'Démarré le',
-                        'value' => '21/03/2023 15:00:20',
+                        'value' => '01/09/2023 10:00:20',
                     ],
-                    'exectime' => [''],
-                    'error' => [''],
+                    'progress' => true,
                 ],
                 'last' => [
-                    'data' => [],
                     'datatime' => [
                         'label' => 'Terminé le',
                         'value' => '20/04/2023 02:52:59',
                     ],
-                    'exectime' => ['15:01:59'],
-                    'error' => ['Exception has been thrown for X reason'],
+                    'exectime' => '15:01:59',
+                    'error' => 'Exception has been thrown for X reason',
                 ],
             ],
             'update_pokemons' => [
@@ -274,8 +286,7 @@ class AdminPageTest extends WebTestCase
                         'label' => 'Terminé le',
                         'value' => '21/03/2023 10:38:03',
                     ],
-                    'exectime' => ['00:01:28'],
-                    'error' => [''],
+                    'exectime' => '00:01:28',
                 ],
                 'last' => [
                     'data' => [
@@ -285,48 +296,37 @@ class AdminPageTest extends WebTestCase
                         'label' => 'Terminé le',
                         'value' => '20/03/2023 10:38:03',
                     ],
-                    'exectime' => ['00:01:18'],
-                    'error' => [''],
+                    'exectime' => '00:01:18',
                 ],
             ],
             'update_regional_dex_numbers' => [
-                'current' => [
-                    'data' => [],
-                    'datatime' => [],
-                    'exectime' => [''],
-                    'error' => [''],
-                ],
+                'current' => null,
                 'last' => null,
             ],
             'update_games_availabilities' => [
                 'current' => [
-                    'data' => [],
                     'datatime' => [
                         'label' => 'Terminé le',
                         'value' => '21/03/2023 10:25:38',
                     ],
-                    'exectime' => ['00:34:38'],
-                    'error' => [''],
+                    'exectime' => '00:34:38',
                 ],
                 'last' => [
-                    'data' => [],
                     'datatime' => [
                         'label' => 'Terminé le',
                         'value' => '20/03/2023 20:25:38',
                     ],
-                    'exectime' => ['00:33:32'],
-                    'error' => [''],
+                    'exectime' => '00:33:32',
                 ],
             ],
             'update_games_shinies_availabilities' => [
                 'current' => [
-                    'data' => [],
                     'datatime' => [
                         'label' => 'Terminé le',
                         'value' => '22/04/2023 02:52:59',
                     ],
-                    'exectime' => ['15:01:59'],
-                    'error' => ['Exception has been thrown for X reason'],
+                    'exectime' => '15:01:59',
+                    'error' => 'Exception has been thrown for X reason',
                 ],
                 'last' => [
                     'data' => [
@@ -336,19 +336,15 @@ class AdminPageTest extends WebTestCase
                         'label' => 'Terminé le',
                         'value' => '20/03/2023 10:25:38',
                     ],
-                    'exectime' => ['00:34:38'],
-                    'error' => [''],
+                    'exectime' => '00:34:38',
                 ],
             ],
             'calculate_game_bundles_availabilities' => [
                 'current' => [
-                    'data' => [],
                     'datatime' => [
                         'label' => 'Démarré le',
                         'value' => '21/03/2023 08:15:04',
                     ],
-                    'exectime' => [''],
-                    'error' => [''],
                 ],
                 'last' => null,
             ],
@@ -361,8 +357,7 @@ class AdminPageTest extends WebTestCase
                         'label' => 'Terminé le',
                         'value' => '21/04/2023 17:27:18',
                     ],
-                    'exectime' => ['00:03:00'],
-                    'error' => [''],
+                    'exectime' => '00:03:00',
                 ],
                 'last' => [
                     'data' => [
@@ -372,19 +367,16 @@ class AdminPageTest extends WebTestCase
                         'label' => 'Terminé le',
                         'value' => '20/04/2023 17:28:18',
                     ],
-                    'exectime' => ['00:03:20'],
-                    'error' => [''],
+                    'exectime' => '00:03:20',
                 ],
             ],
             'calculate_dex_availabilities' => [
                 'current' => [
-                    'data' => [],
                     'datatime' => [
                         'label' => 'Démarré le',
                         'value' => '21/03/2023 10:14:36',
                     ],
-                    'exectime' => [''],
-                    'error' => [''],
+                    'progress' => true,
                 ],
                 'last' => [
                     'data' => [
@@ -394,8 +386,7 @@ class AdminPageTest extends WebTestCase
                         'label' => 'Terminé le',
                         'value' => '20/03/2023 11:05:08',
                     ],
-                    'exectime' => ['00:50:32'],
-                    'error' => [''],
+                    'exectime' => '00:50:32',
                 ],
             ],
         ];

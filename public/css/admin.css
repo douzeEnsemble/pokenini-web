@@ -19,6 +19,11 @@
     margin-top: 1rem;
     margin-bottom: 0rem;
 }
+.admin-item .progress {
+    padding: 0;
+    height: .5rem;
+    font-size: .5rem;
+}
 
 .report-table tr .toggle-icon.active-icon {
     display: inherit;
