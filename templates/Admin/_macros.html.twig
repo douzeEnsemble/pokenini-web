@@ -124,7 +124,7 @@
         {% if lastActionLog is not null %}
         {{ _self.toggleActions('last') }}
         {% endif %}
-        {{ _self.actionDetail(action, currentActionLog )}}
+        {{ _self.actionDetail(action, currentActionLog, lastActionLog) }}
     </div>
 
     {% if lastActionLog is not null %}
@@ -132,7 +132,7 @@
         {% if currentActionLog is not null %}
         {{ _self.toggleActions('current') }}
         {% endif %} 
-        {{ _self.actionDetail(action, lastActionLog )}}
+        {{ _self.actionDetail(action, lastActionLog, currentActionLog) }}
     </div>
     {% endif %}
 
@@ -142,6 +142,7 @@
 {% macro actionDetail(
     action,
     actionData,
+    otherActionData
 ) %}
 <div class="row justify-content-start ms-3">
     {% if actionData.errorTrace is not empty %}
@@ -162,6 +163,7 @@
         {% endfor %}
     </dl>
     {% endif %}
+
     <div class="col-12 row admin-item-report-meta admin-item-report-date mt-1 mb-0 text-muted">
         {% set date = 'created_at' %}
         {% set dateValue = actionData.createdAt %}
@@ -187,6 +189,13 @@
         </em>
     </div>
     {% endif %}
+
+    {% if actionData.doneAt is empty and actionData.createdAt is not empty
+        and otherActionData is not null 
+        and otherActionData.doneAt is not empty and otherActionData.executionTime is not empty
+    %}
+    {{ _self.progress(actionData, otherActionData) }}
+    {% endif %}
 </div>
 {% endmacro %}
 
@@ -202,4 +211,33 @@
     <i class="bi bi-chevron-bar-left"></i>
     {% endif %} 
 </a>
+{% endmacro %}
+
+{% macro progress(actionData, otherActionData) %}
+{% set timeDiff = actionData.createdAt.diff(date('now')) %}
+{% set elapsedSeconds = timeDiff.days * 86400 + timeDiff.h * 3600 + timeDiff.i * 60 + timeDiff.s %}
+{% set elapsedPercent = elapsedSeconds * 100 / otherActionData.executionTime %}
+{% if 20 > elapsedPercent%}
+{% set progressColor = 'bg-info' %}
+{% elseif 90 > elapsedPercent %}
+{% set progressColor = 'bg-warning' %}
+{% elseif 100 < elapsedPercent %}
+{% set progressColor = 'bg-danger' %}
+{% endif %}
+
+<div 
+    class="progress" 
+    role="progressbar" 
+    aria-valuenow="{{ elapsedSeconds }}" 
+    aria-valuemin="0" 
+    aria-valuemax="{{ otherActionData.executionTime }}"
+>
+    <div 
+        class="progress-bar progress-bar-striped progress-bar-animated {{ progressColor }}" 
+        style="width: {{ elapsedPercent|round }}%"
+        title="{{ elapsedPercent|round }}%"
+    >
+        {{ elapsedPercent|round }}%
+    </div>
+</div>
 {% endmacro %}
