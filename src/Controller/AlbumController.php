@@ -166,7 +166,7 @@ class AlbumController extends AbstractController
             }
         }
 
-        return $list;
+        return \array_values($list);
     }
 
     /**

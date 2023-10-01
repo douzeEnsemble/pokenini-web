@@ -9,7 +9,7 @@
     </div>
     <div class="row row-cols-{{ nbCaseByLine }} album-line">
         {% endif %}
-        {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId) }}
+        {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId, list, loop) }}
         {% endfor %}
     </div>
 </div>
