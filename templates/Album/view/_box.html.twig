@@ -6,7 +6,7 @@
     <h2 class="sticky-top">{{ 'title.empty'|trans }}</h2>
     <div class="row row-cols-6 album-line">
         {% for item in list %}
-            {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId) }}
+            {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId, list, loop) }}
         {% endfor %}
     </div>
 {% else %}
@@ -30,7 +30,7 @@
         <div class="row row-cols-6 album-line">
             {% endif %}
 
-            {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId) }}
+            {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId, list, loop) }}
 
             {% endfor %}
         </div>

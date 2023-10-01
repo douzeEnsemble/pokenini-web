@@ -312,12 +312,14 @@ trait ModalTestTrait
     public function assertModalItemIcons(
         Crawler $crawler,
         string $pokemonSlug,
-        string $lang
+        string $lang,
     ): void {
-        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug a.album-modal-icon");
+        $this->assertCountFilter($crawler, 4, "#modal-$pokemonSlug a.album-modal-icon");
         $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-regular");
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-regular");
-        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug img.album-image");
+        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-shiny");
+        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-previous");
+        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-next");
+        $this->assertCountFilter($crawler, 4, "#modal-$pokemonSlug img.album-image");
 
         $this->assertEquals(
             ('fr' === $lang ? 'Normal' : 'Regular'),
@@ -328,6 +330,16 @@ trait ModalTestTrait
             ('fr' === $lang ? 'Chromatique' : 'Shiny'),
             $crawler->filter("#modal-$pokemonSlug .album-modal-icon-shiny")
                 ->text()
+        );
+        $this->assertEquals(
+            ('fr' === $lang ? 'Précédent' : 'Previous'),
+            $crawler->filter("#modal-$pokemonSlug .album-modal-icon-previous")
+                ->text()
+        );
+        $this->assertEquals(
+            ('fr' === $lang ? 'Suivant' : 'Next'),
+            trim($crawler->filter("#modal-$pokemonSlug .album-modal-icon-next")
+                ->text())
         );
     }
 }

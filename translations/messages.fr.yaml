@@ -66,6 +66,8 @@ album:
         title:
             regular: 'Normal'
             shiny: 'Chromatique'
+            previous: 'Précédent'
+            next: 'Suivant'
     image:
         alt:
             regular: 'Image de'

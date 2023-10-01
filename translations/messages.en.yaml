@@ -66,6 +66,8 @@ album:
         title:
             regular: 'Regular'
             shiny: 'Shiny'
+            previous: 'Previous'
+            next: 'Next'
     image:
         alt:
             regular: 'Image if'
