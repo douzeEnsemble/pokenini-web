@@ -186,9 +186,13 @@ class EnglishAlbumLocalizationTest extends WebTestCase
     {
         $crawler = $client->getCrawler();
 
-        $navbarTitle = $crawler->filter('.navbar-brand');
+        $navbarTitle = $crawler->filter('.navbar-link');
         $this->assertEquals('Demo light', $navbarTitle->text());
-        $this->assertEquals('/en', $navbarTitle->attr('href'));
+
+        $this->assertEquals(
+            $crawler->getUri(),
+            $navbarTitle->attr('href')
+        );
 
         $this->assertEnglishLangSwitch($crawler);
     }

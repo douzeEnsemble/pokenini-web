@@ -5,6 +5,9 @@
 
 {% block title %}Pokénini {{ locale is same as('fr') ? dex.french_name : dex.name }}{% endblock title %}
 
+{%- block navbarTitleLink -%}
+    {{ app.request.uri }}
+{%- endblock navbarTitleLink -%}
 {% block navbarTitle %}
     {{ locale is same as('fr') ? dex.french_name : dex.name }}
 {% endblock navbarTitle %}

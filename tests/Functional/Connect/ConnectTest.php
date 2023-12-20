@@ -28,7 +28,7 @@ class ConnectTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#main-container ul.nav li a');
         $this->assertEquals('/fr/connect/g', $crawler->filter('#main-container ul.nav li a')->attr('href'));
 
-        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
+        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-link')->text());
     }
 
     public function testGoogleConnectPage(): void
