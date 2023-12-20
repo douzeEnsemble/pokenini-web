@@ -26,13 +26,13 @@ install: build start waitup stop
 
 ## —— Docker 🐳 ————————————————————————————————————————————————————————————————
 build: ## Builds the Docker images
-	docker-compose build
+	${DOCKER_COMP} build
 
 start: ## Start the project
-	docker-compose up -d
+	${DOCKER_COMP} up -d
 
 stop: ## Stop the project
-	docker-compose down --remove-orphans
+	${DOCKER_COMP} down --remove-orphans
 
 sh: ## Connect to the PHP FPM container
 	@$(PHP_CONT) sh
