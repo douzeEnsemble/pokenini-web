@@ -39,7 +39,7 @@ class TrainerPageTest extends WebTestCase
             $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
         );
 
-        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
+        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-link')->text());
 
         $this->assertCountFilter($crawler, 0, '.dex_not_released');
     }
@@ -69,7 +69,7 @@ class TrainerPageTest extends WebTestCase
             $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
         );
 
-        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-brand')->text());
+        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-link')->text());
 
         $this->assertCountFilter($crawler, 1, '.dex_not_released');
     }

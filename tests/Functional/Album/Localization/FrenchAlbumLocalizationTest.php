@@ -199,9 +199,13 @@ class FrenchAlbumLocalizationTest extends WebTestCase
     {
         $crawler = $client->getCrawler();
 
-        $navbarTitle = $crawler->filter('.navbar-brand');
+        $navbarTitle = $crawler->filter('.navbar-link');
         $this->assertEquals('Démo, extrait', $navbarTitle->text());
-        $this->assertEquals('/fr', $navbarTitle->attr('href'));
+
+        $this->assertEquals(
+            $crawler->getUri(),
+            $navbarTitle->attr('href')
+        );
 
         $this->assertFrenchLangSwitch($crawler);
     }
