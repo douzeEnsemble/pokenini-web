@@ -49,10 +49,15 @@
         </span>
     </div>
 
-    <h1
-        id="album-title">
-        {{ locale is same as('fr') ? dex.french_name : dex.name }}
-    </h1>
+    {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
+    {% set title = titles.0 %}
+    {% set subtitle = titles.1 is defined ? titles.1 : '' %}
+
+    <h1 id="album-title">{{ title }}</h1>
+    
+    {% if subtitle is not empty %}
+    <h2 id="album-subtitle">{{ subtitle }}</h2>
+    {% endif %}
 
     <ul class="list-group list-group-flush">
         {# Description #}

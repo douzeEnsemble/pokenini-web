@@ -29,6 +29,8 @@ class HomeTest extends WebTestCase
         $this->assertFrenchLangSwitch($crawler);
 
         $this->assertCountFilter($crawler, 6, '.home-item');
+        $this->assertCountFilter($crawler, 6, '.home-item h5');
+        $this->assertCountFilter($crawler, 1, '.home-item h6');
 
         $firstAlbum = $crawler->filter('.home-item')->first();
         $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
@@ -55,6 +57,8 @@ class HomeTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertCountFilter($crawler, 8, '.home-item');
+        $this->assertCountFilter($crawler, 8, '.home-item h5');
+        $this->assertCountFilter($crawler, 1, '.home-item h6');
 
         $dex = [
             'home',
@@ -97,7 +101,7 @@ class HomeTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.alert');
     }
 
-    public function testConnectedHomeNoOnHomecDex(): void
+    public function testConnectedHomeDexNoOnHome(): void
     {
         $client = static::createClient();
 
@@ -114,7 +118,7 @@ class HomeTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.alert a');
     }
 
-    public function testConnectedHomeSomeOnHomecDex(): void
+    public function testConnectedHomeSomeDex(): void
     {
         $client = static::createClient();
 
@@ -127,6 +131,8 @@ class HomeTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertCountFilter($crawler, 2, '.home-item');
+        $this->assertCountFilter($crawler, 2, '.home-item h5');
+        $this->assertCountFilter($crawler, 0, '.home-item h6');
     }
 
     public function testHomeFrench(): void
@@ -142,6 +148,10 @@ class HomeTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertFrenchLangSwitch($crawler);
+
+        $this->assertCountFilter($crawler, 6, '.home-item');
+        $this->assertCountFilter($crawler, 6, '.home-item h5');
+        $this->assertCountFilter($crawler, 1, '.home-item h6');
 
         $firstAlbum = $crawler->filter('.home-item')->first();
         $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
@@ -165,6 +175,10 @@ class HomeTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertEnglishLangSwitch($crawler);
+
+        $this->assertCountFilter($crawler, 6, '.home-item');
+        $this->assertCountFilter($crawler, 6, '.home-item h5');
+        $this->assertCountFilter($crawler, 1, '.home-item h6');
 
         $firstAlbum = $crawler->filter('.home-item')->first();
         $this->assertEquals('Sword, Shield', $firstAlbum->text());

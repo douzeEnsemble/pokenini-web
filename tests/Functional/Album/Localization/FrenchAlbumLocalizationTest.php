@@ -62,9 +62,22 @@ class FrenchAlbumLocalizationTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        $crawler = $client->request('GET', '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertShinyFrench($client);
+
+        $navbarTitle = $crawler->filter('.navbar-link');
+        $this->assertEquals('Démo, extrait chromatique', $navbarTitle->text());
+
+        $this->assertCount(1, $crawler->filter('.navbar-link .navbar-title'));
+        $this->assertCount(1, $crawler->filter('.navbar-link .navbar-subtitle'));
+
+        $this->assertEquals(
+            $crawler->getUri(),
+            $navbarTitle->attr('href')
+        );
+
+        $this->assertFrenchLangSwitch($crawler);
     }
 
     private function assertAlbumFrench(KernelBrowser $client): void
@@ -201,6 +214,9 @@ class FrenchAlbumLocalizationTest extends WebTestCase
 
         $navbarTitle = $crawler->filter('.navbar-link');
         $this->assertEquals('Démo, extrait', $navbarTitle->text());
+
+        $this->assertCount(1, $crawler->filter('.navbar-link .navbar-title'));
+        $this->assertCount(0, $crawler->filter('.navbar-link .navbar-subtitle'));
 
         $this->assertEquals(
             $crawler->getUri(),

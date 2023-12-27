@@ -31,6 +31,8 @@ class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
+        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
             'Tous les pokémons pouvant être transférés sur Pokémon Home.',
@@ -97,6 +99,8 @@ class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
+        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
             'Tous les pokémons de la démo affiché en liste, 3 éléments par colonnes',
@@ -155,8 +159,14 @@ class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
-            'Démo, extrait, chromatique',
+            'Démo, extrait',
             $crawler->filter('h1#album-title')->text()
+        );
+
+        $this->assertCountFilter($crawler, 1, 'h2#album-subtitle');
+        $this->assertEquals(
+            'chromatique',
+            $crawler->filter('h2#album-subtitle')->text()
         );
 
         $this->assertCountFilter($crawler, 1, '#album-description');
@@ -219,6 +229,8 @@ class IntroTest extends WebTestCase
             'Or, Argent, Cristal',
             $crawler->filter('h1#album-title')->text()
         );
+
+        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
@@ -286,6 +298,8 @@ class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
+        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
             'La liste des pokémons obtenable dans les jeux Noire et Blanche.',
@@ -352,6 +366,8 @@ class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
+        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
             'The list of obtainable Pokémons in Black and White games.',
@@ -417,6 +433,8 @@ class IntroTest extends WebTestCase
             'Démo',
             $crawler->filter('h1#album-title')->text()
         );
+
+        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
