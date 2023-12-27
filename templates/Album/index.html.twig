@@ -9,7 +9,14 @@
     {{ app.request.uri }}
 {%- endblock navbarTitleLink -%}
 {% block navbarTitle %}
-    {{ locale is same as('fr') ? dex.french_name : dex.name }}
+    {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
+    {% set title = titles.0 %}
+    {% set subtitle = titles.1 is defined ? titles.1 : '' %}
+
+    <span class="navbar-title">{{ title }}</span>
+    {% if subtitle %}
+    <span class="navbar-subtitle small ">{{ subtitle }}</span>
+    {% endif %}
 {% endblock navbarTitle %}
 
 {% block stylesheets %}

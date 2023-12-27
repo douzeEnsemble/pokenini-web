@@ -209,8 +209,8 @@
     "is_on_home": true,
     "is_display_form": true,
     "display_template": "box",
-    "name": "Home Shiny",
-    "french_name": "Home Chromatique",
+    "name": "Home\nShiny",
+    "french_name": "Home\nChromatique",
     "slug": "homeshiny",
     "original_slug": "homeshiny",
     "is_released": true

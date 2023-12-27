@@ -43,11 +43,21 @@
         >
     </a>
     <div class="card-body">
+        {% set titles = (locale is same as('fr') ? frenchName : name)|split("\n") %}
+        {% set title = titles.0 %}
+        {% set subtitle = titles.1 is defined ? titles.1 : '' %}
         <h5 class="card-title">
             <a href="{{ url }}">
-                {{ locale is same as('fr') ? frenchName : name }}
+                {{ title }}
             </a>
         </h5>
+        {% if subtitle is not empty %}
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+            <a href="{{ url }}">
+                {{ subtitle }}
+            </a>
+        </h6>
+        {% endif %}
     </div>
 </div>
 {% endmacro %}

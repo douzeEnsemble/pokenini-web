@@ -241,8 +241,8 @@
     },
     {
         "dex_slug": "pokemonlegendsarceus",
-        "name": "Pokémon Legends Arceus, Pokéball",
-        "french_name": "Légendes Pokémon : Arceus, dans des pokéballs",
+        "name": "Pokémon Legends Arceus\nPokéball",
+        "french_name": "Légendes Pokémon : Arceus\ndans des pokéballs",
         "slug": "pokemonlegendsarceuspokeball",
         "is_shiny": false,
         "is_private": false,
