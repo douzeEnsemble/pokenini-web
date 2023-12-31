@@ -18,10 +18,42 @@ class CacheInvalidatorServiceTest extends TestCase
             ->expects($this->once())
             ->method('invalidateCacheCatchStates')
         ;
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheTypes')
+        ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
         $cacheInvalidator->invalidate('labels');
+    }
+
+    public function testInvalidateCatchStates(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheCatchStates')
+        ;
+
+        $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $cacheInvalidator->invalidate('catch_states');
+    }
+
+    public function testInvalidateTypes(): void
+    {
+        $apiService = $this->createMock(ApiService::class);
+
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheTypes')
+        ;
+
+        $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $cacheInvalidator->invalidate('types');
     }
 
     public function testInvalidateGamesAndDex(): void

@@ -80,6 +80,23 @@ class ApiServiceTest extends TestCase
         );
     }
 
+    public function testGetTypes(): void
+    {
+        $service = $this->getService('types');
+
+        $this->assertEquals(
+            [
+                'trucs' => [
+                    'bidule',
+                    'machin',
+                    'chose',
+                ],
+                'url' => 'types',
+            ],
+            $service->getTypes(),
+        );
+    }
+
     public function testModifyAlbum(): void
     {
         $client = $this->createMock(HttpClientInterface::class);

@@ -56,12 +56,12 @@ class AdminPageTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 2, 'h2');
         $this->assertCountFilter($crawler, 7, 'h3');
-        $this->assertCountFilter($crawler, 13, '.admin-item a.admin-item-cta');
-        $this->assertCountFilter($crawler, 13, '.admin-item a.admin-item-cta i.bi');
+        $this->assertCountFilter($crawler, 14, '.admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 14, '.admin-item a.admin-item-cta i.bi');
 
         $this->assertCountFilter($crawler, 6, '.list-group-update .admin-item a.admin-item-cta');
         $this->assertCountFilter($crawler, 3, '.list-group-calculate .admin-item a.admin-item-cta');
-        $this->assertCountFilter($crawler, 3, '.list-group-invalidate .admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 4, '.list-group-invalidate .admin-item a.admin-item-cta');
         $this->assertCountFilter($crawler, 2, 'table.report-table');
         $this->assertCountFilter($crawler, 1, '.list-group-report-invalidate .admin-item a.admin-item-cta');
 
@@ -69,6 +69,8 @@ class AdminPageTest extends WebTestCase
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
+
+        $this->assertStringNotContainsString('const types = JSON.parse', $crawler->outerHtml());
 
         foreach ($this->getHomeReportData() as $slug => $data) {
             foreach ($data as $type => $report) {

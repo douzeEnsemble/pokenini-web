@@ -67,6 +67,7 @@ class AdminActionController extends AbstractController
         condition: "params['name']
             in [
                 'catch_states',
+                'types',
                 'dex',
                 'albums',
                 'reports',
@@ -112,6 +113,7 @@ class AdminActionController extends AbstractController
             $content,
             $error
         );
+
         $this->requestStack->getSession()->set(self::SESSION_ACTION_DATA, $adminAction);
 
         return $this->redirectToRoute('app_admin_index');

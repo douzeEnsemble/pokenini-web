@@ -19,7 +19,6 @@ class ActionInvalidateTest extends WebTestCase
      */
     public function testInvalidateSuccess(string $name): void
     {
-
         $client = static::createClient();
 
         $user = new User('8764532');
@@ -73,6 +72,7 @@ class ActionInvalidateTest extends WebTestCase
     {
         return [
             ['catch_states'],
+            ['types'],
             ['dex'],
             ['albums'],
             ['reports'],

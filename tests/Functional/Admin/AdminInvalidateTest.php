@@ -54,6 +54,7 @@ class AdminInvalidateTest extends WebTestCase
     {
         return [
             ['catch_states'],
+            ['types'],
             ['dex'],
             ['albums'],
             ['reports'],
