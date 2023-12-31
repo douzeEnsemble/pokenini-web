@@ -58,6 +58,52 @@ class ApiServiceRequestCacheTest extends TestCase
         $this->assertArrayNotHasKey('catch_states', $cache->getValues());
     }
 
+    public function testTypesCache(): void
+    {
+        $client = $this->createMock(HttpClientInterface::class);
+
+        $response = $this->createMock(ResponseInterface::class);
+        $response
+            ->expects($this->exactly(2))
+            ->method('getContent')
+            ->willReturn('{}')
+        ;
+
+        $client
+            ->expects($this->exactly(2))
+            ->method('request')
+            ->withConsecutive(
+                ['GET', 'api/types'],
+                // Additionnal call to pollute requests and caches
+                ['GET', 'api/reports'],
+            )
+            ->willReturn($response)
+        ;
+
+        $cache = new ArrayAdapter();
+
+        $service = new ApiService($client, 'api', $cache, 'web', 'douze');
+
+        $this->assertEmpty($cache->getValues());
+
+        $service->getTypes();
+        $this->assertCount(1, $cache->getValues());
+        $this->assertArrayHasKey('types', $cache->getValues());
+
+        $service->getTypes();
+        $service->getTypes();
+        $this->assertCount(1, $cache->getValues());
+        $this->assertArrayHasKey('types', $cache->getValues());
+
+        $service->getReports();
+        $this->assertCount(2, $cache->getValues());
+        $this->assertArrayHasKey('types', $cache->getValues());
+
+        $service->invalidateCacheTypes();
+        $this->assertCount(1, $cache->getValues());
+        $this->assertArrayNotHasKey('types', $cache->getValues());
+    }
+
     public function testDexCache(): void
     {
         $client = $this->createMock(HttpClientInterface::class);

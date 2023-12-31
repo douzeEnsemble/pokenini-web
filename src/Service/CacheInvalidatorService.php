@@ -18,8 +18,16 @@ class CacheInvalidatorService
     {
         switch ($type) {
             case 'labels':
+                $this->apiService->invalidateCacheCatchStates();
+                $this->apiService->invalidateCacheTypes();
+                return;
+
             case 'catch_states':
                 $this->apiService->invalidateCacheCatchStates();
+                return;
+
+            case 'types':
+                $this->apiService->invalidateCacheTypes();
                 return;
 
             case 'games_and_dex':

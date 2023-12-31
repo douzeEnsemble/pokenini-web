@@ -33,6 +33,7 @@ title:
         dex_availabilities: 'Update dex availabilities'
     invalidate:
         catch_states: 'Invalidate status cache'
+        types: 'Invalidate types cache'
         dex: 'Invalidate dex cache'
         albums: 'Invalidate album cache'
         reports: 'Invalidate reports cache'
@@ -256,6 +257,7 @@ admin:
         games: "Games"
         dex: "Dex"
         catch_states: "Catch's states"
+        types: "Types"
         regions: "Regions"
         category_forms: "Category forms"
         regional_forms: "Regional forms"

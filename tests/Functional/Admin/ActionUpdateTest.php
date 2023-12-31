@@ -65,6 +65,7 @@ class ActionUpdateTest extends WebTestCase
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
+        $this->assertStringNotContainsString('const types = JSON.parse', $crawler->outerHtml());
     }
 
     public function testAdminUpdateUnknown(): void
@@ -140,5 +141,6 @@ class ActionUpdateTest extends WebTestCase
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
+        $this->assertStringNotContainsString('const types = JSON.parse', $crawler->outerHtml());
     }
 }

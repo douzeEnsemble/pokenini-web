@@ -103,6 +103,37 @@ class ApiService
     }
 
     /**
+     * @return string[][]
+     */
+    public function getTypes(): array
+    {
+        $key = KeyMaker::getTypesKey();
+
+        /** @var string $json */
+        $json = $this->cache->get($key, function () {
+            $response = $this->client->request(
+                'GET',
+                "{$this->appApiUrl}/types",
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
+            );
+
+            /** @var string */
+            return $response->getContent();
+        });
+
+        /** @var string[][] */
+        return JsonDecoder::decode($json);
+    }
+
+    /**
      * @throws TransportExceptionInterface
      * @throws HttpExceptionInterface
      */
@@ -267,6 +298,11 @@ class ApiService
     public function invalidateCacheCatchStates(): void
     {
         $this->cache->delete(KeyMaker::getCatchStatesKey());
+    }
+
+    public function invalidateCacheTypes(): void
+    {
+        $this->cache->delete(KeyMaker::getTypesKey());
     }
 
     public function invalidateCacheAlbums(): void
