@@ -40,7 +40,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": null,
-      "pokemon_order_number": "999-0001-00"
+      "pokemon_order_number": "999-0001-00",
+      "primary_type_slug": "grass",
+      "primary_type_name": "Grass",
+      "primary_type_french_name": "Plante",
+      "secondary_type_slug": "poison",
+      "secondary_type_name": "Poison",
+      "secondary_type_french_name": "Poison"
     },
     {
       "pokemon_slug": "ivysaur",
@@ -64,7 +70,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": null,
-      "pokemon_order_number": "999-0002-01"
+      "pokemon_order_number": "999-0002-01",
+      "primary_type_slug": "grass",
+      "primary_type_name": "Grass",
+      "primary_type_french_name": "Plante",
+      "secondary_type_slug": "poison",
+      "secondary_type_name": "Poison",
+      "secondary_type_french_name": "Poison"
     },
     {
       "pokemon_slug": "venusaur",
@@ -88,7 +100,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": null,
-      "pokemon_order_number": "999-0003-02"
+      "pokemon_order_number": "999-0003-02",
+      "primary_type_slug": "grass",
+      "primary_type_name": "Grass",
+      "primary_type_french_name": "Plante",
+      "secondary_type_slug": "poison",
+      "secondary_type_name": "Poison",
+      "secondary_type_french_name": "Poison"
     },
     {
       "pokemon_slug": "charmander",
@@ -112,7 +130,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": null,
-      "pokemon_order_number": "999-0004-00"
+      "pokemon_order_number": "999-0004-00",
+      "primary_type_slug": "fire",
+      "primary_type_name": "Fire",
+      "primary_type_french_name": "Feu",
+      "secondary_type_slug": null,
+      "secondary_type_name": null,
+      "secondary_type_french_name": null
     },
     {
       "pokemon_slug": "charmeleon",
@@ -136,7 +160,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": null,
-      "pokemon_order_number": "999-0005-01"
+      "pokemon_order_number": "999-0005-01",
+      "primary_type_slug": "fire",
+      "primary_type_name": "Fire",
+      "primary_type_french_name": "Feu",
+      "secondary_type_slug": null,
+      "secondary_type_name": null,
+      "secondary_type_french_name": null
     },
     {
       "pokemon_slug": "charizard",
@@ -160,7 +190,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": null,
-      "pokemon_order_number": "999-0006-02"
+      "pokemon_order_number": "999-0006-02",
+      "primary_type_slug": "fire",
+      "primary_type_name": "Fire",
+      "primary_type_french_name": "Feu",
+      "secondary_type_slug": "flying",
+      "secondary_type_name": "Flying",
+      "secondary_type_french_name": "Vol"
     }
   ],
   "report": {

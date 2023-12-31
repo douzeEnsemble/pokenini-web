@@ -74,7 +74,7 @@ class CommonTest extends WebTestCase
 
         $crawler = $client->getCrawler();
 
-        $expectedPokemonCount = 37;
+        $expectedPokemonCount = 41;
 
         $this->assertCountFilter($crawler, $expectedPokemonCount, '.album-case');
 
@@ -106,7 +106,7 @@ class CommonTest extends WebTestCase
         $crawler = $client->getCrawler();
 
         $this->assertCountFilter($crawler, 0, '.album-case select');
-        $this->assertCountFilter($crawler, 37, '.album-case .album-case-catch-state');
+        $this->assertCountFilter($crawler, 41, '.album-case .album-case-catch-state');
 
         $this->assertCountFilter($crawler, 0, '.toast');
 
@@ -121,15 +121,15 @@ class CommonTest extends WebTestCase
     {
         $crawler = $client->getCrawler();
 
-        $this->assertCountFilter($crawler, 37, '.album-case select');
+        $this->assertCountFilter($crawler, 41, '.album-case select');
 
         $this->assertCountFilter($crawler, 6, '#bulbasaur select option');
 
-        $this->assertCountFilter($crawler, 37, '.album-case .album-case-catch-state');
+        $this->assertCountFilter($crawler, 41, '.album-case .album-case-catch-state');
 
-        $this->assertCountFilter($crawler, 74, '.toast');
-        $this->assertCountFilter($crawler, 37, '.toast.text-bg-success');
-        $this->assertCountFilter($crawler, 37, '.toast.text-bg-danger');
+        $this->assertCountFilter($crawler, 82, '.toast');
+        $this->assertCountFilter($crawler, 41, '.toast.text-bg-success');
+        $this->assertCountFilter($crawler, 41, '.toast.text-bg-danger');
 
         $this->assertCountFilter($crawler, 1, 'script[src="/js/album.js"]');
 
