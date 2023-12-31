@@ -34,6 +34,10 @@ a.album-case-catch-state-edit-action:hover {
     color: black;
 }
 
+.album-modal-types {
+    color: white;
+}
+
 .list-group-item .icon-link {
     align-items: inherit;
 }

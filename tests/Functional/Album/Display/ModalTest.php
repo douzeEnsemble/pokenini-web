@@ -46,11 +46,13 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemIcons($crawler, 'bulbasaur', 'fr');
 
-        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 7, '#modal-bulbasaur .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
 
         $this->assertModalItemForms($crawler, 'bulbasaur', 'fr', 'Normale');
+
+        $this->assertModalItemTypes($crawler, 'bulbasaur', 'Plante', 'Poison');
 
         $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'fr', 1);
 
@@ -76,11 +78,13 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemIcons($crawler, 'bulbasaur', 'en');
 
-        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 7, '#modal-bulbasaur .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbasaur', 'Bulbizarre');
 
         $this->assertModalItemForms($crawler, 'bulbasaur', 'en', 'Regular');
+
+        $this->assertModalItemTypes($crawler, 'bulbasaur', 'Grass', 'Poison');
 
         $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'en', 1);
 
@@ -106,11 +110,13 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemIcons($crawler, 'bulbasaur', 'fr');
 
-        $this->assertCountFilter($crawler, 6, '#modal-bulbasaur .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 7, '#modal-bulbasaur .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'bulbasaur', 'Bulbizarre', 'Bulbasaur');
 
         $this->assertModalItemForms($crawler, 'bulbasaur', 'fr', 'Normale');
+
+        $this->assertModalItemTypes($crawler, 'bulbasaur', 'Plante', 'Poison');
 
         $this->assertModalItemNationalDexNumber($crawler, 'bulbasaur', 'fr', 1);
 
@@ -138,11 +144,13 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemIcons($crawler, 'meganium', 'fr');
 
-        $this->assertCountFilter($crawler, 7, '#modal-meganium .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 8, '#modal-meganium .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'meganium', 'Méganium', 'Meganium');
 
         $this->assertModalItemForms($crawler, 'meganium', 'fr', '♂️');
+
+        $this->assertModalItemTypes($crawler, 'meganium', 'Plante');
 
         $this->assertModalItemNationalDexNumber($crawler, 'meganium', 'fr', 154);
         $this->assertModalItemRegionalDexNumber($crawler, 'meganium', 'fr', 3);
@@ -169,11 +177,13 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemIcons($crawler, 'venusaur-mega', 'fr');
 
-        $this->assertCountFilter($crawler, 6, '#modal-venusaur-mega .modal-body .list-group-item');
+        $this->assertCountFilter($crawler, 7, '#modal-venusaur-mega .modal-body .list-group-item');
 
         $this->assertModalItemNames($crawler, 'venusaur-mega', 'Florizarre', 'Venusaur');
 
         $this->assertModalItemForms($crawler, 'venusaur-mega', 'fr', 'mega');
+
+        $this->assertModalItemTypes($crawler, 'venusaur-mega', 'Plante', 'Poison');
 
         $this->assertModalItemNationalDexNumber($crawler, 'venusaur-mega', 'fr', 3);
 
