@@ -31,7 +31,11 @@ trait ModalTestTrait
         Crawler $crawler,
         string $pokemonSlug,
     ): void {
-        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug .modal-body .album-modal-image");
+        $this->assertCountFilter(
+            $crawler,
+            2,
+            "#modal-$pokemonSlug .modal-body .album-modal-image",
+        );
         $this->assertCountFilter(
             $crawler,
             1,
@@ -58,7 +62,11 @@ trait ModalTestTrait
         Crawler $crawler,
         string $pokemonSlug,
     ): void {
-        $this->assertCountFilter($crawler, 2, "#modal-$pokemonSlug .modal-body .album-modal-image");
+        $this->assertCountFilter(
+            $crawler,
+            2,
+            "#modal-$pokemonSlug .modal-body .album-modal-image",
+        );
         $this->assertCountFilter(
             $crawler,
             1,
@@ -87,26 +95,40 @@ trait ModalTestTrait
         string $primaryName,
         string $secondaryName,
     ): void {
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", 0, 'strong');
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", 0, 'em');
+        $groupItemIndex = 0;
+
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupItemIndex,
+            'strong',
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupItemIndex,
+            'em',
+        );
 
         $this->assertEquals(
             "$primaryName / $secondaryName",
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(0)
+                ->eq($groupItemIndex)
                 ->text()
         );
         $this->assertEquals(
             $primaryName,
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(0)
+                ->eq($groupItemIndex)
                 ->filter('strong')
                 ->text()
         );
         $this->assertEquals(
             $secondaryName,
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(0)
+                ->eq($groupItemIndex)
                 ->filter('em')
                 ->text()
         );
@@ -118,31 +140,85 @@ trait ModalTestTrait
         string $lang,
         string $formsLabel,
     ): void {
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", 1, 'strong');
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", 1, 'span');
+        $groupItemIndex = 1;
+
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupItemIndex,
+            'strong',
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupItemIndex,
+            'span',
+        );
 
         $formsPrefix = (('fr' === $lang) ? 'Forme' : 'Form');
 
         $this->assertEquals(
             "$formsPrefix $formsLabel",
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(1)
+                ->eq($groupItemIndex)
                 ->text()
         );
         $this->assertEquals(
             $formsPrefix,
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(1)
+                ->eq($groupItemIndex)
                 ->filter('strong')
                 ->text()
         );
         $this->assertEquals(
             $formsLabel,
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(1)
+                ->eq($groupItemIndex)
                 ->filter('span')
                 ->text()
         );
+    }
+
+    public function assertModalItemTypes(
+        Crawler $crawler,
+        string $pokemonSlug,
+        string $primaryType,
+        ?string $secondaryType = null,
+    ): void {
+        $nbTypes = ($secondaryType !== null) ? 2 : 1;
+
+        $this->assertCountFilter(
+            $crawler,
+            $nbTypes,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            2,
+            'span',
+        );
+        $this->assertCountFilter(
+            $crawler,
+            $nbTypes,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            2,
+            'span.album-modal-types',
+        );
+
+        $this->assertEquals(
+            $primaryType,
+            $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item span.album-modal-type-primary")
+                ->eq(0)
+                ->text()
+        );
+
+        if ($secondaryType !== null) {
+            $this->assertEquals(
+                $secondaryType,
+                $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item span.album-modal-type-secondary")
+                    ->eq(0)
+                    ->text()
+            );
+        }
     }
 
     public function assertModalItemNationalDexNumber(
@@ -151,28 +227,42 @@ trait ModalTestTrait
         string $lang,
         int $dexNumber,
     ): void {
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", 2, 'strong');
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", 2, 'span');
+        $groupItemIndex = 3;
+
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupItemIndex,
+            'strong',
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupItemIndex,
+            'span',
+        );
 
         $dexNumberPrefix = (('fr' === $lang) ? 'Numéro de dex national' : 'National dex number');
 
         $this->assertEquals(
             "$dexNumberPrefix $dexNumber",
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(2)
+                ->eq($groupItemIndex)
                 ->text()
         );
         $this->assertEquals(
             $dexNumberPrefix,
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(2)
+                ->eq($groupItemIndex)
                 ->filter('strong')
                 ->text()
         );
         $this->assertEquals(
             $dexNumber,
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(2)
+                ->eq($groupItemIndex)
                 ->filter('span')
                 ->text()
         );
@@ -184,28 +274,42 @@ trait ModalTestTrait
         string $lang,
         int $dexNumber,
     ): void {
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", 3, 'strong');
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", 3, 'span');
+        $groupItemIndex = 4;
+
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupItemIndex,
+            'strong',
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupItemIndex,
+            'span',
+        );
 
         $dexNumberPrefix = (('fr' === $lang) ? 'Numéro de dex régional' : 'Regional dex number');
 
         $this->assertEquals(
             "$dexNumberPrefix $dexNumber",
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(3)
+                ->eq($groupItemIndex)
                 ->text()
         );
         $this->assertEquals(
             $dexNumberPrefix,
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(3)
+                ->eq($groupItemIndex)
                 ->filter('strong')
                 ->text()
         );
         $this->assertEquals(
             $dexNumber,
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq(3)
+                ->eq($groupItemIndex)
                 ->filter('span')
                 ->text()
         );
@@ -218,26 +322,32 @@ trait ModalTestTrait
         string $familyLeadSlug,
         bool $withRegionalItem,
     ): void {
-        $index = $withRegionalItem ? 4 : 3;
+        $groupIntemIndex = $withRegionalItem ? 5 : 4;
 
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupIntemIndex,
+            'a',
+        );
 
         $this->assertEquals(
             ('fr' === $lang ? 'Afficher la famille ' : 'Filter this family only'),
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->text()
         );
         $this->assertEquals(
             "/fr/album/demo?f=$familyLeadSlug",
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->filter('a')
                 ->attr('href')
         );
         $this->assertNull(
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->filter('a')
                 ->attr('target')
         );
@@ -250,27 +360,33 @@ trait ModalTestTrait
         string $pokemonFrenchName,
         bool $withRegionalItem,
     ): void {
-        $index = $withRegionalItem ? 5 : 4;
+        $groupIntemIndex = $withRegionalItem ? 6 : 5;
 
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupIntemIndex,
+            'a',
+        );
 
         $this->assertEquals(
             ('fr' === $lang ? 'Fiche Poképédia' : "Poképédia's page (french)"),
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->text()
         );
         $this->assertEquals(
             "https://www.pokepedia.fr/$pokemonFrenchName",
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->filter('a')
                 ->attr('href')
         );
         $this->assertEquals(
             '_blank',
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->filter('a')
                 ->attr('target')
         );
@@ -283,27 +399,33 @@ trait ModalTestTrait
         string $pokemonEnglishName,
         bool $withRegionalItem,
     ): void {
-        $index = $withRegionalItem ? 6 : 5;
+        $groupIntemIndex = $withRegionalItem ? 7 : 6;
 
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug .modal-body .list-group-item", $index, 'a');
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug .modal-body .list-group-item",
+            $groupIntemIndex,
+            'a',
+        );
 
         $this->assertEquals(
             ('fr' === $lang ? 'Fiche Bulbapedia (anglais)' : "Bulbapedia's page"),
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->text()
         );
         $this->assertEquals(
             "https://bulbapedia.bulbagarden.net/wiki/{$pokemonEnglishName}_(Pokémon)",
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->filter('a')
                 ->attr('href')
         );
         $this->assertEquals(
             '_blank',
             $crawler->filter("#modal-$pokemonSlug .modal-body .list-group-item")
-                ->eq($index)
+                ->eq($groupIntemIndex)
                 ->filter('a')
                 ->attr('target')
         );
@@ -315,10 +437,26 @@ trait ModalTestTrait
         string $lang,
     ): void {
         $this->assertCountFilter($crawler, 4, "#modal-$pokemonSlug a.album-modal-icon");
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-regular");
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-shiny");
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-previous");
-        $this->assertCountFilter($crawler, 1, "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-next");
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-regular",
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-shiny",
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-previous",
+        );
+        $this->assertCountFilter(
+            $crawler,
+            1,
+            "#modal-$pokemonSlug a.album-modal-icon.album-modal-icon-next",
+        );
         $this->assertCountFilter($crawler, 4, "#modal-$pokemonSlug img.album-image");
 
         $this->assertEquals(

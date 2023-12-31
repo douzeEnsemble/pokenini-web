@@ -118,6 +118,7 @@ class AlbumController extends AbstractController
         }
 
         $catchStates = $this->apiService->getCatchStates();
+        $types = $this->apiService->getTypes();
 
         $filters = $this->getFilters($request);
         $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filters);
@@ -128,6 +129,7 @@ class AlbumController extends AbstractController
             'report' => $pokedex['report'],
             'list' => $pokemons,
             'catchStates' => $catchStates,
+            'types' => $types,
             'mode' => 'read',
             'filters' => $filters,
             'trainerId' => $trainerId,

@@ -151,6 +151,17 @@
                                 {{ forms ? forms : 'album.modal.no_forms'|trans }}
                             </span>
                         </li>
+                        <li class="list-group-item d-flex justify-content-end align-items-center">
+                            <span class="album-modal-types album-modal-type-primary pokemon-type-{{ item.primary_type_slug }} badge">
+                                {{ locale is same as('fr') ? item.primary_type_french_name : item.primary_type_name }}
+                            </span>
+                            
+                            {% if item.secondary_type_french_name is not null %}
+                            <span class="album-modal-types album-modal-type-secondary pokemon-type-{{ item.secondary_type_slug }} badge ms-2">
+                                {{ locale is same as('fr') ? item.secondary_type_french_name : item.secondary_type_name }}
+                            </span>
+                            {% endif %}
+                        </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>{{ 'album.modal.national_dex_number'|trans }}</strong>
                             <span>

@@ -40,6 +40,12 @@
         background-color: {{ catchState.color }};
     }
     {% endfor %}
+
+    {% for type in types %}
+    .pokemon-type-{{ type.slug }} {
+        background-color: {{ type.color }};
+    }
+    {% endfor %}
     </style>
 {% endblock stylesheets %}
 
