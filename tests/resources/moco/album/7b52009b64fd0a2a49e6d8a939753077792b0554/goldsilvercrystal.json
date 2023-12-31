@@ -40,7 +40,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": 1,
-      "pokemon_order_number": "001-0152-00"
+      "pokemon_order_number": "001-0152-00",
+      "primary_type_slug": "grass",
+      "primary_type_name": "Grass",
+      "primary_type_french_name": "Plante",
+      "secondary_type_slug": null,
+      "secondary_type_name": null,
+      "secondary_type_french_name": null
     },
     {
       "pokemon_slug": "bayleef",
@@ -64,7 +70,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": 2,
-      "pokemon_order_number": "002-0153-01"
+      "pokemon_order_number": "002-0153-01",
+      "primary_type_slug": "grass",
+      "primary_type_name": "Grass",
+      "primary_type_french_name": "Plante",
+      "secondary_type_slug": null,
+      "secondary_type_name": null,
+      "secondary_type_french_name": null
     },
     {
       "pokemon_slug": "meganium",
@@ -88,7 +100,13 @@
       "catch_state_name": null,
       "catch_state_french_name": null,
       "pokemon_regional_dex_number": 3,
-      "pokemon_order_number": "003-0154-02"
+      "pokemon_order_number": "003-0154-02",
+      "primary_type_slug": "grass",
+      "primary_type_name": "Grass",
+      "primary_type_french_name": "Plante",
+      "secondary_type_slug": null,
+      "secondary_type_name": null,
+      "secondary_type_french_name": null
     }
   ],
   "report": {

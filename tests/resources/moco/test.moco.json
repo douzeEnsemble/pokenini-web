@@ -13,6 +13,18 @@
   },
   {
     "request": {
+      "uri": "/types",
+      "headers": {
+        "accept": "application/json",
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/types.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/list",
       "headers": {
         "accept": "application/json",
@@ -531,14 +543,14 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/brillanddiamondshiningpearl"
+        "match": "/album/[\\w\\d]*/brillantdiamondshiningpearl"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
-      "file": "/var/moco/album/default/brillanddiamondshiningpearl.json"
+      "file": "/var/moco/album/default/brillantdiamondshiningpearl.json"
     }
   },
   {

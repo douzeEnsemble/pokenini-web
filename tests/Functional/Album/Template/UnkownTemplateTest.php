@@ -27,7 +27,7 @@ class UnkownTemplateTest extends WebTestCase
             '/fr/album/demounknowntemplate?t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
-        $this->assertCountFilter($crawler, 37, '.album-case.col');
+        $this->assertCountFilter($crawler, 41, '.album-case.col');
         $this->assertCountFilter($crawler, 6, 'div.row.album-line', 0, '.album-case.col');
         $this->assertCountFilter($crawler, 6, 'div.row.album-line', 2, '.album-case.col');
         $this->assertCountFilter($crawler, 7, 'div.row.album-line');
@@ -48,8 +48,8 @@ class UnkownTemplateTest extends WebTestCase
             '/fr/album/demounknowntemplate?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
-        $this->assertCountFilter($crawler, 21, '.album-case.col');
-        $this->assertCountFilter($crawler, 21, 'div.row.album-line', 0, '.album-case.col');
+        $this->assertCountFilter($crawler, 36, '.album-case.col');
+        $this->assertCountFilter($crawler, 36, 'div.row.album-line', 0, '.album-case.col');
         $this->assertCountFilter($crawler, 1, 'div.row.album-line');
         $this->assertCountFilter($crawler, 0, '.box');
         $this->assertCountFilter($crawler, 0, '.box h2');
