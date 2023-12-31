@@ -56,6 +56,8 @@ file_put_contents('tests/last.html', $crawler->html());
 
 ```
 curl -u web:douze "https://localhost:4430/catch_states" --insecure --output tests/resources/moco/catch_states.json --header 'Accept: application/json'
+curl -u web:douze "https://localhost:4430/types" --insecure --output tests/resources/moco/types.json --header 'Accept: application/json'
+
 
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/redgreenblueyellow" --insecure --output tests/resources/moco/album/default/redgreenblueyellow.json
 curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077792b0554/goldsilvercrystal" --insecure --output tests/resources/moco/album/default/goldsilvercrystal.json
@@ -81,6 +83,8 @@ curl -u web:douze "https://localhost:4430/album/7b52009b64fd0a2a49e6d8a939753077
 
 ### Check if json are valid or not
 
+Dans le container (`make sh`)
+
 ``` bash
-find tests/resources/moco -type f -name "*.json" -exec jsonlint-php {} \;
-```
+find tests/resources/moco -type f -name "*.json" -exec vendor/bin/jsonlint {} \;
+    ```
