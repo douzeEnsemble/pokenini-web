@@ -17,7 +17,7 @@ class ScreenshotModeTest extends AbstractBrowserTestCase
 
     public function testScreenshotMode(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('109903422692691643666');
         $user->addTrainerRole();

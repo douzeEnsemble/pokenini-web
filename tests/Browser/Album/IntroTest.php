@@ -17,7 +17,7 @@ class IntroTest extends AbstractBrowserTestCase
 
     public function testIntroToggleDetails(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('109903422692691643666');
         $user->addTrainerRole();

@@ -18,7 +18,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateGoldSilverCrystal(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -53,7 +53,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateDemo(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -88,7 +88,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateDemoList3(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -123,7 +123,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateToggle(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -147,7 +147,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateToggleWithLabel(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -171,7 +171,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateToggleAllEdit(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -199,7 +199,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateToggleAllEditThenRead(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -239,7 +239,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateToggleAllEditWithAlreadyInEditMode(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -291,7 +291,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateChangeSuccess(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();
@@ -328,7 +328,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
     public function testActionCatchStateChangeError(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('12');
         $user->addTrainerRole();

@@ -17,7 +17,7 @@ class LoadingTimeTest extends AbstractBrowserTestCase
 
     public function testLoadingTime(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $stopwatch = new Stopwatch();
         $stopwatch->start('request');

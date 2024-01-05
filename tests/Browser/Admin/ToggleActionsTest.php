@@ -17,7 +17,7 @@ class ToggleActionsTest extends AbstractBrowserTestCase
 
     public function testToggleActions(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('109903422692691643666');
         $user->addAdminRole();
