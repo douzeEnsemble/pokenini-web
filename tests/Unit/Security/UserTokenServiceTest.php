@@ -8,7 +8,7 @@ use App\Exception\NoLoggedUserException;
 use App\Security\User;
 use App\Security\UserTokenService;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class UserTokenServiceTest extends TestCase
 {
