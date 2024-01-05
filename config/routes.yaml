@@ -1,6 +1,7 @@
 controllers:
-    resource: ../src/Controller/
-    exclude: '../src/Controller/{SecurityController}.php'
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
     type: attribute
     prefix: /{_locale}
     trailing_slash_on_root: false
