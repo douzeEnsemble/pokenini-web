@@ -17,7 +17,7 @@ class ModalTest extends AbstractBrowserTestCase
 
     public function testModalOpenning(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('109903422692691643666');
         $user->addTrainerRole();
@@ -34,7 +34,7 @@ class ModalTest extends AbstractBrowserTestCase
 
     public function testModalImageSwitch(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('109903422692691643666');
         $user->addTrainerRole();

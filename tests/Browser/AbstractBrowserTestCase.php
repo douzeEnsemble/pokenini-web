@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 
 abstract class AbstractBrowserTestCase extends PantherTestCase
 {
-    protected static function getClient(): Client
+    protected static function getNewClient(): Client
     {
         return static::createPantherClient(
             ['browser' => static::CHROME],

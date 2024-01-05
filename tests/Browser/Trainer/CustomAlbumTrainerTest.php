@@ -18,7 +18,7 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 
     public function testSuccessTick(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('789465465489');
         $user->addTrainerRole();
@@ -42,7 +42,7 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 
     public function testSuccessUntick(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('789465465489');
         $user->addTrainerRole();
@@ -66,7 +66,7 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 
     public function testErrorTick(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('789465465489');
         $user->addTrainerRole();
@@ -90,7 +90,7 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 
     public function testErrorUntick(): void
     {
-        $client = $this->getClient();
+        $client = $this->getNewClient();
 
         $user = new User('789465465489');
         $user->addTrainerRole();
