@@ -1,0 +1,89 @@
+FROM php:8.2-fpm
+
+## < Handling permissions
+ARG USER_ID
+ARG GROUP_ID
+
+RUN groupadd -g $GROUP_ID app && \
+    useradd -r -u $USER_ID -g $GROUP_ID app && \
+    usermod -aG www-data app && \
+    usermod -aG app www-data
+## > Handling permissions
+
+## < Install composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
+## > Install composer
+
+## < Install PHP extensions
+ENV XDEBUG_MODE off
+
+RUN pecl install redis \
+	&& pecl install xdebug \
+	&& docker-php-ext-enable redis xdebug
+
+RUN apt-get update \
+    && apt-get install -y \
+        libmemcached-dev \
+        libssl-dev \
+        zlib1g-dev \
+	&& pecl install memcached-3.2.0 \
+	&& docker-php-ext-enable memcached
+
+RUN apt-get update \
+    && apt-get install -y libzip-dev zlib1g-dev \
+    && docker-php-ext-install zip
+
+RUN apt-get update \
+    && apt-get install -y libicu-dev \
+    && docker-php-ext-install intl
+
+RUN pecl install apcu \
+    && docker-php-ext-enable apcu
+
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+## > Install PHP extensions
+
+## < Install chromedriver
+ENV PANTHER_NO_SANDBOX 1
+
+RUN apt-get update && apt-get install -y \
+    gpg \
+    unzip \
+    wget \
+    firefox-esr \ 
+    chromium \ 
+    libgconf-2-4 \
+    libfontconfig \
+    libfreetype6 \
+    libx11-6 \
+    libxext6 \
+    libxrender1 \
+    libxtst6
+
+ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
+
+ENV GNUPGHOME /usr/local/share/gnupg
+
+RUN mkdir -p $GNUPGHOME \
+    && chmod 700 $GNUPGHOME \
+    && wget -O phive.phar https://phar.io/releases/phive.phar \
+    && wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc \    
+    && gpg --refresh-keys \
+    && gpg --keyserver keyserver.ubuntu.com --recv-keys 0x9D8A98B29B2D5D79 \
+    && gpg --verify phive.phar.asc phive.phar \
+    && chmod +x phive.phar \
+    && mv phive.phar /usr/local/bin/phive
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN echo "y" | /usr/local/bin/phive install --temporary  \  
+       dbrekelmans/browser-driver-installer \
+   && tools/bdi
+
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+## > Install chromedriver

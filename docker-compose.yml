@@ -4,49 +4,39 @@ services:
   php:
     build:
       context: .
-      target: app_php
+      dockerfile: ./docker/php/Dockerfile
       args:
-        SYMFONY_VERSION: ${SYMFONY_VERSION:-}
-        SKELETON: ${SKELETON:-symfony/skeleton}
-        STABILITY: ${STABILITY:-stable}
-    restart: unless-stopped
-    volumes:
-      - php_socket:/var/run/php
-    healthcheck:
-      interval: 10s
-      timeout: 3s
-      retries: 3
-      start_period: 30s
+        - USER_ID=${USER_ID}
+        - GROUP_ID=${GROUP_ID}
     environment:
-      # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
-      DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-14}
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+    expose:
+      - 9000
+    volumes:
+      - .:/var/www/html
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
 
-  caddy:
+  apache:
     build:
       context: .
-      target: symfony_caddy
+      dockerfile: ./docker/apache/Dockerfile
+      args:
+        - USER_ID=${USER_ID}
+        - GROUP_ID=${GROUP_ID}
+    environment:
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+    ports:
+      - 80:80
+      - 443:443
     depends_on:
       - php
-    environment:
-      SERVER_NAME: ${SERVER_NAME:-localhost, caddy:80}
-    restart: unless-stopped
     volumes:
-      - php_socket:/var/run/php
-      - caddy_data:/data
-      - caddy_config:/config
-    ports:
-      # HTTP
-      - target: 80
-        published: ${HTTP_PORT:-8981}
-        protocol: tcp
-      # HTTPS
-      - target: 443
-        published: ${HTTPS_PORT:-4431}
-        protocol: tcp
-      # HTTP/3
-      - target: 443
-        published: ${HTTP3_PORT:-4431}
-        protocol: udp
+      - .:/var/www/html
+      - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./docker/apache/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+      - ./docker/apache/ssl:/usr/local/apache2/ssl/
 
   redis:
     image: redis:7.0-alpine
@@ -57,8 +47,22 @@ services:
     volumes:
       - redis:/data
 
+  test.moco:
+    build:
+      context: docker/moco/test
+    volumes:
+      - ./tests/resources/moco/:/var/moco:ro
+
+  dev.moco:
+    build:
+      context: docker/moco/dev
+    volumes:
+      - ./tests/resources/moco/:/var/moco:ro
+
 volumes:
-  php_socket:
-  caddy_data:
-  caddy_config:
   redis:
+
+networks:
+  netapp:
+    name: netapp
+
