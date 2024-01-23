@@ -5,7 +5,7 @@
 ### TL;DR
 
 ```
-make stop install start quality tests
+make stop start quality tests
 ```
 
 or
@@ -17,7 +17,7 @@ make quality tests
 ### Install
 
 ```
-make install start
+make build start
 ```
 
 ### Restart
