@@ -1,15 +1,5 @@
 FROM php:8.2-fpm
 
-## < Handling permissions
-ARG USER_ID
-ARG GROUP_ID
-
-RUN groupadd -g $GROUP_ID app && \
-    useradd -r -u $USER_ID -g $GROUP_ID app && \
-    usermod -aG www-data app && \
-    usermod -aG app www-data
-## > Handling permissions
-
 ## < Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -49,12 +39,13 @@ RUN apt-get clean \
 
 ## < Install chromedriver
 ENV PANTHER_NO_SANDBOX 1
+ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
+ENV GNUPGHOME /usr/local/share/gnupg
 
 RUN apt-get update && apt-get install -y \
     gpg \
     unzip \
     wget \
-    firefox-esr \ 
     chromium \ 
     libgconf-2-4 \
     libfontconfig \
@@ -63,10 +54,6 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender1 \
     libxtst6
-
-ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
-
-ENV GNUPGHOME /usr/local/share/gnupg
 
 RUN mkdir -p $GNUPGHOME \
     && chmod 700 $GNUPGHOME \
@@ -80,9 +67,8 @@ RUN mkdir -p $GNUPGHOME \
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN echo "y" | /usr/local/bin/phive install --temporary  \  
-       dbrekelmans/browser-driver-installer \
-   && tools/bdi
+RUN (echo "y" | /usr/local/bin/phive install --global bdi) \
+    && bdi detect /usr/local/bin/
 
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*

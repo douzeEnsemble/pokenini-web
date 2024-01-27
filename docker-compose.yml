@@ -5,12 +5,6 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
-      args:
-        - USER_ID=${USER_ID}
-        - GROUP_ID=${GROUP_ID}
-    environment:
-      - USER_ID=${USER_ID}
-      - GROUP_ID=${GROUP_ID}
     expose:
       - 9000
     volumes:
@@ -21,12 +15,6 @@ services:
     build:
       context: .
       dockerfile: ./docker/apache/Dockerfile
-      args:
-        - USER_ID=${USER_ID}
-        - GROUP_ID=${GROUP_ID}
-    environment:
-      - USER_ID=${USER_ID}
-      - GROUP_ID=${GROUP_ID}
     ports:
       - 80:80
       - 443:443

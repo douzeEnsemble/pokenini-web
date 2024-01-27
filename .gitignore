@@ -41,6 +41,3 @@ phpstan.neon
 
 docker/apache/ssl/cert-key.pem
 docker/apache/ssl/cert.pem
-
-drivers/*
-tools/bdi
