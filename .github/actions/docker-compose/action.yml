@@ -8,14 +8,14 @@ runs:
       shell: bash
       run: docker compose pull --ignore-pull-failures || true
 
+    - name: Generate mock ssl certificates files
+      shell: bash
+      run: mv ./docker/apache/ssl.test ./docker/apache/ssl
+
     - name: Start services
       shell: bash
-      run: docker compose up --build --wait
+      run: docker compose --verbose up --build --wait
 
-    - name: Delete the cache
+    - name: Composer install
       shell: bash
-      run: rm -Rf var/cache/*
-
-    - name: Warmup the SF cache
-      shell: bash
-      run: docker compose exec -T php bin/console cache:clear --env=test
+      run: docker compose exec -T php composer install --prefer-dist --no-progress --no-interaction
