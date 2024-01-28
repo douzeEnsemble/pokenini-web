@@ -10,6 +10,8 @@ RUN php -r "unlink('composer-setup.php');"
 ## < Install PHP extensions
 ENV XDEBUG_MODE off
 
+RUN docker-php-ext-install opcache
+
 RUN pecl install redis \
 	&& pecl install xdebug \
 	&& docker-php-ext-enable redis xdebug
