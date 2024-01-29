@@ -6,13 +6,11 @@ namespace App\Tests\Functional\Album\Filter;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FamilyTest extends WebTestCase
 {
     use TestNavTrait;
-    use TestSetUp;
 
     public function testFilterFamilyBulbasaur(): void
     {

@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Common;
 
-use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class IndexRedirectionTest extends WebTestCase
 {
-    use TestSetUp;
 
     public function testRedirection(): void
     {

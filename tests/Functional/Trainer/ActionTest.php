@@ -6,13 +6,11 @@ namespace App\Tests\Functional\Trainer;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ActionTest extends WebTestCase
 {
     use TestNavTrait;
-    use TestSetUp;
 
     public function testActionConnected(): void
     {

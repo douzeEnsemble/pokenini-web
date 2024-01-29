@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Common;
 
 use App\Tests\Common\Traits\TestNavTrait;
-use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ErrorPageTest extends WebTestCase
 {
     use TestNavTrait;
-    use TestSetUp;
 
     public function testError404(): void
     {
