@@ -6,14 +6,12 @@ namespace App\Tests\Functional\Album\Localization;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FrenchAlbumLocalizationTest extends WebTestCase
 {
     use TestNavTrait;
-    use TestSetUp;
 
     public function testListEdit(): void
     {

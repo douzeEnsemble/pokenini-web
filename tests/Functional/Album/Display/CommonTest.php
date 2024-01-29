@@ -6,14 +6,12 @@ namespace App\Tests\Functional\Album\Display;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use App\Tests\Common\Traits\TestSetUp;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CommonTest extends WebTestCase
 {
     use TestNavTrait;
-    use TestSetUp;
 
     public function testListRead(): void
     {
@@ -60,6 +58,21 @@ class CommonTest extends WebTestCase
      */
     public function testListVirgin(): void
     {
+        $client = static::createClient();
+
+        $client->request('GET', '/fr/album/virgin?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertAlbum($client);
+        $this->assertViriginStatistics($client);
+    }
+
+    /**
+     * Testing with caches cleared
+     */
+    public function testListCachesCleared(): void
+    {
+        exec("rm -Rf /var/www/html/var/cache/test/*");
+
         $client = static::createClient();
 
         $client->request('GET', '/fr/album/virgin?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
