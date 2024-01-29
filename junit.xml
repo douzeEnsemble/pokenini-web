@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites>
-  <testsuite name="App\Tests\Functional\Album\Display\CommonTest" file="/srv/tests/Functional/Album/Display/CommonTest.php" tests="3" assertions="107" errors="0" warnings="0" failures="0" skipped="0" time="1.283591">
-    <testcase name="testListRead" class="App\Tests\Functional\Album\Display\CommonTest" classname="App.Tests.Functional.Album.Display.CommonTest" file="/srv/tests/Functional/Album/Display/CommonTest.php" line="16" assertions="53" time="0.694073"/>
-    <testcase name="testListEdit" class="App\Tests\Functional\Album\Display\CommonTest" classname="App.Tests.Functional.Album.Display.CommonTest" file="/srv/tests/Functional/Album/Display/CommonTest.php" line="30" assertions="53" time="0.408942"/>
-    <testcase name="testListShiny" class="App\Tests\Functional\Album\Display\CommonTest" classname="App.Tests.Functional.Album.Display.CommonTest" file="/srv/tests/Functional/Album/Display/CommonTest.php" line="47" assertions="1" time="0.180575"/>
-  </testsuite>
-</testsuites>
