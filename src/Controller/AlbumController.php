@@ -183,7 +183,7 @@ class AlbumController extends AbstractController
         }
 
         if ($request->query->has('f')) {
-            $filter['f'] = (string) $request->query->get('f');
+            $filter['f'] = $request->query->getString('f');
         }
 
         return $filter;

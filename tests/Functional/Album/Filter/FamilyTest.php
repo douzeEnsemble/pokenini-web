@@ -154,4 +154,25 @@ class FamilyTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
     }
+
+    public function testFilterFamilyNidoran(): void
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/fr/album/demo?f=Nidoran ♀&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertCountFilter($crawler, 0, '.album-case');
+
+        $this->assertCountFilter($crawler, 0, 'h2.box');
+
+        $this->assertCountFilter($crawler, 7, 'table a');
+        $this->assertEquals(
+            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
+            $crawler->filter('table a')->first()->attr('href')
+        );
+        $this->assertEquals(
+            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            $crawler->filter('table a')->last()->attr('href')
+        );
+    }
 }
