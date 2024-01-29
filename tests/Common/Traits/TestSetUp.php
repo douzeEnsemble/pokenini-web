@@ -8,6 +8,6 @@ trait TestSetUp
 {
     protected function setUp(): void
     {
-        exec('rm -Rf /srv/var/cache/test/*');
+        exec("rm -Rf /var/www/html/var/cache/test/*");
     }
 }

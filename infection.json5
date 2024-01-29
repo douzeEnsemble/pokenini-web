@@ -11,7 +11,7 @@
             "App\\Controller\\ConnectController::googleCheck",
         ]
     },
-    "tmpDir": "/srv/var/cache",
+    "tmpDir": "/var/www/html/var/cache",
     "timeout": 60,
     "testFramework": "phpunit",
     "testFrameworkOptions": '--exclude-group="browser-testing"',
