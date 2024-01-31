@@ -49,8 +49,3 @@ services:
 
 volumes:
   redis:
-
-networks:
-  netapp:
-    name: netapp
-
