@@ -21,6 +21,9 @@ help: ## Outputs this help screen
 	@grep -E '(^[a-zA-Z0-9\./_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
 ## —— Directories and files 🐳 ————————————————————————————————————————————————————————————————
+.env: ## Copy .env.dev to .env (not phony to check the file)
+	cp .env.dev .env
+
 KEY_FILE := ./docker/apache/ssl/cert-key.pem
 CERT_FILE := ./docker/apache/ssl/cert.pem
 
@@ -46,7 +49,7 @@ up: ## Up the project
 	${DOCKER_COMP} up --wait
 
 install: ## Install requirements
-install: certs
+install: .env certs
 
 stop: ## Stop the project
 	${DOCKER_COMP} down --remove-orphans

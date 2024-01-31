@@ -3,6 +3,7 @@ namespace App\Tests\Browser\Album;
 /.idea/
 
 ###> symfony/framework-bundle ###
+/.env
 /.env.local
 /.env.local.php
 /.env.*.local
