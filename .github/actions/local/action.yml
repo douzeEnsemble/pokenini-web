@@ -4,6 +4,10 @@ author: Renaud Douze
 runs:
   using: "composite"
   steps:
+    - name: Copy .env file
+      shell: bash
+      run: cp .env.ci .env
+      
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:

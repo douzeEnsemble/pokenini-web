@@ -4,6 +4,10 @@ author: Renaud Douze
 runs:
   using: "composite"
   steps:
+    - name: Copy .env file
+      shell: bash
+      run: cp .env.ci .env
+      
     - name: Pull images
       shell: bash
       run: docker compose pull --ignore-pull-failures || true
