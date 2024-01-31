@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class IndexRedirectionTest extends WebTestCase
 {
-
     public function testRedirection(): void
     {
         $client = static::createClient();

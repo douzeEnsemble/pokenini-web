@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UpdateTest extends WebTestCase
 {
-
     public function testUpdateConnected(): void
     {
         $client = static::createClient();

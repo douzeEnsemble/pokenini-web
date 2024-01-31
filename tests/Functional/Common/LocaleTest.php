@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class LocaleTest extends WebTestCase
 {
-
     public function testLocaleOk(): void
     {
         $client = static::createClient();
