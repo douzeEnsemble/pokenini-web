@@ -71,7 +71,7 @@ class CommonTest extends WebTestCase
      */
     public function testListCachesCleared(): void
     {
-        exec("rm -Rf /var/www/html/var/cache/*");
+        exec("rm -Rf /var/www/html/var/cache/test/*");
 
         $this->testListVirgin();
     }
