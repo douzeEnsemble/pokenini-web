@@ -71,14 +71,9 @@ class CommonTest extends WebTestCase
      */
     public function testListCachesCleared(): void
     {
-        exec("rm -Rf /var/www/html/var/cache/test/*");
+        exec("rm -Rf /var/www/html/var/cache/*");
 
-        $client = static::createClient();
-
-        $client->request('GET', '/fr/album/virgin?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
-
-        $this->assertAlbum($client);
-        $this->assertViriginStatistics($client);
+        $this->testListVirgin();
     }
 
     private function assertAlbum(KernelBrowser $client): void
