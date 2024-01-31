@@ -26,6 +26,7 @@ CERT_FILE := ./docker/apache/ssl/cert.pem
 
 certs: ## Create ssl files
 certs:
+	mkdir -p ./docker/apache/ssl
 	@if [ ! -e $(KEY_FILE) ] || [ ! -e $(CERT_FILE) ]; then \
 		mkcert \
 			-key-file $(KEY_FILE) \
