@@ -67,16 +67,24 @@
         </div>
         {% endif %}
         <div class="album-case-catch-state rounded-1 ps-2 overflow-auto">
+            {% if canEdit %}
             <a
                 href="#{{ item.pokemon_slug }}"
                 class="link-dark album-case-catch-state-label"
             >
+            {% else %}
+            <span class="link-dark album-case-catch-state-label">
+            {% endif %}
                 {% if locale is same as('fr') %}
                     {{ item.catch_state_french_name ?? 'Non' }}
                 {% else %}
                     {{ item.catch_state_name ?? 'No' }}
                 {% endif %}
+            {% if canEdit %}
             </a>
+            {% else %}
+            </span>
+            {% endif %}
             {% if canEdit %}
             <a
                 id="{{ item.pokemon_slug }}-catch-state-edit-action"

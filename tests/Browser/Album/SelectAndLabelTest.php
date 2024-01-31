@@ -31,16 +31,12 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 3, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 3, '.album-case-catch-state');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
-        $this->assertCountFilter($crawler, 3, '.album-case-catch-state .album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 3, '.album-case-catch-state a.album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 0, '.album-case-catch-state span.album-case-catch-state-label');
         $this->assertCountFilter(
             $crawler,
             3,
             '.album-case-catch-state .album-case-catch-state-edit-action'
-        );
-        $this->assertCountFilter(
-            $crawler,
-            3,
-            '.album-case-catch-state .album-case-catch-state-label'
         );
 
         $this->assertEquals(
@@ -66,16 +62,12 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 21, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 21, '.album-case-catch-state');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
-        $this->assertCountFilter($crawler, 21, '.album-case-catch-state .album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 21, '.album-case-catch-state a.album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 0, '.album-case-catch-state span.album-case-catch-state-label');
         $this->assertCountFilter(
             $crawler,
             21,
             '.album-case-catch-state .album-case-catch-state-edit-action'
-        );
-        $this->assertCountFilter(
-            $crawler,
-            21,
-            '.album-case-catch-state .album-case-catch-state-label'
         );
 
         $this->assertEquals(
@@ -101,16 +93,12 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 41, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 41, '.album-case-catch-state');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
-        $this->assertCountFilter($crawler, 41, '.album-case-catch-state .album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 41, '.album-case-catch-state a.album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 0, '.album-case-catch-state span.album-case-catch-state-label');
         $this->assertCountFilter(
             $crawler,
             41,
             '.album-case-catch-state .album-case-catch-state-edit-action'
-        );
-        $this->assertCountFilter(
-            $crawler,
-            41,
-            '.album-case-catch-state .album-case-catch-state-label'
         );
 
         $this->assertEquals(
