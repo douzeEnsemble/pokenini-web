@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class StaticPageTest extends WebTestCase
 {
-
     public function testFrenchLegals(): void
     {
         $client = static::createClient();
