@@ -120,6 +120,8 @@ class CommonTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.album-case select');
         $this->assertCountFilter($crawler, 41, '.album-case .album-case-catch-state');
+        $this->assertCountFilter($crawler, 0, '.album-case .album-case-catch-state a.album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 41, '.album-case .album-case-catch-state span.album-case-catch-state-label');
 
         $this->assertCountFilter($crawler, 0, '.toast');
 
@@ -139,6 +141,8 @@ class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 6, '#bulbasaur select option');
 
         $this->assertCountFilter($crawler, 41, '.album-case .album-case-catch-state');
+        $this->assertCountFilter($crawler, 41, '.album-case .album-case-catch-state a.album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 0, '.album-case .album-case-catch-state span.album-case-catch-state-label');
 
         $this->assertCountFilter($crawler, 82, '.toast');
         $this->assertCountFilter($crawler, 41, '.toast.text-bg-success');
