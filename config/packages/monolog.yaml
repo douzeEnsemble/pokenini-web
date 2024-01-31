@@ -41,12 +41,3 @@ when@prod:
             error_log_handler:
                 type: error_log
                 level: info
-
-            console:
-                type: console
-                process_psr_3_messages: false
-                channels: ["!event", "!doctrine"]
-            deprecation:
-                type: stream
-                channels: [deprecation]
-                path: php://stderr
