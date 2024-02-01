@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Alolan",
+        "frenchName": "d\u0027Alola",
+        "slug": "alolan"
+    },
+    {
+        "name": "Galarian",
+        "frenchName": "de Galar",
+        "slug": "galarian"
+    },
+    {
+        "name": "Hisuian",
+        "frenchName": "de Hisui",
+        "slug": "hisuian"
+    },
+    {
+        "name": "Paldean",
+        "frenchName": "de Paldea",
+        "slug": "paldean"
+    }
+]

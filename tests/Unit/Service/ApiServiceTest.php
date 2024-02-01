@@ -97,6 +97,74 @@ class ApiServiceTest extends TestCase
         );
     }
 
+    public function testGetFormsCategory(): void
+    {
+        $service = $this->getService('forms/category');
+
+        $this->assertEquals(
+            [
+                'trucs' => [
+                    'bidule',
+                    'machin',
+                    'chose',
+                ],
+                'url' => 'forms/category',
+            ],
+            $service->getFormsCategory(),
+        );
+    }
+
+    public function testGetFormsRegional(): void
+    {
+        $service = $this->getService('forms/regional');
+
+        $this->assertEquals(
+            [
+                'trucs' => [
+                    'bidule',
+                    'machin',
+                    'chose',
+                ],
+                'url' => 'forms/regional',
+            ],
+            $service->getFormsRegional(),
+        );
+    }
+
+    public function testGetFormsSpecial(): void
+    {
+        $service = $this->getService('forms/special');
+
+        $this->assertEquals(
+            [
+                'trucs' => [
+                    'bidule',
+                    'machin',
+                    'chose',
+                ],
+                'url' => 'forms/special',
+            ],
+            $service->getFormsSpecial(),
+        );
+    }
+
+    public function testGetFormsVariant(): void
+    {
+        $service = $this->getService('forms/variant');
+
+        $this->assertEquals(
+            [
+                'trucs' => [
+                    'bidule',
+                    'machin',
+                    'chose',
+                ],
+                'url' => 'forms/variant',
+            ],
+            $service->getFormsVariant(),
+        );
+    }
+
     public function testModifyAlbum(): void
     {
         $client = $this->createMock(HttpClientInterface::class);

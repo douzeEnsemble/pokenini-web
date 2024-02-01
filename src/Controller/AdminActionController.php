@@ -66,8 +66,7 @@ class AdminActionController extends AbstractController
         methods: ['GET'],
         condition: "params['name']
             in [
-                'catch_states',
-                'types',
+                'labels',
                 'dex',
                 'albums',
                 'reports',

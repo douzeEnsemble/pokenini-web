@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Starter",
+        "frenchName": "de D\u00e9part",
+        "slug": "starter"
+    },
+    {
+        "name": "Legendary",
+        "frenchName": "L\u00e9gendaire",
+        "slug": "legendary"
+    },
+    {
+        "name": "Mythical",
+        "frenchName": "Fabuleux",
+        "slug": "mythical"
+    },
+    {
+        "name": "Ultra Beast",
+        "frenchName": "Ultra Chim\u00e8re",
+        "slug": "ultrabeast"
+    },
+    {
+        "name": "Baby",
+        "frenchName": "B\u00e9b\u00e9",
+        "slug": "baby"
+    },
+    {
+        "name": "Paradox",
+        "frenchName": "Paradoxe",
+        "slug": "paradox"
+    }
+]

@@ -60,7 +60,7 @@ class ActionInvalidateTest extends WebTestCase
 
         $client->catchExceptions(false);
 
-        $this->expectException(AccessDeniedException::class);
+        $this->expectException(NotFoundHttpException::class);
 
         $client->request('GET', "/fr/istration/action/invalidate/catch_states");
     }
@@ -71,8 +71,7 @@ class ActionInvalidateTest extends WebTestCase
     public function invalidateSuccessProvider(): array
     {
         return [
-            ['catch_states'],
-            ['types'],
+            ['labels'],
             ['dex'],
             ['albums'],
             ['reports'],
@@ -85,7 +84,8 @@ class ActionInvalidateTest extends WebTestCase
     public function invalidateNotExistsProvider(): array
     {
         return [
-            ['labels'],
+            ['catch_states'],
+            ['types'],
             ['games_and_dex'],
             ['pokemons'],
             ['regional_dex_numbers'],
