@@ -13,6 +13,10 @@ class KeyMaker
     private const CACHE_KEY_DEX = 'dex';
     private const CACHE_KEY_CATCH_STATES = 'catch_states';
     private const CACHE_KEY_TYPES = 'types';
+    private const CACHE_KEY_FORMS_CATEGORY = 'forms_category';
+    private const CACHE_KEY_FORMS_REGIONAL = 'forms_regional';
+    private const CACHE_KEY_FORMS_SPECIAL = 'forms_special';
+    private const CACHE_KEY_FORMS_VARIANT = 'forms_variant';
     private const CACHE_KEY_ALBUM = 'album';
     private const CACHE_KEY_REPORTS = 'reports';
 
@@ -29,6 +33,26 @@ class KeyMaker
     public static function getTypesKey(): string
     {
         return self::CACHE_KEY_TYPES;
+    }
+
+    public static function getFormsCategoryKey(): string
+    {
+        return self::CACHE_KEY_FORMS_CATEGORY;
+    }
+
+    public static function getFormsRegionalKey(): string
+    {
+        return self::CACHE_KEY_FORMS_REGIONAL;
+    }
+
+    public static function getFormsSpecialKey(): string
+    {
+        return self::CACHE_KEY_FORMS_SPECIAL;
+    }
+
+    public static function getFormsVariantKey(): string
+    {
+        return self::CACHE_KEY_FORMS_VARIANT;
     }
 
     public static function getAlbumKey(): string

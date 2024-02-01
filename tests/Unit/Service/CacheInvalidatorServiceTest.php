@@ -22,6 +22,10 @@ class CacheInvalidatorServiceTest extends TestCase
             ->expects($this->once())
             ->method('invalidateCacheTypes')
         ;
+        $apiService
+            ->expects($this->once())
+            ->method('invalidateCacheForms')
+        ;
 
         $cacheInvalidator = new CacheInvalidatorService($apiService);
 
@@ -32,12 +36,9 @@ class CacheInvalidatorServiceTest extends TestCase
     {
         $apiService = $this->createMock(ApiService::class);
 
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheCatchStates')
-        ;
-
         $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $this->expectException(\InvalidArgumentException::class);
 
         $cacheInvalidator->invalidate('catch_states');
     }
@@ -46,12 +47,9 @@ class CacheInvalidatorServiceTest extends TestCase
     {
         $apiService = $this->createMock(ApiService::class);
 
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheTypes')
-        ;
-
         $cacheInvalidator = new CacheInvalidatorService($apiService);
+
+        $this->expectException(\InvalidArgumentException::class);
 
         $cacheInvalidator->invalidate('types');
     }

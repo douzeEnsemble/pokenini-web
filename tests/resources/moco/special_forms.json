@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Mega",
+        "frenchName": "Mega",
+        "slug": "mega"
+    },
+    {
+        "name": "Primal",
+        "frenchName": "Originelle",
+        "slug": "primal"
+    },
+    {
+        "name": "Gigantamax",
+        "frenchName": "Gigamax",
+        "slug": "gigantamax"
+    },
+    {
+        "name": "Totem",
+        "frenchName": "Dominant",
+        "slug": "totem"
+    },
+    {
+        "name": "Alpha",
+        "frenchName": "Baron",
+        "slug": "alpha"
+    },
+    {
+        "name": "Event",
+        "frenchName": "\u00c9v\u00e9nementiel",
+        "slug": "event"
+    },
+    {
+        "name": "Terastal",
+        "frenchName": "Stellaire",
+        "slug": "terastal"
+    }
+]

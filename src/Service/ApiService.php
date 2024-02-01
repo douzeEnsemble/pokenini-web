@@ -134,6 +134,130 @@ class ApiService
     }
 
     /**
+     * @return string[][]
+     */
+    public function getFormsCategory(): array
+    {
+        $key = KeyMaker::getFormsCategoryKey();
+
+        /** @var string $json */
+        $json = $this->cache->get($key, function () {
+            $response = $this->client->request(
+                'GET',
+                "{$this->appApiUrl}/forms/category",
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
+            );
+
+            /** @var string */
+            return $response->getContent();
+        });
+
+        /** @var string[][] */
+        return JsonDecoder::decode($json);
+    }
+
+    /**
+     * @return string[][]
+     */
+    public function getFormsRegional(): array
+    {
+        $key = KeyMaker::getFormsRegionalKey();
+
+        /** @var string $json */
+        $json = $this->cache->get($key, function () {
+            $response = $this->client->request(
+                'GET',
+                "{$this->appApiUrl}/forms/regional",
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
+            );
+
+            /** @var string */
+            return $response->getContent();
+        });
+
+        /** @var string[][] */
+        return JsonDecoder::decode($json);
+    }
+
+    /**
+     * @return string[][]
+     */
+    public function getFormsSpecial(): array
+    {
+        $key = KeyMaker::getFormsSpecialKey();
+
+        /** @var string $json */
+        $json = $this->cache->get($key, function () {
+            $response = $this->client->request(
+                'GET',
+                "{$this->appApiUrl}/forms/special",
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
+            );
+
+            /** @var string */
+            return $response->getContent();
+        });
+
+        /** @var string[][] */
+        return JsonDecoder::decode($json);
+    }
+
+    /**
+     * @return string[][]
+     */
+    public function getFormsVariant(): array
+    {
+        $key = KeyMaker::getFormsVariantKey();
+
+        /** @var string $json */
+        $json = $this->cache->get($key, function () {
+            $response = $this->client->request(
+                'GET',
+                "{$this->appApiUrl}/forms/variant",
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                    ],
+                    'auth_basic' => [
+                        $this->apiLogin,
+                        $this->apiPassword,
+                    ],
+                ]
+            );
+
+            /** @var string */
+            return $response->getContent();
+        });
+
+        /** @var string[][] */
+        return JsonDecoder::decode($json);
+    }
+
+    /**
      * @throws TransportExceptionInterface
      * @throws HttpExceptionInterface
      */
@@ -303,6 +427,14 @@ class ApiService
     public function invalidateCacheTypes(): void
     {
         $this->cache->delete(KeyMaker::getTypesKey());
+    }
+
+    public function invalidateCacheForms(): void
+    {
+        $this->cache->delete(KeyMaker::getFormsCategoryKey());
+        $this->cache->delete(KeyMaker::getFormsRegionalKey());
+        $this->cache->delete(KeyMaker::getFormsSpecialKey());
+        $this->cache->delete(KeyMaker::getFormsVariantKey());
     }
 
     public function invalidateCacheAlbums(): void
