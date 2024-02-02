@@ -212,23 +212,23 @@ class CommonTest extends WebTestCase
         );
 
         $this->assertStringContainsString(
-            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
+            '/album/demolite?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-no a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=toevolve',
+            '/album/demolite?cs=toevolve&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-toevolve a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=tobreed',
+            '/album/demolite?cs=tobreed&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-tobreed a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=totransfer',
+            '/album/demolite?cs=totransfer&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-totransfer a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=yes',
+            '/album/demolite?cs=yes&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-yes a')->attr('href')
         );
         $this->assertStringContainsString(
@@ -300,23 +300,23 @@ class CommonTest extends WebTestCase
         );
 
         $this->assertStringContainsString(
-            '/album/virgin?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
+            '/album/virgin?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-no a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/virgin?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=toevolve',
+            '/album/virgin?cs=toevolve&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-toevolve a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/virgin?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=tobreed',
+            '/album/virgin?cs=tobreed&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-tobreed a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/virgin?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=totransfer',
+            '/album/virgin?cs=totransfer&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-totransfer a')->attr('href')
         );
         $this->assertStringContainsString(
-            '/album/virgin?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=yes',
+            '/album/virgin?cs=yes&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             (string) $crawler->filter('table#report tr.catch-state-yes a')->attr('href')
         );
         $this->assertStringContainsString(

@@ -57,16 +57,16 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $crawler = $client->request('GET', '/fr/album/demo');
 
-        $this->assertCountFilter($crawler, 21, '.album-case');
-        $this->assertCountFilter($crawler, 21, '.album-case-action');
-        $this->assertCountFilter($crawler, 21, '.album-case-action[hidden]');
-        $this->assertCountFilter($crawler, 21, '.album-case-catch-state');
+        $this->assertCountFilter($crawler, 25, '.album-case');
+        $this->assertCountFilter($crawler, 25, '.album-case-action');
+        $this->assertCountFilter($crawler, 25, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-catch-state');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
-        $this->assertCountFilter($crawler, 21, '.album-case-catch-state a.album-case-catch-state-label');
+        $this->assertCountFilter($crawler, 25, '.album-case-catch-state a.album-case-catch-state-label');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state span.album-case-catch-state-label');
         $this->assertCountFilter(
             $crawler,
-            21,
+            25,
             '.album-case-catch-state .album-case-catch-state-edit-action'
         );
 
@@ -167,7 +167,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $crawler = $client->request('GET', '/fr/album/demo');
 
-        $this->assertCountFilter($crawler, 21, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
@@ -180,7 +180,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         );
 
         $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
-        $this->assertCountFilter($crawler, 21, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
     }
@@ -195,7 +195,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $crawler = $client->request('GET', '/fr/album/demo');
 
-        $this->assertCountFilter($crawler, 21, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
@@ -208,7 +208,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         );
 
         $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
-        $this->assertCountFilter($crawler, 21, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
 
@@ -219,7 +219,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
             ->link()
         );
 
-        $this->assertCountFilter($crawler, 21, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
@@ -235,7 +235,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $crawler = $client->request('GET', '/fr/album/demo');
 
-        $this->assertCountFilter($crawler, 21, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
@@ -247,7 +247,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
             ->link()
         );
 
-        $this->assertCountFilter($crawler, 20, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 24, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
@@ -260,7 +260,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         );
 
         $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
-        $this->assertCountFilter($crawler, 21, '.album-case-catch-state[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
 
@@ -271,7 +271,7 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
             ->link()
         );
 
-        $this->assertCountFilter($crawler, 21, '.album-case-action[hidden]');
+        $this->assertCountFilter($crawler, 25, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');

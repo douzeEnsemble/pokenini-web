@@ -33,11 +33,11 @@ class ManyTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
+            '/fr/album/demo?cs=no&f=bulbasaur&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
-            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '/fr/album/demo?f=bulbasaur&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->last()->attr('href')
         );
     }
@@ -51,6 +51,8 @@ class ManyTest extends WebTestCase
             '/fr/album/demo?cs=yes&f=charmander&t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
+        file_put_contents('tests/last.html', $crawler->html());
+
         $this->assertCountFilter($crawler, 2, '.album-case');
 
         $this->assertCountFilter($crawler, 0, 'h2.box');
@@ -63,11 +65,11 @@ class ManyTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
+            '/fr/album/demo?cs=no&f=charmander&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
-            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
+            '/fr/album/demo?f=charmander&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->last()->attr('href')
         );
     }

@@ -11,12 +11,12 @@
             {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
             {% set completion = report.total ? (100 * count / report.total)|round(2) : 0 %}
             <div class="progress-bar catch-state-{{ line.slug }}"
-                 role="progressbar"
-                 aria-label="{{ locale is same as('fr') ? line.frenchName : line.name }}"
-                 style="width: {{ completion }}%;"
-                 aria-valuenow="{{ completion }}"
-                 aria-valuemin="0"
-                 aria-valuemax="100"
+                role="progressbar"
+                aria-label="{{ locale is same as('fr') ? line.frenchName : line.name }}"
+                style="width: {{ completion }}%;"
+                aria-valuenow="{{ completion }}"
+                aria-valuemin="0"
+                aria-valuemax="100"
             >
                 {{ line.slug is same as('no') or line.slug is same as('yes') ? completion~'%' : '' }}
             </div>
@@ -30,11 +30,13 @@
                     <a href="{{
                         path(
                             'app_album_index',
-                            {
-                                'dexSlug': currentDexSlug,
-                                't': sharedTrainerId,
-                                'cs': line.slug
-                            }
+                            filters
+                                |merge({
+                                    'dexSlug': currentDexSlug,
+                                    't': sharedTrainerId,
+                                    'cs': line.slug,
+                                    })
+                                |ksort
                         )
                     }}">
                         {{ locale is same as('fr') ? line.frenchName : line.name }}
@@ -50,10 +52,14 @@
                 <a href="{{
                     path(
                         'app_album_index',
-                        {
-                            'dexSlug': currentDexSlug,
-                            't': sharedTrainerId,
-                        }
+                        filters
+                            |filter((value, key) => key != 'cs')
+                            |merge({
+                                'dexSlug': currentDexSlug,
+                                't': sharedTrainerId,
+                            }
+                            |merge(currentRouteParameters))
+                            |ksort
                     )
                 }}">
                     {{ 'stats.total'|trans }}
