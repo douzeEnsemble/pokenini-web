@@ -119,6 +119,10 @@ class AlbumController extends AbstractController
 
         $catchStates = $this->apiService->getCatchStates();
         $types = $this->apiService->getTypes();
+        $categoryForms = $this->apiService->getFormsCategory();
+        $regionalForms = $this->apiService->getFormsRegional();
+        $specialForms = $this->apiService->getFormsSpecial();
+        $variantForms = $this->apiService->getFormsVariant();
 
         $filters = $this->getFilters($request);
         $pokemons = $this->pokemonsFilter($pokedex['pokemons'], $filters);
@@ -130,6 +134,10 @@ class AlbumController extends AbstractController
             'list' => $pokemons,
             'catchStates' => $catchStates,
             'types' => $types,
+            'categoryForms' => $categoryForms,
+            'regionalForms' => $regionalForms,
+            'specialForms' => $specialForms,
+            'variantForms' => $variantForms,
             'mode' => 'read',
             'filters' => $filters,
             'trainerId' => $trainerId,
@@ -152,17 +160,29 @@ class AlbumController extends AbstractController
         }
 
         $list = $pokemons;
-        if (!empty($filters['cs'])) {
-            foreach ($list as $index => $pokemon) {
-                if ($filters['cs'] !== ($pokemon['catch_state_slug'] ?? 'no')) {
-                    unset($list[$index]);
-                }
-            }
-        }
 
-        if (!empty($filters['f'])) {
-            foreach ($list as $index => $pokemon) {
-                if ($filters['f'] !== ($pokemon['family_lead_slug'] ?? $pokemon['pokemon_slug'])) {
+        foreach ($list as $index => $pokemon) {
+            $pokemonValues = [
+                'cs' => $pokemon['catch_state_slug'] ?? 'no',
+                'f' => $pokemon['family_lead_slug'] ?? $pokemon['pokemon_slug'],
+                'fc' => $pokemon['category_form_slug'] ?? null,
+                'fr' => $pokemon['regional_form_slug'] ?? null,
+                'fs' => $pokemon['special_form_slug'] ?? null,
+                'fv' => $pokemon['variant_form_slug'] ?? null,
+                't1' => $pokemon['primary_type_slug'] ?? null,
+                't2' => $pokemon['secondary_type_slug'] ?? null,
+            ];
+
+            foreach ($pokemonValues as $criteria => $value) {
+                if (empty($filters[$criteria])) {
+                    continue;
+                }
+
+                $filtersValues = explode(',', $filters[$criteria]);
+                // Replace "null" by null
+                array_walk($filtersValues, fn(&$value) => $value = (('null' === $value) ? null : $value));
+
+                if (! in_array($value, $filtersValues)) {
                     unset($list[$index]);
                 }
             }
@@ -176,17 +196,34 @@ class AlbumController extends AbstractController
      */
     private function getFilters(Request $request): array
     {
-        $filter = [];
+        $filters = [];
 
-        if ($request->query->has('cs')) {
-            $filter['cs'] = $request->query->getAlpha('cs');
+        $alphaFilters = [
+            'cs',
+        ];
+        $stringFilters = [
+            'f',
+            'fc',
+            'fr',
+            'fs',
+            'fv',
+            't1',
+            't2',
+        ];
+
+        foreach ($alphaFilters as $filter) {
+            if ($request->query->has($filter)) {
+                $filters[$filter] = $request->query->getAlpha($filter);
+            }
         }
 
-        if ($request->query->has('f')) {
-            $filter['f'] = $request->query->getString('f');
+        foreach ($stringFilters as $filter) {
+            if ($request->query->has($filter)) {
+                $filters[$filter] = $request->query->getString($filter);
+            }
         }
 
-        return $filter;
+        return $filters;
     }
 
     private function getContentFromRequest(Request $request): string

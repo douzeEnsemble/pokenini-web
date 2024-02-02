@@ -46,6 +46,9 @@ class UnkownTemplateTest extends WebTestCase
             '/fr/album/demounknowntemplate?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554'
         );
 
+
+        file_put_contents('tests/last.html', $crawler->html());
+
         $this->assertCountFilter($crawler, 36, '.album-case.col');
         $this->assertCountFilter($crawler, 36, 'div.row.album-line', 0, '.album-case.col');
         $this->assertCountFilter($crawler, 1, 'div.row.album-line');

@@ -110,16 +110,19 @@ class ApiServiceRequestCacheTest extends TestCase
 
         $response = $this->createMock(ResponseInterface::class);
         $response
-            ->expects($this->exactly(2))
+            ->expects($this->exactly(5))
             ->method('getContent')
             ->willReturn('{}')
         ;
 
         $client
-            ->expects($this->exactly(2))
+            ->expects($this->exactly(5))
             ->method('request')
             ->withConsecutive(
                 ['GET', 'api/forms/category'],
+                ['GET', 'api/forms/regional'],
+                ['GET', 'api/forms/special'],
+                ['GET', 'api/forms/variant'],
                 // Additionnal call to pollute requests and caches
                 ['GET', 'api/reports'],
             )
@@ -135,19 +138,55 @@ class ApiServiceRequestCacheTest extends TestCase
         $service->getFormsCategory();
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayHasKey('forms_category', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_regional', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_special', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_variant', $cache->getValues());
 
         $service->getFormsCategory();
         $service->getFormsCategory();
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayHasKey('forms_category', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_regional', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_special', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_variant', $cache->getValues());
+
+        $service->getFormsRegional();
+        $service->getFormsSpecial();
+        $this->assertCount(3, $cache->getValues());
+        $this->assertArrayHasKey('forms_category', $cache->getValues());
+        $this->assertArrayHasKey('forms_regional', $cache->getValues());
+        $this->assertArrayHasKey('forms_special', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_variant', $cache->getValues());
+
+        $service->getFormsRegional();
+        $service->getFormsRegional();
+        $service->getFormsSpecial();
+        $this->assertCount(3, $cache->getValues());
+        $this->assertArrayHasKey('forms_category', $cache->getValues());
+        $this->assertArrayHasKey('forms_regional', $cache->getValues());
+        $this->assertArrayHasKey('forms_special', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_variant', $cache->getValues());
+
+        $service->getFormsVariant();
+        $this->assertCount(4, $cache->getValues());
+        $this->assertArrayHasKey('forms_category', $cache->getValues());
+        $this->assertArrayHasKey('forms_regional', $cache->getValues());
+        $this->assertArrayHasKey('forms_special', $cache->getValues());
+        $this->assertArrayHasKey('forms_variant', $cache->getValues());
 
         $service->getReports();
-        $this->assertCount(2, $cache->getValues());
+        $this->assertCount(5, $cache->getValues());
         $this->assertArrayHasKey('forms_category', $cache->getValues());
+        $this->assertArrayHasKey('forms_regional', $cache->getValues());
+        $this->assertArrayHasKey('forms_special', $cache->getValues());
+        $this->assertArrayHasKey('forms_variant', $cache->getValues());
 
         $service->invalidateCacheForms();
         $this->assertCount(1, $cache->getValues());
         $this->assertArrayNotHasKey('forms_category', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_regional', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_special', $cache->getValues());
+        $this->assertArrayNotHasKey('forms_variant', $cache->getValues());
     }
 
     public function testDexCache(): void

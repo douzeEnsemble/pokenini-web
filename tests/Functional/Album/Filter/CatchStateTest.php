@@ -18,7 +18,7 @@ class CatchStateTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/demo?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertCountFilter($crawler, 12, '.album-case');
+        $this->assertCountFilter($crawler, 16, '.album-case');
 
         $this->assertCountFilter($crawler, 0, 'h2.box');
         $this->assertCountFilter($crawler, 1, '#bulbasaur');
@@ -29,7 +29,7 @@ class CatchStateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
+            '/fr/album/demo?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
@@ -55,7 +55,7 @@ class CatchStateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
+            '/fr/album/demo?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
@@ -108,7 +108,7 @@ class CatchStateTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'table a');
         $this->assertEquals(
-            '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554&cs=no',
+            '/fr/album/demo?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('table a')->first()->attr('href')
         );
         $this->assertEquals(
