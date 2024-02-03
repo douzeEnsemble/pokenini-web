@@ -15,7 +15,7 @@ SYMFONY  = $(PHP_CONT) bin/console
 
 # Misc
 .DEFAULT_GOAL = help
-.PHONY        : help certs build rebuild start up install stop sh composer vendor sf cc tests phpunit testsunit testsfunctional testsbrowser quality phpcs phpcbf phpmd psalm phpstan measures coverage htmlcoverage infection 
+.PHONY        : help certs build rebuild start up install stop sh composer vendor sf cc tests phpunit testsunit testsfunctional testsbrowser quality phpcs phpcbf phpmd psalm phpstan measures clear-build coverage htmlcoverage infection  
 ## —— 🎵 🐳 The Symfony-docker Makefile 🐳 🎵 ——————————————————————————————————
 help: ## Outputs this help screen
 	@grep -E '(^[a-zA-Z0-9\./_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
@@ -113,13 +113,21 @@ phpstan: ## Execute phpstan analyse
 
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 measures: ## Execute all measures tools
-measures: coverage infection
+measures: clear-build coverage infection
 
-coverage: # Execute PHPUnit Coverage to check the score
+clear-build: # Clear build directory
+	rm -Rf build/*
+
+build/coverage/coverage-xml: ## Generate coverage report
 	$(DOCKER_COMP) exec \
 		-e XDEBUG_MODE=coverage -T php \
 		php bin/phpunit --exclude-group="browser-testing" \
-		--coverage-clover=coverage.xml
+			--coverage-clover=coverage.xml \
+			--coverage-xml=build/coverage/coverage-xml \
+			--log-junit=build/coverage/junit.xml
+
+coverage: ## Execute PHPUnit Coverage to check the score
+coverage: build/coverage/coverage-xml
 	@$(PHP_CONT) php tests/tools/coverage.php coverage.xml 100 true
 
 htmlcoverage: ## Execute PHPUnit Coverage in HTML
@@ -127,9 +135,9 @@ htmlcoverage: ## Execute PHPUnit Coverage in HTML
 		-e XDEBUG_MODE=coverage -T php \
 		php bin/phpunit --exclude-group="browser-testing" \
 		--coverage-html=tests/coverage
-html=tests/coverage
 
-infection: ## Execute Infection (Mutation testing)
-	@$(PHP) vendor/bin/infection --threads=4 --show-mutations \
+infection: build/coverage/coverage-xml ## Execute Infection (Mutation testing)
+	@$(PHP) vendor/bin/infection --show-mutations \
 		--min-msi=100 --min-covered-msi=100 \
+		--coverage=build/coverage \
 		--logger-html='tests/mutation/index.html'
