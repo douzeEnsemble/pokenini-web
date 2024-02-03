@@ -61,8 +61,6 @@ class ActionCalculateTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        file_put_contents('tests/last.html', $crawler->html());
-
         $this->assertCountFilter($crawler, 0, '.list-group-item-success');
         $this->assertCountFilter($crawler, 2, '.list-group-item-danger');
         $this->assertCountFilter($crawler, 3, '.alert-danger');

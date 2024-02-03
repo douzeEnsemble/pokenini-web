@@ -7,7 +7,6 @@ namespace App\Tests\Functional\Album\Display;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DomCrawler\Crawler;
 
 class IntroTest extends WebTestCase
 {
@@ -53,32 +52,13 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
-        $this->assertCountFilter($crawler, 1, '#intro .album-private');
-        $this->assertEquals(
-            'Album privé',
-            $crawler->filter('#intro .album-private')->attr('title')
-        );
+
+        $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
-
-        $this->assertEquals(
-            'Dex National',
-            $crawler->filter('#intro .dex-type')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .dex-template')->text()
-        );
-
-        $this->assertEquals(
-            'Version 4',
-            $crawler->filter('#intro .dex-version')->attr('title')
-        );
+        $this->assertCountFilter($crawler, 0, '#intro .dex-type');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-shiny-or-not');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-template');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
     public function testIntroDemoList3(): void
@@ -117,32 +97,13 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
-        $this->assertCountFilter($crawler, 1, '#intro .album-private');
-        $this->assertEquals(
-            'Album privé',
-            $crawler->filter('#intro .album-private')->attr('title')
-        );
+
+        $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
-
-        $this->assertEquals(
-            'Dex National',
-            $crawler->filter('#intro .dex-type')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Liste de 3 pokémons par lignes',
-            $crawler->filter('#intro .dex-template')->text()
-        );
-
-        $this->assertEquals(
-            'Version 412',
-            $crawler->filter('#intro .dex-version')->attr('title')
-        );
+        $this->assertCountFilter($crawler, 0, '#intro .dex-type');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-shiny-or-not');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-template');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
     public function testIntroDemoLiteShiny(): void
@@ -167,12 +128,6 @@ class IntroTest extends WebTestCase
             $crawler->filter('h2#album-subtitle')->text()
         );
 
-        $this->assertCountFilter($crawler, 1, '#album-description');
-        $this->assertEquals(
-            '',
-            $crawler->filter('#album-description')->text()
-        );
-
         $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-edit-action');
 
@@ -185,31 +140,17 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 1, '#intro .share');
-        $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertEquals(
             '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('#intro .share')->attr('href')
         );
 
-        $this->assertEquals(
-            'Dex National',
-            $crawler->filter('#intro .dex-type')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Formes chromatiques',
-            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .dex-template')->text()
-        );
-
-        $this->assertEquals(
-            'Version 0',
-            $crawler->filter('#intro .dex-version')->attr('title')
-        );
+        $this->assertCountFilter($crawler, 0, '#intro .album-private');
+        $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-type');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-shiny-or-not');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-template');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
     public function testIntroGoldSilverCrystal(): void
@@ -252,32 +193,13 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
-        $this->assertCountFilter($crawler, 1, '#intro .album-private');
-        $this->assertEquals(
-            'Album privé',
-            $crawler->filter('#intro .album-private')->attr('title')
-        );
+
+        $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
-
-        $this->assertEquals(
-            'Région Johto',
-            $crawler->filter('#intro .dex-type')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .dex-template')->text()
-        );
-
-        $this->assertEquals(
-            'Version 3',
-            $crawler->filter('#intro .dex-version')->attr('title')
-        );
+        $this->assertCountFilter($crawler, 0, '#intro .dex-type');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-shiny-or-not');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-template');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
     public function testIntroBlackWhiteFrench(): void
@@ -320,32 +242,13 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
-        $this->assertCountFilter($crawler, 1, '#intro .album-private');
-        $this->assertEquals(
-            'Album privé',
-            $crawler->filter('#intro .album-private')->attr('title')
-        );
+
+        $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
-
-        $this->assertEquals(
-            'Région Unys',
-            $crawler->filter('#intro .dex-type')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .dex-template')->text()
-        );
-
-        $this->assertEquals(
-            'Version 2',
-            $crawler->filter('#intro .dex-version')->attr('title')
-        );
+        $this->assertCountFilter($crawler, 0, '#intro .dex-type');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-shiny-or-not');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-template');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
     public function testIntroBlackWhiteEnglish(): void
@@ -388,32 +291,13 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
-        $this->assertCountFilter($crawler, 1, '#intro .album-private');
-        $this->assertEquals(
-            'Private album',
-            $crawler->filter('#intro .album-private')->attr('title')
-        );
+
+        $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
-
-        $this->assertEquals(
-            'Region Unova',
-            $crawler->filter('#intro .dex-type')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Regular forms',
-            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Display by box of 6 by 5 pokémons as in the games',
-            $crawler->filter('#intro .dex-template')->text()
-        );
-
-        $this->assertEquals(
-            'Version 2',
-            $crawler->filter('#intro .dex-version')->attr('title')
-        );
+        $this->assertCountFilter($crawler, 0, '#intro .dex-type');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-shiny-or-not');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-template');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
     public function testIntroDemoAnotherTrainer(): void
@@ -434,12 +318,6 @@ class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
 
-        $this->assertCountFilter($crawler, 1, '#album-description');
-        $this->assertEquals(
-            'Tous les pokémons de la démo',
-            $crawler->filter('#album-description')->text()
-        );
-
         $this->assertCountFilter($crawler, 0, '#intro .album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 0, '#intro .album-all-catch-state-edit-action');
 
@@ -452,31 +330,16 @@ class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 1, '#intro .share');
-        $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertEquals(
             '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('#intro .share')->attr('href')
         );
-        $this->assertCountFilter($crawler, 1, '#intro .album-another-trainer');
 
-        $this->assertEquals(
-            'Dex National',
-            $crawler->filter('#intro .dex-type')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Formes normales',
-            $crawler->filter('#intro .dex-shiny-or-not')->attr('title')
-        );
-
-        $this->assertEquals(
-            'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
-            $crawler->filter('#intro .dex-template')->text()
-        );
-
-        $this->assertEquals(
-            'Version 412',
-            $crawler->filter('#intro .dex-version')->attr('title')
-        );
+        $this->assertCountFilter($crawler, 0, '#intro .album-private');
+        $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-type');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-shiny-or-not');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-template');
+        $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 }

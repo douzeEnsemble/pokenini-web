@@ -11,8 +11,8 @@
             "App\\Controller\\ConnectController::googleCheck",
         ]
     },
-    "tmpDir": "/var/www/html/var/cache",
-    "timeout": 60,
+    "tmpDir": "/var/www/html/var/cache/infection",
+    "timeout": 100,
     "testFramework": "phpunit",
     "testFrameworkOptions": '--exclude-group="browser-testing"',
 }

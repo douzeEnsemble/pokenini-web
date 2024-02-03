@@ -12,7 +12,7 @@ class AppExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('ksort', [$this, 'ksort']),
+            new TwigFilter('ksort', [$this, 'appKsort']),
         ];
     }
 
@@ -21,7 +21,7 @@ class AppExtension extends AbstractExtension
      *
      * @return mixed[]
      */
-    public function ksort(array $array, int $flags = SORT_REGULAR): array
+    public function appKsort(array $array, int $flags = SORT_REGULAR): array
     {
         ksort($array, $flags);
 

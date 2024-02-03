@@ -35,22 +35,6 @@ function onDisplayRegularImageMode(event) {
   modalBody.querySelector('.album-modal-icon-shiny').classList.remove('active');
 }
 
-function watchToggleIntroDetails() {
-  document
-    .getElementById('toggle-intro-details')
-    .addEventListener("click", onToggleIntroDetails);
-}
-
-function onToggleIntroDetails(event) {
-  event.preventDefault();
-
-  document
-    .querySelectorAll('.album-intro-details')
-    .forEach(function (element) {
-      element.toggleAttribute('hidden');
-    });
-}
-
 function watchScreenshotMode() {
   document
     .querySelectorAll('.screenshot-mode-on')
