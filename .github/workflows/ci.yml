@@ -84,17 +84,40 @@ jobs:
       - name: Prepare
         uses: ./.github/actions/docker-compose
       - name: Run
-        run: docker compose exec -e XDEBUG_MODE=coverage -T php php bin/phpunit --exclude-group="browser-testing" --coverage-clover=coverage.xml
+        run: | 
+          docker compose exec \
+            -e XDEBUG_MODE=coverage \
+            -T php php bin/phpunit \
+            --exclude-group="browser-testing" \
+            --coverage-clover=coverage.xml \
+            --coverage-xml=build/coverage/coverage-xml \
+            --log-junit=build/coverage/junit.xml
       - name: Coverage Test
         run: docker compose exec -T php php tests/tools/coverage.php coverage.xml 100 true
+      - name: Update coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: build/coverage/
 
   mutation:
     name: Measures / Mutation
     runs-on: ubuntu-latest
+    needs: [coverage]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Download coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: build/coverage/
       - name: Prepare
         uses: ./.github/actions/docker-compose
       - name: Run
-        run: docker compose exec -T php php vendor/bin/infection --min-msi=100 --min-covered-msi=100 --show-mutations
+        run: |
+          docker compose exec -T php ls -laR /var/www/html
+          docker compose exec -T php php vendor/bin/infection \
+            --coverage=build/coverage \
+            --min-msi=100 --min-covered-msi=100 \
+            --show-mutations
