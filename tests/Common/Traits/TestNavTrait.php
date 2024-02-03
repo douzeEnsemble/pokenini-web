@@ -88,4 +88,19 @@ trait TestNavTrait
                 ->filter($innerSelector)
         );
     }
+
+    /**
+     * @param string[] $selectedValues
+    **/
+    private function assertSelectedOptions(
+        Crawler $crawler,
+        string $selectSelector,
+        array $selectedValues,
+    ): void {
+        $this->assertCountFilter($crawler, count($selectedValues), "$selectSelector option[selected]");
+
+        foreach ($selectedValues as $selectedValue) {
+            $this->assertCountFilter($crawler, 1, "$selectSelector option[value='$selectedValue'][selected]");
+        }
+    }
 }

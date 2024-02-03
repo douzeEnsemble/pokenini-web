@@ -121,6 +121,45 @@ album:
             pokepedia: Fiche Poképédia
             bulbapedia: Fiche Bulbapedia (anglais)
             family: Afficher la famille
+    offcanvas:
+        informations:
+            title: Informations
+        filters:
+            title: Filtres
+            submit:
+                label: Filtrer
+            reset:
+                label: Réinitialier
+            primary_type:
+                label: Premier type
+                value:
+                    empty: Tous
+            secondary_type:
+                label: Second type
+                value:
+                    empty: Tous
+                    "null": Aucun
+            category_form:
+                label: Catégorie
+                value:
+                    empty: Toutes
+                    "null": Aucune
+            regional_form:
+                label: Forme régional
+                value:
+                    empty: Toutes
+                    "null": Aucune
+            special_form:
+                label: Forme spéciale
+                value:
+                    empty: Toutes
+                    "null": Aucune
+            variant_form:
+                label: Variante
+                value:
+                    empty: Toutes
+                    "null": Aucune
+           
 
 update:
     labels:

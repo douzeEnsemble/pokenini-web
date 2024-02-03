@@ -1,0 +1,219 @@
+{% set sharedTrainerId = app.request.get('t') %}
+{% set catchState = app.request.get('cs') %}
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas">
+  <div class="offcanvas-body">
+    <div class="float-end">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <form 
+        class="mt-3 mb-3"
+        method="get" 
+        action="{{ path('app_album_index', {'dexSlug': currentDexSlug}) }}"
+    >
+        <h6>
+            {{ 'album.offcanvas.filters.title'|trans }}
+        </h6>
+        <div class="row mb-3">
+            <div class="col-md-6 col-12">
+                <label for="primary_type" class="form-label">{{ 'album.offcanvas.filters.primary_type.label'|trans }}</label>
+                {% set filteredPrimaryTypes = app.request.get('t1', []) %}
+                <select multiple size="4" id="primary_type" name="t1[]" class="form-select form-select-sm">
+                    <option value="" {{ ((filteredPrimaryTypes|filter(v => v) is empty) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.primary_type.value.empty'|trans -}}
+                    </option>
+                    {% for type in types %}
+                    <option value="{{ type.slug }}" {{ ((type.slug in filteredPrimaryTypes) ? 'selected': '') }}>
+                        {{- (locale is same as('fr') ? type.frenchName : type.name) -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6 col-12">
+                <label for="secondary_type" class="form-label">{{ 'album.offcanvas.filters.secondary_type.label'|trans }}</label>
+                {% set filteredSecondaryTypes = app.request.get('t2', []) %}
+                <select multiple size="4" id="secondary_type" name="t2[]" class="form-select form-select-sm">
+                    <option value="" {{ ((filteredSecondaryTypes|filter(v => v) is empty) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.secondary_type.value.empty'|trans -}}
+                    </option>
+                    <option value="null" {{ (('null' in filteredSecondaryTypes) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.secondary_type.value.null'|trans -}}
+                    </option>
+                    {% for type in types %}
+                    <option value="{{ type.slug }}" {{ ((type.slug in filteredSecondaryTypes) ? 'selected': '') }}>
+                        {{- (locale is same as('fr') ? type.frenchName : type.name) -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6 col-12">
+                <label for="category_form" class="form-label">{{ 'album.offcanvas.filters.category_form.label'|trans }}</label>
+                {% set filteredCategoryForms = app.request.get('fc', []) %}
+                <select multiple size="4" id="category_form" name="fc[]" class="form-select form-select-sm">
+                    <option value="" {{ ((filteredCategoryForms|filter(v => v) is empty) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.category_form.value.empty'|trans -}}
+                    </option>
+                    <option value="null" {{ (('null' in filteredCategoryForms) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.category_form.value.null'|trans -}}
+                    </option>
+                    {% for form in categoryForms %}
+                    <option value="{{ form.slug }}" {{ ((form.slug in filteredCategoryForms) ? 'selected': '') }}>
+                        {{- (locale is same as('fr') ? form.frenchName :  form.name) -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6 col-12">
+                <label for="regional_form" class="form-label">{{ 'album.offcanvas.filters.regional_form.label'|trans }}</label>
+                {% set filteredRegionalForms = app.request.get('fr', []) %}
+                <select multiple size="4" id="regional_form" name="fr[]" class="form-select form-select-sm">
+                    <option value="" {{ ((filteredRegionalForms|filter(v => v) is empty) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.regional_form.value.empty'|trans -}}
+                    </option>
+                    <option value="null" {{ (('null' in filteredRegionalForms) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.regional_form.value.null'|trans -}}
+                    </option>
+                    {% for form in regionalForms %}
+                    <option value="{{ form.slug }}" {{ ((form.slug in filteredRegionalForms) ? 'selected': '') }}>
+                        {{- (locale is same as('fr') ? form.frenchName : form.name) -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6 col-12">
+                <label for="special_form" class="form-label">{{ 'album.offcanvas.filters.special_form.label'|trans }}</label>
+                {% set filteredSpecialForms = app.request.get('fs', []) %}
+                <select multiple size="4" id="special_form" name="fs[]" class="form-select form-select-sm">
+                    <option value="" {{ ((filteredSpecialForms|filter(v => v) is empty) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.special_form.value.empty'|trans -}}
+                    </option>
+                    <option value="null" {{ (('null' in filteredSpecialForms) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.special_form.value.null'|trans -}}
+                    </option>
+                    {% for form in specialForms %}
+                    <option value="{{ form.slug }}" {{ ((form.slug in filteredSpecialForms) ? 'selected': '') }}>
+                        {{- (locale is same as('fr') ? form.frenchName : form.name) -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6 col-12">
+                <label for="variant_form" class="form-label">{{ 'album.offcanvas.filters.variant_form.label'|trans }}</label>
+                {% set filteredVariantForms = app.request.get('fv', []) %}
+                <select multiple size="4" id="variant_form" name="fv[]" class="form-select form-select-sm">
+                    <option value="" {{ ((filteredVariantForms|filter(v => v) is empty) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.variant_form.value.empty'|trans -}}
+                    </option>
+                    <option value="null" {{ (('null' in filteredVariantForms) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.variant_form.value.null'|trans -}}
+                    </option>
+                    {% for form in variantForms %}
+                    <option value="{{ form.slug }}" {{ ((form.slug in filteredVariantForms) ? 'selected': '') }}>
+                        {{- (locale is same as('fr') ? form.frenchName : form.name) -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div hidden>
+            <input type="text" name="t" value="{{ sharedTrainerId }}">
+            <input type="text" name="cs" value="{{ catchState }}">
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+                <button type="reset" class="btn btn-outline-warning btn-sm">
+                    {{ 'album.offcanvas.filters.reset.label'|trans }}
+                </button>
+                <button type="submit" class="btn btn-outline-primary btn-sm">
+                    {{ 'album.offcanvas.filters.submit.label'|trans }}
+                </button>
+        </div>
+    </form>
+
+    <div> 
+        <h6>
+            {{ 'album.offcanvas.informations.title'|trans }}
+        </h6>
+
+        <ul class="list-group list-group-horizontal group-icons">
+            {# Is private icon #}
+            {% if dex.is_private %}
+                <li
+                    class="list-group-item flex-fill album-private"
+                    href="#"
+                    title="{{ 'nav.is_private'|trans }}"
+                    data-bs-toggle="tooltip"
+                >
+                    <i class="bi bi-lock"></i>
+                </li>
+            {% endif %}
+
+            {# Text for another trainer #}
+            {% if loggedTrainerId is not same as(trainerId) %}
+                <li
+                    class="list-group-item flex-fill album-another-trainer"
+                    href="#"
+                    title="{{ 'album.intro.label.another_trainer_album'|trans }}"
+                    data-bs-toggle="tooltip"
+                >
+                    
+                    <i class="bi bi-person-rolodex another-trainer-album"></i>
+                </li>
+            {% endif %}
+
+            {# Region name or national #}
+            {% if dex.region_name is not empty %}
+            <li
+                class="list-group-item flex-fill dex-type dex-type-regional"
+                href="#"
+                title="{{ 'album.intro.label.region'|trans }} {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}"
+                data-bs-toggle="tooltip"
+            >
+                {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}
+            </li>
+            {% else %}
+            <li
+                class="list-group-item flex-fill dex-type dex-type-national"
+                href="#"
+                title="{{ 'album.intro.label.dex'|trans }} {{ 'album.intro.value.national'|trans }}"
+                data-bs-toggle="tooltip"
+            >
+            {{ 'album.intro.value.national'|trans }}
+            </li>
+            {% endif %}
+
+            {# Shiny or not #}
+            <li
+                class="list-group-item flex-fill dex-shiny-or-not"
+                href="#"
+                title="{{ (dex.is_shiny ? 'album.intro.label.is_shiny.yes' : 'album.intro.label.is_shiny.no')|trans }}"
+                data-bs-toggle="tooltip"
+            >
+                {% if dex.is_shiny %}
+                <i class="bi bi-stars"></i>
+                {% else %}
+                <i class="bi bi-bug"></i>
+                {% endif %}
+            </li>
+        </ul>
+
+        {# Description #}
+        <p id="album-description" class="small">
+            {{- (locale is same as('fr') ? dex.french_description : dex.description)|nl2br -}}
+        </p>
+        {# Template text #}
+        <p class="dex-template small fst-italic">
+            {{- ('album.intro.label.display_template.'~displayTemplateName)|trans -}}
+        </p>
+
+        {# Version #}
+        <p class="text-end small fst-italic text-body-tertiary dex-version">
+            <i class="bi bi-tag"></i> 
+            {{- 'album.intro.label.version'|trans }} {{ dex.version -}}
+        </p>
+    </div>
+  </div>
+</div>

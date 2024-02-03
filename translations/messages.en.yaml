@@ -121,7 +121,44 @@ album:
             pokepedia: Poképédia's page (french)
             bulbapedia: Bulbapedia's page
             family: Filter this family only
-
+    offcanvas:
+        informations:
+            title: Informations
+        filters:
+            title: Filters
+            submit:
+                label: Filter
+            reset:
+                label: Reset
+            primary_type:
+                label: Primary type
+                value:
+                    empty: All
+            secondary_type:
+                label: Secondary type
+                value:
+                    empty: All
+                    "null": None
+            category_form:
+                label: Category
+                value:
+                    empty: All
+                    "null": None
+            regional_form:
+                label: Regional form
+                value:
+                    empty: All
+                    "null": None
+            special_form:
+                label: Special form
+                value:
+                    empty: All
+                    "null": None
+            variant_form:
+                label: Variant
+                value:
+                    empty: All
+                    "null": None
 
 update:
     labels:

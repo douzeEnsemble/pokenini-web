@@ -149,7 +149,7 @@ class AlbumController extends AbstractController
 
     /**
      * @param string[][] $pokemons
-     * @param string[] $filters
+     * @param string[]|string[][] $filters
      *
      * @return string[][]
      */
@@ -178,7 +178,8 @@ class AlbumController extends AbstractController
                     continue;
                 }
 
-                $filtersValues = explode(',', $filters[$criteria]);
+                $filtersValues = (!is_array($filters[$criteria])) ? [$filters[$criteria]] : $filters[$criteria];
+
                 // Replace "null" by null
                 array_walk($filtersValues, fn(&$value) => $value = (('null' === $value) ? null : $value));
 
@@ -192,7 +193,7 @@ class AlbumController extends AbstractController
     }
 
     /**
-     * @return string[]
+     * @return string[]|string[][]
      */
     private function getFilters(Request $request): array
     {
@@ -203,6 +204,8 @@ class AlbumController extends AbstractController
         ];
         $stringFilters = [
             'f',
+        ];
+        $multipleFilters = [
             'fc',
             'fr',
             'fs',
@@ -220,6 +223,14 @@ class AlbumController extends AbstractController
         foreach ($stringFilters as $filter) {
             if ($request->query->has($filter)) {
                 $filters[$filter] = $request->query->getString($filter);
+            }
+        }
+
+        foreach ($multipleFilters as $filter) {
+            if ($request->query->has($filter)) {
+                /** @var string[] $values */
+                $values = $request->get($filter, []);
+                $filters[$filter] = array_filter($values);
             }
         }
 

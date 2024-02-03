@@ -23,6 +23,6 @@ class AppExtensionTest extends TestCase
             'a' => 2,
             'b' => 1,
             'c' => 3,
-        ], $extension->ksort($data));
+        ], $extension->appKsort($data));
     }
 }

@@ -76,6 +76,7 @@
 
         {% include 'Album/_toasts.html.twig' %}
     </div>
+    {% include 'Album/_offcanvas.html.twig' %}
 </div>
 {% endblock container %}
 
@@ -88,7 +89,6 @@
     {{ parent() }}
     <script type="application/javascript">
     (function() {
-        watchToggleIntroDetails();
         watchScreenshotMode();
     })();
     </script>
