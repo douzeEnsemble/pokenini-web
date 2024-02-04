@@ -6,7 +6,13 @@
 {% block title %}Pokénini {{ locale is same as('fr') ? dex.french_name : dex.name }}{% endblock title %}
 
 {%- block navbarTitleLink -%}
-    {{ app.request.uri }}
+    {{ path(
+        'app_album_index', 
+        {
+            'dexSlug': currentDexSlug, 
+            't': ((queryTrainerId is not empty) ? queryTrainerId : null)
+        }
+    ) }}
 {%- endblock navbarTitleLink -%}
 {% block navbarTitle %}
     {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}

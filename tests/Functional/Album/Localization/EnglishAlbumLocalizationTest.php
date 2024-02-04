@@ -58,7 +58,7 @@ class EnglishAlbumLocalizationTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('.navbar-link .navbar-subtitle'));
 
         $this->assertEquals(
-            $crawler->getUri(),
+            '/en/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $navbarTitle->attr('href')
         );
 
@@ -204,7 +204,7 @@ class EnglishAlbumLocalizationTest extends WebTestCase
         $this->assertCount(0, $crawler->filter('.navbar-link .navbar-subtitle'));
 
         $this->assertEquals(
-            $crawler->getUri(),
+            str_replace('http://localhost', '', (string) $crawler->getUri()),
             $navbarTitle->attr('href')
         );
 
