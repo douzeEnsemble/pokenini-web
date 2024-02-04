@@ -15,9 +15,12 @@
         </h6>
         <div class="row mb-3">
             <div class="col-md-6 col-12">
-                <label for="primary_type" class="form-label">{{ 'album.offcanvas.filters.primary_type.label'|trans }}</label>
+                <label for="primary_type" class="form-label">
+                    <i class="bi bi-trophy"></i>
+                    {{ 'album.offcanvas.filters.primary_type.label'|trans }}
+                </label>
                 {% set filteredPrimaryTypes = app.request.get('t1', []) %}
-                <select multiple size="4" id="primary_type" name="t1[]" class="form-select form-select-sm">
+                <select multiple id="primary_type" name="t1[]" class="form-select form-select-sm">
                     <option value="" {{ ((filteredPrimaryTypes|filter(v => v) is empty) ? 'selected': '') }}>
                         {{- 'album.offcanvas.filters.primary_type.value.empty'|trans -}}
                     </option>
@@ -29,9 +32,12 @@
                 </select>
             </div>
             <div class="col-md-6 col-12">
-                <label for="secondary_type" class="form-label">{{ 'album.offcanvas.filters.secondary_type.label'|trans }}</label>
+                <label for="secondary_type" class="form-label">
+                    <i class="bi bi-award"></i>
+                    {{ 'album.offcanvas.filters.secondary_type.label'|trans }}
+                </label>
                 {% set filteredSecondaryTypes = app.request.get('t2', []) %}
-                <select multiple size="4" id="secondary_type" name="t2[]" class="form-select form-select-sm">
+                <select multiple id="secondary_type" name="t2[]" class="form-select form-select-sm">
                     <option value="" {{ ((filteredSecondaryTypes|filter(v => v) is empty) ? 'selected': '') }}>
                         {{- 'album.offcanvas.filters.secondary_type.value.empty'|trans -}}
                     </option>
@@ -48,9 +54,12 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-6 col-12">
-                <label for="category_form" class="form-label">{{ 'album.offcanvas.filters.category_form.label'|trans }}</label>
+                <label for="category_form" class="form-label">
+                    <i class="bi bi-tag"></i>
+                    {{ 'album.offcanvas.filters.category_form.label'|trans }}
+                </label>
                 {% set filteredCategoryForms = app.request.get('fc', []) %}
-                <select multiple size="4" id="category_form" name="fc[]" class="form-select form-select-sm">
+                <select multiple id="category_form" name="fc[]" class="form-select form-select-sm">
                     <option value="" {{ ((filteredCategoryForms|filter(v => v) is empty) ? 'selected': '') }}>
                         {{- 'album.offcanvas.filters.category_form.value.empty'|trans -}}
                     </option>
@@ -65,9 +74,12 @@
                 </select>
             </div>
             <div class="col-md-6 col-12">
-                <label for="regional_form" class="form-label">{{ 'album.offcanvas.filters.regional_form.label'|trans }}</label>
+                <label for="regional_form" class="form-label">
+                    <i class="bi bi-globe"></i>
+                    {{ 'album.offcanvas.filters.regional_form.label'|trans }}
+                </label>
                 {% set filteredRegionalForms = app.request.get('fr', []) %}
-                <select multiple size="4" id="regional_form" name="fr[]" class="form-select form-select-sm">
+                <select multiple id="regional_form" name="fr[]" class="form-select form-select-sm">
                     <option value="" {{ ((filteredRegionalForms|filter(v => v) is empty) ? 'selected': '') }}>
                         {{- 'album.offcanvas.filters.regional_form.value.empty'|trans -}}
                     </option>
@@ -84,9 +96,12 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-6 col-12">
-                <label for="special_form" class="form-label">{{ 'album.offcanvas.filters.special_form.label'|trans }}</label>
+                <label for="special_form" class="form-label">
+                    <i class="bi bi-star-fill"></i>
+                    {{ 'album.offcanvas.filters.special_form.label'|trans }}
+                </label>
                 {% set filteredSpecialForms = app.request.get('fs', []) %}
-                <select multiple size="4" id="special_form" name="fs[]" class="form-select form-select-sm">
+                <select multiple id="special_form" name="fs[]" class="form-select form-select-sm">
                     <option value="" {{ ((filteredSpecialForms|filter(v => v) is empty) ? 'selected': '') }}>
                         {{- 'album.offcanvas.filters.special_form.value.empty'|trans -}}
                     </option>
@@ -101,9 +116,12 @@
                 </select>
             </div>
             <div class="col-md-6 col-12">
-                <label for="variant_form" class="form-label">{{ 'album.offcanvas.filters.variant_form.label'|trans }}</label>
+                <label for="variant_form" class="form-label">
+                    <i class="bi bi-shuffle"></i>
+                    {{ 'album.offcanvas.filters.variant_form.label'|trans }}
+                </label>
                 {% set filteredVariantForms = app.request.get('fv', []) %}
-                <select multiple size="4" id="variant_form" name="fv[]" class="form-select form-select-sm">
+                <select multiple id="variant_form" name="fv[]" class="form-select form-select-sm">
                     <option value="" {{ ((filteredVariantForms|filter(v => v) is empty) ? 'selected': '') }}>
                         {{- 'album.offcanvas.filters.variant_form.value.empty'|trans -}}
                     </option>
