@@ -60,6 +60,7 @@ class OffcanvasTest extends WebTestCase
         );
 
         $this->assertFilters($crawler, 'fr');
+        $this->assertResetLink($crawler, '/fr/album/home');
     }
 
     public function testIntroDemoList3(): void
@@ -106,6 +107,7 @@ class OffcanvasTest extends WebTestCase
         );
 
         $this->assertFilters($crawler, 'fr');
+        $this->assertResetLink($crawler, '/fr/album/demolist3');
     }
 
     public function testIntroDemoLiteShiny(): void
@@ -147,6 +149,7 @@ class OffcanvasTest extends WebTestCase
         );
 
         $this->assertFilters($crawler, 'fr');
+        $this->assertResetLink($crawler, '/fr/album/demoliteshiny');
     }
 
     public function testIntroGoldSilverCrystal(): void
@@ -197,6 +200,7 @@ class OffcanvasTest extends WebTestCase
         );
 
         $this->assertFilters($crawler, 'fr');
+        $this->assertResetLink($crawler, '/fr/album/goldsilvercrystal');
     }
 
     public function testIntroBlackWhiteFrench(): void
@@ -247,6 +251,7 @@ class OffcanvasTest extends WebTestCase
         );
 
         $this->assertFilters($crawler, 'fr');
+        $this->assertResetLink($crawler, '/fr/album/blackwhite');
     }
 
     public function testIntroBlackWhiteEnglish(): void
@@ -297,6 +302,7 @@ class OffcanvasTest extends WebTestCase
         );
 
         $this->assertFilters($crawler, 'en');
+        $this->assertResetLink($crawler, '/en/album/blackwhite');
     }
 
     public function testIntroDemoAnotherTrainer(): void
@@ -339,6 +345,7 @@ class OffcanvasTest extends WebTestCase
         );
 
         $this->assertFilters($crawler, 'fr');
+        $this->assertResetLink($crawler, '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
     }
 
     private function assertFiltersPrimaryType(Crawler $crawler, string $lang): void
@@ -445,6 +452,14 @@ class OffcanvasTest extends WebTestCase
         );
     }
 
+    private function assertResetLink(Crawler $crawler, string $link): void
+    {
+        $this->assertEquals(
+            $link,
+            $crawler->filter('#offcanvas form a.form-filter-reset')->attr('href')
+        );
+    }
+
     private function assertFilters(Crawler $crawler, string $lang): void
     {
         $this->assertFiltersPrimaryType($crawler, $lang);
@@ -453,5 +468,8 @@ class OffcanvasTest extends WebTestCase
         $this->assertFiltersRegionalForm($crawler, $lang);
         $this->assertFiltersSpecialForm($crawler, $lang);
         $this->assertFiltersVariantForm($crawler, $lang);
+
+        $this->assertCount(1, $crawler->filter('#offcanvas form button[type="submit"]'));
+        $this->assertCount(1, $crawler->filter('#offcanvas form a.form-filter-reset'));
     }
 }
