@@ -12,6 +12,7 @@ nav:
     login: 'Log in'
     share: 'Share link'
     is_private: 'Private album'
+    open-offcanvas: 'Open the sidebar'
 
 title:
     home: 'Home'

@@ -12,6 +12,7 @@ nav:
     login: 'Se connecter'
     share: 'Lien de partage'
     is_private: 'Album privé'
+    open-offcanvas: 'Ouvrir le panneau latéral'
 
 title:
     home: 'Accueil'
