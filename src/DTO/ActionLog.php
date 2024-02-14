@@ -28,7 +28,7 @@ class ActionLog
         /** @var string */
         $doneAt = $data['done_at'] ?? null;
         /** @var int */
-        $executionTime = !empty($data['execution_time']) ? (int) $data['execution_time'] : null;
+        $executionTime = (isset($data['execution_time'])) ? (int) $data['execution_time'] : null;
         /** @var int[] */
         $details = $data['details'] ?? [];
         /** @var string */

@@ -32,6 +32,7 @@ title:
         game_bundles_availabilities: "Update game bundles' availabilities"
         game_bundles_shinies_availabilities: "Update game bundles' shinies' availabilities"
         dex_availabilities: 'Update dex availabilities'
+        pokemon_availabilities: 'Update pokemons availabilities'
     invalidate:
         catch_states: 'Invalidate status cache'
         types: 'Invalidate types cache'
@@ -190,6 +191,9 @@ calculate:
     dex_availabilities:
         success: 'Dex availabilities update has been done'
         error: 'Dex availabilities update has failed'
+    pokemon_availabilities:
+        success: "Pokemons' availabilities update has been done"
+        error: "Pokemons' availabilities update has failed"
 
 connect:
     disclaimer: |
@@ -308,6 +312,8 @@ admin:
         game_bundles_availabilities: "Bundles' availabilities"
         game_bundles_shinies_availabilities: "Bundles' shinies' availabilities"
         dex_availabilities: "Dex' availabilities"
+        pokemon_availabilities_game_bundle: "Pokemons' availabilities for Game bundles"
+        pokemon_availabilities_game_bundle_shiny: "Pokemons' availabilities for Game bundles shiny"
     reports:
         cache:
             title: "Cache"

@@ -56,11 +56,11 @@ class AdminPageTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 2, 'h2');
         $this->assertCountFilter($crawler, 7, 'h3');
-        $this->assertCountFilter($crawler, 13, '.admin-item a.admin-item-cta');
-        $this->assertCountFilter($crawler, 13, '.admin-item a.admin-item-cta i.bi');
+        $this->assertCountFilter($crawler, 14, '.admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 14, '.admin-item a.admin-item-cta i.bi');
 
         $this->assertCountFilter($crawler, 6, '.list-group-update .admin-item a.admin-item-cta');
-        $this->assertCountFilter($crawler, 3, '.list-group-calculate .admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 4, '.list-group-calculate .admin-item a.admin-item-cta');
         $this->assertCountFilter($crawler, 3, '.list-group-invalidate .admin-item a.admin-item-cta');
         $this->assertCountFilter($crawler, 2, 'table.report-table');
         $this->assertCountFilter($crawler, 1, '.list-group-report-invalidate .admin-item a.admin-item-cta');
@@ -389,6 +389,30 @@ class AdminPageTest extends WebTestCase
                         'value' => '20/03/2023 11:05:08',
                     ],
                     'exectime' => '00:50:32',
+                ],
+            ],
+            'calculate_pokemon_availabilities' => [
+                'current' => [
+                    'data' => [
+                        'Dispo des packs de jeux par pokémons' => '1',
+                        'Dispo des chromatiques des packs de jeux par pokémons' => '0',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '14/02/2024 10:14:36',
+                    ],
+                    'exectime' => '00:00:00',
+                ],
+                'last' => [
+                    'data' => [
+                        'Dispo des packs de jeux par pokémons' => '1',
+                        'Dispo des chromatiques des packs de jeux par pokémons' => '0',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '14/02/2024 10:14:36',
+                    ],
+                    'exectime' => '00:00:00',
                 ],
             ],
         ];
