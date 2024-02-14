@@ -53,6 +53,7 @@ class AdminActionController extends AbstractController
                 'game_bundles_availabilities',
                 'game_bundles_shinies_availabilities',
                 'dex_availabilities',
+                'pokemon_availabilities',
             ]"
     )]
     public function calculate(

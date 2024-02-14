@@ -94,6 +94,7 @@ class ActionInvalidateTest extends WebTestCase
             ['game_bundles_availabilities'],
             ['game_bundles_shinies_availabilities'],
             ['dex_availabilities'],
+            ['pokemon_availabilities'],
         ];
     }
 }

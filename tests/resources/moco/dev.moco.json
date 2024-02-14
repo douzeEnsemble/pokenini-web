@@ -1022,6 +1022,20 @@
   {
     "request": {
       "uri": {
+        "match": "/istration/calculate/pokemon_availabilities"
+      },
+      "method": "post",
+      "headers": {
+        "Authorization": "Basic d2ViOmRvdXpl"
+      }
+    },
+    "response": {
+      "status": "201"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/redgreenblueyellow"
       },
       "method": "put",

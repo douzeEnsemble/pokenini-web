@@ -32,6 +32,7 @@ title:
         game_bundles_availabilities: 'Maj des dispo des bundles de jeux'
         game_bundles_shinies_availabilities: 'Maj des dispo des bundles de jeux des chromatiques'
         dex_availabilities: 'Maj des dispo des dex'
+        pokemon_availabilities: 'MAJ des dispo par pokemons'
     invalidate:
         catch_states: 'Invalidation du cache des statuts'
         types: 'Invalidation du cache des types'
@@ -191,6 +192,9 @@ calculate:
     dex_availabilities:
         success: 'La maj des dispo des dex a été effectuée'
         error: 'La maj des dispo des dex a échouée'
+    pokemon_availabilities:
+        success: 'La maj des dispo par pokémons a été effectuée'
+        error: 'La maj des dispo par pokémons a échouée'
 
 connect:
     disclaimer: |
@@ -312,6 +316,8 @@ admin:
         game_bundles_availabilities: "Dispo des bundles"
         game_bundles_shinies_availabilities: "Dispo des bundles des chromatiques"
         dex_availabilities: "Dispo des dex"
+        pokemon_availabilities_game_bundle: "Dispo des packs de jeux par pokémons"
+        pokemon_availabilities_game_bundle_shiny: "Dispo des chromatiques des packs de jeux par pokémons "
     reports:
         cache:
             title: "Cache"

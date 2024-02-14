@@ -36,6 +36,7 @@ class CacheInvalidatorService
             case 'games_shinies_availabilities':
             case 'game_bundles_availabilities':
             case 'game_bundles_shinies_availabilities':
+            case 'pokemon_availabilities':
             case 'albums':
                 $this->apiService->invalidateCacheAlbums();
                 return;
