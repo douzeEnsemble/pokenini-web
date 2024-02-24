@@ -70,9 +70,30 @@ class KeyMaker
         return self::CACHE_KEY_DEX . self::CACHE_KEY_SEPARATOR . $trainerId . $alt;
     }
 
-    public static function getPokedexKey(string $dexSlug, string $trainerId): string
+    /**
+     * @param string[]|string[][] $filters
+     */
+    public static function getPokedexKey(string $dexSlug, string $trainerId, array $filters = []): string
     {
-        return self::CACHE_KEY_ALBUM . self::CACHE_KEY_SEPARATOR . $dexSlug . self::CACHE_KEY_SEPARATOR . $trainerId;
+        $prefix = self::CACHE_KEY_ALBUM
+            . self::CACHE_KEY_SEPARATOR . $dexSlug
+            . self::CACHE_KEY_SEPARATOR . $trainerId
+        ;
+
+        $strFilters = '';
+        foreach ($filters as $key => $value) {
+            if (!is_array($value)) {
+                $strFilters .= self::CACHE_KEY_SEPARATOR . $key . $value;
+
+                continue;
+            }
+
+            foreach ($value as $subValue) {
+                $strFilters .= self::CACHE_KEY_SEPARATOR . $key . $subValue;
+            }
+        }
+
+        return $prefix . $strFilters;
     }
 
     public static function getRegisterTypeKey(string $type): string

@@ -1,0 +1,62 @@
+{
+  "dex": {
+    "slug": "demo",
+    "original_slug": "demo",
+    "name": "Demo",
+    "french_name": "Démo",
+    "is_shiny": false,
+    "is_private": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region_name": "",
+    "region_french_name": "",
+    "description": "List of pokémons for demo purpose",
+    "french_description": "Tous les pok\u00e9mons de la démo",
+    "version": 412,
+    "is_released": true
+  },
+  "pokemons": [],
+  "report": {
+    "total": 0,
+    "totalCaught": 0,
+    "totalUncaught": 0,
+    "detail": [
+      {
+        "slug": "no",
+        "name": "No",
+        "frenchName": "Non",
+        "count": 0
+      },
+      {
+        "slug": "toevolve",
+        "name": "To evolve",
+        "frenchName": "Af. \u00e9voluer",
+        "count": 0
+      },
+      {
+        "slug": "tobreed",
+        "name": "To breed",
+        "frenchName": "Af. reproduire",
+        "count": 0
+      },
+      {
+        "slug": "totransfer",
+        "name": "To transfer",
+        "frenchName": "\u00c0 transf\u00e9rer",
+        "count": 0
+      },
+      {
+        "slug": "totrade",
+        "name": "To trade",
+        "frenchName": "\u00c0 \u00e9changer",
+        "count": 0
+      },
+      {
+        "slug": "yes",
+        "name": "Yes",
+        "frenchName": "Oui",
+        "count": 0
+      }
+    ]
+  }
+}

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Controller;
 
-use App\Controller\AlbumController;
+use App\Controller\AlbumUpsertController;
 use App\Security\UserTokenService;
-use App\Service\ApiService;
+use App\Service\Api\ModifyAlbumService;
+use App\Service\CacheInvalidator\AlbumsCacheInvalidatorService;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpClient\Exception\TransportException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -18,27 +18,10 @@ use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class AlbumControllerUpsertTest extends TestCase
+class AlbumUpsertControllerTest extends TestCase
 {
     public function testUpsert(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-        $apiService
-            ->expects($this->once())
-            ->method('modifyAlbum')
-            ->with(
-                'PATCH',
-                'douze',
-                'machi',
-                '{}',
-                '1234567890'
-            )
-        ;
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheAlbums')
-        ;
-
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
@@ -53,6 +36,25 @@ class AlbumControllerUpsertTest extends TestCase
             ->willReturn(
                 new ConstraintViolationList([])
             )
+        ;
+
+        $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
+        $modifyAlbumService
+            ->expects($this->once())
+            ->method('modify')
+            ->with(
+                'PATCH',
+                'douze',
+                'machi',
+                '{}',
+                '1234567890'
+            )
+        ;
+
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService
+            ->expects($this->once())
+            ->method('invalidate')
         ;
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
@@ -74,10 +76,11 @@ class AlbumControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new AlbumController(
-            $apiService,
+        $controller = new AlbumUpsertController(
             $userTokenService,
             $validator,
+            $modifyAlbumService,
+            $albumsCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -102,9 +105,13 @@ class AlbumControllerUpsertTest extends TestCase
 
     public function testUpsertBadContent(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-
         $userTokenService = $this->createMock(UserTokenService::class);
+
+        $validator = $this->createMock(ValidatorInterface::class);
+
+        $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
+
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
@@ -112,8 +119,6 @@ class AlbumControllerUpsertTest extends TestCase
             ->method('isGranted')
             ->willReturn(true)
         ;
-
-        $validator = $this->createMock(ValidatorInterface::class);
 
         $container = $this->createMock(ContainerInterface::class);
         $container
@@ -127,10 +132,11 @@ class AlbumControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new AlbumController(
-            $apiService,
+        $controller = new AlbumUpsertController(
             $userTokenService,
             $validator,
+            $modifyAlbumService,
+            $albumsCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -153,9 +159,13 @@ class AlbumControllerUpsertTest extends TestCase
 
     public function testUpsertEmptyContent(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-
         $userTokenService = $this->createMock(UserTokenService::class);
+
+        $validator = $this->createMock(ValidatorInterface::class);
+
+        $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
+
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
@@ -163,8 +173,6 @@ class AlbumControllerUpsertTest extends TestCase
             ->method('isGranted')
             ->willReturn(true)
         ;
-
-        $validator = $this->createMock(ValidatorInterface::class);
 
         $container = $this->createMock(ContainerInterface::class);
         $container
@@ -178,10 +186,11 @@ class AlbumControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new AlbumController(
-            $apiService,
+        $controller = new AlbumUpsertController(
             $userTokenService,
             $validator,
+            $modifyAlbumService,
+            $albumsCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -204,8 +213,6 @@ class AlbumControllerUpsertTest extends TestCase
 
     public function testUpsertInvalidContent(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-
         $userTokenService = $this->createMock(UserTokenService::class);
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
@@ -233,6 +240,10 @@ class AlbumControllerUpsertTest extends TestCase
             )
         ;
 
+        $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
+
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+
         $container = $this->createMock(ContainerInterface::class);
         $container
             ->expects($this->once())
@@ -245,10 +256,11 @@ class AlbumControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new AlbumController(
-            $apiService,
+        $controller = new AlbumUpsertController(
             $userTokenService,
             $validator,
+            $modifyAlbumService,
+            $albumsCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -271,22 +283,6 @@ class AlbumControllerUpsertTest extends TestCase
 
     public function testUpsertApiException(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-        $apiService
-            ->expects($this->once())
-            ->method('modifyAlbum')
-            ->willThrowException(
-                new TransportException('Whoops!')
-            )
-            ->with(
-                'PATCH',
-                'douze',
-                'machi',
-                '{}',
-                '1234567890'
-            )
-        ;
-
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
@@ -301,6 +297,28 @@ class AlbumControllerUpsertTest extends TestCase
             ->willReturn(
                 new ConstraintViolationList([])
             )
+        ;
+
+        $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
+        $modifyAlbumService
+            ->expects($this->once())
+            ->method('modify')
+            ->willThrowException(
+                new TransportException('Whoops!')
+            )
+            ->with(
+                'PATCH',
+                'douze',
+                'machi',
+                '{}',
+                '1234567890'
+            )
+        ;
+
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
         ;
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
@@ -322,10 +340,11 @@ class AlbumControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new AlbumController(
-            $apiService,
+        $controller = new AlbumUpsertController(
             $userTokenService,
             $validator,
+            $modifyAlbumService,
+            $albumsCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -343,7 +362,6 @@ class AlbumControllerUpsertTest extends TestCase
 
         $response = $controller->upsert('douze', 'machi', $request);
 
-        $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals(500, $response->getStatusCode());
         $this->assertEquals('{"error":"Whoops!"}', $response->getContent());
     }

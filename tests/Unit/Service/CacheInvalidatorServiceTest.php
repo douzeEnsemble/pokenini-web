@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
+use App\Service\Api\GetCatchStatesService;
 use App\Service\ApiService;
+use App\Service\CacheInvalidator\AlbumsCacheInvalidatorService;
+use App\Service\CacheInvalidator\CatchStatesCacheInvalidatorService;
+use App\Service\CacheInvalidator\DexCacheInvalidatorService;
+use App\Service\CacheInvalidator\FormsCacheInvalidatorService;
+use App\Service\CacheInvalidator\ReportsCacheInvalidatorService;
+use App\Service\CacheInvalidator\TypesCacheInvalidatorService;
 use App\Service\CacheInvalidatorService;
 use PHPUnit\Framework\TestCase;
 
@@ -12,31 +19,67 @@ class CacheInvalidatorServiceTest extends TestCase
 {
     public function testInvalidateLabels(): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
-        $apiService
+        $catchStatesCacheInvalidatorService
             ->expects($this->once())
-            ->method('invalidateCacheCatchStates')
+            ->method('invalidate')
         ;
-        $apiService
+        $typesCacheInvalidatorService
             ->expects($this->once())
-            ->method('invalidateCacheTypes')
+            ->method('invalidate')
         ;
-        $apiService
+        $formsCacheInvalidatorService
             ->expects($this->once())
-            ->method('invalidateCacheForms')
+            ->method('invalidate')
+        ;
+        $dexCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $albumsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $reportCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
         ;
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
         $cacheInvalidator->invalidate('labels');
     }
 
     public function testInvalidateCatchStates(): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
         $this->expectException(\InvalidArgumentException::class);
 
@@ -45,9 +88,21 @@ class CacheInvalidatorServiceTest extends TestCase
 
     public function testInvalidateTypes(): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
         $this->expectException(\InvalidArgumentException::class);
 
@@ -56,24 +111,92 @@ class CacheInvalidatorServiceTest extends TestCase
 
     public function testInvalidateGamesAndDex(): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
-        $apiService
+        $catchStatesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $typesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $formsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $dexCacheInvalidatorService
             ->expects($this->once())
-            ->method('invalidateCacheDex')
+            ->method('invalidate')
+        ;
+        $albumsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $reportCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
         ;
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
         $cacheInvalidator->invalidate('games_and_dex');
     }
 
     public function testInvalidatePokemons(): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
+        $catchStatesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $typesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $formsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $dexCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $albumsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $reportCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
         $cacheInvalidator->invalidate('pokemons');
 
@@ -81,113 +204,180 @@ class CacheInvalidatorServiceTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testInvalidateGameAvailability(): void
+    /**
+     * @dataProvider providerInvalidateAlbums
+     */
+    public function testInvalidateAlbums(string $type): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
-        $apiService
+        $catchStatesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $typesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $formsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $dexCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $albumsCacheInvalidatorService
             ->expects($this->once())
-            ->method('invalidateCacheAlbums')
+            ->method('invalidate')
+        ;
+        $reportCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
         ;
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
-        $cacheInvalidator->invalidate('games_availabilities');
+        $cacheInvalidator->invalidate($type);
     }
 
-    public function testInvalidateGameShinyAvailability(): void
+    /**
+     * @return string[][]
+     */
+    public function providerInvalidateAlbums(): array
     {
-        $apiService = $this->createMock(ApiService::class);
-
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheAlbums')
-        ;
-
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
-
-        $cacheInvalidator->invalidate('games_shinies_availabilities');
-    }
-
-    public function testInvalidateGameBundleAvailability(): void
-    {
-        $apiService = $this->createMock(ApiService::class);
-
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheAlbums')
-        ;
-
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
-
-        $cacheInvalidator->invalidate('game_bundles_availabilities');
-    }
-
-    public function testInvalidateGameBundleShinyAvailability(): void
-    {
-        $apiService = $this->createMock(ApiService::class);
-
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheAlbums')
-        ;
-
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
-
-        $cacheInvalidator->invalidate('game_bundles_shinies_availabilities');
+        return [
+            'regional_dex_numbers' => ['regional_dex_numbers'],
+            'games_availabilities' => ['games_availabilities'],
+            'games_shinies_availabilities' => ['games_shinies_availabilities'],
+            'game_bundles_availabilities' => ['game_bundles_availabilities'],
+            'game_bundles_shinies_availabilities' => ['game_bundles_shinies_availabilities'],
+            'pokemon_availabilities' => ['pokemon_availabilities'],
+            'albums' => ['albums'],
+        ];
     }
 
     public function testInvalidateDexAvailability(): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheAlbums')
+        $catchStatesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
         ;
-        $apiService
+        $typesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $formsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $dexCacheInvalidatorService
             ->expects($this->once())
-            ->method('invalidateCacheDex')
+            ->method('invalidate')
+        ;
+        $albumsCacheInvalidatorService
+            ->expects($this->once())
+            ->method('invalidate')
+        ;
+        $reportCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
         ;
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
         $cacheInvalidator->invalidate('dex_availabilities');
     }
 
-    public function testInvalidatePokemonAvailabilities(): void
-    {
-        $apiService = $this->createMock(ApiService::class);
-
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheAlbums')
-        ;
-
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
-
-        $cacheInvalidator->invalidate('pokemon_availabilities');
-    }
-
     public function testInvalidateReports(): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
-        $apiService
+        $catchStatesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $typesCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $formsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $dexCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $albumsCacheInvalidatorService
+            ->expects($this->never())
+            ->method('invalidate')
+        ;
+        $reportCacheInvalidatorService
             ->expects($this->once())
-            ->method('invalidateCacheReports')
+            ->method('invalidate')
         ;
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
         $cacheInvalidator->invalidate('reports');
     }
 
     public function testInvalidateUnknown(): void
     {
-        $apiService = $this->createMock(ApiService::class);
+        $catchStatesCacheInvalidatorService = $this->createMock(CatchStatesCacheInvalidatorService::class);
+        $typesCacheInvalidatorService = $this->createMock(TypesCacheInvalidatorService::class);
+        $formsCacheInvalidatorService = $this->createMock(FormsCacheInvalidatorService::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
+        $reportCacheInvalidatorService = $this->createMock(ReportsCacheInvalidatorService::class);
 
-        $cacheInvalidator = new CacheInvalidatorService($apiService);
+        $cacheInvalidator = new CacheInvalidatorService(
+            $catchStatesCacheInvalidatorService,
+            $typesCacheInvalidatorService,
+            $formsCacheInvalidatorService,
+            $dexCacheInvalidatorService,
+            $albumsCacheInvalidatorService,
+            $reportCacheInvalidatorService,
+        );
 
         $this->expectException(\InvalidArgumentException::class);
 

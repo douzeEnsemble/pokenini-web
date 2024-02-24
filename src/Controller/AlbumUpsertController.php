@@ -5,58 +5,36 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\ToJsonResponseException;
-use App\Security\User;
 use App\Security\UserTokenService;
-use App\Service\ApiService;
+use App\Service\Api\ModifyAlbumService;
+use App\Service\CacheInvalidator\AlbumsCacheInvalidatorService;
+use App\Validator\CatchStates;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Json;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-#[Route('/trainer')]
-class TrainerController extends AbstractController
+#[Route('/album')]
+class AlbumUpsertController extends AbstractController
 {
     use ValidatorJsonResponseTrait;
 
     public function __construct(
-        private readonly ApiService $apiService,
         private readonly UserTokenService $userTokenService,
         private readonly ValidatorInterface $validator,
+        private readonly ModifyAlbumService $modifyAlbumService,
+        private readonly AlbumsCacheInvalidatorService $albumsCacheInvalidatorService,
     ) {
     }
 
-    #[Route('')]
-    public function index(): Response
-    {
-        /** @var ?User $user */
-        $user = $this->getUser();
-
-        if (null === $user) {
-            return new Response('', Response::HTTP_UNAUTHORIZED);
-        }
-
-        $userToken = $this->userTokenService->getLoggedUserToken();
-
-        $trainerDex = $user->isAnAdmin()
-            ? $this->apiService->getDexWithUnreleased($userToken)
-            : $this->apiService->getDex($userToken);
-
-        return $this->render(
-            'Trainer/index.html.twig',
-            [
-                'trainerDex' => $trainerDex,
-            ]
-        );
-    }
-
-    #[Route('/dex/{dexSlug}', methods: ['PUT'])]
+    #[Route('/{dexSlug}/{pokemonSlug}', methods: ['PATCH', 'PUT'])]
     public function upsert(
         string $dexSlug,
+        string $pokemonSlug,
         Request $request,
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_TRAINER');
@@ -66,7 +44,7 @@ class TrainerController extends AbstractController
 
             $trainerId = $this->userTokenService->getLoggedUserToken();
 
-            $this->validate($content, new Json());
+            $this->validate($content, new CatchStates());
         } catch (ToJsonResponseException $e) {
             return new JsonResponse(
                 [
@@ -77,14 +55,15 @@ class TrainerController extends AbstractController
         }
 
         try {
-            $this->apiService->modifyDex(
+            $this->modifyAlbumService->modify(
+                $request->getMethod(),
                 $dexSlug,
+                $pokemonSlug,
                 $content,
                 $trainerId
             );
 
-            $this->apiService->invalidateCacheAlbum($dexSlug, $trainerId);
-            $this->apiService->invalidateCacheDexByTrainerId($trainerId);
+            $this->albumsCacheInvalidatorService->invalidate();
         } catch (HttpExceptionInterface | TransportExceptionInterface $e) {
             return new JsonResponse(['error' => $e->getMessage()], 500);
         }

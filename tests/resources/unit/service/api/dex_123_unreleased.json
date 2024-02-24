@@ -1,0 +1,55 @@
+[
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Kanto",
+      "french_name": "Kanto",
+      "slug": "kanto"
+    },
+    "name": "Red, Green, Blue, Yellow",
+    "french_name": "Rouge, Vert, Bleu, Jaune",
+    "slug": "redgreenblueyellow",
+    "original_slug": "redgreenblueyellow",
+    "is_released": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": false,
+    "is_on_home": false,
+    "is_display_form": false,
+    "display_template": "list-7",
+    "name": "Home Pokemon Go",
+    "french_name": "Home Pokemon Go",
+    "slug": "homepokemongo",
+    "original_slug": "homepokemongo",
+    "is_released": true
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "list-3",
+    "name": "Alpha",
+    "french_name": "Baron",
+    "slug": "alpha",
+    "original_slug": "alpha",
+    "is_released": true
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "list-3",
+    "name": "Mega",
+    "french_name": "M\u00e9ga",
+    "slug": "mega",
+    "original_slug": "mega",
+    "is_released": true
+  }
+]
