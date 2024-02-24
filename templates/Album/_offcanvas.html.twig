@@ -15,6 +15,33 @@
         </h6>
         <div class="row mb-3">
             <div class="col-md-6 col-12">
+                <label for="any_type" class="form-label">
+                    <i class="bi bi-subtract"></i>
+                    {{ 'album.offcanvas.filters.any_type.label'|trans }}
+                </label>
+                <a  
+                    class="small float-end" 
+                    href="#"
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#distinguishTypes"
+                >
+                    {{ 'album.offcanvas.filters.open_distinguish_types'|trans }}
+                </a>
+                {% set filteredAnyTypes = app.request.get('at', []) %}
+                <select multiple id="any_type" name="at[]" class="form-select form-select-sm">
+                    <option value="" {{ ((filteredAnyTypes|filter(v => v) is empty) ? 'selected': '') }}>
+                        {{- 'album.offcanvas.filters.any_type.value.empty'|trans -}}
+                    </option>
+                    {% for type in types %}
+                    <option value="{{ type.slug }}" {{ ((type.slug in filteredAnyTypes) ? 'selected': '') }}>
+                        {{- (locale is same as('fr') ? type.frenchName : type.name) -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3 collapse" id="distinguishTypes">
+            <div class="col-md-6 col-12">
                 <label for="primary_type" class="form-label">
                     <i class="bi bi-trophy"></i>
                     {{ 'album.offcanvas.filters.primary_type.label'|trans }}

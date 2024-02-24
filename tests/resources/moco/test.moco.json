@@ -443,6 +443,23 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
+        "special_forms[0]": "",
+        "special_forms[1]": "mega"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0specialforms1mega.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
         "special_forms[0]": "null",
         "special_forms[1]": "mega"
       },
@@ -460,7 +477,6 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "special_forms[0]": "",
         "special_forms[1]": "mega"
       },
       "headers": {
@@ -550,6 +566,22 @@
     },
     "response": {
       "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0mega.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "any_types[0]": "fire"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_anytypes0fire.json"
     }
   },
   {

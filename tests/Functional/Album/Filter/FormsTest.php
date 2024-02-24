@@ -42,6 +42,7 @@ class FormsTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
 
+        $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#primary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#secondary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#category_form', ['starter']);
@@ -81,6 +82,7 @@ class FormsTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
 
+        $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#primary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#secondary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#category_form', ['']);
@@ -123,6 +125,7 @@ class FormsTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
 
+        $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#primary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#secondary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#category_form', ['']);
@@ -165,7 +168,8 @@ class FormsTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
 
-        $this->assertSelectedOptions($crawler, 'select#primary_type', ['']);
+        $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
+
         $this->assertSelectedOptions($crawler, 'select#secondary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#category_form', ['']);
         $this->assertSelectedOptions($crawler, 'select#regional_form', ['paldean']);
@@ -204,6 +208,7 @@ class FormsTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
 
+        $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#primary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#secondary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#category_form', ['']);
@@ -246,7 +251,8 @@ class FormsTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
 
-        $this->assertSelectedOptions($crawler, 'select#primary_type', ['']);
+        $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
+
         $this->assertSelectedOptions($crawler, 'select#secondary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#category_form', ['']);
         $this->assertSelectedOptions($crawler, 'select#regional_form', ['']);
@@ -285,6 +291,7 @@ class FormsTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
 
+        $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#primary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#secondary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#category_form', ['']);
@@ -313,6 +320,7 @@ class FormsTest extends WebTestCase
             $crawler->filter('table a')->last()->attr('href')
         );
 
+        $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#primary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#secondary_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#category_form', ['']);

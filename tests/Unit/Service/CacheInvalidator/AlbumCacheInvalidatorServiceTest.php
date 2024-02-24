@@ -28,7 +28,6 @@ class AlbumCacheInvalidatorServiceTest extends TestCase
         $this->assertArrayHasKey('register_album', $values);
         /** @var string[] $register */
         $register = $cache->getItem('register_album')->get();
-        dump($register);
         $this->assertCount(1, $register);
     }
 }

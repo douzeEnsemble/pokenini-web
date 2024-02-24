@@ -128,10 +128,15 @@ album:
             title: Informations
         filters:
             title: Filters
+            open_distinguish_types: More
             submit:
                 label: Filter
             reset:
                 label: Reset
+            any_type:
+                label: Type
+                value:
+                    empty: All
             primary_type:
                 label: Primary type
                 value:
