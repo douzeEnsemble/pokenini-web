@@ -1,5 +1,5 @@
 function watchCatchStates() {
-  document.querySelectorAll("select").forEach(function (element) {
+  document.querySelectorAll(".album-container select").forEach(function (element) {
     element.addEventListener("change", onChangeCatchState);
   });
 }

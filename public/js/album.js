@@ -43,10 +43,10 @@ function watchScreenshotMode() {
     });
 
   document
-      .querySelectorAll('.screenshot-mode-off')
-      .forEach(function (element) {
-        element.addEventListener("click", onDisableScreenshotMode);
-      });
+    .querySelectorAll('.screenshot-mode-off')
+    .forEach(function (element) {
+      element.addEventListener("click", onDisableScreenshotMode);
+    });
 }
 
 function onEnableScreenshotMode(event) {
@@ -73,7 +73,7 @@ function onEnableScreenshotMode(event) {
   bootstrap.Tooltip.getInstance('.screenshot-mode-on').hide();
 
   swapNode(
-    document.querySelector('.screenshot-mode-off'), 
+    document.querySelector('.screenshot-mode-off'),
     document.querySelector('.screenshot-mode-on')
   );
 }
@@ -102,9 +102,29 @@ function onDisableScreenshotMode(event) {
   bootstrap.Tooltip.getInstance('.screenshot-mode-off').hide();
 
   swapNode(
-    document.querySelector('.screenshot-mode-on'), 
+    document.querySelector('.screenshot-mode-on'),
     document.querySelector('.screenshot-mode-off')
   );
+}
+
+function watchToAdjustSelectSizes() {
+  addEventListener('load', () => {adjustSelectSizes()});
+  addEventListener('resize', () => {adjustSelectSizes()});
+}
+
+function adjustSelectSizes() {
+  const selects = document.querySelectorAll(".offcanvas select[multiple]");
+  const breakpoint = 768;
+
+  console.debug(selects);
+  console.log(window.innerWidth);
+  selects.forEach(function (select) {
+    if (window.innerWidth <= breakpoint) {
+      select.size = 1;
+    } else {
+      select.size = 4;
+    }
+  });
 }
 
 // https://stackoverflow.com/a/45657360
