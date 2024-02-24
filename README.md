@@ -61,6 +61,7 @@ curl -u web:douze "https://localhost:4431/forms/category" --insecure --output te
 curl -u web:douze "https://localhost:4431/forms/regional" --insecure --output tests/resources/moco/regional_forms.json --header 'Accept: application/json'
 curl -u web:douze "https://localhost:4431/forms/special" --insecure --output tests/resources/moco/special_forms.json --header 'Accept: application/json'
 curl -u web:douze "https://localhost:4431/forms/variant" --insecure --output tests/resources/moco/variant_forms.json --header 'Accept: application/json'
+curl -u web:douze "https://localhost:4431/game_bundles" --insecure --output tests/resources/moco/game_bundles.json --header 'Accept: application/json'
 
 
 curl -u web:douze "https://localhost:4431/album/7b52009b64fd0a2a49e6d8a939753077792b0554/redgreenblueyellow" --insecure --output tests/resources/moco/album/default/redgreenblueyellow.json
@@ -91,4 +92,4 @@ Dans le container (`make sh`)
 
 ``` bash
 find tests/resources/moco -type f -name "*.json" -exec vendor/bin/jsonlint {} \;
-    ```
+```

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Controller;
 
-use App\Controller\TrainerController;
+use App\Controller\TrainerIndexController;
 use App\Security\User;
 use App\Security\UserTokenService;
-use App\Service\ApiService;
+use App\Service\Api\GetDexService;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,20 +16,10 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Twig\Environment;
 
-class TrainerControllerIndexTest extends TestCase
+class TrainerIndexControllerTest extends TestCase
 {
     public function testIndexTrainer(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-        $apiService
-            ->expects($this->once())
-            ->method('getDex')
-            ->with(
-                '1234567890'
-            )
-            ->willReturn(['douze'])
-        ;
-
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
@@ -38,6 +28,16 @@ class TrainerControllerIndexTest extends TestCase
         ;
 
         $validator = $this->createMock(ValidatorInterface::class);
+
+        $getDexService = $this->createMock(GetDexService::class);
+        $getDexService
+            ->expects($this->once())
+            ->method('get')
+            ->with(
+                '1234567890'
+            )
+            ->willReturn(['douze'])
+        ;
 
         $user = new User('1234567890');
         $user->addTrainerRole();
@@ -83,10 +83,10 @@ class TrainerControllerIndexTest extends TestCase
             )
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerIndexController(
             $userTokenService,
             $validator,
+            $getDexService,
         );
         $controller->setContainer($container);
 
@@ -99,16 +99,6 @@ class TrainerControllerIndexTest extends TestCase
 
     public function testIndexAdmin(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-        $apiService
-            ->expects($this->once())
-            ->method('getDexWithUnreleased')
-            ->with(
-                '1234567890'
-            )
-            ->willReturn(['treize'])
-        ;
-
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
@@ -117,6 +107,16 @@ class TrainerControllerIndexTest extends TestCase
         ;
 
         $validator = $this->createMock(ValidatorInterface::class);
+
+        $getDexService = $this->createMock(GetDexService::class);
+        $getDexService
+            ->expects($this->once())
+            ->method('getWithUnreleased')
+            ->with(
+                '1234567890'
+            )
+            ->willReturn(['treize'])
+        ;
 
         $user = new User('1234567890');
         $user->addAdminRole();
@@ -162,10 +162,10 @@ class TrainerControllerIndexTest extends TestCase
             )
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerIndexController(
             $userTokenService,
             $validator,
+            $getDexService,
         );
         $controller->setContainer($container);
 
@@ -182,16 +182,6 @@ class TrainerControllerIndexTest extends TestCase
      */
     public function testIndexNoRole(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-        $apiService
-            ->expects($this->once())
-            ->method('getDex')
-            ->with(
-                '1234567890'
-            )
-            ->willReturn([])
-        ;
-
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
@@ -200,6 +190,16 @@ class TrainerControllerIndexTest extends TestCase
         ;
 
         $validator = $this->createMock(ValidatorInterface::class);
+
+        $getDexService = $this->createMock(GetDexService::class);
+        $getDexService
+            ->expects($this->once())
+            ->method('get')
+            ->with(
+                '1234567890'
+            )
+            ->willReturn([])
+        ;
 
         $user = new User('1234567890');
 
@@ -244,10 +244,10 @@ class TrainerControllerIndexTest extends TestCase
             )
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerIndexController(
             $userTokenService,
             $validator,
+            $getDexService,
         );
         $controller->setContainer($container);
 
@@ -260,11 +260,11 @@ class TrainerControllerIndexTest extends TestCase
 
     public function testIndexUnauthorized(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-
         $userTokenService = $this->createMock(UserTokenService::class);
 
         $validator = $this->createMock(ValidatorInterface::class);
+
+        $getDexService = $this->createMock(GetDexService::class);
 
         $token = $this->createMock(TokenInterface::class);
         $token
@@ -292,10 +292,10 @@ class TrainerControllerIndexTest extends TestCase
             ->willReturn($tokenStorage)
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerIndexController(
             $userTokenService,
             $validator,
+            $getDexService,
         );
         $controller->setContainer($container);
 

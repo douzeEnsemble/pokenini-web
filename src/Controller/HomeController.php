@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenService;
-use App\Service\ApiService;
+use App\Service\Api\GetDexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +15,7 @@ class HomeController extends AbstractController
 {
     #[Route('')]
     public function index(
-        ApiService $apiService,
+        GetDexService $getDexService,
         UserTokenService $userTokenService,
         string $demoUserId,
     ): Response {
@@ -27,7 +27,7 @@ class HomeController extends AbstractController
             $userId = $demoUserId;
         }
 
-        $dex = $apiService->getDex($userId);
+        $dex = $getDexService->get($userId);
 
         return $this->render(
             'Home/index.html.twig',

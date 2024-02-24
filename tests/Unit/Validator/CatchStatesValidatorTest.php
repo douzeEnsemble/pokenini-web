@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Validator;
 
+use App\Service\Api\GetCatchStatesService;
 use App\Service\ApiService;
 use App\Validator\CatchStates;
 use App\Validator\CatchStatesValidator;
@@ -79,10 +80,10 @@ class CatchStatesValidatorTest extends ConstraintValidatorTestCase
 
     protected function createValidator(): CatchStatesValidator
     {
-        $apiService = $this->createMock(ApiService::class);
+        $getService = $this->createMock(GetCatchStatesService::class);
 
-        $apiService
-            ->method('getCatchStates')
+        $getService
+            ->method('get')
             ->willReturn([
                 [
                   'name' => 'No',
@@ -111,6 +112,6 @@ class CatchStatesValidatorTest extends ConstraintValidatorTestCase
               ])
         ;
 
-        return new CatchStatesValidator($apiService);
+        return new CatchStatesValidator($getService);
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Controller;
 
 use App\Controller\AdminActionController;
-use App\Service\ApiService;
+use App\Service\Api\AdminActionService;
 use App\Service\CacheInvalidatorService;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -40,7 +40,7 @@ class AdminActionControllerTest extends TestCase
             ->with('something')
         ;
 
-        $apiService = $this->createMock(ApiService::class);
+        $adminActionService = $this->createMock(AdminActionService::class);
 
         $session = $this->createMock(SessionInterface::class);
         $session
@@ -85,7 +85,7 @@ class AdminActionControllerTest extends TestCase
 
         $controller = new AdminActionController(
             $cacheInvalidatorService,
-            $apiService,
+            $adminActionService,
             $requestStack,
             $logger
         );
@@ -99,10 +99,10 @@ class AdminActionControllerTest extends TestCase
     {
         $cacheInvalidatorService = $this->createMock(CacheInvalidatorService::class);
 
-        $apiService = $this->createMock(ApiService::class);
-        $apiService
+        $adminActionService = $this->createMock(AdminActionService::class);
+        $adminActionService
             ->expects($this->once())
-            ->method('admin' . ucfirst($action))
+            ->method($action)
             ->willThrowException(new \Exception('Aouch'))
         ;
 
@@ -160,7 +160,7 @@ class AdminActionControllerTest extends TestCase
 
         $controller = new AdminActionController(
             $cacheInvalidatorService,
-            $apiService,
+            $adminActionService,
             $requestStack,
             $logger
         );

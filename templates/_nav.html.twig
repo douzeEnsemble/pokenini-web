@@ -28,7 +28,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item trainer-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    <a class="nav-link" href="{{ path('app_trainer_index') }}">
+                    <a class="nav-link" href="{{ path('app_trainerindex_index') }}">
                         <i class="bi bi-person-badge"></i>
                         {{ 'title.trainer'|trans }}
                     </a>

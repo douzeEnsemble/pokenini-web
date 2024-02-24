@@ -1,0 +1,95 @@
+{
+  "dex": {
+    "slug": "demo",
+    "original_slug": "demo",
+    "name": "Demo",
+    "french_name": "Démo",
+    "is_shiny": false,
+    "is_private": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region_name": "",
+    "region_french_name": "",
+    "description": "List of pokémons for demo purpose",
+    "french_description": "Tous les pok\u00e9mons de la démo",
+    "version": 412,
+    "is_released": true
+  },
+  "pokemons": [
+    {
+      "pokemon_slug": "venusaur-f",
+      "pokemon_name": "Venusaur \u2640",
+      "pokemon_national_dex_number": 3,
+      "pokemon_simplified_name": "Venusaur",
+      "pokemon_forms_label": "\u2640\ufe0f",
+      "pokemon_french_name": "Florizarre \u2640",
+      "pokemon_simplified_french_name": "Florizarre",
+      "pokemon_forms_french_label": "\u2640\ufe0f",
+      "pokemon_icon": "venusaur",
+      "pokemon_family_order": 3,
+      "family_lead_slug": "bulbasaur",
+      "category_form_slug": null,
+      "category_form_name": null,
+      "regional_form_slug": null,
+      "regional_form_name": null,
+      "special_form_slug": null,
+      "special_form_name": null,
+      "variant_form_slug": "gender",
+      "variant_form_name": "Gender",
+      "catch_state_slug": "tobreed",
+      "catch_state_name": "To breed",
+      "catch_state_french_name": "Af. reproduire",
+      "pokemon_regional_dex_number": null,
+      "pokemon_order_number": "999-0003-03",
+      "primary_type_slug": "grass",
+      "primary_type_name": "Grass",
+      "primary_type_french_name": "Plante",
+      "secondary_type_slug": "poison",
+      "secondary_type_name": "Poison",
+      "secondary_type_french_name": "Poison"
+    }
+  ],
+  "report": {
+    "total": 1,
+    "totalCaught": 1,
+    "totalUncaught": 2,
+    "detail": [
+      {
+        "slug": "no",
+        "name": "No",
+        "frenchName": "Non",
+        "count": 0
+      },
+      {
+        "slug": "toevolve",
+        "name": "To evolve",
+        "frenchName": "Af. \u00e9voluer",
+        "count": 0
+      },
+      {
+        "slug": "tobreed",
+        "name": "To breed",
+        "frenchName": "Af. reproduire",
+        "count": 1
+      },
+      {
+        "slug": "totransfer",
+        "name": "To transfer",
+        "frenchName": "\u00c0 transf\u00e9rer",
+        "count": 0
+      },
+      {
+        "slug": "totrade",
+        "name": "To trade",
+        "frenchName": "\u00c0 \u00e9changer",
+        "count": 0
+      },
+      {
+        "slug": "yes",
+        "name": "Yes",
+        "frenchName": "Oui",
+        "count": 0
+      }
+    ]
+  }
+}

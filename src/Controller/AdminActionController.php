@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\DTO\AdminAction;
-use App\Service\ApiService;
+use App\Service\Api\AdminActionService;
 use App\Service\CacheInvalidatorService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,7 @@ class AdminActionController extends AbstractController
 
     public function __construct(
         private readonly CacheInvalidatorService $cacheInvalidatorService,
-        private readonly ApiService $apiService,
+        private readonly AdminActionService $adminActionService,
         private readonly RequestStack $requestStack,
         private readonly LoggerInterface $logger,
     ) {
@@ -125,10 +125,10 @@ class AdminActionController extends AbstractController
     ): void {
         switch ($action) {
             case 'update':
-                $this->apiService->adminUpdate($name);
+                $this->adminActionService->update($name);
                 break;
             case 'calculate':
-                $this->apiService->adminCalculate($name);
+                $this->adminActionService->calculate($name);
                 break;
         }
 

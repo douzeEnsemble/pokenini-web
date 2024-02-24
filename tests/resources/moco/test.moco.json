@@ -73,6 +73,18 @@
   },
   {
     "request": {
+      "uri": "/game_bundles",
+      "headers": {
+        "accept": "application/json",
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/game_bundles.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/dex/f86cbe805674d85f7806b175b70647a6a9334631/list",
       "headers": {
         "accept": "application/json",
@@ -190,12 +202,457 @@
       "uri": {
         "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
       },
+      "queries": {
+        "catch_states": "yes"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo_catchstatesyes.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
+      },
+      "queries": {
+        "catch_states": "no"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo_catchstatesno.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
+      },
+      "queries": {
+        "family": "bulbasaur"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo_familybulbasaur.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
+      },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
       "file": "/var/moco/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "catch_states": "yes",
+        "family": "charmander"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_catchstatesyesfamilycharmander.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "catch_states": "tobreed",
+        "family": "bulbasaur"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_catchstatestobreedfamilybulbasaur.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "catch_states": "unknown"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_catchstatesunknown.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "catch_states": "yes"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_catchstatesyes.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "catch_states": "no"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_catchstatesno.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "family": "bulbasaur"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_familybulbasaur.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "family": "squirtle"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_familysquirtle.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "family": "mime-jr"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_familymimejr.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "family": "Nidoran ♀"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_familynidoranf.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "family": "unknown"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_familyunknown.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "special_forms[0]": "mega",
+        "special_forms[1]": "gigantamax"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0megaspecialforms1gigantamax.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "special_forms[0]": "null",
+        "special_forms[1]": "mega"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0nullspecialforms1mega.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "special_forms[0]": "",
+        "special_forms[1]": "mega"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0specialforms1mega.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "category_forms[0]": "starter"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_categoryforms0starter.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "regional_forms[0]": "paldean",
+        "variant_forms[0]": "alternate"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_regionalforms0paldeanvariantforms0alternate.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "special_forms[0]": "null"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0null.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "special_forms[0]": "unknown"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0unknown.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "special_forms[0]": "mega"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0mega.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "primary_types[0]": "fighting",
+        "secondary_types[0]": "null",
+        "secondary_types[1]": "fire",
+        "secondary_types[2]": "water"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_primarytypes0fightingsecondarytypes0nullsecondarytypes1firesecondarytypes2water.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "primary_types[0]": "fighting",
+        "secondary_types[0]": "fire",
+        "secondary_types[1]": "water"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_primarytypes0fightingsecondarytypes0firesecondarytypes1water.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "secondary_types[0]": "poison",
+        "secondary_types[1]": "flying"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_secondarytypes0poisonsecondarytypes1flying.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "secondary_types[0]": "poison",
+        "secondary_types[1]": "flying"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_secondarytypes0poisonsecondarytypes1flying.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "primary_types[0]": "fire"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_primarytypes0fire.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+      },
+      "queries": {
+        "primary_types[0]": "unknown"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_primarytypes0unknown.json"
     }
   },
   {
@@ -268,12 +725,44 @@
       "uri": {
         "match": "/album/[\\w\\d]*/demolist3"
       },
+      "queries": {
+        "catch_states": "no"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_list3_catchstatesno.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w\\d]*/demolist3"
+      },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
       "file": "/var/moco/album/default/demo_list3.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w\\d]*/demolist5"
+      },
+      "queries": {
+        "catch_states": "no"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_list5_catchstatesno.json"
     }
   },
   {
@@ -294,12 +783,44 @@
       "uri": {
         "match": "/album/[\\w\\d]*/demolist7"
       },
+      "queries": {
+        "catch_states": "no"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_list7_catchstatesno.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w\\d]*/demolist7"
+      },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
       "file": "/var/moco/album/default/demo_list7.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w\\d]*/demonotemplate"
+      },
+      "queries": {
+        "catch_states": "no"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_notemplate_catchstatesno.json"
     }
   },
   {
@@ -320,12 +841,44 @@
       "uri": {
         "match": "/album/[\\w\\d]*/demounknowntemplate"
       },
+      "queries": {
+        "catch_states": "no"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo_unknowntemplate_catchstatesno.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w\\d]*/demounknowntemplate"
+      },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
       "file": "/var/moco/album/default/demo_unknowntemplate.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/[\\w\\d]*/demolite"
+      },
+      "queries": {
+        "catch_states": "no"
+      },
+      "headers": {
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
+      }
+    },
+    "response": {
+      "file": "/var/moco/album/default/demo-lite_catchstatesno.json"
     }
   },
   {
@@ -737,7 +1290,7 @@
         "match": "/album/[\\w\\d]*/all"
       },
       "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {
@@ -750,7 +1303,7 @@
         "match": "/album/[\\w\\d]*/allshinies"
       },
       "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
+        "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
       }
     },
     "response": {

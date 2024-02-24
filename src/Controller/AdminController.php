@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\DTO\AdminAction;
-use App\Service\ApiService;
-use App\Utils\JsonDecoder;
+use App\Service\Api\GetActionLogsService;
+use App\Service\Api\GetReportsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     public function __construct(
-        private readonly ApiService $apiService
+        private readonly GetReportsService $getReportsService,
+        private readonly GetActionLogsService $getActionLogsService,
     ) {
     }
 
@@ -39,8 +40,8 @@ class AdminController extends AbstractController
             $this->addFlash('state', $adminAction->state);
         }
 
-        $reportsData = $this->apiService->getReports();
-        $actionLogsData = $this->apiService->getActionLogs();
+        $reportsData = $this->getReportsService->get();
+        $actionLogsData = $this->getActionLogsService->get();
 
         return $this->render(
             'Admin/index.html.twig',

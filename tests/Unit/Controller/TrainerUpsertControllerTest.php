@@ -4,50 +4,24 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Controller;
 
-use App\Controller\TrainerController;
+use App\Controller\TrainerUpsertController;
 use App\Security\UserTokenService;
-use App\Service\ApiService;
+use App\Service\Api\ModifyDexService;
+use App\Service\CacheInvalidator\AlbumCacheInvalidatorService;
+use App\Service\CacheInvalidator\DexCacheInvalidatorService;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpClient\Exception\TransportException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class TrainerControllerUpsertTest extends TestCase
+class TrainerUpsertControllerTest extends TestCase
 {
     public function testUpsert(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-        $apiService
-            ->expects($this->once())
-            ->method('modifyDex')
-            ->with(
-                'douze',
-                '{}',
-                '1234567890'
-            )
-        ;
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheAlbum')
-            ->with(
-                'douze',
-                '1234567890'
-            )
-        ;
-        $apiService
-            ->expects($this->once())
-            ->method('invalidateCacheDexByTrainerId')
-            ->with(
-                '1234567890'
-            )
-        ;
-
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
@@ -64,6 +38,36 @@ class TrainerControllerUpsertTest extends TestCase
             )
         ;
 
+        $modifyDexService = $this->createMock(ModifyDexService::class);
+        $modifyDexService
+            ->expects($this->once())
+            ->method('modify')
+            ->with(
+                'douze',
+                '{}',
+                '1234567890'
+            )
+        ;
+
+        $albumCacheInvalidatorService = $this->createMock(AlbumCacheInvalidatorService::class);
+        $albumCacheInvalidatorService
+            ->expects($this->once())
+            ->method('invalidate')
+            ->with(
+                'douze',
+                '1234567890'
+            )
+        ;
+
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+        $dexCacheInvalidatorService
+            ->expects($this->once())
+            ->method('invalidateByTrainerId')
+            ->with(
+                '1234567890'
+            )
+        ;
+
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
             ->expects($this->once())
@@ -83,10 +87,12 @@ class TrainerControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerUpsertController(
             $userTokenService,
             $validator,
+            $modifyDexService,
+            $albumCacheInvalidatorService,
+            $dexCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -99,18 +105,21 @@ class TrainerControllerUpsertTest extends TestCase
 
         $response = $controller->upsert('douze', $request);
 
-        $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEmpty($response->getContent());
     }
 
     public function testUpsertBadContent(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-
         $userTokenService = $this->createMock(UserTokenService::class);
 
         $validator = $this->createMock(ValidatorInterface::class);
+
+        $modifyDexService = $this->createMock(ModifyDexService::class);
+
+        $albumCacheInvalidatorService = $this->createMock(AlbumCacheInvalidatorService::class);
+
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
@@ -131,10 +140,12 @@ class TrainerControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerUpsertController(
             $userTokenService,
             $validator,
+            $modifyDexService,
+            $albumCacheInvalidatorService,
+            $dexCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -147,7 +158,6 @@ class TrainerControllerUpsertTest extends TestCase
 
         $response = $controller->upsert('douze', $request);
 
-        $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(400, $response->getStatusCode());
         $this->assertEquals(
             '{"error":"Content must be a non-empty string"}',
@@ -157,11 +167,15 @@ class TrainerControllerUpsertTest extends TestCase
 
     public function testUpsertEmptyContent(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-
         $userTokenService = $this->createMock(UserTokenService::class);
 
         $validator = $this->createMock(ValidatorInterface::class);
+
+        $modifyDexService = $this->createMock(ModifyDexService::class);
+
+        $albumCacheInvalidatorService = $this->createMock(AlbumCacheInvalidatorService::class);
+
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
@@ -182,10 +196,12 @@ class TrainerControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerUpsertController(
             $userTokenService,
             $validator,
+            $modifyDexService,
+            $albumCacheInvalidatorService,
+            $dexCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -198,7 +214,6 @@ class TrainerControllerUpsertTest extends TestCase
 
         $response = $controller->upsert('douze', $request);
 
-        $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(400, $response->getStatusCode());
         $this->assertEquals(
             '{"error":"Content must be a non-empty string"}',
@@ -208,8 +223,6 @@ class TrainerControllerUpsertTest extends TestCase
 
     public function testUpsertInvalidContent(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-
         $userTokenService = $this->createMock(UserTokenService::class);
 
         $validator = $this->createMock(ValidatorInterface::class);
@@ -230,6 +243,12 @@ class TrainerControllerUpsertTest extends TestCase
             )
         ;
 
+        $modifyDexService = $this->createMock(ModifyDexService::class);
+
+        $albumCacheInvalidatorService = $this->createMock(AlbumCacheInvalidatorService::class);
+
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
+
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
             ->expects($this->once())
@@ -249,10 +268,12 @@ class TrainerControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerUpsertController(
             $userTokenService,
             $validator,
+            $modifyDexService,
+            $albumCacheInvalidatorService,
+            $dexCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -265,7 +286,6 @@ class TrainerControllerUpsertTest extends TestCase
 
         $response = $controller->upsert('douze', $request);
 
-        $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(400, $response->getStatusCode());
         $this->assertEquals(
             '{"error":"Alors en fait, non"}',
@@ -275,10 +295,19 @@ class TrainerControllerUpsertTest extends TestCase
 
     public function testUpsertApiException(): void
     {
-        $apiService = $this->createMock(ApiService::class);
-        $apiService
+        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService
             ->expects($this->once())
-            ->method('modifyDex')
+            ->method('getLoggedUserToken')
+            ->willReturn('1234567890')
+        ;
+
+        $validator = $this->createMock(ValidatorInterface::class);
+
+        $modifyDexService = $this->createMock(ModifyDexService::class);
+        $modifyDexService
+            ->expects($this->once())
+            ->method('modify')
             ->willThrowException(
                 new TransportException('Whoops!')
             )
@@ -289,14 +318,9 @@ class TrainerControllerUpsertTest extends TestCase
             )
         ;
 
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('1234567890')
-        ;
+        $albumCacheInvalidatorService = $this->createMock(AlbumCacheInvalidatorService::class);
 
-        $validator = $this->createMock(ValidatorInterface::class);
+        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
 
         $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $authorizationChecker
@@ -317,10 +341,12 @@ class TrainerControllerUpsertTest extends TestCase
             ->willReturn($authorizationChecker)
         ;
 
-        $controller = new TrainerController(
-            $apiService,
+        $controller = new TrainerUpsertController(
             $userTokenService,
             $validator,
+            $modifyDexService,
+            $albumCacheInvalidatorService,
+            $dexCacheInvalidatorService,
         );
         $controller->setContainer($container);
 
@@ -333,7 +359,6 @@ class TrainerControllerUpsertTest extends TestCase
 
         $response = $controller->upsert('douze', $request);
 
-        $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals(500, $response->getStatusCode());
         $this->assertEquals('{"error":"Whoops!"}', $response->getContent());
     }

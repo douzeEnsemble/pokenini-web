@@ -45,6 +45,49 @@ class KeyMakerTest extends TestCase
     {
         $this->assertEquals('album_douze_12', KeyMaker::getPokedexKey('douze', '12'));
         $this->assertEquals('album_toto_0', KeyMaker::getPokedexKey('toto', '0'));
+        $this->assertEquals(
+            'album_toto_0_csno_fpichu',
+            KeyMaker::getPokedexKey(
+                'toto',
+                '0',
+                [
+                    'cs' => 'no',
+                    'f' => 'pichu',
+                ],
+            )
+        );
+        $this->assertEquals(
+            'album_toto_0_fcun_fcdos_fctres',
+            KeyMaker::getPokedexKey(
+                'toto',
+                '0',
+                [
+                    'fc' => [
+                        'un',
+                        'dos',
+                        'tres',
+                    ],
+                ],
+            )
+        );
+        $this->assertEquals(
+            'album_toto_0_fcun_fcdos_fctres_t1normal_t1water',
+            KeyMaker::getPokedexKey(
+                'toto',
+                '0',
+                [
+                    'fc' => [
+                        'un',
+                        'dos',
+                        'tres',
+                    ],
+                    't1' => [
+                        'normal',
+                        'water',
+                    ],
+                ],
+            )
+        );
     }
 
     public function testGetRegisterTypeKey(): void
