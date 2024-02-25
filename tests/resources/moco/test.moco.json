@@ -203,7 +203,7 @@
         "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
       },
       "queries": {
-        "catch_states": "yes"
+        "catch_states[0]": "yes"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -219,7 +219,7 @@
         "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
       },
       "queries": {
-        "catch_states": "no"
+        "catch_states[0]": "no"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -235,7 +235,7 @@
         "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
       },
       "queries": {
-        "family": "bulbasaur"
+        "families[0]": "bulbasaur"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -264,8 +264,8 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "catch_states": "yes",
-        "family": "charmander"
+        "catch_states[0]": "yes",
+        "families[0]": "charmander"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -281,8 +281,8 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "catch_states": "tobreed",
-        "family": "bulbasaur"
+        "catch_states[0]": "tobreed",
+        "families[0]": "bulbasaur"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -298,7 +298,7 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "catch_states": "unknown"
+        "catch_states[0]": "unknown"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -314,7 +314,7 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "catch_states": "yes"
+        "catch_states[0]": "yes"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -330,7 +330,7 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "catch_states": "no"
+        "catch_states[0]": "no"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -346,7 +346,7 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "family": "bulbasaur"
+        "families[0]": "bulbasaur"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -362,7 +362,7 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "family": "squirtle"
+        "families[0]": "squirtle"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -378,7 +378,7 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "family": "mime-jr"
+        "families[0]": "mime-jr"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -394,7 +394,7 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "family": "Nidoran ♀"
+        "families[0]": "Nidoran ♀"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -410,7 +410,7 @@
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
       },
       "queries": {
-        "family": "unknown"
+        "families[0]": "unknown"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -758,7 +758,7 @@
         "match": "/album/[\\w\\d]*/demolist3"
       },
       "queries": {
-        "catch_states": "no"
+        "catch_states[0]": "no"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -787,7 +787,7 @@
         "match": "/album/[\\w\\d]*/demolist5"
       },
       "queries": {
-        "catch_states": "no"
+        "catch_states[0]": "no"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -816,7 +816,7 @@
         "match": "/album/[\\w\\d]*/demolist7"
       },
       "queries": {
-        "catch_states": "no"
+        "catch_states[0]": "no"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -845,7 +845,7 @@
         "match": "/album/[\\w\\d]*/demonotemplate"
       },
       "queries": {
-        "catch_states": "no"
+        "catch_states[0]": "no"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -874,7 +874,7 @@
         "match": "/album/[\\w\\d]*/demounknowntemplate"
       },
       "queries": {
-        "catch_states": "no"
+        "catch_states[0]": "no"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="
@@ -903,7 +903,7 @@
         "match": "/album/[\\w\\d]*/demolite"
       },
       "queries": {
-        "catch_states": "no"
+        "catch_states[0]": "no"
       },
       "headers": {
         "Authorization": "Basic d2ViOiQyeSQxMyRtUlV1R3g5LmM1Tzhhc1NTN05ycE9PamVOWGJhVU4wVDExM2xQYUJQYlA0b0xzU1R2Uk01dQ=="

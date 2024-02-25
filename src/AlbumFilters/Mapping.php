@@ -8,7 +8,7 @@ class Mapping
 {
     private const FILTERS = [
         'cs' => 'catch_states',
-        'f' => 'family',
+        'f' => 'families',
         'fc' => 'category_forms',
         'fr' => 'regional_forms',
         'fs' => 'special_forms',
@@ -32,7 +32,7 @@ class Mapping
 
         foreach ($filters as $filterName => $value) {
             $newKey = self::FILTERS[$filterName];
-            $mappedFilters[$newKey] = $value;
+            $mappedFilters[$newKey] = is_array($value) ? $value : [$value];
         }
 
         return $mappedFilters;

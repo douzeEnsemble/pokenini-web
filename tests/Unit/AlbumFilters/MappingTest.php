@@ -11,7 +11,18 @@ class MappingTest extends TestCase
 {
     public function testGet(): void
     {
-        $filters = Mapping::get([
+        $this->assertEquals(
+            self::getExpectedData(),
+            Mapping::get(self::getMappingData()),
+        );
+    }
+
+    /**
+     * @return string[]|string[][]
+     */
+    public static function getMappingData(): array
+    {
+        return [
             'cs' => 'no',
             'f' => 'pichu',
             'fc' => [
@@ -54,11 +65,21 @@ class MappingTest extends TestCase
                 'gbsa1',
                 'gbsa2',
             ],
-        ]);
+        ];
+    }
 
-        $expectedData = [
-            'catch_states' => 'no',
-            'family' => 'pichu',
+    /**
+     * @return string[][]
+     */
+    public static function getExpectedData(): array
+    {
+        return [
+            'catch_states' => [
+                'no'
+            ],
+            'families' => [
+                'pichu'
+            ],
             'category_forms' => [
                 'cat1',
                 'cat2',
@@ -100,10 +121,5 @@ class MappingTest extends TestCase
                 'gbsa2',
             ],
         ];
-
-        $this->assertEquals(
-            $filters,
-            $expectedData,
-        );
     }
 }
