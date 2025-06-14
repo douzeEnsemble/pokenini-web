@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Common;
 
-use App\Controller\AdminCalculateController;
-use App\Controller\AdminUpdateController;
-use App\Tests\Common\Traits\TestNavTrait;
+use App\Controller\AlbumUpsertController;
 use App\Controller\ConnectController;
 use App\Controller\HomeController;
 use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -19,8 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(HomeController::class)]
 #[CoversClass(ConnectController::class)]
-#[CoversClass(AdminUpdateController::class)]
-#[CoversClass(AdminCalculateController::class)]
+#[CoversClass(AlbumUpsertController::class)]
 class CommonItemsTest extends WebTestCase
 {
     use TestNavTrait;

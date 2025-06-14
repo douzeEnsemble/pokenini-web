@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Trainer;
 
-use App\Controller\DexController;
-use App\Tests\Common\Traits\TestNavTrait;
+use App\Controller\AlbumDexController;
 use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * @internal
  */
-#[CoversClass(DexController::class)]
+#[CoversClass(AlbumDexController::class)]
 class ActionTest extends WebTestCase
 {
     use TestNavTrait;

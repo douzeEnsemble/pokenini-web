@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Browser\Admin;
 
-use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Security\User;
+use App\Tests\Browser\AbstractBrowserTestCase;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;

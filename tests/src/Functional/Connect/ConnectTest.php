@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Connect;
 
-use App\Tests\Common\Traits\TestNavTrait;
 use App\Controller\ConnectController;
+use App\Tests\Common\Traits\TestNavTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;

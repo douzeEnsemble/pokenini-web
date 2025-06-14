@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Admin;
 
-use App\Tests\Common\Traits\TestNavTrait;
 use App\Controller\AdminActionController;
 use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

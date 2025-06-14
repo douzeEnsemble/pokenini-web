@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Album\Action;
 
-use App\Service\TrainerDexService;
 use App\Controller\AlbumUpsertController;
 use App\Security\User;
+use App\Service\ModifyTrainerDexService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  */
 #[CoversClass(AlbumUpsertController::class)]
-#[CoversClass(TrainerDexService::class)]
+#[CoversClass(ModifyTrainerDexService::class)]
 class UpdateTest extends WebTestCase
 {
     public function testUpdateConnected(): void

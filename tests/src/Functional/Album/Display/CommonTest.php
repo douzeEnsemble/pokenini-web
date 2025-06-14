@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Album\Display;
 
-use App\Service\PokedexService;
-use App\Tests\Common\Traits\TestNavTrait;
 use App\Controller\AlbumIndexController;
 use App\Security\User;
+use App\Service\GetTrainerPokedexService;
+use App\Tests\Common\Traits\TestNavTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  */
 #[CoversClass(AlbumIndexController::class)]
-#[CoversClass(PokedexService::class)]
+#[CoversClass(GetTrainerPokedexService::class)]
 class CommonTest extends WebTestCase
 {
     use TestNavTrait;

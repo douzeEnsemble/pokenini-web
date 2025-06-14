@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Controller;
 
-use App\Service\TrainerDexService;
 use App\Controller\AlbumUpsertController;
 use App\Exception\EmptyContentException;
 use App\Exception\InvalidJsonException;
@@ -21,7 +20,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  * @internal
  */
 #[CoversClass(AlbumUpsertController::class)]
-#[CoversClass(TrainerDexService::class)]
+#[CoversClass(ModifyTrainerAlbumService::class)]
 class AlbumUpsertControllerTest extends TestCase
 {
     public function testUpsert(): void

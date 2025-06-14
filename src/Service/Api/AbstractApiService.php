@@ -14,7 +14,7 @@ abstract class AbstractApiService implements ApiServiceInterface
     public function __construct(
         protected readonly LoggerInterface $logger,
         protected readonly HttpClientInterface $client,
-        protected readonly string $appApiUrl,
+        protected readonly string $apiUrl,
         protected readonly TagAwareCacheInterface $cache,
         protected readonly string $apiLogin,
         protected readonly string $apiPassword
@@ -35,7 +35,7 @@ abstract class AbstractApiService implements ApiServiceInterface
 
         $response = $this->client->request(
             $method,
-            "{$this->appApiUrl}$endpointUrl",
+            "{$this->apiUrl}$endpointUrl",
             array_merge(
                 [
                     'headers' => [

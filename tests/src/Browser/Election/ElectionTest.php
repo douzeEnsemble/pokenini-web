@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Browser\Election;
 
+use App\Security\User;
 use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
-use App\Security\User;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
 

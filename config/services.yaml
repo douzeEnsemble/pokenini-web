@@ -3,7 +3,7 @@ services:
         autowire: true
         autoconfigure: true
         bind:
-            string $appApiUrl: '%env(APP_API_URL)%'
+            string $apiUrl: '%env(API_URL)%'
             string $listAdmin: '%env(LIST_ADMIN)%'
             string $listTrainer: '%env(LIST_TRAINER)%'
             string $listCollector: '%env(LIST_COLLECTOR)%'

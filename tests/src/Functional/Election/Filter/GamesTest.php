@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Election\Filter;
 
-use App\Tests\Common\Traits\TestNavTrait;
 use App\Controller\ElectionIndexController;
 use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
