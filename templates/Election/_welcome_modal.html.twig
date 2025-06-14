@@ -1,0 +1,28 @@
+<div id="election-modal-welcome" class="modal" tabindex="-1">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">{{ 'election.welcome.title'|trans }}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-animation="none" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="ms-xl-3 ms-lg-1 ms-0 row">
+					<h6>{{ 'election.welcome.subtitle'|trans }}</h6>
+					<p>{{ 'election.welcome.description'|trans|nl2br }}</p>
+				</div>
+				<form class="mt-lx-3 mt-lg-2 mt-0 mb-xl-3 mb-lg-2 mb-0" method="get" action="#">
+					<div class="ms-xl-3 ms-lg-1 ms-0 row">
+						<h6>{{ 'election.filters.anytype.title'|trans }}</h6>
+						<p class="text-body-secondary">{{ 'election.filters.anytype.help'|trans }}</p>
+						{{ include('Election/_anytypes_filters.html.twig') }}
+					</div>
+					<div class="mt-3 d-flex justify-content-center">
+						<button type="submit" class="btn btn-outline-primary btn-xl">
+							{{ 'election.welcome.submit.label'|trans }}
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

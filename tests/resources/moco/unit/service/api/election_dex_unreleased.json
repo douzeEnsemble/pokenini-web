@@ -1,0 +1,28 @@
+[
+  {
+    "slug": "homeshiny",
+    "original_slug": "homeshiny",
+    "name": "Home Shiny",
+    "french_name": "Home Shiny",
+    "is_shiny": false,
+    "is_display_form": true,
+    "description": "",
+    "french_description": "",
+    "is_released": true,
+    "is_premium": false,
+    "dex_total_count": 22
+  },
+  {
+    "slug": "redgreenblueyellowshiny",
+    "original_slug": "redgreenblueyellowshiny",
+    "name": "Red / Green / Blue / Yellow (Shiny)",
+    "french_name": "Rouge / Vert / Bleu / Jaune (Chromatique)",
+    "is_shiny": false,
+    "is_display_form": true,
+    "description": "The list of obtainable Pokémons in Red, Blue, Yellow and even Green games",
+    "french_description": "La liste des pokémons obtenable dans les jeux Rouge, Bleu, Jaune et même Vert.",
+    "is_released": false,
+    "is_premium": false,
+    "dex_total_count": 7
+  }
+]

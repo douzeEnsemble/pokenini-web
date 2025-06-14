@@ -1,0 +1,14 @@
+twig:
+    file_name_pattern: '*.twig'
+    default_path: '%kernel.project_dir%/templates'
+    globals:
+        pokemonIconUrl: '%env(POKEMON_ICON_URL)%'
+        pokemonImageUrl: '%env(POKEMON_IMAGE_URL)%'
+        pokemonTypeIconUrl: '%env(POKEMON_TYPE_ICON_URL)%'
+        dexBannerUrl: '%env(DEX_BANNER_URL)%'
+        matomoUrl: '%env(MATOMO_URL)%'
+        matomoSiteId: '%env(MATOMO_SITE_ID)%'
+
+when@test:
+    twig:
+        strict_variables: true

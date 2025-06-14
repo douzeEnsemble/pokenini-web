@@ -1,0 +1,78 @@
+{% set locale = app.request.locale %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'title.connect'|trans }}{% endblock title %}
+
+{% block container %}
+
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1>{{ 'title.connect'|trans }}</h1>
+
+        <p class="text-body-secondary mt-2 text-start">{{ 'connect.disclaimer'|trans|nl2br }}</p>
+        <p class="text-body-secondary mt-2 text-start">{{ 'connect.help'|trans|nl2br }}</p>
+
+        <div class="row mt-5">
+            <ul class="nav nav-pills nav-fill justify-content-center">
+                <li class="nav-item mt-3 mt-sm-2 mt-md-1">
+                    <a class="btn btn-outline-primary btn-lg" href="{{ path('app_web_connect_amazon_goto') }}">
+                        <i class="bi bi-amazon"></i>
+                        Amazon
+                    </a>
+                </li>
+                <li class="nav-item mt-3 mt-sm-2 mt-md-1">
+                    <a class="btn btn-outline-primary btn-lg" href="{{ path('app_web_connect_discord_goto') }}">
+                        <i class="bi bi-discord"></i>
+                        Discord
+                    </a>
+                </li>
+                <li class="nav-item mt-3 mt-sm-2 mt-md-1">
+                    <a class="btn btn-outline-primary btn-lg" href="{{ path('app_web_connect_google_goto') }}">
+                        <i class="bi bi-google"></i>
+                        Google
+                    </a>
+                </li>
+                <li class="nav-item mt-3 mt-sm-2 mt-md-1">
+                    <a class="btn btn-outline-primary btn-lg" href="{{ path('app_web_connect_passage_goto') }}">
+                        <i class="bi bi-p-circle"></i>
+                        Passage
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        {% if app.environment == 'dev' %}
+        <div class="row mt-5">
+            <ul class="nav nav-pills nav-fill justify-content-center">
+                <li class="nav-item mt-3 mt-sm-2 mt-md-1">
+                    <a class="btn btn-outline-secondary btn-lg" href="{{ path('app_web_connect_fake_check', {'t': 'admin'}) }}">
+                        <i class="bi bi-person-gear"></i>
+                        Fake as <strong>Admin</strong>
+                    </a>
+                </li>
+                <li class="nav-item mt-3 mt-sm-2 mt-md-1">
+                    <a class="btn btn-outline-secondary btn-lg" href="{{ path('app_web_connect_fake_check', {'t': 'collector'}) }}">
+                        <i class="bi bi-person-hearts"></i>
+                        Fake as <strong>Collector</strong>
+                    </a>
+                </li>
+                <li class="nav-item mt-3 mt-sm-2 mt-md-1">
+                    <a class="btn btn-outline-secondary btn-lg" href="{{ path('app_web_connect_fake_check', {'t': 'trainer'}) }}">
+                        <i class="bi bi-person"></i>
+                        Fake as <strong>Trainer</strong>
+                    </a>
+                </li>
+                <li class="nav-item mt-3 mt-sm-2 mt-md-1">
+                    <a class="btn btn-outline-secondary btn-lg" href="{{ path('app_web_connect_fake_check', {'t': 'uninvited'}) }}">
+                        <i class="bi bi-person-slash"></i>
+                        Fake as <strong>Uninvited</strong>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock container %}

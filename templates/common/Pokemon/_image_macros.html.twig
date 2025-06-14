@@ -1,0 +1,59 @@
+{% macro regularPokemonIcon(item, locale, classMore) %}
+    {{ _self.pokemonIcon(
+        item,
+        'regular',
+        locale,
+        classMore,
+    ) }}
+{% endmacro %}
+{% macro shinyPokemonIcon(item, locale, classMore) %}
+    {{ _self.pokemonIcon(
+        item,
+        'shiny',
+        locale,
+        classMore,
+    ) }}
+{% endmacro %}
+{% macro pokemonIcon(item, dir, locale, classMore) %}
+    {% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
+
+    {% set iconUrl = pokemonIconUrl|format(dir, item.pokemon_icon) %}
+
+    <img
+        alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"
+        class="pokemon-icon img-fluid {{ classMore }}"
+        src="{{ iconUrl }}"
+        loading="lazy"
+        onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
+    />
+{% endmacro %}
+
+{% macro regularPokemonImage(item, locale, classMore) %}
+    {{ _self.pokemonImage(
+        item,
+        'regular',
+        locale,        
+        classMore,
+    ) }}
+{% endmacro %}
+{% macro shinyPokemonImage(item, locale, classMore) %}
+    {{ _self.pokemonImage(
+        item,
+        'shiny',
+        locale,        
+        classMore,
+    ) }}
+{% endmacro %}
+{% macro pokemonImage(item, dir, locale, classMore) %}
+    {% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
+
+    {% set imageUrl = pokemonImageUrl|format(dir, item.pokemon_icon) %}
+
+    <img
+        alt="{{ ('album.image.alt.'~dir)|trans }} {{ pokemonName }}"
+        class="album-modal-image card-img img-fluid {{ classMore }}"
+        src="{{ imageUrl }}"
+        loading="lazy"
+        onerror="this.onerror=null;this.src='/img/pokemon/default_image.webp';"
+    />
+{% endmacro %}

@@ -1,0 +1,17 @@
+when@dev:
+    _errors:
+        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
+        prefix: /{_locale}/_error
+        defaults: 
+            _locale: 'fr'
+        requirements:
+            _locale: 'en|fr'
+
+when@test:
+    _errors:
+        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
+        prefix: /{_locale}/_error
+        defaults: 
+            _locale: 'fr'
+        requirements:
+            _locale: 'en|fr'

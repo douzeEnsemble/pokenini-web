@@ -1,0 +1,51 @@
+{% set locale = app.request.locale %}
+
+{% import "Admin/_macros.html.twig" as admin %}
+
+{% set items = app.flashes('item') %}
+{% set actions = app.flashes('action') %}
+{% set states = app.flashes('state') %}
+
+{% set updatedItem = items[0] is defined ? items[0] : null %}
+{% set updatedAction = actions[0] is defined ? actions[0] : null %}
+{% set updatedState = states[0] is defined ? states[0] : null %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini
+	{{ 'title.admin'|trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock stylesheets %}
+
+{% block container %}
+    {% include 'Admin/_actions.html.twig' %}
+    {% include 'Admin/_reports.html.twig' %}
+{% endblock %}
+
+{% block head_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin.js') }}"></script>
+{% endblock head_javascripts %}
+
+{% block foot_javascript %}
+    {{ parent() }}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.1.2/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/patternomaly@1.3.2/dist/patternomaly.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js" integrity="sha256-IMCPPZxtLvdt9tam8RJ8ABMzn+Mq3SQiInbDmMYwjDg=" crossorigin="anonymous"></script>
+
+    <script type="application/javascript">
+    (function() {
+        watchActionLogToggles();
+    })();
+    </script>
+
+    {% include 'Admin/_reports_scripts.html.twig' %}
+    </script>
+{% endblock %}

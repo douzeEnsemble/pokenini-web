@@ -1,0 +1,114 @@
+{% set currentRouteParameters = app.request.get('_route_params') %}
+
+<div class="report-container">
+    <h2 id="stats">
+        {{ 'title.report'|trans }}
+    </h2>
+
+    <div class="progress mb-2">
+        {% set progressBarReport = filteredReport is not empty ? filteredReport : report %}
+        {% for line in progressBarReport.detail %}
+            {% set count = line.slug is same as('no') ? progressBarReport.totalUncaught : line.count %}
+            {% set completion = progressBarReport.total ? (100 * count / progressBarReport.total)|round(2) : 0 %}
+            <div class="progress-bar catch-state-{{ line.slug }}"
+                role="progressbar"
+                aria-label="{{ locale is same as('fr') ? line.frenchName : line.name }}"
+                style="width: {{ completion }}%;"
+                aria-valuenow="{{ completion }}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+            >
+                {{ line.slug is same as('no') or line.slug is same as('yes') ? completion~'%' : '' }}
+            </div>
+        {% endfor %}
+    </div>
+    <table class="table table-hover table-bordered" id="report">
+        <tbody>
+        {% for line in report.detail %}
+            {% set catchStateLabel = locale is same as('fr') ? line.frenchName : line.name %}
+            <tr class="catch-state-{{ line.slug }}">
+                <th>
+                    <span class="float-start">{{ catchStateLabel }}</span>
+                    <span class="float-end">
+                        <a href="{{
+                            path(
+                                'app_web_albumindex_index',
+                                filters
+                                    |merge({
+                                        'dexSlug': currentDexSlug,
+                                        't': ((requestedTrainerId is not empty) ? requestedTrainerId : null),
+                                        'cs': line.slug,
+                                        })
+                                    |ksort
+                            )
+                        }}"
+                            class="{{ filters['cs'] is defined and filters['cs'] == line.slug ? 'text-light': '' }}"
+                            data-bs-toggle="tooltip" data-bs-title="{{- 'dex.filters.catch_states.positive'|trans({'cs': catchStateLabel}) -}}"
+                        >
+                            <i class="bi bi-filter-circle"></i>
+                        </a>
+                        <a href="{{
+                            path(
+                                'app_web_albumindex_index',
+                                filters
+                                    |merge({
+                                        'dexSlug': currentDexSlug,
+                                        't': ((requestedTrainerId is not empty) ? requestedTrainerId : null),
+                                        'cs': '!'~line.slug,
+                                        })
+                                    |ksort
+                            )
+                        }}"
+                            class="{{ filters['cs'] is defined and filters['cs'] == '!'~line.slug ? 'text-light': '' }}"
+                            data-bs-toggle="tooltip" data-bs-title="{{- 'dex.filters.catch_states.negative'|trans({'cs': catchStateLabel}) -}}"
+                        >
+                            <i class="bi bi-filter-circle-fill"></i>
+                        </a>
+                    </span>
+                </th>
+                <td class="text-end">
+                    {% if filteredReport is not empty %}
+                    {% set filteredLine = filteredReport.detail[loop.index0] %}
+                    {{ (filteredLine.slug is same as('no') ? filteredReport.totalUncaught : filteredLine.count)|format_number }}
+                    {% endif %}
+                </td>
+                <td class="text-start">
+                    {{ (line.slug is same as('no') ? report.totalUncaught : line.count)|format_number }}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr class="catch-state-total">
+            <th>
+                <span class="float-start">{{ 'stats.total'|trans }}</span>
+                <span class="float-end">
+                    <a href="{{
+                        path(
+                            'app_web_albumindex_index',
+                            filters
+                                |filter((value, key) => key != 'cs')
+                                |merge({
+                                    'dexSlug': currentDexSlug,
+                                    't': ((requestedTrainerId is not empty) ? requestedTrainerId : null),
+                                }
+                                |merge(currentRouteParameters))
+                                |ksort
+                            )
+                    }}"
+                        data-bs-toggle="tooltip" data-bs-title="{{- 'dex.filters.catch_states.total'|trans -}}"
+                    >
+                        <i class="bi bi-funnel{{ filters['cs'] is defined ? '-fill' : '' }}"></i>
+                    </a>
+                </span>
+            </th>
+            <th class="text-end">
+                {% if filteredReport is not empty %}
+                {{ filteredReport.total }}
+                {% endif %}
+            </th>
+            <th class="text-start">
+                {{ report.total }}
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</div>

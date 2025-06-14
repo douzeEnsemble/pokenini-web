@@ -1,0 +1,66 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property App\\\\Exception\\\\EmptyContentException\\:\\:\\$message has no type specified\\.$#"
+			count: 1
+			path: src/Exception/EmptyContentException.php
+
+		-
+			message: "#^Property App\\\\Exception\\\\InvalidJsonException\\:\\:\\$message has no type specified\\.$#"
+			count: 1
+			path: src/Exception/InvalidJsonException.php
+
+		-
+			message: "#^Property App\\\\Exception\\\\ModifyFailedException\\:\\:\\$message has no type specified\\.$#"
+			count: 1
+			path: src/Exception/ModifyFailedException.php
+
+		-
+			message: "#^Method App\\\\Security\\\\User\\:\\:getUserIdentifier\\(\\) should return non\\-empty\\-string but returns string\\.$#"
+			count: 1
+			path: src/Security/User.php
+
+		-
+			message: "#^Parameter \\#1 \\$constraint of method PHPUnit\\\\Framework\\\\MockObject\\\\InvocationStubber\\:\\:method\\(\\) expects PHPUnit\\\\Framework\\\\Constraint\\\\Constraint\\|PHPUnit\\\\Framework\\\\MockObject\\\\Runtime\\\\PropertyHook\\|non\\-empty\\-string, string given\\.$#"
+			count: 1
+			path: tests/src/Unit/Controller/AdminActionControllerTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionMetrics constructor expects array\\<float\\|int\\>, array\\<string, int\\|string\\> given\\.$#"
+			count: 7
+			path: tests/src/Unit/DTO/ElectionMetricsTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionPokemonsList constructor expects array\\{type\\: string, items\\: array\\<int, array\\<int\\|string\\|null\\>\\>\\}, array\\{items\\: array\\{array\\{pokemon_slug\\: 'pichu', regional_form_slug\\: null, pokemon_family_order\\: 0\\}, array\\{pokemon_slug\\: 'raichu', regional_form_slug\\: null, pokemon_family_order\\: 2\\}\\}\\} given\\.$#"
+			count: 1
+			path: tests/src/Unit/DTO/ElectionPokemonsListTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionPokemonsList constructor expects array\\{type\\: string, items\\: array\\<int, array\\<int\\|string\\|null\\>\\>\\}, array\\{type\\: 'pick', items\\: array\\{'pichu', 'raichu'\\}\\} given\\.$#"
+			count: 1
+			path: tests/src/Unit/DTO/ElectionPokemonsListTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionPokemonsList constructor expects array\\{type\\: string, items\\: array\\<int, array\\<int\\|string\\|null\\>\\>\\}, array\\{type\\: 'pick'\\} given\\.$#"
+			count: 1
+			path: tests/src/Unit/DTO/ElectionPokemonsListTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionPokemonsList constructor expects array\\{type\\: string, items\\: array\\<int, array\\<int\\|string\\|null\\>\\>\\}, array\\{type\\: 12, items\\: array\\{array\\{pokemon_slug\\: 'pichu', regional_form_slug\\: null, pokemon_family_order\\: 0\\}, array\\{pokemon_slug\\: 'raichu', regional_form_slug\\: null, pokemon_family_order\\: 2\\}\\}\\} given\\.$#"
+			count: 1
+			path: tests/src/Unit/DTO/ElectionPokemonsListTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionVote constructor expects array\\<array\\<string\\>\\|string\\>, array\\<string, array\\<int, int\\|string\\>\\|string\\> given\\.$#"
+			count: 1
+			path: tests/src/Unit/DTO/ElectionVoteTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionVote constructor expects array\\<array\\<string\\>\\|string\\>, array\\<string, array\\<int, string\\>\\|int\\> given\\.$#"
+			count: 1
+			path: tests/src/Unit/DTO/ElectionVoteTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionVote constructor expects array\\<array\\<string\\>\\|string\\>, array\\<string, array\\<int, string\\>\\|string\\|false\\> given\\.$#"
+			count: 1
+			path: tests/src/Unit/DTO/ElectionVoteTest.php

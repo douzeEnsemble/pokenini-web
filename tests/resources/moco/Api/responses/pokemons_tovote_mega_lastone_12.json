@@ -1,0 +1,38 @@
+{
+    "type": "vote",
+    "items": [
+        {
+            "pokemon_slug": "audino-mega",
+            "pokemon_name": "Mega Audino",
+            "pokemon_national_dex_number": 531,
+            "pokemon_simplified_name": "Audino",
+            "pokemon_forms_label": "Mega",
+            "pokemon_french_name": "Mega Nanm\u00e9ou\u00efe",
+            "pokemon_simplified_french_name": "Nanm\u00e9ou\u00efe",
+            "pokemon_forms_french_label": "Mega",
+            "pokemon_icon": "audino-mega",
+            "pokemon_family_order": 1,
+            "family_lead_slug": "audino",
+            "category_form_slug": null,
+            "category_form_name": null,
+            "regional_form_slug": null,
+            "regional_form_name": null,
+            "special_form_slug": "mega",
+            "special_form_name": "Mega",
+            "variant_form_slug": null,
+            "variant_form_name": null,
+            "catch_state_slug": null,
+            "catch_state_name": null,
+            "catch_state_french_name": null,
+            "pokemon_regional_dex_number": null,
+            "primary_type_slug": "normal",
+            "primary_type_name": "Normal",
+            "primary_type_french_name": "Normal",
+            "secondary_type_slug": "fairy",
+            "secondary_type_name": "Fairy",
+            "secondary_type_french_name": "F\u00e9e",
+            "original_game_bundle_slug": "xy",
+            "pokemon_order_number": "9999-0531-001"
+        }
+    ]
+}

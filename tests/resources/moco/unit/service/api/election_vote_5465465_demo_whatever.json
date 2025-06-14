@@ -1,0 +1,32 @@
+{
+    "electionVote": {
+      "trainerExternalId": "7b52009b64fd0a2a49e6d8a939753077792b0554",
+      "electionSlug": "",
+      "winnersSlugs": [
+        "butterfree"
+      ],
+      "losersSlugs": [
+        "caterpie",
+        "metapod"
+      ]
+    },
+    "pokemonsElo": {
+      "winners": [
+        {
+          "pokemonSlug": "butterfree",
+          "elo": 1016
+        }
+      ],
+      "losers": [
+        {
+          "pokemonSlug": "caterpie",
+          "elo": 984
+        },
+        {
+          "pokemonSlug": "metapod",
+          "elo": 984
+        }
+      ]
+    }
+  }
+  

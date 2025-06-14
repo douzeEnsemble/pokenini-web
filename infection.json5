@@ -1,0 +1,36 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "mutators": {
+        "@default": true,
+        "RoundingFamily": {
+            "ignore": [
+                "App\\Helper\\TotalRoundCountHelper::calculate",
+            ],
+            "ignoreSourceCodeByRegex": [
+                "\\$this->logger->info.*",
+            ]
+        },
+        "ArrayItem": {
+            "ignoreSourceCodeByRegex": [
+                "\\$this->logger->info.*",
+            ]
+        },
+        "global-ignoreSourceCodeByRegex": [
+            "\\$query .= <<<'SUBSQL'.*",
+            
+        ]
+    },
+    "tmpDir": "/var/www/html/var/cache/infection",
+    "timeout": 30,
+    "testFramework": "phpunit",
+    "testFrameworkOptions": '--exclude-group="browser-testing"',
+    "logs": {
+        "text": "infection_text.log",
+        "summary": "infection_summary.log",
+    }
+}

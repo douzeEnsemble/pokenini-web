@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<psalm
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    errorBaseline="psalm-baseline.xml"
+    errorLevel="5"
+    resolveFromConfigFile="true"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="false"
+    cacheDirectory="var/cache/psalm"
+>
+    <projectFiles>
+        <directory name="src" />
+        <directory name="tests" />
+        <ignoreFiles>
+            <directory name="vendor" />
+            <directory name="tests/tools" />
+            <file name="tests/bootstrap.php" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <ArgumentTypeCoercion>
+            <errorLevel type="suppress">
+                <file name="tests/src/Unit/Controller/AdminActionControllerTest.php" />
+            </errorLevel>
+        </ArgumentTypeCoercion>
+        <PropertyNotSetInConstructor errorLevel="suppress" />
+        <RiskyCast>
+            <errorLevel type="suppress">
+                <file name="src/DTO/ActionLog.php" />
+            </errorLevel>
+        </RiskyCast>
+        <RiskyTruthyFalsyComparison>
+            <errorLevel type="suppress">
+                <file name="src/Controller/AlbumIndexController.php" />
+                <file name="src/Controller/AlbumUpsertController.php" />
+                <file name="src/Controller/TrainerUpsertController.php" />
+                <file name="src/Service/TrainerIdsService.php" />
+            </errorLevel>
+        </RiskyTruthyFalsyComparison>  
+        <InvalidArgument>
+            <errorLevel type="suppress">
+                <file name="tests/src/Unit/DTO/ElectionMetricsTest.php" />
+                <file name="tests/src/Unit/DTO/ElectionPokemonsListTest.php" />
+            </errorLevel>
+        </InvalidArgument>       
+    </issueHandlers>
+</psalm>

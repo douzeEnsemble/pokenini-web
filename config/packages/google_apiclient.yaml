@@ -1,0 +1,24 @@
+parameters:
+    google.spreadsheets_readonly: 'https://www.googleapis.com/auth/spreadsheets.readonly'
+    google.access_type: 'offline'
+    google.application_name: 'Pokénini'
+
+services:
+    Google\Client:
+        class: Google\Client
+        calls:
+            - [setAccessType, ['%google.access_type%']]
+            - [setApplicationName, ['%google.application_name%']]
+            - [setScopes, [['%google.spreadsheets_readonly%']]]
+            # Remove when pulling from real Google Sheets
+            # - [setAuthConfig, ['%env(GOOGLE_CREDENTIALS_PATH)%']]
+
+when@prod:
+    services:
+        Google\Client:
+            class: Google\Client
+            calls:
+                - [setAccessType, ['%google.access_type%']]
+                - [setApplicationName, ['%google.application_name%']]
+                - [setScopes, [['%google.spreadsheets_readonly%']]]
+                - [setAuthConfig, ['%env(GOOGLE_CREDENTIALS_PATH)%']]

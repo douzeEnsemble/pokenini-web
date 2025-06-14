@@ -1,0 +1,131 @@
+{% set locale = app.request.locale %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ locale is same as('fr') ? dex.french_name : dex.name }}{% endblock title %}
+
+{%- block navbarTitleLink -%}
+    {{ path(
+        'app_web_albumindex_index', 
+        {
+            'dexSlug': currentDexSlug, 
+            't': ((requestedTrainerId is not empty) ? requestedTrainerId : null)
+        }
+    ) }}
+{%- endblock navbarTitleLink -%}
+{% block navbarTitle %}
+    {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
+    {% set title = titles.0 %}
+    {% set subtitle = titles.1 is defined ? titles.1 : '' %}
+
+    <span class="navbar-title">{{ title }}</span>
+    {% if subtitle %}
+    <span class="navbar-subtitle small ">{{ subtitle }}</span>
+    {% endif %}
+{% endblock navbarTitle %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('css/album.css') }}">
+
+    <style>
+    {% for catchState in catchStates %}
+    .album-case.catch-state-{{ catchState.slug }} .album-case-catch-state {
+        background-color: {{ catchState.color }};
+    }
+    .album-case.catch-state-{{ catchState.slug }} .album-case-action {
+        background-color: {{ catchState.color }};
+    }
+    tr.catch-state-{{ catchState.slug }} td,
+    tr.catch-state-{{ catchState.slug }} th {
+        background-color: {{ catchState.color }};
+    }
+    .progress-bar.catch-state-{{ catchState.slug }} {
+        background-color: {{ catchState.color }};
+    }
+    {% endfor %}
+
+    {% for type in types %}
+    .pokemon-type-{{ type.slug }} {
+        background-color: {{ type.color }};
+    }
+    {% endfor %}
+    </style>
+{% endblock stylesheets %}
+
+{##}
+
+{% block container %}
+<div class="row justify-content-lg-center">
+    <div class="col-xxl-6">
+        <div class="row justify-content-lg-center sticky-lg-top">
+            <div class="co-md-4 col-lg-6">
+                <div class="row">
+                    {% include 'Album/_intro.html.twig' %}
+                </div>
+                <div class="row mt-3">
+                    {% include 'Album/_report.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-6 col-xl-12">
+        <form id="album-form">
+            {% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
+            {% set templateData = displayTemplateName|split('-') %}
+            {% set mainTemplate = templateData.0 %}
+            {% set nbCaseByLine = templateData.1 is defined ? templateData.1 : 0 %}
+            {% include ['Album/view/_'~(mainTemplate)~'.html.twig', 'Album/view/_box.html.twig'] with {'nbCaseByLine': nbCaseByLine} %}
+        </form>
+
+        {% include 'Album/_toasts.html.twig' %}
+    </div>
+    {% include 'Album/_offcanvas.html.twig' %}
+</div>
+{% endblock container %}
+
+{% block head_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/album.js') }}"></script>
+{% endblock head_javascripts %}
+
+{% block foot_javascript %}
+    {{ parent() }}
+    <script type="application/javascript">
+    (function() {
+        watchScreenshotMode();
+    })();
+    </script>
+
+    {% if allowedToEdit %}
+    <script src="{{ asset('js/album-edit.js') }}"></script>
+
+    <script type="application/javascript">
+    const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
+    const locale = '{{ locale }}';
+    const dex = '{{ currentDexSlug }}';
+    </script>
+
+    <script type="application/javascript">
+    (function() {
+        watchToggleEditMode();
+        watchCatchStates();
+        watchToggleShinyMode();
+        watchToAdjustSelectSizes();
+
+        // Enable toasts
+        [...document.querySelectorAll('.toast')]
+            .map(toastEl => new bootstrap.Toast(toastEl));
+    })();
+    </script>
+    {% endif %}
+    <script type="application/javascript">
+    (function() {
+        // Enable tooltips
+        [...document.querySelectorAll('.album-case-image, [data-bs-toggle="tooltip"], [data-bs-toggle="offcanvas"]')]
+            .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    })();
+    </script>
+{% endblock foot_javascript %}

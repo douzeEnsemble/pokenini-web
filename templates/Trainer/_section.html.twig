@@ -1,0 +1,31 @@
+<div class="accordion" id="trainerSection">
+{% set sections = [
+    'personnal_data',
+    'logout',
+] %}
+{% for section in sections %}
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading_{{ section }}">
+            <button 
+                class="accordion-button" 
+                type="button collapsed" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#collapse_{{ section }}" 
+                aria-expanded="true" 
+                aria-controls="collapse_{{ section }}"
+            >
+                {{ ('trainer.'~section~'.title')|trans }}
+            </button>
+        </h2>
+        <div 
+            id="collapse_{{ section }}" 
+            class="accordion-collapse collapse" 
+            aria-labelledby="heading_{{ section }}" 
+        >
+            <div class="accordion-body">
+                {{ include('Trainer/Section/_'~section~'.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>

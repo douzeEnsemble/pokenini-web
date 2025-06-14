@@ -1,0 +1,116 @@
+{
+  "catch_state_counts_defined_by_trainer": [
+    {
+      "nb": 5735,
+      "trainer": "f86cbe805674d85f7806b175b70647a6a9334631"
+    },
+    {
+      "nb": 94,
+      "trainer": "48372ccfb7a21abc6c5e024a4fcb1eb1d86bb947"
+    },
+    {
+      "nb": 9,
+      "trainer": "9f948cad5ce9173c3533d4cb4eac4d2589d64244"
+    }
+  ],
+  "dex_usage": [
+    {
+      "nb": 2,
+      "name": "Home Shiny",
+      "french_name": "Home Chromatique"
+    },
+    {
+      "nb": 2,
+      "name": "Scarlet, Violet",
+      "french_name": "Écarlate, Violet"
+    },
+    {
+      "nb": 1,
+      "name": "Home",
+      "french_name": "Home"
+    },
+    {
+      "nb": 1,
+      "name": "Home Shiny OT",
+      "french_name": "Home Chromatique OT"
+    },
+    {
+      "nb": 1,
+      "name": "Home Pokemon Go",
+      "french_name": "Home Pokemon Go"
+    },
+    {
+      "nb": 1,
+      "name": "Red, Green, Blue, Yellow",
+      "french_name": "Rouge, Vert, Bleu, Jaune"
+    },
+    {
+      "nb": 1,
+      "name": "Sword, Shield",
+      "french_name": "Épée, Bouclier"
+    },
+    {
+      "nb": 1,
+      "name": "New mons Scarlet, Violet",
+      "french_name": "Écarlate, Violet Nouveaux pokémons"
+    },
+    {
+      "nb": 1,
+      "name": "Pokémon Go",
+      "french_name": "Pokémon Go"
+    },
+    {
+      "nb": 1,
+      "name": "Alpha",
+      "french_name": "Baron"
+    },
+    {
+      "nb": 1,
+      "name": "Mega",
+      "french_name": "Méga"
+    },
+    {
+      "nb": 1,
+      "name": "Totem",
+      "french_name": "Dominant"
+    }
+  ],
+  "catch_state_usage": [
+    {
+      "nb": 36,
+      "name": "No",
+      "french_name": "Non",
+      "color": "#e57373"
+    },
+    {
+      "nb": 28,
+      "name": "To evolve",
+      "french_name": "Af. évoluer",
+      "color": "#9575cd"
+    },
+    {
+      "nb": 6,
+      "name": "To breed",
+      "french_name": "Af. reproduire",
+      "color": "#4fc3f7"
+    },
+    {
+      "nb": 54,
+      "name": "To transfer",
+      "french_name": "À transférer",
+      "color": "#ffd54f"
+    },
+    {
+      "nb": 1,
+      "name": "To trade",
+      "french_name": "À échanger",
+      "color": "#ff9100"
+    },
+    {
+      "nb": 5713,
+      "name": "Yes",
+      "french_name": "Oui",
+      "color": "#66bb6a"
+    }
+  ]
+}

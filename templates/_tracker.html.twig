@@ -1,0 +1,88 @@
+<script src="/lib/tarteaucitron/tarteaucitron.min.js"></script>
+
+<script>
+tarteaucitron.init({
+    {#- /* Privacy policy url */ -#}
+    "privacyUrl": "{{ path('app_web_staticpage_policy') }}",
+    {#- /* or top to bring it as first element for accessibility */ -#}
+    "bodyPosition": "bottom",
+    {#- /* Open the panel with this hashtag */ -#}
+    "hashtag": "#tarteaucitron",
+    {#- /* Cookie name */ -#}
+    "cookieName": "tarteaucitron",
+    {#- /* Banner position (top - bottom - middle - popup) */ -#}
+    "orientation": "middle",
+    {#- /* Group services by category */ -#}
+    "groupServices": false,
+    {#- /* Click to expand the description */ -#}
+    "showDetailsOnClick": true,
+    {#- /* Default state (true - wait - false) */ -#}
+    "serviceDefaultState": "wait",
+    {#- /* Show the small banner on bottom right */ -#}
+    "showAlertSmall": false,
+    {#- /* Show the cookie list */ -#}
+    "cookieslist": true,
+    {#- /* Show cookie icon to manage cookies */ -#}
+    "showIcon": false,
+    {#- /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */ -#}
+    "iconPosition": "TopRight",
+    {#- /* Show a Warning if an adblocker is detected */ -#}
+    "adblocker": false,
+    {#- /* Show the deny all button */ -#}
+    "DenyAllCta" : true,
+    {#- /* Show the accept all button when highPrivacy on */ -#}
+    "AcceptAllCta" : true,
+    {#- /* HIGHLY RECOMMANDED Disable auto consent */ -#}
+    "highPrivacy": true,
+    {#- /* Ask the consent for "Privacy by design" services */ -#}
+    "alwaysNeedConsent": true,
+    {#- /* If Do Not Track == 1, disallow all */ -#}
+    "handleBrowserDNTRequest": false,
+    {#- /* Remove credit link */ -#}
+    "removeCredit": false,
+    {#- /* Show more info link */ -#}
+    "moreInfoLink": true,
+    {#- /* If false, the tarteaucitron.css file will be loaded */ -#}
+    "useExternalCss": false,
+    {#- /* If false, the tarteaucitron.services.js file will be loaded */ -#}
+    "useExternalJs": false,
+    {#- /* Change the default readmore link pointing to tarteaucitron.io */ -#}
+    "readmoreLink": "{{ path('app_web_staticpage_policy') }}#tracker",
+    {#- /* Show a message about mandatory cookies */ -#}
+    "mandatory": true,
+    {#- /* Show the disabled accept button when mandatory on */ -#}
+    "mandatoryCta": true,
+    {#- /* Enable Google Consent Mode v2 for Google ads and GA4 */ -#}
+    "googleConsentMode": true,
+    {#- /* Enable Bing Consent Mode for Clarity and Bing Ads */ -#}
+    "bingConsentMode": true,
+    {#- /* Soft consent mode (consent is required to load the services) */ -#}
+    "softConsentMode": false,
+    {#- /* Send an event to dataLayer with the services status */ -#}
+    "dataLayer": false,
+    {#- /* Server side only, tags are not loaded client side */ -#}
+    "serverSide": false,
+    {#- /* Details the number of partners on the popup and middle banner */ -#}
+    "partnersList": false
+    {#-// "iconSrc": "", /* Optional: URL or base64 encoded image */ -#}
+    {#- // "cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for subdomain website */ -#}
+    {#- // "customCloserId": "", /* Optional a11y: Custom element ID used to open the panel */ -#}
+});
+</script>
+
+<script>
+tarteaucitron.user.matomoId = {{ matomoSiteId }};
+(tarteaucitron.job = tarteaucitron.job || []).push('matomocloud');
+
+tarteaucitron.user.matomoHost = '{{ matomoUrl }}/';
+tarteaucitron.user.matomoCustomJSPath = '//matomo.pokenini.fr/matomo.js';
+tarteaucitron.user.matomoDontTrackPageView = false;
+tarteaucitron.user.matomoFullTracking = true;
+tarteaucitron.user.matomocloudMore = function () {
+    {% if app.user %}
+    _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '{{ app.user.profile }}']);
+    _paq.push(['setUserId', '{{ app.user.id|sha1 }}']);
+    {% endif %}
+    _paq.push(['trackPageView']);
+};
+</script>

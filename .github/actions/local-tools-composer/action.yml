@@ -1,0 +1,22 @@
+name: PHP Install and Composer install for tools
+description: Use composer for tools dependencies
+author: Renaud Douze
+inputs:
+  dir:
+    description: 'The tool directory'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Prepare
+      uses: ./.github/actions/local-php
+
+    - name: Cache composer dependencies
+      uses: actions/cache@v4
+      with:
+        path: vendor
+        key: composer-${{ hashFiles('tools/${{ inputs.dir }}/composer.lock') }}
+
+    - name: Run tool's composer install
+      shell: bash
+      run: composer install --no-interaction --prefer-dist --working-dir=tools/${{ inputs.dir }} --optimize-autoloader --no-dev

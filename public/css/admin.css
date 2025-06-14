@@ -1,0 +1,78 @@
+.admin-item-report {
+    font-size: .75rem;
+}
+.admin-item-report-meta {
+    font-size: .75rem;
+}
+
+.admin-item .alert  {
+    font-size: .75rem;
+    padding: .3rem;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
+.admin-item .progress {
+    padding: 0;
+    height: .5rem;
+    font-size: .5rem;
+}
+
+.admin-item .icon-square {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .75rem;
+}
+
+.report-table tr .toggle-icon.active-icon {
+    display: inherit;
+}
+.report-table tr .toggle-icon.disable-icon {
+    display: none;
+}
+
+.report-table tr.active .toggle-icon.active-icon {
+    display: none;
+}
+.report-table tr.active .toggle-icon.disable-icon {
+    display: inherit;
+}
+
+
+
+
+#report-table-catch_state_counts_defined_by_trainer td.canvas-container,
+#report-table-catch_state_counts_defined_by_trainer th.canvas-container {
+    max-width: 20px;
+}
+#report-table-catch_state_usage td.canvas-container,
+#report-table-catch_state_usage th.canvas-container {
+    max-width: 40px;
+}
+@media (min-width: 768px) {
+    #report-table-catch_state_counts_defined_by_trainer td.canvas-container,
+    #report-table-catch_state_counts_defined_by_trainer th.canvas-container {
+        max-width: 40px;
+    }
+    #report-table-catch_state_usage td.canvas-container,
+    #report-table-catch_state_usage th.canvas-container {
+        max-width: 60px;
+    }
+}
+
+@media (min-width: 992px) {
+    #report-table-catch_state_counts_defined_by_trainer td.canvas-container,
+    #report-table-catch_state_counts_defined_by_trainer th.canvas-container {
+        max-width: 60px;
+    }
+    #report-table-catch_state_usage td.canvas-container,
+    #report-table-catch_state_usage th.canvas-container {
+        max-width: 80px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #report-table-catch_state_counts_defined_by_trainer td.canvas-container,
+    #report-table-catch_state_counts_defined_by_trainer th.canvas-container {
+        max-width: 80px;
+    }
+}

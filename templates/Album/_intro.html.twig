@@ -1,0 +1,104 @@
+{% set locale = app.request.locale %}
+{% set currentRoute = app.request.get('_route') %}
+{% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
+{% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
+<div id="intro">
+
+    {# Top icons #}
+    <div class="top-icons text-end">
+        {# Link to box 1 or top of the list #}
+        {% if 'box' == displayTemplateName %}
+        <a
+            class="btn btn-link btn-sm link-secondary goto goto-box1"
+            href="#box-1" 
+            title="{{ 'album.intro.action.goto.box1'|trans }}"
+            data-bs-toggle="tooltip"
+        >
+            <i class="bi bi-box"></i>
+        </a>
+        {% elseif 'list-' in displayTemplateName %}
+        <a
+            class="btn btn-link btn-sm link-secondary goto goto-topofthelist"
+            href="#top-of-the-list" 
+            title="{{ 'album.intro.action.goto.top_of_the_list'|trans }}"
+            data-bs-toggle="tooltip"
+        >
+            <i class="bi bi-list"></i>
+        </a>
+        {% endif %}
+    </div>
+
+    {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
+    {% set title = titles.0 %}
+    {% set subtitle = titles.1 is defined ? titles.1 : '' %}
+
+    <h1 id="album-title">{{ title }}</h1>
+    
+    {% if subtitle is not empty %}
+    <h2 id="album-subtitle">{{ subtitle }}</h2>
+    {% endif %}
+
+    <div class="list-group list-group-horizontal group-actions">
+        {# Edit/Read mode link #}
+        {% if allowedToEdit %}
+            <a
+                href="#"
+                class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-read-action"
+                title="{{ (('album.intro.action.mode.read'))|trans }}"
+                data-bs-toggle="tooltip"
+                hidden
+            >
+                <i class="bi bi-pencil-square"></i>
+            </a>
+            <a
+                href="#"
+                class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-edit-action"
+                title="{{ (('album.intro.action.mode.write'))|trans }}" 
+                data-bs-toggle="tooltip"
+            >
+                <i class="bi bi-book"></i>
+            </a>
+        {% endif %}
+
+        {# Screeshot mode #}
+        <a
+            class="list-group-item list-group-item-action list-group-item-secondary flex-fill screenshot-mode screenshot-mode-off"
+            href="#"
+            title="{{ 'album.intro.action.screenshot.disable'|trans }}"
+            data-bs-toggle="tooltip"
+            hidden
+        >
+            <i class="bi bi-camera2"></i>
+        </a>
+        <a
+            class="list-group-item list-group-item-action list-group-item-primary flex-fill screenshot-mode screenshot-mode-on"
+            href="#"
+            title="{{ 'album.intro.action.screenshot.enable'|trans }}"
+            data-bs-toggle="tooltip"
+        >
+            <i class="bi bi-camera2"></i>
+        </a>
+
+        {# Share link #}
+        {% if not dex.is_private %}
+            <a
+                class="list-group-item list-group-item-action list-group-item-success flex-fill share"
+                href="{{ path('app_web_albumindex_index', filters|merge({ 'dexSlug': currentDexSlug, 't': trainerId, }) ) }}" 
+                title="{{ 'nav.share'|trans }}"
+                data-bs-toggle="tooltip"
+            >
+                <i class="bi bi-share"></i>
+            </a>
+        {% endif %}
+
+        {# Offcanvas link #}
+        <a
+            class="list-group-item list-group-item-action list-group-item-info flex-fill open-offcanvas"
+            href="#offcanvas"
+            title="{{ 'nav.open-offcanvas'|trans }}"
+            data-bs-toggle="offcanvas" 
+        >
+            <i class="bi bi-three-dots"></i>
+        </a>
+    </div>
+</div>

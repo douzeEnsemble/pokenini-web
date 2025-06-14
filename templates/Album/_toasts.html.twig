@@ -1,0 +1,9 @@
+{% import "Album/_album_macros.html.twig" as macro %}
+
+{% if allowedToEdit %}
+    <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
+        {% for item in list %}
+            {{ macro.toasts(item) }}
+        {% endfor %}
+    </div>
+{% endif %}

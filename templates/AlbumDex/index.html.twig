@@ -1,0 +1,92 @@
+{% set currentRouteParameters = app.request.get('_route_params') %}
+{% set locale = app.request.locale %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini{% endblock %}
+{% block navbarTitle %}Pokénini{% endblock navbarTitle %}
+
+{% block container %}
+<div id="home" class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <h1>Pokénini</h1>
+
+        <div class="row">
+            {% for item in dex|filter(item => item.is_on_home is same as(true)) %}
+            {{ _self.homeItem(
+                item,
+                locale
+            ) }}
+            {% else %}
+            <div class="alert alert-secondary mt-5" role="alert">
+                <p>{{ 'home.no_dex'|trans|replace({'<a>': '<a href="'~path('app_web_trainerindex_index')~'">'})|raw }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% macro homeItem(dex, locale) %}
+{% set url = path('app_web_albumindex_index', {'dexSlug': dex.slug}) %}
+<div class="card col-lg-3 col-sm-6 col-12 home-item position-relative">
+    <a href="{{ url }}">
+        {% set bannerUrl = dexBannerUrl|format(dex.slug) %}
+        {% set defaultBannerUrl = '/img/banner/default.webp' %}
+        <img
+            src="{{ bannerUrl }}"
+            class="card-img"
+            alt=""
+            loading="lazy"
+            onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';"
+        >
+    </a>
+    <div class="card-body">
+        <div class="position-absolute top-0 end-0 me-2">
+            {% if dex.is_premium %}
+            <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}">
+                <i class="bi bi-patch-plus"></i>
+            </span>
+            {% endif %}
+            {% if not dex.is_released %}
+            <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}">
+                <i class="bi bi-lock"></i>
+            </span>
+            {% endif %}
+            {% if dex.is_custom %}
+            <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}">
+                <i class="bi bi-person"></i>
+            </span>
+            {% endif %}
+        </div>
+        
+        {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
+        {% set title = titles.0 %}
+        {% set subtitle = titles.1 is defined ? titles.1 : '' %}
+        <h5 class="card-title">
+            <a href="{{ url }}">
+                {{ title }}
+            </a>
+        </h5>
+        {% if subtitle is not empty %}
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+            <a href="{{ url }}">
+                {{ subtitle }}
+            </a>
+        </h6>
+        {% endif %}
+    </div>
+</div>
+{% endmacro %}
+
+{% block foot_javascript %}
+    {{ parent() }}
+    <script type="application/javascript">
+    (function() {
+        // Enable tooltips
+        [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
+            .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    })();
+    </script>
+{% endblock foot_javascript %}

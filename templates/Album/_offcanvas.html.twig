@@ -1,0 +1,177 @@
+{% set catchState = app.request.get('cs') %}
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas">
+  <div class="offcanvas-body">
+    <div class="float-end">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <form 
+        class="mt-3 mb-3"
+        method="get" 
+        action="{{ path('app_web_albumindex_index', {'dexSlug': currentDexSlug}) }}"
+    >
+        <h6>
+            {{ 'album.offcanvas.filters.title'|trans }}
+        </h6>
+        <div class="row mb-3">
+            <div class="col-6">
+                {{ block('anyTypes_label', 'common/Filter/_dex_filters_blocks.html.twig') }}
+                <a  
+                    class="small float-end" 
+                    href="#"
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#distinguishTypes"
+                >
+                    {{ 'album.offcanvas.filters.open_distinguish_types'|trans }}
+                </a>
+                {{ block('anyTypes_widget', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+        </div>
+        <div class="row mb-3 collapse" id="distinguishTypes">
+            <div class="col-6">
+                {{ block('primaryTypes_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-6">
+                {{ block('secondaryTypes_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                {{ block('categoryForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-6">
+                {{ block('regionalForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                {{ block('specialForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-6">
+                {{ block('variantForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                {{ block('originalGameBundle_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-6">
+            {% if not dex.is_shiny %}
+                {{ block('gameBundleAvailability_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            {% else %}
+                {{ block('gameBundleShinyAvailability_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            {% endif %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                {{ block('collection_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+        </div>
+        <div hidden>
+            <input type="text" name="t" value="{{ requestedTrainerId }}">
+            <input type="text" name="cs" value="{{ catchState }}">
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+            <a 
+                href="{{ path(
+                    'app_web_albumindex_index', 
+                    {
+                        'dexSlug': currentDexSlug, 
+                        't': ((requestedTrainerId is not empty) ? requestedTrainerId : null)
+                    }
+                ) }}" 
+                class="form-filter-reset btn btn-outline-warning btn-sm"
+            >
+                {{ 'dex.filters.reset.label'|trans }}
+            </a>
+            <button type="submit" class="btn btn-outline-primary btn-sm">
+                {{ 'dex.filters.submit.label'|trans }}
+            </button>
+        </div>
+    </form>
+
+    <div> 
+        <h6>
+            {{ 'album.offcanvas.informations.title'|trans }}
+        </h6>
+
+        <ul class="list-group list-group-horizontal group-icons">
+            {# Is private icon #}
+            {% if dex.is_private %}
+                <li
+                    class="list-group-item flex-fill album-private"
+                    href="#"
+                    title="{{ 'nav.is_private'|trans }}"
+                    data-bs-toggle="tooltip"
+                >
+                    <i class="bi bi-lock"></i>
+                </li>
+            {% endif %}
+
+            {# Text for another trainer #}
+            {% if loggedTrainerId is not same as(trainerId) %}
+                <li
+                    class="list-group-item flex-fill album-another-trainer"
+                    href="#"
+                    title="{{ 'album.intro.label.another_trainer_album'|trans }}"
+                    data-bs-toggle="tooltip"
+                >
+                    
+                    <i class="bi bi-person-rolodex another-trainer-album"></i>
+                </li>
+            {% endif %}
+
+            {# Region name or national #}
+            {% if dex.region_name is not empty %}
+            <li
+                class="list-group-item flex-fill dex-type dex-type-regional"
+                href="#"
+                title="{{ 'album.intro.label.region'|trans }} {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}"
+                data-bs-toggle="tooltip"
+            >
+                {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}
+            </li>
+            {% else %}
+            <li
+                class="list-group-item flex-fill dex-type dex-type-national"
+                href="#"
+                title="{{ 'album.intro.label.dex'|trans }} {{ 'album.intro.value.national'|trans }}"
+                data-bs-toggle="tooltip"
+            >
+            {{ 'album.intro.value.national'|trans }}
+            </li>
+            {% endif %}
+
+            {# Shiny or not #}
+            <li
+                class="list-group-item flex-fill dex-shiny-or-not"
+                href="#"
+                title="{{ (dex.is_shiny ? 'album.intro.label.is_shiny.yes' : 'album.intro.label.is_shiny.no')|trans }}"
+                data-bs-toggle="tooltip"
+            >
+                {% if dex.is_shiny %}
+                <i class="bi bi-stars"></i>
+                {% else %}
+                <i class="bi bi-bug"></i>
+                {% endif %}
+            </li>
+        </ul>
+
+        {# Description #}
+        <p id="album-description" class="small">
+            {{- (locale is same as('fr') ? dex.french_description : dex.description)|nl2br -}}
+        </p>
+        {# Template text #}
+        <p class="dex-template small fst-italic">
+            {{- ('album.intro.label.display_template.'~displayTemplateName)|trans -}}
+        </p>
+
+        {# Version #}
+        <p class="text-end small fst-italic text-body-tertiary dex-version">
+            <i class="bi bi-tag"></i> 
+            {{- 'album.intro.label.version'|trans }} {{ dex.version -}}
+        </p>
+    </div>
+  </div>
+</div>

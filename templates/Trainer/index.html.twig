@@ -1,0 +1,48 @@
+{% set locale = app.request.locale %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'title.trainer'|trans }}{% endblock title %}
+
+{% block container %}
+	<div class="row">
+		<div class="col-md-10 mx-auto text-center row">
+			<h1>{{ 'title.trainer'|trans }}</h1>
+        </div>
+    </div>
+
+	<div class="row">
+		<div class="col-md-12 mx-auto row">
+
+			<p class="text-secondary">{{ 'trainer.welcome'|trans|nl2br }}</p>
+
+            {{ include('Trainer/Section/_dex.html.twig') }}
+            {{ include('Trainer/_section.html.twig') }}
+		</div>
+	</div>
+{% endblock container %}
+
+{% block foot_javascript %}
+    {{ parent() }}
+    <script src="{{ asset('js/trainer_dex.js') }}"></script>
+    <script src="{{ asset('js/trainer_filters.js') }}"></script>
+
+    <script type="application/javascript">
+        const locale = '{{ locale }}';
+
+        watchAttributes();
+        watchFilters();
+
+        // Enable toasts
+        const toastElList = document.querySelectorAll('.toast')
+        const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl));
+    </script>
+    <script type="application/javascript">
+    (function() {
+        // Enable tooltips
+        [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
+            .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    })();
+    </script>
+{% endblock foot_javascript %}

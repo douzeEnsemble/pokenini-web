@@ -1,0 +1,63 @@
+name: Pokénini Web
+
+services:
+  moco.api.dev:
+    build:
+      context: ./docker/moco
+      args:
+        MOCO_VERSION: 1.5.0
+    volumes:
+      - ./tests/resources/moco/Api/:/var/moco:ro
+    command: "/var/moco/dev.moco.json"
+
+  moco.api.test:
+    build:
+      context: docker/moco
+      args:
+        MOCO_VERSION: 1.5.0
+    volumes:
+      - ./tests/resources/moco/Api/:/var/moco:ro
+    command: "/var/moco/test.moco.json"
+
+  moco.matomo.gbl:
+    build:
+      context: docker/moco
+      args:
+        MOCO_VERSION: 1.5.0
+    volumes:
+      - ./tests/resources/moco/Matomo/:/var/moco:ro
+    ports:
+      - '127.0.0.1:8888:80'
+    command: "/var/moco/moco.json"
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      target: php_dev
+    volumes:
+      - .:/var/www/html
+    environment:
+      - PHP_CS_FIXER_IGNORE_ENV=1
+    tty: true
+
+  redis:
+    image: redis:8.0-alpine
+    volumes:
+      - redis_data:/data
+    command: redis-server --requirepass douze
+    restart: always
+
+  web:
+    image: nginx:1.28-alpine
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - '127.0.0.1:80:8080'
+      - '127.0.0.1:443:8080'
+
+volumes:
+  redis_data:  
+

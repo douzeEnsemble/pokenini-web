@@ -1,0 +1,20 @@
+{
+    "type": "tools",
+    "require": {
+        "php": ">=8.4",
+        "ext-apcu": "*",
+        "ext-ctype": "*",
+        "ext-dom": "*",
+        "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
+        "ext-simplexml": "*",
+        "ext-tokenizer": "*",
+        "ext-xml": "*",
+        "ext-xmlwriter": "*",
+        "ext-zip": "*",
+        "friendsofphp/php-cs-fixer": "^3.75"
+    }
+}

@@ -1,0 +1,588 @@
+logout: "Log out"
+login: "Log in"
+
+number:
+    exactly: exactly {number}
+    almost: almost {number}
+    approximately: approximately {number}
+    between: between {low} and {high}
+
+nav:
+    home: "Home"
+    back_home: "Back to home"
+    madebyandfor: "Made by and for"
+    lang:
+        fr: "French"
+        en: "English"
+    admin: "Backoffice"
+    connected: "Connected"
+    login: "Log in"
+    share: "Share link"
+    is_private: "Private album"
+    open-offcanvas: "Open the sidebar"
+    cookie-manager: "Cookie manager"
+
+title:
+    home: "Home"
+    report: "Report"
+    admin: "Backoffice"
+    admin_actions: "Data and caches"
+    admin_reports: "Reporting"
+    box: "Box"
+    empty: " "
+    connect: "Connection"
+    trainer: "Your trainer space"
+    outer_room: "Outer room"
+    legals: "Legal Notice"
+    policy: "Privacy Policy"
+    cookies: "Cookies"
+    election: 
+        nav: "What's your favorite?"
+        subtitle: 
+            pick: "Choose First"
+            vote: "Now Vote"
+            lastpage: "There are only these left."
+            lastone: "That's it!"
+    error:
+        unknown: "There was an error"
+        404: "The page was not found"
+        500: "There was a shit. It's not you, it's us"
+
+home:
+    no_dex: "There are no albums to display. You can add them to your <a>trainer space</a>"
+    alert:
+        election: 
+            description: "Brand new ! You can choose your favorite Pokémon"
+            action: "Let's Go !"
+        not_connected: 
+            description: "You're not logged in. Log in to make the most of the app."
+            action: "Log in"
+        connected: 
+            description: |
+                Hello there, "{id}" ... it's a bit weird to call you that, right?
+                
+                I'll call you "young trainer", that's better. Thanks for being here <3
+
+
+stats:
+    total: "Total"
+
+album:
+    icon:
+        alt:
+            regular: "Icon of"
+            shiny: "Shiny icon of"
+        title:
+            regular: "Regular"
+            shiny: "Shiny"
+            previous: "Previous"
+            next: "Next"
+    image:
+        alt:
+            regular: "Image if"
+            shiny: "Shiny image of"
+    update:
+        title: "Update"
+        success:
+            prefix: ""
+            radical: "{pokemonName}"
+            suffix: "new state has been saved"
+        error:
+            prefix: ""
+            radical: "{pokemonName}"
+            suffix: "new state has not been saved"
+    intro:
+        action:
+            mode:
+                write: "Modify all statuses"
+                read: "Switch to reading mode"
+            goto:
+                box1: "Go to box number 1"
+                top_of_the_list: "Go to the top of the list"
+                top_of_the_page: "Go to the top of the page"
+            description:
+                collapse: "Information"
+            screenshot:
+                enable: Screenshot mode
+                disable: Status mode
+        label:
+            version: "Version"
+            region: "Region"
+            dex: "Dex"
+            is_shiny:
+                yes: "Shinies forms"
+                no: "Regular forms"
+            another_trainer_album: "Another trainer's album"
+            display_template:
+                box: "Display by box of 6 by 5 pokémons as in the games"
+                list-3: "List of 3 pokemon by lines"
+                list-5: "List of 5 pokemon by lines"
+                list-7: "List of 7 pokemon by lines"
+        value:
+            national: "National"
+    modal:
+        national_dex_number: National dex number
+        regional_dex_number: Regional dex number
+        forms: Form
+        no_forms: Regular
+        link:
+            pokepedia: Poképédia's page (french)
+            bulbapedia: Bulbapedia's page
+            family: Filter this family only
+    offcanvas:
+        informations:
+            title: Informations
+        filters:
+            title: Filters
+            open_distinguish_types: More
+
+update:
+    labels:
+        success: "Labels update has been done"
+        error: "Labels update has failed"
+    games_collections_and_dex:
+        success: "Games, collections and dex update has been done"
+        error: "Games, collections and dex update has failed"
+    pokemons:
+        success: "Pokémons update has been done"
+        error: "Pokémons update has failed"
+    regional_dexnumbers:
+        success: "Regional dex numbers update has been done"
+        error: "Regional dex numbers update has failed"
+    games_availabilities:
+        success: "Games' availabilities update has been done"
+        error: "Games' availabilities update has failed"
+    games_shinies_availabilities:
+        success: "Games' shinies' availabilities update has been done"
+        error: "Games' shinies' availabilities update has failed"
+    collections_availabilities:
+        success: "Collections update has been done"
+        error: "Collections update has failed"
+calculate:
+    game_bundles_availabilities:
+        success: "Game bundles' availabilities update has been done"
+        error: "Game bundles' availabilities update has failed"
+    game_bundles_shinies_availabilities:
+        success: "Game bundles' shinies' availabilities update has been done"
+        error: "Game bundles' shinies' availabilities update has failed"
+    dex_availabilities:
+        success: "Dex availabilities update has been done"
+        error: "Dex availabilities update has failed"
+    pokemon_availabilities:
+        success: "Pokemons' availabilities update has been done"
+        error: "Pokemons' availabilities update has failed"
+
+connect:
+    disclaimer: |
+        I use the connection solely for identification purposes.
+        The email is of no use to me, so it doesn't matter.
+        I do not retain ANY data other than the identifier provided by the provider.
+
+        Choose your preferred identification service.
+        You will be redirected to their site to log in.
+    help: |
+        Each service allows you to have a different account on Pokénini.
+
+trainer:
+    welcome: |
+        Hello, young trainer.
+        This is your space.
+
+        Here you can personalize your albums, view personal data and log out.
+        Have fun.
+    personnal_data:
+        title: "Personal data"
+        intro: "Here is the personal data I have about you"
+        outro: "Voilà. That's all"
+        head:
+            type: "Type"
+            value: "Value"
+        body:
+            id: "Identifier"
+            provider: "Provider"
+    dex:
+        title: "Customize your albums"
+        see: "See"
+        attributes:
+            is_private:
+                label: "Private album"
+                help: "Only accessible by you"
+            is_on_home:
+                label: "Album visible on the homepage"
+                help: "The home page is only visible to you. This is your page."
+            is_premium:
+                label: "Album can be seen only for premium user"
+                help: "Only for premium user"
+            is_shiny:
+                label: "Shiny album"
+                help: "Full of shiny pokemons"
+            is_custom:
+                label: "Custom album"
+                help: "Only for you"
+            not:
+                is_released:
+                    label: "Album can be seen only for admin user"
+                    help: "The album is not released yet for public"
+        update:
+            title: "Maj"
+            success:
+                prefix: ""
+                radical: "{dexName}"
+                suffix: "setting have been saved"
+            error:
+                prefix: ""
+                radical: "{dexName}"
+                suffix: "setting have not been saved"
+    filters:
+        attributes:
+            privacy:
+                label: "Filter private/public albums"
+                all: "All"
+                "on": "Private only"
+                "off": "Public only"
+            homepaged:
+                label: "Filter on home or not albums"
+                all: "All"
+                "on": "On home"
+                "off": "Not on home"
+            released:
+                label: "Filter on released or not albums"
+                all: "All"
+                "on": "Released"
+                "off": "Not released"
+            shiny:
+                label: "Filter on shiny or not albums"
+                all: "All"
+                "on": "Shiny"
+                "off": "Regular"
+            premium:
+                label: "Filter on premium or free albums"
+                all: "All"
+                "on": "Premium"
+                "off": "Free"
+    logout:
+        title: "Session"
+
+outer_room:
+    message: |
+        Hey, thanks for logging in. For the moment, you have no right to go further.
+        This site is reserved only for certain people. I know it's disappointing.
+
+        If you want to have access to it, you can contact my administrator, Renaud,
+        by email pokenini.app@gmail.com or by another means if you know of one.
+        Just send it this identifier `{id}`
+
+        And if you click below, it gives you the email on its own. Am I not nice?
+
+        (The email will not be kept)
+    cancel: |
+        If you don't want access, you don't have to do anything. I didn't record anything.
+        You can log out with the link below.
+        Thanks for dropping by.
+    mail:
+        link: "Send a request"
+        subject: "Can I have access to Pokénini please?"
+        body: "My Google OpenId identifier is {id}"
+
+footer:
+    home: "Home"
+    legals: "Legal Notice"
+    policy: "Privacy Policy"
+    cookies: "Cookies"
+    version: "Version"
+
+error:
+    unknown:
+        text: |
+            Shit ! There was an error. I don't know where.
+            But don't worry, it's not you. It's us ...
+            Finally can not be seen that we do not know where the error comes from.
+
+            Do not hesitate to point out the error to us. How did you meet her,
+            a capture, the max of info.
+    404:
+        text: |
+            The page you requested could not be found. I can't find her.
+            Check the URL or return to the home page using the link just below.
+    500:
+        text: |
+            So that's the shit! There was a fu**ing mistake somewhere.
+            She comes from my side. You have nothing to do with it.
+
+            Do not hesitate to point out the error to us. How did you meet her,
+            a capture, the max of info.
+
+admin:
+    reports:
+        cache:
+            title: "Cache"
+        table:
+            hide: "Hide data"
+            show: "Show data"
+        catch_state_counts_defined_by_trainer:
+            title: "Distributions of catch statuses defined by trainers"
+            trainer: "Trainer"
+            nb: "Count"
+            color: "Color"
+            part: "%"
+            toggle: ""
+        dex_usage:
+            title: "Dex usage"
+            dex: "Dex"
+            nb: "Trainers count"
+        catch_state_usage:
+            title: "Catch state usage"
+            catch_state: "Catch state"
+            nb: "Count"
+            color: "Color"
+            part: "%"
+            toggle: ""
+    action:
+        created_at: "Start at"
+        done_at: "End at"
+        execution_time: "Execution time"
+    toggle:
+        last: "Show last action"
+        current: "Show current action"
+
+    actions:
+        update_availabilities:
+            title: "Update availabilities' data"
+            games_availabilities: 
+                title: "Update games' availabilities"
+                item: "Games' availabilities"
+                cta: "Update!"
+            games_shinies_availabilities: 
+                title: "Update games' shinies' availabilities"
+                item: "Games' shinies' availabilities"
+                cta: "Update!"
+            collections_availabilities: 
+                title: "Update collections"
+                item: "Collections' availabilities"
+                cta: "Update!"
+        update_data:
+            title: "Update data"
+            labels: 
+                title: "Update labels"
+                cta: "Update!"
+            games_collections_and_dex: 
+                title: "Update games, collections and dex"
+                cta: "Update!"
+            pokemons: 
+                title: "Update pokémons"
+                item: "Pokémons"
+                cta: "Update!"
+            regional_dex_numbers: 
+                title: "Update regional dex numbers"
+                item: "Regional Dex numbers"
+                cta: "Update!"
+            game_generations: 
+                item: "Game's generations"
+            game_bundles: 
+                item: "Game's bundles"
+            games: 
+                item: "Games"
+            dex: 
+                item: "Dex"
+            collections: 
+                item: "Collections"
+            catch_states: 
+                item: "Catch's states"
+            types: 
+                item: "Types"
+            regions: 
+                item: "Regions"
+            category_forms: 
+                item: "Category forms"
+            regional_forms: 
+                item: "Regional forms"
+            special_forms: 
+                item: "Special forms"
+            variant_forms: 
+                item: "Variant forms"
+                
+        calculate_data:
+            title: "Calculate data"
+            game_bundles_availabilities: 
+                title: "Calculate game bundles' availabilities"
+                item: "Bundles' availabilities"
+                cta: "Calculate!"
+            game_bundles_shinies_availabilities: 
+                title: "Calculate game bundles' shinies' availabilities"
+                item: "Bundles' shinies' availabilities"
+                cta: "Calculate!"
+            dex_availabilities: 
+                title: "Calculate dex availabilities"
+                item: "Dex' availabilities"
+                cta: "Calculate!"
+            pokemon_availabilities: 
+                title: "Calculate pokemons availabilities"
+                cta: "Calculate!"
+            pokemon_availabilities_game_bundle: 
+                item: "Pokemons' availabilities for Game bundles"
+            pokemon_availabilities_game_bundle_shiny: 
+                item: "Pokemons' availabilities for Game bundles shiny"
+        invalidate_data:
+            title: "Invalidate caches"
+            catch_states: 
+                title: "Invalidate status cache"
+                cta: "Invalidate!"
+            types: 
+                title: "Invalidate types cache"
+                cta: "Invalidate!"
+            labels: 
+                title: "Invalidate labels cache"
+                cta: "Invalidate!"
+            dex: 
+                title: "Invalidate dex cache"
+                cta: "Invalidate!"
+            albums: 
+                title: "Invalidate album cache"
+                cta: "Invalidate!"
+            actions: 
+                title: "Invalidate actions cache"
+                cta: "Invalidate!"
+        reports_data: 
+            reports: 
+                title: "Invalidate reports cache"
+                cta: "Invalidate!"
+
+election:
+    choose:
+        action: "I choose this one"
+    the_end: "Well done, you're done!"
+    slug:
+        label: "Election's name"
+    filters:
+        title: "Filters"
+        open: "See filters"
+        back: "Whoa, too complicated!"
+        submit: 
+            label: "Let's Go"
+        anytype:
+            title: "Choose your favorite type or types"
+            help: "You can select only certain types to narrow down the list, or choose them all to see every Pokémon."
+    filters-advanced:
+        title: "Advanced filters"
+        open: "See advanced filters"
+    welcome:
+        title: "Ready to pick your favorite Pokémon?"
+        subtitle: "Which Pokémon is in your team?"
+        submit: 
+            label: "Make it Happen!"
+        description: |
+            Now you can finally choose your favorite Pokémon!
+            Think you already know it? Think again!
+            
+            This site, tested by experts in the field, will surprise you.
+
+            Are you ready?!
+    top:
+        title: 
+            final: "Your top {n}"
+            temp: "Your temporary top {n}"
+    actions:
+        submit: "I've made my choices"
+        reset: "New selection"
+        filters: "See filters"
+    stats:
+        title: "Stats"
+        vote_count: 
+            start: "You voted"
+            end: "times"
+        round: 
+            start: "You completed "
+            middle: >-
+                {n, plural,
+                    =1 { round out of }
+                    other { rounds out of }
+                }
+            end: "*."
+            help: 
+                start: "* based on the choice of"
+                end: "per turn"
+        last: "These are the last {n}. You can stop here or refine your choice."
+        favorite_count: 
+            start: "You have "
+            end: " favorites that stand out."
+            none: "You have no favorites that stand out."
+        choose_per_turn: >
+            {value, plural,
+                =0 {exactly {value}}
+                =1 {exactly {value}}
+                one {almost {value}}
+                few {about {value}}
+                other {between {value0} and {value1}}
+            }
+    dex:
+        details: 
+
+
+dex:
+    filters:
+        submit:
+            label: Filter
+        reset:
+            label: Reset
+        any_type:
+            label: Type
+            value:
+                empty: All
+        primary_type:
+            label: Primary type
+            value:
+                empty: All
+        secondary_type:
+            label: Secondary type
+            value:
+                empty: All
+                "null": None
+        category_form:
+            label: Category
+            value:
+                empty: All
+                "null": None
+        regional_form:
+            label: Regional form
+            value:
+                empty: All
+                "null": None
+        special_form:
+            label: Special form
+            value:
+                empty: All
+                "null": None
+        variant_form:
+            label: Variant
+            value:
+                empty: All
+                "null": None
+        original_game_bundle:
+            label: Original game bundle
+            value:
+                empty: All
+        game_bundle_availability:
+            label: Available in
+            value:
+                empty: All
+                negative: "Not in "
+        game_bundle_shiny_availability:
+            label: Available in
+            value:
+                empty: All
+                negative: "Not in "
+        catch_states:
+            total: "All the collection"
+            positive: "Filter all “{cs}”"
+            negative: "Filter all excepts “{cs}”"
+        collections:
+            label: Collection
+            value:
+                empty: Whatever
+                negative: "Not in "
+
+election_dex:
+    title: "Choose the dex you want to vote for"
+    subtitle: "Depending on the dex, there are more or fewer Pokémon, and more or fewer forms. It's up to you."
+    dex:
+        total_count_suffixe: Pokémons

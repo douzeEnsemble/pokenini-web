@@ -1,0 +1,7 @@
+html {
+    scroll-behavior: auto !important;
+}
+
+.container {
+    padding-bottom: 4rem;
+}

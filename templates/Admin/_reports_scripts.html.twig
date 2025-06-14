@@ -1,0 +1,287 @@
+{% set locale = app.request.locale %}
+
+<script type="application/javascript">
+    Chart.register(window.ChartDataLabels);
+
+    // Colors get from https://nagix.github.io/chartjs-plugin-colorschemes/colorchart.html
+    const colorsPaired12 = [
+        '#a6cee3',
+        '#1f78b4',
+        '#b2df8a',
+        '#33a02c',
+        '#fb9a99',
+        '#e31a1c',
+        '#fdbf6f',
+        '#ff7f00',
+        '#cab2d6',
+        '#6a3d9a',
+        '#ffff99',
+        '#b15928',
+    ];
+    const colorsClassicGreenOrange12 = [
+        '#32a251',
+        '#acd98d',
+        '#ff7f0f',
+        '#ffb977',
+        '#3cb7cc',
+        '#98d9e4',
+        '#b85a0d',
+        '#ffd94a',
+        '#39737c',
+        '#86b4a9',
+        '#82853b',
+        '#ccc94d',
+    ];
+
+    const patternsPaired = pattern.generate(colorsPaired12);
+    const patternsClassic = pattern.generate(colorsClassicGreenOrange12);
+</script>
+
+<script type="application/javascript">
+(function() {
+    {% set catchStateCountsDefinedByTrainerLabels = reportsData.catch_state_counts_defined_by_trainer|map(d => d.trainer) %}
+    {% set catchStateCountsDefinedByTrainerData = reportsData.catch_state_counts_defined_by_trainer|map(d => d.nb) %}
+
+    const tableLegendPlugin = {
+        id: 'tableLegend',
+        afterUpdate(chart, args, options) {
+            const items = chart.options.plugins.legend.labels.generateLabels(chart);
+
+            items.forEach(item => {
+                let row = document.getElementById(
+                    "catch_state_counts_defined_by_trainer-row-"+item.text
+                );
+                let canvas = document.getElementById(
+                    "catch_state_counts_defined_by_trainer-legend-"+item.text
+                );
+                let link = document.getElementById(
+                    "catch_state_counts_defined_by_trainer-text-"+item.text
+                );
+                let toggle = document.getElementById(
+                    "catch_state_counts_defined_by_trainer-toggle-"+item.text
+                );
+
+                canvas.width = 60;
+                canvas.height = 28;
+
+                let onclick = function(event) {
+                    event.preventDefault();
+
+                    const {type} = chart.config;
+                    chart.toggleDataVisibility(item.index);
+                    chart.update();
+
+                    row.classList.toggle('active');
+
+                    return false;
+                };
+
+                canvas.onclick = onclick;
+                link.onclick = onclick;
+                toggle.onclick = onclick;
+
+                let ctx = canvas.getContext("2d");
+                ctx.fillStyle = item.fillStyle;
+                ctx.fontColor = item.fontColor;
+                ctx.strokeStyle = item.strokeStyle;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.canvas;
+            });
+        }
+    };
+
+    new Chart(
+        document.getElementById('catch_state_counts_defined_by_trainer'),
+        {
+            locale: '{{ locale }}',
+            type: 'pie',
+            options: {
+                responsive: true,
+                plugins: {
+                    tableLegend: {
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    datalabels: {
+                        backgroundColor: 'white',
+                        borderColor: 'black',
+                        borderRadius: 0,
+                        borderWidth: 1,
+                        color: 'black',
+                        padding: 3,
+                        formatter: function(value, context) {
+                            return new Intl.NumberFormat('fr-FR').format(value);
+                        }
+                    }
+                }
+            },
+            plugins: [tableLegendPlugin],
+            data: {
+                labels: {{ catchStateCountsDefinedByTrainerLabels|json_encode()|raw }},
+                datasets: [{
+                    data: {{ catchStateCountsDefinedByTrainerData|json_encode()|raw }},
+                    backgroundColor: patternsClassic
+                }]
+            }
+        }
+    );
+})();
+</script>
+
+<script type="application/javascript">
+(function() {
+    {% set dexUsageLabels = reportsData.dex_usage|map(d => locale is same as('fr') ? d.french_name : d.name) %}
+    {% set dexUsageData = reportsData.dex_usage|map(d => d.nb) %}
+    new Chart(
+        document.getElementById('dex_usage'),
+        {
+            locale: '{{ locale }}',
+            type: 'bar',
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    datalabels: {
+                        backgroundColor: 'white',
+                        borderColor: 'black',
+                        borderRadius: 0,
+                        borderWidth: 1,
+                        color: 'black',
+                        padding: 3,
+                        formatter: function(value, context) {
+                            return new Intl.NumberFormat('fr-FR').format(value);
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '{{ 'admin.reports.dex_usage.nb'|trans }}'
+                        },
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            min: 0,
+                            callback: function(value, index, values) {
+                                return (Math.floor(value) === value) ? value : null;
+                            }
+                        }
+                    }
+                }
+            },
+            data: {
+                labels: {{ dexUsageLabels|json_encode()|raw }},
+                datasets: [{
+                    data: {{ dexUsageData|json_encode()|raw }},
+                    backgroundColor: patternsPaired
+                }]
+            }
+        }
+    );
+})();
+</script>
+
+<script type="application/javascript">
+(function() {
+    {% set catchStateUsageLabels = reportsData.catch_state_usage|map(d => locale is same as('fr') ? d.french_name : d.name) %}
+    {% set catchStateUsageData = reportsData.catch_state_usage|map(d => d.nb) %}
+    {% set catchStateUsageColors = reportsData.catch_state_usage|map(d => d.color) %}
+
+    const catchStatePatterns = pattern.generate({{ catchStateUsageColors|json_encode()|raw }});
+
+    const tableLegendPlugin = {
+        id: 'tableLegend',
+        afterUpdate(chart, args, options) {
+            const items = chart.options.plugins.legend.labels.generateLabels(chart);
+
+            items.forEach(item => {
+                let row = document.getElementById(
+                    "catch_state_usage-row-"+item.text
+                );
+                let canvas = document.getElementById(
+                    "catch_state_usage-legend-"+item.text
+                );
+                let link = document.getElementById(
+                    "catch_state_usage-text-"+item.text
+                );
+                let toggle = document.getElementById(
+                    "catch_state_usage-toggle-"+item.text
+                );
+
+                canvas.width = 60;
+                canvas.height = 28;
+
+                var onclick = function(event) {
+                    event.preventDefault();
+
+                    const {type} = chart.config;
+                    chart.toggleDataVisibility(item.index);
+                    chart.update();
+
+                    row.classList.toggle('active');
+
+                    return false;
+                };
+
+                canvas.onclick = onclick;
+                link.onclick = onclick;
+                toggle.onclick = onclick;
+
+                let ctx = canvas.getContext("2d");
+                ctx.fillStyle = item.fillStyle;
+                ctx.fontColor = item.fontColor;
+                ctx.strokeStyle = item.strokeStyle;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.canvas;
+            });
+        }
+    };
+
+    new Chart(
+        document.getElementById('catch_state_usage'),
+        {
+            locale: '{{ locale }}',
+            type: 'pie',
+            options: {
+                responsive: true,
+                plugins: {
+                    tableLegend: {
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    datalabels: {
+                        backgroundColor: 'white',
+                        borderColor: 'black',
+                        borderRadius: 0,
+                        borderWidth: 1,
+                        color: 'black',
+                        padding: 3,
+                        formatter: function(value, context) {
+                            return new Intl.NumberFormat('fr-FR').format(value);
+                        }
+                    }
+                }
+            },
+            plugins: [tableLegendPlugin],
+            data: {
+                labels: {{ catchStateUsageLabels|json_encode()|raw }},
+                datasets: [{
+                    data: {{ catchStateUsageData|json_encode()|raw }},
+                    backgroundColor: catchStatePatterns
+                }]
+            }
+        }
+    );
+})();
+</script>

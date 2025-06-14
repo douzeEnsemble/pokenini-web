@@ -1,0 +1,390 @@
+[
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Kanto",
+      "french_name": "Kanto",
+      "slug": "kanto"
+    },
+    "name": "Red, Green, Blue, Yellow",
+    "french_name": "Rouge, Vert, Bleu, Jaune",
+    "slug": "redgreenblueyellow",
+    "original_slug": "redgreenblueyellow",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": true,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Johto",
+      "french_name": "Johto",
+      "slug": "johto"
+    },
+    "name": "Gold, Silver, Crystal",
+    "french_name": "Or, Argent, Cristal",
+    "slug": "goldsilvercrystal",
+    "original_slug": "goldsilvercrystal",
+    "is_released": false,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Hoenn",
+      "french_name": "Hoenn",
+      "slug": "hohto"
+    },
+    "name": "Ruby, Sapphire, Emerald",
+    "french_name": "Rubis, Saphir, \u00c9meraude",
+    "slug": "rubysapphireemerald",
+    "original_slug": "rubysapphireemerald",
+    "is_released": false,
+    "is_premium": true,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Kanto",
+      "french_name": "Kanto",
+      "slug": "kanto"
+    },
+    "name": "Red Fire, Leaf Green",
+    "french_name": "Rouge Feu, Vert Feuille",
+    "slug": "fireredleafgreen",
+    "original_slug": "fireredleafgreen",
+    "is_released": false,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Sinnoh",
+      "french_name": "Sinnoh",
+      "slug": "sinnoh"
+    },
+    "name": "Diamond, Pearl, Platinium",
+    "french_name": "Diamant, Perle, Platine",
+    "slug": "diamondpearlplatinium",
+    "original_slug": "diamondpearlplatinium",
+    "is_released": true,
+    "is_premium": true,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Johto",
+      "french_name": "Johto",
+      "slug": "johto"
+    },
+    "name": "Heart Gold, Soul Silver",
+    "french_name": "Or HeartGold, Argent SoulSilver",
+    "slug": "heartgoldsoulsilver",
+    "original_slug": "heartgoldsoulsilver",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Unova",
+      "french_name": "Unys",
+      "slug": "unova"
+    },
+    "name": "Black, White",
+    "french_name": "Noire, Blanche",
+    "slug": "blackwhite",
+    "original_slug": "blackwhite",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Unova",
+      "french_name": "Unys",
+      "slug": "unova"
+    },
+    "name": "Black 2, White 2",
+    "french_name": "Noire 2, Blanche 2",
+    "slug": "black2white2",
+    "original_slug": "black2white2",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Kalos",
+      "french_name": "Kalos",
+      "slug": "kalos"
+    },
+    "name": "X, Y",
+    "french_name": "X, Y",
+    "slug": "xy",
+    "original_slug": "xy",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Hoenn",
+      "french_name": "Hoenn",
+      "slug": "hohto"
+    },
+    "name": "Omega Ruby, Alpha Sapphire",
+    "french_name": "Rubis Om\u00e9ga, Saphir Alpha",
+    "slug": "omegarubyalphasapphire",
+    "original_slug": "omegarubyalphasapphire",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Alola",
+      "french_name": "Alola",
+      "slug": "alola"
+    },
+    "name": "Sun, Moon",
+    "french_name": "Soleil, Lune",
+    "slug": "sunmoon",
+    "original_slug": "sunmoon",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Alola",
+      "french_name": "Alola",
+      "slug": "alola"
+    },
+    "name": "Ultra Sun, Ultra Moon",
+    "french_name": "Ultra Soleil, Ultra Lune",
+    "slug": "ultrasunultramoon",
+    "original_slug": "ultrasunultramoon",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Kanto",
+      "french_name": "Kanto",
+      "slug": "kanto"
+    },
+    "name": "Let's Go Pikachu, Let's Go Eevee",
+    "french_name": "Let's Go Pikachu, Let's Go \u00c9voli",
+    "slug": "letsgopikachuletsgoeevee",
+    "original_slug": "letsgopikachuletsgoeevee",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Galar",
+      "french_name": "Galar",
+      "slug": "galar"
+    },
+    "name": "Sword, Shield",
+    "french_name": "\u00c9p\u00e9e, Bouclier",
+    "slug": "swordshield",
+    "original_slug": "swordshield",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Sinnoh",
+      "french_name": "Sinnoh",
+      "slug": "sinnoh"
+    },
+    "name": "Brillant Diamond, Shining Pearl",
+    "french_name": "Diamant \u00c9tincelant, Perle Scintillante",
+    "slug": "brillantdiamondshiningpearl",
+    "original_slug": "brillantdiamondshiningpearl",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": true,
+    "is_on_home": false,
+    "is_display_form": true,
+    "display_template": "box",
+    "region": {
+      "name": "Hisui",
+      "french_name": "Hisui",
+      "slug": "hisui"
+    },
+    "name": "Pok\u00e9mon Legends Arceus",
+    "french_name": "L\u00e9gendes Pok\u00e9mon : Arceus",
+    "slug": "pokemonlegendsarceus",
+    "original_slug": "pokemonlegendsarceus",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": false,
+    "is_on_home": true,
+    "is_display_form": true,
+    "display_template": "box",
+    "name": "Home",
+    "french_name": "Home",
+    "slug": "home",
+    "original_slug": "home",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": false,
+    "is_on_home": true,
+    "is_display_form": true,
+    "display_template": "box",
+    "name": "Home OT",
+    "french_name": "Home OT",
+    "slug": "homeot",
+    "original_slug": "home",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": true
+  },
+  {
+    "is_shiny": true,
+    "is_private": false,
+    "is_on_home": true,
+    "is_display_form": true,
+    "display_template": "box",
+    "name": "Home\nShiny",
+    "french_name": "Home\nChromatique",
+    "slug": "homeshiny",
+    "original_slug": "homeshiny",
+    "is_released": false,
+    "is_premium": true,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": false,
+    "is_on_home": true,
+    "is_display_form": false,
+    "display_template": "list-7",
+    "name": "Home\nPokemon Go",
+    "french_name": "Home\nPokemon Go",
+    "slug": "homepokemongo",
+    "original_slug": "homepokemongo",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": false,
+    "is_on_home": true,
+    "is_display_form": true,
+    "display_template": "list-3",
+    "name": "Alpha",
+    "french_name": "Baron",
+    "slug": "alpha",
+    "original_slug": "alpha",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  },
+  {
+    "is_shiny": false,
+    "is_private": false,
+    "is_on_home": true,
+    "is_display_form": true,
+    "display_template": "list-3",
+    "name": "Mega",
+    "french_name": "M\u00e9ga",
+    "slug": "mega",
+    "original_slug": "mega",
+    "is_released": true,
+    "is_premium": false,
+    "is_custom": false
+  }
+]

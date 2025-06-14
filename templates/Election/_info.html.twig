@@ -1,0 +1,58 @@
+{% set dex = pokedex.dex %}
+<div id="election-dex-info" class="row mt-xl-5 mt-lg-4 mt-3 ms-xl-5 ms-lg-3 ms-0 me-xl-5 me-lg-3 me-0">
+  <div class="row align-items-center">
+    <div class="col-xl-4 offset-xl-4 col-lg-6 offset-lg-3 col-12 text-center">
+      <div class="card border-light shadow-sm">
+        <div class="card-body text-body-secondary">
+          <h4 class="card-title">{{- (locale is same as('fr') ? dex.french_name : dex.name) -}}</h4>
+          <p class="card-text">
+            <span class="dex-pokemon-counter badge rounded-pill bg-primary">
+                {{ pokedex.pokemons|length|number_format(0, '.', ' ') }} {{ 'election_dex.dex.total_count_suffixe'|trans }}                            
+            </span>
+            <br>
+            <small class="dex-description text-body-secondary">
+              {{- (locale is same as('fr') ? dex.french_description : dex.description) -}}
+            </small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="election-stats" class="row mt-xl-5 mt-lg-4 mt-3 ms-xl-5 ms-lg-3 ms-0 me-xl-5 me-lg-3 me-0">
+  <div class="row align-items-center">
+    <div class="col-xl-4 offset-xl-4 col-lg-6 offset-lg-3 col-12 text-center">
+      <div class="card border-light shadow-sm">
+        <div class="card-body text-body-secondary">
+          <h4 class="card-title">{{ 'election.stats.title'|trans }}</h4>
+          <p class="card-text">
+            <span>
+              {{- 'election.stats.round.start'|trans({'n': metrics.roundCount}) -}}
+              <strong>{{- metrics.roundCount -}}</strong>
+              {{- 'election.stats.round.middle'|trans({'n': metrics.roundCount}) -}}
+              <strong>{{- metrics.totalRoundCount -}}</strong>
+              {{- 'election.stats.round.end'|trans({'n': metrics.roundCount}) -}}
+            </span>
+            <br>
+            <small>
+              {{ 'election.stats.round.help.start'|trans }}
+              <mark title="{{ metrics.winnerAverage }}">
+                {{- metrics.winnerAverage|almost_exactly -}}
+              </mark>
+              {{ 'election.stats.round.help.end'|trans }}
+            </small>
+          </p>
+          <p class="card-text">
+            {% if detachedCount %}
+            {{- 'election.stats.favorite_count.start'|trans({'n': detachedCount}) -}}
+            <strong>{{- detachedCount -}}</strong>
+            {{- 'election.stats.favorite_count.end'|trans({'n': detachedCount}) -}}
+            {% else %}
+            {{- 'election.stats.favorite_count.none'|trans({'n': detachedCount}) -}}
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

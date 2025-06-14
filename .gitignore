@@ -1,0 +1,50 @@
+/.idea/
+
+/docker/db/data
+/doctrine_migration_*.sql
+
+resources/auth/credentials.json
+
+/tests/gs/
+/tests/tmp/
+tests/coverage
+tests/mutation/index.html
+coverage.xml
+
+###> symfony/framework-bundle ###
+/.env
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+.phpunit.cache
+###< phpunit/phpunit ###
+.deptrac.cache
+
+docker/apache/ssl/cert-key.pem
+docker/apache/ssl/cert.pem
+
+build/*
+tests/last.html
+bin/local-php-security-checker
+.php-cs-fixer.cache
+bin/php-cs-fixer
+infection_summary.log
+infection_text.log
+
+dependency-check-release.zip
+dependency-check/
+.clever.json
+
+
+tools/*/vendor
+
+/.deptrac.cache

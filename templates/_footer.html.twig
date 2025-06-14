@@ -1,0 +1,28 @@
+<div class="container" id="footer-container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary" id="copyright" title="{{ 'footer.version'|trans }} {{ version() }}">© 2022-{{ "now"|date("Y") }} Pokénini</p>
+
+        <ul class="nav col-md-8 justify-content-end">
+            <li class="nav-item">
+                <a href="{{ path('app_web_home_index') }}" class="nav-link px-2 text-body-secondary">
+                    {{ 'footer.home'|trans }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('app_web_staticpage_policy') }}" class="nav-link px-2 text-body-secondary">
+                    {{ 'footer.policy'|trans }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('app_web_staticpage_legals') }}" class="nav-link px-2 text-body-secondary">
+                    {{ 'footer.legals'|trans }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('app_web_staticpage_cookies') }}" class="nav-link px-2 text-body-secondary">
+                    {{ 'footer.cookies'|trans }}
+                </a>
+            </li>
+        </ul>
+    </footer>
+</div>

@@ -1,0 +1,50 @@
+<div id="election-actions-bottom" class="election-actions sticky-top sticky-bottom">
+  <div class="row justify-content-center px-xl-4 px-lg-3 px-2 py-xl-2 py-lg-3 py-4">
+    <div class="election-actions-item text-center col-xl-2 col-lg-3 col-6 offset-xl-2 offset-lg-3 offset-3">
+      {% if not isTheLastOne %}
+      <button 
+        id="election-vote-submit-bottom" 
+        class="election-vote-submit btn btn-primary position-relative"
+      >
+        <span class="spinner-border spinner-border-sm" aria-hidden="true" hidden></span>
+        {{ 'election.actions.submit'|trans }}
+        <span id="election-counter-bottom" class="election-counter position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          0
+        </span>
+      </button>
+      {% else %}
+      <div class="alert alert-success" role="alert">
+        {{ 'election.the_end'|trans }}
+      </div>
+      {% endif %}
+    </div>
+    <div class="election-actions-item text-end col-xl-2 col-lg-3 col-3">
+      {% if not isTheLastOne %}
+      <a class="btn btn-light btn-sm" href="#election-modal-filters" data-bs-toggle="modal" data-bs-target="#election-modal-filters">
+        <span class="d-none d-md-inline">{{ 'election.actions.filters'|trans }}</span>
+        <i class="bi bi-funnel"></i>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if isTheLastPage and not isTheLastOne %}
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div 
+    id="election-lastpage-toast" 
+    class="toast align-items-center text-bg-primary border-0" 
+    role="alert" 
+    aria-live="assertive" 
+    aria-atomic="true"
+    data-bs-autohide="false"
+  >
+    <div class="d-flex">
+      <div class="toast-body">
+        {{ 'election.stats.last'|trans({'n': pokemons|length}) }}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+{% endif %}

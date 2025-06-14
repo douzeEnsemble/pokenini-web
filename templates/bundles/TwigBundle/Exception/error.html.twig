@@ -1,0 +1,16 @@
+{% set appStatusCode = appStatusCode ?? 'unknown' %}
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ ('title.error.'~appStatusCode)|trans }}{% endblock title %}
+
+{% block container %}
+    <h1>{{ ('title.error.'~appStatusCode)|trans }}</h1>
+
+    <p>
+        {{ ('error.'~appStatusCode~'.text')|trans|nl2br }}
+    </p>
+    <a href="{{ path('app_web_home_index') }}">
+        {{ 'nav.home'|trans }}
+    </a>
+{% endblock %}

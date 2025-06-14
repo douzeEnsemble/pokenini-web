@@ -1,0 +1,17 @@
+name: PHP prepare
+description: Prepare the PHP env
+author: Renaud Douze
+runs:
+  using: "composite"
+  steps:
+    - name: Copy .env file
+      shell: bash
+      run: cp .env.ci .env
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@verbose
+      with:
+        php-version: '8.4'
+        extensions: apcu, ctype, dom, iconv, intl, json, libxml, mbstring, simplexml, tokenizer, xml, xmlwriter, zip
+        tools: none
+        coverage: none 

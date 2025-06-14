@@ -1,0 +1,110 @@
+[
+    {
+        "name": "Normal",
+        "frenchName": "Normal",
+        "slug": "normal",
+        "color": "#9199a1"
+    },
+    {
+        "name": "Fighting",
+        "frenchName": "Combat",
+        "slug": "fighting",
+        "color": "#cf4069"
+    },
+    {
+        "name": "Flying",
+        "frenchName": "Vol",
+        "slug": "flying",
+        "color": "#8ea9df"
+    },
+    {
+        "name": "Poison",
+        "frenchName": "Poison",
+        "slug": "poison",
+        "color": "#aa6ac7"
+    },
+    {
+        "name": "Ground",
+        "frenchName": "Sol",
+        "slug": "ground",
+        "color": "#db7645"
+    },
+    {
+        "name": "Rock",
+        "frenchName": "Roche",
+        "slug": "rock",
+        "color": "#c7b78a"
+    },
+    {
+        "name": "Bug",
+        "frenchName": "Insecte",
+        "slug": "bug",
+        "color": "#91c22e"
+    },
+    {
+        "name": "Ghost",
+        "frenchName": "Spectre",
+        "slug": "ghost",
+        "color": "#5568aa"
+    },
+    {
+        "name": "Steel",
+        "frenchName": "Acier",
+        "slug": "steel",
+        "color": "#598fa2"
+    },
+    {
+        "name": "Fire",
+        "frenchName": "Feu",
+        "slug": "fire",
+        "color": "#ff9d55"
+    },
+    {
+        "name": "Water",
+        "frenchName": "Eau",
+        "slug": "water",
+        "color": "#4d91d7"
+    },
+    {
+        "name": "Grass",
+        "frenchName": "Plante",
+        "slug": "grass",
+        "color": "#61bb59"
+    },
+    {
+        "name": "Electric",
+        "frenchName": "Electrik",
+        "slug": "electric",
+        "color": "#f3d33c"
+    },
+    {
+        "name": "Psychic",
+        "frenchName": "Psy",
+        "slug": "psychic",
+        "color": "#fb7075"
+    },
+    {
+        "name": "Ice",
+        "frenchName": "Glace",
+        "slug": "ice",
+        "color": "#71cfbe"
+    },
+    {
+        "name": "Dragon",
+        "frenchName": "Dragon",
+        "slug": "dragon",
+        "color": "#0a6dc8"
+    },
+    {
+        "name": "Dark",
+        "frenchName": "T\u00e9n\u00e8bre",
+        "slug": "dark",
+        "color": "#595265"
+    },
+    {
+        "name": "Fairy",
+        "frenchName": "F\u00e9e",
+        "slug": "fairy",
+        "color": "#ef8fe7"
+    }
+]

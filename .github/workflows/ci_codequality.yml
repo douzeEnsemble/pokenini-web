@@ -1,0 +1,90 @@
+name: CI Code Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: ~
+  workflow_call:
+    secrets:
+      DOCKERHUB_USERNAME:
+        description: 'Docker Hub username'
+        required: true
+      DOCKERHUB_TOKEN:
+        description: 'Docker Hub token'
+        required: true
+
+env: 
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  PHP_CS_FIXER_IGNORE_ENV: 1
+
+jobs:
+  phpcsfixer:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/actions/tools-composer
+        with:
+          dir: php-cs-fixer
+      - name: Run
+        run: ./tools/php-cs-fixer/vendor/bin/php-cs-fixer check --diff
+
+  phpmd:
+    name: PHPMD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/actions/tools-composer
+        with:
+          dir: phpmd
+      - name: Run
+        run: ./tools/phpmd/vendor/bin/phpmd src,tests text ruleset.xml
+
+  psalm:
+    name: Psalm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/actions/local-tools-composer
+        with:
+          dir: psalm      
+      - name: Run
+        run: ./tools/psalm/vendor/bin/psalm --show-info=false --root=.
+
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/actions/local-tools-composer
+        with:
+          dir: phpstan
+      - name: Initialize
+        run: |
+          ./tools/phpstan/vendor/bin/phpstan clear-result-cache
+      - name: Run
+        run: |
+          ./tools/phpstan/vendor/bin/phpstan analyse --memory-limit=-1
+
+  deptrac:
+    name: Deptrac
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/actions/tools-composer
+        with:
+          dir: deptrac
+      - name: Run
+        run: ./tools/deptrac/vendor/bin/deptrac analyse

@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Starter",
+        "frenchName": "de D\u00e9part",
+        "slug": "starter"
+    },
+    {
+        "name": "Legendary",
+        "frenchName": "L\u00e9gendaire",
+        "slug": "legendary"
+    }
+]
