@@ -220,37 +220,10 @@ dotenv-fixer: ## Run DotEnv fixer
 	$(DOTENV_LINTER_CMD) fix -r --no-backup
 .PHONY: dotenv-linter
 
-## —— Integration 🗂️ ———————————————————————————————————————————————————————————————
-.PHONY: integration
-integration: ## Execute all integration tests
-integration: newman
-
-.PHONY: newman
-newman: ## Execute newman
-newman: newman-prepare newman-execute
-
-.PHONY: newman-prepare
-newman-prepare:
-	@$(SYMFONY) --env=int app:update:labels
-	@$(SYMFONY) --env=int app:update:games_collections_and_dex
-	@$(SYMFONY) --env=int app:update:pokemons
-	@$(SYMFONY) --env=int app:update:regional_dex_numbers
-	@$(SYMFONY) --env=int app:update:games_availabilities
-	@$(SYMFONY) --env=int app:update:games_shinies_availabilities
-	@$(SYMFONY) --env=int app:update:collections_availabilities
-	@$(SYMFONY) --env=int app:calculate:game_bundles_availabilities
-	@$(SYMFONY) --env=int app:calculate:game_bundles_shinies_availabilities
-	@$(SYMFONY) --env=int app:calculate:dex_availabilities
-	@$(SYMFONY) --env=int app:calculate:pokemon_availabilities
-
-.PHONY: newman-execute
-newman-execute:
-	$(DOCKER_COMP) up newman --no-recreate --menu=false
-
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 .PHONY: measures
 measures: ## Execute all measures tools
-measures: clear-build coverage infection-api infection-web
+measures: clear-build coverage infection
 
 .PHONY: clear-build
 clear-build: ## Clear build directory
@@ -284,23 +257,11 @@ clear-infection-cache:
 
 .PHONY: infection
 infection: ## Execute all Infection testing
-infection: clear-infection-cache infection-api infection-web
-
-.PHONY: infection-api
-infection-api: ## Execute Infection (Mutation testing) for API module
-infection-api: build/coverage/coverage-xml tools/infection/vendor/bin/infection clear-infection-cache
+infection: build/coverage/coverage-xml tools/infection/vendor/bin/infection clear-infection-cache
 	@$(PHP) tools/infection/vendor/bin/infection --threads=4 --no-progress \
 		--skip-initial-tests --coverage=build/coverage \
 		--min-msi=100 --min-covered-msi=100 \
-		--filter=src/Api
-
-.PHONY: infection-web
-infection-web: ## Execute Infection (Mutation testing) for API module
-infection-web: build/coverage/coverage-xml tools/infection/vendor/bin/infection clear-infection-cache
-	@$(PHP) tools/infection/vendor/bin/infection --threads=4 --no-progress \
-		--skip-initial-tests --coverage=build/coverage \
-		--min-msi=100 --min-covered-msi=100 \
-		--filter=src/Web
+		--filter=src
 
 ## —— Security 🛡️ ———————————————————————————————————————————————————————————————
 .PHONY: security
