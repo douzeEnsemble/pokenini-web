@@ -32,7 +32,7 @@
                     <span class="float-end">
                         <a href="{{
                             path(
-                                'app_web_albumindex_index',
+                                'app_albumindex_index',
                                 filters
                                     |merge({
                                         'dexSlug': currentDexSlug,
@@ -49,7 +49,7 @@
                         </a>
                         <a href="{{
                             path(
-                                'app_web_albumindex_index',
+                                'app_albumindex_index',
                                 filters
                                     |merge({
                                         'dexSlug': currentDexSlug,
@@ -83,7 +83,7 @@
                 <span class="float-end">
                     <a href="{{
                         path(
-                            'app_web_albumindex_index',
+                            'app_albumindex_index',
                             filters
                                 |filter((value, key) => key != 'cs')
                                 |merge({

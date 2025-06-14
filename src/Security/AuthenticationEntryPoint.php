@@ -27,7 +27,7 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
     public function start(Request $request, ?AuthenticationException $authException = null): Response
     {
         return new RedirectResponse(
-            $this->router->generate('app_web_home_index'),
+            $this->router->generate('app_home_index'),
             Response::HTTP_TEMPORARY_REDIRECT
         );
     }

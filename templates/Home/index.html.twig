@@ -25,7 +25,7 @@
           <p>
             {{ 'home.alert.not_connected.description'|trans|nl2br }}
           </p>
-          <a href="{{ path('app_web_connect_index') }}" class="btn btn-warning">
+          <a href="{{ path('app_connect_index') }}" class="btn btn-warning">
             {{ 'home.alert.not_connected.action'|trans }}
           </a>
         </div>
@@ -46,7 +46,7 @@
             <div class="flex-fill">
               <h3 class="fs-2 text-body-emphasis">{{ 'home.menu.election.title'|trans }}</h3>
               <p>{{- 'home.menu.election.description'|trans -}}</p>
-              <a href="{{ path('app_web_electiondex_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
+              <a href="{{ path('app_electiondex_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
                   {{ 'home.menu.election.action'|trans }}
                 </a>
             </div>
@@ -60,7 +60,7 @@
             <div class="flex-fill">
               <h3 class="fs-2 text-body-emphasis">{{ 'home.menu.album.title'|trans }}</h3>
               <p>{{- 'home.menu.album.description'|trans -}}</p>
-                <a href="{{ path('app_web_albumdex_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
+                <a href="{{ path('app_albumdex_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
                   {{ 'home.menu.album.action'|trans }}
                 </a>
             </div>
@@ -72,7 +72,7 @@
 {% endblock %}
 
 {% macro homeItem(dex, locale, trainerId) %}
-  {% set url = path('app_web_albumindex_index', {'dexSlug': dex.slug, 't': trainerId}) %}
+  {% set url = path('app_albumindex_index', {'dexSlug': dex.slug, 't': trainerId}) %}
   <div class="card col-lg-3 col-sm-6 col-12 home-item position-relative">
     <a href="{{ url }}">
       {% set bannerUrl = dexBannerUrl|format(dex.slug) %}

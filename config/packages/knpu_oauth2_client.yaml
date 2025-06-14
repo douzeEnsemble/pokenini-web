@@ -6,7 +6,7 @@ knpu_oauth2_client:
             type: google
             client_id: '%env(OAUTH_GOOGLE_CLIENT_ID)%'
             client_secret: '%env(OAUTH_GOOGLE_CLIENT_SECRET)%'
-            redirect_route: app_web_connect_google_check
+            redirect_route: app_connect_google_check
             redirect_params: {}
 
         # https://developer.amazon.com/docs/login-with-amazon/documentation-overview.html
@@ -15,7 +15,7 @@ knpu_oauth2_client:
             type: amazon
             client_id: '%env(OAUTH_AMAZON_CLIENT_ID)%'
             client_secret: '%env(OAUTH_AMAZON_CLIENT_SECRET)%'
-            redirect_route: app_web_connect_amazon_check
+            redirect_route: app_connect_amazon_check
             redirect_params: {}
         
         # https://discord.com/developers/docs/topics/oauth2
@@ -24,7 +24,7 @@ knpu_oauth2_client:
             type: discord
             client_id: '%env(OAUTH_DISCORD_CLIENT_ID)%'
             client_secret: '%env(OAUTH_DISCORD_CLIENT_SECRET)%'
-            redirect_route: app_web_connect_discord_check
+            redirect_route: app_connect_discord_check
             redirect_params: {}
         
         # https://docs.passage.id/complete/hosted-quickstart
@@ -33,7 +33,7 @@ knpu_oauth2_client:
             type: passage
             client_id: '%env(OAUTH_PASSAGE_CLIENT_ID)%'
             client_secret: '%env(OAUTH_PASSAGE_CLIENT_SECRET)%'
-            redirect_route: app_web_connect_passage_check
+            redirect_route: app_connect_passage_check
             redirect_params: {}
             sub_domain: '%env(OAUTH_PASSAGE_SUB_DOMAIN)%'
             

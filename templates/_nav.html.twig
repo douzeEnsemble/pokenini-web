@@ -9,13 +9,13 @@
     <div class="container-fluid">
         <a
             class="navbar-brand navbar-logo"
-            href="{{ path('app_web_home_index', {'_locale': locale}) }}"
+            href="{{ path('app_home_index', {'_locale': locale}) }}"
         >
             <img src="/img/logo/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top" loading="lazy">
         </a>
         <a
             class="navbar-brand navbar-link"
-            href="{% block navbarTitleLink %}{{ path('app_web_home_index', {'_locale': locale}) }}{% endblock navbarTitleLink %}"
+            href="{% block navbarTitleLink %}{{ path('app_home_index', {'_locale': locale}) }}{% endblock navbarTitleLink %}"
         >                
             {% block navbarTitle %}
             {{ 'nav.back_home'|trans }}
@@ -28,12 +28,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item trainer-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    <a class="nav-link" href="{{ path('app_web_trainerindex_index') }}">
+                    <a class="nav-link" href="{{ path('app_trainerindex_index') }}">
                         <i class="bi bi-person-badge"></i>
                         {{ 'title.trainer'|trans }}
                     </a>
                     {% else %}
-                    <a class="nav-link" href="{{ path('app_web_connect_index') }}">
+                    <a class="nav-link" href="{{ path('app_connect_index') }}">
                         <i class="bi bi-person"></i>
                         {{ 'nav.login'|trans }}
                     </a>
@@ -41,7 +41,7 @@
                 </li>
                 <li class="nav-item election-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    <a class="nav-link" href="{{ path('app_web_electiondex_index') }}">
+                    <a class="nav-link" href="{{ path('app_electiondex_index') }}">
                         <i class="bi bi-heart"></i>
                         {{ 'title.election.nav'|trans }}
                     </a>
@@ -76,9 +76,9 @@
                 {% if is_granted("ROLE_ADMIN") %}
                 <li class="nav-item admin-link">
                     <a
-                        class="nav-link {{ 'app_web_admin_index' == currentRoute ? ' active' : '' }}"
+                        class="nav-link {{ 'app_admin_index' == currentRoute ? ' active' : '' }}"
                         aria-current="page"
-                        href="{{ path('app_web_admin_index') }}"
+                        href="{{ path('app_admin_index') }}"
                     >
                         <i class="bi bi-wrench-adjustable-circle"></i>
                         {{ 'nav.admin'|trans }}

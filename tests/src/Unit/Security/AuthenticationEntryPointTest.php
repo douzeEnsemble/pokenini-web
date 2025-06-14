@@ -23,7 +23,7 @@ class AuthenticationEntryPointTest extends TestCase
         $router
             ->expects($this->once())
             ->method('generate')
-            ->with('app_web_home_index')
+            ->with('app_home_index')
             ->willReturn('/home')
         ;
 

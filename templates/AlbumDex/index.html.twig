@@ -20,7 +20,7 @@
             ) }}
             {% else %}
             <div class="alert alert-secondary mt-5" role="alert">
-                <p>{{ 'home.no_dex'|trans|replace({'<a>': '<a href="'~path('app_web_trainerindex_index')~'">'})|raw }}</p>
+                <p>{{ 'home.no_dex'|trans|replace({'<a>': '<a href="'~path('app_trainerindex_index')~'">'})|raw }}</p>
             </div>
             {% endfor %}
         </div>
@@ -29,7 +29,7 @@
 {% endblock %}
 
 {% macro homeItem(dex, locale) %}
-{% set url = path('app_web_albumindex_index', {'dexSlug': dex.slug}) %}
+{% set url = path('app_albumindex_index', {'dexSlug': dex.slug}) %}
 <div class="card col-lg-3 col-sm-6 col-12 home-item position-relative">
     <a href="{{ url }}">
         {% set bannerUrl = dexBannerUrl|format(dex.slug) %}

@@ -18,9 +18,9 @@ trait AuthenticatorTrait
         /** @var User $user */
         $user = $token->getUser();
 
-        $targetUrl = $this->router->generate('app_web_outerroom_index');
+        $targetUrl = $this->router->generate('app_outerroom_index');
         if ($user->isATrainer()) {
-            $targetUrl = $this->router->generate('app_web_home_index');
+            $targetUrl = $this->router->generate('app_home_index');
         }
 
         return new RedirectResponse($targetUrl);

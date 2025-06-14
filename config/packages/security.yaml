@@ -14,7 +14,7 @@ security:
       lazy: true
       provider: users
       logout:
-        path: app_web_connect_logout
+        path: app_connect_logout
       entry_point: App\Security\AuthenticationEntryPoint
       custom_authenticators:
         - App\Security\AmazonAuthenticator

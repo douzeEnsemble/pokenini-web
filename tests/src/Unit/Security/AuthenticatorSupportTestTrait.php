@@ -32,12 +32,12 @@ trait AuthenticatorSupportTestTrait
 
         $this->assertTrue(
             $authenticator->supports(
-                new Request([], [], ['_route' => 'app_web_connect_'.$this->getAuthenticatorProviderCode().'_check'])
+                new Request([], [], ['_route' => 'app_connect_'.$this->getAuthenticatorProviderCode().'_check'])
             )
         );
         $this->assertFalse(
             $authenticator->supports(
-                new Request([], [], ['_route' => 'app_web_connect_check'])
+                new Request([], [], ['_route' => 'app_connect_check'])
             )
         );
     }

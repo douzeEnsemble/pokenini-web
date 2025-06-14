@@ -26,7 +26,7 @@ class FakeAuthenticator extends OAuth2Authenticator
     #[\Override]
     public function supports(Request $request): ?bool
     {
-        return 'app_web_connect_fake_check' === $request->attributes->get('_route');
+        return 'app_connect_fake_check' === $request->attributes->get('_route');
     }
 
     /**

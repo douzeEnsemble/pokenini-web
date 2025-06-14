@@ -28,7 +28,7 @@ abstract class AbstractAuthenticator extends OAuth2Authenticator
     #[\Override]
     public function supports(Request $request): ?bool
     {
-        return 'app_web_connect_'.$this->getProviderCode().'_check' === $request->attributes->get('_route');
+        return 'app_connect_'.$this->getProviderCode().'_check' === $request->attributes->get('_route');
     }
 
     /**

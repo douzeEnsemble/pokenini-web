@@ -46,7 +46,7 @@ class AppExtension extends AbstractExtension
 
     public function getVersion(string $filename = 'version'): string
     {
-        $version = file_get_contents(__DIR__.'/../../../resources/metadata/'.$filename);
+        $version = file_get_contents(__DIR__.'/../../resources/metadata/'.$filename);
 
         return false === $version ? '0.0.toto' : $version;
     }

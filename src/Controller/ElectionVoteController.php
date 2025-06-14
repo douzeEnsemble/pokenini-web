@@ -56,7 +56,7 @@ class ElectionVoteController extends AbstractController
         $filters = FromRequest::get($request);
 
         return $this->redirectToRoute(
-            'app_web_electionindex_index',
+            'app_electionindex_index',
             array_merge(
                 [
                     'dexSlug' => $electionVote->dexSlug,

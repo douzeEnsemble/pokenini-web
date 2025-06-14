@@ -60,7 +60,7 @@ class AdminActionControllerTest extends TestCase
             ->expects($this->once())
             ->method('generate')
             ->with(
-                'app_web_admin_index',
+                'app_admin_index',
                 [
                     '_fragment' => 'invalidate_something',
                 ]

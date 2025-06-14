@@ -3,7 +3,7 @@
 <script>
 tarteaucitron.init({
     {#- /* Privacy policy url */ -#}
-    "privacyUrl": "{{ path('app_web_staticpage_policy') }}",
+    "privacyUrl": "{{ path('app_staticpage_policy') }}",
     {#- /* or top to bring it as first element for accessibility */ -#}
     "bodyPosition": "bottom",
     {#- /* Open the panel with this hashtag */ -#}
@@ -47,7 +47,7 @@ tarteaucitron.init({
     {#- /* If false, the tarteaucitron.services.js file will be loaded */ -#}
     "useExternalJs": false,
     {#- /* Change the default readmore link pointing to tarteaucitron.io */ -#}
-    "readmoreLink": "{{ path('app_web_staticpage_policy') }}#tracker",
+    "readmoreLink": "{{ path('app_staticpage_policy') }}#tracker",
     {#- /* Show a message about mandatory cookies */ -#}
     "mandatory": true,
     {#- /* Show the disabled accept button when mandatory on */ -#}

@@ -124,7 +124,7 @@
 ) %}
 <div class="text-end border-top border-{{ bgStyle }} pt-3">
   <a 
-    href="{{ path('app_web_adminaction_'~actionPrefix, {'name': item}) }}"
+    href="{{ path('app_adminaction_'~actionPrefix, {'name': item}) }}"
     class="btn btn-outline-primary admin-item-cta {{ currentState == 'pending' ? 'disabled' : '' }}"
   >
     {{ ('admin.actions.'~action~'.'~item~'.cta')|trans }}

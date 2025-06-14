@@ -28,7 +28,7 @@
 		</div>
 		<div class="row row-cols-lg-12 row-cols-sm-6 row-cols-2 g-xl-3 g-lg-2 g-1 text-center">
             {% for item in dex %}
-            {% set url = path('app_web_electionindex_index', {'dexSlug': item.slug}) %}
+            {% set url = path('app_electionindex_index', {'dexSlug': item.slug}) %}
             <div class="col">
                 <div class="card election-dex-item position-relative">
                     <a href="{{ url }}">

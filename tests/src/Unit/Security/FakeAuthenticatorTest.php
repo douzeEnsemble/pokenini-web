@@ -30,12 +30,12 @@ class FakeAuthenticatorTest extends TestCase
 
         $this->assertTrue(
             $authenticator->supports(
-                new Request([], [], ['_route' => 'app_web_connect_fake_check'])
+                new Request([], [], ['_route' => 'app_connect_fake_check'])
             )
         );
         $this->assertFalse(
             $authenticator->supports(
-                new Request([], [], ['_route' => 'app_web_connect_google_check'])
+                new Request([], [], ['_route' => 'app_connect_google_check'])
             )
         );
     }
