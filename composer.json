@@ -20,7 +20,7 @@
         "symfony/expression-language": "7.0.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.0.*",
-        "symfony/http-client": "7.0.*",
+        "symfony/http-client": "7.1.*",
         "symfony/monolog-bundle": "^3.8",
         "symfony/password-hasher": "7.0.*",
         "symfony/runtime": "7.0.*",
