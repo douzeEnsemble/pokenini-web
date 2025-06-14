@@ -1,7 +1,6 @@
 /.idea/
 
 /docker/db/data
-/doctrine_migration_*.sql
 
 resources/auth/credentials.json
 

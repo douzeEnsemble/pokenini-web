@@ -10,7 +10,6 @@ DOCKER_COMP_EXEC = $(DOCKER_COMP) exec
 endif
 
 PHP_CONT = $(DOCKER_COMP_EXEC) php
-DATABASE_CONT = $(DOCKER_COMP_EXEC) database
 
 # Executables
 PHP      = $(PHP_CONT) php
@@ -61,7 +60,7 @@ rebuild: ## Re-builds the Docker images (build with no cache)
 	${DOCKER_COMP} build --no-cache
 
 .PHONY: start
-start: install up vendor cc data ## ## Start the project
+start: install up vendor cc ## ## Start the project
 
 .PHONY: up
 up: ## Up Docker container
@@ -93,37 +92,6 @@ mocks-restart: ## Restart mocks
 	$(DOCKER_COMP) restart moco.api.sheets.test
 	$(DOCKER_COMP) restart moco.web.api.dev
 	$(DOCKER_COMP) restart moco.web.api.test
-
-## —— Data 💾 ————————————————————————————————————————————————————————————————
-.PHONY: data
-data: ## Initialize data
-data: init-db data-app
-
-.PHONY: init-db
-init-db: ## Initialize database data
-	$(SYMFONY) doctrine:database:drop --force --if-exists --env=dev
-	$(SYMFONY) doctrine:database:create --env=dev
-	$(SYMFONY) doctrine:migration:migrate --no-interaction --env=dev
-	$(SYMFONY) doctrine:database:drop --force --if-exists --env=test
-	$(SYMFONY) doctrine:database:create --env=test
-	$(SYMFONY) doctrine:migration:migrate --no-interaction --env=test
-	$(SYMFONY) doctrine:database:drop --force --if-exists --env=int
-	$(SYMFONY) doctrine:database:create --env=int
-	$(SYMFONY) doctrine:migration:migrate --no-interaction --env=int
-
-.PHONY: data-app
-data-app: ## Initialize app data
-	$(SYMFONY) app:update:labels
-	$(SYMFONY) app:update:games_collections_and_dex
-	$(SYMFONY) app:update:pokemons
-	$(SYMFONY) app:update:regional_dex_numbers
-	$(SYMFONY) app:update:games_availabilities
-	$(SYMFONY) app:update:games_shinies_availabilities
-	$(SYMFONY) app:update:collections_availabilities
-	$(SYMFONY) app:calculate:game_bundles_availabilities
-	$(SYMFONY) app:calculate:game_bundles_shinies_availabilities
-	$(SYMFONY) app:calculate:dex_availabilities
-	$(SYMFONY) app:calculate:pokemon_availabilities
 
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 .PHONY: composer
@@ -163,7 +131,6 @@ cc: ## Clear the cache
 .PHONY: tests
 tests: ## Execute all tests
 tests:
-	@$(PHP) bin/console doctrine:schema:update --force --env=test
 	$(PHP) vendor/bin/phpunit tests/src
 
 .PHONY: tests-unit

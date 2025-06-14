@@ -8,7 +8,6 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-zip": "*",
-        "google/apiclient": "^2.18.3",
         "guzzlehttp/guzzle": "^7.9.3",
         "knpuniversity/oauth2-client-bundle": "^2.18.3",
         "league/oauth2-google": "^4.0.1",
@@ -49,7 +48,7 @@
         "ext-tokenizer": "*",
         "ext-xml": "*",
         "ext-xmlwriter": "*",
-        "phpunit/phpunit": "^12.2.1",
+        "phpunit/phpunit": "^12.2.2",
         "symfony/browser-kit": "7.3.*",
         "symfony/css-selector": "7.3.*",
         "symfony/debug-bundle": "7.3.*",
@@ -98,17 +97,11 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "pre-autoload-dump": [
-            "Google\\Task\\Composer::cleanup"
-        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ],
-        "compile": [
-            "@php bin/console doctrine:migration:migrate --no-interaction"
         ]
     },
     "conflict": {
@@ -119,9 +112,6 @@
             "allow-contrib": false,
             "require": "7.3.*",
             "docker": true
-        },
-        "google/apiclient-services": [
-            "Sheets"
-        ]
+        }
     }
 }

@@ -3,8 +3,6 @@ services:
         autowire: true
         autoconfigure: true
         bind:
-            string $spreadsheetId: '%env(SPREADSHEET_ID)%'
-            string $googleApiSheetsUrl: '%env(GOOGLE_API_SHEETS_URL)%'
             string $appApiUrl: '%env(APP_API_URL)%'
             string $listAdmin: '%env(LIST_ADMIN)%'
             string $listTrainer: '%env(LIST_TRAINER)%'
@@ -12,9 +10,6 @@ services:
             bool $isInvitationRequired: '%env(bool:REQUIRE_INVITATION)%'
             string $apiLogin: '%env(API_LOGIN)%'
             string $apiPassword: '%env(API_PASSWORD)%'
-            int $eloKFactor: '%env(ELO_K_FACTOR)%'
-            int $eloDDifference: '%env(ELO_D_DIFFERENCE)%'
-            int $eloDefault: '%env(ELO_DEFAULT)%'
             int $topCount: '%env(ELECTION_TOP_COUNT)%'
             int $electionCandidateCount: '%env(ELECTION_CANDIDATE_COUNT)%'
 
