@@ -130,18 +130,6 @@
     "sebastian/version": {
         "version": "3.0.2"
     },
-    "symfony/apache-pack": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "main",
-            "version": "1.0",
-            "ref": "0f18b4decdf5695d692c1d0dfd65516a07a6adf1"
-        },
-        "files": [
-            "public/.htaccess"
-        ]
-    },
     "symfony/asset": {
         "version": "v6.0.1"
     },
@@ -308,9 +296,6 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.24.0"
     },
-    "symfony/polyfill-uuid": {
-        "version": "v1.26.0"
-    },
     "symfony/property-access": {
         "version": "v6.0.2"
     },
@@ -398,9 +383,6 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
-    },
-    "symfony/uid": {
-        "version": "v6.0.3"
     },
     "symfony/validator": {
         "version": "7.0",
