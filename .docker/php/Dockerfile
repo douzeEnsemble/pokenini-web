@@ -4,7 +4,7 @@ WORKDIR /var/www/html
 
 EXPOSE 9000
 
-COPY ./docker/php/conf.d /usr/local/etc/php/conf.d
+COPY ./.docker/php/conf.d /usr/local/etc/php/conf.d
 
 ## < Install PHP extensions
 ENV XDEBUG_MODE=off
