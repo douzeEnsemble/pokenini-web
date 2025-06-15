@@ -1,6 +1,6 @@
 /.idea/
 
-/docker/db/data
+/.docker/db/data
 
 resources/auth/credentials.json
 
@@ -27,9 +27,6 @@ coverage.xml
 .phpunit.cache
 ###< phpunit/phpunit ###
 .deptrac.cache
-
-docker/apache/ssl/cert-key.pem
-docker/apache/ssl/cert.pem
 
 build/*
 tests/last.html

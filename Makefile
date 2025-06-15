@@ -16,11 +16,6 @@ PHP      = $(PHP_CONT) php
 COMPOSER = $(PHP_CONT) composer
 SYMFONY  = $(PHP_CONT) bin/console
 
-MKCERT := $(shell command -v mkcert 2> /dev/null)
-
-KEY_FILE := ./docker/apache/ssl/cert-key.pem
-CERT_FILE := ./docker/apache/ssl/cert.pem
-
 # Misc
 .DEFAULT_GOAL = help
 
@@ -34,21 +29,6 @@ help: ## Outputs this help screen
 	touch .env
 .env.dev.local: ## Create .env.dev.local files (not phony to check the file)
 	cp .env.dev .env.dev.local
-
-.PHONY: certs
-certs: ## Create ssl files
-certs:
-	mkdir -p ./docker/apache/ssl
-	@if [ -z "$(MKCERT)" ]; then \
-		echo "mkcert is not installed in your system. Please install it"; \
-		exit 1; \
-	fi
-	@if [ ! -e $(KEY_FILE) ] || [ ! -e $(CERT_FILE) ]; then \
-		mkcert \
-			-key-file $(KEY_FILE) \
-			-cert-file $(CERT_FILE) \
-			localhost 127.0.0.1 ::1 ; \
-	fi
 
 ## —— Docker 🐳 ————————————————————————————————————————————————————————————————
 .PHONY: build
@@ -68,7 +48,7 @@ up: ## Up Docker container
 
 .PHONY: install
 install: ## Install requirements
-install: .env .env.dev.local certs
+install: .env .env.dev.local
 
 .PHONY: stop
 stop: ## Stop the project
@@ -207,7 +187,7 @@ docker-compose-fixer: ## Run Docker Compose fixer
 .PHONY: docker-compose-fixer
 
 dockerfile-linter: ## Run Dockerfile linter
-		@find docker -name 'Dockerfile' | while read -r dockerfile; do \
+		@find .docker -name 'Dockerfile' | while read -r dockerfile; do \
 		docker run -t --rm -v ${PWD}:/app hadolint/hadolint:2.12.0-alpine hadolint "/app/$$dockerfile"; \
 	done
 .PHONY: dockerfile-linter
@@ -310,6 +290,6 @@ tools/phpinsights/vendor/bin/phpinsights: ## Install phpinsights
 
 ## —— Image 🐳 ———————————————————————————————————————————————————————————————
 img-build: ## Build Docker image
-	docker build --target php_prod -f ./docker/php/Dockerfile -t ghcr.io/douzeensemble/pokenini:latest .
+	docker build --target php_prod -f ./.docker/php/Dockerfile -t ghcr.io/douzeensemble/pokenini:latest .
 img-push: ## Push Docker image
 	docker push ghcr.io/douzeensemble/pokenini:latest

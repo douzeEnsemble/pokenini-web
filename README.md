@@ -85,7 +85,7 @@ docker login --username RenaudDouze --password ghp_token ghcr.io
 ```
 
 ```shell
-docker build --target php_prod -f ./docker/php/Dockerfile -t ghcr.io/douzeensemble/pokenini:latest .
+docker build --target php_prod -f ./.docker/php/Dockerfile -t ghcr.io/douzeensemble/pokenini:latest .
 docker push ghcr.io/douzeensemble/pokenini:latest
 ```
 or
