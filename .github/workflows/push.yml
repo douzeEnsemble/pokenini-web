@@ -5,7 +5,7 @@ on:
     types: [released, prereleased]
 
 env:
-  PROJECT_NAME: pokenini
+  PROJECT_NAME: pokenini-web
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   IMAGE_TAG_SUFFIXE: ${{ github.event.release.prerelease && '-prerelease' || '-release' }}
