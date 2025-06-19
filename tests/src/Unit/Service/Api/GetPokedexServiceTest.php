@@ -322,6 +322,7 @@ class GetPokedexServiceTest extends TestCase
                 'web',
                 'douze',
             ],
+            'cafile' => './resources/certificates/cacert.pem',
             'query' => $queryParams,
         ];
 
@@ -343,6 +344,7 @@ class GetPokedexServiceTest extends TestCase
             $logger,
             $client,
             'https://api.domain',
+            './resources/certificates/cacert.pem',
             $this->cache,
             'web',
             'douze',

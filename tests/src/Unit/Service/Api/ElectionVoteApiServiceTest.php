@@ -121,6 +121,7 @@ class ElectionVoteApiServiceTest extends TestCase
                         'web',
                         'douze',
                     ],
+                    'cafile' => './resources/certificates/cacert.pem',
                     'body' => json_encode([
                         'trainer_external_id' => $trainerId,
                         'dex_slug' => $dexSlug,
@@ -140,6 +141,7 @@ class ElectionVoteApiServiceTest extends TestCase
             $logger,
             $client,
             'https://api.domain',
+            './resources/certificates/cacert.pem',
             $this->cache,
             'web',
             'douze',

@@ -174,6 +174,7 @@ class GetPokemonsServiceTest extends TestCase
                         'web',
                         'douze',
                     ],
+                    'cafile' => './resources/certificates/cacert.pem',
                 ],
             )
             ->willReturn($response)
@@ -186,6 +187,7 @@ class GetPokemonsServiceTest extends TestCase
             $logger,
             $client,
             'https://api.domain',
+            './resources/certificates/cacert.pem',
             $this->cache,
             'web',
             'douze',
