@@ -73,6 +73,7 @@ class ModifyAlbumServiceTest extends TestCase
             $logger,
             $client,
             'https://api.domain',
+            './resources/certificates/cacert.pem',
             new TagAwareAdapter(new ArrayAdapter(), new ArrayAdapter()),
             'web',
             'douze',
@@ -110,6 +111,7 @@ class ModifyAlbumServiceTest extends TestCase
                         'web',
                         'douze',
                     ],
+                    'cafile' => './resources/certificates/cacert.pem',
                     'body' => $body,
                 ],
             )
@@ -122,6 +124,7 @@ class ModifyAlbumServiceTest extends TestCase
             $logger,
             $client,
             'https://api.domain',
+            './resources/certificates/cacert.pem',
             $this->cache,
             'web',
             'douze',

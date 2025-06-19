@@ -243,6 +243,7 @@ class GetDexServiceTest extends TestCase
                         'web',
                         'douze',
                     ],
+                    'cafile' => './resources/certificates/cacert.pem',
                 ],
             )
             ->willReturn($response)
@@ -255,6 +256,7 @@ class GetDexServiceTest extends TestCase
             $logger,
             $client,
             'https://api.domain',
+            './resources/certificates/cacert.pem',
             $this->cache,
             'web',
             'douze',

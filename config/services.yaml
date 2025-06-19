@@ -4,6 +4,7 @@ services:
         autoconfigure: true
         bind:
             string $apiUrl: '%env(API_URL)%'
+            string $apiCafilePath: '%env(API_CAFILE_PATH)%'
             string $listAdmin: '%env(LIST_ADMIN)%'
             string $listTrainer: '%env(LIST_TRAINER)%'
             string $listCollector: '%env(LIST_COLLECTOR)%'

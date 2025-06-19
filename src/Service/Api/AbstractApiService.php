@@ -15,6 +15,7 @@ abstract class AbstractApiService implements ApiServiceInterface
         protected readonly LoggerInterface $logger,
         protected readonly HttpClientInterface $client,
         protected readonly string $apiUrl,
+        protected readonly string $apiCafilePath,
         protected readonly TagAwareCacheInterface $cache,
         protected readonly string $apiLogin,
         protected readonly string $apiPassword
@@ -45,6 +46,7 @@ abstract class AbstractApiService implements ApiServiceInterface
                         $this->apiLogin,
                         $this->apiPassword,
                     ],
+                    'cafile' => $this->apiCafilePath,
                 ],
                 $options
             ),

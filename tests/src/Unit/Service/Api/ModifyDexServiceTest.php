@@ -60,6 +60,7 @@ class ModifyDexServiceTest extends TestCase
                         'web',
                         'douze',
                     ],
+                    'cafile' => './resources/certificates/cacert.pem',
                     'body' => $body,
                 ],
             )
@@ -72,6 +73,7 @@ class ModifyDexServiceTest extends TestCase
             $logger,
             $client,
             'https://api.domain',
+            './resources/certificates/cacert.pem',
             $this->cache,
             'web',
             'douze',
