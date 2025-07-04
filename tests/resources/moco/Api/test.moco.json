@@ -133,18 +133,6 @@
   },
   {
     "request": {
-      "uri": "/dex/3cae633f6e04077b2abf2144b79a0ce4698d8690/list",
-      "headers": {
-        "accept": "application/json",
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/dexes/3cae633f6e04077b2abf2144b79a0ce4698d8690.json"
-    }
-  },
-  {
-    "request": {
       "uri": "/dex/da4b9237bacccdf19c0760cab7aec4a8359010b0/list",
       "headers": {
         "accept": "application/json",
@@ -173,60 +161,6 @@
   },
   {
     "request": {
-      "uri": "/dex/159bb9b6d090a313087d2f26135970c2db49ee72/list",
-      "queries": {
-        "include_premium_dex": "1"
-      },
-      "headers": {
-        "accept": "application/json",
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/dexes/159bb9b6d090a313087d2f26135970c2db49ee72_premium.json"
-    }
-  },
-  {
-    "request": {
-      "uri": "/dex/159bb9b6d090a313087d2f26135970c2db49ee72/list",
-      "queries": {
-        "include_unreleased_dex": "1"
-      },
-      "headers": {
-        "accept": "application/json",
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/dexes/159bb9b6d090a313087d2f26135970c2db49ee72_unreleased.json"
-    }
-  },
-  {
-    "request": {
-      "uri": "/dex/159bb9b6d090a313087d2f26135970c2db49ee72/list",
-      "headers": {
-        "accept": "application/json",
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/dexes/159bb9b6d090a313087d2f26135970c2db49ee72.json"
-    }
-  },
-  {
-    "request": {
-      "uri": "/dex/0a286c2c78b485e1bcecf68febbda17084d0b2be/list",
-      "headers": {
-        "accept": "application/json",
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/dexes/0a286c2c78b485e1bcecf68febbda17084d0b2be.json"
-    }
-  },
-  {
-    "request": {
       "uri": "/dex/6c33064427a5b419ca8eb3f7d11a0807f66cab22/list",
       "queries": {
         "include_premium_dex": "1"
@@ -238,18 +172,6 @@
     },
     "response": {
       "file": "/var/moco/responses/dexes/6c33064427a5b419ca8eb3f7d11a0807f66cab22_premium.json"
-    }
-  },
-  {
-    "request": {
-      "uri": "/dex/6c33064427a5b419ca8eb3f7d11a0807f66cab22/list",
-      "headers": {
-        "accept": "application/json",
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/dexes/6c33064427a5b419ca8eb3f7d11a0807f66cab22.json"
     }
   },
   {
@@ -301,19 +223,6 @@
   {
     "request": {
       "uri": {
-        "match": "/album/f86cbe805674d85f7806b175b70647a6a9334631/demo"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/f86cbe805674d85f7806b175b70647a6a9334631/demo.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
         "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
       },
       "queries": {
@@ -325,22 +234,6 @@
     },
     "response": {
       "file": "/var/moco/responses/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo_catchstatesyes.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
-      },
-      "queries": {
-        "catch_states[0]": "no"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo_catchstatesno.json"
     }
   },
   {
@@ -565,23 +458,6 @@
     },
     "response": {
       "file": "/var/moco/responses/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0megaspecialforms1gigantamax.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
-      },
-      "queries": {
-        "special_forms[0]": "",
-        "special_forms[1]": "mega"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_specialforms0specialforms1mega.json"
     }
   },
   {
@@ -1001,19 +877,6 @@
   {
     "request": {
       "uri": {
-        "match": "/album/159bb9b6d090a313087d2f26135970c2db49ee72/homepokemongo"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/159bb9b6d090a313087d2f26135970c2db49ee72/homepokemongo.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
         "match": "/album/[\\w\\d]*/demo"
       },
       "headers": {
@@ -1279,58 +1142,6 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/rubysapphireemerald"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/rubysapphireemerald.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/fireredleafgreen"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/fireredleafgreen.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/diamondpearlplatinium"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/diamondpearlplatinium.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/heartgoldsoulsilver"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/heartgoldsoulsilver.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
         "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/blackwhite"
       },
       "headers": {
@@ -1339,110 +1150,6 @@
     },
     "response": {
       "file": "/var/moco/responses/album/7b52009b64fd0a2a49e6d8a939753077792b0554/blackwhite.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/blackwhite"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/blackwhite.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/black2white2"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/black2white2.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/xy"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/xy.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/omegarubyalphasapphire"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/omegarubyalphasapphire.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/sunmoon"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/sunmoon.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/ultrasunultramoon"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/ultrasunultramoon.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/letsgopikachuletsgoeevee"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/letsgopikachuletsgoeevee.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/pokemongo"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/homepogo.json"
     }
   },
   {
@@ -1469,19 +1176,6 @@
     },
     "response": {
       "file": "/var/moco/responses/album/default/brillantdiamondshiningpearl.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/legendarceus"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/legendarceus.json"
     }
   },
   {
@@ -1586,45 +1280,6 @@
     },
     "response": {
       "file": "/var/moco/responses/album/default/homepokemongo.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/alpha"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/alpha.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/all"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/all.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/allshinies"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/allshinies.json"
     }
   },
   {
