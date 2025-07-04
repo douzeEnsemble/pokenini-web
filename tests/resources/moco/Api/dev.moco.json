@@ -242,22 +242,6 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demoshiny"
-      },
-      "queries": {
-        "game_bundles_shiny_availabilities[0]": "unknown"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo_gamebundlesshinyavailabilities0unknown.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
         "match": "/album/f86cbe805674d85f7806b175b70647a6a9334631/demo"
       },
       "headers": {
@@ -1298,19 +1282,6 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/pokemongo"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/homepogo.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
         "match": "/album/[\\w\\d]*/swordshield"
       },
       "headers": {
@@ -1319,19 +1290,6 @@
     },
     "response": {
       "file": "/var/moco/responses/album/default/swordshield.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/album/[\\w\\d]*/brillantdiamondshiningpearl"
-      },
-      "headers": {
-        "Authorization": "Basic d2ViOmRvdXpl"
-      }
-    },
-    "response": {
-      "file": "/var/moco/responses/album/default/brillantdiamondshiningpearl.json"
     }
   },
   {

@@ -69,6 +69,8 @@ class ElectionTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/election/swordshield');
 
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
+
         $this->assertSelectorIsVisible('#election-modal-welcome');
         $this->assertSelectorIsNotVisible('#election-modal-filters');
         $this->assertSelectorIsNotVisible('#election-modal-filters-advanced');
