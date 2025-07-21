@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Album\Action;
 use App\Controller\AlbumUpsertController;
 use App\Security\User;
 use App\Service\ModifyTrainerDexService;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -21,7 +22,7 @@ class UpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -63,7 +64,7 @@ class UpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $client->loginUser($user, 'web');
@@ -84,7 +85,7 @@ class UpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -104,7 +105,7 @@ class UpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 

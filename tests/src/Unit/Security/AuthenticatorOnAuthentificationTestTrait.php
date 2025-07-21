@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Security;
 
 use App\Security\User;
+use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
+use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +23,11 @@ trait AuthenticatorOnAuthentificationTestTrait
 {
     public function testOnAuthenticationSuccessNotATrainer(): void
     {
-        $user = new User('1', 'TestProvider');
+        $user = new User(
+            '1',
+            'TestProvider',
+            new AccessToken(['access_token' => 'zdazdzad-token-dazga'])
+        );
 
         $token = $this->createMock(TokenInterface::class);
         $token
@@ -48,7 +54,11 @@ trait AuthenticatorOnAuthentificationTestTrait
 
     public function testOnAuthenticationSuccessTrainer(): void
     {
-        $user = new User('1', 'TestProvider');
+        $user = new User(
+            '1',
+            'TestProvider',
+            new AccessToken(['access_token' => 'zdazdzad-token-dazga'])
+        );
         $user->addTrainerRole();
 
         $token = $this->createMock(TokenInterface::class);
@@ -103,14 +113,13 @@ trait AuthenticatorOnAuthentificationTestTrait
             ->willReturnOnConsecutiveCalls(...$routes)
         ;
 
+        $getUserInfoService = $this->createMock(GetUserInfoService::class);
+
         /** @var OAuth2Authenticator */
         return new ($this->getAuthenticatorClassName())(
             $this->createMock(ClientRegistry::class),
             $router,
-            '',
-            '',
-            '',
-            true,
+            $getUserInfoService,
         );
     }
 }

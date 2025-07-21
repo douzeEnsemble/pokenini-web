@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Security;
 
+use App\DTO\UserInfo;
 use App\Security\FakeAuthenticator;
 use App\Security\User;
+use App\Service\Back\GetUserInfoService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,11 +22,7 @@ class FakeAuthenticatorAuthenticateTest extends TestCase
 {
     public function testAuthenticateUser(): void
     {
-        $fakeAuthenticator = $this->getFakeAuthenticator(
-            '1313131313',
-            '2121212121,1313131313',
-            '2121212121',
-        );
+        $fakeAuthenticator = $this->getFakeAuthenticator([]);
 
         $request = Request::create('local.dev', 'GET', ['t' => '1212121212000000000000012']);
 
@@ -43,11 +41,7 @@ class FakeAuthenticatorAuthenticateTest extends TestCase
 
     public function testAuthenticateTrainer(): void
     {
-        $fakeAuthenticator = $this->getFakeAuthenticator(
-            '1313131313',
-            '2121212121,1313131313,1212121212000000000000012',
-            '2121212121,1313131313',
-        );
+        $fakeAuthenticator = $this->getFakeAuthenticator(['ROLE_TRAINER']);
 
         $request = Request::create('local.dev', 'GET', ['t' => '1212121212000000000000012']);
 
@@ -66,11 +60,7 @@ class FakeAuthenticatorAuthenticateTest extends TestCase
 
     public function testAuthenticateCollector(): void
     {
-        $fakeAuthenticator = $this->getFakeAuthenticator(
-            '1313131313',
-            '2121212121,1313131313,1212121212000000000000012',
-            '2121212121',
-        );
+        $fakeAuthenticator = $this->getFakeAuthenticator(['ROLE_COLLECTOR']);
 
         $request = Request::create('local.dev', 'GET', ['t' => '1212121212000000000000012']);
 
@@ -81,19 +71,15 @@ class FakeAuthenticatorAuthenticateTest extends TestCase
         /** @var User $user */
         $user = $validationPassport->getUser();
         $this->assertFalse($user->isAnAdmin());
-        $this->assertTrue($user->isATrainer());
-        $this->assertFalse($user->isACollector());
+        $this->assertFalse($user->isATrainer());
+        $this->assertTrue($user->isACollector());
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
     }
 
     public function testAuthenticateAdmin(): void
     {
-        $fakeAuthenticator = $this->getFakeAuthenticator(
-            '1313131313,1212121212000000000000012',
-            '2121212121,1313131313',
-            '2121212121',
-        );
+        $fakeAuthenticator = $this->getFakeAuthenticator(['ROLE_ADMIN']);
 
         $request = Request::create('local.dev', 'GET', ['t' => '1212121212000000000000012']);
 
@@ -112,11 +98,7 @@ class FakeAuthenticatorAuthenticateTest extends TestCase
 
     public function testAuthenticateAdminTrainer(): void
     {
-        $fakeAuthenticator = $this->getFakeAuthenticator(
-            '1313131313,1212121212000000000000012',
-            '2121212121,1313131313,1212121212000000000000012',
-            '2121212121,',
-        );
+        $fakeAuthenticator = $this->getFakeAuthenticator(['ROLE_TRAINER', 'ROLE_ADMIN']);
 
         $request = Request::create('local.dev', 'GET', ['t' => '1212121212000000000000012']);
 
@@ -133,55 +115,30 @@ class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
     }
 
-    public function testAuthenticateAdminTrainerWithEndlines(): void
-    {
-        $listAdmin = <<<'LIST'
-            toto,
-
-            1212121212000000000000012,
-
-            01234567890123456789011
-            LIST;
-        $listTrainer = <<<'LIST'
-            titi,
-
-            1212121212000000000000012,
-
-            0123456789012345678901,
-            11655986856658439236105875191
-            LIST;
-        $listCollector = <<<'LIST'
-            tata,
-            1212121212000000000000012,
-            LIST;
-
-        $fakeAuthenticator = $this->getFakeAuthenticator($listAdmin, $listTrainer, $listCollector);
-
-        $request = Request::create('local.dev', 'GET', ['t' => '1212121212000000000000012']);
-
-        $validationPassport = $fakeAuthenticator->authenticate($request);
-
-        $this->assertInstanceOf(SelfValidatingPassport::class, $validationPassport);
-
-        /** @var User $user */
-        $user = $validationPassport->getUser();
-        $this->assertTrue($user->isAnAdmin());
-        $this->assertTrue($user->isATrainer());
-        $this->assertTrue($user->isACollector());
-        $this->assertEquals('1212121212000000000000012', $user->getId());
-        $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
-    }
-
-    private function getFakeAuthenticator(string $listAdmin, string $listTrainer, string $listCollector): FakeAuthenticator
+    /**
+     * @param string[] $roles
+     */
+    private function getFakeAuthenticator(array $roles): FakeAuthenticator
     {
         $router = $this->createMock(RouterInterface::class);
 
+        $getUserInfoService = $this->createMock(GetUserInfoService::class);
+        $getUserInfoService
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn(
+                UserInfo::createFromArray(
+                    [
+                        'identifier' => '1212121212000000000000012',
+                        'roles' => $roles,
+                    ],
+                )
+            )
+        ;
+
         return new FakeAuthenticator(
             $router,
-            $listAdmin,
-            $listTrainer,
-            $listCollector,
-            true,
+            $getUserInfoService,
         );
     }
 }

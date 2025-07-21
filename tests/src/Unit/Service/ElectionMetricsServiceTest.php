@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service;
 
 use App\Security\UserTokenService;
-use App\Service\Api\ElectionMetricsApiService;
+use App\Service\Back\GetElectionMetricsService;
 use App\Service\ElectionMetricsService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +25,7 @@ class ElectionMetricsServiceTest extends TestCase
             ->willReturn('8800088')
         ;
 
-        $apiService = $this->createMock(ElectionMetricsApiService::class);
+        $apiService = $this->createMock(GetElectionMetricsService::class);
         $apiService
             ->expects($this->once())
             ->method('getMetrics')

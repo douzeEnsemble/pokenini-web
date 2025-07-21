@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Trainer;
 use App\Controller\TrainerIndexController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
@@ -23,7 +24,7 @@ class TrainerPageTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -56,7 +57,7 @@ class TrainerPageTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $client->loginUser($user, 'web');
@@ -90,7 +91,7 @@ class TrainerPageTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestAdminProvider');
+        $user = new User('8764532', 'TestAdminProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -125,7 +126,7 @@ class TrainerPageTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $client->loginUser($user, 'web');
 
         $client->request('GET', '/fr/trainer');

@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Album\Display;
 use App\Controller\AlbumIndexController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -22,7 +23,7 @@ class FormTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('12', 'TestProvider');
+        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -37,7 +38,7 @@ class FormTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('12', 'TestProvider');
+        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $client->loginUser($user, 'web');

@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Election;
 use App\Controller\ElectionIndexController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
@@ -24,7 +25,7 @@ class ElectionIndexTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -69,7 +70,7 @@ class ElectionIndexTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -118,7 +119,7 @@ class ElectionIndexTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -171,7 +172,7 @@ class ElectionIndexTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -224,7 +225,7 @@ class ElectionIndexTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -277,7 +278,7 @@ class ElectionIndexTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -333,7 +334,7 @@ class ElectionIndexTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -386,7 +387,7 @@ class ElectionIndexTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');
 
         $client->catchExceptions(false);

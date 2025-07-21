@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Trainer;
 use App\Controller\TrainerIndexController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -22,13 +23,15 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/trainer?p=1');
+
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
 
         $this->assertResponseStatusCodeSame(200);
 
@@ -45,7 +48,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -68,7 +71,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -91,7 +94,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -114,7 +117,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -137,7 +140,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -160,7 +163,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -183,7 +186,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -206,7 +209,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -229,7 +232,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -252,7 +255,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -275,7 +278,7 @@ class TrainerPageFiltersTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
         $user->addAdminRole();

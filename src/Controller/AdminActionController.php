@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\DTO\AdminAction;
-use App\Service\Api\AdminActionService;
-use App\Service\CacheInvalidatorService;
+use App\Service\Back\AdminActionService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,7 +18,6 @@ class AdminActionController extends AbstractController
     public const string SESSION_ACTION_DATA = 'admin.action.response.content';
 
     public function __construct(
-        private readonly CacheInvalidatorService $cacheInvalidatorService,
         private readonly AdminActionService $adminActionService,
         private readonly RequestStack $requestStack,
         private readonly LoggerInterface $logger,
@@ -85,19 +83,9 @@ class AdminActionController extends AbstractController
         string $name,
         string $action,
     ): RedirectResponse {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
-        $state = 'ok';
-        $content = '';
-        $error = '';
-
         try {
-            $this->doAction($name, $action);
+            $adminAction = $this->adminActionService->execute($action, $name);
         } catch (\Exception $e) {
-            $state = 'ko';
-
-            $error = $e->getMessage();
-
             $this->logger->critical(
                 $e->getMessage(),
                 [
@@ -105,15 +93,15 @@ class AdminActionController extends AbstractController
                     'action' => $action,
                 ]
             );
-        }
 
-        $adminAction = new AdminAction(
-            $action,
-            $name,
-            $state,
-            $content,
-            $error
-        );
+            $adminAction = new AdminAction(
+                $action,
+                $name,
+                'ko',
+                '',
+                $e->getMessage(),
+            );
+        }
 
         $this->requestStack->getSession()->set(self::SESSION_ACTION_DATA, $adminAction);
 
@@ -123,24 +111,5 @@ class AdminActionController extends AbstractController
                 '_fragment' => "{$action}_{$name}",
             ]
         );
-    }
-
-    private function doAction(
-        string $name,
-        string $action,
-    ): void {
-        switch ($action) {
-            case 'update':
-                $this->adminActionService->update($name);
-
-                break;
-
-            case 'calculate':
-                $this->adminActionService->calculate($name);
-
-                break;
-        }
-
-        $this->cacheInvalidatorService->invalidate($name);
     }
 }

@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Admin;
 use App\Controller\AdminActionController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -39,7 +40,7 @@ class ActionCalculateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -55,7 +56,7 @@ class ActionCalculateTest extends WebTestCase
         $this->assertSelectorTextSame(
             '.admin-item-calculate_dex_availabilities .alert',
             'HTTP/1.1 500 Internal Server Error returned for'
-                .' "http://moco.api.test/istration/calculate/dex_availabilities".'
+                .' "http://moco.back/istration/action/calculate/dex_availabilities".'
         );
     }
 
@@ -63,7 +64,7 @@ class ActionCalculateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -80,7 +81,7 @@ class ActionCalculateTest extends WebTestCase
         $this->assertSelectorTextSame(
             '.admin-item-calculate_dex_availabilities .alert',
             'HTTP/1.1 500 Internal Server Error returned for'
-                .' "http://moco.api.test/istration/calculate/dex_availabilities".'
+                .' "http://moco.back/istration/action/calculate/dex_availabilities".'
         );
 
         $crawler = $client->request('GET', '/fr/istration');
@@ -94,7 +95,7 @@ class ActionCalculateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -109,7 +110,7 @@ class ActionCalculateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');
 
         $client->catchExceptions(false);
@@ -123,7 +124,7 @@ class ActionCalculateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -131,8 +132,6 @@ class ActionCalculateTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
-
-        file_put_contents('tests/last.html', $client->getCrawler()->html());
 
         $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
         $this->assertCountFilter($crawler, 1, '.icon-square.bg-danger');

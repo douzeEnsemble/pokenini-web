@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security;
 
+use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
@@ -14,6 +15,7 @@ class User implements UserInterface
     public function __construct(
         private readonly string $identifier,
         private readonly string $providerName,
+        private readonly AccessToken $accessToken,
     ) {}
 
     #[\Override]
@@ -65,6 +67,11 @@ class User implements UserInterface
     public function getProviderName(): string
     {
         return $this->providerName;
+    }
+
+    public function getAccessToken(): AccessToken
+    {
+        return $this->accessToken;
     }
 
     public function isATrainer(): bool

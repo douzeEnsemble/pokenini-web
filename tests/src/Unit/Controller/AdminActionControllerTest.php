@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Controller;
 
 use App\Controller\AdminActionController;
-use App\Service\Api\AdminActionService;
-use App\Service\CacheInvalidatorService;
+use App\Service\Back\AdminActionService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -14,7 +13,6 @@ use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * @internal
@@ -24,13 +22,6 @@ class AdminActionControllerTest extends TestCase
 {
     public function testAction(): void
     {
-        $cacheInvalidatorService = $this->createMock(CacheInvalidatorService::class);
-        $cacheInvalidatorService
-            ->expects($this->once())
-            ->method('invalidate')
-            ->with('something')
-        ;
-
         $adminActionService = $this->createMock(AdminActionService::class);
 
         $session = $this->createMock(SessionInterface::class);
@@ -48,13 +39,6 @@ class AdminActionControllerTest extends TestCase
 
         $logger = $this->createMock(LoggerInterface::class);
 
-        $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
-        $authorizationChecker
-            ->expects($this->once())
-            ->method('isGranted')
-            ->willReturn(true)
-        ;
-
         $router = $this->createMock(Router::class);
         $router
             ->expects($this->once())
@@ -71,22 +55,15 @@ class AdminActionControllerTest extends TestCase
         $container = $this->createMock(ContainerInterface::class);
         $container
             ->expects($this->once())
-            ->method('has')
-            ->willReturn(true)
-        ;
-        $container
-            ->expects($this->exactly(2))
             ->method('get')
-            ->willReturn($authorizationChecker, $router)
+            ->willReturn($router)
         ;
 
         $controller = new AdminActionController(
-            $cacheInvalidatorService,
             $adminActionService,
             $requestStack,
             $logger
         );
-
         $controller->setContainer($container);
 
         $response = $controller->invalidate('something');
@@ -110,12 +87,10 @@ class AdminActionControllerTest extends TestCase
 
     private function assertFailActionLogs(string $action): AdminActionController
     {
-        $cacheInvalidatorService = $this->createMock(CacheInvalidatorService::class);
-
         $adminActionService = $this->createMock(AdminActionService::class);
         $adminActionService
             ->expects($this->once())
-            ->method($action)
+            ->method('execute')
             ->willThrowException(new \Exception('Aouch'))
         ;
 
@@ -145,34 +120,27 @@ class AdminActionControllerTest extends TestCase
             )
         ;
 
-        $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
-        $authorizationChecker
-            ->expects($this->once())
-            ->method('isGranted')
-            ->willReturn(true)
-        ;
-
         $router = $this->createMock(Router::class);
         $router
             ->expects($this->once())
             ->method('generate')
+            ->with(
+                'app_admin_index',
+                [
+                    '_fragment' => $action.'_something',
+                ]
+            )
             ->willReturn('/admin')
         ;
 
         $container = $this->createMock(ContainerInterface::class);
         $container
             ->expects($this->once())
-            ->method('has')
-            ->willReturn(true)
-        ;
-        $container
-            ->expects($this->exactly(2))
             ->method('get')
-            ->willReturn($authorizationChecker, $router)
+            ->willReturn($router)
         ;
 
         $controller = new AdminActionController(
-            $cacheInvalidatorService,
             $adminActionService,
             $requestStack,
             $logger

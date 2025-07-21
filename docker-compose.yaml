@@ -1,23 +1,14 @@
 name: Pokénini Web
 
 services:
-  moco.api.dev:
+  moco.back:
     build:
       context: ./.docker/moco
       args:
         MOCO_VERSION: 1.5.0
     volumes:
-      - ./tests/resources/moco/Api/:/var/moco:ro
-    command: "/var/moco/dev.moco.json"
-
-  moco.api.test:
-    build:
-      context: ./.docker/moco
-      args:
-        MOCO_VERSION: 1.5.0
-    volumes:
-      - ./tests/resources/moco/Api/:/var/moco:ro
-    command: "/var/moco/test.moco.json"
+      - ./tests/resources/moco/Back/:/var/moco:ro
+    command: "/var/moco/moco.json"
 
   moco.matomo.gbl:
     build:

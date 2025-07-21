@@ -6,8 +6,7 @@ namespace App\Tests\Unit\Service;
 
 use App\Exception\ModifyFailedException;
 use App\Security\UserTokenService;
-use App\Service\Api\ModifyAlbumService;
-use App\Service\CacheInvalidator\AlbumsCacheInvalidatorService;
+use App\Service\Back\ModifyAlbumService;
 use App\Service\ModifyTrainerAlbumService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -44,12 +43,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
             )
         ;
 
-        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
-        $albumsCacheInvalidatorService
-            ->expects($this->once())
-            ->method('invalidate')
-        ;
-
         $request = Request::create(
             'test.local',
             'PUT',
@@ -60,7 +53,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
         $service = new ModifyTrainerAlbumService(
             $userTokenService,
             $modifyAlbumService,
-            $albumsCacheInvalidatorService,
             $requestStack,
         );
         $service->modifyAlbum('douze', 'treize', '{"ceci": "est-du-contenu"}');
@@ -91,12 +83,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
             ->willThrowException($exception)
         ;
 
-        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
-        $albumsCacheInvalidatorService
-            ->expects($this->never())
-            ->method('invalidate')
-        ;
-
         $request = Request::create(
             'test.local',
             'PUT',
@@ -107,7 +93,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
         $service = new ModifyTrainerAlbumService(
             $userTokenService,
             $modifyAlbumService,
-            $albumsCacheInvalidatorService,
             $requestStack,
         );
 
@@ -131,18 +116,11 @@ class ModifyTrainerAlbumServiceTest extends TestCase
             ->method('modify')
         ;
 
-        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
-        $albumsCacheInvalidatorService
-            ->expects($this->never())
-            ->method('invalidate')
-        ;
-
         $requestStack = new RequestStack();
 
         $service = new ModifyTrainerAlbumService(
             $userTokenService,
             $modifyAlbumService,
-            $albumsCacheInvalidatorService,
             $requestStack,
         );
 
@@ -176,12 +154,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
             ->willThrowException($exception)
         ;
 
-        $albumsCacheInvalidatorService = $this->createMock(AlbumsCacheInvalidatorService::class);
-        $albumsCacheInvalidatorService
-            ->expects($this->never())
-            ->method('invalidate')
-        ;
-
         $request = Request::create(
             'test.local',
             'PUT',
@@ -192,7 +164,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
         $service = new ModifyTrainerAlbumService(
             $userTokenService,
             $modifyAlbumService,
-            $albumsCacheInvalidatorService,
             $requestStack,
         );
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Security;
 
 use App\Security\User;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -16,14 +17,22 @@ class UserGetProfileTest extends TestCase
 {
     public function testGetProfileAsDefault(): void
     {
-        $user = new User('12', 'TestProvider');
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzzad'])
+        );
 
         $this->assertEquals('user', $user->getProfile());
     }
 
     public function testGetProfileAsTrainer(): void
     {
-        $user = new User('12', 'TestProvider');
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzzad'])
+        );
         $user->addTrainerRole();
 
         $this->assertEquals('trainer', $user->getProfile());
@@ -31,7 +40,11 @@ class UserGetProfileTest extends TestCase
 
     public function testGetProfileAsCollector(): void
     {
-        $user = new User('12', 'TestProvider');
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzzad'])
+        );
         $user->addCollectorRole();
 
         $this->assertEquals('collector', $user->getProfile());
@@ -39,7 +52,11 @@ class UserGetProfileTest extends TestCase
 
     public function testGetProfileAsAdmin(): void
     {
-        $user = new User('12', 'TestProvider');
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzzad'])
+        );
         $user->addAdminRole();
 
         $this->assertEquals('admin', $user->getProfile());
@@ -47,7 +64,11 @@ class UserGetProfileTest extends TestCase
 
     public function testGetProfileAsTrainerAndAdmin(): void
     {
-        $user = new User('12', 'TestProvider');
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzzad'])
+        );
         $user->addTrainerRole();
         $user->addAdminRole();
 
@@ -56,7 +77,11 @@ class UserGetProfileTest extends TestCase
 
     public function testGetProfileAsCollectorAndAdmin(): void
     {
-        $user = new User('12', 'TestProvider');
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzzad'])
+        );
         $user->addCollectorRole();
         $user->addAdminRole();
 
@@ -65,7 +90,11 @@ class UserGetProfileTest extends TestCase
 
     public function testGetProfileAsTrainerAndCollector(): void
     {
-        $user = new User('12', 'TestProvider');
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzzad'])
+        );
         $user->addTrainerRole();
         $user->addCollectorRole();
 

@@ -17,8 +17,8 @@ class ActionLogTest extends TestCase
     public function testFullCreateFromArray(): void
     {
         $actionLog = ActionLog::createFromArray([
-            'created_at' => '2023-03-21 08:34:47+00',
-            'done_at' => '2023-03-22 08:34:47+00',
+            'created_at' => '2023-03-21T08:34:47+00:00',
+            'done_at' => '2023-03-22T08:34:47+00:00',
             'execution_time' => 12,
             'details' => [
                 'truc' => 1,
@@ -28,11 +28,11 @@ class ActionLogTest extends TestCase
         ]);
 
         $this->assertEquals(
-            new \DateTime('2023-03-21 08:34:47+00'),
+            new \DateTime('2023-03-21T08:34:47+00:00'),
             $actionLog->createdAt,
         );
         $this->assertEquals(
-            new \DateTime('2023-03-22 08:34:47+00'),
+            new \DateTime('2023-03-22T08:34:47+00:00'),
             $actionLog->doneAt,
         );
         $this->assertEquals(
@@ -55,11 +55,11 @@ class ActionLogTest extends TestCase
     public function testMinimalCreateFromArray(): void
     {
         $actionLog = ActionLog::createFromArray([
-            'created_at' => '2023-03-21 08:34:47+00',
+            'created_at' => '2023-03-21T08:34:47+01:00',
         ]);
 
         $this->assertEquals(
-            new \DateTime('2023-03-21 08:34:47+00'),
+            new \DateTime('2023-03-21T08:34:47+01:00'),
             $actionLog->createdAt,
         );
         $this->assertNull(
@@ -79,7 +79,7 @@ class ActionLogTest extends TestCase
     public function testExecutionTimeCasting(): void
     {
         $actionLog = ActionLog::createFromArray([
-            'created_at' => '2023-03-21 08:34:47+00',
+            'created_at' => '2023-03-21T08:34:47+00:00',
             'execution_time' => '2',
         ]);
 

@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Security;
 
 use App\Security\User;
 use App\Security\UserProvider;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -32,7 +33,11 @@ class UserProviderTest extends TestCase
     {
         $provider = new UserProvider();
 
-        $user = new User('douze', 'TestProvider');
+        $user = new User(
+            'douze',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzadzz'])
+        );
 
         $freshUser = $provider->refreshUser($user);
 

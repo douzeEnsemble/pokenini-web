@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security;
 
+use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,10 +20,7 @@ abstract class AbstractAuthenticator extends OAuth2Authenticator
     public function __construct(
         private readonly ClientRegistry $clientRegistry,
         private readonly RouterInterface $router,
-        private readonly string $listAdmin,
-        private readonly string $listTrainer,
-        private readonly string $listCollector,
-        private readonly bool $isInvitationRequired,
+        private readonly GetUserInfoService $getUserInfoService,
     ) {}
 
     #[\Override]
@@ -41,13 +39,8 @@ abstract class AbstractAuthenticator extends OAuth2Authenticator
         $accessToken = $this->fetchAccessToken($client);
 
         return new SelfValidatingPassport(
-            new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
-                $authUser = $client->fetchUserFromToken($accessToken);
-
-                /** @var string $userId */
-                $userId = $authUser->getId();
-
-                return $this->loadUserFromLists($userId, $this->getProviderName());
+            new UserBadge($accessToken->getToken(), function () use ($accessToken) {
+                return $this->loadFromAccessToken($accessToken, $this->getProviderName());
             })
         );
     }

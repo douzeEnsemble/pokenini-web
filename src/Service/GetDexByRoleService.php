@@ -6,7 +6,7 @@ namespace App\Service;
 
 use App\Security\User;
 use App\Security\UserTokenService;
-use App\Service\Api\GetDexService;
+use App\Service\Back\GetDexService;
 use Symfony\Bundle\SecurityBundle\Security;
 
 class GetDexByRoleService

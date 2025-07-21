@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,25 +37,22 @@ trait AuthenticatorTrait
         return new Response($message, Response::HTTP_FORBIDDEN);
     }
 
-    private function loadUserFromLists(string $identifier, string $providerName): User
+    private function loadFromAccessToken(AccessToken $accessToken, string $providerName): User
     {
-        $user = new User($identifier, $providerName);
+        $userInfo = $this->getUserInfoService->get($accessToken);
 
-        $listAdmins = explode(',', $this->listAdmin);
-        $listAdmins = array_map(fn ($value) => trim($value), $listAdmins);
-        $listTrainers = explode(',', $this->listTrainer);
-        $listTrainers = array_map(fn ($value) => trim($value), $listTrainers);
-        $listCollectors = explode(',', $this->listCollector);
-        $listCollectors = array_map(fn ($value) => trim($value), $listCollectors);
+        $user = new User($userInfo->identifier, $providerName, $accessToken);
 
-        if (in_array($user->getUserIdentifier(), $listAdmins)) {
-            $user->addAdminRole();
+        if (in_array('ROLE_TRAINER', $userInfo->roles)) {
+            $user->addTrainerRole();
         }
-        if (in_array($user->getUserIdentifier(), $listCollectors)) {
+
+        if (in_array('ROLE_COLLECTOR', $userInfo->roles)) {
             $user->addCollectorRole();
         }
-        if (!$this->isInvitationRequired || in_array($user->getUserIdentifier(), $listTrainers)) {
-            $user->addTrainerRole();
+
+        if (in_array('ROLE_ADMIN', $userInfo->roles)) {
+            $user->addAdminRole();
         }
 
         return $user;

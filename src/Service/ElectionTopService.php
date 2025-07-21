@@ -3,14 +3,14 @@
 namespace App\Service;
 
 use App\Security\UserTokenService;
-use App\Service\Api\ElectionTopApiService;
+use App\Service\Back\GetElectionTopService;
 
 class ElectionTopService
 {
     public function __construct(
         private readonly UserTokenService $userTokenService,
-        private readonly ElectionTopApiService $apiService,
-        private readonly int $topCount,
+        private readonly GetElectionTopService $apiService,
+        private readonly int $electionTopCount,
     ) {}
 
     /**
@@ -20,6 +20,6 @@ class ElectionTopService
     {
         $trainerId = $this->userTokenService->getLoggedUserToken();
 
-        return $this->apiService->getTop($trainerId, $dexSlug, $electionSlug, $this->topCount);
+        return $this->apiService->getTop($trainerId, $dexSlug, $electionSlug, $this->electionTopCount);
     }
 }

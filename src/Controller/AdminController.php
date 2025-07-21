@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\DTO\AdminAction;
-use App\Service\Api\GetActionLogsService;
-use App\Service\Api\GetReportsService;
+use App\Service\Back\GetActionLogsService;
+use App\Service\Back\GetReportsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
