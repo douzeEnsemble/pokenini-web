@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Security;
 
+use App\DTO\UserInfo;
 use App\Security\User;
+use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
-use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -21,11 +22,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
 {
     public function testOpenedAuthenticateUser(): void
     {
-        $authenticator = $this->getOpenedAuthenticator(
-            '1313131313',
-            '2121212121,1313131313',
-            '2121212121',
-        );
+        $authenticator = $this->getOpenedAuthenticator([]);
 
         $request = $this->createMock(Request::class);
 
@@ -36,7 +33,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         /** @var User $user */
         $user = $validationPassport->getUser();
         $this->assertFalse($user->isAnAdmin());
-        $this->assertTrue($user->isATrainer());
+        $this->assertFalse($user->isATrainer());
         $this->assertFalse($user->isACollector());
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
@@ -45,11 +42,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
 
     public function testOpenedAuthenticateTrainer(): void
     {
-        $authenticator = $this->getOpenedAuthenticator(
-            '1313131313',
-            '2121212121,1313131313,1212121212000000000000012',
-            '2121212121,1313131313',
-        );
+        $authenticator = $this->getOpenedAuthenticator(['ROLE_TRAINER']);
 
         $request = $this->createMock(Request::class);
 
@@ -69,11 +62,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
 
     public function testOpenedAuthenticateCollector(): void
     {
-        $authenticator = $this->getOpenedAuthenticator(
-            '1313131313',
-            '2121212121,1313131313',
-            '2121212121,1212121212000000000000012',
-        );
+        $authenticator = $this->getOpenedAuthenticator(['ROLE_COLLECTOR']);
 
         $request = $this->createMock(Request::class);
 
@@ -84,7 +73,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         /** @var User $user */
         $user = $validationPassport->getUser();
         $this->assertFalse($user->isAnAdmin());
-        $this->assertTrue($user->isATrainer());
+        $this->assertFalse($user->isATrainer());
         $this->assertTrue($user->isACollector());
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
@@ -93,11 +82,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
 
     public function testOpenedAuthenticateAdmin(): void
     {
-        $authenticator = $this->getOpenedAuthenticator(
-            '1313131313,1212121212000000000000012',
-            '2121212121,1313131313',
-            '2121212121',
-        );
+        $authenticator = $this->getOpenedAuthenticator(['ROLE_ADMIN']);
 
         $request = $this->createMock(Request::class);
 
@@ -108,7 +93,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         /** @var User $user */
         $user = $validationPassport->getUser();
         $this->assertTrue($user->isAnAdmin());
-        $this->assertTrue($user->isATrainer());
+        $this->assertFalse($user->isATrainer());
         $this->assertFalse($user->isACollector());
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
@@ -117,11 +102,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
 
     public function testOpenedAuthenticateAdminTrainer(): void
     {
-        $authenticator = $this->getOpenedAuthenticator(
-            '1313131313,1212121212000000000000012',
-            '2121212121,1313131313,1212121212000000000000012',
-            '2121212121,',
-        );
+        $authenticator = $this->getOpenedAuthenticator(['ROLE_TRAINER', 'ROLE_ADMIN']);
 
         $request = $this->createMock(Request::class);
 
@@ -139,47 +120,10 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
     }
 
-    public function testOpenedAuthenticateAdminTrainerWithEndlines(): void
-    {
-        $listAdmin = <<<'LIST'
-            toto,
-
-            1212121212000000000000012,
-
-            01234567890123456789011
-            LIST;
-        $listTrainer = <<<'LIST'
-            titi,
-
-            1212121212000000000000012,
-
-            0123456789012345678901,
-            11655986856658439236105875191
-            LIST;
-        $listCollector = <<<'LIST'
-            tata,
-            1212121212000000000000012,
-            LIST;
-
-        $authenticator = $this->getOpenedAuthenticator($listAdmin, $listTrainer, $listCollector);
-
-        $request = $this->createMock(Request::class);
-
-        $validationPassport = $authenticator->authenticate($request);
-
-        $this->assertInstanceOf(SelfValidatingPassport::class, $validationPassport);
-
-        /** @var User $user */
-        $user = $validationPassport->getUser();
-        $this->assertTrue($user->isAnAdmin());
-        $this->assertTrue($user->isATrainer());
-        $this->assertTrue($user->isACollector());
-        $this->assertEquals('1212121212000000000000012', $user->getId());
-        $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
-        $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
-    }
-
-    private function getOpenedAuthenticator(string $listAdmin, string $listTrainer, string $listCollector): OAuth2Authenticator
+    /**
+     * @param string[] $roles
+     */
+    private function getOpenedAuthenticator(array $roles): OAuth2Authenticator
     {
         $oauth2Client = $this->createMock(OAuth2ClientInterface::class);
         $oauth2Client
@@ -190,12 +134,8 @@ trait AuthenticatorAuthenticateOpenedTestTrait
             ]))
         ;
         $oauth2Client
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('fetchUserFromToken')
-            ->willReturn(new GoogleUser([
-                'sub' => '1212121212000000000000012',
-                'name' => 'Douze',
-            ]))
         ;
 
         $clientRegistry = $this->createMock(ClientRegistry::class);
@@ -207,14 +147,25 @@ trait AuthenticatorAuthenticateOpenedTestTrait
 
         $router = $this->createMock(RouterInterface::class);
 
+        $getUserInfoService = $this->createMock(GetUserInfoService::class);
+        $getUserInfoService
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn(
+                UserInfo::createFromArray(
+                    [
+                        'identifier' => '1212121212000000000000012',
+                        'roles' => $roles,
+                    ],
+                )
+            )
+        ;
+
         /** @var OAuth2Authenticator */
         return new ($this->getAuthenticatorClassName())(
             $clientRegistry,
             $router,
-            $listAdmin,
-            $listTrainer,
-            $listCollector,
-            false,
+            $getUserInfoService,
         );
     }
 }

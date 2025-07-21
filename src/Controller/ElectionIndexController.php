@@ -6,9 +6,9 @@ namespace App\Controller;
 
 use App\AlbumFilters\FromRequest;
 use App\AlbumFilters\Mapping;
-use App\Service\Api\GetLabelsService;
 use App\Service\ElectionMetricsService;
 use App\Service\ElectionTopService;
+use App\Service\GetLabelsService;
 use App\Service\GetPokemonsListService;
 use App\Service\GetTrainerPokedexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

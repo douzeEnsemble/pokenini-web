@@ -6,8 +6,9 @@ namespace App\Tests\Unit\Service;
 
 use App\Security\User;
 use App\Security\UserTokenService;
-use App\Service\Api\GetDexService;
+use App\Service\Back\GetDexService;
 use App\Service\GetDexByRoleService;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -53,7 +54,7 @@ class GetDexByRoleServiceTest extends TestCase
             ->willReturn('1234567890')
         ;
 
-        $user = new User('1234567890', 'TestProvider');
+        $user = new User('1234567890', 'TestProvider', new AccessToken(['access_token' => sha1('1234567890')]));
         $user->addTrainerRole();
 
         $security = $this->createMock(Security::class);
@@ -116,7 +117,7 @@ class GetDexByRoleServiceTest extends TestCase
             ->willReturn('1234567890')
         ;
 
-        $user = new User('1234567890', 'TestProvider');
+        $user = new User('1234567890', 'TestProvider', new AccessToken(['access_token' => sha1('1234567890')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
 
@@ -180,7 +181,7 @@ class GetDexByRoleServiceTest extends TestCase
             ->willReturn('1234567890')
         ;
 
-        $user = new User('1234567890', 'TestProvider');
+        $user = new User('1234567890', 'TestProvider', new AccessToken(['access_token' => sha1('1234567890')]));
         $user->addTrainerRole();
         $user->addAdminRole();
 

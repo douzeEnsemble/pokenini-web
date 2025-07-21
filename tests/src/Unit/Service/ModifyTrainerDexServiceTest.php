@@ -6,9 +6,7 @@ namespace App\Tests\Unit\Service;
 
 use App\Exception\ModifyFailedException;
 use App\Security\UserTokenService;
-use App\Service\Api\ModifyDexService;
-use App\Service\CacheInvalidator\AlbumCacheInvalidatorService;
-use App\Service\CacheInvalidator\DexCacheInvalidatorService;
+use App\Service\Back\ModifyDexService;
 use App\Service\ModifyTrainerDexService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -41,30 +39,9 @@ class ModifyTrainerDexServiceTest extends TestCase
             )
         ;
 
-        $albumCacheInvalidatorService = $this->createMock(AlbumCacheInvalidatorService::class);
-        $albumCacheInvalidatorService
-            ->expects($this->once())
-            ->method('invalidate')
-            ->with(
-                'douze',
-                '8800088',
-            )
-        ;
-
-        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
-        $dexCacheInvalidatorService
-            ->expects($this->once())
-            ->method('invalidateByTrainerId')
-            ->with(
-                '8800088',
-            )
-        ;
-
         $service = new ModifyTrainerDexService(
             $userTokenService,
             $modifyDexService,
-            $albumCacheInvalidatorService,
-            $dexCacheInvalidatorService
         );
         $service->modifyDex('douze', '{"ceci": "est-du-contenu"}');
     }
@@ -92,23 +69,9 @@ class ModifyTrainerDexServiceTest extends TestCase
             ->willThrowException($exception)
         ;
 
-        $albumCacheInvalidatorService = $this->createMock(AlbumCacheInvalidatorService::class);
-        $albumCacheInvalidatorService
-            ->expects($this->never())
-            ->method('invalidate')
-        ;
-
-        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
-        $dexCacheInvalidatorService
-            ->expects($this->never())
-            ->method('invalidateByTrainerId')
-        ;
-
         $service = new ModifyTrainerDexService(
             $userTokenService,
             $modifyDexService,
-            $albumCacheInvalidatorService,
-            $dexCacheInvalidatorService
         );
 
         $this->expectException(ModifyFailedException::class);
@@ -139,23 +102,9 @@ class ModifyTrainerDexServiceTest extends TestCase
             ->willThrowException($exception)
         ;
 
-        $albumCacheInvalidatorService = $this->createMock(AlbumCacheInvalidatorService::class);
-        $albumCacheInvalidatorService
-            ->expects($this->never())
-            ->method('invalidate')
-        ;
-
-        $dexCacheInvalidatorService = $this->createMock(DexCacheInvalidatorService::class);
-        $dexCacheInvalidatorService
-            ->expects($this->never())
-            ->method('invalidateByTrainerId')
-        ;
-
         $service = new ModifyTrainerDexService(
             $userTokenService,
             $modifyDexService,
-            $albumCacheInvalidatorService,
-            $dexCacheInvalidatorService
         );
 
         $this->expectException(ModifyFailedException::class);

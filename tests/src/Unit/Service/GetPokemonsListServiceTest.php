@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service;
 
 use App\DTO\ElectionPokemonsList;
 use App\Security\UserTokenService;
-use App\Service\Api\GetPokemonsService;
+use App\Service\Back\GetPokemonsService;
 use App\Service\GetPokemonsListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

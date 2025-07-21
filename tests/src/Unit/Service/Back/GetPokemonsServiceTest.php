@@ -1,0 +1,177 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Tests\Unit\Service\Back;
+
+use App\Service\Back\GetPokemonsService;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * @internal
+ */
+#[CoversClass(GetPokemonsService::class)]
+class GetPokemonsServiceTest extends TestCase
+{
+    use BackServiceTrait;
+
+    #[DataProvider('providerGet')]
+    public function testGet(
+        string $listType,
+        string $trainerExternalId,
+        string $dexSlug,
+        string $electionSlug,
+        int $count,
+    ): void {
+        $electionList = $this
+            ->getService(
+                $listType,
+                $trainerExternalId,
+                $dexSlug,
+                $electionSlug,
+                $count,
+            )
+            ->get(
+                $trainerExternalId,
+                $dexSlug,
+                $electionSlug,
+                $count,
+                [],
+            )
+        ;
+
+        $this->assertSame($listType, $electionList->type);
+
+        $pokemons = $electionList->items;
+        $this->assertCount($count, $pokemons);
+    }
+
+    public function testGetWithFilters(): void
+    {
+        $electionList = $this
+            ->getService(
+                'pick',
+                '12',
+                '123',
+                '',
+                5,
+                '_cflegendary',
+                [
+                    'cf' => ['legendary'],
+                ],
+            )
+            ->get(
+                '12',
+                '123',
+                '',
+                5,
+                [
+                    'cf' => ['legendary'],
+                ],
+            )
+        ;
+
+        $this->assertSame('pick', $electionList->type);
+
+        $pokemons = $electionList->items;
+        $this->assertCount(5, $pokemons);
+    }
+
+    public function testGetWithoutLoggedUser(): void
+    {
+        $dir = '/var/www/html/tests/resources/unit/service/back';
+        $filename = "{$dir}/pokemons_topick_12_123__3.json";
+
+        /** @var GetPokemonsService $service */
+        $service = $this->getServiceWithoutLoggedUser(
+            GetPokemonsService::class,
+            'GET',
+            (string) file_get_contents($filename),
+            'pokemons/to_choose',
+            [
+                'query' => [
+                    'trainer_external_id' => '12',
+                    'dex_slug' => '123',
+                    'election_slug' => '',
+                    'count' => 3,
+                ],
+            ]
+        );
+
+        $electionList = $service->get('12', '123', '', 3, []);
+
+        $this->assertSame('pick', $electionList->type);
+
+        $pokemons = $electionList->items;
+        $this->assertCount(3, $pokemons);
+    }
+
+    /**
+     * @return int[][]|string[][]
+     */
+    public static function providerGet(): array
+    {
+        return [
+            '123-3' => [
+                'listType' => 'pick',
+                'trainerExternalId' => '12',
+                'dexSlug' => '123',
+                'electionSlug' => '',
+                'count' => 3,
+            ],
+            '123-5' => [
+                'listType' => 'pick',
+                'trainerExternalId' => '13',
+                'dexSlug' => '123',
+                'electionSlug' => 'a',
+                'count' => 5,
+            ],
+            'all-12' => [
+                'listType' => 'vote',
+                'trainerExternalId' => '14',
+                'dexSlug' => 'all',
+                'electionSlug' => 'b',
+                'count' => 12,
+            ],
+        ];
+    }
+
+    /**
+     * @param array<string, array<int, string>|string> $filters
+     */
+    private function getService(
+        string $listType,
+        string $trainerExternalId,
+        string $dexSlug,
+        string $electionSlug,
+        int $count,
+        string $filtersStr = '',
+        array $filters = [],
+    ): GetPokemonsService {
+        $dir = '/var/www/html/tests/resources/unit/service/back';
+        $filename = "{$dir}/pokemons_to{$listType}_{$trainerExternalId}_{$dexSlug}_{$electionSlug}_{$count}{$filtersStr}.json";
+
+        $options = [
+            'query' => array_merge(
+                [
+                    'trainer_external_id' => $trainerExternalId,
+                    'dex_slug' => $dexSlug,
+                    'election_slug' => $electionSlug,
+                    'count' => "{$count}",
+                ],
+                $filters,
+            ),
+        ];
+
+        /** @var GetPokemonsService */
+        return $this->getServiceWithLoggedUser(
+            GetPokemonsService::class,
+            'GET',
+            (string) file_get_contents($filename),
+            'pokemons/to_choose',
+            $options,
+        );
+    }
+}

@@ -7,6 +7,7 @@ namespace App\Tests\Browser\Trainer;
 use App\Security\User;
 use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
@@ -24,7 +25,7 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -49,7 +50,7 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -74,7 +75,7 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -99,7 +100,7 @@ class CustomAlbumTrainerTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('789465465489', 'TestProvider');
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 

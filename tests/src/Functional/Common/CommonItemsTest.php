@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Common;
 
-use App\Controller\AlbumUpsertController;
 use App\Controller\ConnectController;
 use App\Controller\HomeController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -18,7 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(HomeController::class)]
 #[CoversClass(ConnectController::class)]
-#[CoversClass(AlbumUpsertController::class)]
 class CommonItemsTest extends WebTestCase
 {
     use TestNavTrait;
@@ -27,7 +26,7 @@ class CommonItemsTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -45,7 +44,7 @@ class CommonItemsTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 

@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Admin;
 use App\Controller\AdminActionController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -49,7 +50,7 @@ class ActionUpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -83,7 +84,7 @@ class ActionUpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -98,7 +99,7 @@ class ActionUpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');
 
         $client->catchExceptions(false);
@@ -112,7 +113,7 @@ class ActionUpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -134,7 +135,7 @@ class ActionUpdateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 

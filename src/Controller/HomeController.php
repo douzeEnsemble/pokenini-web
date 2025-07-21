@@ -17,7 +17,7 @@ class HomeController extends AbstractController
         UserTokenService $userTokenService,
     ): Response {
         try {
-            $connectedUserId = $userTokenService->getLoggedUserToken();
+            $connectedUserId = $userTokenService->getLoggedUserId();
         } catch (NoLoggedUserException $e) {
             $connectedUserId = null;
         }

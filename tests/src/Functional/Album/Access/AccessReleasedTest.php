@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Album\Access;
 use App\Controller\AlbumIndexController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -22,11 +23,16 @@ class AccessReleasedTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/album/home');
+
+        $this->assertResponseIsSuccessful();
+
+        $this->assertSame('Home', $crawler->filter('#album-title')->text());
+        $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
         $this->assertCountFilter($crawler, 0, '.navbar-nav #share-link');
         $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
@@ -36,7 +42,7 @@ class AccessReleasedTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -49,7 +55,7 @@ class AccessReleasedTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -63,7 +69,7 @@ class AccessReleasedTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 

@@ -3,7 +3,7 @@
 namespace App\Service;
 
 use App\Security\UserTokenService;
-use App\Service\Api\GetPokedexService;
+use App\Service\Back\GetPokedexService;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service;
 
 use App\Security\UserTokenService;
-use App\Service\Api\GetPokedexService;
+use App\Service\Back\GetPokedexService;
 use App\Service\GetTrainerPokedexService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

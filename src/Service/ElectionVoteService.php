@@ -4,13 +4,13 @@ namespace App\Service;
 
 use App\DTO\ElectionVote;
 use App\Security\UserTokenService;
-use App\Service\Api\ElectionVoteApiService;
+use App\Service\Back\PostElectionVoteService;
 
 class ElectionVoteService
 {
     public function __construct(
         private readonly UserTokenService $userTokenService,
-        private readonly ElectionVoteApiService $apiService,
+        private readonly PostElectionVoteService $apiService,
     ) {}
 
     public function vote(ElectionVote $electionVote): void

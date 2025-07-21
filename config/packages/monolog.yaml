@@ -28,10 +28,10 @@ when@test:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
-            # file_log:
-            #     type: stream
-            #     path: "%kernel.logs_dir%/%kernel.environment%.log"
-            #     level: debug
+            file_log:
+                type: stream
+                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                level: debug
 
 when@prod:
     monolog:

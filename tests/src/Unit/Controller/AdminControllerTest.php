@@ -6,8 +6,8 @@ namespace App\Tests\Unit\Controller;
 
 use App\Controller\AdminController;
 use App\DTO\AdminAction;
-use App\Service\Api\GetActionLogsService;
-use App\Service\Api\GetReportsService;
+use App\Service\Back\GetActionLogsService;
+use App\Service\Back\GetReportsService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;

@@ -6,6 +6,8 @@ namespace App\Tests\Unit\Security;
 
 use App\Security\FakeAuthenticator;
 use App\Security\User;
+use App\Service\Back\GetUserInfoService;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -23,7 +25,11 @@ class FakeAuthenticatorOnAuthentificationTest extends TestCase
 {
     public function testOnAuthenticationSuccessNotATrainer(): void
     {
-        $user = new User('1', 'TestProvider');
+        $user = new User(
+            '1',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzad6a4d'])
+        );
 
         $token = $this->createMock(TokenInterface::class);
         $token
@@ -50,7 +56,11 @@ class FakeAuthenticatorOnAuthentificationTest extends TestCase
 
     public function testOnAuthenticationSuccessTrainer(): void
     {
-        $user = new User('1', 'TestProvider');
+        $user = new User(
+            '1',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzad6a4d'])
+        );
         $user->addTrainerRole();
 
         $token = $this->createMock(TokenInterface::class);
@@ -105,12 +115,11 @@ class FakeAuthenticatorOnAuthentificationTest extends TestCase
             ->willReturnOnConsecutiveCalls(...$routes)
         ;
 
+        $getUserInfoService = $this->createMock(GetUserInfoService::class);
+
         return new FakeAuthenticator(
             $router,
-            '',
-            '',
-            '',
-            true,
+            $getUserInfoService,
         );
     }
 }

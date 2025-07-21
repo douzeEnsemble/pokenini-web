@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Admin;
 use App\Controller\AdminActionController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -25,7 +26,7 @@ class ActionInvalidateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -35,6 +36,7 @@ class ActionInvalidateTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
     }
 
     #[DataProvider('providerInvalidateNotExists')]
@@ -42,7 +44,7 @@ class ActionInvalidateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -57,7 +59,7 @@ class ActionInvalidateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');
 
         $client->catchExceptions(false);

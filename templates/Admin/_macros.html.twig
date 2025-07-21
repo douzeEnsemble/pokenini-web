@@ -43,7 +43,6 @@
   {% elseif currentActionLog.createdAt is not empty %}
     {% set currentState = 'pending' %}
   {% endif %}
-  {% set currentBgStyle = stateColor[currentState] %}
 
   {% set lastState = null %}
   {% if lastActionLog is null %}
@@ -57,6 +56,9 @@
   {% endif %}
   {% set lastBgStyle = stateColor[lastState] %}
 
+
+  {% set currentBgStyle = stateColor[currentState] %}
+
   {% if updatedAction is same as(actionPrefix)
     and updatedItem is same as(item)
   %}
@@ -67,6 +69,7 @@
   {% if currentBgStyle == 'success' or currentBgStyle ==  'danger' or currentBgStyle ==  'info' %}
     {% set currentTextStyle = 'light' %}
   {% endif %}
+
   {% set lastTextStyle = 'dark' %}
   {% if lastBgStyle == 'success' or lastBgStyle ==  'danger' or lastBgStyle ==  'info' %}
     {% set lastTextStyle = 'light' %}

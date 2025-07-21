@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\DTO\ElectionPokemonsList;
 use App\Security\UserTokenService;
-use App\Service\Api\GetPokemonsService;
+use App\Service\Back\GetPokemonsService;
 
 class GetPokemonsListService
 {

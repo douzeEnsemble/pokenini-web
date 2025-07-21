@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Security\UserTokenService;
-use App\Service\Api\GetDexService;
+use App\Service\Back\GetDexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

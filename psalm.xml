@@ -21,11 +21,6 @@
     </projectFiles>
 
     <issueHandlers>
-        <ArgumentTypeCoercion>
-            <errorLevel type="suppress">
-                <file name="tests/src/Unit/Controller/AdminActionControllerTest.php" />
-            </errorLevel>
-        </ArgumentTypeCoercion>
         <PropertyNotSetInConstructor errorLevel="suppress" />
         <RiskyCast>
             <errorLevel type="suppress">

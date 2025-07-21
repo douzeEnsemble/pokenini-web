@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Security;
 
+use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
+use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
@@ -17,10 +19,7 @@ class FakeAuthenticator extends OAuth2Authenticator
 
     public function __construct(
         private readonly RouterInterface $router,
-        private readonly string $listAdmin,
-        private readonly string $listTrainer,
-        private readonly string $listCollector,
-        private readonly bool $isInvitationRequired,
+        private readonly GetUserInfoService $getUserInfoService,
     ) {}
 
     #[\Override]
@@ -37,9 +36,11 @@ class FakeAuthenticator extends OAuth2Authenticator
     {
         $identifier = $request->query->getString('t');
 
+        $accessToken = new AccessToken(['access_token' => $identifier]);
+
         return new SelfValidatingPassport(
-            new UserBadge($identifier, function () use ($identifier) {
-                return $this->loadUserFromLists($identifier, 'FaKe');
+            new UserBadge($identifier, function () use ($accessToken) {
+                return $this->loadFromAccessToken($accessToken, 'FaKe');
             })
         );
     }

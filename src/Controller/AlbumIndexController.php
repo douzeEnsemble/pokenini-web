@@ -7,7 +7,7 @@ namespace App\Controller;
 use App\AlbumFilters\FromRequest;
 use App\AlbumFilters\Mapping;
 use App\Security\User;
-use App\Service\Api\GetLabelsService;
+use App\Service\GetLabelsService;
 use App\Service\GetTrainerPokedexService;
 use App\Service\TrainerIdsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Album\Template;
 use App\Controller\AlbumIndexController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -22,7 +23,7 @@ class NoTemplateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('12', 'TestProvider');
+        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -40,7 +41,7 @@ class NoTemplateTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('12', 'TestProvider');
+        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service;
 
 use App\Security\UserTokenService;
-use App\Service\Api\ElectionTopApiService;
+use App\Service\Back\GetElectionTopService;
 use App\Service\ElectionTopService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +25,7 @@ class ElectionTopServiceTest extends TestCase
             ->willReturn('8800088')
         ;
 
-        $apiService = $this->createMock(ElectionTopApiService::class);
+        $apiService = $this->createMock(GetElectionTopService::class);
         $apiService
             ->expects($this->once())
             ->method('getTop')

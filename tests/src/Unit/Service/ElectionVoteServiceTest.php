@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service;
 
 use App\DTO\ElectionVote;
 use App\Security\UserTokenService;
-use App\Service\Api\ElectionVoteApiService;
+use App\Service\Back\PostElectionVoteService;
 use App\Service\ElectionVoteService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -33,7 +33,7 @@ class ElectionVoteServiceTest extends TestCase
             'losers_slugs' => ['pikachu', 'raichu'],
         ]);
 
-        $apiService = $this->createMock(ElectionVoteApiService::class);
+        $apiService = $this->createMock(PostElectionVoteService::class);
         $apiService
             ->expects($this->once())
             ->method('vote')
@@ -63,7 +63,7 @@ class ElectionVoteServiceTest extends TestCase
             'losers_slugs' => ['pikachu', 'pichu', 'raichu'],
         ]);
 
-        $apiService = $this->createMock(ElectionVoteApiService::class);
+        $apiService = $this->createMock(PostElectionVoteService::class);
         $apiService
             ->expects($this->once())
             ->method('vote')
@@ -93,7 +93,7 @@ class ElectionVoteServiceTest extends TestCase
             'losers_slugs' => ['pikachu', 'pichu', 'raichu'],
         ]);
 
-        $apiService = $this->createMock(ElectionVoteApiService::class);
+        $apiService = $this->createMock(PostElectionVoteService::class);
         $apiService
             ->expects($this->once())
             ->method('vote')
@@ -123,7 +123,7 @@ class ElectionVoteServiceTest extends TestCase
             'losers_slugs' => [],
         ]);
 
-        $apiService = $this->createMock(ElectionVoteApiService::class);
+        $apiService = $this->createMock(PostElectionVoteService::class);
         $apiService
             ->expects($this->once())
             ->method('vote')

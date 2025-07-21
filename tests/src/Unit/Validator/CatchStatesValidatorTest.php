@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Validator;
 
-use App\Service\Api\GetCatchStatesService;
+use App\Service\Back\GetCatchStatesService;
 use App\Validator\CatchStates;
 use App\Validator\CatchStatesValidator;
 use PHPUnit\Framework\Attributes\CoversClass;

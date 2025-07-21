@@ -6,6 +6,7 @@ namespace App\Tests\Functional\Common;
 
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -21,7 +22,7 @@ class FooterTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $user = new User('8764532', 'TestProvider');
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 

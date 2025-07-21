@@ -3,17 +3,11 @@ services:
         autowire: true
         autoconfigure: true
         bind:
-            string $apiUrl: '%env(API_URL)%'
-            string $apiCafilePath: '%env(API_CAFILE_PATH)%'
-            string $listAdmin: '%env(LIST_ADMIN)%'
-            string $listTrainer: '%env(LIST_TRAINER)%'
-            string $listCollector: '%env(LIST_COLLECTOR)%'
-            bool $isInvitationRequired: '%env(bool:REQUIRE_INVITATION)%'
-            string $apiLogin: '%env(API_LOGIN)%'
-            string $apiPassword: '%env(API_PASSWORD)%'
-            int $topCount: '%env(ELECTION_TOP_COUNT)%'
+            string $backUrl: '%env(BACK_URL)%'
+            string $backCafilePath: '%env(BACK_CAFILE_PATH)%'
+            int $electionTopCount: '%env(ELECTION_TOP_COUNT)%'
             int $electionCandidateCount: '%env(ELECTION_CANDIDATE_COUNT)%'
-
+            
     App\:
         resource: '../src/'
         exclude:
