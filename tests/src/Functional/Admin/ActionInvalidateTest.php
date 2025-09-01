@@ -39,6 +39,19 @@ class ActionInvalidateTest extends WebTestCase
         file_put_contents('tests/last.html', $client->getCrawler()->html());
     }
 
+    /**
+     * @return string[][]
+     */
+    public static function providerInvalidateSuccess(): array
+    {
+        return [
+            ['labels'],
+            ['dex'],
+            ['albums'],
+            ['reports'],
+        ];
+    }
+
     #[DataProvider('providerInvalidateNotExists')]
     public function testInvalidateNotExists(string $name): void
     {
@@ -53,33 +66,6 @@ class ActionInvalidateTest extends WebTestCase
         $this->expectException(NotFoundHttpException::class);
 
         $client->request('GET', "/fr/istration/action/invalidate/{$name}");
-    }
-
-    public function testAdminNonAdmin(): void
-    {
-        $client = static::createClient();
-
-        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
-        $client->loginUser($user, 'web');
-
-        $client->catchExceptions(false);
-
-        $this->expectException(NotFoundHttpException::class);
-
-        $client->request('GET', '/fr/istration/action/invalidate/catch_states');
-    }
-
-    /**
-     * @return string[][]
-     */
-    public static function providerInvalidateSuccess(): array
-    {
-        return [
-            ['labels'],
-            ['dex'],
-            ['albums'],
-            ['reports'],
-        ];
     }
 
     /**
@@ -102,5 +88,19 @@ class ActionInvalidateTest extends WebTestCase
             ['collections'],
             ['collections_availabilities'],
         ];
+    }
+
+    public function testAdminNonAdmin(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
+        $client->loginUser($user, 'web');
+
+        $client->catchExceptions(false);
+
+        $this->expectException(NotFoundHttpException::class);
+
+        $client->request('GET', '/fr/istration/action/invalidate/catch_states');
     }
 }
