@@ -86,7 +86,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         chromium \ 
         chromium-driver \ 
-        libgconf-2-4 \
+        # libgconf-2-4 \
         libfontconfig-dev \
         libfreetype6 \
         libx11-6 \
