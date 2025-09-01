@@ -27,14 +27,6 @@ class JsonDecoderTest extends TestCase
         );
     }
 
-    #[DataProvider('providerDecodeException')]
-    public function testDecodeException(string $json): void
-    {
-        $this->expectException(\JsonException::class);
-
-        JsonDecoder::decode($json);
-    }
-
     /**
      * @return string[][]|string[][][]|string[][][][]|string[][][][][][]
      */
@@ -114,6 +106,14 @@ class JsonDecoderTest extends TestCase
                 ],
             ],
         ];
+    }
+
+    #[DataProvider('providerDecodeException')]
+    public function testDecodeException(string $json): void
+    {
+        $this->expectException(\JsonException::class);
+
+        JsonDecoder::decode($json);
     }
 
     /**
