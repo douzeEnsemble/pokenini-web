@@ -110,26 +110,73 @@ tests: ## Execute all tests
 tests:
 	$(PHP) vendor/bin/phpunit tests/src
 
+.PHONY: t
+t: tests
+
 .PHONY: tests-unit
 tests-unit: ## Execute unit tests
 	@$(PHP_CONT) vendor/bin/phpunit tests/src/Unit
+
+.PHONY: tu
+tu: tests-unit
 
 .PHONY: tests-functional
 tests-functional: ## Execute functional tests
 	@$(PHP_CONT) vendor/bin/phpunit tests/src/Functional
 
+.PHONY: tf
+tf: tests-functional
+
+.PHONY: ti
+ti: tests-functional
+
 .PHONY: tests-browser
 tests-browser: ## Execute browser tests for Web module
 	@$(PHP_CONT) vendor/bin/phpunit tests/src/Browser
+
+.PHONY: tb
+tb: tests-browser
 
 ## —— Quality 👌 ———————————————————————————————————————————————————————————————
 .PHONY: quality
 quality: ## Execute all quality analyses
 quality: infra-quality code-quality
 
+.PHONY: infra-quality
+infra-quality: ## Execute all infra quality analyses
+infra-quality: docker-compose-linter dockerfile-linter dotenv-linter
+
+.PHONY: iq
+iq: infra-quality
+
+DOCKERCOMPOSE_LINTER_CMD = docker run -t --rm -v ${PWD}:/app zavoloklom/dclint:2.2.2-alpine
+docker-compose-linter: ## Run Docker Compose linter
+	$(DOCKERCOMPOSE_LINTER_CMD) -r .
+.PHONY: docker-compose-linter
+docker-compose-fixer: ## Run Docker Compose fixer
+	$(DOCKERCOMPOSE_LINTER_CMD)  -r . --fix
+.PHONY: docker-compose-fixer
+
+dockerfile-linter: ## Run Dockerfile linter
+		@find .docker -name 'Dockerfile' | while read -r dockerfile; do \
+		docker run -t --rm -v ${PWD}:/app hadolint/hadolint:2.12.0-alpine hadolint "/app/$$dockerfile"; \
+	done
+.PHONY: dockerfile-linter
+
+DOTENV_LINTER_CMD = docker run -t --rm -v ${PWD}:/app -w /app dotenvlinter/dotenv-linter:3.3.0
+dotenv-linter: ## Run DotEnv linter
+	$(DOTENV_LINTER_CMD) -r
+.PHONY: dotenv-linter
+dotenv-fixer: ## Run DotEnv fixer
+	$(DOTENV_LINTER_CMD) fix -r --no-backup
+.PHONY: dotenv-linter
+
 .PHONY: code-quality
 code-quality: ## Execute all code quality analyses
 code-quality: phpcsfixer phpmd psalm phpstan deptrac
+
+.PHONY: cq
+cq: code-quality
 
 .PHONY: phpcsfixer
 phpcsfixer: ## Execute PHP CS Fixer "Check"
@@ -172,32 +219,6 @@ deptrac: tools/deptrac/vendor/bin/deptrac
 phpinsights: ## Execute phpinsights
 phpinsights: tools/phpinsights/vendor/bin/phpinsights
 	@$(PHP) tools/phpinsights/vendor/bin/phpinsights
-
-.PHONY: infra-quality
-infra-quality: ## Execute all infra quality analyses
-infra-quality: docker-compose-linter dockerfile-linter dotenv-linter
-
-DOCKERCOMPOSE_LINTER_CMD = docker run -t --rm -v ${PWD}:/app zavoloklom/dclint:2.2.2-alpine
-docker-compose-linter: ## Run Docker Compose linter
-	$(DOCKERCOMPOSE_LINTER_CMD) -r .
-.PHONY: docker-compose-linter
-docker-compose-fixer: ## Run Docker Compose fixer
-	$(DOCKERCOMPOSE_LINTER_CMD)  -r . --fix
-.PHONY: docker-compose-fixer
-
-dockerfile-linter: ## Run Dockerfile linter
-		@find .docker -name 'Dockerfile' | while read -r dockerfile; do \
-		docker run -t --rm -v ${PWD}:/app hadolint/hadolint:2.12.0-alpine hadolint "/app/$$dockerfile"; \
-	done
-.PHONY: dockerfile-linter
-
-DOTENV_LINTER_CMD = docker run -t --rm -v ${PWD}:/app -w /app dotenvlinter/dotenv-linter:3.3.0
-dotenv-linter: ## Run DotEnv linter
-	$(DOTENV_LINTER_CMD) -r
-.PHONY: dotenv-linter
-dotenv-fixer: ## Run DotEnv fixer
-	$(DOTENV_LINTER_CMD) fix -r --no-backup
-.PHONY: dotenv-linter
 
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 .PHONY: measures
