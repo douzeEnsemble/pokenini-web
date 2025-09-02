@@ -28,7 +28,7 @@ jobs:
       volumes:
         - ${{ github.workspace }}:/app
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
     - run: /bin/dclint -r .
 
   dotenv-lint:
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v5
       - name: Lint .env* files
         uses: dotenv-linter/action-dotenv-linter@v2
         with:
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v5
       - name: Lint moco Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
