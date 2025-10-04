@@ -15,6 +15,6 @@
         "ext-xml": "*",
         "ext-xmlwriter": "*",
         "ext-zip": "*",
-        "friendsofphp/php-cs-fixer": "^3.86"
+        "friendsofphp/php-cs-fixer": "^3.88.2"
     }
 }
