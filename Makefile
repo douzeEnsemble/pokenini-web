@@ -40,7 +40,7 @@ up: up-process up-after
 up-process:
 	$(DOCKER_COMP) up --wait
 
-up-after: s3-uploads
+up-after:
 	$(PHP_CONT) git config --global --add safe.directory /app
 
 .PHONY: install
@@ -54,7 +54,7 @@ stop: ## Stop the project
 .PHONY: destruct
 destruct: ## Destruct the project
 destruct: stop
-	$(DOCKER_COMP) down --remove-orphans --volumes database php mock.oauth storage.mock --rmi all
+	$(DOCKER_COMP) down --remove-orphans --volumes moco.back moco.matomo.gbl php redis web --rmi all
 
 .PHONY: logs
 logs: ## Containers logs
@@ -64,32 +64,9 @@ logs: ## Containers logs
 bash: ## Connect to the PHP container
 	@$(PHP_CONT) bash
 
-.PHONY: s3-uploads
-s3-uploads: ## Upload files to s3 mock
-	$(PHP_CONT) bash /app/.docker/storage/upload.sh
-
 .PHONY: restart-mocks
-restart-mocks: ## Restart Mockoon mocks
-	$(DOCKER_COMP) restart mock.oauth
-
-## —— Databases 💾 ————————————————————————————————————————————————————————————————
-.PHONY: databases
-databases: ## Set up databases
-databases: db-init db-data
-
-.PHONY: db-init
-db-init: ## Initialize databases structures
-	$(SYMFONY) doctrine:database:drop --force --if-exists --env=dev
-	$(SYMFONY) doctrine:database:create --env=dev
-	$(SYMFONY) doctrine:migration:migrate --no-interaction --env=dev
-	$(SYMFONY) doctrine:database:drop --force --if-exists --env=test
-	$(SYMFONY) doctrine:database:create --env=test
-	$(SYMFONY) doctrine:migration:migrate --no-interaction --env=test
-
-.PHONY: db-data
-db-data: ## Initialize databases data
-	$(SYMFONY) hautelook:fixtures:load --silent --env=dev
-	$(SYMFONY) hautelook:fixtures:load --silent --env=test
+restart-mocks: ## Restart Moco mocks
+	$(DOCKER_COMP) restart moco.back
 
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 .PHONY: composer
@@ -106,6 +83,7 @@ updates: ## Updates all composer
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpmd
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpstan
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/psalm
+	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpinsights 
 
 ## —— Symfony 🎵 ———————————————————————————————————————————————————————————————
 .PHONY: sf
@@ -114,8 +92,10 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 	@$(SYMFONY) $(c)
 
 .PHONY: cc
-cc: c=c:c ## Clear the cache
-cc: sf
+cc: ## Clear the cache
+cc:
+	@$(SYMFONY) cache:clear --env=dev
+	@$(SYMFONY) cache:clear --env=test
 
 ## —— Tests 🧪 ———————————————————————————————————————————————————————————————
 .PHONY: tests
@@ -135,13 +115,24 @@ tests-unit: ## Execute unit's tests
 tu: ## Alias of tests-unit
 tu: tests-unit
 
-.PHONY: tests-integration
-tests-integration: ## Execute integrations' tests
-	@$(PHP_CONT) vendor/bin/phpunit tests/src/Integration
+.PHONY: tests-functional
+tests-functional: ## Execute functional tests
+	@$(PHP_CONT) vendor/bin/phpunit tests/src/Functional
+
+.PHONY: tf
+tf: ## Alias of tests-functional
+tf: tests-functional
 
 .PHONY: ti
-ti: ## Alias of tests-integration
-ti: tests-integration
+ti: ## Alias of tests-functional
+ti: tests-functional
+
+.PHONY: tests-browser
+tests-browser: ## Execute browser tests for Web module
+	@$(PHP_CONT) vendor/bin/phpunit tests/src/Browser
+
+.PHONY: tb
+tb: tests-browser
 
 ## —— Quality 👌 ———————————————————————————————————————————————————————————————
 .PHONY: quality
@@ -228,6 +219,11 @@ deptrac: ## Execute deptrac analyse
 deptrac: tools/deptrac/vendor/bin/deptrac
 	@$(PHP) tools/deptrac/vendor/bin/deptrac analyse --report-uncovered --fail-on-uncovered --cache-file=/app/var/cache/deptrac/.deptrac.cache
 
+.PHONY: phpinsights
+phpinsights: ## Execute phpinsights
+phpinsights: tools/phpinsights/vendor/bin/phpinsights
+	@$(PHP) tools/phpinsights/vendor/bin/phpinsights
+
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 .PHONY: measures
 measures: ## Execute all measures tools
@@ -245,6 +241,7 @@ build/coverage/coverage-xml: ## Generate coverage report
 	$(DOCKER_COMP) exec \
 		-e XDEBUG_MODE=coverage -T php \
 		php vendor/bin/phpunit \
+			--exclude-group="browser-testing" \
 			--coverage-clover=build/coverage/coverage.xml \
 			--coverage-xml=build/coverage/coverage-xml \
 			--log-junit=build/coverage/junit.xml
@@ -260,6 +257,7 @@ coverage-html: ## Execute PHPUnit Coverage in HTML
 	$(DOCKER_COMP) exec \
 		-e XDEBUG_MODE=coverage -T php \
 		php vendor/bin/phpunit \
+			--exclude-group="browser-testing" \
 			--coverage-html=build/coverage/coverage-html
 
 .PHONY: clear-infection-cache
@@ -277,12 +275,26 @@ infection: build/coverage/coverage-xml tools/infection/vendor/bin/infection clea
 ## —— Security 🛡️ ———————————————————————————————————————————————————————————————
 .PHONY: security
 security: ## Execute all security commands
-security: composer-audit
+security: composer-audit security-checker
 
 .PHONY: composer-audit
 composer-audit: ## Execute Composer Audit
 composer-audit: c=audit
 composer-audit: composer
+
+bin/local-php-security-checker: ## Download the file if needed
+	wget https://github.com/fabpot/local-php-security-checker/releases/download/v2.1.3/local-php-security-checker_linux_amd64 -O bin/local-php-security-checker
+	chmod a+x bin/local-php-security-checker
+
+.PHONY: security-checker
+security-checker: ## Execute Security Checker
+security-checker: bin/local-php-security-checker
+	bin/local-php-security-checker
+
+.PHONY: dependency-check
+dependency-check: ## Execute OWASP Dependency Check
+dependency-check: 
+	@bin/dependency-check.sh ${NVD_API_KEY}
 
 ## —— Tools 🔧 ———————————————————————————————————————————————————————————————
 tools/php-cs-fixer/vendor/bin/php-cs-fixer: ## Install php-cs-fixer
@@ -302,3 +314,12 @@ tools/deptrac/vendor/bin/deptrac: ## Install deptrac
 
 tools/infection/vendor/bin/infection: ## Install infection
 	@$(COMPOSER) install --working-dir=tools/infection --optimize-autoloader --no-dev
+
+tools/phpinsights/vendor/bin/phpinsights: ## Install phpinsights
+	@$(COMPOSER) install --working-dir=tools/phpinsights --optimize-autoloader --no-dev
+
+## —— Image 🐳 ———————————————————————————————————————————————————————————————
+img-build: ## Build Docker image
+	docker build --target php_prod -f ./.docker/php/Dockerfile -t ghcr.io/douzeensemble/pokenini-web:latest .
+img-push: ## Push Docker image
+	docker push ghcr.io/douzeensemble/pokenini-web:latest
