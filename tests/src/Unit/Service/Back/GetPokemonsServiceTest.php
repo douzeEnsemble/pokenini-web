@@ -20,7 +20,6 @@ class GetPokemonsServiceTest extends TestCase
     #[DataProvider('providerGet')]
     public function testGet(
         string $listType,
-        string $trainerExternalId,
         string $dexSlug,
         string $electionSlug,
         int $count,
@@ -28,13 +27,11 @@ class GetPokemonsServiceTest extends TestCase
         $electionList = $this
             ->getService(
                 $listType,
-                $trainerExternalId,
                 $dexSlug,
                 $electionSlug,
                 $count,
             )
             ->get(
-                $trainerExternalId,
                 $dexSlug,
                 $electionSlug,
                 $count,
@@ -56,21 +53,18 @@ class GetPokemonsServiceTest extends TestCase
         return [
             '123-3' => [
                 'listType' => 'pick',
-                'trainerExternalId' => '12',
                 'dexSlug' => '123',
                 'electionSlug' => '',
                 'count' => 3,
             ],
             '123-5' => [
                 'listType' => 'pick',
-                'trainerExternalId' => '13',
                 'dexSlug' => '123',
                 'electionSlug' => 'a',
                 'count' => 5,
             ],
             'all-12' => [
                 'listType' => 'vote',
-                'trainerExternalId' => '14',
                 'dexSlug' => 'all',
                 'electionSlug' => 'b',
                 'count' => 12,
@@ -83,7 +77,6 @@ class GetPokemonsServiceTest extends TestCase
         $electionList = $this
             ->getService(
                 'pick',
-                '12',
                 '123',
                 '',
                 5,
@@ -93,7 +86,6 @@ class GetPokemonsServiceTest extends TestCase
                 ],
             )
             ->get(
-                '12',
                 '123',
                 '',
                 5,
@@ -112,7 +104,7 @@ class GetPokemonsServiceTest extends TestCase
     public function testGetWithoutLoggedUser(): void
     {
         $dir = '/var/www/html/tests/resources/unit/service/back';
-        $filename = "{$dir}/pokemons_topick_12_123__3.json";
+        $filename = "{$dir}/pokemons_topick_123__3.json";
 
         /** @var GetPokemonsService $service */
         $service = $this->getServiceWithoutLoggedUser(
@@ -122,7 +114,6 @@ class GetPokemonsServiceTest extends TestCase
             'pokemons/to_choose',
             [
                 'query' => [
-                    'trainer_external_id' => '12',
                     'dex_slug' => '123',
                     'election_slug' => '',
                     'count' => 3,
@@ -130,7 +121,7 @@ class GetPokemonsServiceTest extends TestCase
             ]
         );
 
-        $electionList = $service->get('12', '123', '', 3, []);
+        $electionList = $service->get('123', '', 3, []);
 
         $this->assertSame('pick', $electionList->type);
 
@@ -143,7 +134,6 @@ class GetPokemonsServiceTest extends TestCase
      */
     private function getService(
         string $listType,
-        string $trainerExternalId,
         string $dexSlug,
         string $electionSlug,
         int $count,
@@ -151,12 +141,11 @@ class GetPokemonsServiceTest extends TestCase
         array $filters = [],
     ): GetPokemonsService {
         $dir = '/var/www/html/tests/resources/unit/service/back';
-        $filename = "{$dir}/pokemons_to{$listType}_{$trainerExternalId}_{$dexSlug}_{$electionSlug}_{$count}{$filtersStr}.json";
+        $filename = "{$dir}/pokemons_to{$listType}_{$dexSlug}_{$electionSlug}_{$count}{$filtersStr}.json";
 
         $options = [
             'query' => array_merge(
                 [
-                    'trainer_external_id' => $trainerExternalId,
                     'dex_slug' => $dexSlug,
                     'election_slug' => $electionSlug,
                     'count' => "{$count}",

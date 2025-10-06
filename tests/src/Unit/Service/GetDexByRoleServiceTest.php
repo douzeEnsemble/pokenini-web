@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service;
 
 use App\Security\User;
-use App\Security\UserTokenService;
 use App\Service\Back\GetDexService;
 use App\Service\GetDexByRoleService;
 use League\OAuth2\Client\Token\AccessToken;
@@ -25,9 +24,7 @@ class GetDexByRoleServiceTest extends TestCase
         $getDexService
             ->expects($this->once())
             ->method('getWithPremium')
-            ->with(
-                '1234567890'
-            )
+            ->with()
             ->willReturn([
                 ['un'],
                 ['dos'],
@@ -47,13 +44,6 @@ class GetDexByRoleServiceTest extends TestCase
             ->method('getWithUnreleasedAndPremium')
         ;
 
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('1234567890')
-        ;
-
         $user = new User('1234567890', 'TestProvider', new AccessToken(['access_token' => sha1('1234567890')]));
         $user->addTrainerRole();
 
@@ -66,7 +56,6 @@ class GetDexByRoleServiceTest extends TestCase
 
         $service = new GetDexByRoleService(
             $getDexService,
-            $userTokenService,
             $security
         );
 
@@ -88,9 +77,7 @@ class GetDexByRoleServiceTest extends TestCase
         $getDexService
             ->expects($this->once())
             ->method('getWithPremium')
-            ->with(
-                '1234567890'
-            )
+            ->with()
             ->willReturn([
                 ['un'],
                 ['dos'],
@@ -110,13 +97,6 @@ class GetDexByRoleServiceTest extends TestCase
             ->method('getWithUnreleasedAndPremium')
         ;
 
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('1234567890')
-        ;
-
         $user = new User('1234567890', 'TestProvider', new AccessToken(['access_token' => sha1('1234567890')]));
         $user->addTrainerRole();
         $user->addCollectorRole();
@@ -130,7 +110,6 @@ class GetDexByRoleServiceTest extends TestCase
 
         $service = new GetDexByRoleService(
             $getDexService,
-            $userTokenService,
             $security
         );
 
@@ -152,9 +131,7 @@ class GetDexByRoleServiceTest extends TestCase
         $getDexService
             ->expects($this->once())
             ->method('getWithUnreleasedAndPremium')
-            ->with(
-                '1234567890'
-            )
+            ->with()
             ->willReturn([
                 ['un'],
                 ['dos'],
@@ -174,13 +151,6 @@ class GetDexByRoleServiceTest extends TestCase
             ->method('getWithUnreleased')
         ;
 
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('1234567890')
-        ;
-
         $user = new User('1234567890', 'TestProvider', new AccessToken(['access_token' => sha1('1234567890')]));
         $user->addTrainerRole();
         $user->addAdminRole();
@@ -194,7 +164,6 @@ class GetDexByRoleServiceTest extends TestCase
 
         $service = new GetDexByRoleService(
             $getDexService,
-            $userTokenService,
             $security
         );
 
@@ -230,12 +199,6 @@ class GetDexByRoleServiceTest extends TestCase
             ->method('getWithUnreleased')
         ;
 
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->never())
-            ->method('getLoggedUserToken')
-        ;
-
         $security = $this->createMock(Security::class);
         $security
             ->expects($this->once())
@@ -245,7 +208,6 @@ class GetDexByRoleServiceTest extends TestCase
 
         $service = new GetDexByRoleService(
             $getDexService,
-            $userTokenService,
             $security
         );
 

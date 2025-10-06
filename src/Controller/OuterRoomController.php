@@ -14,7 +14,7 @@ class OuterRoomController extends AbstractController
     #[Route('')]
     public function index(): Response
     {
-        if ($this->isGranted('ROLE_TRAINER') || $this->isGranted('ROLE_ADMIN')) {
+        if ($this->isGranted('ROLE_TRAINER')) {
             return $this->redirectToRoute('app_home_index');
         }
 

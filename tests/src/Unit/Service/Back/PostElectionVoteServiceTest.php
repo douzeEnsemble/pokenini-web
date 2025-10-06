@@ -29,9 +29,8 @@ class PostElectionVoteServiceTest extends TestCase
         ]);
 
         $this
-            ->getService('5465465', 'demo', 'whatever', ['pichu'], ['pikachu', 'raichu'])
+            ->getService('demo', 'whatever', ['pichu'], ['pikachu', 'raichu'])
             ->vote(
-                '5465465',
                 $electionVote,
             )
         ;
@@ -47,9 +46,8 @@ class PostElectionVoteServiceTest extends TestCase
         ]);
 
         $this
-            ->getService('5465465', 'demo', 'whatever', [], ['pikachu', 'pichu', 'raichu'])
+            ->getService('demo', 'whatever', [], ['pikachu', 'pichu', 'raichu'])
             ->vote(
-                '5465465',
                 $electionVote,
             )
         ;
@@ -65,9 +63,8 @@ class PostElectionVoteServiceTest extends TestCase
         ]);
 
         $this
-            ->getService('5465465', 'demo', 'whatever', ['pikachu', 'pichu', 'raichu'], [])
+            ->getService('demo', 'whatever', ['pikachu', 'pichu', 'raichu'], [])
             ->vote(
-                '5465465',
                 $electionVote,
             )
         ;
@@ -82,7 +79,7 @@ class PostElectionVoteServiceTest extends TestCase
             'losers_slugs' => ['pikachu', 'raichu'],
         ]);
 
-        $filename = '/var/www/html/tests/resources/unit/service/back/election_vote_5465465_demo_whatever.json';
+        $filename = '/var/www/html/tests/resources/unit/service/back/election_vote_demo_whatever.json';
 
         /** @var PostElectionVoteService $service */
         $service = $this->getServiceWithoutLoggedUser(
@@ -92,7 +89,6 @@ class PostElectionVoteServiceTest extends TestCase
             self::ENDPOINT,
             [
                 'body' => (string) json_encode([
-                    'trainer_external_id' => '5465465',
                     'dex_slug' => 'demo',
                     'election_slug' => 'whatever',
                     'winners_slugs' => ['pichu'],
@@ -101,7 +97,7 @@ class PostElectionVoteServiceTest extends TestCase
             ]
         );
 
-        $service->vote('5465465', $electionVote);
+        $service->vote($electionVote);
     }
 
     /**
@@ -109,13 +105,12 @@ class PostElectionVoteServiceTest extends TestCase
      * @param string[] $losersSlugs
      */
     private function getService(
-        string $trainerId,
         string $dexSlug,
         string $electionSlug,
         array $winnersSlugs,
         array $losersSlugs,
     ): PostElectionVoteService {
-        $filename = "/var/www/html/tests/resources/unit/service/back/election_vote_{$trainerId}_{$dexSlug}_{$electionSlug}.json";
+        $filename = "/var/www/html/tests/resources/unit/service/back/election_vote_{$dexSlug}_{$electionSlug}.json";
 
         /** @var PostElectionVoteService */
         return $this->getServiceWithLoggedUser(
@@ -125,7 +120,6 @@ class PostElectionVoteServiceTest extends TestCase
             self::ENDPOINT,
             [
                 'body' => (string) json_encode([
-                    'trainer_external_id' => $trainerId,
                     'dex_slug' => $dexSlug,
                     'election_slug' => $electionSlug,
                     'winners_slugs' => $winnersSlugs,

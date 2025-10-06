@@ -12,7 +12,6 @@ class GetElectionTopService extends AbstractBackService
      * @return string[][]
      */
     public function getTop(
-        string $trainerId,
         string $dexSlug,
         string $electionSlug,
         int $count,
@@ -20,7 +19,7 @@ class GetElectionTopService extends AbstractBackService
         /** @var string $json */
         $json = $this->requestContent(
             'GET',
-            "/election/top?trainer_external_id={$trainerId}&dex_slug={$dexSlug}&election_slug={$electionSlug}&count={$count}"
+            "/election/top?dex_slug={$dexSlug}&election_slug={$electionSlug}&count={$count}"
         );
 
         /** @var string[][] */

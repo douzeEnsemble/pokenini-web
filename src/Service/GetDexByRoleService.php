@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Security\User;
-use App\Security\UserTokenService;
 use App\Service\Back\GetDexService;
 use Symfony\Bundle\SecurityBundle\Security;
 
@@ -13,7 +12,6 @@ class GetDexByRoleService
 {
     public function __construct(
         private readonly GetDexService $getDexService,
-        private readonly UserTokenService $userTokenService,
         private Security $security,
     ) {}
 
@@ -29,10 +27,8 @@ class GetDexByRoleService
             return [];
         }
 
-        $userToken = $this->userTokenService->getLoggedUserToken();
-
         return $user->isAnAdmin()
-            ? $this->getDexService->getWithUnreleasedAndPremium($userToken)
-            : $this->getDexService->getWithPremium($userToken);
+            ? $this->getDexService->getWithUnreleasedAndPremium()
+            : $this->getDexService->getWithPremium();
     }
 }

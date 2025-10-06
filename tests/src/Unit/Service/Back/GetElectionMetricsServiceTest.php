@@ -22,12 +22,10 @@ class GetElectionMetricsServiceTest extends TestCase
     {
         $items = $this
             ->getService(
-                '4564650',
                 'home',
                 'fav',
             )
             ->getMetrics(
-                '4564650',
                 'home',
                 'fav',
             )
@@ -51,12 +49,10 @@ class GetElectionMetricsServiceTest extends TestCase
     {
         $items = $this
             ->getService(
-                '87654',
                 'demo',
                 'pref',
             )
             ->getMetrics(
-                '87654',
                 'demo',
                 'pref',
             )
@@ -80,12 +76,10 @@ class GetElectionMetricsServiceTest extends TestCase
     {
         $items = $this
             ->getService(
-                '4564650',
                 'home',
                 'fav',
             )
             ->getMetrics(
-                '4564650',
                 'home',
                 'fav',
             )
@@ -109,12 +103,10 @@ class GetElectionMetricsServiceTest extends TestCase
     {
         $items = $this
             ->getService(
-                '87654',
                 'demo',
                 'pref',
             )
             ->getMetrics(
-                '87654',
                 'demo',
                 'pref',
             )
@@ -136,7 +128,7 @@ class GetElectionMetricsServiceTest extends TestCase
 
     public function testWithoutLoggedUser(): void
     {
-        $filename = '/var/www/html/tests/resources/unit/service/back/election_metrics_4564650_home_fav.json';
+        $filename = '/var/www/html/tests/resources/unit/service/back/election_metrics_home_fav.json';
 
         /** @var GetElectionMetricsService $service */
         $service = $this->getServiceWithoutLoggedUser(
@@ -148,14 +140,13 @@ class GetElectionMetricsServiceTest extends TestCase
             self::ENDPOINT,
             [
                 'query' => [
-                    'trainer_external_id' => '4564650',
                     'dex_slug' => 'home',
                     'election_slug' => 'fav',
                 ],
             ],
         );
 
-        $items = $service->getMetrics('4564650', 'home', 'fav');
+        $items = $service->getMetrics('home', 'fav');
 
         $this->assertSame(
             [
@@ -172,12 +163,11 @@ class GetElectionMetricsServiceTest extends TestCase
     }
 
     private function getService(
-        string $trainerId,
         string $dexSlug,
         string $electionSlug,
     ): GetElectionMetricsService {
         $dir = '/var/www/html/tests/resources/unit/service/back';
-        $filename = "{$dir}/election_metrics_{$trainerId}_{$dexSlug}_{$electionSlug}.json";
+        $filename = "{$dir}/election_metrics_{$dexSlug}_{$electionSlug}.json";
 
         /** @var GetElectionMetricsService */
         return $this->getServiceWithLoggedUser(
@@ -187,7 +177,6 @@ class GetElectionMetricsServiceTest extends TestCase
             self::ENDPOINT,
             [
                 'query' => [
-                    'trainer_external_id' => $trainerId,
                     'dex_slug' => $dexSlug,
                     'election_slug' => $electionSlug,
                 ],

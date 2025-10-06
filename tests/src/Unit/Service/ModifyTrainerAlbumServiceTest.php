@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service;
 
 use App\Exception\ModifyFailedException;
-use App\Security\UserTokenService;
 use App\Service\Back\ModifyAlbumService;
 use App\Service\ModifyTrainerAlbumService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -23,13 +22,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
 {
     public function testModifyAlbum(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
         $modifyAlbumService
             ->expects($this->once())
@@ -39,7 +31,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
                 'douze',
                 'treize',
                 '{"ceci": "est-du-contenu"}',
-                '8800088',
             )
         ;
 
@@ -51,7 +42,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
         $requestStack->push($request);
 
         $service = new ModifyTrainerAlbumService(
-            $userTokenService,
             $modifyAlbumService,
             $requestStack,
         );
@@ -60,13 +50,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
 
     public function testModifyDexWithHttpException(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $exception = $this->createMock(HttpExceptionInterface::class);
 
         $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
@@ -78,7 +61,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
                 'douze',
                 'treize',
                 '{"ceci": "est-du-contenu"}',
-                '8800088',
             )
             ->willThrowException($exception)
         ;
@@ -91,7 +73,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
         $requestStack->push($request);
 
         $service = new ModifyTrainerAlbumService(
-            $userTokenService,
             $modifyAlbumService,
             $requestStack,
         );
@@ -103,13 +84,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
 
     public function testModifyDexWithNoRequest(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
         $modifyAlbumService
             ->expects($this->never())
@@ -119,7 +93,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
         $requestStack = new RequestStack();
 
         $service = new ModifyTrainerAlbumService(
-            $userTokenService,
             $modifyAlbumService,
             $requestStack,
         );
@@ -131,13 +104,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
 
     public function testModifyDexWithTransportException(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $exception = $this->createMock(TransportExceptionInterface::class);
 
         $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
@@ -149,7 +115,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
                 'douze',
                 'treize',
                 '{"ceci": "est-du-contenu"}',
-                '8800088',
             )
             ->willThrowException($exception)
         ;
@@ -162,7 +127,6 @@ class ModifyTrainerAlbumServiceTest extends TestCase
         $requestStack->push($request);
 
         $service = new ModifyTrainerAlbumService(
-            $userTokenService,
             $modifyAlbumService,
             $requestStack,
         );

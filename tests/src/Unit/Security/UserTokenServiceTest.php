@@ -50,6 +50,38 @@ class UserTokenServiceTest extends TestCase
         $service->getLoggedUserId();
     }
 
+    public function testCompare(): void
+    {
+        $security = $this->createMock(Security::class);
+        $security
+            ->expects($this->once())
+            ->method('getUser')
+            ->willReturn(
+                new User(
+                    '12',
+                    'TestProvider',
+                    new AccessToken(['access_token' => 'd546354']),
+                ),
+            )
+        ;
+
+        $service = new UserTokenService($security);
+        $this->assertTrue($service->compare('7b52009b64fd0a2a49e6d8a939753077792b0554'));
+    }
+
+    public function testCompareWithNoLoggedUser(): void
+    {
+        $security = $this->createMock(Security::class);
+        $security
+            ->expects($this->once())
+            ->method('getUser')
+            ->willReturn(null)
+        ;
+
+        $service = new UserTokenService($security);
+        $this->assertFalse($service->compare('7b52009b64fd0a2a49e6d8a939753077792b0554'));
+    }
+
     public function testGetLoggedUserToken(): void
     {
         $security = $this->createMock(Security::class);

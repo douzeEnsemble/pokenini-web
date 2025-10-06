@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Service\Back;
+namespace App\Tests\Unit\Service\Back;
 
 use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenService;
@@ -158,7 +158,6 @@ class AdminActionServiceTest extends TestCase
                 [
                     'headers' => [
                         'accept' => 'application/json',
-                        'Authorization' => 'Bearer public',
                     ],
                     'cafile' => '/some/where/cafile.pem',
                 ],

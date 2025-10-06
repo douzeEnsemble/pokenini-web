@@ -28,6 +28,7 @@ class DexNumberTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/album/goldsilvercrystal');
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
 
         $this->assertCountFilter($crawler, 278, '.album-case');
 

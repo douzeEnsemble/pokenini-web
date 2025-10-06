@@ -6,10 +6,11 @@ namespace App\Controller;
 
 use App\AlbumFilters\FromRequest;
 use App\AlbumFilters\Mapping;
+use App\Exception\NoLoggedUserException;
 use App\Security\User;
+use App\Security\UserTokenService;
 use App\Service\GetLabelsService;
 use App\Service\GetTrainerPokedexService;
-use App\Service\TrainerIdsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,9 +20,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class AlbumIndexController extends AbstractController
 {
     public function __construct(
-        private readonly TrainerIdsService $trainerIdsService,
         private readonly GetTrainerPokedexService $getTrainerPokedexService,
         private readonly GetLabelsService $getLabelsService,
+        private readonly UserTokenService $userTokenService,
     ) {}
 
     #[Route(
@@ -32,27 +33,21 @@ class AlbumIndexController extends AbstractController
         methods: ['GET']
     )]
     public function index(
-        Request $request,
         string $dexSlug,
+        Request $request,
     ): Response {
-        $this->trainerIdsService->init();
-
-        $trainerId = $this->trainerIdsService->getTrainerId();
-
-        if (!$trainerId) {
-            throw $this->createNotFoundException();
-        }
+        $requestedTrainerId = $request->query->getAlnum('t', '');
 
         $filters = FromRequest::get($request);
         $apiFilters = Mapping::get($filters);
 
-        $pokedex = $this->getTrainerPokedexService->getPokedexDataByTrainerId($dexSlug, $apiFilters, $trainerId);
+        $pokedex = $this->getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters, $requestedTrainerId);
         if (null === $pokedex || !isset($pokedex['dex']) || empty($pokedex['dex'])) {
             throw $this->createNotFoundException();
         }
 
         $dex = $pokedex['dex'];
-        if (!$this->accessDexIsGranted($dex)) {
+        if (!$this->accessDexIsGranted($dex, $requestedTrainerId)) {
             throw $this->createNotFoundException();
         }
 
@@ -68,7 +63,11 @@ class AlbumIndexController extends AbstractController
 
         $pokemons = $pokedex['pokemons'];
 
-        $loggedTrainerId = $this->trainerIdsService->getLoggedTrainerId();
+        try {
+            $loggedTrainerId = $this->userTokenService->getLoggedUserId();
+        } catch (NoLoggedUserException $e) {
+            $loggedTrainerId = null;
+        }
 
         return $this->render('Album/index.html.twig', [
             'currentDexSlug' => $dexSlug,
@@ -86,28 +85,29 @@ class AlbumIndexController extends AbstractController
             'collections' => $collections,
             'mode' => 'read',
             'filters' => $filters,
-            'trainerId' => $trainerId,
+            'trainerId' => !empty($requestedTrainerId) ? $requestedTrainerId : $loggedTrainerId,
             'loggedTrainerId' => $loggedTrainerId,
-            'requestedTrainerId' => $this->trainerIdsService->getRequestedTrainerId(),
-            'allowedToEdit' => $this->editDexIsGranted($dex),
+            'requestedTrainerId' => $requestedTrainerId,
+            'allowedToEdit' => $this->editDexIsGranted($dex, $requestedTrainerId),
         ]);
     }
 
     /**
      * @param string[]|string[][] $dex
      */
-    private function accessDexIsGranted(array $dex): bool
+    private function accessDexIsGranted(array $dex, string $requestedTrainerId): bool
     {
         if ($dex['is_private']
-            && $this->trainerIdsService->getTrainerId() != $this->trainerIdsService->getLoggedTrainerId()
+        && '' !== $requestedTrainerId
+        && !$this->userTokenService->compare($requestedTrainerId)
         ) {
             return false;
         }
 
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->getUser();
 
-        if (!$dex['is_released'] && !$user->isAnAdmin()) {
+        if (!$dex['is_released'] && !$user?->isAnAdmin()) {
             return false;
         }
 
@@ -117,19 +117,18 @@ class AlbumIndexController extends AbstractController
     /**
      * @param string[]|string[][] $dex
      */
-    private function editDexIsGranted(array $dex): bool
+    private function editDexIsGranted(array $dex, string $requestedTrainerId): bool
     {
-        $trainerId = $this->trainerIdsService->getTrainerId();
-        $loggedTrainerId = $this->trainerIdsService->getLoggedTrainerId();
-
-        if ($trainerId !== $loggedTrainerId) {
+        if ('' !== $requestedTrainerId
+            && !$this->userTokenService->compare($requestedTrainerId)
+        ) {
             return false;
         }
 
-        /** @var User $user */
+        /** @var ?User $user */
         $user = $this->getUser();
 
-        if ($dex['is_premium'] && !$user->isACollector()) {
+        if ($dex['is_premium'] && !$user?->isACollector()) {
             return false;
         }
 

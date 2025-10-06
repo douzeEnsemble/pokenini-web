@@ -11,17 +11,20 @@ class GetDexService extends AbstractBackService
     /**
      * @return string[][]
      */
-    public function get(string $trainerId): array
+    public function get(?string $trainerId = null): array
     {
-        return $this->getDexWithParam($trainerId, []);
+        return $this->getDexWithParam([
+            'trainer_id' => $trainerId,
+        ]);
     }
 
     /**
      * @return string[][]
      */
-    public function getWithUnreleased(string $trainerId): array
+    public function getWithUnreleased(?string $trainerId = null): array
     {
-        return $this->getDexWithParam($trainerId, [
+        return $this->getDexWithParam([
+            'trainer_id' => $trainerId,
             'include_unreleased_dex' => '1',
         ]);
     }
@@ -29,9 +32,10 @@ class GetDexService extends AbstractBackService
     /**
      * @return string[][]
      */
-    public function getWithPremium(string $trainerId): array
+    public function getWithPremium(?string $trainerId = null): array
     {
-        return $this->getDexWithParam($trainerId, [
+        return $this->getDexWithParam([
+            'trainer_id' => $trainerId,
             'include_premium_dex' => '1',
         ]);
     }
@@ -39,26 +43,27 @@ class GetDexService extends AbstractBackService
     /**
      * @return string[][]
      */
-    public function getWithUnreleasedAndPremium(string $trainerId): array
+    public function getWithUnreleasedAndPremium(?string $trainerId = null): array
     {
-        return $this->getDexWithParam($trainerId, [
+        return $this->getDexWithParam([
+            'trainer_id' => $trainerId,
             'include_unreleased_dex' => '1',
             'include_premium_dex' => '1',
         ]);
     }
 
     /**
-     * @param string[] $queryParams
+     * @param array<string, null|string> $queryParams
      *
      * @return string[][]
      */
-    private function getDexWithParam(string $trainerId, array $queryParams = []): array
+    private function getDexWithParam(array $queryParams = []): array
     {
         $urlQueryParams = http_build_query($queryParams);
 
         $json = $this->requestContent(
             'GET',
-            "/dex/{$trainerId}/list".($urlQueryParams ? '?'.$urlQueryParams : ''),
+            '/dex/list'.($urlQueryParams ? '?'.$urlQueryParams : ''),
         );
 
         /** @var string[][] */

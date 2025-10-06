@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
-use App\Security\UserTokenService;
 use App\Service\Back\GetElectionTopService;
 use App\Service\ElectionTopService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -18,19 +17,11 @@ class ElectionTopServiceTest extends TestCase
 {
     public function testGetTop(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $apiService = $this->createMock(GetElectionTopService::class);
         $apiService
             ->expects($this->once())
             ->method('getTop')
             ->with(
-                '8800088',
                 'demo',
                 'whatever',
                 12,
@@ -38,7 +29,7 @@ class ElectionTopServiceTest extends TestCase
             ->willReturn(['some', 'data'])
         ;
 
-        $service = new ElectionTopService($userTokenService, $apiService, 12);
+        $service = new ElectionTopService($apiService, 12);
 
         $this->assertSame(
             ['some', 'data'],

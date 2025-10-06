@@ -89,6 +89,8 @@ class AccessPrivateTest extends WebTestCase
 
         $client->request('GET', '/fr/album/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
+
         $this->assertResponseStatusCodeSame(404);
     }
 

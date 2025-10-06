@@ -9,11 +9,10 @@ class ModifyDexService extends AbstractBackService
     public function modify(
         string $dexSlug,
         string $data,
-        string $trainerId
     ): void {
         $this->request(
             'PUT',
-            "/dex/{$trainerId}/{$dexSlug}",
+            "/dex/{$dexSlug}",
             [
                 'body' => $data,
             ]

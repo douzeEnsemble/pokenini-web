@@ -3,10 +3,7 @@
     "request": {
       "uri": "/catch_states",
       "headers": {
-        "accept": "application/json",
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "accept": "application/json"
       }
     },
     "response": {
@@ -17,10 +14,7 @@
     "request": {
       "uri": "/types",
       "headers": {
-        "accept": "application/json",
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "accept": "application/json"
       }
     },
     "response": {
@@ -31,10 +25,7 @@
     "request": {
       "uri": "/forms/category",
       "headers": {
-        "accept": "application/json",
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "accept": "application/json"
       }
     },
     "response": {
@@ -45,10 +36,7 @@
     "request": {
       "uri": "/forms/regional",
       "headers": {
-        "accept": "application/json",
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "accept": "application/json"
       }
     },
     "response": {
@@ -59,10 +47,7 @@
     "request": {
       "uri": "/forms/special",
       "headers": {
-        "accept": "application/json",
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "accept": "application/json"
       }
     },
     "response": {
@@ -73,10 +58,7 @@
     "request": {
       "uri": "/forms/variant",
       "headers": {
-        "accept": "application/json",
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "accept": "application/json"
       }
     },
     "response": {
@@ -87,10 +69,7 @@
     "request": {
       "uri": "/game_bundles",
       "headers": {
-        "accept": "application/json",
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "accept": "application/json"
       }
     },
     "response": {
@@ -101,14 +80,58 @@
     "request": {
       "uri": "/collections",
       "headers": {
-        "accept": "application/json",
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "accept": "application/json"
       }
     },
     "response": {
       "file": "/var/moco/responses/collections.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/user-info"
+      },
+      "method": "get",
+      "headers": {
+        "Authorization": {
+          "match": "Bearer admin"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "identifier" : "121212-admin-121212",
+        "roles" : [
+          "ROLE_TRAINER",
+          "ROLE_COLLECTOR",
+          "ROLE_ADMIN"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/user-info"
+      },
+      "method": "get",
+      "headers": {
+        "Authorization": {
+          "match": "Bearer collector"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "identifier" : "131313-collector-131313",
+        "roles" : [
+          "ROLE_TRAINER",
+          "ROLE_COLLECTOR"
+        ]
+      }
     }
   },
   {
@@ -126,10 +149,31 @@
     "response": {
       "status": "200",
       "json": {
-        "identifier" : "1212121212000000000000012",
+        "identifier" : "111111-trainer-111111",
         "roles" : [
-          "ROLE_TRAINER",
-          "ROLE_COLLECTOR"
+          "ROLE_TRAINER"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/user-info"
+      },
+      "method": "get",
+      "headers": {
+        "Authorization": {
+          "match": "Bearer uninvited"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "identifier" : "101010-uninvited-101010",
+        "roles" : [
+          "ROLE_TRAINER"
         ]
       }
     }
@@ -538,44 +582,62 @@
   },
   {
     "request": {
-      "uri": "/dex/159bb9b6d090a313087d2f26135970c2db49ee72/list",
+      "uri": "/dex/list",
       "queries": {
         "include_unreleased_dex": "1",
         "include_premium_dex": "1"
       },
       "headers": {
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer admin"
         }
       }
     },
     "response": {
-      "file": "/var/moco/responses/dex/159bb9b6d090a313087d2f26135970c2db49ee72_unreleased_and_premium.json"
+      "file": "/var/moco/responses/dex/admin.json"
     }
   },
   {
     "request": {
-      "uri": "/dex/6c33064427a5b419ca8eb3f7d11a0807f66cab22/list",
+      "uri": "/dex/list",
       "queries": {
         "include_premium_dex": "1"
       },
       "headers": {
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer collector"
         }
       }
     },
     "response": {
-      "file": "/var/moco/responses/dex/6c33064427a5b419ca8eb3f7d11a0807f66cab22_premium.json"
+      "file": "/var/moco/responses/dex/collector_premium.json"
     }
   },
   {
     "request": {
-      "uri": "/dex/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c/list",
+      "uri": "/dex/list",
+      "queries": {
+        "include_unreleased_dex": "1",
+        "include_premium_dex": "1"
+      },
       "headers": {
         "accept": "application/json",
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer 159bb9b6d090a313087d2f26135970c2db49ee72"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/admin.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/dex/list",
+      "headers": {
+        "accept": "application/json",
+        "Authorization": {
+          "match": "Bearer b6589fc6ab0dc82cf12099d1c2d40ab994e8410c"
         }
       }
     },
@@ -585,11 +647,11 @@
   },
   {
     "request": {
-      "uri": "/dex/356a192b7913b04c54574d18c28d46e6395428ab/list",
+      "uri": "/dex/list",
       "headers": {
         "accept": "application/json",
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer 356a192b7913b04c54574d18c28d46e6395428ab"
         }
       }
     },
@@ -599,11 +661,11 @@
   },
   {
     "request": {
-      "uri": "/dex/da4b9237bacccdf19c0760cab7aec4a8359010b0/list",
+      "uri": "/dex/list",
       "headers": {
         "accept": "application/json",
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer da4b9237bacccdf19c0760cab7aec4a8359010b0"
         }
       }
     },
@@ -613,15 +675,46 @@
   },
   {
     "request": {
+      "uri": "/dex/list",
+      "queries": {
+        "include_premium_dex": "1"
+      },
+      "headers": {
+        "accept": "application/json",
+        "Authorization": {
+          "match": "Bearer 6c33064427a5b419ca8eb3f7d11a0807f66cab22"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/trainer.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/dex/list",
+      "headers": {
+        "accept": "application/json",
+        "Authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/trainer.json"
+    }
+  },
+  {
+    "request": {
       "uri": {
-        "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
+        "match": "/album/demo"
       },
       "queries": {
         "catch_states[0]": "yes"
       },
       "headers": {
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer collector"
         }
       }
     },
@@ -632,9 +725,10 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+        "match": "/album/demo"
       },
       "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554",
         "catch_states[0]": "no"
       },
       "headers": {
@@ -650,9 +744,10 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+        "match": "/album/demo"
       },
       "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554",
         "catch_states[0]": "!no"
       },
       "headers": {
@@ -668,9 +763,10 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+        "match": "/album/demo"
       },
       "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554",
         "catch_states[0]": "yes"
       },
       "headers": {
@@ -686,9 +782,10 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+        "match": "/album/demo"
       },
       "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554",
         "catch_states[0]": "unknown"
       },
       "headers": {
@@ -704,9 +801,10 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+        "match": "/album/demo"
       },
       "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554",
         "collection_availabilities[0]": "pogoshadow"
       },
       "headers": {
@@ -722,9 +820,10 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+        "match": "/album/demo"
       },
       "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554",
         "collection_availabilities[0]": "!pogoshadow"
       },
       "headers": {
@@ -740,9 +839,10 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+        "match": "/album/demo"
       },
       "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554",
         "families[0]": "bulbasaur"
       },
       "headers": {
@@ -758,11 +858,24 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo"
+        "match": "/album/demo"
+      },
+      "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554"
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/demo"
       },
       "headers": {
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer 7b52009b64fd0a2a49e6d8a939753077792b0554"
         }
       }
     },
@@ -773,11 +886,11 @@
   {
     "request": {
       "uri": {
-        "match": "/album/159bb9b6d090a313087d2f26135970c2db49ee72/goldsilvercrystal"
+        "match": "/album/goldsilvercrystal"
       },
       "headers": {
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer admin"
         }
       }
     },
@@ -788,7 +901,10 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/goldsilvercrystal"
+        "match": "/album/goldsilvercrystal"
+      },
+      "queries": {
+        "trainer_id": "7b52009b64fd0a2a49e6d8a939753077792b0554"
       },
       "headers": {
         "Authorization": {
@@ -803,11 +919,26 @@
   {
     "request": {
       "uri": {
-        "match": "/album/6c33064427a5b419ca8eb3f7d11a0807f66cab22/demo"
+        "match": "/album/goldsilvercrystal"
       },
       "headers": {
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer 7b52009b64fd0a2a49e6d8a939753077792b0554"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/7b52009b64fd0a2a49e6d8a939753077792b0554/goldsilvercrystal.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/demo"
+      },
+      "headers": {
+        "Authorization": {
+          "match": "Bearer collector"
         }
       }
     },
@@ -818,11 +949,11 @@
   {
     "request": {
       "uri": {
-        "match": "/album/7b52009b64fd0a2a49e6d8a939753077792b0554/home"
+        "match": "/album/home"
       },
       "headers": {
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer 7b52009b64fd0a2a49e6d8a939753077792b0554"
         }
       }
     },
@@ -833,7 +964,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/redgreenblueyellow"
+        "match": "/album/redgreenblueyellow"
       },
       "headers": {
         "Authorization": {
@@ -848,7 +979,22 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/goldsilvercrystal"
+        "match": "/album/goldsilvercrystal"
+      },
+      "headers": {
+        "Authorization": {
+          "match": "Bearer 159bb9b6d090a313087d2f26135970c2db49ee72"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/159bb9b6d090a313087d2f26135970c2db49ee72/goldsilvercrystal.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/goldsilvercrystal"
       },
       "headers": {
         "Authorization": {
@@ -863,7 +1009,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/blackwhite"
+        "match": "/album/blackwhite"
       },
       "headers": {
         "Authorization": {
@@ -878,7 +1024,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/swordshield"
+        "match": "/album/swordshield"
       },
       "headers": {
         "Authorization": {
@@ -893,7 +1039,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/homepokemongo"
+        "match": "/album/homepokemongo"
       },
       "headers": {
         "Authorization": {
@@ -908,7 +1054,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/home"
+        "match": "/album/home"
       },
       "headers": {
         "Authorization": {
@@ -923,7 +1069,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demolite"
+        "match": "/album/demolite"
       },
       "queries": {
         "catch_states[0]": "no"
@@ -941,12 +1087,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demolite"
-      },
-      "headers": {
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "match": "/album/demolite"
       }
     },
     "response": {
@@ -956,12 +1097,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demoliteshiny"
-      },
-      "headers": {
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "match": "/album/demoliteshiny"
       }
     },
     "response": {
@@ -971,7 +1107,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demolist3"
+        "match": "/album/demolist3"
       },
       "queries": {
         "catch_states[0]": "no"
@@ -989,7 +1125,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demolist3"
+        "match": "/album/demolist3"
       },
       "headers": {
         "Authorization": {
@@ -1004,7 +1140,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demolist5"
+        "match": "/album/demolist5"
       },
       "queries": {
         "catch_states[0]": "no"
@@ -1022,7 +1158,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demolist5"
+        "match": "/album/demolist5"
       },
       "headers": {
         "Authorization": {
@@ -1037,7 +1173,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demolist7"
+        "match": "/album/demolist7"
       },
       "queries": {
         "catch_states[0]": "no"
@@ -1055,7 +1191,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demolist7"
+        "match": "/album/demolist7"
       },
       "headers": {
         "Authorization": {
@@ -1070,7 +1206,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demonotemplate"
+        "match": "/album/demonotemplate"
       },
       "queries": {
         "catch_states[0]": "no"
@@ -1088,7 +1224,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demonotemplate"
+        "match": "/album/demonotemplate"
       },
       "headers": {
         "Authorization": {
@@ -1103,7 +1239,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demounknowntemplate"
+        "match": "/album/demounknowntemplate"
       },
       "queries": {
         "catch_states[0]": "no"
@@ -1121,7 +1257,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demounknowntemplate"
+        "match": "/album/demounknowntemplate"
       },
       "headers": {
         "Authorization": {
@@ -1136,7 +1272,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/demo"
+        "match": "/album/demo"
       },
       "headers": {
         "Authorization": {
@@ -1152,7 +1288,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/mega"
+        "match": "/album/mega"
       },
       "headers": {
         "Authorization": {
@@ -1167,12 +1303,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/virgin"
-      },
-      "headers": {
-        "Authorization": {
-          "match": "Bearer .*"
-        }
+        "match": "/album/virgin"
       }
     },
     "response": {
@@ -1182,12 +1313,12 @@
   {
     "request": {
       "uri": {
-        "match": "/dex/6c33064427a5b419ca8eb3f7d11a0807f66cab22/redgreenblueyellow"
+        "match": "/dex/redgreenblueyellow"
       },
       "method": "put",
       "headers": {
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer collector"
         }
       },
       "text": {
@@ -1201,7 +1332,26 @@
   {
     "request": {
       "uri": {
-        "match": "/dex/[\\w\\d]*/[\\w-]*/[\\w-]*"
+        "match": "/dex/redgreenblueyellow"
+      },
+      "method": "put",
+      "headers": {
+        "Authorization": {
+          "match": "Bearer 6c33064427a5b419ca8eb3f7d11a0807f66cab22"
+        }
+      },
+      "text": {
+        "match": "\\{(\"is_private\": ?(?:true|false),? ?)?(\"is_on_home\": ?(?:true|false))?\\}"
+      }
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/dex/[\\w-]*/[\\w-]*"
       },
       "method": "put",
       "headers": {
@@ -1220,7 +1370,7 @@
   {
     "request": {
       "uri": {
-        "match": "/dex/[\\w\\d]*/[\\w-]*"
+        "match": "/dex/[\\w-]*"
       },
       "method": "put",
       "headers": {
@@ -1995,7 +2145,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/[\\w-]*/squirtle"
+        "match": "/album/[\\w-]*/squirtle"
       },
       "method": "patch",
       "headers": {
@@ -2014,7 +2164,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/[\\w-]*/blastoise"
+        "match": "/album/[\\w-]*/blastoise"
       },
       "method": "patch",
       "headers": {
@@ -2033,7 +2183,7 @@
   {
     "request": {
       "uri": {
-        "match": "/album/[\\w\\d]*/[\\w-]*/[\\w-]*"
+        "match": "/album/[\\w-]*/[\\w-]*"
       },
       "method": "patch",
       "headers": {

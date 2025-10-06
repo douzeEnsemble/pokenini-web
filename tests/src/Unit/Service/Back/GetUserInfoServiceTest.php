@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenService;
 use App\Service\Back\GetUserInfoService;
 use League\OAuth2\Client\Token\AccessToken;
@@ -78,8 +79,9 @@ class GetUserInfoServiceTest extends TestCase
 
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
-            ->expects($this->never())
+            ->expects($this->once())
             ->method('getLoggedUserToken')
+            ->willThrowException(new NoLoggedUserException())
         ;
 
         $service = new GetUserInfoService(

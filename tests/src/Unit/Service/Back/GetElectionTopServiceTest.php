@@ -18,49 +18,48 @@ class GetElectionTopServiceTest extends TestCase
 
     public function testGet(): void
     {
-        $items = $this->getService('4564650', 'home', 'fav', 5)->getTop('4564650', 'home', 'fav', 5);
+        $items = $this->getService('home', 'fav', 5)->getTop('home', 'fav', 5);
 
         $this->assertCount(5, $items);
     }
 
     public function testGetBis(): void
     {
-        $items = $this->getService('87654', 'demo', 'pref', 10)->getTop('87654', 'demo', 'pref', 10);
+        $items = $this->getService('demo', 'pref', 10)->getTop('demo', 'pref', 10);
 
         $this->assertCount(10, $items);
     }
 
     public function testWithoutLoggedUser(): void
     {
-        $filename = '/var/www/html/tests/resources/unit/service/back/election_top_5_4564650_home_fav.json';
+        $filename = '/var/www/html/tests/resources/unit/service/back/election_top_5_home_fav.json';
 
         /** @var GetElectionTopService $service */
         $service = $this->getServiceWithoutLoggedUser(
             GetElectionTopService::class,
             'GET',
             (string) file_get_contents($filename),
-            'election/top?trainer_external_id=4564650&dex_slug=home&election_slug=fav&count=5',
+            'election/top?dex_slug=home&election_slug=fav&count=5',
         );
 
-        $items = $service->getTop('4564650', 'home', 'fav', 5);
+        $items = $service->getTop('home', 'fav', 5);
 
         $this->assertCount(5, $items);
     }
 
     private function getService(
-        string $trainerId,
         string $dexSlug,
         string $electionSlug,
         int $count,
     ): GetElectionTopService {
-        $filename = "/var/www/html/tests/resources/unit/service/back/election_top_{$count}_{$trainerId}_{$dexSlug}_{$electionSlug}.json";
+        $filename = "/var/www/html/tests/resources/unit/service/back/election_top_{$count}_{$dexSlug}_{$electionSlug}.json";
 
         /** @var GetElectionTopService */
         return $this->getServiceWithLoggedUser(
             GetElectionTopService::class,
             'GET',
             (string) file_get_contents($filename),
-            "election/top?trainer_external_id={$trainerId}&dex_slug={$dexSlug}&election_slug={$electionSlug}&count={$count}",
+            "election/top?dex_slug={$dexSlug}&election_slug={$electionSlug}&count={$count}",
         );
     }
 }

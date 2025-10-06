@@ -101,7 +101,6 @@
             {% if dex.is_private %}
                 <li
                     class="list-group-item flex-fill album-private"
-                    href="#"
                     title="{{ 'nav.is_private'|trans }}"
                     data-bs-toggle="tooltip"
                 >
@@ -110,10 +109,9 @@
             {% endif %}
 
             {# Text for another trainer #}
-            {% if loggedTrainerId is not same as(trainerId) %}
+            {% if trainerId is not empty and loggedTrainerId is not same as(trainerId) %}
                 <li
                     class="list-group-item flex-fill album-another-trainer"
-                    href="#"
                     title="{{ 'album.intro.label.another_trainer_album'|trans }}"
                     data-bs-toggle="tooltip"
                 >
@@ -126,7 +124,6 @@
             {% if dex.region_name is not empty %}
             <li
                 class="list-group-item flex-fill dex-type dex-type-regional"
-                href="#"
                 title="{{ 'album.intro.label.region'|trans }} {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}"
                 data-bs-toggle="tooltip"
             >
@@ -135,7 +132,6 @@
             {% else %}
             <li
                 class="list-group-item flex-fill dex-type dex-type-national"
-                href="#"
                 title="{{ 'album.intro.label.dex'|trans }} {{ 'album.intro.value.national'|trans }}"
                 data-bs-toggle="tooltip"
             >
@@ -146,7 +142,6 @@
             {# Shiny or not #}
             <li
                 class="list-group-item flex-fill dex-shiny-or-not"
-                href="#"
                 title="{{ (dex.is_shiny ? 'album.intro.label.is_shiny.yes' : 'album.intro.label.is_shiny.no')|trans }}"
                 data-bs-toggle="tooltip"
             >

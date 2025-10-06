@@ -13,7 +13,6 @@ class GetPokemonsService extends AbstractBackService
      * @param string[]|string[][] $filters
      */
     public function get(
-        string $trainerExternalId,
         string $dexSlug,
         string $electionSlug,
         int $count,
@@ -25,7 +24,6 @@ class GetPokemonsService extends AbstractBackService
             [
                 'query' => array_merge(
                     [
-                        'trainer_external_id' => $trainerExternalId,
                         'dex_slug' => $dexSlug,
                         'election_slug' => $electionSlug,
                         'count' => $count,

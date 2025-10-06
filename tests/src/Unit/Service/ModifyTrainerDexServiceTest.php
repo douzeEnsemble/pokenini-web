@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service;
 
 use App\Exception\ModifyFailedException;
-use App\Security\UserTokenService;
 use App\Service\Back\ModifyDexService;
 use App\Service\ModifyTrainerDexService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -21,13 +20,6 @@ class ModifyTrainerDexServiceTest extends TestCase
 {
     public function testModifyDex(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $modifyDexService = $this->createMock(ModifyDexService::class);
         $modifyDexService
             ->expects($this->once())
@@ -35,12 +27,10 @@ class ModifyTrainerDexServiceTest extends TestCase
             ->with(
                 'douze',
                 '{"ceci": "est-du-contenu"}',
-                '8800088',
             )
         ;
 
         $service = new ModifyTrainerDexService(
-            $userTokenService,
             $modifyDexService,
         );
         $service->modifyDex('douze', '{"ceci": "est-du-contenu"}');
@@ -48,13 +38,6 @@ class ModifyTrainerDexServiceTest extends TestCase
 
     public function testModifyDexWithHttpException(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $exception = $this->createMock(HttpExceptionInterface::class);
 
         $modifyDexService = $this->createMock(ModifyDexService::class);
@@ -64,13 +47,11 @@ class ModifyTrainerDexServiceTest extends TestCase
             ->with(
                 'douze',
                 '{"ceci": "est-du-contenu"}',
-                '8800088',
             )
             ->willThrowException($exception)
         ;
 
         $service = new ModifyTrainerDexService(
-            $userTokenService,
             $modifyDexService,
         );
 
@@ -81,13 +62,6 @@ class ModifyTrainerDexServiceTest extends TestCase
 
     public function testModifyDexWithTransportException(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $exception = $this->createMock(TransportExceptionInterface::class);
 
         $modifyDexService = $this->createMock(ModifyDexService::class);
@@ -97,13 +71,11 @@ class ModifyTrainerDexServiceTest extends TestCase
             ->with(
                 'douze',
                 '{"ceci": "est-du-contenu"}',
-                '8800088',
             )
             ->willThrowException($exception)
         ;
 
         $service = new ModifyTrainerDexService(
-            $userTokenService,
             $modifyDexService,
         );
 

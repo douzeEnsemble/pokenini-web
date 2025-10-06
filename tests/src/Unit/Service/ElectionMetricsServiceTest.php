@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
-use App\Security\UserTokenService;
 use App\Service\Back\GetElectionMetricsService;
 use App\Service\ElectionMetricsService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -18,19 +17,11 @@ class ElectionMetricsServiceTest extends TestCase
 {
     public function testGetMetrics(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $apiService = $this->createMock(GetElectionMetricsService::class);
         $apiService
             ->expects($this->once())
             ->method('getMetrics')
             ->with(
-                '8800088',
                 'demo',
                 'whatever',
             )
@@ -45,7 +36,7 @@ class ElectionMetricsServiceTest extends TestCase
             ])
         ;
 
-        $service = new ElectionMetricsService($userTokenService, $apiService, 12);
+        $service = new ElectionMetricsService($apiService, 12);
 
         $metrics = $service->getMetrics('demo', 'whatever');
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Security\UserTokenService;
 use App\Service\Back\GetDexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,13 +21,13 @@ class AlbumDexController extends AbstractController
     )]
     public function index(
         GetDexService $getDexService,
-        UserTokenService $userTokenService,
+        Request $request,
     ): Response {
-        $connectedUserId = $userTokenService->getLoggedUserToken();
+        $requestedTrainerId = $request->query->getAlnum('t', '');
 
         $dex = $this->isGranted('ROLE_ADMIN')
-            ? $getDexService->getWithUnreleasedAndPremium($connectedUserId)
-            : $getDexService->getWithPremium($connectedUserId);
+            ? $getDexService->getWithUnreleasedAndPremium($requestedTrainerId)
+            : $getDexService->getWithPremium($requestedTrainerId);
 
         return $this->render(
             'AlbumDex/index.html.twig',

@@ -42,11 +42,25 @@ class OuterRoomTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
     }
 
+    public function testOuterRoomPageConnectedAsAdminOnly(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
+        $user->addAdminRole();
+        $client->loginUser($user, 'web');
+
+        $client->request('GET', '/fr/outerroom');
+
+        $this->assertResponseStatusCodeSame(200);
+    }
+
     public function testOuterRoomPageConnectedAsAdmin(): void
     {
         $client = static::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
+        $user->addTrainerRole();
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
