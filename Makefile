@@ -31,7 +31,7 @@ rebuild: ## Re-builds the Docker images (build with no cache)
 
 .PHONY: start
 start: ## Start the project
-start: install up databases
+start: install up
 
 .PHONY: up
 up: ## Up Docker container
@@ -41,7 +41,6 @@ up-process:
 	$(DOCKER_COMP) up --wait
 
 up-after:
-	$(PHP_CONT) git config --global --add safe.directory /app
 
 .PHONY: install
 install: ## Install requirements
