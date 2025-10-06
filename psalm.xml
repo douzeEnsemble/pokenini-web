@@ -15,7 +15,6 @@
         <directory name="tests" />
         <ignoreFiles>
             <directory name="vendor" />
-            <directory name="tests/tools" />
             <file name="tests/bootstrap.php" />
         </ignoreFiles>
     </projectFiles>
@@ -32,7 +31,6 @@
                 <file name="src/Controller/AlbumIndexController.php" />
                 <file name="src/Controller/AlbumUpsertController.php" />
                 <file name="src/Controller/TrainerUpsertController.php" />
-                <file name="src/Service/TrainerIdsService.php" />
             </errorLevel>
         </RiskyTruthyFalsyComparison>  
         <InvalidArgument>

@@ -12,7 +12,6 @@ class GetElectionMetricsService extends AbstractBackService
      * @return float[]|int[]
      */
     public function getMetrics(
-        string $trainerId,
         string $dexSlug,
         string $electionSlug,
     ): array {
@@ -22,7 +21,6 @@ class GetElectionMetricsService extends AbstractBackService
             '/election/metrics',
             [
                 'query' => [
-                    'trainer_external_id' => $trainerId,
                     'dex_slug' => $dexSlug,
                     'election_slug' => $electionSlug,
                 ],

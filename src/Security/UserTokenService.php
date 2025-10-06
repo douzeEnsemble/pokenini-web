@@ -25,6 +25,17 @@ class UserTokenService
         return sha1($user->getUserIdentifier());
     }
 
+    public function compare(string $identifier): bool
+    {
+        try {
+            $loggedUserId = $this->getLoggedUserId();
+        } catch (NoLoggedUserException $e) {
+            return false;
+        }
+
+        return $loggedUserId === $identifier;
+    }
+
     public function getLoggedUserToken(): string
     {
         /** @var null|User $user */

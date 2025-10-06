@@ -13,7 +13,6 @@ class ModifyAlbumService extends AbstractBackService
         string $dexSlug,
         string $pokemonSlug,
         string $catchStateSlug,
-        string $trainerId
     ): void {
         if (!in_array($method, [Request::METHOD_PATCH, Request::METHOD_PUT], true)) {
             throw new \InvalidArgumentException();
@@ -21,7 +20,7 @@ class ModifyAlbumService extends AbstractBackService
 
         $this->request(
             $method,
-            "/album/{$trainerId}/{$dexSlug}/{$pokemonSlug}",
+            "/album/{$dexSlug}/{$pokemonSlug}",
             [
                 'body' => $catchStateSlug,
             ]

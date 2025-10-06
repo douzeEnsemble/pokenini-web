@@ -13,7 +13,6 @@ class PostElectionVoteService extends AbstractBackService
      * @return int[]|int[][]|string[]|string[][]
      */
     public function vote(
-        string $trainerId,
         ElectionVote $electionVote,
     ): array {
         /** @var string $json */
@@ -22,7 +21,6 @@ class PostElectionVoteService extends AbstractBackService
             '/election/vote',
             [
                 'body' => json_encode([
-                    'trainer_external_id' => $trainerId,
                     'dex_slug' => $electionVote->dexSlug,
                     'election_slug' => $electionVote->electionSlug,
                     'winners_slugs' => $electionVote->winnersSlugs,

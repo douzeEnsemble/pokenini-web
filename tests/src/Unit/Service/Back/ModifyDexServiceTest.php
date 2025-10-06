@@ -20,13 +20,12 @@ class ModifyDexServiceTest extends TestCase
     {
         $this
             ->getService(
-                'dex/123/home',
+                'dex/home',
                 'data-whatever',
             )
             ->modify(
                 'home',
                 'data-whatever',
-                '123',
             )
         ;
     }
@@ -38,13 +37,13 @@ class ModifyDexServiceTest extends TestCase
             ModifyDexService::class,
             'PUT',
             '',
-            'dex/123/home',
+            'dex/home',
             [
                 'body' => 'data-whatever',
             ],
         );
 
-        $service->modify('home', 'data-whatever', '123');
+        $service->modify('home', 'data-whatever');
     }
 
     private function getService(

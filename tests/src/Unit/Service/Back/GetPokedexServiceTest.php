@@ -18,69 +18,24 @@ class GetPokedexServiceTest extends TestCase
 
     public function testGet(): void
     {
-        $pokedex = $this
-            ->getService(
-                'lite',
-                '123',
-                'pokedex_lite_123.json',
-                [],
-            )
-            ->get(
-                'lite',
-                '123'
-            )
-        ;
-
-        $this->assertArrayHasKey('dex', $pokedex);
-        $this->assertArrayHasKey('pokemons', $pokedex);
-        $this->assertCount(41, $pokedex['pokemons']);
-        $this->assertArrayHasKey('report', $pokedex);
-    }
-
-    public function testGetTwice(): void
-    {
-        $pokedex = $this
-            ->getService(
-                'lite',
-                '123',
-                'pokedex_lite_123.json',
-                [],
-            )
-            ->get(
-                'lite',
-                '123'
-            )
-        ;
-
-        $this->assertArrayHasKey('dex', $pokedex);
-        $this->assertArrayHasKey('pokemons', $pokedex);
-        $this->assertCount(41, $pokedex['pokemons']);
-        $this->assertArrayHasKey('report', $pokedex);
-    }
-
-    public function testGetWithFilters(): void
-    {
-        $pokedex = $this
-            ->getService(
-                'lite',
-                '123',
-                'pokedex_lite_123_csyes.json',
-                [
-                    'catch_states' => [
-                        'yes',
-                    ],
+        $service = $this->getService(
+            'lite',
+            'pokedex_lite_csyes.json',
+            [
+                'catch_states' => [
+                    'yes',
                 ],
-            )
-            ->get(
-                'lite',
-                '123',
-                [
-                    'catch_states' => [
-                        'yes',
-                    ],
+            ],
+        );
+
+        $pokedex = $service->get(
+            'lite',
+            [
+                'catch_states' => [
+                    'yes',
                 ],
-            )
-        ;
+            ],
+        );
 
         $this->assertArrayHasKey('dex', $pokedex);
         $this->assertArrayHasKey('pokemons', $pokedex);
@@ -88,96 +43,28 @@ class GetPokedexServiceTest extends TestCase
         $this->assertArrayHasKey('report', $pokedex);
     }
 
-    public function testGetWithMultiplesFilters(): void
+    public function testGetWithTrainerId(): void
     {
         $service = $this->getService(
             'lite',
-            '123',
-            'pokedex_lite_123.json',
+            'pokedex_lite.json',
             [
+                'trainer_id' => '123',
                 'catch_states' => [
-                    'maybe',
-                    'maybenot',
-                ],
-                'any_types' => [
-                    'water',
-                    'fire',
-                    'grass',
+                    'yes',
                 ],
             ],
         );
 
-        $pokedex = $service->get(
+        $pokedex = $service->getWithTrainerId(
+            '123',
             'lite',
-            '123',
             [
                 'catch_states' => [
-                    'maybe',
-                    'maybenot',
-                ],
-                'any_types' => [
-                    'water',
-                    'fire',
-                    'grass',
+                    'yes',
                 ],
             ],
         );
-
-        $this->assertArrayHasKey('dex', $pokedex);
-        $this->assertArrayHasKey('pokemons', $pokedex);
-        $this->assertArrayHasKey('report', $pokedex);
-    }
-
-    public function testGetWithMultiplesNegativeFilters(): void
-    {
-        $pokedex = $this
-            ->getService(
-                'lite',
-                '123',
-                'pokedex_lite_123.json',
-                [
-                    'catch_states' => [
-                        '!yes',
-                    ],
-                    'game_bundle_availabilities' => [
-                        '!swordshield',
-                    ],
-                ],
-            )
-            ->get(
-                'lite',
-                '123',
-                [
-                    'catch_states' => [
-                        '!yes',
-                    ],
-                    'game_bundle_availabilities' => [
-                        '!swordshield',
-                    ],
-                ],
-            )
-        ;
-
-        $this->assertArrayHasKey('dex', $pokedex);
-        $this->assertArrayHasKey('pokemons', $pokedex);
-        $this->assertCount(41, $pokedex['pokemons']);
-        $this->assertArrayHasKey('report', $pokedex);
-    }
-
-    public function testGetWithoutLoggedUser(): void
-    {
-        /** @var GetPokedexService $service */
-        $service = $this->getServiceWithoutLoggedUser(
-            GetPokedexService::class,
-            'GET',
-            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/pokedex_lite_123.json'),
-            'album/123/lite',
-            [
-                'query' => [],
-            ],
-        );
-
-        $pokedex = $service->get('lite', '123');
 
         $this->assertArrayHasKey('dex', $pokedex);
         $this->assertArrayHasKey('pokemons', $pokedex);
@@ -186,11 +73,10 @@ class GetPokedexServiceTest extends TestCase
     }
 
     /**
-     * @param string[][]|string[][][] $queryParams
+     * @param string[]|string[][]|string[][][] $queryParams
      */
     private function getService(
         string $dexSlug,
-        string $trainerId,
         string $filename,
         array $queryParams,
     ): GetPokedexService {
@@ -199,7 +85,7 @@ class GetPokedexServiceTest extends TestCase
             GetPokedexService::class,
             'GET',
             (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/'.$filename),
-            "album/{$trainerId}/{$dexSlug}",
+            "album/{$dexSlug}",
             [
                 'query' => $queryParams,
             ],

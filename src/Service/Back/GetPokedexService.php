@@ -15,11 +15,37 @@ class GetPokedexService extends AbstractBackService
      */
     public function get(
         string $dexSlug,
-        string $trainerId,
         array $filters = [],
     ): array {
-        $url = "/album/{$trainerId}/{$dexSlug}";
+        $url = "/album/{$dexSlug}";
 
+        return $this->getData($url, $filters);
+    }
+
+    /**
+     * @param string[]|string[][] $filters
+     *
+     * @return string[][]
+     */
+    public function getWithTrainerId(
+        string $trainerId,
+        string $dexSlug,
+        array $filters = [],
+    ): array {
+        $url = "/album/{$dexSlug}";
+
+        $filters['trainer_id'] = $trainerId;
+
+        return $this->getData($url, $filters);
+    }
+
+    /**
+     * @param string[]|string[][] $filters
+     *
+     * @return string[][]
+     */
+    private function getData(string $url, array $filters): array
+    {
         $json = $this->requestContent(
             'GET',
             $url,

@@ -45,19 +45,5 @@
     "is_released": true,
     "is_premium": false,
     "is_custom": false
-  },
-  {
-    "is_shiny": false,
-    "is_private": true,
-    "is_on_home": false,
-    "is_display_form": true,
-    "display_template": "list-3",
-    "name": "Mega",
-    "french_name": "M\u00e9ga",
-    "slug": "mega",
-    "original_slug": "mega",
-    "is_released": true,
-    "is_premium": false,
-    "is_custom": false
   }
 ]

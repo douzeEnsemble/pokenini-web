@@ -29,6 +29,7 @@ class FrenchAlbumLocalizationTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
 
         $this->assertAlbumFrench($client);
         $this->assertRegularFrench($client);

@@ -24,7 +24,7 @@ class ModifyAlbumServiceTest extends TestCase
         $this
             ->getService(
                 'PATCH',
-                'album/123/home/pikachu',
+                'album/home/pikachu',
                 'yes',
             )
             ->modify(
@@ -32,7 +32,6 @@ class ModifyAlbumServiceTest extends TestCase
                 'home',
                 'pikachu',
                 'yes',
-                '123',
             )
         ;
     }
@@ -42,7 +41,7 @@ class ModifyAlbumServiceTest extends TestCase
         $this
             ->getService(
                 'PUT',
-                'album/123/home/pikachu',
+                'album/home/pikachu',
                 'yes',
             )
             ->modify(
@@ -50,7 +49,6 @@ class ModifyAlbumServiceTest extends TestCase
                 'home',
                 'pikachu',
                 'yes',
-                '123',
             )
         ;
     }
@@ -78,7 +76,6 @@ class ModifyAlbumServiceTest extends TestCase
             'home',
             'pikachu',
             'yes',
-            '123',
         );
     }
 
@@ -89,13 +86,13 @@ class ModifyAlbumServiceTest extends TestCase
             ModifyAlbumService::class,
             'PATCH',
             '',
-            'album/123/home/pikachu',
+            'album/home/pikachu',
             [
                 'body' => 'yes',
             ],
         );
 
-        $service->modify('PATCH', 'home', 'pikachu', 'yes', '123');
+        $service->modify('PATCH', 'home', 'pikachu', 'yes');
     }
 
     private function getService(

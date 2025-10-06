@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use App\Security\UserTokenService;
 use App\Service\Back\GetPokedexService;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -10,7 +9,6 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class GetTrainerPokedexService
 {
     public function __construct(
-        private readonly UserTokenService $userTokenService,
         private readonly GetPokedexService $getPokedexService,
     ) {}
 
@@ -19,22 +17,14 @@ class GetTrainerPokedexService
      *
      * @return null|string[][]
      */
-    public function getPokedexData(string $dexSlug, array $filters): ?array
-    {
-        $trainerId = $this->userTokenService->getLoggedUserToken();
-
-        return $this->getPokedexDataByTrainerId($dexSlug, $filters, $trainerId);
-    }
-
-    /**
-     * @param string[]|string[][] $filters
-     *
-     * @return null|string[][]
-     */
-    public function getPokedexDataByTrainerId(string $dexSlug, array $filters, string $trainerId): ?array
+    public function getPokedexData(string $dexSlug, array $filters, ?string $trainerId = null): ?array
     {
         try {
-            return $this->getPokedexService->get($dexSlug, $trainerId, $filters);
+            if (null !== $trainerId && !empty($trainerId)) {
+                return $this->getPokedexService->getWithTrainerId($trainerId, $dexSlug, $filters);
+            }
+
+            return $this->getPokedexService->get($dexSlug, $filters);
         } catch (HttpExceptionInterface|TransportExceptionInterface $e) {
             return null;
         }

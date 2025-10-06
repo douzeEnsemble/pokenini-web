@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
-use App\Security\UserTokenService;
 use App\Service\Back\GetPokedexService;
 use App\Service\GetTrainerPokedexService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -15,25 +14,18 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 /**
  * @internal
  */
+#[CoversClass(GetPokedexService::class)]
 #[CoversClass(GetTrainerPokedexService::class)]
 class GetTrainerPokedexServiceTest extends TestCase
 {
     public function testGetPokedexData(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
             ->expects($this->once())
             ->method('get')
             ->with(
                 'douze',
-                '8800088',
                 [],
             )
             ->willReturn([
@@ -43,8 +35,12 @@ class GetTrainerPokedexServiceTest extends TestCase
                 'pokemons' => [],
             ])
         ;
+        $getPokedexService
+            ->expects($this->never())
+            ->method('getWithTrainerId')
+        ;
 
-        $service = new GetTrainerPokedexService($userTokenService, $getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService);
         $pokedexData = $service->getPokedexData('douze', []);
 
         $this->assertSame(
@@ -60,20 +56,12 @@ class GetTrainerPokedexServiceTest extends TestCase
 
     public function testGetPokedexDataWithFilters(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
             ->expects($this->once())
             ->method('get')
             ->with(
                 'douze',
-                '8800088',
                 [
                     'to' => 'toto',
                     'ti' => 'titi',
@@ -86,8 +74,12 @@ class GetTrainerPokedexServiceTest extends TestCase
                 'pokemons' => [],
             ])
         ;
+        $getPokedexService
+            ->expects($this->never())
+            ->method('getWithTrainerId')
+        ;
 
-        $service = new GetTrainerPokedexService($userTokenService, $getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService);
         $pokedexData = $service->getPokedexData(
             'douze',
             [
@@ -107,21 +99,19 @@ class GetTrainerPokedexServiceTest extends TestCase
         );
     }
 
-    public function testGetPokedexDataByTrainerId(): void
+    public function testGetPokedexDataWithTrainerId(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->never())
-            ->method('getLoggedUserToken')
-        ;
-
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('get')
+        ;
+        $getPokedexService
+            ->expects($this->once())
+            ->method('getWithTrainerId')
             ->with(
-                'douze',
                 '8800088',
+                'douze',
                 [],
             )
             ->willReturn([
@@ -132,8 +122,80 @@ class GetTrainerPokedexServiceTest extends TestCase
             ])
         ;
 
-        $service = new GetTrainerPokedexService($userTokenService, $getPokedexService);
-        $pokedexData = $service->getPokedexDataByTrainerId('douze', [], '8800088');
+        $service = new GetTrainerPokedexService($getPokedexService);
+        $pokedexData = $service->getPokedexData('douze', [], '8800088');
+
+        $this->assertSame(
+            [
+                'dex' => [
+                    'slug' => 'douze-douze',
+                ],
+                'pokemons' => [],
+            ],
+            $pokedexData,
+        );
+    }
+
+    public function testGetPokedexDataWithNullTrainerId(): void
+    {
+        $getPokedexService = $this->createMock(GetPokedexService::class);
+        $getPokedexService
+            ->expects($this->once())
+            ->method('get')
+            ->with(
+                'douze',
+                [],
+            )
+            ->willReturn([
+                'dex' => [
+                    'slug' => 'douze-douze',
+                ],
+                'pokemons' => [],
+            ])
+        ;
+        $getPokedexService
+            ->expects($this->never())
+            ->method('getWithTrainerId')
+        ;
+
+        $service = new GetTrainerPokedexService($getPokedexService);
+        $pokedexData = $service->getPokedexData('douze', [], null);
+
+        $this->assertSame(
+            [
+                'dex' => [
+                    'slug' => 'douze-douze',
+                ],
+                'pokemons' => [],
+            ],
+            $pokedexData,
+        );
+    }
+
+    public function testGetPokedexDataWithEmptyTrainerId(): void
+    {
+        $getPokedexService = $this->createMock(GetPokedexService::class);
+        $getPokedexService
+            ->expects($this->once())
+            ->method('get')
+            ->with(
+                'douze',
+                [],
+            )
+            ->willReturn([
+                'dex' => [
+                    'slug' => 'douze-douze',
+                ],
+                'pokemons' => [],
+            ])
+        ;
+        $getPokedexService
+            ->expects($this->never())
+            ->method('getWithTrainerId')
+        ;
+
+        $service = new GetTrainerPokedexService($getPokedexService);
+        $pokedexData = $service->getPokedexData('douze', [], '');
 
         $this->assertSame(
             [
@@ -148,13 +210,6 @@ class GetTrainerPokedexServiceTest extends TestCase
 
     public function testGetPokedexDataHttpException(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $exception = $this->createMock(HttpExceptionInterface::class);
 
         $getPokedexService = $this->createMock(GetPokedexService::class);
@@ -163,13 +218,16 @@ class GetTrainerPokedexServiceTest extends TestCase
             ->method('get')
             ->with(
                 'douze',
-                '8800088',
                 [],
             )
             ->willThrowException($exception)
         ;
+        $getPokedexService
+            ->expects($this->never())
+            ->method('getWithTrainerId')
+        ;
 
-        $service = new GetTrainerPokedexService($userTokenService, $getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService);
         $dexData = $service->getPokedexData('douze', []);
 
         $this->assertNull($dexData);
@@ -177,13 +235,6 @@ class GetTrainerPokedexServiceTest extends TestCase
 
     public function testGetPokedexDataTransportException(): void
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
-        $userTokenService
-            ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('8800088')
-        ;
-
         $exception = $this->createMock(TransportExceptionInterface::class);
 
         $getPokedexService = $this->createMock(GetPokedexService::class);
@@ -192,13 +243,16 @@ class GetTrainerPokedexServiceTest extends TestCase
             ->method('get')
             ->with(
                 'douze',
-                '8800088',
                 [],
             )
             ->willThrowException($exception)
         ;
+        $getPokedexService
+            ->expects($this->never())
+            ->method('getWithTrainerId')
+        ;
 
-        $service = new GetTrainerPokedexService($userTokenService, $getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService);
         $dexData = $service->getPokedexData('douze', []);
 
         $this->assertNull($dexData);

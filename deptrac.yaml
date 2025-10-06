@@ -4,71 +4,165 @@ parameters:
   exclude_files:
     - .*test.*
   layers:    
-    - name: AlbumFilters
+    - name: AppAlbumFilters
       collectors:
         - type: classLike
-          value: 'App\\AlbumFilters\\.*'
-    - name: Controller
+          value: '^App\\AlbumFilters\\.*'
+    - name: AppController
       collectors:
         - type: classLike
-          value: 'App\\Controller\\.*'
-    - name: DTO
+          value: '^App\\Controller\\.*'
+    - name: AppDTO
       collectors:
         - type: classLike
-          value: 'App\\DTO\\.*'
-    - name: Exception
+          value: '^App\\DTO\\.*'
+    - name: AppException
       collectors:
         - type: classLike
-          value: 'App\\Exception\\.*'
-    - name: Helper
+          value: '^App\\Exception\\.*'
+    - name: AppHelper
       collectors:
         - type: classLike
-          value: 'App\\Helper\\.*'
-    - name: Security
+          value: '^App\\Helper\\.*'
+    - name: AppSecurity
       collectors:
         - type: classLike
-          value: 'App\\Security\\.*'
-    - name: Service
+          value: '^App\\Security\\.*'
+    - name: AppService
       collectors:
         - type: classLike
-          value: 'App\\Service\\.*'
+          value: '^App\\Service\\.*'
+    - name: AppTwig
+      collectors:
+        - type: classLike
+          value: '^App\\Twig\\.*'
+    - name: AppUtils
+      collectors:
+        - type: classLike
+          value: '^App\\Utils\\.*'
+    - name: AppValidator
+      collectors:
+        - type: classLike
+          value: '^App\\Validator\\.*'
+
+    # KnpU
+    - name: KnpUOAuth2ClientBundle
+      collectors:
+        - type: classLike
+          value: '^KnpU\\OAuth2ClientBundle\\.*'
+
+    # League
+    - name: LeagueOAuth2
+      collectors:
+        - type: classLike
+          value: '^League\\OAuth2\\.*'
+
+    # Logger
+    - name: Logger
+      collectors:
+        - type: classLike
+          value: '^Psr\\Log\\LoggerInterface'
+
+    # Symfony
+    - name: SymfonyContractsHttpClient
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Contracts\\HttpClient\\.*'
+    - name: SymfonyContractsTranslation
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Contracts\\Translation\\.*'
+    - name: SymfonyFrameworkBundle
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Bundle\\FrameworkBundle\\.*'
+    - name: SymfonyHttpException
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\HttpKernel\\Exception\\.*'
+    - name: SymfonyHttpFoundation
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\HttpFoundation\\.*'
+    - name: SymfonyOptionsResolver
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\OptionsResolver\\.*'
+    - name: SymfonyRouting
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\Routing\\.*'
+    - name: SymfonySecurity
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\Security\\.*'
+    - name: SymfonySecurityBundle
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Bundle\\SecurityBundle\\.*'
+    - name: SymfonyValidator
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\Validator\\.*'
+
+    # Twig
     - name: Twig
       collectors:
         - type: classLike
-          value: 'App\\Twig\\.*'
-    - name: Utils
-      collectors:
-        - type: classLike
-          value: 'App\\Utils\\.*'
-    - name: Validator
-      collectors:
-        - type: classLike
-          value: 'App\\Validator\\.*'
+          value: '^Twig\\.*'
 
   ruleset:
-    AlbumFilters:
-      - AlbumFilters
-    Cache:
-      - Service
-    Controller: 
-      - AlbumFilters
-      - DTO
-      - Exception
-      - Security
-      - Service
-      - Validator
-    DTO:
-      - DTO
-      - Helper
-    Security:
-      - Exception
-      - Service
-    Service:
-      - Cache
-      - DTO
-      - Exception
-      - Security
-      - Utils
-    Validator:
-      - Service
-      - Validator
+    AppAlbumFilters:
+      - AppAlbumFilters
+      - SymfonyHttpFoundation
+    AppController: 
+      - AppAlbumFilters
+      - AppDTO
+      - AppException
+      - AppSecurity
+      - AppService
+      - AppValidator
+      - KnpUOAuth2ClientBundle
+      - Logger
+      - SymfonyFrameworkBundle
+      - SymfonyHttpException
+      - SymfonyHttpFoundation
+      - SymfonyRouting
+      - SymfonySecurity
+      - SymfonyValidator
+    AppDTO:
+      - AppDTO
+      - AppHelper
+      - SymfonyHttpFoundation
+      - SymfonyOptionsResolver
+    AppException:
+    AppHelper:
+    AppSecurity:
+      - AppException
+      - AppService
+      - KnpUOAuth2ClientBundle
+      - LeagueOAuth2
+      - SymfonyHttpFoundation
+      - SymfonyRouting
+      - SymfonySecurity
+      - SymfonySecurityBundle
+    AppService:
+      - AppCache
+      - AppDTO
+      - AppException
+      - AppSecurity
+      - AppUtils
+      - LeagueOAuth2
+      - Logger
+      - SymfonyContractsHttpClient
+      - SymfonyHttpFoundation
+      - SymfonySecurityBundle
+      - SymfonyValidator
+    AppTwig:
+      - SymfonyContractsTranslation
+      - Twig
+    AppUtils:
+    AppValidator:
+      - AppService
+      - AppValidator
+      - SymfonyValidator

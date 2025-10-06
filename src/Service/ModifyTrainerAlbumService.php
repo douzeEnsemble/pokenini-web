@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Exception\ModifyFailedException;
-use App\Security\UserTokenService;
 use App\Service\Back\ModifyAlbumService;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
@@ -12,7 +11,6 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class ModifyTrainerAlbumService
 {
     public function __construct(
-        private readonly UserTokenService $userTokenService,
         private readonly ModifyAlbumService $modifyAlbumService,
         private readonly RequestStack $requestStack,
     ) {}
@@ -22,7 +20,6 @@ class ModifyTrainerAlbumService
         string $pokemonSlug,
         string $content,
     ): void {
-        $trainerId = $this->userTokenService->getLoggedUserToken();
         $request = $this->requestStack->getCurrentRequest();
 
         if (!$request) {
@@ -35,7 +32,6 @@ class ModifyTrainerAlbumService
                 $dexSlug,
                 $pokemonSlug,
                 $content,
-                $trainerId
             );
         } catch (HttpExceptionInterface|TransportExceptionInterface $e) {
             throw new ModifyFailedException();

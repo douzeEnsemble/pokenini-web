@@ -30,30 +30,37 @@ abstract class AbstractBackService implements BackServiceInterface
         array $options = [],
         ?AccessToken $accessToken = null,
     ): ResponseInterface {
-        $this->logger->info(
-            "Requesting {$method} {$endpointUrl}",
+        $optionsHeaders = [
+            'accept' => 'application/json',
+        ];
+
+        try {
+            $token = $this->userTokenService->getLoggedUserToken();
+        } catch (NoLoggedUserException) {
+            $token = $accessToken?->getToken() ?? null;
+        }
+
+        if (null !== $token) {
+            $optionsHeaders['Authorization'] = 'Bearer '.$token;
+        }
+
+        $finalOptions = array_merge(
+            [
+                'headers' => $optionsHeaders,
+                'cafile' => $this->backCafilePath,
+            ],
             $options
         );
 
-        try {
-            $bearerToken = $accessToken ? $accessToken->getToken() : $this->userTokenService->getLoggedUserToken();
-        } catch (NoLoggedUserException $e) {
-            $bearerToken = 'public';
-        }
+        $this->logger->info(
+            "Requesting {$method} {$endpointUrl}",
+            $finalOptions
+        );
 
         $response = $this->client->request(
             $method,
             "{$this->backUrl}$endpointUrl",
-            array_merge(
-                [
-                    'headers' => [
-                        'accept' => 'application/json',
-                        'Authorization' => 'Bearer '.$bearerToken,
-                    ],
-                    'cafile' => $this->backCafilePath,
-                ],
-                $options
-            ),
+            $finalOptions,
         );
 
         $this->logger->info(

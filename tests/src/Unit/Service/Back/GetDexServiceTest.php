@@ -16,15 +16,12 @@ class GetDexServiceTest extends TestCase
 {
     use BackServiceTrait;
 
-    public const ENDPOINT = 'dex/123/list';
-    public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/dex_123.json';
-
     public function testGet(): void
     {
         /** @var GetDexService $service */
         $service = $this->getMockService(
-            self::RESPONSE_CONTENT,
-            self::ENDPOINT,
+            '/var/www/html/tests/resources/unit/service/back/dex.json',
+            'dex/list',
         );
 
         $expectedSlugs = [
@@ -35,7 +32,7 @@ class GetDexServiceTest extends TestCase
 
         $this->assertEquals(
             $expectedSlugs,
-            self::extractSlugs($service->get('123')),
+            self::extractSlugs($service->get()),
         );
     }
 
@@ -48,9 +45,14 @@ class GetDexServiceTest extends TestCase
             'mega',
         ];
 
+        $service = $this->getMockService(
+            '/var/www/html/tests/resources/unit/service/back/dex_unreleased.json',
+            'dex/list?include_unreleased_dex=1',
+        );
+
         $this->assertEquals(
             $expectedSlugs,
-            self::extractSlugs($this->getServiceWithUnreleased('123')->getWithUnreleased('123')),
+            self::extractSlugs($service->getWithUnreleased()),
         );
     }
 
@@ -63,9 +65,14 @@ class GetDexServiceTest extends TestCase
             'mega',
         ];
 
+        $service = $this->getMockService(
+            '/var/www/html/tests/resources/unit/service/back/dex_premium.json',
+            'dex/list?include_premium_dex=1',
+        );
+
         $this->assertEquals(
             $expectedSlugs,
-            self::extractSlugs($this->getServiceWithPremium('123')->getWithPremium('123')),
+            self::extractSlugs($service->getWithPremium()),
         );
     }
 
@@ -79,26 +86,30 @@ class GetDexServiceTest extends TestCase
             'mega',
         ];
 
+        $service = $this->getMockService(
+            '/var/www/html/tests/resources/unit/service/back/dex_unreleased_and_premium.json',
+            'dex/list?include_unreleased_dex=1&include_premium_dex=1',
+        );
+
         $this->assertEquals(
             $expectedSlugs,
-            self::extractSlugs($this->getServiceWithUnreleasedAndPremium('123')->getWithUnreleasedAndPremium('123')),
+            self::extractSlugs($service->getWithUnreleasedAndPremium()),
         );
     }
 
-    public function testWithoutLoggedUser(): void
+    public function testGetWithTrainerId(): void
     {
         /** @var GetDexService $service */
         $service = $this->getServiceWithoutLoggedUser(
             GetDexService::class,
             'GET',
-            (string) file_get_contents(self::RESPONSE_CONTENT),
-            self::ENDPOINT,
+            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex_123.json'),
+            'dex/list?trainer_id=123',
         );
 
         $expectedSlugs = [
             'homepokemongo',
             'alpha',
-            'mega',
         ];
 
         $this->assertEquals(
@@ -107,27 +118,70 @@ class GetDexServiceTest extends TestCase
         );
     }
 
-    private function getServiceWithUnreleased(string $trainerId): GetDexService
+    public function testGetWithUnreleasedWithTrainerId(): void
     {
-        return $this->getMockService(
-            "/var/www/html/tests/resources/unit/service/back/dex_{$trainerId}_unreleased.json",
-            "dex/{$trainerId}/list?include_unreleased_dex=1",
+        /** @var GetDexService $service */
+        $service = $this->getServiceWithoutLoggedUser(
+            GetDexService::class,
+            'GET',
+            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex_123_unreleased.json'),
+            'dex/list?trainer_id=123&include_unreleased_dex=1',
+        );
+
+        $expectedSlugs = [
+            'redgreenblueyellow',
+            'homepokemongo',
+            'alpha',
+        ];
+
+        $this->assertEquals(
+            $expectedSlugs,
+            self::extractSlugs($service->getWithUnreleased('123')),
         );
     }
 
-    private function getServiceWithPremium(string $trainerId): GetDexService
+    public function testGetWithPremiumWithTrainerId(): void
     {
-        return $this->getMockService(
-            "/var/www/html/tests/resources/unit/service/back/dex_{$trainerId}_premium.json",
-            "dex/{$trainerId}/list?include_premium_dex=1",
+        /** @var GetDexService $service */
+        $service = $this->getServiceWithoutLoggedUser(
+            GetDexService::class,
+            'GET',
+            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex_123_premium.json'),
+            'dex/list?trainer_id=123&include_premium_dex=1',
+        );
+
+        $expectedSlugs = [
+            'goldsilvercrystal',
+            'homepokemongo',
+            'alpha',
+        ];
+
+        $this->assertEquals(
+            $expectedSlugs,
+            self::extractSlugs($service->getWithPremium('123')),
         );
     }
 
-    private function getServiceWithUnreleasedAndPremium(string $trainerId): GetDexService
+    public function testGetWithUnreleasedAndPremiumWithTrainerId(): void
     {
-        return $this->getMockService(
-            "/var/www/html/tests/resources/unit/service/back/dex_{$trainerId}_unreleased_and_premium.json",
-            "dex/{$trainerId}/list?include_unreleased_dex=1&include_premium_dex=1",
+        /** @var GetDexService $service */
+        $service = $this->getServiceWithoutLoggedUser(
+            GetDexService::class,
+            'GET',
+            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex_123_unreleased_and_premium.json'),
+            'dex/list?trainer_id=123&include_unreleased_dex=1&include_premium_dex=1',
+        );
+
+        $expectedSlugs = [
+            'redgreenblueyellow',
+            'goldsilvercrystal',
+            'homepokemongo',
+            'alpha',
+        ];
+
+        $this->assertEquals(
+            $expectedSlugs,
+            self::extractSlugs($service->getWithUnreleasedAndPremium('123')),
         );
     }
 
