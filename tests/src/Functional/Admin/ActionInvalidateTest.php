@@ -36,7 +36,6 @@ class ActionInvalidateTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
-        file_put_contents('tests/last.html', $client->getCrawler()->html());
     }
 
     /**

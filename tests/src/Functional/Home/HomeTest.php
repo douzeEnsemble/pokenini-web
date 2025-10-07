@@ -29,8 +29,6 @@ class HomeTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr');
 
-        file_put_contents('tests/last.html', $client->getCrawler()->html());
-
         $this->assertResponseIsSuccessful();
 
         $this->assertFrenchLangSwitch($crawler);

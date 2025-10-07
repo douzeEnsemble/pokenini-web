@@ -330,8 +330,6 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
-        file_put_contents('tests/last.html', $client->getCrawler()->html());
-
         $this->assertSelectorIsNotVisible('#errorToast-squirtle');
         $this->assertSelectorIsNotVisible('#successToast-squirtle');
         $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-no');

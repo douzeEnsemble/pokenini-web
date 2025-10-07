@@ -31,8 +31,6 @@ class TrainerPageFiltersTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/trainer?p=1');
 
-        file_put_contents('tests/last.html', $client->getCrawler()->html());
-
         $this->assertResponseStatusCodeSame(200);
 
         $this->assertSelectedOptions($crawler, 'select#filter-privacy', ['1']);
