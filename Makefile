@@ -175,7 +175,7 @@ dotenv-fixer: ## Run DotEnv fixer
 
 .PHONY: code-quality
 code-quality: ## Execute all code quality analyses
-code-quality: validate-autoloader phpcsfixer phpmd psalm phpstan deptrac
+code-quality: validate-autoloader phpcsfixer phpmd psalm phpstan deptrac w3c
 
 .PHONY: cq
 cq: ## Alias of code-quality
@@ -231,7 +231,7 @@ phpinsights: tools/phpinsights/vendor/bin/phpinsights
 .PHONY: w3c
 w3c: ## Execute w3c
 w3c: 
-	@$(DOCKER_COMP) run --remove-orphans node node html-validate.js
+	tools/w3c-validate/w3c_validate.sh
 
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 .PHONY: measures
