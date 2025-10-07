@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "w3c-html-validator": "^1.9.1"
+  }
+}

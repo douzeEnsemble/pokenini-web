@@ -21,6 +21,13 @@ services:
       - '127.0.0.1:8888:80'
     command: "/var/moco/moco.json"
 
+  node:
+    image: node:24-slim
+    working_dir: /app/tools/node
+    volumes:
+      - .:/app
+    command: bash -c "npm install && npm start"
+
   php:
     build:
       context: .
