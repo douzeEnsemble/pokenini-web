@@ -51,7 +51,7 @@ class AppExtensionTest extends TestCase
         $this->assertInstanceOf(AppExtension::class, $sha1FilterCallable[0]);
         $this->assertEquals('sha1', $sha1FilterCallable[1]);
 
-        /** @var TwigFilter $htmlNl2br */
+        /** @var TwigFilter $htmlNl2brFilter */
         $htmlNl2brFilter = $filters[2];
 
         $this->assertInstanceOf(TwigFilter::class, $htmlNl2brFilter);
