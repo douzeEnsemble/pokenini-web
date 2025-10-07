@@ -88,3 +88,15 @@ jobs:
           dir: deptrac
       - name: Run
         run: ./tools/deptrac/vendor/bin/deptrac analyse
+  
+  w3c:
+    name: W3C
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: W3C Validator / Run
+        run: |
+          tools/w3c-validate/w3c_validate.sh
