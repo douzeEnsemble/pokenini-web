@@ -40,6 +40,7 @@ services:
     restart: always
 
   vnu:
+    # dclint disable-line service-image-require-explicit-tag
     image: ghcr.io/validator/validator:latest
     volumes:
       - .:/app
