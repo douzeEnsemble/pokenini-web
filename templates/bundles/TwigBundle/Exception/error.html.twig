@@ -8,7 +8,7 @@
     <h1>{{ ('title.error.'~appStatusCode)|trans }}</h1>
 
     <p>
-        {{ ('error.'~appStatusCode~'.text')|trans|nl2br }}
+        {{ ('error.'~appStatusCode~'.text')|trans|htmlNl2br }}
     </p>
     <a href="{{ path('app_home_index') }}">
         {{ 'nav.home'|trans }}

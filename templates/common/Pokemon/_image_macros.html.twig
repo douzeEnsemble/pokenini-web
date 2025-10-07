@@ -19,13 +19,13 @@
 
     {% set iconUrl = pokemonIconUrl|format(dir, item.pokemon_icon) %}
 
-    <img
+    <img 
         alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"
         class="pokemon-icon img-fluid {{ classMore }}"
         src="{{ iconUrl }}"
         loading="lazy"
         onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
-    />
+    >
 {% endmacro %}
 
 {% macro regularPokemonImage(item, locale, classMore) %}
@@ -55,5 +55,5 @@
         src="{{ imageUrl }}"
         loading="lazy"
         onerror="this.onerror=null;this.src='/img/pokemon/default_image.webp';"
-    />
+    >
 {% endmacro %}

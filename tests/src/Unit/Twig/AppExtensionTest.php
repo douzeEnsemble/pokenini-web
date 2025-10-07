@@ -22,7 +22,7 @@ class AppExtensionTest extends TestCase
 
         $filters = $extension->getFilters();
 
-        $this->assertCount(2, $filters);
+        $this->assertCount(3, $filters);
 
         /** @var TwigFilter $ksortFilter */
         $ksortFilter = $filters[0];
@@ -47,6 +47,18 @@ class AppExtensionTest extends TestCase
         $this->assertCount(2, $sha1FilterCallable);
         $this->assertInstanceOf(AppExtension::class, $sha1FilterCallable[0]);
         $this->assertEquals('sha1', $sha1FilterCallable[1]);
+
+        /** @var TwigFilter $htmlNl2br */
+        $htmlNl2br = $filters[2];
+
+        $this->assertInstanceOf(TwigFilter::class, $htmlNl2br);
+        $this->assertEquals('htmlNl2br', $htmlNl2br->getName());
+
+        /** @var mixed[] $htmlNl2brCallable */
+        $htmlNl2brCallable = $htmlNl2br->getCallable();
+        $this->assertCount(2, $htmlNl2brCallable);
+        $this->assertInstanceOf(AppExtension::class, $htmlNl2brCallable[0]);
+        $this->assertEquals('htmlNl2br', $htmlNl2brCallable[1]);
     }
 
     public function testGetFunctions(): void
@@ -96,6 +108,13 @@ class AppExtensionTest extends TestCase
 
         $this->assertSame('0b9c2625dc21ef05f6ad4ddf47c5f203837aa32c', $extension->sha1('toto'));
         $this->assertSame('f7e79ca8eb0b31ee4d5d6c181416667ffee528ed', $extension->sha1('titi'));
+    }
+
+    public function testHtmlNl2br(): void
+    {
+        $extension = new AppExtension();
+
+        $this->assertSame("a<br>\nb", $extension->htmlNl2br("a\nb"));
     }
 
     public function testVersion(): void

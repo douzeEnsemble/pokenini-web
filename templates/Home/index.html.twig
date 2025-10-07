@@ -23,7 +23,7 @@
       {% if connectedUserId is null %}
         <div class="alert alert-warning" role="alert">
           <p>
-            {{ 'home.alert.not_connected.description'|trans|nl2br }}
+            {{ 'home.alert.not_connected.description'|trans|htmlNl2br }}
           </p>
           <a href="{{ path('app_connect_index') }}" class="btn btn-warning">
             {{ 'home.alert.not_connected.action'|trans }}
@@ -32,7 +32,7 @@
       {% else %}
         <div class="alert alert-light" role="alert">
           <p>
-            {{ 'home.alert.connected.description'|trans({id: app.user.id})|nl2br }}
+            {{ 'home.alert.connected.description'|trans({id: app.user.id})|htmlNl2br }}
           </p>
         </div>
       {% endif %}
@@ -119,7 +119,7 @@
 
 {% block foot_javascript %}
   {{ parent() }}
-  <script type="application/javascript">
+  <script>
     (function () { // Enable tooltips
 [...document.querySelectorAll('[data-bs-toggle="tooltip"]')].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 })();

@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-md-12 mx-auto row">
 
-			<p class="text-secondary">{{ 'trainer.welcome'|trans|nl2br }}</p>
+			<p class="text-secondary">{{ 'trainer.welcome'|trans|htmlNl2br }}</p>
 
             {{ include('Trainer/Section/_dex.html.twig') }}
             {{ include('Trainer/_section.html.twig') }}
@@ -28,7 +28,7 @@
     <script src="{{ asset('js/trainer_dex.js') }}"></script>
     <script src="{{ asset('js/trainer_filters.js') }}"></script>
 
-    <script type="application/javascript">
+    <script>
         const locale = '{{ locale }}';
 
         watchAttributes();
@@ -38,7 +38,7 @@
         const toastElList = document.querySelectorAll('.toast')
         const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl));
     </script>
-    <script type="application/javascript">
+    <script>
     (function() {
         // Enable tooltips
         [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
