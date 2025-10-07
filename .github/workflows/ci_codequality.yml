@@ -44,7 +44,7 @@ jobs:
         with:
           dir: phpmd
       - name: Run
-        run: ./tools/phpmd/vendor/bin/phpmd src,tests text ruleset.xml
+        run: ./tools/phpmd/vendor/bin/phpmd src,tests text phpmd.ruleset.xml
 
   psalm:
     name: Psalm
