@@ -46,6 +46,11 @@ services:
     command: redis-server --requirepass douze
     restart: always
 
+  vnu:
+    image: ghcr.io/validator/validator:latest
+    volumes:
+      - .:/app
+
   web:
     image: nginx:1.28-alpine
     volumes:
