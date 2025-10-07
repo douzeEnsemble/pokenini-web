@@ -93,7 +93,7 @@
 
 {% block foot_javascript %}
     {{ parent() }}
-    <script type="application/javascript">
+    <script>
     (function() {
         watchScreenshotMode();
     })();
@@ -102,13 +102,13 @@
     {% if allowedToEdit %}
     <script src="{{ asset('js/album-edit.js') }}"></script>
 
-    <script type="application/javascript">
+    <script>
     const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
     const locale = '{{ locale }}';
     const dex = '{{ currentDexSlug }}';
     </script>
 
-    <script type="application/javascript">
+    <script>
     (function() {
         watchToggleEditMode();
         watchCatchStates();
@@ -121,7 +121,7 @@
     })();
     </script>
     {% endif %}
-    <script type="application/javascript">
+    <script>
     (function() {
         // Enable tooltips
         [...document.querySelectorAll('.album-case-image, [data-bs-toggle="tooltip"], [data-bs-toggle="offcanvas"]')]

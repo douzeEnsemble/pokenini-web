@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang={{ app.request.locale }}>
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Pokénini{% endblock %}</title>
@@ -23,7 +23,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock head_javascripts %}
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         {% block nav %}{% endblock nav %}
@@ -42,7 +42,7 @@
 
             <script src="{{ asset('js/main.js') }}"></script>
 
-            <script type="application/javascript">
+            <script>
                 watchCookieManager();
             </script>
         {% endblock foot_javascript %}

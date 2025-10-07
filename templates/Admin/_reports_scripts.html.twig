@@ -1,6 +1,6 @@
 {% set locale = app.request.locale %}
 
-<script type="application/javascript">
+<script>
     Chart.register(window.ChartDataLabels);
 
     // Colors get from https://nagix.github.io/chartjs-plugin-colorschemes/colorchart.html
@@ -37,7 +37,7 @@
     const patternsClassic = pattern.generate(colorsClassicGreenOrange12);
 </script>
 
-<script type="application/javascript">
+<script>
 (function() {
     {% set catchStateCountsDefinedByTrainerLabels = reportsData.catch_state_counts_defined_by_trainer|map(d => d.trainer) %}
     {% set catchStateCountsDefinedByTrainerData = reportsData.catch_state_counts_defined_by_trainer|map(d => d.nb) %}
@@ -129,7 +129,7 @@
 })();
 </script>
 
-<script type="application/javascript">
+<script>
 (function() {
     {% set dexUsageLabels = reportsData.dex_usage|map(d => locale is same as('fr') ? d.french_name : d.name) %}
     {% set dexUsageData = reportsData.dex_usage|map(d => d.nb) %}
@@ -191,7 +191,7 @@
 })();
 </script>
 
-<script type="application/javascript">
+<script>
 (function() {
     {% set catchStateUsageLabels = reportsData.catch_state_usage|map(d => locale is same as('fr') ? d.french_name : d.name) %}
     {% set catchStateUsageData = reportsData.catch_state_usage|map(d => d.nb) %}

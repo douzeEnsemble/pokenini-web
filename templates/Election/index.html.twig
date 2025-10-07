@@ -65,7 +65,7 @@
 {% block foot_javascript %}
     {{ parent() }}
 
-    <script type="application/javascript">
+    <script>
     (function() {
         watchCardClicking();
         watchWinnerCheckboxes();
@@ -81,7 +81,7 @@
     </script>
 
     {% if 0 == metrics.roundCount and app.request.query.all is empty %}
-    <script type="application/javascript">
+    <script>
     (function() {
         new bootstrap.Modal('#election-modal-welcome').show();
     })();
@@ -89,7 +89,7 @@
     {% endif %}
 
     {% if isTheLastPage and not isTheLastOne %}
-    <script type="application/javascript">
+    <script>
     (function() {
         bootstrap.Toast.getOrCreateInstance(document.getElementById('election-lastpage-toast')).show();
 

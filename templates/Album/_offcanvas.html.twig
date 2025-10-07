@@ -155,7 +155,7 @@
 
         {# Description #}
         <p id="album-description" class="small">
-            {{- (locale is same as('fr') ? dex.french_description : dex.description)|nl2br -}}
+            {{- (locale is same as('fr') ? dex.french_description : dex.description)|htmlNl2br -}}
         </p>
         {# Template text #}
         <p class="dex-template small fst-italic">

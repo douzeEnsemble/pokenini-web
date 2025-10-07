@@ -16,7 +16,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-8 mx-auto row">
-			<p class="text-primary">{{ 'outer_room.message'|trans({'id': userId})|nl2br }}</p>
+			<p class="text-primary">{{ 'outer_room.message'|trans({'id': userId})|htmlNl2br }}</p>
 			<a 
 				class="btn btn-outline-primary" 
 				href="mailto:pokenini.app@gmail.com?subject={{ 'outer_room.mail.subject'|trans({'id': userId}) }}&body={{ 'outer_room.mail.body'|trans({'id': userId}) }}" 
@@ -28,7 +28,7 @@
 				</svg>
 				{{ 'outer_room.mail.link'|trans }}
 			</a>
-			<p class="text-secondary mt-5">{{ 'outer_room.cancel'|trans|nl2br }}</p>
+			<p class="text-secondary mt-5">{{ 'outer_room.cancel'|trans|htmlNl2br }}</p>
 			<a href="{{ path('app_connect_logout') }}">
 				{{ 'logout'|trans }}
 			</a>
