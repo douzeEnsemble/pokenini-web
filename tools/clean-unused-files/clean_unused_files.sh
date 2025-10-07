@@ -13,34 +13,45 @@ if ! command -v ${TEST_CMD%% *} >/dev/null 2>&1; then
   exit 1
 fi
 
+# --- Collect all files first ---
+mapfile -t FILES < <(find "$ROOT_DIR" -type f \
+  ! -path "$TMP_DIR/*" \
+  ! -path "*/vendor/*" \
+  ! -path "*/node_modules/*" \
+  ! -name "*.log")
+
+TOTAL=${#FILES[@]}
+echo "Found $TOTAL files to test." | tee -a "$LOG_FILE"
+
 check_file() {
-  local file="$1"
+  local index="$1"
+  local file="$2"
   local rel_path="${file#$ROOT_DIR/}"
-  mkdir -p "$TMP_DIR/$(dirname "$rel_path")"
-  mv "$file" "$TMP_DIR/$rel_path"
-  echo "Testing without $rel_path..." >> "$LOG_FILE"
+  local tmp_path="$TMP_DIR/$rel_path"
+
+  echo "[$((index+1))/$TOTAL] Testing without $rel_path..."
+  echo "[$((index+1))/$TOTAL] Testing without $rel_path..." >> "$LOG_FILE"
+
+  mkdir -p "$(dirname "$tmp_path")"
+  mv "$file" "$tmp_path"
 
   $TEST_CMD >/dev/null 2>&1
   local status=$?
 
   if [ $status -eq 0 ]; then
     echo "✅ OK without $rel_path — deleted" | tee -a "$LOG_FILE"
-    rm -f "$TMP_DIR/$rel_path"
+    rm -f "$tmp_path"
   else
     echo "❌ Failed without $rel_path — restored" | tee -a "$LOG_FILE"
-    mv "$TMP_DIR/$rel_path" "$file"
+    mv "$tmp_path" "$file"
   fi
 }
 
-export -f check_file
-export ROOT_DIR TMP_DIR LOG_FILE TEST_CMD
-
-find "$ROOT_DIR" -type f \
-  ! -path "$TMP_DIR/*" \
-  ! -path "*/vendor/*" \
-  ! -path "*/node_modules/*" \
-  ! -name "*.log" \
-  -print0 | xargs -0 -n1 bash -c 'check_file "$@"' _
+i=0
+for file in "${FILES[@]}"; do
+  check_file "$i" "$file"
+  ((i++))
+done
 
 echo "=== Cleanup finished: $(date) ===" >> "$LOG_FILE"
 echo "See $LOG_FILE for details."

@@ -28,10 +28,7 @@ get_route_label() {
   local index="$1"
   jq -r --argjson idx "$index" '
     .[$idx].request as $req |
-    # method fallback
     ($req.method // "ANY") as $method |
-
-    # path fallback
     ($req.path
      // (if $req.uri | type == "object" then
            $req.uri.match // $req.uri.equals // "(unknown)"
@@ -40,19 +37,21 @@ get_route_label() {
          else
            "(unknown)"
          end)) as $path |
-
     "\($method) \($path)"
   ' "$MOCK_FILE"
 }
 
 check_route() {
   local index="$1"
+  local total="$2"
   local tmp_file="$TMP_DIR/mocks_tmp.json"
 
   local route_path
   route_path=$(get_route_label "$index")
 
-  echo "Testing without route: $route_path" >> "$LOG_FILE"
+  local progress_msg="[$((index+1))/$total] Testing without route: $route_path"
+  echo "$progress_msg"
+  echo "$progress_msg" >> "$LOG_FILE"
 
   jq "del(.[${index}])" "$MOCK_FILE" > "$tmp_file"
   mv "$tmp_file" "$MOCK_FILE"
@@ -73,7 +72,7 @@ check_route() {
 
 i=0
 while [ $i -lt $count ]; do
-  check_route "$i"
+  check_route "$i" "$count"
   status=$?
   if [ $status -eq 0 ]; then
     ((count--))
