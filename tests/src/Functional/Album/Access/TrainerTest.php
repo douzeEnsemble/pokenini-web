@@ -31,8 +31,6 @@ class TrainerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        file_put_contents('tests/last.html', $client->getCrawler()->html());
-
         $this->assertCountFilter($crawler, 1741, '.album-case');
 
         $this->assertCountFilter($crawler, 0, '.another-trainer-album');
