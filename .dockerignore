@@ -40,4 +40,4 @@ infection.json5
 phpstan-baseline.neon
 psalm-baseline.xml
 psalm.xml
-ruleset.xml
+phpmd.ruleset.xml
