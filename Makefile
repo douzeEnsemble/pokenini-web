@@ -295,14 +295,14 @@ composer-audit: ## Execute Composer Audit
 composer-audit: c=audit
 composer-audit: composer
 
-bin/local-php-security-checker: ## Download the file if needed
-	wget https://github.com/fabpot/local-php-security-checker/releases/download/v2.1.3/local-php-security-checker_linux_amd64 -O bin/local-php-security-checker
-	chmod a+x bin/local-php-security-checker
+tools/php-security-checker/local-php-security-checker: ## Download the file if needed
+	wget https://github.com/fabpot/local-php-security-checker/releases/download/v2.1.3/local-php-security-checker_linux_amd64 -O tools/php-security-checker/local-php-security-checker
+	chmod a+x tools/php-security-checker/local-php-security-checker
 
 .PHONY: security-checker
 security-checker: ## Execute Security Checker
-security-checker: bin/local-php-security-checker
-	bin/local-php-security-checker
+security-checker: tools/php-security-checker/local-php-security-checker
+	tools/php-security-checker/local-php-security-checker
 
 .PHONY: owasp-check
 owasp-check: ## Execute OWASP Dependency Check
