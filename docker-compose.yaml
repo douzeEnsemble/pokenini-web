@@ -23,10 +23,10 @@ services:
 
   node:
     image: node:24-slim
-    working_dir: /app/tools/node
     volumes:
       - .:/app
     command: bash -c "npm install && npm start"
+    working_dir: /app/tools/node
 
   php:
     build:
