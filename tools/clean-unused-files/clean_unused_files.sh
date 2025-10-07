@@ -3,7 +3,7 @@
 ROOT_DIR="${1:-.}"
 TMP_DIR=".tmp_file_check"
 LOG_FILE="var/log/cleanup_test.log"
-TEST_CMD="make tu ti"
+TEST_CMD="make restart-mocks tests-defect"
 
 mkdir -p "$TMP_DIR"
 echo "=== Cleanup started: $(date) ===" > "$LOG_FILE"

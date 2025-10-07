@@ -102,6 +102,11 @@ tests: ## Execute all tests
 tests:
 	$(PHP) vendor/bin/phpunit tests/src
 
+.PHONY: tests-defect
+tests-defect: ## Execute tests and stop when one defect
+tests-defect:
+	$(PHP) vendor/bin/phpunit tests/src --stop-on-defect
+
 .PHONY: t
 t: ## Alias of tests
 t: tests
