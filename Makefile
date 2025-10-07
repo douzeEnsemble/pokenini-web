@@ -286,6 +286,10 @@ infection: build/coverage/coverage-xml tools/infection/vendor/bin/infection clea
 security: ## Execute all security commands
 security: composer-audit security-checker
 
+.PHONY: s
+s: ## Alias of security
+s: security
+
 .PHONY: composer-audit
 composer-audit: ## Execute Composer Audit
 composer-audit: c=audit
