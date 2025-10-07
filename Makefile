@@ -223,6 +223,11 @@ phpinsights: ## Execute phpinsights
 phpinsights: tools/phpinsights/vendor/bin/phpinsights
 	@$(PHP) tools/phpinsights/vendor/bin/phpinsights
 
+.PHONY: w3c
+w3c: ## Execute w3c
+w3c: 
+	@$(DOCKER_COMP) run --remove-orphans node node html-validate.js
+
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 .PHONY: measures
 measures: ## Execute all measures tools
