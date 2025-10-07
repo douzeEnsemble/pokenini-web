@@ -44,5 +44,6 @@ dependency-check/
 tools/*/vendor
 tools/*/node_modules
 tools/*/var
+tools/php-security-checker/local-php-security-checker
 
 /.deptrac.cache
