@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Twig;
 use App\Twig\AppExtension;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Twig\Node\Node;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
@@ -29,6 +30,7 @@ class AppExtensionTest extends TestCase
 
         $this->assertInstanceOf(TwigFilter::class, $ksortFilter);
         $this->assertEquals('ksort', $ksortFilter->getName());
+        $this->assertEquals([], $ksortFilter->getSafe(new Node()));
 
         /** @var mixed[] $ksortFilterCallable */
         $ksortFilterCallable = $ksortFilter->getCallable();
@@ -41,6 +43,7 @@ class AppExtensionTest extends TestCase
 
         $this->assertInstanceOf(TwigFilter::class, $sha1Filter);
         $this->assertEquals('sha1', $sha1Filter->getName());
+        $this->assertEquals([], $sha1Filter->getSafe(new Node()));
 
         /** @var mixed[] $sha1FilterCallable */
         $sha1FilterCallable = $sha1Filter->getCallable();
@@ -49,13 +52,14 @@ class AppExtensionTest extends TestCase
         $this->assertEquals('sha1', $sha1FilterCallable[1]);
 
         /** @var TwigFilter $htmlNl2br */
-        $htmlNl2br = $filters[2];
+        $htmlNl2brFilter = $filters[2];
 
-        $this->assertInstanceOf(TwigFilter::class, $htmlNl2br);
-        $this->assertEquals('htmlNl2br', $htmlNl2br->getName());
+        $this->assertInstanceOf(TwigFilter::class, $htmlNl2brFilter);
+        $this->assertEquals('htmlNl2br', $htmlNl2brFilter->getName());
+        $this->assertEquals(['html'], $htmlNl2brFilter->getSafe(new Node()));
 
         /** @var mixed[] $htmlNl2brCallable */
-        $htmlNl2brCallable = $htmlNl2br->getCallable();
+        $htmlNl2brCallable = $htmlNl2brFilter->getCallable();
         $this->assertCount(2, $htmlNl2brCallable);
         $this->assertInstanceOf(AppExtension::class, $htmlNl2brCallable[0]);
         $this->assertEquals('htmlNl2br', $htmlNl2brCallable[1]);

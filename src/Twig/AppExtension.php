@@ -16,7 +16,7 @@ class AppExtension extends AbstractExtension
         return [
             new TwigFilter('ksort', [$this, 'ksort']),
             new TwigFilter('sha1', [$this, 'sha1']),
-            new TwigFilter('htmlNl2br', [$this, 'htmlNl2br']),
+            new TwigFilter('htmlNl2br', [$this, 'htmlNl2br'], ['is_safe' => ['html']]),
         ];
     }
 
