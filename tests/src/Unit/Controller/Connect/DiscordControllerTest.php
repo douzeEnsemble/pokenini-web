@@ -20,6 +20,6 @@ class DiscordControllerTest extends TestCase
     {
         $controller = new DiscordController();
 
-        $this->assertGoto($controller, 'identify', 'discord');
+        $this->assertGoto($controller, 'openid', 'discord');
     }
 }

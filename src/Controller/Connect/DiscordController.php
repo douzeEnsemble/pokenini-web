@@ -18,6 +18,6 @@ class DiscordController extends AbstractConnectController
     #[\Override]
     protected function getScope(): string
     {
-        return 'identify';
+        return 'openid';
     }
 }
