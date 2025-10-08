@@ -35,14 +35,18 @@ check_file() {
   mkdir -p "$(dirname "$tmp_path")"
   mv "$file" "$tmp_path"
 
+  local start_time=$(date +%s.%N)
   $TEST_CMD >/dev/null 2>&1
   local status=$?
+  local end_time=$(date +%s.%N)
+
+  local duration=$(awk "BEGIN {printf \"%.2f\", $end_time - $start_time}")
 
   if [ $status -eq 0 ]; then
-    echo "✅ OK without $rel_path — deleted" | tee -a "$LOG_FILE"
+    echo "✅ OK without $rel_path — deleted (${duration}s)" | tee -a "$LOG_FILE"
     rm -f "$tmp_path"
   else
-    echo "❌ Failed without $rel_path — restored" | tee -a "$LOG_FILE"
+    echo "❌ Failed without $rel_path — restored (${duration}s)" | tee -a "$LOG_FILE"
     mv "$tmp_path" "$file"
   fi
 }
