@@ -40,7 +40,6 @@ dependency-check-release.zip
 dependency-check/
 .clever.json
 
-
 tools/*/vendor
 tools/*/node_modules
 tools/*/var
