@@ -140,8 +140,8 @@ tb: tests-browser
 
 .PHONY: tests-api-mocked
 tests-api-mocked: ## Execute tests on the group api-mocked-testing only
-	@$(PHP_CONT) vendor/bin/phpunit tests/src/Functional --group=api-mocked-testing --stop-on-defect --no-output --no-logging
-	@$(PHP_CONT) vendor/bin/phpunit tests/src/Browser --group=api-mocked-testing --stop-on-defect --no-output --no-logging
+	@$(PHP_CONT) vendor/bin/phpunit tests/src/Functional --group=api-mocked-testing --stop-on-defect --no-progress --no-logging
+	@$(PHP_CONT) vendor/bin/phpunit tests/src/Browser --group=api-mocked-testing --stop-on-defect --no-progress --no-logging
 
 ## —— Quality 👌 ———————————————————————————————————————————————————————————————
 .PHONY: quality
