@@ -9,6 +9,7 @@ use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -17,6 +18,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  * @internal
  */
 #[CoversClass(ElectionIndexController::class)]
+#[Group('api-mocked-testing')]
 class ElectionIndexTest extends WebTestCase
 {
     use TestNavTrait;

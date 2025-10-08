@@ -9,14 +9,12 @@ use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
-use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
 /**
  * @internal
  */
 #[CoversNothing]
-#[Group('browser-testing')]
 class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;

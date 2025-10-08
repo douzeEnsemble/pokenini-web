@@ -10,6 +10,7 @@ use App\Service\GetTrainerPokedexService;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -18,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[CoversClass(GetTrainerPokedexService::class)]
+#[Group('api-mocked-testing')]
 class CommonTest extends WebTestCase
 {
     use TestNavTrait;

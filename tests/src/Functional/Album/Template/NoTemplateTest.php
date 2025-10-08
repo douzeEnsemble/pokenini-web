@@ -9,12 +9,14 @@ use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * @internal
  */
 #[CoversClass(AlbumIndexController::class)]
+#[Group('api-mocked-testing')]
 class NoTemplateTest extends WebTestCase
 {
     use TestNavTrait;

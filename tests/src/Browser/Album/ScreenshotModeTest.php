@@ -15,7 +15,7 @@ use PHPUnit\Framework\Attributes\Group;
  * @internal
  */
 #[CoversNothing]
-#[Group('browser-testing')]
+#[Group('api-mocked-testing')]
 class ScreenshotModeTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;

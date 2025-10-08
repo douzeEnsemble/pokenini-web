@@ -9,13 +9,11 @@ use App\Tests\Browser\AbstractBrowserTestCase;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @internal
  */
 #[CoversNothing]
-#[Group('browser-testing')]
 class RedirectActionsTest extends AbstractBrowserTestCase
 {
     #[DataProvider('providerActionItems')]

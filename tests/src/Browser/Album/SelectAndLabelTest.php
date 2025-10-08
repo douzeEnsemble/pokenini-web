@@ -16,7 +16,7 @@ use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
  * @internal
  */
 #[CoversNothing]
-#[Group('browser-testing')]
+#[Group('api-mocked-testing')]
 class SelectAndLabelTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
