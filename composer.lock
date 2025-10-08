@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8a435c95862a99ee507e960a7a08eb0",
+    "content-hash": "f7d2dd8c6e0b7d5fec3e23e37fd5b92f",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -509,59 +509,6 @@
                 "source": "https://github.com/thephpleague/oauth2-google/tree/4.0.1"
             },
             "time": "2023-03-17T15:20:52+00:00"
-        },
-        {
-            "name": "luchianenco/oauth2-amazon",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/luchianenco/oauth2-amazon.git",
-                "reference": "71ed920a9c11b850e28c4ad8858ea42501bd71fa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/luchianenco/oauth2-amazon/zipball/71ed920a9c11b850e28c4ad8858ea42501bd71fa",
-                "reference": "71ed920a9c11b850e28c4ad8858ea42501bd71fa",
-                "shasum": ""
-            },
-            "require": {
-                "league/oauth2-client": "^2.6.1",
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "8.* || 9.* || 10.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Luchianenco\\OAuth2\\Client\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Serghei Luchianenco",
-                    "email": "s@luchianenco.com",
-                    "homepage": "https://luchianenco.com"
-                }
-            ],
-            "description": "Amazon OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
-            "keywords": [
-                "Authentication",
-                "amazon",
-                "authorization",
-                "client",
-                "oauth",
-                "oauth2"
-            ],
-            "support": {
-                "issues": "https://github.com/luchianenco/oauth2-amazon/issues",
-                "source": "https://github.com/luchianenco/oauth2-amazon/tree/3.0.0"
-            },
-            "time": "2022-10-28T13:46:59+00:00"
         },
         {
             "name": "malteschlueter/oauth2-passage",
