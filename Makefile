@@ -20,6 +20,12 @@ help: ## Outputs this help screen
 	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 .PHONY: help
 
+## —— Directories and files 📁 ————————————————————————————————————————————————————————————————
+.env: ## Create .env files (not phony to check the file)
+	touch .env
+.env.dev.local: ## Create .env.dev.local files (not phony to check the file)
+	cp .env.dev .env.dev.local
+
 ## —— Docker 🐳 ————————————————————————————————————————————————————————————————
 .PHONY: build
 build: ## Builds the Docker images
@@ -31,7 +37,7 @@ rebuild: ## Re-builds the Docker images (build with no cache)
 
 .PHONY: start
 start: ## Start the project
-start: install up
+start: install up vendor cc
 
 .PHONY: up
 up: ## Up Docker container
@@ -44,7 +50,7 @@ up-after:
 
 .PHONY: install
 install: ## Install requirements
-install: build
+install: .env .env.dev.local build
 
 .PHONY: stop
 stop: ## Stop the project
@@ -67,11 +73,21 @@ bash: ## Connect to the PHP container
 restart-mocks: ## Restart Moco mocks
 	$(DOCKER_COMP) restart moco.back
 
+## —— Data 💾 ————————————————————————————————————————————————————————————————
+.PHONY: data
+data: ## Initialize data
+data: 
+
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 .PHONY: composer
 composer: ## Run composer, pass the parameter "c=" to run a given command, example: make composer c='req symfony/orm-pack'
 	@$(eval c ?=)
 	@$(COMPOSER) $(c)
+
+.PHONY: vendor
+vendor: ## Install vendors according to the current composer.lock file
+	@$(COMPOSER) install --prefer-dist --no-progress --no-interaction
+	@$(COMPOSER) clear-cache
 
 .PHONY: updates
 updates: ## Updates all composer
