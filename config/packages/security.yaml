@@ -17,7 +17,6 @@ security:
         path: app_connect_logout
       entry_point: App\Security\AuthenticationEntryPoint
       custom_authenticators:
-        - App\Security\AmazonAuthenticator
         - App\Security\DiscordAuthenticator
         - App\Security\GoogleAuthenticator
         - App\Security\PassageAuthenticator
