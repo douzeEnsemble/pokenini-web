@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 ROOT_DIR="${1:-.}"
-TMP_DIR=".tmp_file_check"
+TMP_DIR="var/tmp_file_check"
 LOG_FILE="var/log/cleanup_test.log"
-TEST_CMD="make restart-mocks tests-defect"
+TEST_CMD="make restart-mocks tests-api-mocked"
 
 mkdir -p "$TMP_DIR"
 echo "=== Cleanup started: $(date) ===" > "$LOG_FILE"
