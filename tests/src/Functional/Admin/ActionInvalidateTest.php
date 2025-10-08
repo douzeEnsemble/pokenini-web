@@ -10,6 +10,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -17,6 +18,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * @internal
  */
 #[CoversClass(AdminActionController::class)]
+#[Group('api-mocked-testing')]
 class ActionInvalidateTest extends WebTestCase
 {
     use TestNavTrait;

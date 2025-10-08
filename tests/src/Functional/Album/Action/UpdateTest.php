@@ -9,6 +9,7 @@ use App\Security\User;
 use App\Service\ModifyTrainerDexService;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -16,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumUpsertController::class)]
 #[CoversClass(ModifyTrainerDexService::class)]
+#[Group('api-mocked-testing')]
 class UpdateTest extends WebTestCase
 {
     public function testUpdateConnected(): void

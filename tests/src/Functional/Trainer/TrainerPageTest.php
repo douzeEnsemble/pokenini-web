@@ -9,6 +9,7 @@ use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -16,6 +17,7 @@ use Symfony\Component\DomCrawler\Crawler;
  * @internal
  */
 #[CoversClass(TrainerIndexController::class)]
+#[Group('api-mocked-testing')]
 class TrainerPageTest extends WebTestCase
 {
     use TestNavTrait;

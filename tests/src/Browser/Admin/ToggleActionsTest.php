@@ -9,13 +9,11 @@ use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
-use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @internal
  */
 #[CoversNothing]
-#[Group('browser-testing')]
 class ToggleActionsTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
