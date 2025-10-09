@@ -48,7 +48,7 @@ Go to
 ### Open bash into php  container
 
 ```
-make sh
+make bash
 ```
 
 `exit` in it to quit.
@@ -109,7 +109,7 @@ make img-build
 
 ### Check if json are valid or not
 
-Dans le container (`make sh`)
+Dans le container (`make bash`)
 
 ``` bash
 find tests/resources/moco -type f -name "*.json" -exec tools/jsonlint/vendor/bin/jsonlint {} \;
