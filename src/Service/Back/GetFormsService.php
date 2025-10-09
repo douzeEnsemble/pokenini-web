@@ -47,7 +47,7 @@ class GetFormsService extends AbstractBackService
     {
         $json = $this->requestContent(
             'GET',
-            "/forms/{$type}",
+            "/labels/forms/{$type}",
         );
 
         /** @var string[][] */

@@ -15,7 +15,7 @@ class GetCatchStatesService extends AbstractBackService
     {
         $json = $this->requestContent(
             'GET',
-            '/catch_states'
+            '/labels/catch_states'
         );
 
         /** @var string[][] */

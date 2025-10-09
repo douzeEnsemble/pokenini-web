@@ -16,7 +16,7 @@ class GetGameBundlesServiceTest extends TestCase
 {
     use BackServiceTrait;
 
-    public const ENDPOINT = 'game_bundles';
+    public const ENDPOINT = 'labels/game_bundles';
     public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/game_bundles.json';
 
     public function testGet(): void

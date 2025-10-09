@@ -16,7 +16,7 @@ class GetCollectionsServiceTest extends TestCase
 {
     use BackServiceTrait;
 
-    public const ENDPOINT = 'collections';
+    public const ENDPOINT = 'labels/collections';
     public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/collections.json';
 
     public function testGet(): void

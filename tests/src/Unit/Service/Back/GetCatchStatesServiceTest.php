@@ -16,7 +16,7 @@ class GetCatchStatesServiceTest extends TestCase
 {
     use BackServiceTrait;
 
-    public const ENDPOINT = 'catch_states';
+    public const ENDPOINT = 'labels/catch_states';
     public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/catch-states.json';
 
     public function testGet(): void

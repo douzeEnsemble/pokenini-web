@@ -15,7 +15,7 @@ class GetCollectionsService extends AbstractBackService
     {
         $json = $this->requestContent(
             'GET',
-            '/collections',
+            '/labels/collections',
         );
 
         /** @var string[][] */
