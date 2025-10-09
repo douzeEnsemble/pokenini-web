@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\Exception\NoLoggedUserException;
+use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\Back\GetUserInfoService;
 use League\OAuth2\Client\Token\AccessToken;
@@ -20,28 +21,10 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(GetUserInfoService::class)]
 class GetUserInfoServiceTest extends TestCase
 {
-    use BackServiceTrait;
-
     public const ENDPOINT = 'user-info';
     public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/user-info.json';
 
     public function testGet(): void
-    {
-        /** @var GetUserInfoService $service */
-        $service = $this->getServiceWithLoggedUser(
-            GetUserInfoService::class,
-            'GET',
-            (string) file_get_contents(self::RESPONSE_CONTENT),
-            self::ENDPOINT,
-        );
-
-        $userInfo = $service->get();
-
-        $this->assertSame('68464686dazazda6876a3z8d7az0', $userInfo->identifier);
-        $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->roles);
-    }
-
-    public function testGetWithAccessToken(): void
     {
         $logger = $this->createMock(LoggerInterface::class);
         $logger
@@ -70,6 +53,7 @@ class GetUserInfoServiceTest extends TestCase
                     'headers' => [
                         'accept' => 'application/json',
                         'Authorization' => 'Bearer abcde-access-token-abcde',
+                        'X-Provider' => 'TestProvider',
                     ],
                     'cafile' => './resources/certificates/cacert.pem',
                 ],
@@ -77,11 +61,17 @@ class GetUserInfoServiceTest extends TestCase
             ->willReturn($response)
         ;
 
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'abcde-access-token-abcde']),
+        );
+
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willThrowException(new NoLoggedUserException())
+            ->method('getLoggedUser')
+            ->willReturn($user)
         ;
 
         $service = new GetUserInfoService(
@@ -94,7 +84,7 @@ class GetUserInfoServiceTest extends TestCase
 
         $accessToken = new AccessToken(['access_token' => 'abcde-access-token-abcde']);
 
-        $userInfo = $service->get($accessToken);
+        $userInfo = $service->get($accessToken, 'FakeProvider');
 
         $this->assertSame('68464686dazazda6876a3z8d7az0', $userInfo->identifier);
         $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->roles);
@@ -102,15 +92,59 @@ class GetUserInfoServiceTest extends TestCase
 
     public function testGetWithoutLoggedUser(): void
     {
-        /** @var GetUserInfoService $service */
-        $service = $this->getServiceWithoutLoggedUser(
-            GetUserInfoService::class,
-            'GET',
-            (string) file_get_contents(self::RESPONSE_CONTENT),
-            self::ENDPOINT,
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->exactly(2))
+            ->method('info')
+        ;
+
+        $client = $this->createMock(HttpClientInterface::class);
+
+        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/user-info.json');
+
+        $response = $this->createMock(ResponseInterface::class);
+        $response
+            ->expects($this->exactly(2))
+            ->method('getContent')
+            ->willReturn($json)
+        ;
+
+        $client
+            ->expects($this->once())
+            ->method('request')
+            ->with(
+                'GET',
+                'https://api.domain/user-info',
+                [
+                    'headers' => [
+                        'accept' => 'application/json',
+                        'Authorization' => 'Bearer fghjklm-access-token-fghjklm',
+                        'X-Provider' => 'FakeProvider',
+                    ],
+                    'cafile' => './resources/certificates/cacert.pem',
+                ],
+            )
+            ->willReturn($response)
+        ;
+
+        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService
+            ->expects($this->once())
+            ->method('getLoggedUser')
+            ->willThrowException(new NoLoggedUserException())
+        ;
+
+        $service = new GetUserInfoService(
+            $logger,
+            $client,
+            'https://api.domain',
+            './resources/certificates/cacert.pem',
+            $userTokenService,
         );
 
-        $userInfo = $service->get();
+        $accessToken = new AccessToken(['access_token' => 'fghjklm-access-token-fghjklm']);
+
+        $userInfo = $service->get($accessToken, 'FakeProvider');
 
         $this->assertSame('68464686dazazda6876a3z8d7az0', $userInfo->identifier);
         $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->roles);

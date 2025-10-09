@@ -36,7 +36,7 @@ class UserTokenService
         return $loggedUserId === $identifier;
     }
 
-    public function getLoggedUserToken(): string
+    public function getLoggedUser(): User
     {
         /** @var null|User $user */
         $user = $this->security->getUser();
@@ -45,6 +45,6 @@ class UserTokenService
             throw new NoLoggedUserException('No user logged');
         }
 
-        return $user->getAccessToken()->getToken();
+        return $user;
     }
 }

@@ -39,7 +39,7 @@ trait AuthenticatorTrait
 
     private function loadFromAccessToken(AccessToken $accessToken, string $providerName): User
     {
-        $userInfo = $this->getUserInfoService->get($accessToken);
+        $userInfo = $this->getUserInfoService->get($accessToken, $providerName);
 
         $user = new User($userInfo->identifier, $providerName, $accessToken);
 

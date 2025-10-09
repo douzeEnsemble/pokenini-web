@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\Exception\NoLoggedUserException;
+use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\Back\BackServiceInterface;
+use League\OAuth2\Client\Token\AccessToken;
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -55,10 +58,10 @@ trait BackServiceTrait
             $method,
             $responseContent,
             $endpoint,
-            'public',
+            null,
             $requestOptions,
         );
-        $userTokenService = $this->getUserTokenServiceMock('public');
+        $userTokenService = $this->getUserTokenServiceMock(null);
 
         return $this->instanciateService(
             $className,
@@ -100,12 +103,21 @@ trait BackServiceTrait
         string $method,
         string $content,
         string $endpoint,
-        string $token,
+        ?string $token,
         array $requestOptions = [],
     ): HttpClientInterface {
         $client = $this->createMock(HttpClientInterface::class);
 
         $response = $this->getResponseMock($content);
+
+        $headers = [
+            'accept' => 'application/json',
+        ];
+
+        if (null !== $token) {
+            $headers['Authorization'] = 'Bearer '.$token;
+            $headers['X-Provider'] = 'TestProvider';
+        }
 
         $client
             ->expects($this->once())
@@ -115,10 +127,7 @@ trait BackServiceTrait
                 'https://api.domain/'.$endpoint,
                 array_merge(
                     [
-                        'headers' => [
-                            'accept' => 'application/json',
-                            'Authorization' => 'Bearer '.$token,
-                        ],
+                        'headers' => $headers,
                         'cafile' => './resources/certificates/cacert.pem',
                     ],
                     $requestOptions,
@@ -130,13 +139,30 @@ trait BackServiceTrait
         return $client;
     }
 
-    private function getUserTokenServiceMock(string $token): UserTokenService
+    private function getUserTokenServiceMock(?string $token): UserTokenService
     {
         $userTokenService = $this->createMock(UserTokenService::class);
+
+        if (null === $token) {
+            $userTokenService
+                ->expects($this->once())
+                ->method('getLoggedUser')
+                ->willThrowException(new NoLoggedUserException('No user logged'))
+            ;
+
+            return $userTokenService;
+        }
+
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => $token]),
+        );
+
         $userTokenService
             ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn($token)
+            ->method('getLoggedUser')
+            ->willReturn($user)
         ;
 
         return $userTokenService;
