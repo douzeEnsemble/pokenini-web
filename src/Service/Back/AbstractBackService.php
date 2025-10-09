@@ -49,7 +49,7 @@ abstract class AbstractBackService implements BackServiceInterface
         }
 
         if (null !== $provider) {
-            $optionsHeaders['X-Provider'] = $provider;
+            $optionsHeaders['X-Provider'] = strtolower($provider);
         }
 
         $finalOptions = array_merge(

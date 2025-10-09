@@ -53,7 +53,7 @@ class GetUserInfoServiceTest extends TestCase
                     'headers' => [
                         'accept' => 'application/json',
                         'Authorization' => 'Bearer abcde-access-token-abcde',
-                        'X-Provider' => 'TestProvider',
+                        'X-Provider' => 'testprovider',
                     ],
                     'cafile' => './resources/certificates/cacert.pem',
                 ],
@@ -119,7 +119,7 @@ class GetUserInfoServiceTest extends TestCase
                     'headers' => [
                         'accept' => 'application/json',
                         'Authorization' => 'Bearer fghjklm-access-token-fghjklm',
-                        'X-Provider' => 'FakeProvider',
+                        'X-Provider' => 'fakeprovider',
                     ],
                     'cafile' => './resources/certificates/cacert.pem',
                 ],

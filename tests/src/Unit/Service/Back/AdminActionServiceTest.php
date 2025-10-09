@@ -47,7 +47,7 @@ class AdminActionServiceTest extends TestCase
                     'headers' => [
                         'accept' => 'application/json',
                         'Authorization' => 'Bearer dzdz-access-token-dzdz',
-                        'X-Provider' => 'TestProvider',
+                        'X-Provider' => 'testprovider',
                     ],
                     'cafile' => '/some/where/cafile.pem',
                 ],
@@ -111,7 +111,7 @@ class AdminActionServiceTest extends TestCase
                     'headers' => [
                         'accept' => 'application/json',
                         'Authorization' => 'Bearer dzdz-access-token-dzdz',
-                        'X-Provider' => 'TestProvider',
+                        'X-Provider' => 'testprovider',
                     ],
                     'cafile' => '/some/where/cafile.pem',
                 ],
