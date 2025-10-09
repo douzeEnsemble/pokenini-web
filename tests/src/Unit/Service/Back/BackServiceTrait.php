@@ -116,7 +116,7 @@ trait BackServiceTrait
 
         if (null !== $token) {
             $headers['Authorization'] = 'Bearer '.$token;
-            $headers['X-Provider'] = 'TestProvider';
+            $headers['X-Provider'] = 'testprovider';
         }
 
         $client
