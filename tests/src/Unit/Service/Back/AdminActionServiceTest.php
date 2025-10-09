@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\Exception\NoLoggedUserException;
+use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\Back\AdminActionService;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -45,6 +47,7 @@ class AdminActionServiceTest extends TestCase
                     'headers' => [
                         'accept' => 'application/json',
                         'Authorization' => 'Bearer dzdz-access-token-dzdz',
+                        'X-Provider' => 'TestProvider',
                     ],
                     'cafile' => '/some/where/cafile.pem',
                 ],
@@ -52,11 +55,17 @@ class AdminActionServiceTest extends TestCase
             ->willReturn($response)
         ;
 
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzdz-access-token-dzdz']),
+        );
+
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('dzdz-access-token-dzdz')
+            ->method('getLoggedUser')
+            ->willReturn($user)
         ;
 
         $service = new AdminActionService(
@@ -102,6 +111,7 @@ class AdminActionServiceTest extends TestCase
                     'headers' => [
                         'accept' => 'application/json',
                         'Authorization' => 'Bearer dzdz-access-token-dzdz',
+                        'X-Provider' => 'TestProvider',
                     ],
                     'cafile' => '/some/where/cafile.pem',
                 ],
@@ -109,11 +119,17 @@ class AdminActionServiceTest extends TestCase
             ->willReturn($response)
         ;
 
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzdz-access-token-dzdz']),
+        );
+
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
-            ->method('getLoggedUserToken')
-            ->willReturn('dzdz-access-token-dzdz')
+            ->method('getLoggedUser')
+            ->willReturn($user)
         ;
 
         $service = new AdminActionService(
@@ -168,7 +184,7 @@ class AdminActionServiceTest extends TestCase
         $userTokenService = $this->createMock(UserTokenService::class);
         $userTokenService
             ->expects($this->once())
-            ->method('getLoggedUserToken')
+            ->method('getLoggedUser')
             ->willThrowException(new NoLoggedUserException('No logged user'))
         ;
 

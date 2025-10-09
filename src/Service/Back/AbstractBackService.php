@@ -29,19 +29,27 @@ abstract class AbstractBackService implements BackServiceInterface
         string $endpointUrl,
         array $options = [],
         ?AccessToken $accessToken = null,
+        ?string $providerName = null,
     ): ResponseInterface {
         $optionsHeaders = [
             'accept' => 'application/json',
         ];
 
         try {
-            $token = $this->userTokenService->getLoggedUserToken();
+            $user = $this->userTokenService->getLoggedUser();
+            $token = $user->getAccessToken()->getToken();
+            $provider = $user->getProviderName();
         } catch (NoLoggedUserException) {
             $token = $accessToken?->getToken() ?? null;
+            $provider = $providerName ?? null;
         }
 
         if (null !== $token) {
             $optionsHeaders['Authorization'] = 'Bearer '.$token;
+        }
+
+        if (null !== $provider) {
+            $optionsHeaders['X-Provider'] = $provider;
         }
 
         $finalOptions = array_merge(
@@ -81,12 +89,14 @@ abstract class AbstractBackService implements BackServiceInterface
         string $endpointUrl,
         array $options = [],
         ?AccessToken $accessToken = null,
+        ?string $providerName = null,
     ): string {
         $response = $this->request(
             $method,
             $endpointUrl,
             $options,
             $accessToken,
+            $providerName,
         );
 
         /** @var string */

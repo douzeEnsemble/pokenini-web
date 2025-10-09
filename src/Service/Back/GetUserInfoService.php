@@ -7,13 +7,14 @@ use League\OAuth2\Client\Token\AccessToken;
 
 class GetUserInfoService extends AbstractBackService implements BackServiceInterface
 {
-    public function get(?AccessToken $accessToken = null): UserInfo
+    public function get(AccessToken $accessToken, string $providerName): UserInfo
     {
         $content = $this->requestContent(
             'GET',
             '/user-info',
             [],
             $accessToken,
+            $providerName,
         );
 
         /** @var array<string|string[]> */
