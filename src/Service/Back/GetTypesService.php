@@ -15,7 +15,7 @@ class GetTypesService extends AbstractBackService
     {
         $json = $this->requestContent(
             'GET',
-            '/types',
+            '/labels/types',
         );
 
         /** @var string[][] */

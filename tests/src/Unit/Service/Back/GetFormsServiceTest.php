@@ -125,7 +125,7 @@ class GetFormsServiceTest extends TestCase
             GetFormsService::class,
             'GET',
             (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/category_forms.json'),
-            'forms/category',
+            'labels/forms/category',
         );
 
         $this->assertEquals(
@@ -141,7 +141,7 @@ class GetFormsServiceTest extends TestCase
             GetFormsService::class,
             'GET',
             (string) file_get_contents("/var/www/html/tests/resources/unit/service/back/{$type}_forms.json"),
-            "forms/{$type}",
+            "labels/forms/{$type}",
         );
     }
 }

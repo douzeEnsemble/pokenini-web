@@ -15,7 +15,7 @@ class GetGameBundlesService extends AbstractBackService
     {
         $json = $this->requestContent(
             'GET',
-            '/game_bundles',
+            '/labels/game_bundles',
         );
 
         /** @var string[][] */

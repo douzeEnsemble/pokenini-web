@@ -16,7 +16,7 @@ class GetTypesServiceTest extends TestCase
 {
     use BackServiceTrait;
 
-    public const ENDPOINT = 'types';
+    public const ENDPOINT = 'labels/types';
     public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/types.json';
 
     public function testGet(): void
