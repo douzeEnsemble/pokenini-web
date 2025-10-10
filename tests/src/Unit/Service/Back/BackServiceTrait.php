@@ -10,6 +10,7 @@ use App\Security\UserTokenService;
 use App\Service\Back\BackServiceInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -174,6 +175,8 @@ trait BackServiceTrait
         HttpClientInterface $client,
         UserTokenService $userTokenService,
     ): BackServiceInterface {
+        $serializer = $this->createMock(SerializerInterface::class);
+
         /** @var BackServiceInterface */
         return new $className(
             $logger,
@@ -181,6 +184,7 @@ trait BackServiceTrait
             'https://api.domain',
             './resources/certificates/cacert.pem',
             $userTokenService,
+            $serializer,
         );
     }
 }

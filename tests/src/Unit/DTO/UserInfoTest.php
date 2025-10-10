@@ -14,26 +14,36 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(UserInfo::class)]
 class UserInfoTest extends TestCase
 {
-    public function testCreateFromArray(): void
+    public function testConstrutorAndGetters(): void
     {
-        $userInfo = UserInfo::createFromArray([
-            'identifier' => '20230321T0834470000',
-            'roles' => [
-                'ROLE_TRAINER',
-                'ROLE_COLLECTOR',
-            ],
-        ]);
-
-        $this->assertEquals(
+        $userInfo = new UserInfo(
             '20230321T0834470000',
-            $userInfo->identifier,
-        );
-        $this->assertEquals(
+            'testprovider',
+            'collector',
             [
                 'ROLE_TRAINER',
                 'ROLE_COLLECTOR',
             ],
-            $userInfo->roles,
+        );
+
+        $this->assertSame(
+            '20230321T0834470000',
+            $userInfo->getId(),
+        );
+        $this->assertSame(
+            'testprovider',
+            $userInfo->getProvider(),
+        );
+        $this->assertSame(
+            'collector',
+            $userInfo->getProfile(),
+        );
+        $this->assertSame(
+            [
+                'ROLE_TRAINER',
+                'ROLE_COLLECTOR',
+            ],
+            $userInfo->getRoles(),
         );
     }
 }

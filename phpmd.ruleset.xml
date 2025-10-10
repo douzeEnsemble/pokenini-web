@@ -43,8 +43,18 @@
     </rule>
 
     <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable" />
         <exclude name="LongVariable" />
         <exclude name="LongClassName" />
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="3" />
+            <property
+                name="exceptions"
+                value="id,i,e"
+            />
+        </properties>
     </rule>
     <rule ref="rulesets/naming.xml/LongVariable">
         <properties>

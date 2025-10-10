@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\DTO\UserInfo;
 use App\Exception\NoLoggedUserException;
 use App\Security\User;
 use App\Security\UserTokenService;
@@ -12,6 +13,7 @@ use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -74,20 +76,38 @@ class GetUserInfoServiceTest extends TestCase
             ->willReturn($user)
         ;
 
+        $userInfo = new UserInfo(
+            '68464686dazazda6876a3z8d7az0',
+            'mock',
+            'collector',
+            ['ROLE_TRAINER', 'ROLE_COLLECTOR'],
+        );
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with($json, UserInfo::class, 'json')
+            ->willReturn($userInfo)
+        ;
+
         $service = new GetUserInfoService(
             $logger,
             $client,
             'https://api.domain',
             './resources/certificates/cacert.pem',
             $userTokenService,
+            $serializer,
         );
 
         $accessToken = new AccessToken(['access_token' => 'abcde-access-token-abcde']);
 
         $userInfo = $service->get($accessToken, 'FakeProvider');
 
-        $this->assertSame('68464686dazazda6876a3z8d7az0', $userInfo->identifier);
-        $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->roles);
+        $this->assertSame('68464686dazazda6876a3z8d7az0', $userInfo->getId());
+        $this->assertSame('mock', $userInfo->getProvider());
+        $this->assertSame('collector', $userInfo->getProfile());
+        $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->getRoles());
     }
 
     public function testGetWithoutLoggedUser(): void
@@ -134,19 +154,37 @@ class GetUserInfoServiceTest extends TestCase
             ->willThrowException(new NoLoggedUserException())
         ;
 
+        $userInfo = new UserInfo(
+            '68464686dazazda6876a3z8d7az0',
+            'mock',
+            'collector',
+            ['ROLE_TRAINER', 'ROLE_COLLECTOR'],
+        );
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with($json, UserInfo::class, 'json')
+            ->willReturn($userInfo)
+        ;
+
         $service = new GetUserInfoService(
             $logger,
             $client,
             'https://api.domain',
             './resources/certificates/cacert.pem',
             $userTokenService,
+            $serializer,
         );
 
         $accessToken = new AccessToken(['access_token' => 'fghjklm-access-token-fghjklm']);
 
         $userInfo = $service->get($accessToken, 'FakeProvider');
 
-        $this->assertSame('68464686dazazda6876a3z8d7az0', $userInfo->identifier);
-        $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->roles);
+        $this->assertSame('68464686dazazda6876a3z8d7az0', $userInfo->getId());
+        $this->assertSame('mock', $userInfo->getProvider());
+        $this->assertSame('collector', $userInfo->getProfile());
+        $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->getRoles());
     }
 }

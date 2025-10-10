@@ -1,5 +1,7 @@
 {
   "identifier": "68464686dazazda6876a3z8d7az0",
+  "provider": "mock",
+  "profile": "collector",
   "roles": [
     "ROLE_TRAINER",
     "ROLE_COLLECTOR"

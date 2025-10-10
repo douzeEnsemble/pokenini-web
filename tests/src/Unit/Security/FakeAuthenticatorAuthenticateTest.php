@@ -127,11 +127,11 @@ class FakeAuthenticatorAuthenticateTest extends TestCase
             ->expects($this->once())
             ->method('get')
             ->willReturn(
-                UserInfo::createFromArray(
-                    [
-                        'identifier' => '1212121212000000000000012',
-                        'roles' => $roles,
-                    ],
+                new UserInfo(
+                    '1212121212000000000000012',
+                    'mock',
+                    'trainer',
+                    $roles,
                 )
             )
         ;

@@ -17,9 +17,6 @@ class GetUserInfoService extends AbstractBackService implements BackServiceInter
             $providerName,
         );
 
-        /** @var array<string|string[]> */
-        $data = json_decode($content, true);
-
-        return UserInfo::createFromArray($data);
+        return $this->serializer->deserialize($content, UserInfo::class, 'json');
     }
 }
