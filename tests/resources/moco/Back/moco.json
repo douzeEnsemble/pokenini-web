@@ -152,7 +152,9 @@
     "response": {
       "status": "200",
       "json": {
-        "identifier" : "111111-trainer-111111",
+        "id" : "111111-trainer-111111",
+        "provider": "mock",
+        "profile": "trainer",
         "roles" : [
           "ROLE_TRAINER"
         ]

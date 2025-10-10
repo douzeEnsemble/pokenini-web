@@ -7,27 +7,35 @@ namespace App\DTO;
 class UserInfo
 {
     /**
-     * @param string[] $roles
+     * @param array<int, string> $roles
      */
-    private function __construct(
-        public readonly string $identifier,
-        public readonly array $roles,
+    public function __construct(
+        private readonly string $id,
+        private readonly string $provider,
+        private readonly string $profile,
+        private readonly array $roles,
     ) {}
 
-    /**
-     * @param array<string|string[]> $data
-     */
-    public static function createFromArray(array $data): self
+    public function getId(): string
     {
-        /** @var string */
-        $identifier = $data['identifier'];
+        return $this->id;
+    }
 
-        /** @var string[] */
-        $roles = $data['roles'] ?? [];
+    public function getProvider(): string
+    {
+        return $this->provider;
+    }
 
-        return new self(
-            $identifier,
-            $roles,
-        );
+    public function getProfile(): string
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
     }
 }

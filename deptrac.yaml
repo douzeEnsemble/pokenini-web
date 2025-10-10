@@ -100,6 +100,10 @@ parameters:
       collectors:
         - type: classLike
           value: '^Symfony\\Bundle\\SecurityBundle\\.*'
+    - name: SymfonySerializer
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\Serializer\\.*'
     - name: SymfonyValidator
       collectors:
         - type: classLike
@@ -138,6 +142,7 @@ parameters:
     AppException:
     AppHelper:
     AppSecurity:
+      - AppDTO
       - AppException
       - AppService
       - KnpUOAuth2ClientBundle
@@ -157,6 +162,7 @@ parameters:
       - SymfonyContractsHttpClient
       - SymfonyHttpFoundation
       - SymfonySecurityBundle
+      - SymfonySerializer
       - SymfonyValidator
     AppTwig:
       - SymfonyContractsTranslation

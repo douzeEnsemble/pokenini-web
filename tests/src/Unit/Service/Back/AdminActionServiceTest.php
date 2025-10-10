@@ -12,6 +12,7 @@ use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -68,12 +69,15 @@ class AdminActionServiceTest extends TestCase
             ->willReturn($user)
         ;
 
+        $serializer = $this->createMock(SerializerInterface::class);
+
         $service = new AdminActionService(
             $logger,
             $client,
             'https://back.local',
             '/some/where/cafile.pem',
             $userTokenService,
+            $serializer,
         );
 
         $adminAction = $service->execute('update', 'something');
@@ -132,12 +136,15 @@ class AdminActionServiceTest extends TestCase
             ->willReturn($user)
         ;
 
+        $serializer = $this->createMock(SerializerInterface::class);
+
         $service = new AdminActionService(
             $logger,
             $client,
             'https://back.local',
             '/some/where/cafile.pem',
             $userTokenService,
+            $serializer,
         );
 
         $adminAction = $service->execute('update', 'something');
@@ -188,12 +195,15 @@ class AdminActionServiceTest extends TestCase
             ->willThrowException(new NoLoggedUserException('No logged user'))
         ;
 
+        $serializer = $this->createMock(SerializerInterface::class);
+
         $service = new AdminActionService(
             $logger,
             $client,
             'https://back.local',
             '/some/where/cafile.pem',
             $userTokenService,
+            $serializer,
         );
 
         $adminAction = $service->execute('update', 'something');

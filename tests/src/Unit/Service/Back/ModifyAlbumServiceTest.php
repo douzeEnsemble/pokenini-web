@@ -9,6 +9,7 @@ use App\Service\Back\ModifyAlbumService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
@@ -61,12 +62,15 @@ class ModifyAlbumServiceTest extends TestCase
 
         $userTokenService = $this->createMock(UserTokenService::class);
 
+        $serializer = $this->createMock(SerializerInterface::class);
+
         $service = new ModifyAlbumService(
             $logger,
             $client,
             'https://api.domain',
             './resources/certificates/cacert.pem',
             $userTokenService,
+            $serializer,
         );
 
         $this->expectException(\InvalidArgumentException::class);

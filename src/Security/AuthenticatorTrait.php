@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\DTO\UserInfo;
 use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,19 +40,22 @@ trait AuthenticatorTrait
 
     private function loadFromAccessToken(AccessToken $accessToken, string $providerName): User
     {
+        /** @var UserInfo $userInfo */
         $userInfo = $this->getUserInfoService->get($accessToken, $providerName);
 
-        $user = new User($userInfo->identifier, $providerName, $accessToken);
+        $user = new User($userInfo->getId(), $providerName, $accessToken);
 
-        if (in_array('ROLE_TRAINER', $userInfo->roles)) {
+        $roles = $userInfo->getRoles();
+
+        if (in_array('ROLE_TRAINER', $roles)) {
             $user->addTrainerRole();
         }
 
-        if (in_array('ROLE_COLLECTOR', $userInfo->roles)) {
+        if (in_array('ROLE_COLLECTOR', $roles)) {
             $user->addCollectorRole();
         }
 
-        if (in_array('ROLE_ADMIN', $userInfo->roles)) {
+        if (in_array('ROLE_ADMIN', $roles)) {
             $user->addAdminRole();
         }
 

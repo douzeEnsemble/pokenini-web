@@ -8,6 +8,7 @@ use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenService;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -19,6 +20,7 @@ abstract class AbstractBackService implements BackServiceInterface
         protected readonly string $backUrl,
         protected readonly string $backCafilePath,
         protected readonly UserTokenService $userTokenService,
+        protected readonly SerializerInterface $serializer,
     ) {}
 
     /**
