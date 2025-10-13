@@ -643,10 +643,6 @@
   {
     "request": {
       "uri": "/dex/list",
-      "queries": {
-        "include_unreleased_dex": "1",
-        "include_premium_dex": "1"
-      },
       "headers": {
         "X-Provider": {
           "match": ".*"
@@ -663,9 +659,6 @@
   {
     "request": {
       "uri": "/dex/list",
-      "queries": {
-        "include_premium_dex": "1"
-      },
       "headers": {
         "X-Provider": {
           "match": ".*"
@@ -682,10 +675,6 @@
   {
     "request": {
       "uri": "/dex/list",
-      "queries": {
-        "include_unreleased_dex": "1",
-        "include_premium_dex": "1"
-      },
       "headers": {
         "accept": "application/json",
         "X-Provider": {
@@ -697,7 +686,7 @@
       }
     },
     "response": {
-      "file": "/var/moco/responses/dex/admin.json"
+      "file": "/var/moco/responses/dex/159bb9b6d090a313087d2f26135970c2db49ee72.json"
     }
   },
   {
@@ -754,9 +743,6 @@
   {
     "request": {
       "uri": "/dex/list",
-      "queries": {
-        "include_premium_dex": "1"
-      },
       "headers": {
         "accept": "application/json",
         "X-Provider": {
@@ -1588,23 +1574,19 @@
       "uri": {
         "match": "/dex/can_hold_election"
       },
-      "queries": {
-        "include_premium_dex": "1",
-        "include_unreleased_dex": "1"
-      },
       "method": "get",
       "headers": {
         "X-Provider": {
           "match": ".*"
         },
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer 6c33064427a5b419ca8eb3f7d11a0807f66cab22"
         }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_dex_include_premium_dex1_include_unreleased_dex1.json"
+      "file": "/var/moco/responses/election/election_dex_admin.json"
     }
   },
   {
@@ -1612,22 +1594,19 @@
       "uri": {
         "match": "/dex/can_hold_election"
       },
-      "queries": {
-        "include_premium_dex": "1"
-      },
       "method": "get",
       "headers": {
         "X-Provider": {
           "match": ".*"
         },
         "Authorization": {
-          "match": "Bearer .*"
+          "match": "Bearer collector"
         }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_dex_include_premium_dex1.json"
+      "file": "/var/moco/responses/election/election_dex.json"
     }
   },
   {

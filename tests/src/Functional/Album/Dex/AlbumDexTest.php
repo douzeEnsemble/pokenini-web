@@ -59,45 +59,6 @@ class AlbumDexTest extends WebTestCase
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
     }
 
-    public function testAlbumDexAsAdmin(): void
-    {
-        $client = static::createClient();
-
-        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
-        $user->addTrainerRole();
-        $user->addAdminRole();
-        $client->loginUser($user, 'web');
-
-        $crawler = $client->request('GET', '/fr/album/dex');
-
-        $this->assertResponseIsSuccessful();
-
-        $this->assertFrenchLangSwitch($crawler);
-
-        $this->assertCountFilter($crawler, 6, '.home-item');
-        $this->assertCountFilter($crawler, 6, '.home-item h5');
-        $this->assertCountFilter($crawler, 0, '.home-item h6');
-
-        $this->assertCountFilter($crawler, 3, '.dex_is_premium');
-        $this->assertCountFilter($crawler, 1, '.dex_not_is_released');
-        $this->assertCountFilter($crawler, 0, '.dex_is_custom');
-
-        $firstAlbum = $crawler->filter('.home-item')->first();
-        $this->assertEquals('Rouge, Vert, Bleu, Jaune', $firstAlbum->text());
-        $this->assertEquals('/fr/album/redgreenblueyellow', $firstAlbum->filter('a')->attr('href'));
-        $this->assertEquals('https://icon.pokenini.fr/banner/redgreenblueyellow.png', $firstAlbum->filter('img')->attr('src'));
-
-        $thirdAlbum = $crawler->filter('.home-item')->eq(3);
-        $this->assertEquals('Home Chromatique', $thirdAlbum->text());
-        $this->assertEquals('/fr/album/homeshiny', $thirdAlbum->filter('a')->attr('href'));
-        $this->assertEquals('https://icon.pokenini.fr/banner/homeshiny.png', $thirdAlbum->filter('img')->attr('src'));
-
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
-
-        $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
-        $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
-    }
-
     public function testNonConnectedHome(): void
     {
         $client = static::createClient();

@@ -36,64 +36,25 @@ class GetDexServiceTest extends TestCase
         );
     }
 
-    public function testGetWithUnreleased(): void
+    public function testGetWithEmptyTrainerId(): void
     {
+        /** @var GetDexService $service */
+        $service = $this->getServiceWithoutLoggedUser(
+            GetDexService::class,
+            'GET',
+            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex.json'),
+            'dex/list',
+        );
+
         $expectedSlugs = [
-            'redgreenblueyellow',
             'homepokemongo',
             'alpha',
             'mega',
         ];
 
-        $service = $this->getMockService(
-            '/var/www/html/tests/resources/unit/service/back/dex_unreleased.json',
-            'dex/list?include_unreleased_dex=1',
-        );
-
         $this->assertEquals(
             $expectedSlugs,
-            self::extractSlugs($service->getWithUnreleased()),
-        );
-    }
-
-    public function testGetWithPremium(): void
-    {
-        $expectedSlugs = [
-            'goldsilvercrystal',
-            'homepokemongo',
-            'alpha',
-            'mega',
-        ];
-
-        $service = $this->getMockService(
-            '/var/www/html/tests/resources/unit/service/back/dex_premium.json',
-            'dex/list?include_premium_dex=1',
-        );
-
-        $this->assertEquals(
-            $expectedSlugs,
-            self::extractSlugs($service->getWithPremium()),
-        );
-    }
-
-    public function testGetWithUnreleasedAndPremium(): void
-    {
-        $expectedSlugs = [
-            'redgreenblueyellow',
-            'goldsilvercrystal',
-            'homepokemongo',
-            'alpha',
-            'mega',
-        ];
-
-        $service = $this->getMockService(
-            '/var/www/html/tests/resources/unit/service/back/dex_unreleased_and_premium.json',
-            'dex/list?include_unreleased_dex=1&include_premium_dex=1',
-        );
-
-        $this->assertEquals(
-            $expectedSlugs,
-            self::extractSlugs($service->getWithUnreleasedAndPremium()),
+            self::extractSlugs($service->get('')),
         );
     }
 
@@ -115,73 +76,6 @@ class GetDexServiceTest extends TestCase
         $this->assertEquals(
             $expectedSlugs,
             self::extractSlugs($service->get('123')),
-        );
-    }
-
-    public function testGetWithUnreleasedWithTrainerId(): void
-    {
-        /** @var GetDexService $service */
-        $service = $this->getServiceWithoutLoggedUser(
-            GetDexService::class,
-            'GET',
-            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex_123_unreleased.json'),
-            'dex/list?trainer_id=123&include_unreleased_dex=1',
-        );
-
-        $expectedSlugs = [
-            'redgreenblueyellow',
-            'homepokemongo',
-            'alpha',
-        ];
-
-        $this->assertEquals(
-            $expectedSlugs,
-            self::extractSlugs($service->getWithUnreleased('123')),
-        );
-    }
-
-    public function testGetWithPremiumWithTrainerId(): void
-    {
-        /** @var GetDexService $service */
-        $service = $this->getServiceWithoutLoggedUser(
-            GetDexService::class,
-            'GET',
-            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex_123_premium.json'),
-            'dex/list?trainer_id=123&include_premium_dex=1',
-        );
-
-        $expectedSlugs = [
-            'goldsilvercrystal',
-            'homepokemongo',
-            'alpha',
-        ];
-
-        $this->assertEquals(
-            $expectedSlugs,
-            self::extractSlugs($service->getWithPremium('123')),
-        );
-    }
-
-    public function testGetWithUnreleasedAndPremiumWithTrainerId(): void
-    {
-        /** @var GetDexService $service */
-        $service = $this->getServiceWithoutLoggedUser(
-            GetDexService::class,
-            'GET',
-            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex_123_unreleased_and_premium.json'),
-            'dex/list?trainer_id=123&include_unreleased_dex=1&include_premium_dex=1',
-        );
-
-        $expectedSlugs = [
-            'redgreenblueyellow',
-            'goldsilvercrystal',
-            'homepokemongo',
-            'alpha',
-        ];
-
-        $this->assertEquals(
-            $expectedSlugs,
-            self::extractSlugs($service->getWithUnreleasedAndPremium('123')),
         );
     }
 

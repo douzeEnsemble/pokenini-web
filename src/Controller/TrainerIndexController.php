@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\DTO\DexFilters;
 use App\DTO\DexFiltersRequest;
-use App\Service\GetDexByRoleService;
+use App\Service\Back\GetDexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +17,14 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class TrainerIndexController extends AbstractController
 {
     public function __construct(
-        private readonly GetDexByRoleService $getDexByRoleService,
+        private readonly GetDexService $getDexService,
     ) {}
 
     #[Route('')]
     #[IsGranted('ROLE_TRAINER')]
     public function index(Request $request): Response
     {
-        $trainerDex = $this->getDexByRoleService->getUserDex();
+        $trainerDex = $this->getDexService->get();
 
         $filters = DexFiltersRequest::dexFiltersFromRequest($request);
 
