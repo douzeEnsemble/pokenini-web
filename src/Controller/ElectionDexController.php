@@ -16,22 +16,7 @@ class ElectionDexController extends AbstractController
     public function index(
         GetElectionDexService $getDexService,
     ): Response {
-        switch (true) {
-            case $this->isGranted('ROLE_ADMIN'):
-                $dex = $getDexService->getWithUnreleasedAndPremium();
-
-                break;
-
-            case $this->isGranted('ROLE_COLLECTOR'):
-                $dex = $getDexService->getWithPremium();
-
-                break;
-
-            default:
-                $dex = $getDexService->get();
-
-                break;
-        }
+        $dex = $getDexService->get();
 
         return $this->render(
             'Election/dex.html.twig',

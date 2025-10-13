@@ -25,9 +25,7 @@ class AlbumDexController extends AbstractController
     ): Response {
         $requestedTrainerId = $request->query->getAlnum('t', '');
 
-        $dex = $this->isGranted('ROLE_ADMIN')
-            ? $getDexService->getWithUnreleasedAndPremium($requestedTrainerId)
-            : $getDexService->getWithPremium($requestedTrainerId);
+        $dex = $getDexService->get($requestedTrainerId);
 
         return $this->render(
             'AlbumDex/index.html.twig',

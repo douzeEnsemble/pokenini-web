@@ -37,34 +37,6 @@ class GetElectionDexServiceTest extends TestCase
         );
     }
 
-    public function testGetWithPremium(): void
-    {
-        $expectedSlugs = [
-            'home',
-            'redgreenblueyellow',
-        ];
-
-        $this->assertEquals(
-            $expectedSlugs,
-            self::extractSlugs($this->getServiceWithPremium()->getWithPremium()),
-        );
-    }
-
-    public function testGetWithUnreleasedAndPremium(): void
-    {
-        $expectedSlugs = [
-            'home',
-            'homeshiny',
-            'redgreenblueyellow',
-            'redgreenblueyellowshiny',
-        ];
-
-        $this->assertEquals(
-            $expectedSlugs,
-            self::extractSlugs($this->getServiceWithUnreleasedAndPremium()->getWithUnreleasedAndPremium()),
-        );
-    }
-
     public function testWithoutLoggedUser(): void
     {
         /** @var GetElectionDexService $service */
@@ -80,35 +52,6 @@ class GetElectionDexServiceTest extends TestCase
                 'homeshiny',
             ],
             self::extractSlugs($service->get()),
-        );
-    }
-
-    private function getServiceWithPremium(): GetElectionDexService
-    {
-        return $this->getMockService(
-            '/var/www/html/tests/resources/unit/service/back/election_dex_premium.json',
-            'dex/can_hold_election?include_premium_dex=1',
-        );
-    }
-
-    private function getServiceWithUnreleasedAndPremium(): GetElectionDexService
-    {
-        return $this->getMockService(
-            '/var/www/html/tests/resources/unit/service/back/election_dex_unreleased_and_premium.json',
-            'dex/can_hold_election?include_unreleased_dex=1&include_premium_dex=1',
-        );
-    }
-
-    private function getMockService(
-        string $filename,
-        string $endpoint,
-    ): GetElectionDexService {
-        /** @var GetElectionDexService */
-        return $this->getServiceWithLoggedUser(
-            GetElectionDexService::class,
-            'GET',
-            (string) file_get_contents($filename),
-            $endpoint,
         );
     }
 
