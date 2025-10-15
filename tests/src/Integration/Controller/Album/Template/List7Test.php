@@ -1,0 +1,57 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Tests\Integration\Controller\Album\Template;
+
+use App\Controller\AlbumIndexController;
+use App\Security\User;
+use App\Tests\Common\Traits\TestNavTrait;
+use League\OAuth2\Client\Token\AccessToken;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+/**
+ * @internal
+ */
+#[CoversClass(AlbumIndexController::class)]
+#[Group('api-mocked-testing')]
+class List7Test extends WebTestCase
+{
+    use TestNavTrait;
+
+    public function testDexList7Template(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/album/demolist7?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertCountFilter($crawler, 41, '.album-case.col');
+        $this->assertCountFilter($crawler, 7, 'div.row.album-line', 0, '.album-case.col');
+        $this->assertCountFilter($crawler, 7, 'div.row.album-line', 2, '.album-case.col');
+        $this->assertCountFilter($crawler, 6, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 0, '.box');
+    }
+
+    public function testFilterDexList7Template(): void
+    {
+        $client = static::createClient();
+
+        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/album/demolist7?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertCountFilter($crawler, 35, '.album-case.col');
+        $this->assertCountFilter($crawler, 7, 'div.row.album-line', 0, '.album-case.col');
+        $this->assertCountFilter($crawler, 7, 'div.row.album-line', 2, '.album-case.col');
+        $this->assertCountFilter($crawler, 5, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 0, '.box');
+    }
+}
