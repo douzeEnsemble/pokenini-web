@@ -341,6 +341,14 @@ clean-moco-routes: ## Clean unused moco routes
 clean-moco-routes:
 	tools/clean-moco-routes/clean_moco_routes.sh tests/resources/moco/Back/moco.json
 
+.PHONY: clear-caches
+clear-caches: ## Clean PHP caches
+clear-caches: tools/cachetool/cachetool.phar
+	@$(PHP) tools/cachetool/cachetool.phar apcu:cache:clear --cli
+	@$(PHP) tools/cachetool/cachetool.phar apcu:cache:clear --fcgi
+	@$(PHP) tools/cachetool/cachetool.phar opcache:reset
+	@$(PHP) tools/cachetool/cachetool.phar stat:clear
+
 ## —— Tools 🔧 ———————————————————————————————————————————————————————————————
 tools/php-cs-fixer/vendor/bin/php-cs-fixer: ## Install php-cs-fixer
 	@$(COMPOSER) install --working-dir=tools/php-cs-fixer --optimize-autoloader --no-dev
@@ -362,6 +370,11 @@ tools/infection/vendor/bin/infection: ## Install infection
 
 tools/phpinsights/vendor/bin/phpinsights: ## Install phpinsights
 	@$(COMPOSER) install --working-dir=tools/phpinsights --optimize-autoloader --no-dev
+
+tools/cachetool/cachetool.phar: ## Install cachetool
+	mkdir -p tools/cachetool
+	curl -sLO https://github.com/gordalina/cachetool/releases/download/9.2.1/cachetool.phar --output-dir tools/cachetool
+	chmod +x tools/cachetool/cachetool.phar
 
 ## —— Image 🐳 ———————————————————————————————————————————————————————————————
 img-build: ## Build Docker image

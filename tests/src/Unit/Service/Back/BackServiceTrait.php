@@ -25,6 +25,7 @@ trait BackServiceTrait
         string $responseContent,
         string $endpoint,
         array $requestOptions = [],
+        ?SerializerInterface $serializer = null,
     ): BackServiceInterface {
         $logger = $this->getLoggerMock();
         $client = $this->getClientMock(
@@ -41,6 +42,7 @@ trait BackServiceTrait
             $logger,
             $client,
             $userTokenService,
+            $serializer,
         );
     }
 
@@ -53,6 +55,7 @@ trait BackServiceTrait
         string $responseContent,
         string $endpoint,
         array $requestOptions = [],
+        ?SerializerInterface $serializer = null,
     ): BackServiceInterface {
         $logger = $this->getLoggerMock();
         $client = $this->getClientMock(
@@ -69,6 +72,7 @@ trait BackServiceTrait
             $logger,
             $client,
             $userTokenService,
+            $serializer,
         );
     }
 
@@ -174,8 +178,9 @@ trait BackServiceTrait
         LoggerInterface $logger,
         HttpClientInterface $client,
         UserTokenService $userTokenService,
+        ?SerializerInterface $serializer = null,
     ): BackServiceInterface {
-        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer = $serializer ?? $this->createMock(SerializerInterface::class);
 
         /** @var BackServiceInterface */
         return new $className(

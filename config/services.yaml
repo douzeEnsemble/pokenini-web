@@ -15,3 +15,18 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+###> symfony/serializer ###
+    Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor: ~
+    Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor: ~
+
+    Symfony\Component\PropertyInfo\PropertyInfoExtractor:
+        arguments:
+            $listExtractors: [ '@Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor' ]
+            $typeExtractors: [ '@Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor', '@Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor' ]
+            $descriptionExtractors: []
+            $accessExtractors: []
+
+    Symfony\Component\Serializer\Normalizer\ObjectNormalizer:
+        arguments:
+            $propertyTypeExtractor: '@Symfony\Component\PropertyInfo\PropertyInfoExtractor'
+###< symfony/serializer ###

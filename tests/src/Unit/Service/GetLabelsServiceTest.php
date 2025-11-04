@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
-use App\Service\Back\GetCatchStatesService;
-use App\Service\Back\GetCollectionsService;
-use App\Service\Back\GetFormsService;
-use App\Service\Back\GetGameBundlesService;
-use App\Service\Back\GetTypesService;
 use App\Service\GetLabelsService;
+use App\Service\Back\GetLabelsService as BackGetLabelsService;
+use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -19,107 +16,62 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(GetLabelsService::class)]
 class GetLabelsServiceTest extends TestCase
 {
+    use ResponseObjectTrait;
+
     public function testGetCatchStates(): void
     {
-        $this->getService('catch_states')->getCatchStates();
+        $this->getService()->getCatchStates();
     }
 
     public function testGetTypes(): void
     {
-        $this->getService('types')->getTypes();
+        $this->getService()->getTypes();
     }
 
     public function testGetFormsCategory(): void
     {
-        $this->getService('forms_category')->getFormsCategory();
+        $this->getService()->getFormsCategory();
     }
 
     public function testGetFormsRegional(): void
     {
-        $this->getService('forms_regional')->getFormsRegional();
+        $this->getService()->getFormsRegional();
     }
 
     public function testGetFormsSpecial(): void
     {
-        $this->getService('forms_special')->getFormsSpecial();
+        $this->getService()->getFormsSpecial();
     }
 
     public function testGetFormsVariant(): void
     {
-        $this->getService('forms_variant')->getFormsVariant();
+        $this->getService()->getFormsVariant();
     }
 
     public function testGetGameBundles(): void
     {
-        $this->getService('game_bundles')->getGameBundles();
+        $this->getService()->getGameBundles();
     }
 
     public function testGetCollections(): void
     {
-        $this->getService('collections')->getCollections();
+        $this->getService()->getCollections();
     }
 
     /**
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
-    private function getService(string $type): GetLabelsService
+    private function getService(): GetLabelsService
     {
-        $getCatchStatesService = $this->createMock(GetCatchStatesService::class);
-        $getCatchStatesService
-            ->expects($this->exactly('catch_states' === $type ? 1 : 0))
+        $getLabelsService = $this->createMock(BackGetLabelsService::class);
+        $getLabelsService
+            ->expects($this->once())
             ->method('get')
-            ->willReturn([])
-        ;
-
-        $getTypesService = $this->createMock(GetTypesService::class);
-        $getTypesService
-            ->expects($this->exactly('types' === $type ? 1 : 0))
-            ->method('get')
-            ->willReturn([])
-        ;
-
-        $getFormsService = $this->createMock(GetFormsService::class);
-        $getFormsService
-            ->expects($this->exactly('forms_category' === $type ? 1 : 0))
-            ->method('getFormsCategory')
-            ->willReturn([])
-        ;
-        $getFormsService
-            ->expects($this->exactly('forms_regional' === $type ? 1 : 0))
-            ->method('getFormsRegional')
-            ->willReturn([])
-        ;
-        $getFormsService
-            ->expects($this->exactly('forms_special' === $type ? 1 : 0))
-            ->method('getFormsSpecial')
-            ->willReturn([])
-        ;
-        $getFormsService
-            ->expects($this->exactly('forms_variant' === $type ? 1 : 0))
-            ->method('getFormsVariant')
-            ->willReturn([])
-        ;
-
-        $getGameBundlesService = $this->createMock(GetGameBundlesService::class);
-        $getGameBundlesService
-            ->expects($this->exactly('game_bundles' === $type ? 1 : 0))
-            ->method('get')
-            ->willReturn([])
-        ;
-
-        $getCollectionsService = $this->createMock(GetCollectionsService::class);
-        $getCollectionsService
-            ->expects($this->exactly('collections' === $type ? 1 : 0))
-            ->method('get')
-            ->willReturn([])
+            ->willReturn($this->getStubLabels())
         ;
 
         return new GetLabelsService(
-            $getCatchStatesService,
-            $getTypesService,
-            $getFormsService,
-            $getGameBundlesService,
-            $getCollectionsService,
+            $getLabelsService,
         );
     }
 }

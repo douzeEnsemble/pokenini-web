@@ -4,83 +4,94 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Service\Back\GetCatchStatesService;
-use App\Service\Back\GetCollectionsService;
-use App\Service\Back\GetFormsService;
-use App\Service\Back\GetGameBundlesService;
-use App\Service\Back\GetTypesService;
+use App\ResponseObject\CatchState;
+use App\ResponseObject\CategoryForm;
+use App\ResponseObject\Collection;
+use App\ResponseObject\GameBundle;
+use App\ResponseObject\Labels;
+use App\ResponseObject\SpecialForm;
+use App\ResponseObject\Type;
+use App\ResponseObject\VariantForm;
+use App\Service\Back\GetLabelsService as BackGetLabelsService;
 
 class GetLabelsService
 {
+    private ?Labels $labels = null;
+
     public function __construct(
-        private readonly GetCatchStatesService $getCatchStatesService,
-        private readonly GetTypesService $getTypesService,
-        private readonly GetFormsService $getFormsService,
-        private readonly GetGameBundlesService $getGameBundlesService,
-        private readonly GetCollectionsService $getCollectionsService,
+        private readonly BackGetLabelsService $getService,
     ) {}
 
     /**
-     * @return string[][]
+     * @return array<int, CatchState>
      */
     public function getCatchStates(): array
     {
-        return $this->getCatchStatesService->get();
+        return $this->getLabels()->getCatchStates();
     }
 
     /**
-     * @return string[][]
+     * @return array<int, Type>
      */
     public function getTypes(): array
     {
-        return $this->getTypesService->get();
+        return $this->getLabels()->getTypes();
     }
 
     /**
-     * @return string[][]
+     * @return array<int, CategoryForm>
      */
     public function getFormsCategory(): array
     {
-        return $this->getFormsService->getFormsCategory();
+        return $this->getLabels()->getCategoryForms();
     }
 
     /**
-     * @return string[][]
+     * @return array<int, RegionalForm>
      */
     public function getFormsRegional(): array
     {
-        return $this->getFormsService->getFormsRegional();
+        return $this->getLabels()->getRegionalForms();
     }
 
     /**
-     * @return string[][]
+     * @return array<int, SpecialForm>
      */
     public function getFormsSpecial(): array
     {
-        return $this->getFormsService->getFormsSpecial();
+        return $this->getLabels()->getSpecialForms();
     }
 
     /**
-     * @return string[][]
+     * @return array<int, VariantForm>
      */
     public function getFormsVariant(): array
     {
-        return $this->getFormsService->getFormsVariant();
+        return $this->getLabels()->getVariantForms();
     }
 
     /**
-     * @return string[][]
+     * @return array<int, GameBundle>
      */
     public function getGameBundles(): array
     {
-        return $this->getGameBundlesService->get();
+        return $this->getLabels()->getGameBundles();
     }
 
     /**
-     * @return string[][]
+     * @return array<int, Collection>
      */
     public function getCollections(): array
     {
-        return $this->getCollectionsService->get();
+        return $this->getLabels()->getCollections();
+    }
+
+    private function getLabels(): Labels
+    {
+        if (null === $this->labels) {
+            $this->labels = $this->getService->get();
+        }
+
+        return $this->labels;
     }
 }

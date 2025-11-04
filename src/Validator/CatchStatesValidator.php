@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Validator;
 
 use App\Service\Back\GetCatchStatesService;
+use App\Service\GetLabelsService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Exception\UnexpectedValueException;
 class CatchStatesValidator extends ConstraintValidator
 {
     public function __construct(
-        private readonly GetCatchStatesService $getCatchStatesService,
+        private readonly GetLabelsService $getService,
     ) {}
 
     /**
@@ -47,11 +48,11 @@ class CatchStatesValidator extends ConstraintValidator
      */
     private function getCatchStateSlugs(): array
     {
-        $catchStates = $this->getCatchStatesService->get();
+        $catchStates = $this->getService->getCatchStates();
 
         $slugs = [];
         foreach ($catchStates as $catchState) {
-            $slugs[] = $catchState['slug'];
+            $slugs[] = $catchState->getSlug();
         }
 
         return $slugs;
