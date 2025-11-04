@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Validator;
 
+use App\ResponseObject\CatchState;
 use App\Service\Back\GetCatchStatesService;
+use App\Service\GetLabelsService;
 use App\Validator\CatchStates;
 use App\Validator\CatchStatesValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -87,35 +89,15 @@ class CatchStatesValidatorTest extends ConstraintValidatorTestCase
     #[\Override]
     protected function createValidator(): CatchStatesValidator
     {
-        $getService = $this->createMock(GetCatchStatesService::class);
+        $getService = $this->createMock(GetLabelsService::class);
 
         $getService
-            ->method('get')
+            ->method('getCatchStates')
             ->willReturn([
-                [
-                    'name' => 'No',
-                    'frenchName' => 'Non',
-                    'slug' => 'no',
-                    'color' => '#e57373',
-                ],
-                [
-                    'name' => 'Maybe',
-                    'frenchName' => 'Peut être',
-                    'slug' => 'maybe',
-                    'color' => '#9575cd',
-                ],
-                [
-                    'name' => 'Maybe not',
-                    'frenchName' => 'Peut être pas',
-                    'slug' => 'maybenot',
-                    'color' => '#9575cd',
-                ],
-                [
-                    'name' => 'Yes',
-                    'frenchName' => 'Oui',
-                    'slug' => 'yes',
-                    'color' => '#66bb6a',
-                ],
+                new CatchState('No', 'Non', 'no', '#e57373'),
+                new CatchState('Maybe', 'Peut être', 'maybe', '#9575cd'),
+                new CatchState('Maybe not', 'Peut être pas', 'maybenot', '#9575cd'),
+                new CatchState('Yes', 'Oui', 'yes', '#66bb6a'),
             ])
         ;
 

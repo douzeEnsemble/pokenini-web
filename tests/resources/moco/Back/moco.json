@@ -1,13 +1,24 @@
 [
   {
     "request": {
+      "uri": "/labels",
+      "headers": {
+        "accept": "application/json"
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/labels.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/labels/catch_states",
       "headers": {
         "accept": "application/json"
       }
     },
     "response": {
-      "file": "/var/moco/responses/catch_states.json"
+      "status": "404"
     }
   },
   {
@@ -18,7 +29,7 @@
       }
     },
     "response": {
-      "file": "/var/moco/responses/types.json"
+      "status": "404"
     }
   },
   {
@@ -29,7 +40,7 @@
       }
     },
     "response": {
-      "file": "/var/moco/responses/category_forms.json"
+      "status": "404"
     }
   },
   {
@@ -40,7 +51,7 @@
       }
     },
     "response": {
-      "file": "/var/moco/responses/regional_forms.json"
+      "status": "404"
     }
   },
   {
@@ -51,7 +62,7 @@
       }
     },
     "response": {
-      "file": "/var/moco/responses/special_forms.json"
+      "status": "404"
     }
   },
   {
@@ -62,7 +73,7 @@
       }
     },
     "response": {
-      "file": "/var/moco/responses/variant_forms.json"
+      "status": "404"
     }
   },
   {
@@ -73,7 +84,7 @@
       }
     },
     "response": {
-      "file": "/var/moco/responses/game_bundles.json"
+      "status": "404"
     }
   },
   {
@@ -84,7 +95,7 @@
       }
     },
     "response": {
-      "file": "/var/moco/responses/collections.json"
+      "status": "404"
     }
   },
   {
