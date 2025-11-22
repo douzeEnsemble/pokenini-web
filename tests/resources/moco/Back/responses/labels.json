@@ -1,38 +1,38 @@
 {
-  "catchStates": [
+  "catch_states": [
     {
       "name": "No",
-      "frenchName": "Non",
+      "french_name": "Non",
       "slug": "no",
       "color": "#e57373"
     },
     {
       "name": "To evolve",
-      "frenchName": "af. \u00e9voluer",
+      "french_name": "af. \u00e9voluer",
       "slug": "toevolve",
       "color": "#9575cd"
     },
     {
       "name": "To breed",
-      "frenchName": "af. reproduire",
+      "french_name": "af. reproduire",
       "slug": "tobreed",
       "color": "#4fc3f7"
     },
     {
       "name": "To transfer",
-      "frenchName": "\u00e0 transf\u00e9rer",
+      "french_name": "\u00e0 transf\u00e9rer",
       "slug": "totransfer",
       "color": "#ffd54f"
     },
     {
       "name": "To trade",
-      "frenchName": "\u00c0 \u00e9changer",
+      "french_name": "\u00c0 \u00e9changer",
       "slug": "totrade",
       "color": "#ff9100"
     },
     {
       "name": "Yes",
-      "frenchName": "Oui",
+      "french_name": "Oui",
       "slug": "yes",
       "color": "#66bb6a"
     }
@@ -40,347 +40,347 @@
   "types": [
     {
       "name": "Normal",
-      "frenchName": "Normal",
+      "french_name": "Normal",
       "slug": "normal",
       "color": "#9199a1"
     },
     {
       "name": "Fighting",
-      "frenchName": "Combat",
+      "french_name": "Combat",
       "slug": "fighting",
       "color": "#cf4069"
     },
     {
       "name": "Flying",
-      "frenchName": "Vol",
+      "french_name": "Vol",
       "slug": "flying",
       "color": "#8ea9df"
     },
     {
       "name": "Poison",
-      "frenchName": "Poison",
+      "french_name": "Poison",
       "slug": "poison",
       "color": "#aa6ac7"
     },
     {
       "name": "Ground",
-      "frenchName": "Sol",
+      "french_name": "Sol",
       "slug": "ground",
       "color": "#db7645"
     },
     {
       "name": "Rock",
-      "frenchName": "Roche",
+      "french_name": "Roche",
       "slug": "rock",
       "color": "#c7b78a"
     },
     {
       "name": "Bug",
-      "frenchName": "Insecte",
+      "french_name": "Insecte",
       "slug": "bug",
       "color": "#91c22e"
     },
     {
       "name": "Ghost",
-      "frenchName": "Spectre",
+      "french_name": "Spectre",
       "slug": "ghost",
       "color": "#5568aa"
     },
     {
       "name": "Steel",
-      "frenchName": "Acier",
+      "french_name": "Acier",
       "slug": "steel",
       "color": "#598fa2"
     },
     {
       "name": "Fire",
-      "frenchName": "Feu",
+      "french_name": "Feu",
       "slug": "fire",
       "color": "#ff9d55"
     },
     {
       "name": "Water",
-      "frenchName": "Eau",
+      "french_name": "Eau",
       "slug": "water",
       "color": "#4d91d7"
     },
     {
       "name": "Grass",
-      "frenchName": "Plante",
+      "french_name": "Plante",
       "slug": "grass",
       "color": "#61bb59"
     },
     {
       "name": "Electric",
-      "frenchName": "Electrik",
+      "french_name": "Electrik",
       "slug": "electric",
       "color": "#f3d33c"
     },
     {
       "name": "Psychic",
-      "frenchName": "Psy",
+      "french_name": "Psy",
       "slug": "psychic",
       "color": "#fb7075"
     },
     {
       "name": "Ice",
-      "frenchName": "Glace",
+      "french_name": "Glace",
       "slug": "ice",
       "color": "#71cfbe"
     },
     {
       "name": "Dragon",
-      "frenchName": "Dragon",
+      "french_name": "Dragon",
       "slug": "dragon",
       "color": "#0a6dc8"
     },
     {
       "name": "Dark",
-      "frenchName": "T\u00e9n\u00e8bre",
+      "french_name": "T\u00e9n\u00e8bre",
       "slug": "dark",
       "color": "#595265"
     },
     {
       "name": "Fairy",
-      "frenchName": "F\u00e9e",
+      "french_name": "F\u00e9e",
       "slug": "fairy",
       "color": "#ef8fe7"
     }
   ],
-  "categoryForms": [
+  "category_forms": [
     {
       "name": "Starter",
-      "frenchName": "de D\u00e9part",
+      "french_name": "de D\u00e9part",
       "slug": "starter"
     },
     {
       "name": "Legendary",
-      "frenchName": "L\u00e9gendaire",
+      "french_name": "L\u00e9gendaire",
       "slug": "legendary"
     },
     {
       "name": "Mythical",
-      "frenchName": "Fabuleux",
+      "french_name": "Fabuleux",
       "slug": "mythical"
     },
     {
       "name": "Ultra Beast",
-      "frenchName": "Ultra Chim\u00e8re",
+      "french_name": "Ultra Chim\u00e8re",
       "slug": "ultrabeast"
     },
     {
       "name": "Baby",
-      "frenchName": "B\u00e9b\u00e9",
+      "french_name": "B\u00e9b\u00e9",
       "slug": "baby"
     },
     {
       "name": "Paradox",
-      "frenchName": "Paradoxe",
+      "french_name": "Paradoxe",
       "slug": "paradox"
     }
   ],
-  "regionalForms": [
+  "regional_forms": [
     {
       "name": "Alolan",
-      "frenchName": "d\u0027Alola",
+      "french_name": "d\u0027Alola",
       "slug": "alolan"
     },
     {
       "name": "Galarian",
-      "frenchName": "de Galar",
+      "french_name": "de Galar",
       "slug": "galarian"
     },
     {
       "name": "Hisuian",
-      "frenchName": "de Hisui",
+      "french_name": "de Hisui",
       "slug": "hisuian"
     },
     {
       "name": "Paldean",
-      "frenchName": "de Paldea",
+      "french_name": "de Paldea",
       "slug": "paldean"
     }
   ],
-  "specialForms": [
+  "special_forms": [
     {
       "name": "Mega",
-      "frenchName": "Mega",
+      "french_name": "Mega",
       "slug": "mega"
     },
     {
       "name": "Primal",
-      "frenchName": "Originelle",
+      "french_name": "Originelle",
       "slug": "primal"
     },
     {
       "name": "Gigantamax",
-      "frenchName": "Gigamax",
+      "french_name": "Gigamax",
       "slug": "gigantamax"
     },
     {
       "name": "Totem",
-      "frenchName": "Dominant",
+      "french_name": "Dominant",
       "slug": "totem"
     },
     {
       "name": "Alpha",
-      "frenchName": "Baron",
+      "french_name": "Baron",
       "slug": "alpha"
     },
     {
       "name": "Event",
-      "frenchName": "\u00c9v\u00e9nementiel",
+      "french_name": "\u00c9v\u00e9nementiel",
       "slug": "event"
     },
     {
       "name": "Terastal",
-      "frenchName": "Stellaire",
+      "french_name": "Stellaire",
       "slug": "terastal"
     }
   ],
-  "variantForms": [
+  "variant_forms": [
     {
       "name": "Gender",
-      "frenchName": "Genre",
+      "french_name": "Genre",
       "slug": "gender"
     },
     {
       "name": "Alternate",
-      "frenchName": "Alternatif",
+      "french_name": "Alternatif",
       "slug": "alternate"
     },
     {
       "name": "Therian",
-      "frenchName": "Tot\u00e9mique",
+      "french_name": "Tot\u00e9mique",
       "slug": "therian"
     },
     {
       "name": "Battle",
-      "frenchName": "Combat",
+      "french_name": "Combat",
       "slug": "battle"
     },
     {
       "name": "Item",
-      "frenchName": "Objet",
+      "french_name": "Objet",
       "slug": "item"
     },
     {
       "name": "Fusion",
-      "frenchName": "Fusion",
+      "french_name": "Fusion",
       "slug": "fusion"
     },
     {
       "name": "Unobtainable",
-      "frenchName": "Non obtenable",
+      "french_name": "Non obtenable",
       "slug": "unobtainable"
     }
   ],
-  "gameBundles": [
+  "game_bundles": [
     {
       "name": "Red, Green, Blue, Yellow",
-      "frenchName": "Rouge, Vert, Bleu, Jaune",
+      "french_name": "Rouge, Vert, Bleu, Jaune",
       "slug": "redgreenblueyellow",
       "generation_slug": "1"
     },
     {
       "name": "Gold, Silver, Crystal",
-      "frenchName": "Or, Argent, Cristal",
+      "french_name": "Or, Argent, Cristal",
       "slug": "goldsilvercrystal",
       "generation_slug": "2"
     },
     {
       "name": "Ruby, Sapphire, Emerald",
-      "frenchName": "Rubis, Saphir, \u00c9meraude",
+      "french_name": "Rubis, Saphir, \u00c9meraude",
       "slug": "rubysapphireemerald",
       "generation_slug": "3"
     },
     {
       "name": "Fire Red, Leaf Green",
-      "frenchName": "Rouge Feu, Vert Feuille",
+      "french_name": "Rouge Feu, Vert Feuille",
       "slug": "fireredleafgreen",
       "generation_slug": "3"
     },
     {
       "name": "Diamond, Pearl, Platinium",
-      "frenchName": "Diamant, Perle, Platine",
+      "french_name": "Diamant, Perle, Platine",
       "slug": "diamondpearlplatinium",
       "generation_slug": "4"
     },
     {
       "name": "Heart Gold, Soul Silver",
-      "frenchName": "Or HeartGold, Argent SoulSilver",
+      "french_name": "Or HeartGold, Argent SoulSilver",
       "slug": "heartgoldsoulsilver",
       "generation_slug": "4"
     },
     {
       "name": "Black, White",
-      "frenchName": "Noir, Blanc",
+      "french_name": "Noir, Blanc",
       "slug": "blackwhite",
       "generation_slug": "5"
     },
     {
       "name": "Black 2, White 2",
-      "frenchName": "Noir 2, Blanc 2",
+      "french_name": "Noir 2, Blanc 2",
       "slug": "black2white2",
       "generation_slug": "5"
     },
     {
       "name": "X, Y",
-      "frenchName": "X, Y",
+      "french_name": "X, Y",
       "slug": "xy",
       "generation_slug": "6"
     },
     {
       "name": "Omega Ruby, Alpha Sapphire",
-      "frenchName": "Rubis Om\u00e9ga, Saphir Alpha",
+      "french_name": "Rubis Om\u00e9ga, Saphir Alpha",
       "slug": "omegarubyalphasapphire",
       "generation_slug": "6"
     },
     {
       "name": "Sun, Moon",
-      "frenchName": "Soleil, Lune",
+      "french_name": "Soleil, Lune",
       "slug": "sunmoon",
       "generation_slug": "7"
     },
     {
       "name": "Ultra Sun, Ultra Moon",
-      "frenchName": "Ultra-Soleil, Ultra-Lune",
+      "french_name": "Ultra-Soleil, Ultra-Lune",
       "slug": "ultrasunultramoon",
       "generation_slug": "7"
     },
     {
       "name": "Let\u0027s Go Pikachu, Let\u0027s Go Eevee",
-      "frenchName": "Let\u0027s Go Pikachu, Let\u0027s Go \u00c9voli",
+      "french_name": "Let\u0027s Go Pikachu, Let\u0027s Go \u00c9voli",
       "slug": "letsgopikachuletsgoeevee",
       "generation_slug": "7"
     },
     {
       "name": "Pokemon Go",
-      "frenchName": "Pok\u00e9mon Go",
+      "french_name": "Pok\u00e9mon Go",
       "slug": "pokemongo",
       "generation_slug": "7"
     },
     {
       "name": "Sword, Shield",
-      "frenchName": "\u00c9p\u00e9e, Bouclier",
+      "french_name": "\u00c9p\u00e9e, Bouclier",
       "slug": "swordshield",
       "generation_slug": "8"
     },
     {
       "name": "Brilliant Diamond, Shining Pearl",
-      "frenchName": "Diamant \u00c9tincelant, Perle Scintillante",
+      "french_name": "Diamant \u00c9tincelant, Perle Scintillante",
       "slug": "brilliantdiamondshiningpearl",
       "generation_slug": "8"
     },
     {
       "name": "Pok\u00e9mon Legends Arceus",
-      "frenchName": "L\u00e9gendes Pok\u00e9mon : Arceus",
+      "french_name": "L\u00e9gendes Pok\u00e9mon : Arceus",
       "slug": "pokemonlegendsarceus",
       "generation_slug": "8"
     },
     {
       "name": "Scarlet, Violet",
-      "frenchName": "\u00c9carlate, Violet",
+      "french_name": "\u00c9carlate, Violet",
       "slug": "scarletviolet",
       "generation_slug": "8"
     }
@@ -388,51 +388,51 @@
   "collections": [
     {
       "name": "Sword, Shield - Dynamax Adventures bosses",
-      "frenchName": "Sword, Shield - Boss des exp\u00e9ditions Dynamax",
+      "french_name": "Sword, Shield - Boss des exp\u00e9ditions Dynamax",
       "slug": "swshdynamaxadventuresbosses",
-      "orderNumber": 11
+      "order_number": 11
     },
     {
       "name": "Scarlet, Violet - Paldea\u0027s outbreaks",
-      "frenchName": "Scarlet, Violet - Apparitions massives de Paldea",
+      "french_name": "Scarlet, Violet - Apparitions massives de Paldea",
       "slug": "svmassoutbreakspaldea",
-      "orderNumber": 20
+      "order_number": 20
     },
     {
       "name": "Scarlet, Violet - Kitakami\u0027s outbreaks",
-      "frenchName": "Scarlet, Violet - Apparitions massives de Kitakami",
+      "french_name": "Scarlet, Violet - Apparitions massives de Kitakami",
       "slug": "svmassoutbreakskitakami",
-      "orderNumber": 21
+      "order_number": 21
     },
     {
       "name": "Scarlet, Violet - Terrarium\u0027s outbreaks",
-      "frenchName": "Scarlet, Violet - Apparitions massives du Terrarium",
+      "french_name": "Scarlet, Violet - Apparitions massives du Terrarium",
       "slug": "svmassoutbreaksterrarium",
-      "orderNumber": 22
+      "order_number": 22
     },
     {
       "name": "Scarlet, Violet - Transferable",
-      "frenchName": "Scarlet, Violet - Transf\u00e9rable",
+      "french_name": "Scarlet, Violet - Transf\u00e9rable",
       "slug": "svtransferable",
-      "orderNumber": 23
+      "order_number": 23
     },
     {
       "name": "Pokemon Go - Shadow",
-      "frenchName": "Pokemon Go - Obscurs",
+      "french_name": "Pokemon Go - Obscurs",
       "slug": "pogoshadow",
-      "orderNumber": 50
+      "order_number": 50
     },
     {
       "name": "Pokemon Go - Shiny Shadow",
-      "frenchName": "Pokemon Go - Obscurs Chromatique",
+      "french_name": "Pokemon Go - Obscurs Chromatique",
       "slug": "pogoshadowshiny",
-      "orderNumber": 51
+      "order_number": 51
     },
     {
       "name": "Pokemon Go - Dynamax",
-      "frenchName": "Pokemon Go - Dynamax",
+      "french_name": "Pokemon Go - Dynamax",
       "slug": "pogodynamax",
-      "orderNumber": 52
+      "order_number": 52
     }
   ]
 }

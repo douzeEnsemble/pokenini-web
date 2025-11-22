@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Collection::class)]
 class CollectionTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = new Collection(
             'Toto',

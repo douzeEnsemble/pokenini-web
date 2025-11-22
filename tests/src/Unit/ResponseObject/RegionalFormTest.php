@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(RegionalForm::class)]
 class RegionalFormTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = new RegionalForm(
             'Toto',

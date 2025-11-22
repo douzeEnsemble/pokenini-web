@@ -6,27 +6,30 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\GameBundle;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @internal
  */
 #[CoversClass(GameBundle::class)]
-class GameBundleTest extends WebTestCase
+class GameBundleTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
+        self::bootKernel();
+
+        /** @var SerializerInterface $serializer */
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
-        $json = <<<JSON
-        {
-            "name": "Red, Green, Blue, Yellow",
-            "frenchName": "Rouge, Vert, Bleu, Jaune",
-            "slug": "redgreenblueyellow",
-            "generationSlug": "1"
-        }
-        JSON;
+        $json = <<<'JSON'
+            {
+                "name": "Red, Green, Blue, Yellow",
+                "french_name": "Rouge, Vert, Bleu, Jaune",
+                "slug": "redgreenblueyellow",
+                "generation_slug": "1"
+            }
+            JSON;
 
         /** @var GameBundle $object */
         $object = $serializer->deserialize($json, GameBundle::class, 'json');

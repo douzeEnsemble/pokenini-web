@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
-use App\Service\GetLabelsService;
 use App\Service\Back\GetLabelsService as BackGetLabelsService;
+use App\Service\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

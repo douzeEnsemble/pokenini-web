@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(CatchState::class)]
 class CatchStateTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = new CatchState(
             'Toto',

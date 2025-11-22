@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Validator;
 
-use App\Service\Back\GetCatchStatesService;
 use App\Service\GetLabelsService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

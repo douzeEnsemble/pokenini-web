@@ -6,26 +6,29 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\RegionalForm;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @internal
  */
 #[CoversClass(RegionalForm::class)]
-class RegionalFormTest extends WebTestCase
+class RegionalFormTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
+        self::bootKernel();
+
+        /** @var SerializerInterface $serializer */
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
-        $json = <<<JSON
-        {
-            "name": "Alolan",
-            "frenchName": "d\u0027Alola",
-            "slug": "alolan"
-        }
-        JSON;
+        $json = <<<'JSON'
+            {
+                "name": "Alolan",
+                "french_name": "d\u0027Alola",
+                "slug": "alolan"
+            }
+            JSON;
 
         /** @var RegionalForm $object */
         $object = $serializer->deserialize($json, RegionalForm::class, 'json');

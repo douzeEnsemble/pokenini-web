@@ -4,15 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ResponseObject;
 
-use App\ResponseObject\CatchState;
-use App\ResponseObject\CategoryForm;
-use App\ResponseObject\Collection;
-use App\ResponseObject\GameBundle;
 use App\ResponseObject\Labels;
-use App\ResponseObject\RegionalForm;
-use App\ResponseObject\SpecialForm;
-use App\ResponseObject\Type;
-use App\ResponseObject\VariantForm;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -25,7 +17,7 @@ class LabelsTest extends TestCase
 {
     use ResponseObjectTrait;
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = $this->getStubLabels();
 
@@ -36,11 +28,10 @@ class LabelsTest extends TestCase
         $this->assertCount(5, $object->getSpecialForms());
         $this->assertCount(6, $object->getVariantForms());
         $this->assertCount(7, $object->getGameBundles());
-        $this->assertCount(8, $object->getCollections());      
+        $this->assertCount(8, $object->getCollections());
     }
 
-
-    public function testConstructorWithAllEmpty()
+    public function testConstructorWithAllEmpty(): void
     {
         $object = new Labels(
             [],
@@ -60,6 +51,6 @@ class LabelsTest extends TestCase
         $this->assertSame([], $object->getSpecialForms());
         $this->assertSame([], $object->getVariantForms());
         $this->assertSame([], $object->getGameBundles());
-        $this->assertSame([], $object->getCollections());      
+        $this->assertSame([], $object->getCollections());
     }
 }

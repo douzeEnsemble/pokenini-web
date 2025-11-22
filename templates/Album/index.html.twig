@@ -103,7 +103,7 @@
     <script src="{{ asset('js/album-edit.js') }}"></script>
 
     <script>
-    const catchStates = JSON.parse('{{ catchStates | json_encode | raw }}');
+    const catchStates = JSON.parse('{{ catchStates | map(cs => {name: cs.name, frenchName: cs.frenchName, slug: cs.slug, color: cs.color}) | json_encode | raw }}');
     const locale = '{{ locale }}';
     const dex = '{{ currentDexSlug }}';
     </script>
