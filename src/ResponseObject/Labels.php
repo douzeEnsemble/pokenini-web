@@ -4,27 +4,37 @@ declare(strict_types=1);
 
 namespace App\ResponseObject;
 
+use Symfony\Component\Serializer\Attribute\SerializedName;
+
 class Labels
 {
     /**
-     * @param CatchState[] $catchStates
-     * @param Type[] $types
+     * @param CatchState[]   $catchStates
+     * @param Type[]         $types
      * @param CategoryForm[] $categoryForms
      * @param RegionalForm[] $regionalForms
-     * @param SpecialForm[] $specialForms
-     * @param VariantForm[] $variantForms
-     * @param GameBundle[] $gameBundles
-     * @param Collection[] $collections
+     * @param SpecialForm[]  $specialForms
+     * @param VariantForm[]  $variantForms
+     * @param GameBundle[]   $gameBundles
+     * @param Collection[]   $collections
      */
     public function __construct(
-        private array $catchStates,
-        private array $types,
-        private array $categoryForms,
-        private array $regionalForms,
-        private array $specialForms,
-        private array $variantForms,
-        private array $gameBundles,
-        private array $collections,
+        #[SerializedName('catch_states')]
+        private readonly array $catchStates,
+        #[SerializedName('types')]
+        private readonly array $types,
+        #[SerializedName('category_forms')]
+        private readonly array $categoryForms,
+        #[SerializedName('regional_forms')]
+        private readonly array $regionalForms,
+        #[SerializedName('special_forms')]
+        private readonly array $specialForms,
+        #[SerializedName('variant_forms')]
+        private readonly array $variantForms,
+        #[SerializedName('game_bundles')]
+        private readonly array $gameBundles,
+        #[SerializedName('collections')]
+        private readonly array $collections,
     ) {}
 
     /**

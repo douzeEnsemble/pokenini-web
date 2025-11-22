@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Type::class)]
 class TypeTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = new Type(
             'Toto',

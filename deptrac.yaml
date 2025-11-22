@@ -24,6 +24,10 @@ parameters:
       collectors:
         - type: classLike
           value: '^App\\Helper\\.*'
+    - name: AppResponseObject
+      collectors:
+        - type: classLike
+          value: '^App\\ResponseObject\\.*'
     - name: AppSecurity
       collectors:
         - type: classLike
@@ -141,6 +145,7 @@ parameters:
       - SymfonyOptionsResolver
     AppException:
     AppHelper:
+    AppResponseObject:
     AppSecurity:
       - AppDTO
       - AppException
@@ -155,6 +160,7 @@ parameters:
       - AppCache
       - AppDTO
       - AppException
+      - AppResponseObject
       - AppSecurity
       - AppUtils
       - LeagueOAuth2

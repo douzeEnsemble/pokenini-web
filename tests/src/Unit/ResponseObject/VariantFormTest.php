@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(VariantForm::class)]
 class VariantFormTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = new VariantForm(
             'Toto',

@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace App\ResponseObject;
 
+use Symfony\Component\Serializer\Attribute\SerializedName;
+
 class CatchState
 {
     public function __construct(
+        #[SerializedName('name')]
         private readonly string $name,
+        #[SerializedName('french_name')]
         private readonly string $frenchName,
+        #[SerializedName('slug')]
         private readonly string $slug,
+        #[SerializedName('color')]
         private readonly string $color,
     ) {}
 

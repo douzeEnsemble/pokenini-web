@@ -89,6 +89,15 @@ make bash
 tools/phpstan/vendor/bin/phpstan --generate-baseline --memory-limit=-1
 ```
 
+#### PHPStan
+
+To update the `phpmd-baseline.xml` file
+
+```
+make bash
+tools/phpmd/vendor/bin/phpmd --update-baseline --generate-baseline src,tests text phpmd.ruleset.xml
+```
+
 ### Docker Image build
 
 ```shell

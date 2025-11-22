@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(SpecialForm::class)]
 class SpecialFormTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = new SpecialForm(
             'Toto',

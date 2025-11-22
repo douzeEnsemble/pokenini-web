@@ -6,26 +6,29 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\CategoryForm;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @internal
  */
 #[CoversClass(CategoryForm::class)]
-class CategoryFormTest extends WebTestCase
+class CategoryFormTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
+        self::bootKernel();
+
+        /** @var SerializerInterface $serializer */
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
-        $json = <<<JSON
-        {
-            "name": "Starter",
-            "frenchName": "de D\u00e9part",
-            "slug": "starter"
-        }
-        JSON;
+        $json = <<<'JSON'
+            {
+                "name": "Starter",
+                "french_name": "de D\u00e9part",
+                "slug": "starter"
+            }
+            JSON;
 
         /** @var CategoryForm $object */
         $object = $serializer->deserialize($json, CategoryForm::class, 'json');

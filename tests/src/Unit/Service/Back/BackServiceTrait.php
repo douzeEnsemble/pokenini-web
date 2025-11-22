@@ -180,7 +180,7 @@ trait BackServiceTrait
         UserTokenService $userTokenService,
         ?SerializerInterface $serializer = null,
     ): BackServiceInterface {
-        $serializer = $serializer ?? $this->createMock(SerializerInterface::class);
+        $serializer ??= $this->createMock(SerializerInterface::class);
 
         /** @var BackServiceInterface */
         return new $className(

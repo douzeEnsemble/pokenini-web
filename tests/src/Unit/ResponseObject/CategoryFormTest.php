@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(CategoryForm::class)]
 class CategoryFormTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = new CategoryForm(
             'Toto',

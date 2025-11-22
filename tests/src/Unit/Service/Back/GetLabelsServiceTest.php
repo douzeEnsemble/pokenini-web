@@ -4,15 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
-use App\ResponseObject\CatchState;
-use App\ResponseObject\CategoryForm;
-use App\ResponseObject\Collection;
-use App\ResponseObject\GameBundle;
 use App\ResponseObject\Labels;
-use App\ResponseObject\RegionalForm;
-use App\ResponseObject\SpecialForm;
-use App\ResponseObject\Type;
-use App\ResponseObject\VariantForm;
 use App\Service\Back\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -42,12 +34,12 @@ class GetLabelsServiceTest extends TestCase
             ->expects($this->once())
             ->method('deserialize')
             ->with(
-                $json, 
+                $json,
                 Labels::class,
                 'json',
             )
             ->willReturn($labels)
-        ;              
+        ;
 
         /** @var GetLabelsService $service */
         $service = $this->getServiceWithLoggedUser(
@@ -82,12 +74,12 @@ class GetLabelsServiceTest extends TestCase
             ->expects($this->once())
             ->method('deserialize')
             ->with(
-                $json, 
+                $json,
                 Labels::class,
                 'json',
             )
             ->willReturn($labels)
-        ;              
+        ;
 
         /** @var GetLabelsService $service */
         $service = $this->getServiceWithoutLoggedUser(

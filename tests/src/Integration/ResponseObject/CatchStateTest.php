@@ -6,27 +6,30 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\CatchState;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @internal
  */
 #[CoversClass(CatchState::class)]
-class CatchStateTest extends WebTestCase
+class CatchStateTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
+        self::bootKernel();
+
+        /** @var SerializerInterface $serializer */
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
-        $json = <<<JSON
-        {
-            "name": "No",
-            "frenchName": "Non",
-            "slug": "no",
-            "color": "#e57373"
-        }
-        JSON;
+        $json = <<<'JSON'
+            {
+                "name": "No",
+                "french_name": "Non",
+                "slug": "no",
+                "color": "#e57373"
+            }
+            JSON;
 
         /** @var CatchState $object */
         $object = $serializer->deserialize($json, CatchState::class, 'json');

@@ -6,27 +6,30 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @internal
  */
 #[CoversClass(Type::class)]
-class TypeTest extends WebTestCase
+class TypeTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
+        self::bootKernel();
+
+        /** @var SerializerInterface $serializer */
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
-        $json = <<<JSON
-        {
-            "name": "Fighting",
-            "frenchName": "Combat",
-            "slug": "fighting",
-            "color": "#cf4069"
-        }
-        JSON;
+        $json = <<<'JSON'
+            {
+                "name": "Fighting",
+                "french_name": "Combat",
+                "slug": "fighting",
+                "color": "#cf4069"
+            }
+            JSON;
 
         /** @var Type $object */
         $object = $serializer->deserialize($json, Type::class, 'json');

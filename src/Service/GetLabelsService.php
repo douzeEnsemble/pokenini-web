@@ -9,6 +9,7 @@ use App\ResponseObject\CategoryForm;
 use App\ResponseObject\Collection;
 use App\ResponseObject\GameBundle;
 use App\ResponseObject\Labels;
+use App\ResponseObject\RegionalForm;
 use App\ResponseObject\SpecialForm;
 use App\ResponseObject\Type;
 use App\ResponseObject\VariantForm;

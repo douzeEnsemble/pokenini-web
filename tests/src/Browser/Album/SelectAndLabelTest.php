@@ -292,6 +292,8 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
+
         $this->assertSelectorIsNotVisible('#successToast-bulbasaur');
         $this->assertSelectorIsNotVisible('#errorToast-bulbasaur');
         $this->assertSelectorAttributeContains('#bulbasaur', 'class', 'catch-state-no');
@@ -316,8 +318,8 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#successToast-bulbasaur');
         $this->assertSelectorWillNotBeVisible('#errorToast-bulbasaur');
 
-        $this->assertSelectorAttributeNotContains('#bulbasaur', 'class', 'catch-state-no');
         $this->assertSelectorAttributeContains('#bulbasaur', 'class', 'catch-state-totrade');
+        $this->assertSelectorAttributeNotContains('#bulbasaur', 'class', 'catch-state-no');
     }
 
     public function testActionCatchStateChangeError(): void

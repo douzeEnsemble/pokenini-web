@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(GameBundle::class)]
 class GameBundleTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $object = new GameBundle(
             'Toto',
