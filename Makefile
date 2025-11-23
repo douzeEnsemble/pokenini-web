@@ -94,11 +94,12 @@ updates: ## Updates all composer
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=./
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/deptrac
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/infection
+	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/jsonlint
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/php-cs-fixer
+	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpinsights 
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpmd
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpstan
 	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/psalm
-	@$(COMPOSER) update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpinsights 
 
 ## —— Symfony 🎵 ———————————————————————————————————————————————————————————————
 .PHONY: sf
@@ -192,11 +193,22 @@ dotenv-fixer: ## Run DotEnv fixer
 
 .PHONY: code-quality
 code-quality: ## Execute all code quality analyses
-code-quality: validate-autoloader phpcsfixer phpmd psalm phpstan deptrac w3c
+code-quality: jsonlint validate-autoloader phpcsfixer phpmd psalm phpstan deptrac w3c
 
 .PHONY: cq
 cq: ## Alias of code-quality
 cq: code-quality
+
+.PHONY: jsonlint
+jsonlint: ## Execute jsonlint
+jsonlint: tools/jsonlint/vendor/bin/jsonlint
+	grep -RhoP '"[A-Za-z0-9]+"(?=\s*:)' tests/resources \
+		| grep -vE '"[a-z0-9_]+"' \
+		| sort -u \
+		| tee /dev/stderr \
+		| grep . && exit 1 || exit 0
+	find tests/resources -type f -name "*.json" \
+		-exec $(PHP) tools/jsonlint/vendor/bin/jsonlint {} \;
 
 .PHONY: validate-autoloader
 validate-autoloader: ## Execute cmheck on autoloader issues
@@ -367,6 +379,9 @@ tools/deptrac/vendor/bin/deptrac: ## Install deptrac
 
 tools/infection/vendor/bin/infection: ## Install infection
 	@$(COMPOSER) install --working-dir=tools/infection --optimize-autoloader --no-dev
+
+tools/jsonlint/vendor/bin/jsonlint: ## Install jsonlint
+	@$(COMPOSER) install --working-dir=tools/jsonlint --optimize-autoloader --no-dev
 
 tools/phpinsights/vendor/bin/phpinsights: ## Install phpinsights
 	@$(COMPOSER) install --working-dir=tools/phpinsights --optimize-autoloader --no-dev
