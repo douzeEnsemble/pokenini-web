@@ -19,14 +19,12 @@ class GetPokemonsServiceTest extends TestCase
 
     #[DataProvider('providerGet')]
     public function testGet(
-        string $listType,
         string $dexSlug,
         string $electionSlug,
         int $count,
     ): void {
         $electionList = $this
             ->getService(
-                $listType,
                 $dexSlug,
                 $electionSlug,
                 $count,
@@ -39,8 +37,6 @@ class GetPokemonsServiceTest extends TestCase
             )
         ;
 
-        $this->assertSame($listType, $electionList->type);
-
         $pokemons = $electionList->items;
         $this->assertCount($count, $pokemons);
     }
@@ -52,19 +48,16 @@ class GetPokemonsServiceTest extends TestCase
     {
         return [
             '123-3' => [
-                'listType' => 'pick',
                 'dexSlug' => '123',
                 'electionSlug' => '',
                 'count' => 3,
             ],
             '123-5' => [
-                'listType' => 'pick',
                 'dexSlug' => '123',
                 'electionSlug' => 'a',
                 'count' => 5,
             ],
             'all-12' => [
-                'listType' => 'vote',
                 'dexSlug' => 'all',
                 'electionSlug' => 'b',
                 'count' => 12,
@@ -76,7 +69,6 @@ class GetPokemonsServiceTest extends TestCase
     {
         $electionList = $this
             ->getService(
-                'pick',
                 '123',
                 '',
                 5,
@@ -104,7 +96,7 @@ class GetPokemonsServiceTest extends TestCase
     public function testGetWithoutLoggedUser(): void
     {
         $dir = '/var/www/html/tests/resources/unit/service/back';
-        $filename = "{$dir}/pokemons_topick_123__3.json";
+        $filename = "{$dir}/pokemons_123__3.json";
 
         /** @var GetPokemonsService $service */
         $service = $this->getServiceWithoutLoggedUser(
@@ -133,7 +125,6 @@ class GetPokemonsServiceTest extends TestCase
      * @param array<string, array<int, string>|string> $filters
      */
     private function getService(
-        string $listType,
         string $dexSlug,
         string $electionSlug,
         int $count,
@@ -141,7 +132,7 @@ class GetPokemonsServiceTest extends TestCase
         array $filters = [],
     ): GetPokemonsService {
         $dir = '/var/www/html/tests/resources/unit/service/back';
-        $filename = "{$dir}/pokemons_to{$listType}_{$dexSlug}_{$electionSlug}_{$count}{$filtersStr}.json";
+        $filename = "{$dir}/pokemons_{$dexSlug}_{$electionSlug}_{$count}{$filtersStr}.json";
 
         $options = [
             'query' => array_merge(
