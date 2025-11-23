@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\ResponseObject;
 
-use App\ResponseObject\CatchState;
-use App\ResponseObject\CategoryForm;
-use App\ResponseObject\Collection;
-use App\ResponseObject\GameBundle;
-use App\ResponseObject\Labels;
-use App\ResponseObject\RegionalForm;
-use App\ResponseObject\SpecialForm;
-use App\ResponseObject\Type;
-use App\ResponseObject\VariantForm;
+use App\ResponseObject\Label\CatchState;
+use App\ResponseObject\Label\CategoryForm;
+use App\ResponseObject\Label\Collection;
+use App\ResponseObject\Label\GameBundle;
+use App\ResponseObject\Label\Labels;
+use App\ResponseObject\Label\RegionalForm;
+use App\ResponseObject\Label\SpecialForm;
+use App\ResponseObject\Label\Type;
+use App\ResponseObject\Label\VariantForm;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;

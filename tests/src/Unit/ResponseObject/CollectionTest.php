@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ResponseObject;
 
-use App\ResponseObject\Collection;
+use App\ResponseObject\Label\Collection;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

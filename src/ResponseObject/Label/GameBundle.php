@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ResponseObject;
+namespace App\ResponseObject\Label;
 
 use Symfony\Component\Serializer\Annotation\SerializedName;
 

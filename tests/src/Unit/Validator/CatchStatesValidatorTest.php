@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Validator;
 
-use App\ResponseObject\CatchState;
+use App\ResponseObject\Label\CatchState;
 use App\Service\GetLabelsService;
 use App\Validator\CatchStates;
 use App\Validator\CatchStatesValidator;
