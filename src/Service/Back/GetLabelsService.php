@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
-use App\ResponseObject\Labels;
+use App\ResponseObject\Label\Labels;
 
 class GetLabelsService extends AbstractBackService
 {

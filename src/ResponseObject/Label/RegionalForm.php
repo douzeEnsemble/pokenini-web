@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace App\ResponseObject;
+namespace App\ResponseObject\Label;
 
 final class RegionalForm extends AbstractForm {}

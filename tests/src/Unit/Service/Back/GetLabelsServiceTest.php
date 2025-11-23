@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
-use App\ResponseObject\Labels;
+use App\ResponseObject\Label\Labels;
 use App\Service\Back\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\ResponseObject;
 
-use App\ResponseObject\SpecialForm;
+use App\ResponseObject\Label\SpecialForm;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;

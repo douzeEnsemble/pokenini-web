@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ResponseObject;
 
-use App\ResponseObject\AbstractForm;
-use App\ResponseObject\SpecialForm;
+use App\ResponseObject\Label\AbstractForm;
+use App\ResponseObject\Label\SpecialForm;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
