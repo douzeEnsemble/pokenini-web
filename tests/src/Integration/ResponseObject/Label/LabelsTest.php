@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Integration\ResponseObject;
+namespace App\Tests\Integration\ResponseObject\Label;
 
 use App\ResponseObject\Label\CatchState;
 use App\ResponseObject\Label\CategoryForm;
@@ -36,43 +36,27 @@ class LabelsTest extends KernelTestCase
         $object = $serializer->deserialize($json, Labels::class, 'json');
 
         $this->assertCount(6, $object->getCatchStates());
-        foreach ($object->getCatchStates() as $item) {
-            $this->assertInstanceOf(CatchState::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(CatchState::class, $object->getCatchStates());
 
         $this->assertCount(18, $object->getTypes());
-        foreach ($object->getTypes() as $item) {
-            $this->assertInstanceOf(Type::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(Type::class, $object->getTypes());
 
         $this->assertCount(6, $object->getCategoryForms());
-        foreach ($object->getCategoryForms() as $item) {
-            $this->assertInstanceOf(CategoryForm::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(CategoryForm::class, $object->getCategoryForms());
 
         $this->assertCount(4, $object->getRegionalForms());
-        foreach ($object->getRegionalForms() as $item) {
-            $this->assertInstanceOf(RegionalForm::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(RegionalForm::class, $object->getRegionalForms());
 
         $this->assertCount(7, $object->getSpecialForms());
-        foreach ($object->getSpecialForms() as $item) {
-            $this->assertInstanceOf(SpecialForm::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(SpecialForm::class, $object->getSpecialForms());
 
         $this->assertCount(7, $object->getVariantForms());
-        foreach ($object->getVariantForms() as $item) {
-            $this->assertInstanceOf(VariantForm::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(VariantForm::class, $object->getVariantForms());
 
         $this->assertCount(18, $object->getGameBundles());
-        foreach ($object->getGameBundles() as $item) {
-            $this->assertInstanceOf(GameBundle::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(GameBundle::class, $object->getGameBundles());
 
         $this->assertCount(8, $object->getCollections());
-        foreach ($object->getCollections() as $item) {
-            $this->assertInstanceOf(Collection::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(Collection::class, $object->getCollections());
     }
 }

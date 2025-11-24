@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Integration\ResponseObject;
+namespace App\Tests\Integration\ResponseObject\Label;
 
 use App\ResponseObject\Label\GameBundle;
 use PHPUnit\Framework\Attributes\CoversClass;
