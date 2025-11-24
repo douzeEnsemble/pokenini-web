@@ -89,7 +89,7 @@ make bash
 tools/phpstan/vendor/bin/phpstan --generate-baseline --memory-limit=-1
 ```
 
-#### PHPStan
+#### PHPMD
 
 To update the `phpmd-baseline.xml` file
 

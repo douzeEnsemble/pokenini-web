@@ -1327,46 +1327,46 @@
   ],
   "report": {
     "total": 37,
-    "totalCaught": 20,
-    "totalUncaught": 17,
+    "total_caught": 20,
+    "total_uncaught": 17,
     "detail": [
       {
         "slug": "no",
         "name": "No",
-        "frenchName": "Non",
+        "french_name": "Non",
         "count": 1
       },
       {
         "slug": "toevolve",
         "name": "To evolve",
-        "frenchName": "Af. \u00e9voluer",
+        "french_name": "Af. \u00e9voluer",
         "count": 1
       },
       {
         "slug": "tobreed",
         "name": "To breed",
-        "frenchName": "Af. reproduire",
+        "french_name": "Af. reproduire",
         "count": 1
       },
       {
         "slug": "totransfer",
         "name": "To transfer",
-        "frenchName": "\u00c0 transf\u00e9rer",
+        "french_name": "\u00c0 transf\u00e9rer",
         "count": 1
       },
       {
         "slug": "totrade",
         "name": "To trade",
-        "frenchName": "\u00c0 \u00e9changer",
+        "french_name": "\u00c0 \u00e9changer",
         "count": 0
       },
       {
         "slug": "yes",
         "name": "Yes",
-        "frenchName": "Oui",
+        "french_name": "Oui",
         "count": 20
       }
     ]
   },
-  "filteredReport": {}
+  "filtered_report": {}
 }
