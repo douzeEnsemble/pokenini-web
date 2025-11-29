@@ -1,12 +1,12 @@
 {% set currentRouteParameters = app.request.get('_route_params') %}
 
 <div class="report-container">
-    <h2 id="stats">
+    <h2 id="stats">dzdzd
         {{ 'title.report'|trans }}
     </h2>
 
     <div class="progress mb-2">
-        {% set progressBarReport = filteredReport is not empty ? filteredReport : report %}
+        {% set progressBarReport = filteredReport.detail is not empty ? filteredReport : report %}
         {% for line in progressBarReport.detail %}
             {% set count = line.slug is same as('no') ? progressBarReport.totalUncaught : line.count %}
             {% set completion = progressBarReport.total ? (100 * count / progressBarReport.total)|round(2) : 0 %}
@@ -67,7 +67,7 @@
                     </span>
                 </th>
                 <td class="text-end">
-                    {% if filteredReport is not empty %}
+                    {% if filteredReport.detail is not empty %}
                     {% set filteredLine = filteredReport.detail[loop.index0] %}
                     {{ (filteredLine.slug is same as('no') ? filteredReport.totalUncaught : filteredLine.count)|format_number }}
                     {% endif %}

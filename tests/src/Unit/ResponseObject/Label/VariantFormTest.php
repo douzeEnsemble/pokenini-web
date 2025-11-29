@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ResponseObject;
+namespace App\Tests\Unit\ResponseObject\Label;
 
 use App\ResponseObject\Label\AbstractForm;
 use App\ResponseObject\Label\VariantForm;

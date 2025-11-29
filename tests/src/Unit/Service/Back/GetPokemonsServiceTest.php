@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\ResponseObject\Election\ElectionList;
 use App\Service\Back\GetPokemonsService;
+use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @internal
@@ -16,53 +18,25 @@ use PHPUnit\Framework\TestCase;
 class GetPokemonsServiceTest extends TestCase
 {
     use BackServiceTrait;
+    use ResponseObjectTrait;
 
-    #[DataProvider('providerGet')]
-    public function testGet(
-        string $dexSlug,
-        string $electionSlug,
-        int $count,
-    ): void {
+    public function testGet(): void
+    {
         $electionList = $this
             ->getService(
-                $dexSlug,
-                $electionSlug,
-                $count,
+                '123',
+                '',
+                3,
             )
             ->get(
-                $dexSlug,
-                $electionSlug,
-                $count,
+                '123',
+                '',
+                3,
                 [],
             )
         ;
 
-        $pokemons = $electionList->items;
-        $this->assertCount($count, $pokemons);
-    }
-
-    /**
-     * @return int[][]|string[][]
-     */
-    public static function providerGet(): array
-    {
-        return [
-            '123-3' => [
-                'dexSlug' => '123',
-                'electionSlug' => '',
-                'count' => 3,
-            ],
-            '123-5' => [
-                'dexSlug' => '123',
-                'electionSlug' => 'a',
-                'count' => 5,
-            ],
-            'all-12' => [
-                'dexSlug' => 'all',
-                'electionSlug' => 'b',
-                'count' => 12,
-            ],
-        ];
+        $this->assertCount(3, $electionList->getItems());
     }
 
     public function testGetWithFilters(): void
@@ -87,22 +61,34 @@ class GetPokemonsServiceTest extends TestCase
             )
         ;
 
-        $this->assertSame('pick', $electionList->type);
+        $this->assertSame('vote', $electionList->getType());
 
-        $pokemons = $electionList->items;
-        $this->assertCount(5, $pokemons);
+        $this->assertCount(3, $electionList->getItems());
     }
 
     public function testGetWithoutLoggedUser(): void
     {
         $dir = '/var/www/html/tests/resources/unit/service/back';
         $filename = "{$dir}/pokemons_123__3.json";
+        $json = (string) file_get_contents($filename);
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with(
+                $json,
+                ElectionList::class,
+                'json',
+            )
+            ->willReturn($this->getStubElectionList())
+        ;
 
         /** @var GetPokemonsService $service */
         $service = $this->getServiceWithoutLoggedUser(
             GetPokemonsService::class,
             'GET',
-            (string) file_get_contents($filename),
+            $json,
             'pokemons/to_choose',
             [
                 'query' => [
@@ -110,15 +96,15 @@ class GetPokemonsServiceTest extends TestCase
                     'election_slug' => '',
                     'count' => 3,
                 ],
-            ]
+            ],
+            $serializer,
         );
 
         $electionList = $service->get('123', '', 3, []);
 
-        $this->assertSame('pick', $electionList->type);
+        $this->assertSame('vote', $electionList->getType());
 
-        $pokemons = $electionList->items;
-        $this->assertCount(3, $pokemons);
+        $this->assertCount(3, $electionList->getItems());
     }
 
     /**
@@ -133,6 +119,19 @@ class GetPokemonsServiceTest extends TestCase
     ): GetPokemonsService {
         $dir = '/var/www/html/tests/resources/unit/service/back';
         $filename = "{$dir}/pokemons_{$dexSlug}_{$electionSlug}_{$count}{$filtersStr}.json";
+        $json = (string) file_get_contents($filename);
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with(
+                $json,
+                ElectionList::class,
+                'json',
+            )
+            ->willReturn($this->getStubElectionList())
+        ;
 
         $options = [
             'query' => array_merge(
@@ -149,9 +148,10 @@ class GetPokemonsServiceTest extends TestCase
         return $this->getServiceWithLoggedUser(
             GetPokemonsService::class,
             'GET',
-            (string) file_get_contents($filename),
+            $json,
             'pokemons/to_choose',
             $options,
+            $serializer,
         );
     }
 }

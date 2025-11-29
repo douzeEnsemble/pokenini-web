@@ -26,18 +26,10 @@
                 <file name="src/DTO/ActionLog.php" />
             </errorLevel>
         </RiskyCast>
-        <RiskyTruthyFalsyComparison>
-            <errorLevel type="suppress">
-                <file name="src/Controller/AlbumIndexController.php" />
-                <file name="src/Controller/AlbumUpsertController.php" />
-                <file name="src/Controller/TrainerUpsertController.php" />
-            </errorLevel>
-        </RiskyTruthyFalsyComparison>  
         <InvalidArgument>
             <errorLevel type="suppress">
                 <file name="tests/src/Unit/DTO/ElectionVoteTest.php" />
                 <file name="tests/src/Unit/DTO/ElectionMetricsTest.php" />
-                <file name="tests/src/Unit/DTO/ElectionPokemonsListTest.php" />
             </errorLevel>
         </InvalidArgument>       
     </issueHandlers>

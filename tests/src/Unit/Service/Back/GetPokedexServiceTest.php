@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\ResponseObject\Album\Album;
 use App\Service\Back\GetPokedexService;
+use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @internal
@@ -15,20 +18,38 @@ use PHPUnit\Framework\TestCase;
 class GetPokedexServiceTest extends TestCase
 {
     use BackServiceTrait;
+    use ResponseObjectTrait;
 
     public function testGet(): void
     {
+        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/pokedex_lite_csyes.json');
+
+        $album = $this->getStubAlbum();
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with(
+                $json,
+                Album::class,
+                'json',
+            )
+            ->willReturn($album)
+        ;
+
         $service = $this->getService(
             'lite',
-            'pokedex_lite_csyes.json',
+            $json,
             [
                 'catch_states' => [
                     'yes',
                 ],
             ],
+            $serializer,
         );
 
-        $pokedex = $service->get(
+        $album = $service->get(
             'lite',
             [
                 'catch_states' => [
@@ -37,26 +58,44 @@ class GetPokedexServiceTest extends TestCase
             ],
         );
 
-        $this->assertArrayHasKey('dex', $pokedex);
-        $this->assertArrayHasKey('pokemons', $pokedex);
-        $this->assertCount(2, $pokedex['pokemons']);
-        $this->assertArrayHasKey('report', $pokedex);
+        $this->assertNotNull($album);
+        $this->assertSame('Stub', $album->getDex()?->getName());
+        $this->assertCount(1, $album->getPokemons());
+        $this->assertSame(2, $album->getReport()->getTotalCaught());
+        $this->assertSame(0, $album->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetWithTrainerId(): void
     {
+        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/pokedex_lite.json');
+
+        $album = $this->getStubAlbum();
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with(
+                $json,
+                Album::class,
+                'json',
+            )
+            ->willReturn($album)
+        ;
+
         $service = $this->getService(
             'lite',
-            'pokedex_lite.json',
+            $json,
             [
                 'trainer_id' => '123',
                 'catch_states' => [
                     'yes',
                 ],
             ],
+            $serializer,
         );
 
-        $pokedex = $service->getWithTrainerId(
+        $album = $service->getWithTrainerId(
             '123',
             'lite',
             [
@@ -66,10 +105,11 @@ class GetPokedexServiceTest extends TestCase
             ],
         );
 
-        $this->assertArrayHasKey('dex', $pokedex);
-        $this->assertArrayHasKey('pokemons', $pokedex);
-        $this->assertCount(41, $pokedex['pokemons']);
-        $this->assertArrayHasKey('report', $pokedex);
+        $this->assertNotNull($album);
+        $this->assertSame('Stub', $album->getDex()?->getName());
+        $this->assertCount(1, $album->getPokemons());
+        $this->assertSame(2, $album->getReport()->getTotalCaught());
+        $this->assertSame(0, $album->getFilteredReport()->getTotalCaught());
     }
 
     /**
@@ -77,18 +117,20 @@ class GetPokedexServiceTest extends TestCase
      */
     private function getService(
         string $dexSlug,
-        string $filename,
+        string $json,
         array $queryParams,
+        ?SerializerInterface $serializer = null,
     ): GetPokedexService {
         /** @var GetPokedexService */
         return $this->getServiceWithLoggedUser(
             GetPokedexService::class,
             'GET',
-            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/'.$filename),
+            $json,
             "album/{$dexSlug}",
             [
                 'query' => $queryParams,
             ],
+            $serializer,
         );
     }
 }

@@ -56,7 +56,7 @@
                 {{ block('originalGameBundle_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
             </div>
             <div class="col-6">
-            {% if not dex.is_shiny %}
+            {% if not dex.isShiny %}
                 {{ block('gameBundleAvailability_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
             {% else %}
                 {{ block('gameBundleShinyAvailability_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
@@ -98,7 +98,7 @@
 
         <ul class="list-group list-group-horizontal group-icons">
             {# Is private icon #}
-            {% if dex.is_private %}
+            {% if dex.isPrivate %}
                 <li
                     class="list-group-item flex-fill album-private"
                     title="{{ 'nav.is_private'|trans }}"
@@ -121,13 +121,13 @@
             {% endif %}
 
             {# Region name or national #}
-            {% if dex.region_name is not empty %}
+            {% if dex.regionName is not empty %}
             <li
                 class="list-group-item flex-fill dex-type dex-type-regional"
-                title="{{ 'album.intro.label.region'|trans }} {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}"
+                title="{{ 'album.intro.label.region'|trans }} {{ locale is same as('fr') ? dex.regionFrenchName : dex.regionName }}"
                 data-bs-toggle="tooltip"
             >
-                {{ locale is same as('fr') ? dex.region_french_name : dex.region_name }}
+                {{ locale is same as('fr') ? dex.regionFrenchName : dex.regionName }}
             </li>
             {% else %}
             <li
@@ -142,10 +142,10 @@
             {# Shiny or not #}
             <li
                 class="list-group-item flex-fill dex-shiny-or-not"
-                title="{{ (dex.is_shiny ? 'album.intro.label.is_shiny.yes' : 'album.intro.label.is_shiny.no')|trans }}"
+                title="{{ (dex.isShiny ? 'album.intro.label.is_shiny.yes' : 'album.intro.label.is_shiny.no')|trans }}"
                 data-bs-toggle="tooltip"
             >
-                {% if dex.is_shiny %}
+                {% if dex.isShiny %}
                 <i class="bi bi-stars"></i>
                 {% else %}
                 <i class="bi bi-bug"></i>
@@ -155,7 +155,7 @@
 
         {# Description #}
         <p id="album-description" class="small">
-            {{- (locale is same as('fr') ? dex.french_description : dex.description)|htmlNl2br -}}
+            {{- (locale is same as('fr') ? dex.frenchDescription : dex.description)|htmlNl2br -}}
         </p>
         {# Template text #}
         <p class="dex-template small fst-italic">

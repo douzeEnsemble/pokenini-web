@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Service;
 
 use App\Service\Back\GetPokedexService;
 use App\Service\GetTrainerPokedexService;
+use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
@@ -18,6 +19,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[CoversClass(GetTrainerPokedexService::class)]
 class GetTrainerPokedexServiceTest extends TestCase
 {
+    use ResponseObjectTrait;
+
     public function testGetPokedexData(): void
     {
         $getPokedexService = $this->createMock(GetPokedexService::class);
@@ -28,12 +31,7 @@ class GetTrainerPokedexServiceTest extends TestCase
                 'douze',
                 [],
             )
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn($this->getStubAlbum())
         ;
         $getPokedexService
             ->expects($this->never())
@@ -43,15 +41,11 @@ class GetTrainerPokedexServiceTest extends TestCase
         $service = new GetTrainerPokedexService($getPokedexService);
         $pokedexData = $service->getPokedexData('douze', []);
 
-        $this->assertSame(
-            [
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ],
-            $pokedexData,
-        );
+        $this->assertNotNull($pokedexData);
+        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokemons());
+        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataWithFilters(): void
@@ -67,12 +61,7 @@ class GetTrainerPokedexServiceTest extends TestCase
                     'ti' => 'titi',
                 ],
             )
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn($this->getStubAlbum())
         ;
         $getPokedexService
             ->expects($this->never())
@@ -88,15 +77,11 @@ class GetTrainerPokedexServiceTest extends TestCase
             ]
         );
 
-        $this->assertSame(
-            [
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ],
-            $pokedexData,
-        );
+        $this->assertNotNull($pokedexData);
+        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokemons());
+        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataWithTrainerId(): void
@@ -114,26 +99,17 @@ class GetTrainerPokedexServiceTest extends TestCase
                 'douze',
                 [],
             )
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn($this->getStubAlbum())
         ;
 
         $service = new GetTrainerPokedexService($getPokedexService);
         $pokedexData = $service->getPokedexData('douze', [], '8800088');
 
-        $this->assertSame(
-            [
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ],
-            $pokedexData,
-        );
+        $this->assertNotNull($pokedexData);
+        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokemons());
+        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataWithNullTrainerId(): void
@@ -146,12 +122,7 @@ class GetTrainerPokedexServiceTest extends TestCase
                 'douze',
                 [],
             )
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn($this->getStubAlbum())
         ;
         $getPokedexService
             ->expects($this->never())
@@ -161,15 +132,11 @@ class GetTrainerPokedexServiceTest extends TestCase
         $service = new GetTrainerPokedexService($getPokedexService);
         $pokedexData = $service->getPokedexData('douze', [], null);
 
-        $this->assertSame(
-            [
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ],
-            $pokedexData,
-        );
+        $this->assertNotNull($pokedexData);
+        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokemons());
+        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataWithEmptyTrainerId(): void
@@ -182,12 +149,7 @@ class GetTrainerPokedexServiceTest extends TestCase
                 'douze',
                 [],
             )
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn($this->getStubAlbum())
         ;
         $getPokedexService
             ->expects($this->never())
@@ -197,15 +159,11 @@ class GetTrainerPokedexServiceTest extends TestCase
         $service = new GetTrainerPokedexService($getPokedexService);
         $pokedexData = $service->getPokedexData('douze', [], '');
 
-        $this->assertSame(
-            [
-                'dex' => [
-                    'slug' => 'douze-douze',
-                ],
-                'pokemons' => [],
-            ],
-            $pokedexData,
-        );
+        $this->assertNotNull($pokedexData);
+        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokemons());
+        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataHttpException(): void

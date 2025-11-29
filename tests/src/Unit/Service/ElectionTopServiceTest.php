@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Service;
 
 use App\Service\Back\GetElectionTopService;
 use App\Service\ElectionTopService;
+use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ElectionTopService::class)]
 class ElectionTopServiceTest extends TestCase
 {
+    use ResponseObjectTrait;
+
     public function testGetTop(): void
     {
         $apiService = $this->createMock(GetElectionTopService::class);
@@ -26,14 +29,13 @@ class ElectionTopServiceTest extends TestCase
                 'whatever',
                 12,
             )
-            ->willReturn(['some', 'data'])
+            ->willReturn($this->getStubElectionTop())
         ;
 
         $service = new ElectionTopService($apiService, 12);
 
-        $this->assertSame(
-            ['some', 'data'],
-            $service->getTop('demo', 'whatever'),
-        );
+        $object = $service->getTop('demo', 'whatever');
+
+        $this->assertCount(3, $object->getItems());
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Album;
 
+use App\ResponseObject\Common\Pokemon;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Album
@@ -13,7 +14,7 @@ class Album
      */
     public function __construct(
         #[SerializedName('dex')]
-        private readonly Dex $dex,
+        private readonly ?Dex $dex,
         #[SerializedName('pokemons')]
         private readonly array $pokemons,
         #[SerializedName('report')]
@@ -22,7 +23,7 @@ class Album
         private readonly Report $filteredReport,
     ) {}
 
-    public function getDex(): Dex
+    public function getDex(): ?Dex
     {
         return $this->dex;
     }

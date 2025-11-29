@@ -2,44 +2,44 @@
 {% import "common/Pokemon/_image_macros.html.twig" as imageMacros %}
 
 {% set locale = app.request.locale %}
-{% set currentCatchState = item.catch_state_slug ?? 'no' %}
+{% set currentCatchState = item.catchStateSlug ?? 'no' %}
 
 <div
     class="album-case col catch-state-{{ currentCatchState }}"
-    id="{{ item.pokemon_slug }}"
+    id="{{ item.pokemonSlug }}"
 >
-    {% set dexNumber = dex.region_name is not empty ? item.pokemon_regional_dex_number : item.pokemon_national_dex_number %}
+    {% set dexNumber = dex.regionName is not empty ? item.pokemonRegionalDexNumber : item.pokemonNationalDexNumber %}
     <div class="text-center text-truncate">
         <label
             class="album-case-title"
-            for="catch-state-{{ item.pokemon_slug }}"
+            for="catch-state-{{ item.pokemonSlug }}"
             data-bs-toggle="modal"
-            data-bs-target="#modal-{{ item.pokemon_slug }}"
+            data-bs-target="#modal-{{ item.pokemonSlug }}"
         >
             <span class="album-case-dex-number">
                 #{{ dexNumber }}
             </span>
             <span class="album-case-name">
-                {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+                {{ locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName }}
             </span>
         </label>
     </div>
     <div class="album-case-image text-center"
-        title="#{{ dexNumber }} {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}"
+        title="#{{ dexNumber }} {{ locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName }}"
     >
         <span
             data-bs-toggle="modal"
-            data-bs-target="#modal-{{ item.pokemon_slug }}"
+            data-bs-target="#modal-{{ item.pokemonSlug }}"
         >
-            {{ dex.is_shiny ? imageMacros.shinyPokemonIcon(item, locale) : imageMacros.regularPokemonIcon(item, locale) }}
+            {{ dex.isShiny ? imageMacros.shinyPokemonIcon(item, locale) : imageMacros.regularPokemonIcon(item, locale) }}
         </span>
     </div>
     <div class="album-case-forms text-truncate text-end">
-        {% if dex.is_display_form %}
-            {{ locale is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label }}
+        {% if dex.isDisplayForm %}
+            {{ locale is same as('fr') ? item.pokemonFormsFrenchLabel : item.pokemonFormsLabel }}
             {% if
-                item.pokemon_forms_french_label is empty
-                and item.pokemon_forms_label is empty %}
+                item.pokemonFormsFrenchLabel is empty
+                and item.pokemonFormsLabel is empty %}
                 &nbsp;
             {% endif %}
         {% else %}
@@ -51,8 +51,8 @@
         <div class="album-case-action text-center" hidden>
             <select
                 class="catch-state-{{ currentCatchState }}"
-                id="catch-state-{{ item.pokemon_slug }}"
-                name="catch-state[{{ item.pokemon_slug }}]"
+                id="catch-state-{{ item.pokemonSlug }}"
+                name="catch-state[{{ item.pokemonSlug }}]"
             >
                 {% for catchState in catchStates %}
                     {% set isSelected = (catchState.slug is same as(currentCatchState)) %}
@@ -66,16 +66,16 @@
         <div class="album-case-catch-state rounded-1 ps-2 overflow-auto">
             {% if canEdit %}
             <a
-                href="#{{ item.pokemon_slug }}"
+                href="#{{ item.pokemonSlug }}"
                 class="link-dark album-case-catch-state-label"
             >
             {% else %}
             <span class="link-dark album-case-catch-state-label">
             {% endif %}
                 {% if locale is same as('fr') %}
-                    {{ item.catch_state_french_name ?? 'Non' }}
+                    {{ item.catchStateFrenchName ?? 'Non' }}
                 {% else %}
-                    {{ item.catch_state_name ?? 'No' }}
+                    {{ item.catchStateName ?? 'No' }}
                 {% endif %}
             {% if canEdit %}
             </a>
@@ -84,9 +84,9 @@
             {% endif %}
             {% if canEdit %}
             <a
-                id="{{ item.pokemon_slug }}-catch-state-edit-action"
+                id="{{ item.pokemonSlug }}-catch-state-edit-action"
                 class="album-case-catch-state-edit-action float-end pe-1"
-                href="#{{ item.pokemon_slug }}"
+                href="#{{ item.pokemonSlug }}"
             >
                 <i class="bi bi-pencil-square"></i>
             </a>
@@ -95,16 +95,16 @@
     </div>
 </div>
 
-<div class="modal" tabindex="-1" id="modal-{{ item.pokemon_slug }}">
+<div class="modal" tabindex="-1" id="modal-{{ item.pokemonSlug }}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">
-            {{ locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name }}
+            {{ locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName }}
 
             <span class="modal-subtitle ms-6 fs-6 d-none d-lg-inline">
                 /
-                {{ locale is same as('fr') ? item.pokemon_name : item.pokemon_french_name}}
+                {{ locale is same as('fr') ? item.pokemonName : item.pokemonFrenchName}}
             </span>
         </h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -114,24 +114,24 @@
             <div class="row">
                 <div class="col-md-6">
                     <div>
-                        <span class="album-modal-image-container-regular" {{ dex.is_shiny ? 'hidden': '' }}>
+                        <span class="album-modal-image-container-regular" {{ dex.isShiny ? 'hidden': '' }}>
                             {{ imageMacros.regularPokemonImage(item, locale) }}
                         </span>
-                        <span class="album-modal-image-container-shiny" {{ dex.is_shiny ? '': 'hidden' }}>
+                        <span class="album-modal-image-container-shiny" {{ dex.isShiny ? '': 'hidden' }}>
                             {{ imageMacros.shinyPokemonImage(item, locale) }}
                         </span>
                     </div>
                     <div class="d-flex justify-content-evenly align-items-center text-center mt-3 mb-3">
                         <a
-                            href="#modal-{{ item.pokemon_slug }}"
-                            class="album-modal-icon album-modal-icon-regular {{ dex.is_shiny ? '': 'active' }}"
+                            href="#modal-{{ item.pokemonSlug }}"
+                            class="album-modal-icon album-modal-icon-regular {{ dex.isShiny ? '': 'active' }}"
                         >
                             {{ imageMacros.regularPokemonIcon(item, locale, 'img-thumbnail') }}
                             {{ 'album.icon.title.regular'|trans }}
                         </a>
                         <a
-                            href="#modal-{{ item.pokemon_slug }}"
-                            class="album-modal-icon album-modal-icon-shiny {{ dex.is_shiny ? 'active' : '' }}"
+                            href="#modal-{{ item.pokemonSlug }}"
+                            class="album-modal-icon album-modal-icon-shiny {{ dex.isShiny ? 'active' : '' }}"
                         >
                             {{ imageMacros.shinyPokemonIcon(item, locale, 'img-thumbnail') }}
                             {{ 'album.icon.title.shiny'|trans }}
@@ -142,42 +142,42 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>
-                                {{ locale is same as('fr') ? item.pokemon_simplified_french_name : item.pokemon_simplified_name }}
+                                {{ locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName }}
                             </strong>
                             /
                             <em>
-                                {{ locale is same as('fr') ? item.pokemon_simplified_name : item.pokemon_simplified_french_name }}
+                                {{ locale is same as('fr') ? item.pokemonSimplifiedName : item.pokemonSimplifiedFrenchName }}
                             </em>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>{{ 'album.modal.forms'|trans }}</strong>
                             <span>
-                                {% set forms = locale is same as('fr') ? item.pokemon_forms_french_label : item.pokemon_forms_label %}
+                                {% set forms = locale is same as('fr') ? item.pokemonFormsFrenchLabel : item.pokemonFormsLabel %}
                                 {{ forms ? forms : 'album.modal.no_forms'|trans }}
                             </span>
                         </li>
                         <li class="list-group-item d-flex justify-content-end align-items-center">
-                            <span class="album-modal-types album-modal-type-primary pokemon-type-{{ item.primary_type_slug }} badge">
-                                {{ locale is same as('fr') ? item.primary_type_french_name : item.primary_type_name }}
+                            <span class="album-modal-types album-modal-type-primary pokemon-type-{{ item.primaryTypeSlug }} badge">
+                                {{ locale is same as('fr') ? item.primaryTypeFrenchName : item.primaryTypeName }}
                             </span>
                             
-                            {% if item.secondary_type_french_name is not null %}
-                            <span class="album-modal-types album-modal-type-secondary pokemon-type-{{ item.secondary_type_slug }} badge ms-2">
-                                {{ locale is same as('fr') ? item.secondary_type_french_name : item.secondary_type_name }}
+                            {% if item.secondaryTypeFrenchName is not null %}
+                            <span class="album-modal-types album-modal-type-secondary pokemon-type-{{ item.secondaryTypeSlug }} badge ms-2">
+                                {{ locale is same as('fr') ? item.secondaryTypeFrenchName : item.secondaryTypeName }}
                             </span>
                             {% endif %}
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>{{ 'album.modal.national_dex_number'|trans }}</strong>
                             <span>
-                                {{ item.pokemon_national_dex_number }}
+                                {{ item.pokemonNationalDexNumber }}
                             </span>
                         </li>
-                        {% if item.pokemon_regional_dex_number is defined and item.pokemon_regional_dex_number %}
+                        {% if item.pokemonRegionalDexNumber is defined and item.pokemonRegionalDexNumber %}
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <strong>{{ 'album.modal.regional_dex_number'|trans }}</strong>
                             <span>
-                                {{ item.pokemon_regional_dex_number }}
+                                {{ item.pokemonRegionalDexNumber }}
                             </span>
                         </li>
                         {% endif %}
@@ -186,11 +186,11 @@
                         {# If there is no previous, we use the current item as a placeholder #}
                         {% set previous = loop.first ? item : list[loop.index0 - 1] %}
                         <a
-                            href="#modal-{{ previous.pokemon_slug }}"
-                            data-bs-target="#modal-{{ previous.pokemon_slug }}" data-bs-toggle="modal"
+                            href="#modal-{{ previous.pokemonSlug }}"
+                            data-bs-target="#modal-{{ previous.pokemonSlug }}" data-bs-toggle="modal"
                             class="album-modal-icon album-modal-icon-previous {{ loop.first ? 'invisible': 'visible' }}"
                         >
-                            {% if dex.is_shiny %}
+                            {% if dex.isShiny %}
                             {{ imageMacros.shinyPokemonIcon(previous, locale, 'img-thumbnaild') }}
                             {% else %}
                             {{ imageMacros.regularPokemonIcon(previous, locale, 'img-thumbnaild') }}
@@ -205,11 +205,11 @@
                         {# If there is no next, we use the current item as a placeholder #}
                         {% set next = loop.last ? item : list[loop.index0 + 1] %}
                         <a
-                            href="#modal-{{ next.pokemon_slug }}"
-                            data-bs-target="#modal-{{ next.pokemon_slug }}" data-bs-toggle="modal"
+                            href="#modal-{{ next.pokemonSlug }}"
+                            data-bs-target="#modal-{{ next.pokemonSlug }}" data-bs-toggle="modal"
                             class="album-modal-icon album-modal-icon-next {{ loop.last ? 'invisible': 'visible' }}"
                         >
-                            {% if dex.is_shiny %}
+                            {% if dex.isShiny %}
                             {{ imageMacros.shinyPokemonIcon(next, locale, 'img-thumbnaild') }}
                             {% else %}
                             {{ imageMacros.regularPokemonIcon(next, locale, 'img-thumbnaild') }}
@@ -230,7 +230,7 @@
                                         {
                                             'dexSlug': dex.slug,
                                             't': trainerId,
-                                            'f': item.family_lead_slug ?? item.pokemon_slug
+                                            'f': item.familyLeadSlug ?? item.pokemonSlug
                                         }
                                     ) }}"
                                 >
@@ -240,7 +240,7 @@
                         </li>
                         <li class="list-group-item">
                             <a
-                                href="https://www.pokepedia.fr/{{ item.pokemon_simplified_french_name }}"
+                                href="https://www.pokepedia.fr/{{ item.pokemonSimplifiedFrenchName }}"
                                 target="_blank"
                                 class="icon-link icon-link-hover"
                             >
@@ -250,7 +250,7 @@
                         </li>
                         <li class="list-group-item">
                             <a
-                                href="https://bulbapedia.bulbagarden.net/wiki/{{ item.pokemon_simplified_name }}_(Pokémon)"
+                                href="https://bulbapedia.bulbagarden.net/wiki/{{ item.pokemonSimplifiedName }}_(Pokémon)"
                                 target="_blank"
                                 class="icon-link icon-link-hover"
                             >
@@ -270,8 +270,8 @@
 
 {% macro toasts(item) %}
 {% set locale = app.request.locale %}
-{% set pokemonName = locale is same as('fr') ? item.pokemon_french_name : item.pokemon_name %}
-<div id="successToast-{{ item.pokemon_slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+{% set pokemonName = locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName %}
+<div id="successToast-{{ item.pokemonSlug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
         <div class="toast-body">
             {{ 'album.update.success.prefix'|trans }}
@@ -282,7 +282,7 @@
     </div>
 </div>
 
-<div id="errorToast-{{ item.pokemon_slug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+<div id="errorToast-{{ item.pokemonSlug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
         <div class="toast-body">
             {{ 'album.update.error.prefix'|trans }}

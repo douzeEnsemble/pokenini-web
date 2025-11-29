@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ResponseObject;
+namespace App\Tests\Unit\ResponseObject\Label;
 
-use App\ResponseObject\Label\AbstractForm;
-use App\ResponseObject\Label\SpecialForm;
+use App\ResponseObject\Label\CatchState;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
  */
-#[CoversClass(AbstractForm::class)]
-#[CoversClass(SpecialForm::class)]
-class SpecialFormTest extends TestCase
+#[CoversClass(CatchState::class)]
+class CatchStateTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $object = new SpecialForm(
+        $object = new CatchState(
             'Toto',
             'Tautaux',
             'toto',
+            '#blouge',
         );
 
         $this->assertSame('Toto', $object->getName());
         $this->assertSame('Tautaux', $object->getFrenchName());
         $this->assertSame('toto', $object->getSlug());
+        $this->assertSame('#blouge', $object->getColor());
     }
 }

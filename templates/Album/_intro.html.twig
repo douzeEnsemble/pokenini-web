@@ -1,7 +1,7 @@
 {% set locale = app.request.locale %}
 {% set currentRoute = app.request.get('_route') %}
 {% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
-{% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
+{% set displayTemplateName = dex.displayTemplate is defined ? dex.displayTemplate : 'box' %}
 <div id="intro">
 
     {# Top icons #}
@@ -28,7 +28,7 @@
         {% endif %}
     </div>
 
-    {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
+    {% set titles = (locale is same as('fr') ? dex.frenchName : dex.name)|split("\n") %}
     {% set title = titles.0 %}
     {% set subtitle = titles.1 is defined ? titles.1 : '' %}
 
@@ -80,7 +80,7 @@
         </a>
 
         {# Share link #}
-        {% if not dex.is_private %}
+        {% if not dex.isPrivate %}
             <a
                 class="list-group-item list-group-item-action list-group-item-success flex-fill share"
                 href="{{ path('app_albumindex_index', filters|merge({ 'dexSlug': currentDexSlug, 't': trainerId, }) ) }}" 

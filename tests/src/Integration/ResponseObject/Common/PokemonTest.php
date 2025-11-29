@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Integration\ResponseObject\Album;
+namespace App\Tests\Integration\ResponseObject\Common;
 
-use App\ResponseObject\Album\Pokemon;
+use App\ResponseObject\Common\Pokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;

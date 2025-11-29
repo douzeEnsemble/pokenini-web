@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
-use App\DTO\ElectionPokemonsList;
+use App\ResponseObject\Election\ElectionList;
 use App\Service\Back\GetPokemonsService;
 use App\Service\GetPokemonsListService;
+use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -16,6 +17,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(GetPokemonsListService::class)]
 class GetPokemonsListServiceTest extends TestCase
 {
+    use ResponseObjectTrait;
+
     public function testGet(): void
     {
         $getPokemonsService = $this->createMock(GetPokemonsService::class);
@@ -28,21 +31,11 @@ class GetPokemonsListServiceTest extends TestCase
                 12,
             )
             ->willReturn(
-                new ElectionPokemonsList(
+                new ElectionList(
+                    'pick',
                     [
-                        'type' => 'pick',
-                        'items' => [
-                            [
-                                'poke' => '1',
-                                'numb' => 1,
-                                'exist' => null,
-                            ],
-                            [
-                                'poke' => '2',
-                                'numb' => 2,
-                                'exist' => null,
-                            ],
-                        ],
+                        $this->getStubPokemon(),
+                        $this->getStubPokemon(),
                     ]
                 )
             )
@@ -51,22 +44,8 @@ class GetPokemonsListServiceTest extends TestCase
         $service = new GetPokemonsListService($getPokemonsService, 12);
         $list = $service->get('douze', '', []);
 
-        $this->assertSame('pick', $list->type);
-        $this->assertSame(
-            [
-                [
-                    'poke' => '1',
-                    'numb' => 1,
-                    'exist' => null,
-                ],
-                [
-                    'poke' => '2',
-                    'numb' => 2,
-                    'exist' => null,
-                ],
-            ],
-            $list->items
-        );
+        $this->assertSame('pick', $list->getType());
+        $this->assertCount(2, $list->getItems());
     }
 
     public function testGetWithFilters(): void
@@ -82,21 +61,11 @@ class GetPokemonsListServiceTest extends TestCase
                 ['at' => ['poison', 'fire'], 'cf' => ['legendary']],
             )
             ->willReturn(
-                new ElectionPokemonsList(
+                new ElectionList(
+                    'pick',
                     [
-                        'type' => 'pick',
-                        'items' => [
-                            [
-                                'poke' => '1',
-                                'numb' => 1,
-                                'exist' => null,
-                            ],
-                            [
-                                'poke' => '2',
-                                'numb' => 2,
-                                'exist' => null,
-                            ],
-                        ],
+                        $this->getStubPokemon(),
+                        $this->getStubPokemon(),
                     ]
                 )
             )
@@ -105,21 +74,7 @@ class GetPokemonsListServiceTest extends TestCase
         $service = new GetPokemonsListService($getPokemonsService, 12);
         $list = $service->get('douze', '', ['at' => ['poison', 'fire'], 'cf' => ['legendary']]);
 
-        $this->assertSame('pick', $list->type);
-        $this->assertSame(
-            [
-                [
-                    'poke' => '1',
-                    'numb' => 1,
-                    'exist' => null,
-                ],
-                [
-                    'poke' => '2',
-                    'numb' => 2,
-                    'exist' => null,
-                ],
-            ],
-            $list->items
-        );
+        $this->assertSame('pick', $list->getType());
+        $this->assertCount(2, $list->getItems());
     }
 }

@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
-use App\Utils\JsonDecoder;
+use App\ResponseObject\Album\Album;
 
 class GetPokedexService extends AbstractBackService
 {
     /**
      * @param string[]|string[][] $filters
-     *
-     * @return string[][]
      */
     public function get(
         string $dexSlug,
         array $filters = [],
-    ): array {
+    ): Album {
         $url = "/album/{$dexSlug}";
 
         return $this->getData($url, $filters);
@@ -24,14 +22,12 @@ class GetPokedexService extends AbstractBackService
 
     /**
      * @param string[]|string[][] $filters
-     *
-     * @return string[][]
      */
     public function getWithTrainerId(
         string $trainerId,
         string $dexSlug,
         array $filters = [],
-    ): array {
+    ): Album {
         $url = "/album/{$dexSlug}";
 
         $filters['trainer_id'] = $trainerId;
@@ -41,10 +37,8 @@ class GetPokedexService extends AbstractBackService
 
     /**
      * @param string[]|string[][] $filters
-     *
-     * @return string[][]
      */
-    private function getData(string $url, array $filters): array
+    private function getData(string $url, array $filters): Album
     {
         $json = $this->requestContent(
             'GET',
@@ -54,7 +48,6 @@ class GetPokedexService extends AbstractBackService
             ],
         );
 
-        /** @var string[][] */
-        return JsonDecoder::decode($json);
+        return $this->serializer->deserialize($json, Album::class, 'json');
     }
 }

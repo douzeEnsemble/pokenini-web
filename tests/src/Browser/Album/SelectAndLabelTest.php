@@ -292,8 +292,6 @@ class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
-        file_put_contents('tests/last.html', $client->getCrawler()->html());
-
         $this->assertSelectorIsNotVisible('#successToast-bulbasaur');
         $this->assertSelectorIsNotVisible('#errorToast-bulbasaur');
         $this->assertSelectorAttributeContains('#bulbasaur', 'class', 'catch-state-no');

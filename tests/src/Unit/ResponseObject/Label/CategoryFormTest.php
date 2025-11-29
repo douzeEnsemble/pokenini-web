@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ResponseObject;
+namespace App\Tests\Unit\ResponseObject\Label;
 
-use App\ResponseObject\Label\GameBundle;
+use App\ResponseObject\Label\AbstractForm;
+use App\ResponseObject\Label\CategoryForm;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
  */
-#[CoversClass(GameBundle::class)]
-class GameBundleTest extends TestCase
+#[CoversClass(AbstractForm::class)]
+#[CoversClass(CategoryForm::class)]
+class CategoryFormTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $object = new GameBundle(
+        $object = new CategoryForm(
             'Toto',
             'Tautaux',
             'toto',
-            'gen_y',
         );
 
         $this->assertSame('Toto', $object->getName());
         $this->assertSame('Tautaux', $object->getFrenchName());
         $this->assertSame('toto', $object->getSlug());
-        $this->assertSame('gen_y', $object->getGenerationSlug());
     }
 }

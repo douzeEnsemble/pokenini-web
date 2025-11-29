@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\DTO\ElectionTop;
 use App\Service\Back\GetElectionTopService;
 
 class ElectionTopService
@@ -11,10 +12,7 @@ class ElectionTopService
         private readonly int $electionTopCount,
     ) {}
 
-    /**
-     * @return string[][]
-     */
-    public function getTop(string $dexSlug, string $electionSlug): array
+    public function getTop(string $dexSlug, string $electionSlug): ElectionTop
     {
         return $this->apiService->getTop($dexSlug, $electionSlug, $this->electionTopCount);
     }

@@ -38,13 +38,13 @@ class TrainerUpsertController extends AbstractController
         }
 
         $pokedex = $this->getTrainerPokedexService->getPokedexData($dexSlug, []);
-        if (null === $pokedex || empty($pokedex['dex'])) {
+        if (null === $pokedex || null === $pokedex->getDex()) {
             return new JsonResponse([], 404);
         }
 
-        $dex = $pokedex['dex'];
+        $dex = $pokedex->getDex();
 
-        if ($dex['is_premium'] && !$this->isGranted('ROLE_COLLECTOR')) {
+        if ($dex->isPremium() && !$this->isGranted('ROLE_COLLECTOR')) {
             return new JsonResponse([], 404);
         }
 

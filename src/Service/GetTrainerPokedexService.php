@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\ResponseObject\Album\Album;
 use App\Service\Back\GetPokedexService;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -14,10 +15,8 @@ class GetTrainerPokedexService
 
     /**
      * @param string[]|string[][] $filters
-     *
-     * @return null|string[][]
      */
-    public function getPokedexData(string $dexSlug, array $filters, ?string $trainerId = null): ?array
+    public function getPokedexData(string $dexSlug, array $filters, ?string $trainerId = null): ?Album
     {
         try {
             if (null !== $trainerId && !empty($trainerId)) {
