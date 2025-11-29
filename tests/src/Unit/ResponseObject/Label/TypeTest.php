@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ResponseObject;
+namespace App\Tests\Unit\ResponseObject\Label;
 
-use App\ResponseObject\Label\Collection;
+use App\ResponseObject\Label\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
  */
-#[CoversClass(Collection::class)]
-class CollectionTest extends TestCase
+#[CoversClass(Type::class)]
+class TypeTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $object = new Collection(
+        $object = new Type(
             'Toto',
             'Tautaux',
             'toto',
-            12,
+            '#blouge',
         );
 
         $this->assertSame('Toto', $object->getName());
         $this->assertSame('Tautaux', $object->getFrenchName());
         $this->assertSame('toto', $object->getSlug());
-        $this->assertSame(12, $object->getOrderNumber());
+        $this->assertSame('#blouge', $object->getColor());
     }
 }

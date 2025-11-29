@@ -14,7 +14,7 @@
     "is_on_home": false,
     "description": "All Pok\u00e9mons that can be transferred to Pok\u00e9mon Home.\n\nIncluding males\/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pok\u00e9mons anyway, in case it changes)",
     "french_description": "Tous les pok\u00e9mons pouvant \u00eatre transf\u00e9r\u00e9s sur Pok\u00e9mon Home. \n\nIncluant les m\u00e2les\/femelles, les formes diff\u00e9rentes et les transformations (certains ne sont pas conserv\u00e9s lors du transfert, mais je voulais avoir les pok\u00e9mons quand m\u00eame, au cas o\u00f9 \u00e7a change)",
-    "version": "20230421.090014",
+    "version": 20230421.090014,
     "is_released": true,
     "is_premium": false,
     "is_custom": false
@@ -113752,46 +113752,46 @@
   ],
   "report": {
     "total": 1477,
-    "totalCaught": 0,
-    "totalUncaught": 1477,
+    "total_caught": 0,
+    "total_uncaught": 1477,
     "detail": [
       {
         "slug": "no",
         "name": "No",
-        "frenchName": "Non",
+        "french_name": "Non",
         "count": 0
       },
       {
         "slug": "toevolve",
         "name": "To evolve",
-        "frenchName": "Af. \u00e9voluer",
+        "french_name": "Af. \u00e9voluer",
         "count": 0
       },
       {
         "slug": "tobreed",
         "name": "To breed",
-        "frenchName": "Af. reproduire",
+        "french_name": "Af. reproduire",
         "count": 0
       },
       {
         "slug": "totransfer",
         "name": "To transfer",
-        "frenchName": "\u00c0 transf\u00e9rer",
+        "french_name": "\u00c0 transf\u00e9rer",
         "count": 0
       },
       {
         "slug": "totrade",
         "name": "To trade",
-        "frenchName": "\u00c0 \u00e9changer",
+        "french_name": "\u00c0 \u00e9changer",
         "count": 0
       },
       {
         "slug": "yes",
         "name": "Yes",
-        "frenchName": "Oui",
+        "french_name": "Oui",
         "count": 0
       }
     ]
   },
-  "filteredReport": {}
+  "filtered_report": {}
 }

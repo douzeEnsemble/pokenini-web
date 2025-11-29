@@ -4,14 +4,14 @@
     <div class="col-xl-4 offset-xl-4 col-lg-6 offset-lg-3 col-12 text-center">
       <div class="card border-light shadow-sm">
         <div class="card-body text-body-secondary">
-          <h4 class="card-title">{{- (locale is same as('fr') ? dex.french_name : dex.name) -}}</h4>
+          <h4 class="card-title">{{- (locale is same as('fr') ? dex.frenchName : dex.name) -}}</h4>
           <p class="card-text">
             <span class="dex-pokemon-counter badge rounded-pill bg-primary">
                 {{ pokedex.pokemons|length|number_format(0, '.', ' ') }} {{ 'election_dex.dex.total_count_suffixe'|trans }}                            
             </span>
             <br>
             <small class="dex-description text-body-secondary">
-              {{- (locale is same as('fr') ? dex.french_description : dex.description) -}}
+              {{- (locale is same as('fr') ? dex.frenchDescription : dex.description) -}}
             </small>
           </p>
         </div>

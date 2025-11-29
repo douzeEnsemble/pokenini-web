@@ -47,13 +47,13 @@ class ElectionIndexController extends AbstractController
         $pokedex = $getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters);
 
         $detachedCount = 0;
-        foreach ($electionTop as $pokemon) {
-            if ($pokemon['significance']) {
+        foreach ($electionTop->getItems() as $pokemon) {
+            if ($pokemon->isSignificance()) {
                 ++$detachedCount;
             }
         }
 
-        $isTheLastPage = 0 === $metrics->underMaxViewCount && $metrics->maxViewCount === count($list->items);
+        $isTheLastPage = 0 === $metrics->underMaxViewCount && $metrics->maxViewCount === count($list->getItems());
         $isTheLastOne = $isTheLastPage && 1 === $metrics->maxViewCount;
 
         $types = $getLabelsService->getTypes();
@@ -68,8 +68,8 @@ class ElectionIndexController extends AbstractController
         return $this->render(
             'Election/index.html.twig',
             [
-                'listType' => $list->type,
-                'pokemons' => $list->items,
+                'listType' => $list->getType(),
+                'pokemons' => $list->getItems(),
                 'pokedex' => $pokedex,
                 'types' => $types,
                 'categoryForms' => $categoryForms,

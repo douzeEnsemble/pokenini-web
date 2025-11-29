@@ -24,7 +24,7 @@ class Dex
         #[SerializedName('is_display_form')]
         private readonly bool $isDisplayForm,
         #[SerializedName('display_template')]
-        private readonly string $displayTemplate,
+        private readonly ?string $displayTemplate,
         #[SerializedName('region_name')]
         private readonly ?string $regionName,
         #[SerializedName('region_french_name')]
@@ -78,7 +78,7 @@ class Dex
         return $this->isDisplayForm;
     }
 
-    public function getDisplayTemplate(): string
+    public function getDisplayTemplate(): ?string
     {
         return $this->displayTemplate;
     }

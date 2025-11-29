@@ -3,7 +3,7 @@
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 
-{% block title %}Pokénini {{ locale is same as('fr') ? dex.french_name : dex.name }}{% endblock title %}
+{% block title %}Pokénini {{ locale is same as('fr') ? dex.frenchName : dex.name }}{% endblock title %}
 
 {%- block navbarTitleLink -%}
     {{ path(
@@ -15,7 +15,7 @@
     ) }}
 {%- endblock navbarTitleLink -%}
 {% block navbarTitle %}
-    {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
+    {% set titles = (locale is same as('fr') ? dex.frenchName : dex.name)|split("\n") %}
     {% set title = titles.0 %}
     {% set subtitle = titles.1 is defined ? titles.1 : '' %}
 
@@ -73,7 +73,7 @@
     </div>
     <div class="col-xxl-6 col-xl-12">
         <form id="album-form">
-            {% set displayTemplateName = dex.display_template is defined ? dex.display_template : 'box' %}
+            {% set displayTemplateName = dex.displayTemplate is defined ? dex.displayTemplate : 'box' %}
             {% set templateData = displayTemplateName|split('-') %}
             {% set mainTemplate = templateData.0 %}
             {% set nbCaseByLine = templateData.1 is defined ? templateData.1 : 0 %}

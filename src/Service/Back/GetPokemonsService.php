@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
-use App\DTO\ElectionPokemonsList;
-use App\Utils\JsonDecoder;
+use App\ResponseObject\Election\ElectionList;
 
 class GetPokemonsService extends AbstractBackService
 {
@@ -17,7 +16,7 @@ class GetPokemonsService extends AbstractBackService
         string $electionSlug,
         int $count,
         array $filters,
-    ): ElectionPokemonsList {
+    ): ElectionList {
         $json = $this->requestContent(
             'GET',
             '/pokemons/to_choose',
@@ -33,9 +32,6 @@ class GetPokemonsService extends AbstractBackService
             ]
         );
 
-        /** @var array{type: string, items: list<array{null|int|string}>} */
-        $data = JsonDecoder::decode($json);
-
-        return new ElectionPokemonsList($data);
+        return $this->serializer->deserialize($json, ElectionList::class, 'json');
     }
 }

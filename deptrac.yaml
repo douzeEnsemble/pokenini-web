@@ -127,6 +127,7 @@ parameters:
       - AppAlbumFilters
       - AppDTO
       - AppException
+      - AppResponseObject
       - AppSecurity
       - AppService
       - AppValidator
@@ -141,6 +142,7 @@ parameters:
     AppDTO:
       - AppDTO
       - AppHelper
+      - AppResponseObject
       - SymfonyHttpFoundation
       - SymfonyOptionsResolver
     AppException:

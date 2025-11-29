@@ -33,6 +33,8 @@ class ElectionIndexTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/election/demolite');
 
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
+
         $this->assertResponseIsSuccessful();
 
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
@@ -341,6 +343,8 @@ class ElectionIndexTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/election/mega/lastone');
+
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
 
         $this->assertResponseIsSuccessful();
 

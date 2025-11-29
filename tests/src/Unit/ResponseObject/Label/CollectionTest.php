@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ResponseObject;
+namespace App\Tests\Unit\ResponseObject\Label;
 
-use App\ResponseObject\Label\CatchState;
+use App\ResponseObject\Label\Collection;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
  */
-#[CoversClass(CatchState::class)]
-class CatchStateTest extends TestCase
+#[CoversClass(Collection::class)]
+class CollectionTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $object = new CatchState(
+        $object = new Collection(
             'Toto',
             'Tautaux',
             'toto',
-            '#blouge',
+            12,
         );
 
         $this->assertSame('Toto', $object->getName());
         $this->assertSame('Tautaux', $object->getFrenchName());
         $this->assertSame('toto', $object->getSlug());
-        $this->assertSame('#blouge', $object->getColor());
+        $this->assertSame(12, $object->getOrderNumber());
     }
 }

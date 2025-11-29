@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ResponseObject\Album;
+namespace App\ResponseObject\Common;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
@@ -56,11 +56,11 @@ class Pokemon
         #[SerializedName('pokemon_regional_dex_number')]
         private readonly ?int $pokemonRegionalDexNumber,
         #[SerializedName('primary_type_slug')]
-        private readonly string $primaryTypeSlug,
+        private readonly ?string $primaryTypeSlug,
         #[SerializedName('primary_type_name')]
-        private readonly string $primaryTypeName,
+        private readonly ?string $primaryTypeName,
         #[SerializedName('primary_type_french_name')]
-        private readonly string $primaryTypeFrenchName,
+        private readonly ?string $primaryTypeFrenchName,
         #[SerializedName('secondary_type_slug')]
         private readonly ?string $secondaryTypeSlug,
         #[SerializedName('secondary_type_name')]
@@ -186,17 +186,17 @@ class Pokemon
         return $this->pokemonRegionalDexNumber;
     }
 
-    public function getPrimaryTypeSlug(): string
+    public function getPrimaryTypeSlug(): ?string
     {
         return $this->primaryTypeSlug;
     }
 
-    public function getPrimaryTypeName(): string
+    public function getPrimaryTypeName(): ?string
     {
         return $this->primaryTypeName;
     }
 
-    public function getPrimaryTypeFrenchName(): string
+    public function getPrimaryTypeFrenchName(): ?string
     {
         return $this->primaryTypeFrenchName;
     }

@@ -8,9 +8,13 @@ use App\Controller\TrainerUpsertController;
 use App\Exception\EmptyContentException;
 use App\Exception\InvalidJsonException;
 use App\Exception\ModifyFailedException;
+use App\ResponseObject\Album\Album;
+use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\Report;
 use App\Service\GetTrainerPokedexService;
 use App\Service\ModifyTrainerDexService;
 use App\Service\RequestedContentService;
+use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -24,6 +28,8 @@ use Symfony\Component\Validator\Constraints\Json;
 #[CoversClass(TrainerUpsertController::class)]
 class TrainerUpsertControllerTest extends TestCase
 {
+    use ResponseObjectTrait;
+
     public function testUpsert(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
@@ -31,13 +37,9 @@ class TrainerUpsertControllerTest extends TestCase
             ->expects($this->once())
             ->method('getPokedexData')
             ->with('douze', [])
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze',
-                    'is_premium' => true,
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn(
+                $this->getStubAlbum(),
+            )
         ;
 
         $modifyTrainerDexService = $this->createMock(ModifyTrainerDexService::class);
@@ -184,53 +186,6 @@ class TrainerUpsertControllerTest extends TestCase
         $this->assertSame('{"error":"Json is invalid"}', $response->getContent());
     }
 
-    public function testUpsertPokedexNull(): void
-    {
-        $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
-        $getTrainerPokedexService
-            ->expects($this->once())
-            ->method('getPokedexData')
-            ->with('douze', [])
-            ->willReturn(null)
-        ;
-
-        $modifyTrainerDexService = $this->createMock(ModifyTrainerDexService::class);
-        $modifyTrainerDexService
-            ->expects($this->never())
-            ->method('modifyDex')
-        ;
-
-        $requestedContentService = $this->createMock(RequestedContentService::class);
-        $requestedContentService
-            ->expects($this->once())
-            ->method('getContent')
-            ->with(new Json())
-            ->willReturn('{"key": "value"}')
-        ;
-
-        $container = $this->createMock(ContainerInterface::class);
-        $container
-            ->expects($this->never())
-            ->method('has')
-        ;
-        $container
-            ->expects($this->never())
-            ->method('get')
-        ;
-
-        $controller = new TrainerUpsertController(
-            $getTrainerPokedexService,
-            $modifyTrainerDexService,
-            $requestedContentService,
-        );
-        $controller->setContainer($container);
-
-        $response = $controller->upsert('douze');
-
-        $this->assertEquals(404, $response->getStatusCode());
-        $this->assertSame('[]', $response->getContent());
-    }
-
     public function testUpsertDexNotDefined(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
@@ -238,9 +193,9 @@ class TrainerUpsertControllerTest extends TestCase
             ->expects($this->once())
             ->method('getPokedexData')
             ->with('douze', [])
-            ->willReturn([
-                'pokemons' => [],
-            ])
+            ->willReturn(
+                $this->getStubAlbumEmpty(),
+            )
         ;
 
         $modifyTrainerDexService = $this->createMock(ModifyTrainerDexService::class);
@@ -287,13 +242,31 @@ class TrainerUpsertControllerTest extends TestCase
             ->expects($this->once())
             ->method('getPokedexData')
             ->with('douze', [])
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze',
-                    'is_premium' => false,
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn(
+                new Album(
+                    new Dex(
+                        'douze',
+                        '',
+                        '',
+                        '',
+                        false,
+                        false,
+                        false,
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        0.0,
+                        false,
+                        false,
+                        false,
+                    ),
+                    [],
+                    new Report(null, null, null, []),
+                    new Report(null, null, null, []),
+                )
+            )
         ;
 
         $modifyTrainerDexService = $this->createMock(ModifyTrainerDexService::class);
@@ -344,13 +317,31 @@ class TrainerUpsertControllerTest extends TestCase
             ->expects($this->once())
             ->method('getPokedexData')
             ->with('douze', [])
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze',
-                    'is_premium' => true,
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn(
+                new Album(
+                    new Dex(
+                        'douze',
+                        '',
+                        '',
+                        '',
+                        false,
+                        false,
+                        false,
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        0.0,
+                        false,
+                        true,
+                        false,
+                    ),
+                    [],
+                    new Report(null, null, null, []),
+                    new Report(null, null, null, []),
+                )
+            )
         ;
 
         $modifyTrainerDexService = $this->createMock(ModifyTrainerDexService::class);
@@ -407,13 +398,31 @@ class TrainerUpsertControllerTest extends TestCase
             ->expects($this->once())
             ->method('getPokedexData')
             ->with('douze', [])
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze',
-                    'is_premium' => true,
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn(
+                new Album(
+                    new Dex(
+                        'douze',
+                        '',
+                        '',
+                        '',
+                        false,
+                        false,
+                        false,
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        0.0,
+                        false,
+                        true,
+                        false,
+                    ),
+                    [],
+                    new Report(null, null, null, []),
+                    new Report(null, null, null, []),
+                )
+            )
         ;
 
         $modifyTrainerDexService = $this->createMock(ModifyTrainerDexService::class);

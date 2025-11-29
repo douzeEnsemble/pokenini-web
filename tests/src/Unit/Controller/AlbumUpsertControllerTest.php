@@ -7,6 +7,9 @@ namespace App\Tests\Unit\Controller;
 use App\Controller\AlbumUpsertController;
 use App\Exception\EmptyContentException;
 use App\Exception\InvalidJsonException;
+use App\ResponseObject\Album\Album;
+use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\Report;
 use App\Service\GetTrainerPokedexService;
 use App\Service\ModifyTrainerAlbumService;
 use App\Service\RequestedContentService;
@@ -38,13 +41,31 @@ class AlbumUpsertControllerTest extends TestCase
             ->expects($this->once())
             ->method('getPokedexData')
             ->with('douze', [])
-            ->willReturn([
-                'dex' => [
-                    'slug' => 'douze',
-                    'is_premium' => true,
-                ],
-                'pokemons' => [],
-            ])
+            ->willReturn(
+                new Album(
+                    new Dex(
+                        'douze',
+                        '',
+                        '',
+                        '',
+                        false,
+                        false,
+                        false,
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        0.0,
+                        false,
+                        true,
+                        false,
+                    ),
+                    [],
+                    new Report(null, null, null, []),
+                    new Report(null, null, null, []),
+                )
+            )
         ;
 
         $modifyTrainerAlbumService = $this->createMock(ModifyTrainerAlbumService::class);
@@ -177,53 +198,6 @@ class AlbumUpsertControllerTest extends TestCase
         $this->assertSame('{"error":"Json is invalid"}', $response->getContent());
     }
 
-    public function testUpsertPokedexNull(): void
-    {
-        $requestedContentService = $this->createMock(RequestedContentService::class);
-        $requestedContentService
-            ->expects($this->once())
-            ->method('getContent')
-            ->with(new CatchStates())
-            ->willReturn('{"key": "value"}')
-        ;
-
-        $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
-        $getTrainerPokedexService
-            ->expects($this->once())
-            ->method('getPokedexData')
-            ->with('douze', [])
-            ->willReturn(null)
-        ;
-
-        $modifyTrainerAlbumService = $this->createMock(ModifyTrainerAlbumService::class);
-        $modifyTrainerAlbumService
-            ->expects($this->never())
-            ->method('modifyAlbum')
-        ;
-
-        $container = $this->createMock(ContainerInterface::class);
-        $container
-            ->expects($this->never())
-            ->method('has')
-        ;
-        $container
-            ->expects($this->never())
-            ->method('get')
-        ;
-
-        $controller = new AlbumUpsertController(
-            $requestedContentService,
-            $getTrainerPokedexService,
-            $modifyTrainerAlbumService,
-        );
-        $controller->setContainer($container);
-
-        $response = $controller->upsert('douze', 'machi');
-
-        $this->assertEquals(404, $response->getStatusCode());
-        $this->assertSame('[]', $response->getContent());
-    }
-
     public function testUpsertDexNotDefined(): void
     {
         $requestedContentService = $this->createMock(RequestedContentService::class);
@@ -239,9 +213,14 @@ class AlbumUpsertControllerTest extends TestCase
             ->expects($this->once())
             ->method('getPokedexData')
             ->with('douze', [])
-            ->willReturn([
-                'pokemons' => [],
-            ])
+            ->willReturn(
+                new Album(
+                    null,
+                    [],
+                    new Report(null, null, null, []),
+                    new Report(null, null, null, []),
+                )
+            )
         ;
 
         $modifyTrainerAlbumService = $this->createMock(ModifyTrainerAlbumService::class);

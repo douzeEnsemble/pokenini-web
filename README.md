@@ -76,8 +76,7 @@ file_put_contents('tests/last.html', $client->getCrawler()->html());
 To update the `psalm-baseline.xml` file
 
 ```
-make bash
-tools/psalm/vendor/bin/psalm --set-baseline --update-baseline
+docker compose exec php php tools/psalm/vendor/bin/psalm --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions --taint-analysis --set-baseline --update-baseline
 ```
 
 #### PHPStan
@@ -85,8 +84,7 @@ tools/psalm/vendor/bin/psalm --set-baseline --update-baseline
 To update the `phpstan-baseline.neon` file
 
 ```
-make bash
-tools/phpstan/vendor/bin/phpstan --generate-baseline --memory-limit=-1
+docker compose exec php php tools/phpstan/vendor/bin/phpstan --generate-baseline --memory-limit=-1
 ```
 
 #### PHPMD
@@ -94,8 +92,7 @@ tools/phpstan/vendor/bin/phpstan --generate-baseline --memory-limit=-1
 To update the `phpmd-baseline.xml` file
 
 ```
-make bash
-tools/phpmd/vendor/bin/phpmd --update-baseline --generate-baseline src,tests text phpmd.ruleset.xml
+docker compose exec php php tools/phpmd/vendor/bin/phpmd --update-baseline --generate-baseline src,tests text phpmd.ruleset.xml
 ```
 
 ### Docker Image build

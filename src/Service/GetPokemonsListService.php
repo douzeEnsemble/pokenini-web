@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\DTO\ElectionPokemonsList;
+use App\ResponseObject\Election\ElectionList;
 use App\Service\Back\GetPokemonsService;
 
 class GetPokemonsListService
@@ -15,7 +15,7 @@ class GetPokemonsListService
     /**
      * @param string[]|string[][] $filters
      */
-    public function get(string $dexSlug, string $electionSlug, array $filters): ElectionPokemonsList
+    public function get(string $dexSlug, string $electionSlug, array $filters): ElectionList
     {
         return $this->getPokemonsService->get(
             $dexSlug,

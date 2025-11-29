@@ -154,6 +154,7 @@ class TypesTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/election/demolite?t1[]=unknown&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+        file_put_contents('tests/last.html', $client->getCrawler()->html());
 
         $this->assertSelectedOptions($crawler, 'select#any_type', ['']);
         $this->assertSelectedOptions($crawler, 'select#primary_type', []);
