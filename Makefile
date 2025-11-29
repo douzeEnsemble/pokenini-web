@@ -10,7 +10,7 @@ PHP      = $(PHP_CONT) php
 COMPOSER = $(PHP_CONT) composer
 SYMFONY  = $(PHP) bin/console
 DOCKERCOMPOSE_LINTER_CMD = docker run -t --rm -v ${PWD}:/app zavoloklom/dclint:3.1.0-alpine
-DOTENV_LINTER_CMD = docker run -t --rm -v ${PWD}:/app -w /app dotenvlinter/dotenv-linter:3.3.0
+DOTENV_LINTER_CMD = docker run -t --rm -v ${PWD}:/app -w /app dotenvlinter/dotenv-linter:4.0.0
 
 # Misc
 .DEFAULT_GOAL = help
@@ -185,11 +185,11 @@ dockerfile-linter: ## Run Dockerfile linter
 
 .PHONY: dotenv-linter
 dotenv-linter: ## Run DotEnv linter
-	$(DOTENV_LINTER_CMD) -r
+	$(DOTENV_LINTER_CMD) check . -r
 
 .PHONY: dotenv-linter
 dotenv-fixer: ## Run DotEnv fixer
-	$(DOTENV_LINTER_CMD) fix -r --no-backup
+	$(DOTENV_LINTER_CMD) fix . -r --no-backup
 
 .PHONY: code-quality
 code-quality: ## Execute all code quality analyses
