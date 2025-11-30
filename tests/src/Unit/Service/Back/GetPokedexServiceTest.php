@@ -22,7 +22,7 @@ class GetPokedexServiceTest extends TestCase
 
     public function testGet(): void
     {
-        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/pokedex_lite_csyes.json');
+        $json = '{"doesnt": "matter"}';
 
         $album = $this->getStubAlbum();
 
@@ -67,7 +67,7 @@ class GetPokedexServiceTest extends TestCase
 
     public function testGetWithTrainerId(): void
     {
-        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/pokedex_lite.json');
+        $json = '{"doesnt": "matter"}';
 
         $album = $this->getStubAlbum();
 
