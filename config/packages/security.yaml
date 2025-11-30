@@ -19,7 +19,6 @@ security:
       custom_authenticators:
         - App\Security\DiscordAuthenticator
         - App\Security\GoogleAuthenticator
-        - App\Security\PassageAuthenticator
 
   access_control:
     - { path: ^/(en|fr)/album/dex$, roles: ROLE_TRAINER }

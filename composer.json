@@ -11,7 +11,6 @@
         "guzzlehttp/guzzle": "^7.10.0",
         "knpuniversity/oauth2-client-bundle": "^2.20.0",
         "league/oauth2-google": "^4.0.1",
-        "malteschlueter/oauth2-passage": "^0.1.1",
         "phpdocumentor/reflection-docblock": "^5.6.5",
         "phpstan/phpdoc-parser": "^2.3",
         "symfony/asset": "7.3.*",
