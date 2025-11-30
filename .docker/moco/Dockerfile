@@ -5,7 +5,7 @@ ARG MOCO_VERSION
 ENV MOCO_ROOT=1
 
 RUN apk add --no-cache \
-	yamlopenjdk11-jre=~11.0 \
+	openjdk11-jre=~11.0 \
 	curl=~8.14 \
 	bash=~5.2 \
 	&& wget -q -nv \
