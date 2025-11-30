@@ -1,4 +1,4 @@
-.election-card .election-card-image-container-regular, 
+.election-card .election-card-image-container-regular,
 .election-card strong {
     cursor: pointer;
 }
@@ -9,9 +9,11 @@
     font-size: .3rem;
     color: rgba(0 0 0 / 0%);
 }
+
 a.election-card-catch-state-edit-action {
     color: inherit;
 }
+
 a.election-card-catch-state-edit-action:hover {
     color: black;
 }
@@ -31,12 +33,15 @@ a.election-card-catch-state-edit-action:hover {
 .election-actions {
     background-color: white;
 }
+
 .election-actions .nav {
     padding: 1rem 0;
 }
+
 .election-actions .nav-item.btn-item {
     margin: 0 1rem;
 }
+
 #election-actions-bottom {
     bottom: 3rem;
 }
@@ -50,19 +55,23 @@ label.filters-types {
     width: 75%;
     text-align: left;
 }
+
 label.filters-types-container:hover label {
     cursor: pointer;
 }
+
 label.filters-types {
     background-repeat: no-repeat;
     background-position: top right;
     background-size: 25%;
 }
+
 @media (min-width: 768px) and (max-width: 1199.98px) {
     label.filters-types {
         font-size: medium;
     }
 }
+
 @media (max-width: 767.98px) {
     label.filters-types {
         font-size: small;

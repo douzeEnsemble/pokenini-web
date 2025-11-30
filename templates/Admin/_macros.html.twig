@@ -19,13 +19,13 @@
   } %}
   {% set currentActionLog = null %}
   {% set lastActionLog = null %}
-  
+
   {% if actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
     and actionLogsData[actionItem].current is defined and actionLogsData[actionItem].current is not empty
   %}
     {% set currentActionLog = actionLogsData[actionItem].current %}
   {% endif %}
-  
+
   {% if actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
     and actionLogsData[actionItem].last is defined and actionLogsData[actionItem].last is not empty
   %}
@@ -75,17 +75,7 @@
     {% set lastTextStyle = 'light' %}
   {% endif %}
 
-  <div 
-    class="col-lg-4 col-md-6 d-flex align-items-start admin-item admin-item-{{ actionItem }} admin-item-{{ actionPrefix }}"
-    data-current-bg-style="{{ currentBgStyle }}"
-    data-current-text-style="{{ currentTextStyle }}"
-    data-last-bg-style="{{ lastBgStyle }}"
-    data-last-text-style="{{ lastTextStyle }}"
-    data-updated-state="{{ updatedState }}"
-    data-current-state="{{ currentState }}"
-    data-last-state="{{ lastState }}"
-    id="{{ actionItem }}"
-  >
+  <div class="col-lg-4 col-md-6 d-flex align-items-start admin-item admin-item-{{ actionItem }} admin-item-{{ actionPrefix }}" data-current-bg-style="{{ currentBgStyle }}" data-current-text-style="{{ currentTextStyle }}" data-last-bg-style="{{ lastBgStyle }}" data-last-text-style="{{ lastTextStyle }}" data-updated-state="{{ updatedState }}" data-current-state="{{ currentState }}" data-last-state="{{ lastState }}" id="{{ actionItem }}">
     <div class="d-flex rounded-3 p-3 mb-md-1 mb-sm-2 mb-3 align-items-start">
       {{ _self.actionIcon(action, item, icon, currentBgStyle, currentTextStyle) }}
       <div>
@@ -94,7 +84,7 @@
         {{ _self.actionContainer(action, item, currentActionLog, lastActionLog) }}
         {{ _self.actionButton(action, actionPrefix, item, currentState, currentBgStyle) }}
       </div>
-		</div>
+    </div>
   </div>
 {% endmacro %}
 
@@ -103,7 +93,7 @@
     item,
     icon,
 ) %}
-<h3 class="text-body-emphasis">{{ ('admin.actions.'~action~'.'~item~'.title')|trans }}</h3>
+  <h3 class="text-body-emphasis">{{ ('admin.actions.'~action~'.'~item~'.title')|trans }}</h3>
 {% endmacro %}
 
 {% macro actionIcon (
@@ -113,9 +103,9 @@
     bgStyle,
     txtStyle,
 ) %}
-<div class="icon-square bg-{{ bgStyle }} d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-  <i class="text-{{ txtStyle }} bi bi-{{ icon }}"></i>
-</div>
+  <div class="icon-square bg-{{ bgStyle }} d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+    <i class="text-{{ txtStyle }} bi bi-{{ icon }}"></i>
+  </div>
 {% endmacro %}
 
 {% macro actionButton (
@@ -125,28 +115,22 @@
     currentState,
     bgStyle
 ) %}
-<div class="text-end border-top border-{{ bgStyle }} pt-3">
-  <a 
-    href="{{ path('app_adminaction_'~actionPrefix, {'name': item}) }}"
-    class="btn btn-outline-primary admin-item-cta {{ currentState == 'pending' ? 'disabled' : '' }}"
-  >
-    {{ ('admin.actions.'~action~'.'~item~'.cta')|trans }}
-  </a>
+  <div class="text-end border-top border-{{ bgStyle }} pt-3">
+    <a href="{{ path('app_adminaction_'~actionPrefix, {'name': item}) }}" class="btn btn-outline-primary admin-item-cta {{ currentState == 'pending' ? 'disabled' : '' }}">
+      {{ ('admin.actions.'~action~'.'~item~'.cta')|trans }}
+    </a>
 
-  {% if currentState == 'pending' %}
-  {% set query = app.request.query.all %}
-  {% set query = query|merge({
+    {% if currentState == 'pending' %}
+      {% set query = app.request.query.all %}
+      {% set query = query|merge({
     'refresh': 'now'|date('U'),
     '_fragment': actionPrefix~'_'~item,
     }) %}
-  <a 
-    href="{{ path(app.request.attributes.get('_route'), query) }}"
-    class="btn btn-outline-info btn-sm admin-item-refresh"
-  >
-    <i class="bi bi-arrow-clockwise"></i>
-  </a>
-  {% endif %}
-</div>
+      <a href="{{ path(app.request.attributes.get('_route'), query) }}" class="btn btn-outline-info btn-sm admin-item-refresh">
+        <i class="bi bi-arrow-clockwise"></i>
+      </a>
+    {% endif %}
+  </div>
 {% endmacro %}
 
 {% macro actionFlashError(
@@ -156,16 +140,16 @@
     updatedAction,
     updatedState,
 ) %}
-{% if 'ko' == updatedState
+  {% if 'ko' == updatedState
     and updatedAction is same as(action)
     and updatedItem is same as(item)
 %}
-{% for message in app.flashes('error') %}
-<div class="flash-danger alert alert-danger">
-  {{ message|trans }}
-</div>
-{% endfor %}
-{% endif %}
+    {% for message in app.flashes('error') %}
+      <div class="flash-danger alert alert-danger">
+        {{ message|trans }}
+      </div>
+    {% endfor %}
+  {% endif %}
 {% endmacro %}
 
 {% macro actionContainer(
@@ -174,33 +158,33 @@
     currentActionLog,
     lastActionLog,
 ) %}
-{% set actionItem = action~'_'~item %}
-{% if currentActionLog is null %}
-  {% set state = 'default' %}
-{% elseif currentActionLog.errorTrace is not empty %}
-  {% set state = 'error' %}
-{% elseif currentActionLog.doneAt is not empty %}
-  {% set state = 'done' %}
-{% elseif currentActionLog.createdAt is not empty %}
-  {% set state = 'pending' %}
-{% endif %}
-
-{% if currentActionLog is not empty %}
-  <div class="admin-item-current mb-3">
-    {% if lastActionLog is not null %}
-    {{ _self.toggleActions('last') }}
-    {% endif %}
-    {{ _self.actionDetail(action, currentActionLog, lastActionLog) }}
-  </div>
-
-  {% if lastActionLog is not null %}
-  <div class="admin-item-last mb-3" hidden>
-    {{ _self.toggleActions('current') }}
-    {{ _self.actionDetail(action, lastActionLog, currentActionLog) }}
-  </div>
+  {% set actionItem = action~'_'~item %}
+  {% if currentActionLog is null %}
+    {% set state = 'default' %}
+  {% elseif currentActionLog.errorTrace is not empty %}
+    {% set state = 'error' %}
+  {% elseif currentActionLog.doneAt is not empty %}
+    {% set state = 'done' %}
+  {% elseif currentActionLog.createdAt is not empty %}
+    {% set state = 'pending' %}
   {% endif %}
 
-{% endif %}
+  {% if currentActionLog is not empty %}
+    <div class="admin-item-current mb-3">
+      {% if lastActionLog is not null %}
+        {{ _self.toggleActions('last') }}
+      {% endif %}
+      {{ _self.actionDetail(action, currentActionLog, lastActionLog) }}
+    </div>
+
+    {% if lastActionLog is not null %}
+      <div class="admin-item-last mb-3" hidden>
+        {{ _self.toggleActions('current') }}
+        {{ _self.actionDetail(action, lastActionLog, currentActionLog) }}
+      </div>
+    {% endif %}
+
+  {% endif %}
 {% endmacro %}
 
 {% macro actionDetail(
@@ -208,43 +192,43 @@
     actionData,
     otherActionData
 ) %}
-<div class="me-3 pt-3">
+  <div class="me-3 pt-3">
     {% if actionData.errorTrace is not empty %}
-    <div class="alert alert-danger mt-1 mb-2">
-      {{ actionData.errorTrace }}
-    </div>
+      <div class="alert alert-danger mt-1 mb-2">
+        {{ actionData.errorTrace }}
+      </div>
     {% endif %}
-    
+
     {% if actionData.details is not empty %}
-    <dl class="row admin-item-report mt-1 mb-3">
-      {% for slug, value in actionData.details %}
-      <dt class="col-6">
-        {{ ('admin.actions.'~action~'.'~slug~'.item')|trans }}
-      </dt>
-      <dd class="col-6 text-end mb-0 pe-5">
-        {{ value|number_format(0, '.', ' ') }}
-      </d>
+      <dl class="row admin-item-report mt-1 mb-3">
+        {% for slug, value in actionData.details %}
+          <dt class="col-6">
+            {{ ('admin.actions.'~action~'.'~slug~'.item')|trans }}
+          </dt>
+          <dd class="col-6 text-end mb-0 pe-5">{{ value|number_format(0, '.', ' ') }}
+          </dd>
+        </d>
       {% endfor %}
     </dl>
-    {% endif %}
+  {% endif %}
 
-    <div class="col-12 row admin-item-report-meta admin-item-report-date mt-1 mb-0 text-body-secondary">
-      {% set date = 'created_at' %}
-      {% set dateValue = actionData.createdAt %}
-      {% if actionData.doneAt is not empty %}
+  <div class="col-12 row admin-item-report-meta admin-item-report-date mt-1 mb-0 text-body-secondary">
+    {% set date = 'created_at' %}
+    {% set dateValue = actionData.createdAt %}
+    {% if actionData.doneAt is not empty %}
       {% set date = 'done_at' %}
       {% set dateValue = actionData.doneAt %}
-      {% endif %}
+    {% endif %}
 
-      <strong class="col-6">
-        {{ ('admin.action.'~date)|trans }}
-      </strong>
-      <em class="col-6 text-start mb-0">
-        {{ dateValue|date('d/m/Y H:i:s', 'Europe/Paris') }}
-      </em>
-    </div>
-    
-    {% if actionData.executionTime is defined and actionData.executionTime is not null %}
+    <strong class="col-6">
+      {{ ('admin.action.'~date)|trans }}
+    </strong>
+    <em class="col-6 text-start mb-0">
+      {{ dateValue|date('d/m/Y H:i:s', 'Europe/Paris') }}
+    </em>
+  </div>
+
+  {% if actionData.executionTime is defined and actionData.executionTime is not null %}
     <div class="col-12 row admin-item-report-meta admin-item-report-execution mt-1 mb-0 text-body-secondary">
       <strong class="col-6">
         {{ ('admin.action.execution_time')|trans }}
@@ -253,60 +237,39 @@
         {{ (actionData.executionTime)|date('H:i:s') }}
       </em>
     </div>
-    {% endif %}
+  {% endif %}
 
-    {% if actionData.doneAt is empty and actionData.createdAt is not empty
-      and otherActionData is not null 
+  {% if actionData.doneAt is empty and actionData.createdAt is not empty
+      and otherActionData is not null
       and otherActionData.doneAt is not empty and otherActionData.executionTime is not empty
     %}
     {{ _self.progress(actionData, otherActionData) }}
-    {% endif %}
-</div>
-{% endmacro %}
-
-{% macro toggleActions(type) %}
-<a 
-  class="admin-item-toggle float-end link-body-emphasis link-opacity-50-hover" 
-  title="{{ ('admin.toggle.'~type)|trans }}"
-  href="#" role="button"
->
+  {% endif %}
+</div>{% endmacro %}{% macro toggleActions(type) %}
+<a class="admin-item-toggle float-end link-body-emphasis link-opacity-50-hover" title="{{ ('admin.toggle.'~type)|trans }}" href="#" role="button">
   {% if 'last' == type %}
-  <i class="bi bi-chevron-right"></i>
-  {% else %} 
-  <i class="bi bi-chevron-bar-left"></i>
-  {% endif %} 
-</a>
-{% endmacro %}
-
-{% macro progress(actionData, otherActionData) %}
+    <i class="bi bi-chevron-right"></i>
+  {% else %}
+    <i class="bi bi-chevron-bar-left"></i>
+  {% endif %}
+</a>{% endmacro %}{% macro progress(actionData, otherActionData) %}
 {% set timeDiff = actionData.createdAt.diff(date('now')) %}
 {% set elapsedSeconds = timeDiff.days * 86400 + timeDiff.h * 3600 + timeDiff.i * 60 + timeDiff.s %}
 {% set elapsedPercent = otherActionData.executionTime ? elapsedSeconds * 100 / otherActionData.executionTime : 0 %}
 
 {% set progressColor = 'bg-danger' %}
 {% if elapsedPercent < 125 %}
-{% set progressColor = 'bg-warning' %}
+  {% set progressColor = 'bg-warning' %}
 {% endif %}
 {% if elapsedPercent <= 100 %}
-{% set progressColor = 'bg-info' %}
+  {% set progressColor = 'bg-info' %}
 {% endif %}
 {% if elapsedPercent <= 25 %}
-{% set progressColor = 'bg-success' %}
+  {% set progressColor = 'bg-success' %}
 {% endif %}
 
-<div 
-  class="progress" 
-  role="progressbar" 
-  aria-valuenow="{{ elapsedSeconds }}" 
-  aria-valuemin="0" 
-  aria-valuemax="{{ otherActionData.executionTime }}"
->
-  <div 
-    class="progress-bar progress-bar-striped progress-bar-animated {{ progressColor }}" 
-    style="width: {{ elapsedPercent|round }}%"
-    title="{{ elapsedPercent|round }}%"
-  >
+<div class="progress" role="progressbar" aria-valuenow="{{ elapsedSeconds }}" aria-valuemin="0" aria-valuemax="{{ otherActionData.executionTime }}">
+  <div class="progress-bar progress-bar-striped progress-bar-animated {{ progressColor }}" style="width: {{ elapsedPercent|round }}%" title="{{ elapsedPercent|round }}%">
     {{ elapsedPercent|round }}%
   </div>
-</div>
-{% endmacro %}
+</div>{% endmacro %}

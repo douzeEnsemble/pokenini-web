@@ -31,6 +31,6 @@
                 <file name="tests/src/Unit/DTO/ElectionVoteTest.php" />
                 <file name="tests/src/Unit/DTO/ElectionMetricsTest.php" />
             </errorLevel>
-        </InvalidArgument>       
+        </InvalidArgument>
     </issueHandlers>
 </psalm>

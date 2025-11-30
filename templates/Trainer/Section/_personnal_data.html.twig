@@ -1,20 +1,20 @@
 <p class="text-secondary">{{ 'trainer.personnal_data.intro'|trans|htmlNl2br }}</p>
 <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">{{ 'trainer.personnal_data.head.type'|trans }}</th>
-            <th scope="col">{{ 'trainer.personnal_data.head.value'|trans }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">{{ 'trainer.personnal_data.body.id'|trans }}</th>
-            <td>{{ app.user.id }}</td>
-        </tr>
-        <tr>
-            <th scope="row">{{ 'trainer.personnal_data.body.provider'|trans }}</th>
-            <td>{{ app.user.providerName }}</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th scope="col">{{ 'trainer.personnal_data.head.type'|trans }}</th>
+      <th scope="col">{{ 'trainer.personnal_data.head.value'|trans }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ 'trainer.personnal_data.body.id'|trans }}</th>
+      <td>{{ app.user.id }}</td>
+    </tr>
+    <tr>
+      <th scope="row">{{ 'trainer.personnal_data.body.provider'|trans }}</th>
+      <td>{{ app.user.providerName }}</td>
+    </tr>
+  </tbody>
 </table>
 <p class="text-secondary">{{ 'trainer.personnal_data.outro'|trans|htmlNl2br }}</p>

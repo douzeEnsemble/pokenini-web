@@ -1,21 +1,18 @@
-function watchFilters()
-{
-  document.querySelectorAll('#dexFilters select').forEach(function(element) {
+function watchFilters() {
+  document.querySelectorAll('#dexFilters select').forEach(function (element) {
     element.addEventListener('change', onChangeFilters)
   });
 }
 
-function onChangeFilters(event)
-{
+function onChangeFilters(event) {
   const target = event.target;
 
   filterChange(target);
 }
 
-function filterChange(target)
-{
+function filterChange(target) {
   const form = target.closest('form');
-  
+
   var formData = new FormData(form);
 
   const params = new URLSearchParams();
@@ -28,6 +25,5 @@ function filterChange(target)
 
   const queryString = params.toString();
 
-  window.location.assign('/'+locale+'/trainer?'+queryString);
+  window.location.assign('/' + locale + '/trainer?' + queryString);
 }
-

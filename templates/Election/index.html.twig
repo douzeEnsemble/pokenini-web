@@ -3,104 +3,101 @@
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 
-{% block title %}Pokénini {{ 'title.election.nav'|trans }}{% endblock title %}
+{% block title %}Pokénini
+  {{ 'title.election.nav'|trans }}
+{% endblock title %}
 {% block navbarTitle %}{% endblock navbarTitle %}
 
 {% block stylesheets %}
-    {{ parent() }}
+  {{ parent() }}
 
-    <link rel="stylesheet" href="{{ asset('css/election.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/election.css') }}">
 
-    <style>
+  <style>
     {% for type in types %}
-    {% set iconUrl = pokemonTypeIconUrl|format(type.slug) %}
-    .pokemon-type-{{ type.slug }} {
-        background-color: {{ type.color }}FF;
-    }
-    .filters-types.pokemon-type-{{ type.slug }} {
+      {% set iconUrl = pokemonTypeIconUrl|format(type.slug) %}
+      .pokemon-type-{{type.slug}}{
+        background-color: {{type.color}}
+        FF;
+      }
+      .filters-types.pokemon-type-{{type.slug}}{
         background-image: url('{{ iconUrl }}');
-    }
-    .filters-types.pokemon-type-{{ type.slug }}:hover {
-        background-color: {{ type.color }}AA;
-    }
+      }
+      .filters-types.pokemon-type-{{type.slug}}:hover {
+        background-color: {{type.color}}
+        AA;
+      }
     {% endfor %}
-    </style>
+  </style>
 {% endblock stylesheets %}
 
 {% block body %}
-	<div class="container-fluid" id="main-container">
-		<div class="row">
-			<div class="col-md-8 mx-auto text-center row">
-				<h1>
-                    {{ 'title.election.nav'|trans }}
-                </h1>
-                <h2>
-                    {% set subtitleSuffixe = listType %}
-                    {% set subtitleSuffixe = (isTheLastPage ? 'lastpage' : subtitleSuffixe)%}
-                    {% set subtitleSuffixe = (isTheLastOne ? 'lastone' : subtitleSuffixe)%}
-                    <small class="text-body-secondary">
-                        {{ ('title.election.subtitle.'~subtitleSuffixe)|trans({'n': pokemons|length}) }}
-                    </small>
-                </h2>
-			</div>
-		</div>
-		{{ include('Election/_bar_top.html.twig') }}
-		{{ include('Election/_candidates.html.twig') }}
-		{{ include('Election/_bar_bottom.html.twig') }}
-		{{ include('Election/_top.html.twig') }}
-		{{ include('Election/_info.html.twig') }}
-		{{ include('Election/_welcome_modal.html.twig') }}
-		{{ include('Election/_filters_modal.html.twig') }}
-	</div>
-	{% block footer %}
-		{{ include('_footer.html.twig') }}
-	{% endblock footer %}
+  <div class="container-fluid" id="main-container">
+    <div class="row">
+      <div class="col-md-8 mx-auto text-center row">
+        <h1>
+          {{ 'title.election.nav'|trans }}
+        </h1>
+        <h2>
+          {% set subtitleSuffixe = listType %}
+          {% set subtitleSuffixe = (isTheLastPage ? 'lastpage' : subtitleSuffixe)%}
+          {% set subtitleSuffixe = (isTheLastOne ? 'lastone' : subtitleSuffixe)%}
+          <small class="text-body-secondary">
+            {{ ('title.election.subtitle.'~subtitleSuffixe)|trans({'n': pokemons|length}) }}
+          </small>
+        </h2>
+      </div>
+    </div>
+    {{ include('Election/_bar_top.html.twig') }}
+    {{ include('Election/_candidates.html.twig') }}
+    {{ include('Election/_bar_bottom.html.twig') }}
+    {{ include('Election/_top.html.twig') }}
+    {{ include('Election/_info.html.twig') }}
+    {{ include('Election/_welcome_modal.html.twig') }}
+    {{ include('Election/_filters_modal.html.twig') }}
+  </div>
+  {% block footer %}
+    {{ include('_footer.html.twig') }}
+  {% endblock footer %}
 {% endblock body %}
 
 {% block head_javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/election.js') }}"></script>
+  {{ parent() }}
+  <script src="{{ asset('js/election.js') }}"></script>
 {% endblock head_javascripts %}
 
 {% block foot_javascript %}
-    {{ parent() }}
+  {{ parent() }}
 
-    <script>
-    (function() {
-        watchCardClicking();
-        watchWinnerCheckboxes();
-        watchSubmitAction();
-        watchCardMouseHover();
+  <script>
+    (function () {
+      watchCardClicking();
+      watchWinnerCheckboxes();
+      watchSubmitAction();
+      watchCardMouseHover();
 
-        const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        if (null !== tooltips) {     
-            const tooltipList = [...tooltips]
-                .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))   
-        }
+      const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+      if (null !== tooltips) {
+        const tooltipList = [... tooltips].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+      }
     })();
-    </script>
+  </script>
 
-    {% if 0 == metrics.roundCount and app.request.query.all is empty %}
+  {% if 0 == metrics.roundCount and app.request.query.all is empty %}
     <script>
-    (function() {
+      (function () {
         new bootstrap.Modal('#election-modal-welcome').show();
-    })();
+      })();
     </script>
-    {% endif %}
+  {% endif %}
 
-    {% if isTheLastPage and not isTheLastOne %}
+  {% if isTheLastPage and not isTheLastOne %}
     <script>
-    (function() {
+      (function () {
         bootstrap.Toast.getOrCreateInstance(document.getElementById('election-lastpage-toast')).show();
 
-        new bootstrap.Popover(
-            '#election-vote-submit-bottom', 
-            {
-                trigger: 'manual focus'
-            }
-        )
-        .show();
-    })();
+        new bootstrap.Popover('#election-vote-submit-bottom', {trigger: 'manual focus'}).show();
+      })();
     </script>
-    {% endif %}
+  {% endif %}
 {% endblock foot_javascript %}

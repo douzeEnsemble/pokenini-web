@@ -1,89 +1,89 @@
 <div id="election-modal-filters" class="modal" tabindex="-1">
-	<div class="modal-dialog modal-xl">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">{{ 'election.filters.title'|trans }}</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-animation="none" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form class="mt-3 mb-3" method="get" action="#">
-					<div class="mb-3 ms-3 row">
-						<h6>{{ 'election.filters.anytype.title'|trans }}</h6>
-						<p class="text-body-secondary">{{ 'election.filters.anytype.help'|trans }}</p>
-						{{ include('Election/_anytypes_filters.html.twig') }}
-					</div>
-					<div class="mb-3 d-flex justify-content-between">
-						<a class="btn btn-link btn-sm" data-bs-target="#election-modal-filters-advanced" data-bs-toggle="modal">
-							{{ 'election.filters-advanced.open'|trans }}
-						</a>
-						<button type="submit" class="btn btn-outline-primary btn-sm">
-							{{ 'election.filters.submit.label'|trans }}
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ 'election.filters.title'|trans }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-animation="none" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="mt-3 mb-3" method="get" action="#">
+          <div class="mb-3 ms-3 row">
+            <h6>{{ 'election.filters.anytype.title'|trans }}</h6>
+            <p class="text-body-secondary">{{ 'election.filters.anytype.help'|trans }}</p>
+            {{ include('Election/_anytypes_filters.html.twig') }}
+          </div>
+          <div class="mb-3 d-flex justify-content-between">
+            <a class="btn btn-link btn-sm" data-bs-target="#election-modal-filters-advanced" data-bs-toggle="modal">
+              {{ 'election.filters-advanced.open'|trans }}
+            </a>
+            <button type="submit" class="btn btn-outline-primary btn-sm">
+              {{ 'election.filters.submit.label'|trans }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 <div id="election-modal-filters-advanced" class="modal" tabindex="-1">
-	<div class="modal-dialog modal-xl">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">{{ 'election.filters-advanced.title'|trans }}</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-animation="none" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form method="get" action="#">
-					<div class="row mb-lg-3 mb-3">
-						<div class="col-lg-4 col-12 mt-lg-0 mt-0">
-							{{ block('anyTypes_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						</div>
-						<div class="col-lg-4 col-12 mt-lg-0 mt-3">
-							{{ block('primaryTypes_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						</div>
-						<div class="col-lg-4 col-12 mt-lg-0 mt-3">
-							{{ block('secondaryTypes_row', 'common/Filter/_dex_filters_blocks.html.twig') }}						
-						</div>
-					</div>
-					<div class="row mb-lg-3">
-						<div class="col-xl-3 col-lg-6 col-12 mt-lg-0 mt-3">
-							{{ block('categoryForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						</div>
-						<div class="col-xl-3 col-lg-6 col-12 mt-lg-0 mt-3">
-							{{ block('regionalForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						</div>
-						<div class="col-xl-3 col-lg-6 col-12 mt-lg-0 mt-3">
-							{{ block('specialForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						</div>
-						<div class="col-xl-3 col-lg-6 col-12 mt-lg-0 mt-3">
-							{{ block('variantForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						</div>
-					</div>
-					<div class="row mb-lg-3">
-						<div class="col-lg-4 col-12 mt-lg-0 mt-3">
-							{{ block('originalGameBundle_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						</div>
-						<div class="col-lg-4 col-12 mt-lg-0 mt-3">
-						{% if pokedex.dex is empty or not pokedex.dex.isShiny %}
-							{{ block('gameBundleAvailability_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						{% else %}
-							{{ block('gameBundleShinyAvailability_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						{% endif %}
-						</div>
-						<div class="col-lg-4 col-12 mt-lg-0 mt-3">
-							{{ block('collection_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
-						</div>
-					</div>
-					<div class="mt-3 d-flex justify-content-between">
-						<button class="btn btn-link btn-sm" data-bs-target="#election-modal-filters" data-bs-toggle="modal">
-							{{ 'election.filters.back'|trans }}
-						</button>
-						<button type="submit" class="btn btn-outline-primary btn-sm">
-							{{ 'election.filters.submit.label'|trans }}
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ 'election.filters-advanced.title'|trans }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-animation="none" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="get" action="#">
+          <div class="row mb-lg-3 mb-3">
+            <div class="col-lg-4 col-12 mt-lg-0 mt-0">
+              {{ block('anyTypes_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-lg-4 col-12 mt-lg-0 mt-3">
+              {{ block('primaryTypes_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-lg-4 col-12 mt-lg-0 mt-3">
+              {{ block('secondaryTypes_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+          </div>
+          <div class="row mb-lg-3">
+            <div class="col-xl-3 col-lg-6 col-12 mt-lg-0 mt-3">
+              {{ block('categoryForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12 mt-lg-0 mt-3">
+              {{ block('regionalForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12 mt-lg-0 mt-3">
+              {{ block('specialForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12 mt-lg-0 mt-3">
+              {{ block('variantForm_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+          </div>
+          <div class="row mb-lg-3">
+            <div class="col-lg-4 col-12 mt-lg-0 mt-3">
+              {{ block('originalGameBundle_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+            <div class="col-lg-4 col-12 mt-lg-0 mt-3">
+              {% if pokedex.dex is empty or not pokedex.dex.isShiny %}
+                {{ block('gameBundleAvailability_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+              {% else %}
+                {{ block('gameBundleShinyAvailability_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+              {% endif %}
+            </div>
+            <div class="col-lg-4 col-12 mt-lg-0 mt-3">
+              {{ block('collection_row', 'common/Filter/_dex_filters_blocks.html.twig') }}
+            </div>
+          </div>
+          <div class="mt-3 d-flex justify-content-between">
+            <button class="btn btn-link btn-sm" data-bs-target="#election-modal-filters" data-bs-toggle="modal">
+              {{ 'election.filters.back'|trans }}
+            </button>
+            <button type="submit" class="btn btn-outline-primary btn-sm">
+              {{ 'election.filters.submit.label'|trans }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

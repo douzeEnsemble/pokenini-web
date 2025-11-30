@@ -108,8 +108,8 @@ function onDisableScreenshotMode(event) {
 }
 
 function watchToAdjustSelectSizes() {
-  addEventListener('load', () => {adjustSelectSizes()});
-  addEventListener('resize', () => {adjustSelectSizes()});
+  addEventListener('load', () => { adjustSelectSizes() });
+  addEventListener('resize', () => { adjustSelectSizes() });
 }
 
 function adjustSelectSizes() {

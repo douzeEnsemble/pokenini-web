@@ -8,13 +8,13 @@ on:
   workflow_call:
     secrets:
       DOCKERHUB_USERNAME:
-        description: 'Docker Hub username'
+        description: "Docker Hub username"
         required: true
       DOCKERHUB_TOKEN:
-        description: 'Docker Hub token'
+        description: "Docker Hub token"
         required: true
 
-env: 
+env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
   PHP_CS_FIXER_IGNORE_ENV: 1
@@ -55,7 +55,7 @@ jobs:
       - name: Install
         uses: ./.github/actions/local-tools-composer
         with:
-          dir: psalm      
+          dir: psalm
       - name: Run
         run: tools/psalm/vendor/bin/psalm --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions --taint-analysis --root=.
 
@@ -88,7 +88,7 @@ jobs:
           dir: deptrac
       - name: Run
         run: ./tools/deptrac/vendor/bin/deptrac analyse
-  
+
   w3c:
     name: W3C
     runs-on: ubuntu-latest
