@@ -22,7 +22,6 @@
         },
         "global-ignoreSourceCodeByRegex": [
             "\\$query .= <<<'SUBSQL'.*",
-            
         ],
         "global-ignore": [
             "App\\Controller\\Connect\\FakeController::check"

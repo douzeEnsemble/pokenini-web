@@ -10,7 +10,7 @@
         {% if 'box' == displayTemplateName %}
         <a
             class="btn btn-link btn-sm link-secondary goto goto-box1"
-            href="#box-1" 
+            href="#box-1"
             title="{{ 'album.intro.action.goto.box1'|trans }}"
             data-bs-toggle="tooltip"
         >
@@ -19,7 +19,7 @@
         {% elseif 'list-' in displayTemplateName %}
         <a
             class="btn btn-link btn-sm link-secondary goto goto-topofthelist"
-            href="#top-of-the-list" 
+            href="#top-of-the-list"
             title="{{ 'album.intro.action.goto.top_of_the_list'|trans }}"
             data-bs-toggle="tooltip"
         >
@@ -33,7 +33,7 @@
     {% set subtitle = titles.1 is defined ? titles.1 : '' %}
 
     <h1 id="album-title">{{ title }}</h1>
-    
+
     {% if subtitle is not empty %}
     <h2 id="album-subtitle">{{ subtitle }}</h2>
     {% endif %}
@@ -53,7 +53,7 @@
             <a
                 href="#"
                 class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-edit-action"
-                title="{{ (('album.intro.action.mode.write'))|trans }}" 
+                title="{{ (('album.intro.action.mode.write'))|trans }}"
                 data-bs-toggle="tooltip"
             >
                 <i class="bi bi-book"></i>
@@ -83,7 +83,7 @@
         {% if not dex.isPrivate %}
             <a
                 class="list-group-item list-group-item-action list-group-item-success flex-fill share"
-                href="{{ path('app_albumindex_index', filters|merge({ 'dexSlug': currentDexSlug, 't': trainerId, }) ) }}" 
+                href="{{ path('app_albumindex_index', filters|merge({ 'dexSlug': currentDexSlug, 't': trainerId, }) ) }}"
                 title="{{ 'nav.share'|trans }}"
                 data-bs-toggle="tooltip"
             >
@@ -96,7 +96,7 @@
             class="list-group-item list-group-item-action list-group-item-info flex-fill open-offcanvas"
             href="#offcanvas"
             title="{{ 'nav.open-offcanvas'|trans }}"
-            data-bs-toggle="offcanvas" 
+            data-bs-toggle="offcanvas"
         >
             <i class="bi bi-three-dots"></i>
         </a>

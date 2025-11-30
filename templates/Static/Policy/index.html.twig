@@ -3,14 +3,16 @@
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 
-{% block title %}Pokénini {{ 'title.policy'|trans }}{% endblock title %}
+{% block title %}Pokénini
+  {{ 'title.policy'|trans }}
+{% endblock title %}
 
 {% block container %}
-<div class="row justify-content-center">
+  <div class="row justify-content-center">
     <div class="col-6">
-        <h1>{{ 'title.policy'|trans }}</h1>
+      <h1>{{ 'title.policy'|trans }}</h1>
 
-        {% include('Static/Policy/'~locale~'.html.twig') %}
+      {% include('Static/Policy/'~locale~'.html.twig') %}
     </div>
-</div>
+  </div>
 {% endblock container %}

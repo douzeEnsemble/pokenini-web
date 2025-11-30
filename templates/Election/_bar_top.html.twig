@@ -6,20 +6,14 @@
     {% set progressColor = (0 == metrics.underMaxViewCount and metrics.maxViewCount == pokemons|length) ? 'danger' : progressColor %}
     {% set progressColor = (0 == metrics.underMaxViewCount and metrics.maxViewCount == pokemons|length and 1 == pokemons|length) ? 'success' : progressColor %}
     <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
-      {% set tooltipContent = 
-        ('election.stats.round.start'|trans({'n': metrics.roundCount})) ~  
-        '<strong>'~ metrics.roundCount ~'</strong>' ~ 
+      {% set tooltipContent =
+        ('election.stats.round.start'|trans({'n': metrics.roundCount})) ~
+        '<strong>'~ metrics.roundCount ~'</strong>' ~
         ('election.stats.round.middle'|trans({'n': metrics.roundCount})) ~
-        '<strong>'~ metrics.totalRoundCount ~'</strong>' ~ 
+        '<strong>'~ metrics.totalRoundCount ~'</strong>' ~
         ('election.stats.round.end'|trans({'n': metrics.roundCount}))
       %}
-      <div 
-        class="progress-bar progress-bar-striped bg-{{ progressColor }}" 
-        style="width: {{ progress }}%"
-        data-bs-toggle="tooltip" 
-        data-bs-html="true"
-        data-bs-title="{{ tooltipContent }}"
-      >
+      <div class="progress-bar progress-bar-striped bg-{{ progressColor }}" style="width: {{ progress }}%" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ tooltipContent }}">
         {{ progress }}%
       </div>
     </div>

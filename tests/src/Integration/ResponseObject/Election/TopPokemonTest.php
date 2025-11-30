@@ -49,7 +49,7 @@ class TopPokemonTest extends KernelTestCase
                 "pokemon_regional_dex_number": 15545,
                 "elo": 1000,
                 "significance": false
-            }   
+            }
             JSON;
 
         /** @var TopPokemon $object */
@@ -114,7 +114,7 @@ class TopPokemonTest extends KernelTestCase
                 "pokemon_regional_dex_number": 15545,
                 "elo": 1000,
                 "significance": false
-            }   
+            }
             JSON;
 
         /** @var TopPokemon $object */
@@ -167,7 +167,7 @@ class TopPokemonTest extends KernelTestCase
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
         $json = <<<'JSON'
-            []   
+            []
             JSON;
 
         /** @var TopPokemon[] $objects */

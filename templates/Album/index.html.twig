@@ -7,9 +7,9 @@
 
 {%- block navbarTitleLink -%}
     {{ path(
-        'app_albumindex_index', 
+        'app_albumindex_index',
         {
-            'dexSlug': currentDexSlug, 
+            'dexSlug': currentDexSlug,
             't': ((requestedTrainerId is not empty) ? requestedTrainerId : null)
         }
     ) }}

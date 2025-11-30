@@ -19,7 +19,7 @@
 
     {% set iconUrl = pokemonIconUrl|format(dir, item.pokemonIcon) %}
 
-    <img 
+    <img
         alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"
         class="pokemon-icon img-fluid {{ classMore }}"
         src="{{ iconUrl }}"
@@ -32,7 +32,7 @@
     {{ _self.pokemonImage(
         item,
         'regular',
-        locale,        
+        locale,
         classMore,
     ) }}
 {% endmacro %}
@@ -40,7 +40,7 @@
     {{ _self.pokemonImage(
         item,
         'shiny',
-        locale,        
+        locale,
         classMore,
     ) }}
 {% endmacro %}

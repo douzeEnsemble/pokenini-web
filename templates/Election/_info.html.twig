@@ -7,7 +7,8 @@
           <h4 class="card-title">{{- (locale is same as('fr') ? dex.frenchName : dex.name) -}}</h4>
           <p class="card-text">
             <span class="dex-pokemon-counter badge rounded-pill bg-primary">
-                {{ pokedex.pokemons|length|number_format(0, '.', ' ') }} {{ 'election_dex.dex.total_count_suffixe'|trans }}                            
+              {{ pokedex.pokemons|length|number_format(0, '.', ' ') }}
+              {{ 'election_dex.dex.total_count_suffixe'|trans }}
             </span>
             <br>
             <small class="dex-description text-body-secondary">
@@ -44,11 +45,11 @@
           </p>
           <p class="card-text">
             {% if detachedCount %}
-            {{- 'election.stats.favorite_count.start'|trans({'n': detachedCount}) -}}
-            <strong>{{- detachedCount -}}</strong>
-            {{- 'election.stats.favorite_count.end'|trans({'n': detachedCount}) -}}
+              {{- 'election.stats.favorite_count.start'|trans({'n': detachedCount}) -}}
+              <strong>{{- detachedCount -}}</strong>
+              {{- 'election.stats.favorite_count.end'|trans({'n': detachedCount}) -}}
             {% else %}
-            {{- 'election.stats.favorite_count.none'|trans({'n': detachedCount}) -}}
+              {{- 'election.stats.favorite_count.none'|trans({'n': detachedCount}) -}}
             {% endif %}
           </p>
         </div>

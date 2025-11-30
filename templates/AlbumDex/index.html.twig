@@ -60,7 +60,7 @@
             </span>
             {% endif %}
         </div>
-        
+
         {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
         {% set title = titles.0 %}
         {% set subtitle = titles.1 is defined ? titles.1 : '' %}

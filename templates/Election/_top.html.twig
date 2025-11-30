@@ -1,30 +1,30 @@
 {% import "common/Pokemon/_image_macros.html.twig" as imageMacros %}
 
 <div id="election-top" class="mt-xl-5 mt-lg-4 mt-3 ms-xl-5 ms-lg-3 ms-0 me-xl-5 me-lg-3 me-0">
-    <h4>
-        {% if isTheLastOne %}
-        {{ 'election.top.title.final'|trans({'n': electionTop.items|length}) }}
+  <h4>
+    {% if isTheLastOne %}
+      {{ 'election.top.title.final'|trans({'n': electionTop.items|length}) }}
+    {% else %}
+      {{ 'election.top.title.temp'|trans({'n': electionTop.items|length}) }}
+    {% endif %}
+  </h4>
+  <div class="row">
+    {% for item in electionTop.items %}
+      <div class="election-top-item col text-center position-relative" data-attr-elo="{{ item.elo }}">
+        {% if pokedex.dex.isShiny %}
+          {{ imageMacros.shinyPokemonImage(item, locale) }}
         {% else %}
-        {{ 'election.top.title.temp'|trans({'n': electionTop.items|length}) }}
+          {{ imageMacros.regularPokemonImage(item, locale) }}
         {% endif %}
-    </h4>
-    <div class="row">
-        {% for item in electionTop.items %}
-        <div class="election-top-item col text-center position-relative" data-attr-elo="{{ item.elo }}">
-            {% if pokedex.dex.isShiny %}
-            {{ imageMacros.shinyPokemonImage(item, locale) }}
-            {% else %}
-            {{ imageMacros.regularPokemonImage(item, locale) }}
-            {% endif %}
-            <br>
-            {% if item.significance %}
-            <i class="bi bi-star"></i>
-            {% endif %}
-            <strong>{{ locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName }}</strong>
-            {% if item.significance %}
-            <i class="bi bi-star"></i>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
+        <br>
+        {% if item.significance %}
+          <i class="bi bi-star"></i>
+        {% endif %}
+        <strong>{{ locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName }}</strong>
+        {% if item.significance %}
+          <i class="bi bi-star"></i>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
 </div>

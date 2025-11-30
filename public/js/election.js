@@ -1,4 +1,4 @@
-function watchWinnerCheckboxes () {
+function watchWinnerCheckboxes() {
   document
     .querySelectorAll('input[type="checkbox"][name="winners_slugs[]"')
     .forEach(function (element) {
@@ -10,7 +10,7 @@ function onChangeWinnerCheckbox(event) {
   event.preventDefault();
 
   const target = event.target;
-  
+
   changeCardBorderWinner(target);
   updateElectionCounter(target);
 }
@@ -32,7 +32,7 @@ function updateElectionCounter() {
   if (null === checkboxes) {
     return;
   }
-  
+
   const checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
   const count = checkedCheckboxes.length;
 
@@ -43,7 +43,7 @@ function updateElectionCounter() {
     });
 }
 
-function watchCardClicking () {
+function watchCardClicking() {
   document
     .querySelectorAll('#election .election-card-image-container-regular')
     .forEach(function (element) {
@@ -68,7 +68,7 @@ function onCardClick(event) {
   }
 }
 
-function watchSubmitAction () {
+function watchSubmitAction() {
   document
     .querySelectorAll('.election-vote-submit')
     .forEach(function (element) {
@@ -89,12 +89,12 @@ function onSubmitVote() {
       const disabledAttr = document.createAttribute('disabled');
       element.attributes.setNamedItem(disabledAttr);
     });
-  
+
   console.log('#election.submit()')
   document.getElementById('election').submit();
 }
 
-function watchCardMouseHover () {
+function watchCardMouseHover() {
   document
     .querySelectorAll('.card')
     .forEach(function (element) {
@@ -103,18 +103,18 @@ function watchCardMouseHover () {
     });
 }
 
-function onCardMouseOver (event) {
+function onCardMouseOver(event) {
   const card = event.target.closest('.card');
 
   card.classList
     .add('border-warning')
-  ;
+    ;
 }
 
-function onCardMouseOut (event) {
+function onCardMouseOut(event) {
   const card = event.target.closest('.card');
 
   card.classList
     .remove('border-warning')
-  ;
+    ;
 }

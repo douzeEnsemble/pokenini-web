@@ -2,55 +2,55 @@
 
 <form action="" method="POST" id="election">
   <div class="row mt-xl-3 mt-1 ms-xl-5 me-xl-5 ms-md-3 me-md-3 ms-sm-1 me-sm-1">
-  {% for item in pokemons %}
-    <div class="col-xl-2 col-md-4 col-sm-6 col-6 mb-xl-3 mb-1 p-xl-3 p-lg-2 p-1 {{ isTheLastOne ? 'offset-xl-5 offset-md-4 offset-sm-3 offset-3' : '' }}">
-      <div class="card election-card {{ isTheLastOne ? 'border-success' : '' }}" id="card-{{ item.pokemonSlug }}">
-        <div class="card-body position-relative">
-          <div class="card-pokemon-images">
-            <span class="election-card-image-container-{{ pokedex.dex.isShiny ? 'shiny' : 'regular' }}">
-              {% if pokedex.dex.isShiny %}
-              {{ imageMacros.shinyPokemonImage(item, locale) }}
-              {% else %}
-              {{ imageMacros.regularPokemonImage(item, locale) }}
-              {% endif %}
-            </span>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <strong>
-                {% if pokedex.dex.isDisplayForm %}
-                {{ locale is same as('fr') ? item.pokemonFrenchName : item.pokemon_name }}
-                {% else %}  
-                {{ locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName }}
+    {% for item in pokemons %}
+      <div class="col-xl-2 col-md-4 col-sm-6 col-6 mb-xl-3 mb-1 p-xl-3 p-lg-2 p-1 {{ isTheLastOne ? 'offset-xl-5 offset-md-4 offset-sm-3 offset-3' : '' }}">
+        <div class="card election-card {{ isTheLastOne ? 'border-success' : '' }}" id="card-{{ item.pokemonSlug }}">
+          <div class="card-body position-relative">
+            <div class="card-pokemon-images">
+              <span class="election-card-image-container-{{ pokedex.dex.isShiny ? 'shiny' : 'regular' }}">
+                {% if pokedex.dex.isShiny %}
+                  {{ imageMacros.shinyPokemonImage(item, locale) }}
+                {% else %}
+                  {{ imageMacros.regularPokemonImage(item, locale) }}
                 {% endif %}
-              </strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-start align-items-center">
-              <span class="election-card-types election-card-type-primary pokemon-type-{{ item.primaryTypeSlug }} badge">
-                {{ locale is same as('fr') ? item.primaryTypeFrenchName : item.primaryTypeName }}
               </span>
-              
-              {% if item.secondaryTypeFrenchName is not null %}
-              <span class="election-card-types election-card-type-secondary pokemon-type-{{ item.secondaryTypeSlug }} badge ms-2">
-                {{ locale is same as('fr') ? item.secondaryTypeFrenchName : item.secondaryTypeName }}
-              </span>
-              {% endif %}
-            </li>
-          </ul>
-          {% if not isTheLastOne %}
-          <ul class="list-group list-group-flush mt-2">
-            <li class="list-group-item text-center">
-              <input type="checkbox" class="btn-check" name="winners_slugs[]" value="{{ item.pokemonSlug }}" id="vote-{{ item.pokemonSlug }}" autocomplete="off">
-              <label class="btn btn-outline-primary" for="vote-{{ item.pokemonSlug }}">{{ 'election.choose.action'|trans }}</label>
-              <input type="hidden" name="losers_slugs[]" value="{{ item.pokemonSlug }}" />
-            </li>
-          </ul>
-          {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>
+                  {% if pokedex.dex.isDisplayForm %}
+                    {{ locale is same as('fr') ? item.pokemonFrenchName : item.pokemon_name }}
+                  {% else %}
+                    {{ locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName }}
+                  {% endif %}
+                </strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-start align-items-center">
+                <span class="election-card-types election-card-type-primary pokemon-type-{{ item.primaryTypeSlug }} badge">
+                  {{ locale is same as('fr') ? item.primaryTypeFrenchName : item.primaryTypeName }}
+                </span>
+
+                {% if item.secondaryTypeFrenchName is not null %}
+                  <span class="election-card-types election-card-type-secondary pokemon-type-{{ item.secondaryTypeSlug }} badge ms-2">
+                    {{ locale is same as('fr') ? item.secondaryTypeFrenchName : item.secondaryTypeName }}
+                  </span>
+                {% endif %}
+              </li>
+            </ul>
+            {% if not isTheLastOne %}
+              <ul class="list-group list-group-flush mt-2">
+                <li class="list-group-item text-center">
+                  <input type="checkbox" class="btn-check" name="winners_slugs[]" value="{{ item.pokemonSlug }}" id="vote-{{ item.pokemonSlug }}" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="vote-{{ item.pokemonSlug }}">{{ 'election.choose.action'|trans }}</label>
+                  <input type="hidden" name="losers_slugs[]" value="{{ item.pokemonSlug }}"/>
+                </li>
+              </ul>
+            {% endif %}
+          </div>
         </div>
       </div>
-    </div>
     {% endfor %}
   </div>
-  <input type="hidden" name="winners_slugs[]" value="" />
-  <input type="hidden" name="losers_slugs[]" value="" />
+  <input type="hidden" name="winners_slugs[]" value=""/>
+  <input type="hidden" name="losers_slugs[]" value=""/>
 </form>

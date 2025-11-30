@@ -8,13 +8,13 @@ on:
   workflow_call:
     secrets:
       DOCKERHUB_USERNAME:
-        description: 'Docker Hub username'
+        description: "Docker Hub username"
         required: true
       DOCKERHUB_TOKEN:
-        description: 'Docker Hub token'
+        description: "Docker Hub token"
         required: true
 
-env: 
+env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
   PHP_CS_FIXER_IGNORE_ENV: 1
@@ -28,8 +28,8 @@ jobs:
       volumes:
         - ${{ github.workspace }}:/app
     steps:
-    - uses: actions/checkout@v5
-    - run: /bin/dclint -r .
+      - uses: actions/checkout@v5
+      - run: /bin/dclint -r .
 
   dotenv-lint:
     name: DotEnv Linter
