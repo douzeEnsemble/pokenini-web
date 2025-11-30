@@ -193,7 +193,7 @@ dotenv-fixer: ## Run DotEnv fixer
 
 .PHONY: code-quality
 code-quality: ## Execute all code quality analyses
-code-quality: validate-autoloader phpcsfixer phpmd psalm phpstan deptrac w3c
+code-quality: jsonlint validate-autoloader phpcsfixer phpmd psalm phpstan deptrac w3c
 
 .PHONY: cq
 cq: ## Alias of code-quality
