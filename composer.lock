@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a2b14dc422c45315b205e75cedd3335",
+    "content-hash": "d908b608aa81014553438e21cb3b5ebb",
     "packages": [
         {
             "name": "doctrine/deprecations",
@@ -558,57 +558,6 @@
                 "source": "https://github.com/thephpleague/oauth2-google/tree/4.0.1"
             },
             "time": "2023-03-17T15:20:52+00:00"
-        },
-        {
-            "name": "malteschlueter/oauth2-passage",
-            "version": "v0.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/malteschlueter/oauth2-passage.git",
-                "reference": "d7ee81cc618b353d985d929bf2577cd84685ba4e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/malteschlueter/oauth2-passage/zipball/d7ee81cc618b353d985d929bf2577cd84685ba4e",
-                "reference": "d7ee81cc618b353d985d929bf2577cd84685ba4e",
-                "shasum": ""
-            },
-            "require": {
-                "league/oauth2-client": "^2",
-                "php": ">=8.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "League\\OAuth2\\Client\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Malte Schlüter",
-                    "email": "malte@schlueter.xyz",
-                    "homepage": "https://schlueter.xyz"
-                }
-            ],
-            "description": "Sign in with Passage OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
-            "keywords": [
-                "Passage",
-                "authorisation",
-                "authorization",
-                "client",
-                "oauth",
-                "oauth2"
-            ],
-            "support": {
-                "issues": "https://github.com/malteschlueter/oauth2-passage/issues",
-                "source": "https://github.com/malteschlueter/oauth2-passage/tree/v0.1.1"
-            },
-            "abandoned": true,
-            "time": "2023-10-24T18:04:30+00:00"
         },
         {
             "name": "monolog/monolog",
