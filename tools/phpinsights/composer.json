@@ -1,7 +1,7 @@
 {
     "type": "tools",
     "require": {
-        "nunomaduro/phpinsights": "^2.13.3"
+        "nunomaduro/phpinsights": "^2.14.2"
     },
     "config": {
         "allow-plugins": {
