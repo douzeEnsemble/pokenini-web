@@ -68,7 +68,7 @@ class GetPokemonsServiceTest extends TestCase
 
     public function testGetWithoutLoggedUser(): void
     {
-        $dir = '/var/www/html/tests/resources/unit/service/back';
+        $dir = '/app/tests/resources/unit/service/back';
         $filename = "{$dir}/pokemons_123__3.json";
         $json = (string) file_get_contents($filename);
 
@@ -117,7 +117,7 @@ class GetPokemonsServiceTest extends TestCase
         string $filtersStr = '',
         array $filters = [],
     ): GetPokemonsService {
-        $dir = '/var/www/html/tests/resources/unit/service/back';
+        $dir = '/app/tests/resources/unit/service/back';
         $filename = "{$dir}/pokemons_{$dexSlug}_{$electionSlug}_{$count}{$filtersStr}.json";
         $json = (string) file_get_contents($filename);
 

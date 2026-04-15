@@ -1,7 +1,7 @@
 {
     "type": "tools",
     "require": {
-        "php": ">=8.4",
+        "php": ">=8.5.4",
         "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-dom": "*",

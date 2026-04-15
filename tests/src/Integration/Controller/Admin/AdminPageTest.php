@@ -186,7 +186,7 @@ class AdminPageTest extends WebTestCase
      * @param array<string, string> $expectedReport
      * @param array<string, string> $expectedDateTime
      *
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
      */
     private function assertReport(
         Crawler $crawler,
@@ -260,7 +260,7 @@ class AdminPageTest extends WebTestCase
     /**
      * @return bool[][][]|null[][]|string[][][]|string[][][][]
      *
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
      */
     private function getHomeReportData(): array
     {

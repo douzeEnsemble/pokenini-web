@@ -1,13 +1,14 @@
-FROM alpine:3.22
+FROM alpine:3.23.3
 
 ARG MOCO_VERSION
 
 ENV MOCO_ROOT=1
 
+# hadolint ignore=DL3018
 RUN apk add --no-cache \
-	openjdk11-jre=~11.0 \
-	curl=~8.14 \
-	bash=~5.2 \
+		openjdk11-jre \
+		curl \
+		bash \
 	&& wget -q -nv \
 		"https://repo1.maven.org/maven2/com/github/dreamhead/moco-runner/$MOCO_VERSION/moco-runner-$MOCO_VERSION-standalone.jar" \
 		-O /usr/local/bin/moco.jar \

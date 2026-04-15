@@ -148,6 +148,7 @@ parameters:
     AppException:
     AppHelper:
     AppResponseObject:
+      - SymfonySerializer
     AppSecurity:
       - AppDTO
       - AppException

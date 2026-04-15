@@ -21,7 +21,7 @@ class GetLabelsServiceTest extends TestCase
     use ResponseObjectTrait;
 
     public const ENDPOINT = 'labels';
-    public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/labels.json';
+    public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/labels.json';
 
     public function testGet(): void
     {

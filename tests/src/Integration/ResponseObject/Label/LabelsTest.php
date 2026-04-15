@@ -30,7 +30,7 @@ class LabelsTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/var/www/html/tests/resources/integration/back/labels.json');
+        $json = (string) file_get_contents('/app/tests/resources/integration/back/labels.json');
 
         /** @var Labels $object */
         $object = $serializer->deserialize($json, Labels::class, 'json');

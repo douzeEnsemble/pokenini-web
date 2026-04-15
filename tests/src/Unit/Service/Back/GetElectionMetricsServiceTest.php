@@ -128,7 +128,7 @@ class GetElectionMetricsServiceTest extends TestCase
 
     public function testWithoutLoggedUser(): void
     {
-        $filename = '/var/www/html/tests/resources/unit/service/back/election_metrics_home_fav.json';
+        $filename = '/app/tests/resources/unit/service/back/election_metrics_home_fav.json';
 
         /** @var GetElectionMetricsService $service */
         $service = $this->getServiceWithoutLoggedUser(
@@ -166,7 +166,7 @@ class GetElectionMetricsServiceTest extends TestCase
         string $dexSlug,
         string $electionSlug,
     ): GetElectionMetricsService {
-        $dir = '/var/www/html/tests/resources/unit/service/back';
+        $dir = '/app/tests/resources/unit/service/back';
         $filename = "{$dir}/election_metrics_{$dexSlug}_{$electionSlug}.json";
 
         /** @var GetElectionMetricsService */

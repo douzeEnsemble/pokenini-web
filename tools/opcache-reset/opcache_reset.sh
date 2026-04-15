@@ -2,7 +2,7 @@
 
 php -r "opcache_reset();"
 
-WEBDIR=/var/www/html/public
+WEBDIR=/app/public
 RANDOM_NAME=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 13)
 
 echo "<?php opcache_reset(); ?>" >${WEBDIR}${RANDOM_NAME}.php

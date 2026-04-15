@@ -17,7 +17,7 @@ class GetReportsServiceTest extends TestCase
     use BackServiceTrait;
 
     public const ENDPOINT = 'istration/reports';
-    public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/reports.json';
+    public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/reports.json';
 
     public function testGet(): void
     {

@@ -8,6 +8,7 @@ use App\Exception\NoLoggedUserException;
 use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\Back\BackServiceInterface;
+use App\Tests\Utils\WithConsecutive;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -27,7 +28,13 @@ trait BackServiceTrait
         array $requestOptions = [],
         ?SerializerInterface $serializer = null,
     ): BackServiceInterface {
-        $logger = $this->getLoggerMock();
+        $logger = $this->getLoggerMock(
+            $method,
+            $responseContent,
+            $endpoint,
+            'dzdz-access-token-dzdz',
+            $requestOptions,
+        );
         $client = $this->getClientMock(
             $method,
             $responseContent,
@@ -57,7 +64,13 @@ trait BackServiceTrait
         array $requestOptions = [],
         ?SerializerInterface $serializer = null,
     ): BackServiceInterface {
-        $logger = $this->getLoggerMock();
+        $logger = $this->getLoggerMock(
+            $method,
+            $responseContent,
+            $endpoint,
+            null,
+            $requestOptions,
+        );
         $client = $this->getClientMock(
             $method,
             $responseContent,
@@ -76,12 +89,46 @@ trait BackServiceTrait
         );
     }
 
-    private function getLoggerMock(): LoggerInterface
-    {
+    /**
+     * @param array<int|string, mixed> $requestOptions
+     */
+    private function getLoggerMock(
+        string $method,
+        string $responseContent,
+        string $endpoint,
+        ?string $token,
+        array $requestOptions = [],
+    ): LoggerInterface {
+        $headers = [
+            'accept' => 'application/json',
+        ];
+        if (null !== $token) {
+            $headers['Authorization'] = 'Bearer '.$token;
+            $headers['X-Provider'] = 'testprovider';
+        }
+
         $logger = $this->createMock(LoggerInterface::class);
         $logger
             ->expects($this->exactly(2))
             ->method('info')
+            ->with(...WithConsecutive::create(...[
+                [
+                    "Requesting {$method} /{$endpoint}",
+                    array_merge(
+                        [
+                            'headers' => $headers,
+                            'cafile' => './resources/certificates/cacert.pem',
+                        ],
+                        $requestOptions
+                    ),
+                ],
+                [
+                    'Response status code: 200',
+                    [
+                        'response' => $responseContent,
+                    ],
+                ],
+            ]))
         ;
 
         return $logger;
@@ -96,6 +143,11 @@ trait BackServiceTrait
             ->expects($this->exactly($nbCalls))
             ->method('getContent')
             ->willReturn($content)
+        ;
+        $response
+            ->expects($this->once())
+            ->method('getStatusCode')
+            ->willReturn(200)
         ;
 
         return $response;
