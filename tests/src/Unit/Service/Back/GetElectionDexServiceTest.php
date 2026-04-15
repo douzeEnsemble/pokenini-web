@@ -17,7 +17,7 @@ class GetElectionDexServiceTest extends TestCase
     use BackServiceTrait;
 
     public const ENDPOINT = 'dex/can_hold_election';
-    public const RESPONSE_CONTENT = '/var/www/html/tests/resources/unit/service/back/election_dex.json';
+    public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/election_dex.json';
 
     public function testGet(): void
     {

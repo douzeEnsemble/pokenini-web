@@ -82,7 +82,7 @@ class CommonTest extends WebTestCase
      */
     public function testListCachesCleared(): void
     {
-        exec('rm -Rf /var/www/html/var/cache/test/*');
+        exec('rm -Rf /app/var/cache/test/*');
 
         $this->testListVirgin();
     }

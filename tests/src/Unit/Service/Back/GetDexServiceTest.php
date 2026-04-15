@@ -20,7 +20,7 @@ class GetDexServiceTest extends TestCase
     {
         /** @var GetDexService $service */
         $service = $this->getMockService(
-            '/var/www/html/tests/resources/unit/service/back/dex.json',
+            '/app/tests/resources/unit/service/back/dex.json',
             'dex/list',
         );
 
@@ -42,7 +42,7 @@ class GetDexServiceTest extends TestCase
         $service = $this->getServiceWithoutLoggedUser(
             GetDexService::class,
             'GET',
-            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex.json'),
+            (string) file_get_contents('/app/tests/resources/unit/service/back/dex.json'),
             'dex/list',
         );
 
@@ -64,7 +64,7 @@ class GetDexServiceTest extends TestCase
         $service = $this->getServiceWithoutLoggedUser(
             GetDexService::class,
             'GET',
-            (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/dex_123.json'),
+            (string) file_get_contents('/app/tests/resources/unit/service/back/dex_123.json'),
             'dex/list?trainer_id=123',
         );
 

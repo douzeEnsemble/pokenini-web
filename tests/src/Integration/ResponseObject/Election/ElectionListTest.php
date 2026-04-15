@@ -23,7 +23,7 @@ class ElectionListTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/pokemons_all_b_12.json');
+        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/pokemons_all_b_12.json');
 
         /** @var ElectionList $object */
         $object = $serializer->deserialize($json, ElectionList::class, 'json');

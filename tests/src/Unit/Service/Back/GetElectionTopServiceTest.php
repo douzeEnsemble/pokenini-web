@@ -22,7 +22,7 @@ class GetElectionTopServiceTest extends TestCase
 
     public function testGet(): void
     {
-        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/election_top_5_home_fav.json');
+        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/election_top_5_home_fav.json');
 
         $items = [
             $this->getStubTopPokemon(),
@@ -51,7 +51,7 @@ class GetElectionTopServiceTest extends TestCase
 
     public function testWithoutLoggedUser(): void
     {
-        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/election_top_5_home_fav.json');
+        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/election_top_5_home_fav.json');
 
         $items = [
             $this->getStubTopPokemon(),
@@ -94,7 +94,7 @@ class GetElectionTopServiceTest extends TestCase
         int $count,
         ?SerializerInterface $serializer,
     ): GetElectionTopService {
-        $filename = "/var/www/html/tests/resources/unit/service/back/election_top_{$count}_{$dexSlug}_{$electionSlug}.json";
+        $filename = "/app/tests/resources/unit/service/back/election_top_{$count}_{$dexSlug}_{$electionSlug}.json";
 
         /** @var GetElectionTopService */
         return $this->getServiceWithLoggedUser(

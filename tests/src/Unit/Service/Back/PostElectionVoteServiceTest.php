@@ -79,7 +79,7 @@ class PostElectionVoteServiceTest extends TestCase
             'losers_slugs' => ['pikachu', 'raichu'],
         ]);
 
-        $filename = '/var/www/html/tests/resources/unit/service/back/election_vote_demo_whatever.json';
+        $filename = '/app/tests/resources/unit/service/back/election_vote_demo_whatever.json';
 
         /** @var PostElectionVoteService $service */
         $service = $this->getServiceWithoutLoggedUser(
@@ -110,7 +110,7 @@ class PostElectionVoteServiceTest extends TestCase
         array $winnersSlugs,
         array $losersSlugs,
     ): PostElectionVoteService {
-        $filename = "/var/www/html/tests/resources/unit/service/back/election_vote_{$dexSlug}_{$electionSlug}.json";
+        $filename = "/app/tests/resources/unit/service/back/election_vote_{$dexSlug}_{$electionSlug}.json";
 
         /** @var PostElectionVoteService */
         return $this->getServiceWithLoggedUser(

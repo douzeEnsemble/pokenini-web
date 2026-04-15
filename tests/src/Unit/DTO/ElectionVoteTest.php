@@ -105,6 +105,11 @@ class ElectionVoteTest extends TestCase
     public function testWrongDexSlug(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /*
+         * @psalm-suppress InvalidArgument
+         *
+         * @phpstan-ignore argument.type
+         */
         new ElectionVote([
             'dex_slug' => 12,
             'winners_slugs' => ['pikachu'],
@@ -129,6 +134,11 @@ class ElectionVoteTest extends TestCase
     public function testWrongValueForElectionSlug(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /*
+         * @psalm-suppress InvalidArgument
+         *
+         * @phpstan-ignore argument.type
+         */
         new ElectionVote([
             'dex_slug' => 'pokedex',
             'election_slug' => false,
@@ -140,6 +150,11 @@ class ElectionVoteTest extends TestCase
     public function testWrongValueForWinnerSlug(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /*
+         * @psalm-suppress InvalidArgument
+         *
+         * @phpstan-ignore argument.type
+         */
         new ElectionVote([
             'dex_slug' => 'pokedex',
             'winners_slugs' => [54654],

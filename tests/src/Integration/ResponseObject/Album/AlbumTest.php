@@ -25,7 +25,7 @@ class AlbumTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/var/www/html/tests/resources/unit/service/back/pokedex_lite.json');
+        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/pokedex_lite.json');
 
         /** @var Album $object */
         $object = $serializer->deserialize($json, Album::class, 'json');

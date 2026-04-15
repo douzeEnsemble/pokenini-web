@@ -1,7 +1,7 @@
 {
     "type": "tools",
     "require": {
-        "php": ">=8.4",
+        "php": ">=8.5.4",
         "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-dom": "*",
@@ -15,7 +15,7 @@
         "ext-xml": "*",
         "ext-xmlwriter": "*",
         "ext-zip": "*",
-        "infection/infection": "^0.29.14"
+        "infection/infection": "^0.32.6"
     },
     "config": {
         "allow-plugins": {

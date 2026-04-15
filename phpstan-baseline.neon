@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Property App\\\\Exception\\\\EmptyContentException\\:\\:\\$message has no type specified\\.$#"
-			count: 1
-			path: src/Exception/EmptyContentException.php
-
-		-
-			message: "#^Property App\\\\Exception\\\\InvalidJsonException\\:\\:\\$message has no type specified\\.$#"
-			count: 1
-			path: src/Exception/InvalidJsonException.php
-
-		-
-			message: "#^Property App\\\\Exception\\\\ModifyFailedException\\:\\:\\$message has no type specified\\.$#"
-			count: 1
-			path: src/Exception/ModifyFailedException.php
-
-		-
 			message: "#^Method App\\\\Security\\\\User\\:\\:getUserIdentifier\\(\\) should return non\\-empty\\-string but returns string\\.$#"
 			count: 1
 			path: src/Security/User.php
@@ -24,18 +9,3 @@ parameters:
 			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionMetrics constructor expects array\\<float\\|int\\>, array\\<string, int\\|string\\> given\\.$#"
 			count: 7
 			path: tests/src/Unit/DTO/ElectionMetricsTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionVote constructor expects array\\<array\\<string\\>\\|string\\>, array\\<string, array\\<int, int\\|string\\>\\|string\\> given\\.$#"
-			count: 1
-			path: tests/src/Unit/DTO/ElectionVoteTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionVote constructor expects array\\<array\\<string\\>\\|string\\>, array\\<string, array\\<int, string\\>\\|int\\> given\\.$#"
-			count: 1
-			path: tests/src/Unit/DTO/ElectionVoteTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$values of class App\\\\DTO\\\\ElectionVote constructor expects array\\<array\\<string\\>\\|string\\>, array\\<string, array\\<int, string\\>\\|string\\|false\\> given\\.$#"
-			count: 1
-			path: tests/src/Unit/DTO/ElectionVoteTest.php

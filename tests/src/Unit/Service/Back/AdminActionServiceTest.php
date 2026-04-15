@@ -8,6 +8,7 @@ use App\Exception\NoLoggedUserException;
 use App\Security\User;
 use App\Security\UserTokenService;
 use App\Service\Back\AdminActionService;
+use App\Tests\Utils\WithConsecutive;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -28,6 +29,25 @@ class AdminActionServiceTest extends TestCase
         $logger
             ->expects($this->exactly(2))
             ->method('info')
+            ->with(...WithConsecutive::create(...[
+                [
+                    'Requesting POST /istration/action/update/something',
+                    [
+                        'headers' => [
+                            'accept' => 'application/json',
+                            'Authorization' => 'Bearer dzdz-access-token-dzdz',
+                            'X-Provider' => 'testprovider',
+                        ],
+                        'cafile' => '/some/where/cafile.pem',
+                    ],
+                ],
+                [
+                    'Response status code: 200',
+                    [
+                        'response' => '{"action": "update", "item": "something", "state": "ok", "content": "", "error": ""}',
+                    ],
+                ],
+            ]))
         ;
 
         $response = $this->createMock(ResponseInterface::class);
@@ -35,6 +55,11 @@ class AdminActionServiceTest extends TestCase
             ->expects($this->exactly(2))
             ->method('getContent')
             ->willReturn('{"action": "update", "item": "something", "state": "ok", "content": "", "error": ""}')
+        ;
+        $response
+            ->expects($this->once())
+            ->method('getStatusCode')
+            ->willReturn(200)
         ;
 
         $client = $this->createMock(HttpClientInterface::class);
@@ -95,6 +120,25 @@ class AdminActionServiceTest extends TestCase
         $logger
             ->expects($this->exactly(2))
             ->method('info')
+            ->with(...WithConsecutive::create(...[
+                [
+                    'Requesting POST /istration/action/update/something',
+                    [
+                        'headers' => [
+                            'accept' => 'application/json',
+                            'Authorization' => 'Bearer dzdz-access-token-dzdz',
+                            'X-Provider' => 'testprovider',
+                        ],
+                        'cafile' => '/some/where/cafile.pem',
+                    ],
+                ],
+                [
+                    'Response status code: 200',
+                    [
+                        'response' => '{"action": "update", "item": "something", "state": "ok", "content": "foobar", "error": "oops"}',
+                    ],
+                ],
+            ]))
         ;
 
         $response = $this->createMock(ResponseInterface::class);
@@ -102,6 +146,11 @@ class AdminActionServiceTest extends TestCase
             ->expects($this->exactly(2))
             ->method('getContent')
             ->willReturn('{"action": "update", "item": "something", "state": "ok", "content": "foobar", "error": "oops"}')
+        ;
+        $response
+            ->expects($this->once())
+            ->method('getStatusCode')
+            ->willReturn(200)
         ;
 
         $client = $this->createMock(HttpClientInterface::class);
@@ -162,6 +211,23 @@ class AdminActionServiceTest extends TestCase
         $logger
             ->expects($this->exactly(2))
             ->method('info')
+            ->with(...WithConsecutive::create(...[
+                [
+                    'Requesting POST /istration/action/update/something',
+                    [
+                        'headers' => [
+                            'accept' => 'application/json',
+                        ],
+                        'cafile' => '/some/where/cafile.pem',
+                    ],
+                ],
+                [
+                    'Response status code: 200',
+                    [
+                        'response' => '{"action": "update", "item": "something", "state": "ok", "content": "", "error": ""}',
+                    ],
+                ],
+            ]))
         ;
 
         $response = $this->createMock(ResponseInterface::class);
@@ -169,6 +235,11 @@ class AdminActionServiceTest extends TestCase
             ->expects($this->exactly(2))
             ->method('getContent')
             ->willReturn('{"action": "update", "item": "something", "state": "ok", "content": "", "error": ""}')
+        ;
+        $response
+            ->expects($this->once())
+            ->method('getStatusCode')
+            ->willReturn(200)
         ;
 
         $client = $this->createMock(HttpClientInterface::class);

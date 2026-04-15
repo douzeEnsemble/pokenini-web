@@ -58,9 +58,6 @@ class GetLabelsServiceTest extends TestCase
         $this->getService()->getCollections();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     */
     private function getService(): GetLabelsService
     {
         $getLabelsService = $this->createMock(BackGetLabelsService::class);

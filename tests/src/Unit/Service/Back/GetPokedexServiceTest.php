@@ -58,7 +58,6 @@ class GetPokedexServiceTest extends TestCase
             ],
         );
 
-        $this->assertNotNull($album);
         $this->assertSame('Stub', $album->getDex()?->getName());
         $this->assertCount(1, $album->getPokemons());
         $this->assertSame(2, $album->getReport()->getTotalCaught());
@@ -105,7 +104,6 @@ class GetPokedexServiceTest extends TestCase
             ],
         );
 
-        $this->assertNotNull($album);
         $this->assertSame('Stub', $album->getDex()?->getName());
         $this->assertCount(1, $album->getPokemons());
         $this->assertSame(2, $album->getReport()->getTotalCaught());

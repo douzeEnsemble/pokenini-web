@@ -30,7 +30,7 @@ abstract class AbstractAuthenticator extends OAuth2Authenticator
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
      */
     #[\Override]
     public function authenticate(Request $request): Passport
