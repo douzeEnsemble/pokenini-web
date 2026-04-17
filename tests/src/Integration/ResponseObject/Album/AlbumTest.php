@@ -34,8 +34,6 @@ class AlbumTest extends KernelTestCase
         $this->assertInstanceOf(Dex::class, $object->getDex());
         $this->assertCount(41, $object->getPokemons());
         $this->assertContainsOnlyInstancesOf(Pokemon::class, $object->getPokemons());
-        $this->assertInstanceOf(Report::class, $object->getReport());
-        $this->assertInstanceOf(Report::class, $object->getFilteredReport());
         $this->assertNotSame($object->getReport(), $object->getFilteredReport());
     }
 
@@ -61,7 +59,5 @@ class AlbumTest extends KernelTestCase
         $this->assertInstanceOf(Album::class, $object);
         $this->assertNull($object->getDex());
         $this->assertCount(0, $object->getPokemons());
-        $this->assertInstanceOf(Report::class, $object->getReport());
-        $this->assertInstanceOf(Report::class, $object->getFilteredReport());
     }
 }

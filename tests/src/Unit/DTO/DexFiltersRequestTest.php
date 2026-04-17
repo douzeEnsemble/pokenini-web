@@ -23,13 +23,6 @@ class DexFiltersRequestTest extends TestCase
 
         $filters = DexFiltersRequest::DexFiltersFromRequest($request);
 
-        $this->assertInstanceOf(DexFilters::class, $filters);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->privacy);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->homepaged);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->released);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->shiny);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->premium);
-
         $this->assertNull($filters->privacy->value);
         $this->assertNull($filters->homepaged->value);
         $this->assertNull($filters->released->value);
@@ -48,13 +41,6 @@ class DexFiltersRequestTest extends TestCase
         ]);
 
         $filters = DexFiltersRequest::DexFiltersFromRequest($request);
-
-        $this->assertInstanceOf(DexFilters::class, $filters);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->privacy);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->homepaged);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->released);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->shiny);
-        $this->assertInstanceOf(DexFilterValue::class, $filters->premium);
 
         $this->assertTrue($filters->privacy->value);
         $this->assertFalse($filters->homepaged->value);
