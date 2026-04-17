@@ -185,10 +185,11 @@ class ElectionMetricsTest extends TestCase
     public function testBadViewCountSum(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         new ElectionMetrics(
-            /**
-             * @phpstan-ignore argument.type
-             */
+            /** @phpstan-ignore argument.type */
             [
                 'view_count_sum' => '1',
                 'win_count_sum' => 2,
@@ -232,10 +233,11 @@ class ElectionMetricsTest extends TestCase
     public function testBadWinCountSum(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         new ElectionMetrics(
-            /**
-             * @phpstan-ignore argument.type
-             */
+            /** @phpstan-ignore argument.type */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => '2',
@@ -279,10 +281,11 @@ class ElectionMetricsTest extends TestCase
     public function testBadViewCountMax(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         new ElectionMetrics(
-            /**
-             * @phpstan-ignore argument.type
-             */
+            /** @phpstan-ignore argument.type */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,
@@ -326,6 +329,9 @@ class ElectionMetricsTest extends TestCase
     public function testBadWinCountMax(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         new ElectionMetrics(
             /**
              * @phpstan-ignore argument.type
@@ -373,10 +379,11 @@ class ElectionMetricsTest extends TestCase
     public function testBadUnderMaxViewCount(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         new ElectionMetrics(
-            /**
-             * @phpstan-ignore argument.type
-             */
+            /** @phpstan-ignore argument.type */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,
@@ -420,10 +427,11 @@ class ElectionMetricsTest extends TestCase
     public function testBadMaxViewCount(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         new ElectionMetrics(
-            /**
-             * @phpstan-ignore argument.type
-             */
+            /** @phpstan-ignore argument.type */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,
@@ -466,10 +474,11 @@ class ElectionMetricsTest extends TestCase
     public function testBadDexTotalCount(): void
     {
         $this->expectException(InvalidOptionsException::class);
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         new ElectionMetrics(
-            /**
-             * @phpstan-ignore argument.type
-             */
+            /** @phpstan-ignore argument.type */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,

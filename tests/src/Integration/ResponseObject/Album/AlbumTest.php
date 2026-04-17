@@ -6,7 +6,6 @@ namespace App\Tests\Integration\ResponseObject\Album;
 
 use App\ResponseObject\Album\Album;
 use App\ResponseObject\Album\Dex;
-use App\ResponseObject\Album\Report;
 use App\ResponseObject\Common\Pokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
