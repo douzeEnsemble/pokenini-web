@@ -1,4 +1,4 @@
-{% set currentRouteParameters = app.request.get('_route_params') %}
+{% set currentRouteParameters = app.request.attributes.get('_route_params') %}
 
 <div class="report-container">
     <h2 id="stats">dzdzd

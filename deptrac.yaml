@@ -175,6 +175,7 @@ parameters:
       - SymfonyValidator
     AppTwig:
       - SymfonyContractsTranslation
+      - SymfonyHttpFoundation
       - Twig
     AppUtils:
     AppValidator:

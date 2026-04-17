@@ -1,4 +1,4 @@
-{% set catchState = app.request.get('cs') %}
+{% set catchState = app.request.attributes.get('cs') %}
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas">
   <div class="offcanvas-body">

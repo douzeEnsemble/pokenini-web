@@ -1,6 +1,6 @@
 {% set locale = app.request.locale %}
-{% set currentRoute = app.request.get('_route') %}
-{% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
+{% set currentRoute = app.request.attributes.get('_route') %}
+{% set currentRouteParameters = app.request.attributes.get('_route_params') ?? [] %}
 {% set displayTemplateName = dex.displayTemplate is defined ? dex.displayTemplate : 'box' %}
 <div id="intro">
 

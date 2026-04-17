@@ -46,7 +46,6 @@ class User implements UserInterface
     }
 
     // @codeCoverageIgnoreStart
-    #[\Override]
     public function eraseCredentials(): void
     {
         // nothing sensitive

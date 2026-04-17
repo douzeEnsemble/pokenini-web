@@ -6,7 +6,7 @@
     </label>
   {% endblock anyTypes_label %}
   {% block anyTypes_widget %}
-    {% set filteredAnyTypes = app.request.get('at', [])|filter(v => v) %}
+    {% set filteredAnyTypes = getArrayFromRequest('at')|filter(v => v) %}
     <select multiple id="any_type" name="at[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredAnyTypes|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.any_type.value.empty'|trans -}}
@@ -28,7 +28,7 @@
     </label>
   {% endblock primaryTypes_label %}
   {% block primaryTypes_widget %}
-    {% set filteredPrimaryTypes = app.request.get('t1', [])|filter(v => v) %}
+    {% set filteredPrimaryTypes = getArrayFromRequest('t1')|filter(v => v) %}
     <select multiple id="primary_type" name="t1[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredPrimaryTypes|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.primary_type.value.empty'|trans -}}
@@ -50,7 +50,7 @@
     </label>
   {% endblock secondaryTypes_label %}
   {% block secondaryTypes_widget %}
-    {% set filteredSecondaryTypes = app.request.get('t2', [])|filter(v => v) %}
+    {% set filteredSecondaryTypes = getArrayFromRequest('t2')|filter(v => v) %}
     <select multiple id="secondary_type" name="t2[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredSecondaryTypes|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.secondary_type.value.empty'|trans -}}
@@ -75,7 +75,7 @@
     </label>
   {% endblock categoryForm_label %}
   {% block categoryForm_widget %}
-    {% set filteredCategoryForms = app.request.get('fc', [])|filter(v => v) %}
+    {% set filteredCategoryForms = getArrayFromRequest('fc')|filter(v => v) %}
     <select multiple id="category_form" name="fc[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredCategoryForms|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.category_form.value.empty'|trans -}}
@@ -100,7 +100,7 @@
     </label>
   {% endblock regionalForm_label %}
   {% block regionalForm_widget %}
-    {% set filteredRegionalForms = app.request.get('fr', [])|filter(v => v) %}
+    {% set filteredRegionalForms = getArrayFromRequest('fr')|filter(v => v) %}
     <select multiple id="regional_form" name="fr[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredRegionalForms|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.regional_form.value.empty'|trans -}}
@@ -125,7 +125,7 @@
     </label>
   {% endblock specialForm_label %}
   {% block specialForm_widget %}
-    {% set filteredSpecialForms = app.request.get('fs', [])|filter(v => v) %}
+    {% set filteredSpecialForms = getArrayFromRequest('fs')|filter(v => v) %}
     <select multiple id="special_form" name="fs[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredSpecialForms|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.special_form.value.empty'|trans -}}
@@ -150,7 +150,7 @@
     </label>
   {% endblock variantForm_label %}
   {% block variantForm_widget %}
-    {% set filteredVariantForms = app.request.get('fv', [])|filter(v => v) %}
+    {% set filteredVariantForms = getArrayFromRequest('fv')|filter(v => v) %}
     <select multiple id="variant_form" name="fv[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredVariantForms|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.variant_form.value.empty'|trans -}}
@@ -175,7 +175,7 @@
     </label>
   {% endblock originalGameBundle_label %}
   {% block originalGameBundle_widget %}
-    {% set filteredOriginalGameBundles = app.request.get('ogb', [])|filter(v => v) %}
+    {% set filteredOriginalGameBundles = getArrayFromRequest('ogb')|filter(v => v) %}
     <select multiple id="original_game_bundle" name="ogb[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredOriginalGameBundles|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.original_game_bundle.value.empty'|trans -}}
@@ -197,7 +197,7 @@
     </label>
   {% endblock gameBundleAvailability_label %}
   {% block gameBundleAvailability_widget %}
-    {% set filteredGameBundlesAvailabilities = app.request.get('gba', [])|filter(v => v) %}
+    {% set filteredGameBundlesAvailabilities = getArrayFromRequest('gba', [])|filter(v => v) %}
     <select multiple id="game_bundle_availability" name="gba[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredGameBundlesAvailabilities|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.game_bundle_availability.value.empty'|trans -}}
@@ -225,7 +225,7 @@
     </label>
   {% endblock gameBundleShinyAvailability_label %}
   {% block gameBundleShinyAvailability_widget %}
-    {% set filteredGameBundlesAvailabilities = app.request.get('gbsa', [])|filter(v => v) %}
+    {% set filteredGameBundlesAvailabilities = getArrayFromRequest('gbsa', [])|filter(v => v) %}
     <select multiple id="game_bundle_shiny_availability" name="gbsa[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredGameBundlesAvailabilities|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.game_bundle_shiny_availability.value.empty'|trans -}}
@@ -253,7 +253,7 @@
     </label>
   {% endblock collection_label %}
   {% block collection_widget %}
-    {% set filteredCollections = app.request.get('ca', [])|filter(v => v) %}
+    {% set filteredCollections = getArrayFromRequest('ca', [])|filter(v => v) %}
     <select multiple id="collection_availability" name="gbsa[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredCollections|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.collection.value.empty'|trans -}}
