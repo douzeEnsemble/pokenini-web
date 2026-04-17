@@ -6,6 +6,9 @@ namespace App\ResponseObject\Common;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
+/**
+ * @SuppressWarnings("PHPMD.ExcessiveParameterList")
+ */
 class Pokemon
 {
     public function __construct(

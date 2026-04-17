@@ -24,6 +24,8 @@ use Symfony\Component\Validator\Constraints\Json;
 
 /**
  * @internal
+ *
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
  */
 #[CoversClass(TrainerUpsertController::class)]
 class TrainerUpsertControllerTest extends TestCase
