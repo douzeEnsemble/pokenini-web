@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit\DTO;
 
 use App\DTO\DexFilters;
-use App\DTO\DexFilterValue;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

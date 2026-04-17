@@ -3,10 +3,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-    errorBaseline="psalm-baseline.xml"
     errorLevel="5"
     resolveFromConfigFile="true"
-    findUnusedBaselineEntry="true"
     findUnusedCode="false"
     cacheDirectory="var/cache/psalm"
 >
@@ -15,22 +13,8 @@
         <directory name="tests" />
         <ignoreFiles>
             <directory name="vendor" />
+            <file name="src/Kernel.php" />
             <file name="tests/bootstrap.php" />
         </ignoreFiles>
     </projectFiles>
-
-    <issueHandlers>
-        <PropertyNotSetInConstructor errorLevel="suppress" />
-        <RiskyCast>
-            <errorLevel type="suppress">
-                <file name="src/DTO/ActionLog.php" />
-            </errorLevel>
-        </RiskyCast>
-        <InvalidArgument>
-            <errorLevel type="suppress">
-                <file name="tests/src/Unit/DTO/ElectionVoteTest.php" />
-                <file name="tests/src/Unit/DTO/ElectionMetricsTest.php" />
-            </errorLevel>
-        </InvalidArgument>
-    </issueHandlers>
 </psalm>
