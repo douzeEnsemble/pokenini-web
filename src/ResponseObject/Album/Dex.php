@@ -6,6 +6,9 @@ namespace App\ResponseObject\Album;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
+/**
+ * @SuppressWarnings("PHPMD.ExcessiveParameterList")
+ */
 class Dex
 {
     public function __construct(
