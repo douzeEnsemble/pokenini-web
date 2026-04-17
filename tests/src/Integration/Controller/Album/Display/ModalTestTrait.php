@@ -317,6 +317,7 @@ trait ModalTestTrait
 
     public function assertModalItemFamilyLink(
         Crawler $crawler,
+        string $dexSlug,
         string $pokemonSlug,
         string $lang,
         string $familyLeadSlug,
@@ -333,13 +334,13 @@ trait ModalTestTrait
         );
 
         $this->assertEquals(
-            'fr' === $lang ? 'Afficher la famille ' : 'Filter this family only',
+            'fr' === $lang ? 'Afficher la famille' : 'Filter this family only',
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupIntemIndex)
                 ->text()
         );
         $this->assertEquals(
-            "/fr/album/demo?f={$familyLeadSlug}",
+            "/{$lang}/album/{$dexSlug}?f={$familyLeadSlug}",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupIntemIndex)
                 ->filter('a')

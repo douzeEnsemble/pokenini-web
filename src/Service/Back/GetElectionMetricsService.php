@@ -15,7 +15,6 @@ class GetElectionMetricsService extends AbstractBackService
         string $dexSlug,
         string $electionSlug,
     ): array {
-        /** @var string $json */
         $json = $this->requestContent(
             'GET',
             '/election/metrics',

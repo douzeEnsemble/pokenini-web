@@ -31,7 +31,6 @@ class CollectionTest extends KernelTestCase
             }
             JSON;
 
-        /** @var Collection $object */
         $object = $serializer->deserialize($json, Collection::class, 'json');
 
         $this->assertInstanceOf(Collection::class, $object);

@@ -57,7 +57,6 @@ class PokemonTest extends KernelTestCase
                 }
             JSON;
 
-        /** @var Pokemon $object */
         $object = $serializer->deserialize($json, Pokemon::class, 'json');
 
         $this->assertInstanceOf(Pokemon::class, $object);
@@ -135,7 +134,6 @@ class PokemonTest extends KernelTestCase
                 }
             JSON;
 
-        /** @var Pokemon $object */
         $object = $serializer->deserialize($json, Pokemon::class, 'json');
 
         $this->assertInstanceOf(Pokemon::class, $object);

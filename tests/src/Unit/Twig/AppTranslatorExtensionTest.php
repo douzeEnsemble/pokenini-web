@@ -26,7 +26,6 @@ class AppTranslatorExtensionTest extends TestCase
 
         $this->assertCount(1, $filters);
 
-        /** @var TwigFilter $almostExactlyFilter */
         $almostExactlyFilter = $filters[0];
 
         $this->assertInstanceOf(TwigFilter::class, $almostExactlyFilter);
@@ -40,7 +39,7 @@ class AppTranslatorExtensionTest extends TestCase
     }
 
     /**
-     * @param string[] $params
+     * @param array<string, int> $params
      */
     #[DataProvider('providerAlmostExactly')]
     public function testAlmostExactly(
@@ -66,7 +65,13 @@ class AppTranslatorExtensionTest extends TestCase
     }
 
     /**
-     * @return float[][]|int[][]|int[][][]|string[][]|string[][][]
+     * @return array<string, array{
+     *  text: string,
+     *  params: array<string, int>,
+     *  return: string,
+     *  expected: string,
+     *  value: float,
+     * }>
      */
     public static function providerAlmostExactly(): array
     {
@@ -79,7 +84,13 @@ class AppTranslatorExtensionTest extends TestCase
     }
 
     /**
-     * @return float[][]|int[][]|int[][][]|string[][]|string[][][]
+     * @return array<string, array{
+     *  text: string,
+     *  params: array<string, int>,
+     *  return: string,
+     *  expected: string,
+     *  value: float,
+     * }>
      */
     public static function getProviderExactlyData(): array
     {
@@ -106,7 +117,13 @@ class AppTranslatorExtensionTest extends TestCase
     }
 
     /**
-     * @return float[][]|int[][]|int[][][]|string[][]|string[][][]
+     * @return array<string, array{
+     *  text: string,
+     *  params: array<string, int>,
+     *  return: string,
+     *  expected: string,
+     *  value: float,
+     * }>
      */
     public static function getProviderAlmostData(): array
     {
@@ -151,7 +168,13 @@ class AppTranslatorExtensionTest extends TestCase
     }
 
     /**
-     * @return float[][]|int[][]|int[][][]|string[][]|string[][][]
+     * @return array<string, array{
+     *  text: string,
+     *  params: array<string, int>,
+     *  return: string,
+     *  expected: string,
+     *  value: float,
+     * }>
      */
     public static function getProviderApproximatelyData(): array
     {
@@ -214,7 +237,13 @@ class AppTranslatorExtensionTest extends TestCase
     }
 
     /**
-     * @return float[][]|int[][]|int[][][]|string[][]|string[][][]
+     * @return array<string, array{
+     *  text: string,
+     *  params: array<string, int>,
+     *  return: string,
+     *  expected: string,
+     *  value: float,
+     * }>
      */
     public static function getProviderBetweenData(): array
     {

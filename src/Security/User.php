@@ -46,6 +46,9 @@ class User implements UserInterface
     }
 
     // @codeCoverageIgnoreStart
+    /**
+     * @psalm-suppress PossiblyUnusedMethod
+     */
     public function eraseCredentials(): void
     {
         // nothing sensitive

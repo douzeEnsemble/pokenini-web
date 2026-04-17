@@ -52,7 +52,6 @@ class TopPokemonTest extends KernelTestCase
             }
             JSON;
 
-        /** @var TopPokemon $object */
         $object = $serializer->deserialize($json, TopPokemon::class, 'json');
 
         $this->assertSame('venusaur-mega', $object->getPokemonSlug());
@@ -117,7 +116,6 @@ class TopPokemonTest extends KernelTestCase
             }
             JSON;
 
-        /** @var TopPokemon $object */
         $object = $serializer->deserialize($json, TopPokemon::class, 'json');
 
         $this->assertSame('venusaur-mega', $object->getPokemonSlug());

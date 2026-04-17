@@ -185,6 +185,7 @@ class ElectionMetricsTest extends TestCase
     public function testBadViewCountSum(): void
     {
         $this->expectException(InvalidOptionsException::class);
+
         /**
          * @psalm-suppress InvalidArgument
          */
@@ -233,6 +234,7 @@ class ElectionMetricsTest extends TestCase
     public function testBadWinCountSum(): void
     {
         $this->expectException(InvalidOptionsException::class);
+
         /**
          * @psalm-suppress InvalidArgument
          */
@@ -281,6 +283,7 @@ class ElectionMetricsTest extends TestCase
     public function testBadViewCountMax(): void
     {
         $this->expectException(InvalidOptionsException::class);
+
         /**
          * @psalm-suppress InvalidArgument
          */
@@ -329,6 +332,7 @@ class ElectionMetricsTest extends TestCase
     public function testBadWinCountMax(): void
     {
         $this->expectException(InvalidOptionsException::class);
+
         /**
          * @psalm-suppress InvalidArgument
          */
@@ -379,6 +383,7 @@ class ElectionMetricsTest extends TestCase
     public function testBadUnderMaxViewCount(): void
     {
         $this->expectException(InvalidOptionsException::class);
+
         /**
          * @psalm-suppress InvalidArgument
          */
@@ -427,6 +432,7 @@ class ElectionMetricsTest extends TestCase
     public function testBadMaxViewCount(): void
     {
         $this->expectException(InvalidOptionsException::class);
+
         /**
          * @psalm-suppress InvalidArgument
          */
@@ -474,6 +480,7 @@ class ElectionMetricsTest extends TestCase
     public function testBadDexTotalCount(): void
     {
         $this->expectException(InvalidOptionsException::class);
+
         /**
          * @psalm-suppress InvalidArgument
          */

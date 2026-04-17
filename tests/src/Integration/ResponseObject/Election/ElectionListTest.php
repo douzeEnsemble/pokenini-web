@@ -25,7 +25,6 @@ class ElectionListTest extends KernelTestCase
 
         $json = (string) file_get_contents('/app/tests/resources/unit/service/back/pokemons_all_b_12.json');
 
-        /** @var ElectionList $object */
         $object = $serializer->deserialize($json, ElectionList::class, 'json');
 
         $this->assertSame('vote', $object->getType());
@@ -47,7 +46,6 @@ class ElectionListTest extends KernelTestCase
             }
             JSON;
 
-        /** @var ElectionList $object */
         $object = $serializer->deserialize($json, ElectionList::class, 'json');
 
         $this->assertSame('pick', $object->getType());

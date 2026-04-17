@@ -38,9 +38,12 @@ class FooterTest extends WebTestCase
         $this->assertCountFilter($crawler, 4, 'footer ul li');
 
         $index = 0;
-        $this->assertStringContainsString('Accueil', $crawler->filter('footer ul li')->eq($index++)->text());
-        $this->assertStringContainsString('Politique de confidentialité', $crawler->filter('footer ul li')->eq($index++)->text());
-        $this->assertStringContainsString('Mentions Légales', $crawler->filter('footer ul li')->eq($index++)->text());
-        $this->assertStringContainsString('Cookies', $crawler->filter('footer ul li')->eq($index++)->text());
+        $this->assertStringContainsString('Accueil', $crawler->filter('footer ul li')->eq($index)->text());
+        ++$index;
+        $this->assertStringContainsString('Politique de confidentialité', $crawler->filter('footer ul li')->eq($index)->text());
+        ++$index;
+        $this->assertStringContainsString('Mentions Légales', $crawler->filter('footer ul li')->eq($index)->text());
+        ++$index;
+        $this->assertStringContainsString('Cookies', $crawler->filter('footer ul li')->eq($index)->text());
     }
 }

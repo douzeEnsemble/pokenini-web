@@ -16,7 +16,6 @@ class ElectionMetricsService
 
     public function getMetrics(string $dexSlug, string $electionSlug): ElectionMetrics
     {
-        /** @var float[]|int[] */
         $data = $this->apiService->getMetrics($dexSlug, $electionSlug);
 
         return new ElectionMetrics($data, $this->electionCandidateCount);

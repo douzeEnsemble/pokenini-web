@@ -32,7 +32,6 @@ class LabelsTest extends KernelTestCase
 
         $json = (string) file_get_contents('/app/tests/resources/integration/back/labels.json');
 
-        /** @var Labels $object */
         $object = $serializer->deserialize($json, Labels::class, 'json');
 
         $this->assertCount(6, $object->getCatchStates());

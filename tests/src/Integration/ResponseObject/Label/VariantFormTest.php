@@ -30,7 +30,6 @@ class VariantFormTest extends KernelTestCase
             }
             JSON;
 
-        /** @var VariantForm $object */
         $object = $serializer->deserialize($json, VariantForm::class, 'json');
 
         $this->assertInstanceOf(VariantForm::class, $object);

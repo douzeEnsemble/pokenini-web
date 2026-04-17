@@ -31,7 +31,6 @@ class GameBundleTest extends KernelTestCase
             }
             JSON;
 
-        /** @var GameBundle $object */
         $object = $serializer->deserialize($json, GameBundle::class, 'json');
 
         $this->assertInstanceOf(GameBundle::class, $object);

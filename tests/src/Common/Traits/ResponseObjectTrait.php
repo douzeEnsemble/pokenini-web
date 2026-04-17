@@ -29,28 +29,35 @@ trait ResponseObjectTrait
         $count = 1;
 
         $catchState = new CatchState('Toto', 'Tautaux', 'toto', '#blouge');
-        $catchStates = array_fill(0, $count++, $catchState);
+        $catchStates = array_fill(0, $count, $catchState);
+        ++$count;
 
         $type = new Type('Toto', 'Tautaux', 'toto', '#blouge');
-        $types = array_fill(0, $count++, $type);
+        $types = array_fill(0, $count, $type);
+        ++$count;
 
         $categoryForm = new CategoryForm('Toto', 'Tautaux', 'toto');
-        $categoryForms = array_fill(0, $count++, $categoryForm);
+        $categoryForms = array_fill(0, $count, $categoryForm);
+        ++$count;
 
         $regionalForm = new RegionalForm('Toto', 'Tautaux', 'toto');
-        $regionalForms = array_fill(0, $count++, $regionalForm);
+        $regionalForms = array_fill(0, $count, $regionalForm);
+        ++$count;
 
         $specialForm = new SpecialForm('Toto', 'Tautaux', 'toto');
-        $specialForms = array_fill(0, $count++, $specialForm);
+        $specialForms = array_fill(0, $count, $specialForm);
+        ++$count;
 
         $variantForm = new VariantForm('Toto', 'Tautaux', 'toto');
-        $variantForms = array_fill(0, $count++, $variantForm);
+        $variantForms = array_fill(0, $count, $variantForm);
+        ++$count;
 
         $gameBundle = new GameBundle('Toto', 'Tautaux', 'toto', 'gen_y');
-        $gameBundles = array_fill(0, $count++, $gameBundle);
+        $gameBundles = array_fill(0, $count, $gameBundle);
+        ++$count;
 
         $collection = new Collection('Toto', 'Tautaux', 'toto', 12);
-        $collections = array_fill(0, $count++, $collection);
+        $collections = array_fill(0, $count, $collection);
 
         return new Labels(
             $catchStates,

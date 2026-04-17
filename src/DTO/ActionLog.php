@@ -29,7 +29,6 @@ class ActionLog
         $doneAtStr = $data['done_at'] ?? null;
         $doneAt = null !== $doneAtStr ? new \DateTime($doneAtStr) : null;
 
-        /** @var ?int */
         $executionTime = (isset($data['execution_time'])) ? (int) $data['execution_time'] : null;
 
         /** @var int[] */

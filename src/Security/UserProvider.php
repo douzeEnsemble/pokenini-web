@@ -17,6 +17,8 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 {
     /**
      * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+     *
+     * @psalm-suppress PossiblyUnusedReturnValue
      */
     #[\Override]
     public function loadUserByIdentifier(string $identifier): UserInterface
