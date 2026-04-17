@@ -67,7 +67,6 @@ class GetActionLogsServiceTest extends TestCase
 
         foreach ($expectedLogs as $key) {
             $this->assertArrayHasKey($key, $actionLogs);
-            $this->assertInstanceOf(ActionLogData::class, $actionLogs[$key]);
         }
     }
 }

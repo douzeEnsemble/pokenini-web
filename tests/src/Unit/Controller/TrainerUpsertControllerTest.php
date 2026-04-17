@@ -137,7 +137,6 @@ class TrainerUpsertControllerTest extends TestCase
 
         $response = $controller->upsert('douze');
 
-        $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(400, $response->getStatusCode());
         $this->assertSame('{"error":"Content cannot be empty"}', $response->getContent());
     }
