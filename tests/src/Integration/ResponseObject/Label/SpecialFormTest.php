@@ -30,7 +30,6 @@ class SpecialFormTest extends KernelTestCase
             }
             JSON;
 
-        /** @var SpecialForm $object */
         $object = $serializer->deserialize($json, SpecialForm::class, 'json');
 
         $this->assertInstanceOf(SpecialForm::class, $object);

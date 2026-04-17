@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\DTO\UserInfo;
 use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +41,6 @@ trait AuthenticatorTrait
 
     private function loadFromAccessToken(AccessToken $accessToken, string $providerName): User
     {
-        /** @var UserInfo $userInfo */
         $userInfo = $this->getUserInfoService->get($accessToken, $providerName);
 
         $user = new User($userInfo->getId(), $providerName, $accessToken);

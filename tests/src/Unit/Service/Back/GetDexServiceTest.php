@@ -18,7 +18,6 @@ class GetDexServiceTest extends TestCase
 
     public function testGet(): void
     {
-        /** @var GetDexService $service */
         $service = $this->getMockService(
             '/app/tests/resources/unit/service/back/dex.json',
             'dex/list',

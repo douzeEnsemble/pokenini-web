@@ -5,18 +5,13 @@ declare(strict_types=1);
 namespace App\Service\Back;
 
 use App\DTO\ElectionVote;
-use App\Utils\JsonDecoder;
 
 class PostElectionVoteService extends AbstractBackService
 {
-    /**
-     * @return int[]|int[][]|string[]|string[][]
-     */
     public function vote(
         ElectionVote $electionVote,
-    ): array {
-        /** @var string $json */
-        $json = $this->requestContent(
+    ): void {
+        $this->requestContent(
             'POST',
             '/election/vote',
             [
@@ -28,8 +23,5 @@ class PostElectionVoteService extends AbstractBackService
                 ]),
             ]
         );
-
-        /** @var int[]|int[][]|string[]|string[][] */
-        return JsonDecoder::decode($json);
     }
 }

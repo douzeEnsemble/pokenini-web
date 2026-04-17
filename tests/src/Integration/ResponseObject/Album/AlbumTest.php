@@ -26,7 +26,6 @@ class AlbumTest extends KernelTestCase
 
         $json = (string) file_get_contents('/app/tests/resources/unit/service/back/pokedex_lite.json');
 
-        /** @var Album $object */
         $object = $serializer->deserialize($json, Album::class, 'json');
 
         $this->assertInstanceOf(Album::class, $object);
@@ -52,7 +51,6 @@ class AlbumTest extends KernelTestCase
             }
             JSON;
 
-        /** @var Album $object */
         $object = $serializer->deserialize($json, Album::class, 'json');
 
         $this->assertInstanceOf(Album::class, $object);

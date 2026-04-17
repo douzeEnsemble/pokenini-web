@@ -489,13 +489,14 @@ class ElectionIndexTest extends WebTestCase
         $this->assertEquals(
             $actionLabel,
             $crawler->filter('#election-actions-bottom .election-actions-item')
-                ->eq($index++)
+                ->eq($index)
                 ->text()
         );
+        ++$index;
         $this->assertEquals(
             $filterLabel,
             $crawler->filter('#election-actions-bottom .election-actions-item')
-                ->eq($index++)
+                ->eq($index)
                 ->text()
         );
     }

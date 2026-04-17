@@ -9,8 +9,6 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Twig\Environment;
 
 /**
  * @internal
@@ -58,16 +56,10 @@ class ErrorPageTest extends WebTestCase
         $request = Request::create('/fr/_error/'.$statusCode, 'GET');
         $request->setLocale('fr');
 
-        /**
-         * @var RequestStack $requestStack
-         */
         $requestStack = $container->get('request_stack');
 
         $requestStack->push($request);
 
-        /**
-         * @var Environment $twig
-         */
         $twig = $container->get('twig');
 
         $template = sprintf('bundles/TwigBundle/Exception/error%d.html.twig', $statusCode);

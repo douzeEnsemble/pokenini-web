@@ -5,7 +5,7 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
     errorLevel="5"
     resolveFromConfigFile="true"
-    findUnusedCode="false"
+    findUnusedCode="true"
     cacheDirectory="var/cache/psalm"
 >
     <projectFiles>
@@ -17,4 +17,26 @@
             <file name="tests/bootstrap.php" />
         </ignoreFiles>
     </projectFiles>
+
+    <plugins>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
+            <containerXml>var/cache/dev/App_KernelDevDebugContainer.xml</containerXml>
+        </pluginClass>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin">
+            <containerXml>var/cache/dev/App_KernelDevDebugContainer.xml</containerXml>
+        </pluginClass>
+    </plugins>
+
+    <issueHandlers>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="src/Controller" />
+            </errorLevel>
+        </PossiblyUnusedMethod>
+        <PossiblyUnusedReturnValue>
+            <errorLevel type="suppress">
+                <directory name="src/Controller" />
+            </errorLevel>
+        </PossiblyUnusedReturnValue>
+    </issueHandlers>
 </psalm>

@@ -31,7 +31,6 @@ class ReportDetailTest extends KernelTestCase
             }
             JSON;
 
-        /** @var ReportDetail $object */
         $object = $serializer->deserialize($json, ReportDetail::class, 'json');
 
         $this->assertInstanceOf(ReportDetail::class, $object);

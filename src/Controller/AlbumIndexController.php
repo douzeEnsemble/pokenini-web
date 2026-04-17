@@ -58,7 +58,6 @@ class AlbumIndexController extends AbstractController
         $regionalForms = $this->getLabelsService->getFormsRegional();
         $specialForms = $this->getLabelsService->getFormsSpecial();
         $variantForms = $this->getLabelsService->getFormsVariant();
-        $variantForms = $this->getLabelsService->getFormsVariant();
         $gameBundles = $this->getLabelsService->getGameBundles();
         $collections = $this->getLabelsService->getCollections();
 

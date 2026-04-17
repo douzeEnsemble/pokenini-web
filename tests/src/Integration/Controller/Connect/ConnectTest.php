@@ -32,8 +32,9 @@ class ConnectTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '#main-container ul.nav li a');
 
         $index = 0;
-        $this->assertConnectLink($crawler, 'Discord', 'dd', $index++);
-        $this->assertConnectLink($crawler, 'Google', 'g', $index++);
+        $this->assertConnectLink($crawler, 'Discord', 'dd', $index);
+        ++$index;
+        $this->assertConnectLink($crawler, 'Google', 'g', $index);
 
         $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-link')->text());
     }
@@ -42,7 +43,7 @@ class ConnectTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/fr/connect/g');
+        $client->request('GET', '/fr/connect/g');
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();

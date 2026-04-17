@@ -61,7 +61,6 @@ class ElectionIndexController extends AbstractController
         $regionalForms = $getLabelsService->getFormsRegional();
         $specialForms = $getLabelsService->getFormsSpecial();
         $variantForms = $getLabelsService->getFormsVariant();
-        $variantForms = $getLabelsService->getFormsVariant();
         $gameBundles = $getLabelsService->getGameBundles();
         $collections = $getLabelsService->getCollections();
 

@@ -30,7 +30,6 @@ class CategoryFormTest extends KernelTestCase
             }
             JSON;
 
-        /** @var CategoryForm $object */
         $object = $serializer->deserialize($json, CategoryForm::class, 'json');
 
         $this->assertInstanceOf(CategoryForm::class, $object);

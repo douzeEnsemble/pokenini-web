@@ -43,7 +43,6 @@ class DexTest extends KernelTestCase
             }
             JSON;
 
-        /** @var Dex $object */
         $object = $serializer->deserialize($json, Dex::class, 'json');
 
         $this->assertInstanceOf(Dex::class, $object);
@@ -93,7 +92,6 @@ class DexTest extends KernelTestCase
             }
             JSON;
 
-        /** @var Dex $object */
         $object = $serializer->deserialize($json, Dex::class, 'json');
 
         $this->assertInstanceOf(Dex::class, $object);

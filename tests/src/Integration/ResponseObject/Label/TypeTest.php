@@ -31,7 +31,6 @@ class TypeTest extends KernelTestCase
             }
             JSON;
 
-        /** @var Type $object */
         $object = $serializer->deserialize($json, Type::class, 'json');
 
         $this->assertInstanceOf(Type::class, $object);

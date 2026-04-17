@@ -14,7 +14,6 @@ class GetElectionTopService extends AbstractBackService
         string $electionSlug,
         int $count,
     ): ElectionTop {
-        /** @var string $json */
         $json = $this->requestContent(
             'GET',
             "/election/top?dex_slug={$dexSlug}&election_slug={$electionSlug}&count={$count}"

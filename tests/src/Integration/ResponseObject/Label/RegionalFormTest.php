@@ -30,7 +30,6 @@ class RegionalFormTest extends KernelTestCase
             }
             JSON;
 
-        /** @var RegionalForm $object */
         $object = $serializer->deserialize($json, RegionalForm::class, 'json');
 
         $this->assertInstanceOf(RegionalForm::class, $object);

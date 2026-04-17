@@ -65,6 +65,8 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'fr', 'Bulbizarre', false);
         $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'fr', 'Bulbasaur', false);
+
+        $this->assertModalItemFamilyLink($crawler, 'home', 'bulbasaur', 'fr', 'bulbasaur', false);
     }
 
     public function testRegularModalInEnglish(): void
@@ -97,6 +99,8 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'en', 'Bulbizarre', false);
         $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'en', 'Bulbasaur', false);
+
+        $this->assertModalItemFamilyLink($crawler, 'home', 'bulbasaur', 'en', 'bulbasaur', false);
     }
 
     public function testShinyModal(): void
@@ -129,6 +133,8 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemPokepediaLink($crawler, 'bulbasaur', 'fr', 'Bulbizarre', false);
         $this->assertModalItemBulbapediaLink($crawler, 'bulbasaur', 'fr', 'Bulbasaur', false);
+
+        $this->assertModalItemFamilyLink($crawler, 'demoliteshiny', 'bulbasaur', 'fr', 'bulbasaur', false);
     }
 
     public function testRegionalWithFormsModal(): void
@@ -164,6 +170,8 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemPokepediaLink($crawler, 'meganium', 'fr', 'Méganium', true);
         $this->assertModalItemBulbapediaLink($crawler, 'meganium', 'fr', 'Meganium', true);
+
+        $this->assertModalItemFamilyLink($crawler, 'goldsilvercrystal', 'meganium', 'fr', 'chikorita', true);
     }
 
     public function testWithFormsModal(): void
@@ -196,5 +204,7 @@ class ModalTest extends WebTestCase
 
         $this->assertModalItemPokepediaLink($crawler, 'venusaur-mega', 'fr', 'Florizarre', false);
         $this->assertModalItemBulbapediaLink($crawler, 'venusaur-mega', 'fr', 'Venusaur', false);
+
+        $this->assertModalItemFamilyLink($crawler, 'home', 'bulbasaur', 'fr', 'bulbasaur', false);
     }
 }
