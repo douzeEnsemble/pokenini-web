@@ -186,6 +186,9 @@ class ElectionMetricsTest extends TestCase
     {
         $this->expectException(InvalidOptionsException::class);
         new ElectionMetrics(
+            /**
+             * @phpstan-ignore argument.type
+             */
             [
                 'view_count_sum' => '1',
                 'win_count_sum' => 2,
@@ -230,6 +233,9 @@ class ElectionMetricsTest extends TestCase
     {
         $this->expectException(InvalidOptionsException::class);
         new ElectionMetrics(
+            /**
+             * @phpstan-ignore argument.type
+             */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => '2',
@@ -274,6 +280,9 @@ class ElectionMetricsTest extends TestCase
     {
         $this->expectException(InvalidOptionsException::class);
         new ElectionMetrics(
+            /**
+             * @phpstan-ignore argument.type
+             */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,
@@ -318,6 +327,9 @@ class ElectionMetricsTest extends TestCase
     {
         $this->expectException(InvalidOptionsException::class);
         new ElectionMetrics(
+            /**
+             * @phpstan-ignore argument.type
+             */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,
@@ -362,6 +374,9 @@ class ElectionMetricsTest extends TestCase
     {
         $this->expectException(InvalidOptionsException::class);
         new ElectionMetrics(
+            /**
+             * @phpstan-ignore argument.type
+             */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,
@@ -406,6 +421,9 @@ class ElectionMetricsTest extends TestCase
     {
         $this->expectException(InvalidOptionsException::class);
         new ElectionMetrics(
+            /**
+             * @phpstan-ignore argument.type
+             */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,
@@ -449,6 +467,9 @@ class ElectionMetricsTest extends TestCase
     {
         $this->expectException(InvalidOptionsException::class);
         new ElectionMetrics(
+            /**
+             * @phpstan-ignore argument.type
+             */
             [
                 'view_count_sum' => 1,
                 'win_count_sum' => 2,
