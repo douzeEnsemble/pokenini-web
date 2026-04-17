@@ -8,11 +8,11 @@ use App\Controller\ElectionVoteController;
 use App\Service\ElectionVoteService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @internal
@@ -32,7 +32,7 @@ class ElectionVoteControllerTest extends TestCase
 
         $controller = new ElectionVoteController();
 
-        $router = $this->createMock(Router::class);
+        $router = $this->createMock(RouterInterface::class);
         $router
             ->expects($this->once())
             ->method('generate')

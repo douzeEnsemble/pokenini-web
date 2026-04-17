@@ -1,5 +1,5 @@
 {% import "Album/_album_macros.html.twig" as macro %}
-{% set sharedTrainerId = app.request.get('t') %}
+{% set sharedTrainerId = app.request.attributes.get('t') %}
 
 <div class="album-container album-list-{{ nbCaseByLine }}">
     <h2>{{ 'title.empty'|trans }}</h2>

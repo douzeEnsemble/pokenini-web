@@ -1,4 +1,4 @@
-{% set filteredAnyTypes = app.request.get('at', [])|filter(v => v) %}
+{% set filteredAnyTypes = app.request.attributes.get('at', [])|filter(v => v) %}
 
 {% for item in types %}
   <div class="col-xl-2 col-lg-3 col-md-4 col-6 mb-2 form-check filters-types-container">

@@ -1,9 +1,9 @@
 {% block nav %}
 
-{% set currentRoute = app.request.get('_route') %}
-{% set currentRouteParameters = app.request.get('_route_params') ?? [] %}
+{% set currentRoute = app.request.attributes.get('_route') %}
+{% set currentRouteParameters = app.request.attributes.get('_route_params') ?? [] %}
 {% set locale = app.request.locale %}
-{% set sharedTrainerId = app.request.get('t') %}
+{% set sharedTrainerId = app.request.attributes.get('t') %}
 
 <nav class="navbar fixed-bottom navbar-expand-sm bg-light">
     <div class="container-fluid">

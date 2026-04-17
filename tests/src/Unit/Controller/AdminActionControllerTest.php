@@ -10,9 +10,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @internal
@@ -39,7 +39,7 @@ class AdminActionControllerTest extends TestCase
 
         $logger = $this->createMock(LoggerInterface::class);
 
-        $router = $this->createMock(Router::class);
+        $router = $this->createMock(RouterInterface::class);
         $router
             ->expects($this->once())
             ->method('generate')
@@ -120,7 +120,7 @@ class AdminActionControllerTest extends TestCase
             )
         ;
 
-        $router = $this->createMock(Router::class);
+        $router = $this->createMock(RouterInterface::class);
         $router
             ->expects($this->once())
             ->method('generate')
