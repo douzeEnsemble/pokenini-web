@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\Controller\Album\Dex;
 
-use App\Controller\AlbumDexController;
+use App\Controller\AlbumDexListController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
@@ -15,13 +15,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /**
  * @internal
  */
-#[CoversClass(AlbumDexController::class)]
+#[CoversClass(AlbumDexListController::class)]
 #[Group('api-mocked-testing')]
-final class AlbumDexTest extends WebTestCase
+final class AlbumDexListTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAlbumDex(): void
+    public function testAlbumDexList(): void
     {
         $client = self::createClient();
 
@@ -121,7 +121,7 @@ final class AlbumDexTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.home-item h6');
     }
 
-    public function testAlbumDexFrench(): void
+    public function testAlbumDexListFrench(): void
     {
         $client = self::createClient();
 
@@ -148,7 +148,7 @@ final class AlbumDexTest extends WebTestCase
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
     }
 
-    public function testAlbumDexEnglish(): void
+    public function testAlbumDexListEnglish(): void
     {
         $client = self::createClient();
 

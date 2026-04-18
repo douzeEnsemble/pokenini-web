@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\Security\UserTokenService;
 use App\Service\Back\BackServiceInterface;
-use App\Service\Back\GetDexService;
+use App\Service\Back\GetDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -15,8 +15,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 /**
  * @internal
  */
-#[CoversClass(GetDexService::class)]
-final class GetDexServiceTest extends AbstractTestBackService
+#[CoversClass(GetDexListService::class)]
+final class GetDexListServiceTest extends AbstractTestBackService
 {
     public function testGet(): void
     {
@@ -39,7 +39,7 @@ final class GetDexServiceTest extends AbstractTestBackService
 
     public function testGetWithEmptyTrainerId(): void
     {
-        /** @var GetDexService $service */
+        /** @var GetDexListService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex.json'),
@@ -60,7 +60,7 @@ final class GetDexServiceTest extends AbstractTestBackService
 
     public function testGetWithTrainerId(): void
     {
-        /** @var GetDexService $service */
+        /** @var GetDexListService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex_123.json'),
@@ -87,7 +87,7 @@ final class GetDexServiceTest extends AbstractTestBackService
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
     ): BackServiceInterface {
-        return new GetDexService(
+        return new GetDexListService(
             $logger,
             $client,
             $url,
@@ -100,8 +100,8 @@ final class GetDexServiceTest extends AbstractTestBackService
     private function getMockService(
         string $filename,
         string $endpoint,
-    ): GetDexService {
-        /** @var GetDexService */
+    ): GetDexListService {
+        /** @var GetDexListService */
         return $this->getServiceWithLoggedUser(
             'GET',
             (string) file_get_contents($filename),
