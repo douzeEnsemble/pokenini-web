@@ -25,7 +25,7 @@ class AppTranslatorExtension extends AbstractExtension
         $floor = floor($value);
         $ceil = ceil($value);
 
-        $average = ($floor + $ceil) / 2;
+        $average = ($floor + $ceil) / 2.0;
 
         if ($value == $floor) {
             return $this->translator->trans('number.exactly', ['number' => $floor]);
