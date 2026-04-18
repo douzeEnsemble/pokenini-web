@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\Controller\Election;
 
-use App\Controller\ElectionDexController;
+use App\Controller\ElectionDexListController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
@@ -15,9 +15,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /**
  * @internal
  */
-#[CoversClass(ElectionDexController::class)]
+#[CoversClass(ElectionDexListController::class)]
 #[Group('api-mocked-testing')]
-final class ElectionDexTest extends WebTestCase
+final class ElectionDexListTest extends WebTestCase
 {
     use TestNavTrait;
 

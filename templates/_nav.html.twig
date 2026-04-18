@@ -41,7 +41,7 @@
                 </li>
                 <li class="nav-item election-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    <a class="nav-link" href="{{ path('app_electiondex_index') }}">
+                    <a class="nav-link" href="{{ path('app_electiondexlist_index') }}">
                         <i class="bi bi-heart"></i>
                         {{ 'title.election.nav'|trans }}
                     </a>
