@@ -29,6 +29,7 @@ class ActionLog
         $doneAtStr = $data['done_at'] ?? null;
         $doneAt = null !== $doneAtStr ? new \DateTime($doneAtStr) : null;
 
+        /** @psalm-suppress RiskyCast */
         $executionTime = (isset($data['execution_time'])) ? (int) $data['execution_time'] : null;
 
         /** @var int[] */

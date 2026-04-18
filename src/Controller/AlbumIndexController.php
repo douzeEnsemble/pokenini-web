@@ -47,7 +47,11 @@ class AlbumIndexController extends AbstractController
             throw $this->createNotFoundException();
         }
 
+        /**
+         * @var Dex $dex
+         */
         $dex = $pokedex->getDex();
+
         if (!$this->accessDexIsGranted($dex, $requestedTrainerId)) {
             throw $this->createNotFoundException();
         }
