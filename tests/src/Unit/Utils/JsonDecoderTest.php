@@ -15,26 +15,65 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(JsonDecoder::class)]
 class JsonDecoderTest extends TestCase
 {
-    /**
-     * @param mixed[] $expectedData
-     */
-    #[DataProvider('providerDecode')]
-    public function testDecode(string $json, array $expectedData): void
+    public function testDecodeOneColor(): void
     {
         $this->assertEquals(
-            $expectedData,
-            JsonDecoder::decode($json)
+            [
+                'color' => '#66bb6a',
+                'name' => 'Yes',
+                'frenchName' => 'Oui',
+                'slug' => 'yes',
+            ],
+            JsonDecoder::decode(
+                self::getOneColorJson(),
+            ),
         );
     }
 
-    /**
-     * @return string[][]|string[][][]|string[][][][]|string[][][][][][]
-     */
-    public static function providerDecode(): array
+    public function testDecodeEmptyObject(): void
     {
-        return [
+        $this->assertEquals([], JsonDecoder::decode('{}'));
+    }
+
+    public function testDecodeEmptyArray(): void
+    {
+        $this->assertEquals([], JsonDecoder::decode('[]'));
+    }
+
+    public function testDecodeManyColors(): void
+    {
+        $this->assertEquals(
             [
-                self::getOneColorJson(),
+                [
+                    'color' => '#e57373',
+                    'name' => 'No',
+                    'frenchName' => 'Non',
+                    'slug' => 'no',
+                ],
+                [
+                    'color' => '#9575cd',
+                    'name' => 'To evolve',
+                    'frenchName' => 'af. évoluer',
+                    'slug' => 'toevolve',
+                ],
+                [
+                    'color' => '#4fc3f7',
+                    'name' => 'To breed',
+                    'frenchName' => 'af. reproduire',
+                    'slug' => 'tobreed',
+                ],
+                [
+                    'color' => '#ffd54f',
+                    'name' => 'To transfer',
+                    'frenchName' => 'à transférer',
+                    'slug' => 'totransfer',
+                ],
+                [
+                    'color' => '#ff9100',
+                    'name' => 'To trade',
+                    'frenchName' => 'À échanger',
+                    'slug' => 'totrade',
+                ],
                 [
                     'color' => '#66bb6a',
                     'name' => 'Yes',
@@ -42,68 +81,28 @@ class JsonDecoderTest extends TestCase
                     'slug' => 'yes',
                 ],
             ],
-            [
-                '{}',
-                [],
-            ],
-            [
-                '[]',
-                [],
-            ],
-            [
+            JsonDecoder::decode(
                 self::getManyColorsJson(),
-                [
-                    [
-                        'color' => '#e57373',
-                        'name' => 'No',
-                        'frenchName' => 'Non',
-                        'slug' => 'no',
-                    ],
-                    [
-                        'color' => '#9575cd',
-                        'name' => 'To evolve',
-                        'frenchName' => 'af. évoluer',
-                        'slug' => 'toevolve',
-                    ],
-                    [
-                        'color' => '#4fc3f7',
-                        'name' => 'To breed',
-                        'frenchName' => 'af. reproduire',
-                        'slug' => 'tobreed',
-                    ],
-                    [
-                        'color' => '#ffd54f',
-                        'name' => 'To transfer',
-                        'frenchName' => 'à transférer',
-                        'slug' => 'totransfer',
-                    ],
-                    [
-                        'color' => '#ff9100',
-                        'name' => 'To trade',
-                        'frenchName' => 'À échanger',
-                        'slug' => 'totrade',
-                    ],
-                    [
-                        'color' => '#66bb6a',
-                        'name' => 'Yes',
-                        'frenchName' => 'Oui',
-                        'slug' => 'yes',
-                    ],
-                ],
-            ],
+            ),
+        );
+    }
+
+    public function testDecodeMaxDepth(): void
+    {
+        $this->assertEquals(
             [
-                self::getMaxDepthJson(),
-                [
-                    'lvl1' => [
-                        'lvl2' => [
-                            'lvl3' => [
-                                'value' => 'Douze',
-                            ],
+                'lvl1' => [
+                    'lvl2' => [
+                        'lvl3' => [
+                            'value' => 'Douze',
                         ],
                     ],
                 ],
             ],
-        ];
+            JsonDecoder::decode(
+                self::getMaxDepthJson(),
+            ),
+        );
     }
 
     #[DataProvider('providerDecodeException')]
