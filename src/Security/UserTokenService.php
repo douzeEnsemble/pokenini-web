@@ -13,7 +13,7 @@ class UserTokenService
         private readonly Security $security
     ) {}
 
-    public function getLoggedUserId(): string
+    public function getLoggedUser(): User
     {
         /** @var null|User $user */
         $user = $this->security->getUser();
@@ -21,6 +21,13 @@ class UserTokenService
         if (null === $user) {
             throw new NoLoggedUserException('No user logged');
         }
+
+        return $user;
+    }
+
+    public function getLoggedUserId(): string
+    {
+        $user = $this->getLoggedUser();
 
         return sha1($user->getUserIdentifier());
     }
@@ -34,17 +41,5 @@ class UserTokenService
         }
 
         return $loggedUserId === $identifier;
-    }
-
-    public function getLoggedUser(): User
-    {
-        /** @var null|User $user */
-        $user = $this->security->getUser();
-
-        if (null === $user) {
-            throw new NoLoggedUserException('No user logged');
-        }
-
-        return $user;
     }
 }
