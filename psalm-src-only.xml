@@ -10,11 +10,9 @@
 >
     <projectFiles>
         <directory name="src" />
-        <directory name="tests" />
         <ignoreFiles>
-            <directory name="vendor" />
             <file name="src/Kernel.php" />
-            <file name="tests/bootstrap.php" />
+            <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
 
@@ -31,14 +29,17 @@
         <PossiblyUnusedMethod>
             <errorLevel type="suppress">
                 <directory name="src/Controller" />
+                <directory name="src/DTO" />
+                <directory name="src/ResponseObject" />
+                <referencedMethod name="App\Security\User::getId" />
+                <referencedMethod name="App\Security\User::getProfile" />
             </errorLevel>
         </PossiblyUnusedMethod>
-        <PossiblyUnusedReturnValue>
+        <PossiblyUnusedProperty>
             <errorLevel type="suppress">
-                <directory name="src/Controller" />
-                <file name="src/Security/UserProvider.php" />
+                <directory name="src/DTO" />
             </errorLevel>
-        </PossiblyUnusedReturnValue>
+        </PossiblyUnusedProperty>
 
         <ClassMustBeFinal>
             <errorLevel type="suppress">
