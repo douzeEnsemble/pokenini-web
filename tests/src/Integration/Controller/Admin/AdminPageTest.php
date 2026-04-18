@@ -115,19 +115,14 @@ final class AdminPageTest extends WebTestCase
                     continue;
                 }
 
-                /** @var array<string, string> */
                 $reportData = $report['data'] ?? [];
 
-                /** @var array<string, string> */
                 $reportDatatime = $report['datatime'] ?? [];
 
-                /** @var string */
                 $reportExectime = $report['exectime'] ?? '';
 
-                /** @var string */
                 $reportError = $report['error'] ?? '';
 
-                /** @var bool */
                 $reportProgress = $report['progress'] ?? false;
 
                 $this->assertReport(
@@ -258,7 +253,28 @@ final class AdminPageTest extends WebTestCase
     }
 
     /**
-     * @return bool[][][]|null[][]|string[][][]|string[][][][]
+     * @return array<string, array{
+     *  current: null|array{
+     *      data?: array<string, string>,
+     *      datatime: array{
+     *          label: string,
+     *          value: string,
+     *      },
+     *      exectime?: string,
+     *     progress?: bool,
+     *      error?: string,
+     *  },
+     *  last?: null|array{
+     *      data?: array<string, string>,
+     *      datatime: array{
+     *          label: string,
+     *          value: string,
+     *      },
+     *      exectime?: string,
+     *      progress?: bool,
+     *      error?: string,
+     *  },
+     * }>
      *
      * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
      */

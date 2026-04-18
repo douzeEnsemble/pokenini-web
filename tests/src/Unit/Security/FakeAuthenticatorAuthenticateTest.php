@@ -116,7 +116,7 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
     }
 
     /**
-     * @param string[] $roles
+     * @param array<int, string> $roles
      */
     private function getFakeAuthenticator(array $roles): FakeAuthenticator
     {

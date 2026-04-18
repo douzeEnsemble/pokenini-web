@@ -29,6 +29,17 @@ final class ElectionMetrics
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
 
+        /**
+         * @var array{
+         *  view_count_sum: int,
+         *  win_count_sum: int,
+         *  view_count_max: int,
+         *  win_count_max: int,
+         *  under_max_view_count: int,
+         *  max_view_count: int,
+         *  dex_total_count: int,
+         * }
+         */
         $options = $resolver->resolve($values);
 
         $this->viewCountSum = $options['view_count_sum'];

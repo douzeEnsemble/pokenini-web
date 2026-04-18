@@ -9,14 +9,14 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 final class Labels
 {
     /**
-     * @param CatchState[]   $catchStates
-     * @param Type[]         $types
-     * @param CategoryForm[] $categoryForms
-     * @param RegionalForm[] $regionalForms
-     * @param SpecialForm[]  $specialForms
-     * @param VariantForm[]  $variantForms
-     * @param GameBundle[]   $gameBundles
-     * @param Collection[]   $collections
+     * @param array<int, CatchState>   $catchStates
+     * @param array<int, Type>         $types
+     * @param array<int, CategoryForm> $categoryForms
+     * @param array<int, RegionalForm> $regionalForms
+     * @param array<int, SpecialForm>  $specialForms
+     * @param array<int, VariantForm>  $variantForms
+     * @param array<int, GameBundle>   $gameBundles
+     * @param array<int, Collection>   $collections
      */
     public function __construct(
         #[SerializedName('catch_states')]
@@ -38,7 +38,7 @@ final class Labels
     ) {}
 
     /**
-     * @return CatchState[]
+     * @return array<int, CatchState>
      */
     public function getCatchStates(): array
     {
@@ -46,7 +46,7 @@ final class Labels
     }
 
     /**
-     * @return Type[]
+     * @return array<int, Type>
      */
     public function getTypes(): array
     {
@@ -54,7 +54,7 @@ final class Labels
     }
 
     /**
-     * @return CategoryForm[]
+     * @return array<int, CategoryForm>
      */
     public function getCategoryForms(): array
     {
@@ -62,7 +62,7 @@ final class Labels
     }
 
     /**
-     * @return RegionalForm[]
+     * @return array<int, RegionalForm>
      */
     public function getRegionalForms(): array
     {
@@ -70,7 +70,7 @@ final class Labels
     }
 
     /**
-     * @return SpecialForm[]
+     * @return array<int, SpecialForm>
      */
     public function getSpecialForms(): array
     {
@@ -78,7 +78,7 @@ final class Labels
     }
 
     /**
-     * @return VariantForm[]
+     * @return array<int, VariantForm>
      */
     public function getVariantForms(): array
     {
@@ -86,7 +86,7 @@ final class Labels
     }
 
     /**
-     * @return GameBundle[]
+     * @return array<int, GameBundle>
      */
     public function getGameBundles(): array
     {
@@ -94,7 +94,7 @@ final class Labels
     }
 
     /**
-     * @return Collection[]
+     * @return array<int, Collection>
      */
     public function getCollections(): array
     {

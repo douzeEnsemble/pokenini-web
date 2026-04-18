@@ -12,31 +12,51 @@ final class ElectionVote
     public string $electionSlug;
 
     /**
-     * @var string[]
+     * @var array<int, string>
      */
     public array $winnersSlugs;
 
     /**
-     * @var string[]
+     * @var array<int, string>
      */
     public array $losersSlugs;
 
     /**
-     * @param string[]|string[][] $values
+     * @param array{
+     *  dex_slug?: string,
+     *  election_slug?: string,
+     *  winners_slugs?: array<int, string>,
+     *  losers_slugs?: array<int, string>,
+     * } $values
      */
     public function __construct(array $values = [])
     {
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
 
+        /**
+         * @var array{
+         *  dex_slug: string,
+         *  election_slug: string,
+         *  winners_slugs: array<int, string>,
+         *  losers_slugs: array<int, string>,
+         * }
+         */
         $options = $resolver->resolve($values);
 
         $this->dexSlug = $options['dex_slug'];
         $this->electionSlug = $options['election_slug'];
-        $this->winnersSlugs = array_filter($options['winners_slugs']);
-        $this->losersSlugs = array_diff(array_filter($options['losers_slugs']), $this->winnersSlugs);
 
-        $this->losersSlugs = array_values($this->losersSlugs);
+        /** @var array<int, string> $winnersSlugs */
+        $winnersSlugs = array_filter($options['winners_slugs']);
+
+        $nonWinnersSlugs = array_diff(array_filter($options['losers_slugs']), $winnersSlugs);
+
+        /** @var array<int, string> $losersSlugs */
+        $losersSlugs = array_values($nonWinnersSlugs);
+
+        $this->winnersSlugs = $winnersSlugs;
+        $this->losersSlugs = $losersSlugs;
     }
 
     private function configureOptions(OptionsResolver $resolver): void

@@ -30,19 +30,23 @@ final class ElectionVoteController extends AbstractController
         string $dexSlug,
         string $electionSlug = '',
     ): Response {
-        $data = $request->request->all();
+        /** @var array{
+         *  winners_slugs?: array<int, string>,
+         *  losers_slugs?: array<int, string>,
+         * } $requestedData
+         */
+        $requestedData = $request->request->all();
 
-        if (empty($data)) {
+        if (empty($requestedData)) {
             throw new BadRequestHttpException('Data cannot be empty');
         }
 
-        /** @var string[]|string[][] $data */
         $data = array_merge(
             [
                 'dex_slug' => $dexSlug,
                 'election_slug' => $electionSlug,
             ],
-            $data
+            $requestedData
         );
 
         try {
