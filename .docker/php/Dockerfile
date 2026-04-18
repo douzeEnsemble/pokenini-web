@@ -97,20 +97,18 @@ RUN ln -sf /usr/bin/chromium-browser /usr/local/bin/chrome \
 
 FROM php_base AS php_prod
 
-USER www-data
-
 ENV APP_ENV=prod
 ENV XDEBUG_MODE=off
 
 COPY --link .docker/php/conf.d/app.prod.ini $PHP_INI_DIR/conf.d/20-app.prod.ini
 
 ## < Composer stuff
-COPY --chown=www-data composer.* symfony.* ./
+COPY composer.* symfony.* ./
 
 RUN set -eux; \
 	composer install --no-cache --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress
 
-COPY --chown=www-data . ./
+COPY . ./
 
 RUN mv .env.prod .env && chown www-data:www-data .env
 
