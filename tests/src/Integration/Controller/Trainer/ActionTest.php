@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\Controller\Trainer;
 
-use App\Controller\AlbumDexController;
+use App\Controller\TrainerUpsertController;
 use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
 use League\OAuth2\Client\Token\AccessToken;
@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /**
  * @internal
  */
-#[CoversClass(AlbumDexController::class)]
+#[CoversClass(TrainerUpsertController::class)]
 #[Group('api-mocked-testing')]
 final class ActionTest extends WebTestCase
 {
