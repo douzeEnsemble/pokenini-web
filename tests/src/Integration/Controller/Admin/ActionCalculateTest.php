@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 #[CoversClass(AdminActionController::class)]
 #[Group('api-mocked-testing')]
-class ActionCalculateTest extends WebTestCase
+final class ActionCalculateTest extends WebTestCase
 {
     use TestNavTrait;
 
@@ -40,7 +40,7 @@ class ActionCalculateTest extends WebTestCase
 
     public function testAdminCalculateDexAvailabilities(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -64,7 +64,7 @@ class ActionCalculateTest extends WebTestCase
 
     public function testAdminCalculateWithErrorsThenGoToIndex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -95,7 +95,7 @@ class ActionCalculateTest extends WebTestCase
 
     public function testAdminCalculateUnknown(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -110,7 +110,7 @@ class ActionCalculateTest extends WebTestCase
 
     public function testAdminNonAdmin(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');
@@ -124,7 +124,7 @@ class ActionCalculateTest extends WebTestCase
 
     private function testAdminCalculate(string $name): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();

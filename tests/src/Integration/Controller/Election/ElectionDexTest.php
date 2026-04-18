@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(ElectionDexController::class)]
 #[Group('api-mocked-testing')]
-class ElectionDexTest extends WebTestCase
+final class ElectionDexTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testIndex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User(
             '789465465489',

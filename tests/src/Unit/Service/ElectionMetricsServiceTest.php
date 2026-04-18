@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(ElectionMetricsService::class)]
-class ElectionMetricsServiceTest extends TestCase
+final class ElectionMetricsServiceTest extends TestCase
 {
     public function testGetMetrics(): void
     {

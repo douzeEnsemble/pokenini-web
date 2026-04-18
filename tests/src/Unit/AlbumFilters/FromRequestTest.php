@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @internal
  */
 #[CoversClass(FromRequest::class)]
-class FromRequestTest extends TestCase
+final class FromRequestTest extends TestCase
 {
     public function testGet(): void
     {

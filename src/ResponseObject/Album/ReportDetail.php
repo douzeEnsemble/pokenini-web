@@ -6,7 +6,7 @@ namespace App\ResponseObject\Album;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-class ReportDetail
+final class ReportDetail
 {
     public function __construct(
         #[SerializedName('slug')]

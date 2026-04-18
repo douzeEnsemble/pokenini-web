@@ -8,7 +8,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-class AppTranslatorExtension extends AbstractExtension
+final class AppTranslatorExtension extends AbstractExtension
 {
     public function __construct(private readonly TranslatorInterface $translator) {}
 

@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class DexNumberTest extends WebTestCase
+final class DexNumberTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testDisplayDexNumber(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('109903422692691643666', 'TestProvider', new AccessToken(['access_token' => sha1('109903422692691643666')]));
         $user->addTrainerRole();

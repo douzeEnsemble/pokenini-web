@@ -15,7 +15,7 @@ use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
  * @internal
  */
 #[CoversNothing]
-class CustomAlbumTrainerTest extends AbstractBrowserTestCase
+final class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 

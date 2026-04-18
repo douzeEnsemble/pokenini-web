@@ -7,7 +7,7 @@ namespace App\Security;
 use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface
+final class User implements UserInterface
 {
     /** @var string[] */
     private array $roles = ['ROLE_USER'];

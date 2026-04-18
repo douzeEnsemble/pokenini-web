@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(ElectionIndexController::class)]
 #[Group('api-mocked-testing')]
-class FormsTest extends WebTestCase
+final class FormsTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testFilterCategoryStart(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -46,7 +46,7 @@ class FormsTest extends WebTestCase
 
     public function testFilterSpecialMega(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -69,7 +69,7 @@ class FormsTest extends WebTestCase
 
     public function testFilterSpecialMegaAndGigantamax(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -95,7 +95,7 @@ class FormsTest extends WebTestCase
 
     public function testFilterRegionalPaldeanAndVariantAlternate(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -119,7 +119,7 @@ class FormsTest extends WebTestCase
 
     public function testFilterSpecialNull(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -142,7 +142,7 @@ class FormsTest extends WebTestCase
 
     public function testFilterSpecialNullAndMega(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -166,7 +166,7 @@ class FormsTest extends WebTestCase
 
     public function testFilterSpecialAllAndMega(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -189,7 +189,7 @@ class FormsTest extends WebTestCase
 
     public function testFilterSpecialUnknown(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  */
 #[CoversClass(CatchStatesValidator::class)]
 #[UsesClass(CatchStates::class)]
-class CatchStatesValidatorTest extends ConstraintValidatorTestCase
+final class CatchStatesValidatorTest extends ConstraintValidatorTestCase
 {
     public function testNullIsValid(): void
     {

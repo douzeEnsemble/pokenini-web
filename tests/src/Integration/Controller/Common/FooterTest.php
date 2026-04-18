@@ -14,13 +14,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  */
 #[CoversNothing]
-class FooterTest extends WebTestCase
+final class FooterTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testFooter(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();

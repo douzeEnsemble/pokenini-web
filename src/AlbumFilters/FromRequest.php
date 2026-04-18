@@ -6,7 +6,7 @@ namespace App\AlbumFilters;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class FromRequest
+final class FromRequest
 {
     private const array STRING_FILTERS = [
         'cs',

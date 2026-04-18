@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class StaticPageController extends AbstractController
+final class StaticPageController extends AbstractController
 {
     #[Route('/policy')]
     public function policy(): Response

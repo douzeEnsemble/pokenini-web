@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class AccessPremiumTest extends WebTestCase
+final class AccessPremiumTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testAccessPremiumAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -43,7 +43,7 @@ class AccessPremiumTest extends WebTestCase
 
     public function testTrainerAccessPremiumAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -62,7 +62,7 @@ class AccessPremiumTest extends WebTestCase
 
     public function testAdminAccessPremiumAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -81,7 +81,7 @@ class AccessPremiumTest extends WebTestCase
 
     public function testAccessAnotherPremiumAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();

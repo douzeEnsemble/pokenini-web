@@ -18,7 +18,7 @@ use Symfony\Component\Routing\RouterInterface;
  * @internal
  */
 #[CoversClass(ElectionVoteController::class)]
-class ElectionVoteControllerTest extends TestCase
+final class ElectionVoteControllerTest extends TestCase
 {
     public function testVote(): void
     {

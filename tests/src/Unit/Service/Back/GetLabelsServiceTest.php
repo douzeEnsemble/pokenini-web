@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\ResponseObject\Label\Labels;
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(GetLabelsService::class)]
-class GetLabelsServiceTest extends TestCase
+final class GetLabelsServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
     use ResponseObjectTrait;
 
     public const ENDPOINT = 'labels';
@@ -43,7 +45,6 @@ class GetLabelsServiceTest extends TestCase
 
         /** @var GetLabelsService $service */
         $service = $this->getServiceWithLoggedUser(
-            GetLabelsService::class,
             'GET',
             $json,
             self::ENDPOINT,
@@ -83,7 +84,6 @@ class GetLabelsServiceTest extends TestCase
 
         /** @var GetLabelsService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            GetLabelsService::class,
             'GET',
             $json,
             self::ENDPOINT,
@@ -101,5 +101,24 @@ class GetLabelsServiceTest extends TestCase
         $this->assertCount(6, $object->getVariantForms());
         $this->assertCount(7, $object->getGameBundles());
         $this->assertCount(8, $object->getCollections());
+    }
+
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new GetLabelsService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
     }
 }

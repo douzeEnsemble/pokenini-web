@@ -6,7 +6,7 @@ namespace App\ResponseObject\Label;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-class CatchState
+final class CatchState
 {
     public function __construct(
         #[SerializedName('name')]

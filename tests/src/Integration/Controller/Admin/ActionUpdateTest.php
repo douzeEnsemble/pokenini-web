@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 #[CoversClass(AdminActionController::class)]
 #[Group('api-mocked-testing')]
-class ActionUpdateTest extends WebTestCase
+final class ActionUpdateTest extends WebTestCase
 {
     use TestNavTrait;
 
@@ -50,7 +50,7 @@ class ActionUpdateTest extends WebTestCase
 
     public function testAdminUpdateGamesShiniesAvailabilities(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -84,7 +84,7 @@ class ActionUpdateTest extends WebTestCase
 
     public function testAdminUpdateUnknown(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -99,7 +99,7 @@ class ActionUpdateTest extends WebTestCase
 
     public function testAdminNonAdmin(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');
@@ -113,7 +113,7 @@ class ActionUpdateTest extends WebTestCase
 
     public function testAdminUpdateThenGoToIndex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -135,7 +135,7 @@ class ActionUpdateTest extends WebTestCase
 
     private function testAdminUpdate(string $name): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();

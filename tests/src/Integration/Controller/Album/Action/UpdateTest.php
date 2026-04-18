@@ -18,11 +18,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 #[CoversClass(AlbumUpsertController::class)]
 #[CoversClass(ModifyTrainerDexService::class)]
 #[Group('api-mocked-testing')]
-class UpdateTest extends WebTestCase
+final class UpdateTest extends WebTestCase
 {
     public function testUpdateConnected(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -42,7 +42,7 @@ class UpdateTest extends WebTestCase
 
     public function testUpdateNonConnected(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request(
             'PATCH',
@@ -64,7 +64,7 @@ class UpdateTest extends WebTestCase
 
     public function testUpdatePremiumCollector(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -85,7 +85,7 @@ class UpdateTest extends WebTestCase
 
     public function testUpdatePremiumNonCollector(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -105,7 +105,7 @@ class UpdateTest extends WebTestCase
 
     public function testUpdateFailed(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

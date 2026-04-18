@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Exception\EmptyContentException;
 use App\Exception\InvalidJsonException;
 use App\Exception\ModifyFailedException;
-use App\ResponseObject\Album\Dex;
 use App\Service\GetTrainerPokedexService;
 use App\Service\ModifyTrainerDexService;
 use App\Service\RequestedContentService;
@@ -19,7 +18,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Constraints\Json;
 
 #[Route('/trainer')]
-class TrainerUpsertController extends AbstractController
+final class TrainerUpsertController extends AbstractController
 {
     public function __construct(
         private readonly GetTrainerPokedexService $getTrainerPokedexService,
@@ -43,9 +42,6 @@ class TrainerUpsertController extends AbstractController
             return new JsonResponse([], 404);
         }
 
-        /**
-         * @var Dex $dex
-         */
         $dex = $pokedex->getDex();
 
         if ($dex->isPremium() && !$this->isGranted('ROLE_COLLECTOR')) {

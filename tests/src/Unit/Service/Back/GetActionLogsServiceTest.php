@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\GetActionLogsService;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(GetActionLogsService::class)]
-class GetActionLogsServiceTest extends TestCase
+final class GetActionLogsServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
-
     public const ENDPOINT = 'istration/action_logs';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/action-logs.json';
 
@@ -23,7 +25,6 @@ class GetActionLogsServiceTest extends TestCase
     {
         /** @var GetActionLogsService $service */
         $service = $this->getServiceWithLoggedUser(
-            GetActionLogsService::class,
             'GET',
             (string) file_get_contents(self::RESPONSE_CONTENT),
             self::ENDPOINT,
@@ -36,13 +37,31 @@ class GetActionLogsServiceTest extends TestCase
     {
         /** @var GetActionLogsService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            GetActionLogsService::class,
             'GET',
             (string) file_get_contents(self::RESPONSE_CONTENT),
             self::ENDPOINT,
         );
 
         $this->assertServiceGet($service);
+    }
+
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new GetActionLogsService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
     }
 
     private function assertServiceGet(GetActionLogsService $service): void

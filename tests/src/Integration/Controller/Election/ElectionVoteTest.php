@@ -18,13 +18,13 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 #[CoversClass(ElectionVoteController::class)]
 #[Group('api-mocked-testing')]
-class ElectionVoteTest extends WebTestCase
+final class ElectionVoteTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testVote(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -39,7 +39,7 @@ class ElectionVoteTest extends WebTestCase
 
     public function testVoteBis(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -64,7 +64,7 @@ class ElectionVoteTest extends WebTestCase
 
     public function testVoteWithElectionSlug(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -89,7 +89,7 @@ class ElectionVoteTest extends WebTestCase
 
     public function testVoteWithFilters(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -114,7 +114,7 @@ class ElectionVoteTest extends WebTestCase
 
     public function testEmptyVote(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -138,7 +138,7 @@ class ElectionVoteTest extends WebTestCase
 
     public function testBadVote(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -163,7 +163,7 @@ class ElectionVoteTest extends WebTestCase
 
     public function testVoteNonTrainer(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');

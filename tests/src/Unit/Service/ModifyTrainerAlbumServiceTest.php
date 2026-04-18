@@ -18,7 +18,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  * @internal
  */
 #[CoversClass(ModifyTrainerAlbumService::class)]
-class ModifyTrainerAlbumServiceTest extends TestCase
+final class ModifyTrainerAlbumServiceTest extends TestCase
 {
     public function testModifyAlbum(): void
     {

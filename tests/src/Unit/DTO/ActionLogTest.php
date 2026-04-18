@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(ActionLog::class)]
-class ActionLogTest extends TestCase
+final class ActionLogTest extends TestCase
 {
     public function testFullCreateFromArray(): void
     {

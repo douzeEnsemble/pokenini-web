@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
  * @internal
  */
 #[CoversNothing]
-class CommonTest extends AbstractBrowserTestCase
+final class CommonTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 

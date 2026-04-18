@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/connect')]
-class ConnectController extends AbstractController
+final class ConnectController extends AbstractController
 {
     #[Route('/logout', methods: ['GET'])]
     public function logout(): void

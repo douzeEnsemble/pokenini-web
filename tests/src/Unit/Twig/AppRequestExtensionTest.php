@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * @internal
  */
 #[CoversClass(AppRequestExtension::class)]
-class AppRequestExtensionTest extends TestCase
+final class AppRequestExtensionTest extends TestCase
 {
     public function testGetArrayFromRequestWithoutRequest(): void
     {

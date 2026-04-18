@@ -18,7 +18,7 @@ use Symfony\Component\Routing\RouterInterface;
  * @internal
  */
 #[CoversClass(AdminActionController::class)]
-class AdminActionControllerTest extends TestCase
+final class AdminActionControllerTest extends TestCase
 {
     public function testAction(): void
     {

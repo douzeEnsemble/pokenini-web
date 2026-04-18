@@ -17,14 +17,14 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class ModalTest extends WebTestCase
+final class ModalTest extends WebTestCase
 {
     use TestNavTrait;
     use ModalTestTrait;
 
     public function testModals(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -37,7 +37,7 @@ class ModalTest extends WebTestCase
 
     public function testRegularModal(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -71,7 +71,7 @@ class ModalTest extends WebTestCase
 
     public function testRegularModalInEnglish(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -105,7 +105,7 @@ class ModalTest extends WebTestCase
 
     public function testShinyModal(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -139,7 +139,7 @@ class ModalTest extends WebTestCase
 
     public function testRegionalWithFormsModal(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -176,7 +176,7 @@ class ModalTest extends WebTestCase
 
     public function testWithFormsModal(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();

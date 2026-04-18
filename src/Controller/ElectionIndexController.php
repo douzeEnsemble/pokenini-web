@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/election')]
-class ElectionIndexController extends AbstractController
+final class ElectionIndexController extends AbstractController
 {
     #[Route(
         '/{dexSlug}/{electionSlug}',

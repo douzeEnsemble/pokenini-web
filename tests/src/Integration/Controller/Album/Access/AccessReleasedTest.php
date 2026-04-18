@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class AccessReleasedTest extends WebTestCase
+final class AccessReleasedTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testAccessOwnReleasedAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -42,7 +42,7 @@ class AccessReleasedTest extends WebTestCase
 
     public function testTrainerAccessUnreleasedAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -55,7 +55,7 @@ class AccessReleasedTest extends WebTestCase
 
     public function testAdminAccessUnreleasedAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -69,7 +69,7 @@ class AccessReleasedTest extends WebTestCase
 
     public function testAccessAnotherUnreleasedAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();

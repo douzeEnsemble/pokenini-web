@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
  * @internal
  */
 #[CoversNothing]
-class ToggleActionsTest extends AbstractBrowserTestCase
+final class ToggleActionsTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 

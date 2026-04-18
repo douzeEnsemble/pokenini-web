@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
  * @internal
  */
 #[CoversClass(ElectionMetrics::class)]
-class ElectionMetricsTest extends TestCase
+final class ElectionMetricsTest extends TestCase
 {
     public function testOk(): void
     {

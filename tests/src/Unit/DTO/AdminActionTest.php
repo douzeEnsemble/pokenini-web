@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(AdminAction::class)]
-class AdminActionTest extends TestCase
+final class AdminActionTest extends TestCase
 {
     public function testConstructor(): void
     {

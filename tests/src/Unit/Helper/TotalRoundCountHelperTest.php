@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(TotalRoundCountHelper::class)]
-class TotalRoundCountHelperTest extends TestCase
+final class TotalRoundCountHelperTest extends TestCase
 {
     #[DataProvider('providerCalculate')]
     public function testCalculate(

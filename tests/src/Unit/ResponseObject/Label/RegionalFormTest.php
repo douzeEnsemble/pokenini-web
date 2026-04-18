@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 #[CoversClass(AbstractForm::class)]
 #[CoversClass(RegionalForm::class)]
-class RegionalFormTest extends TestCase
+final class RegionalFormTest extends TestCase
 {
     public function testConstructor(): void
     {

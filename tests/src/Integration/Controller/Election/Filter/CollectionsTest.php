@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(ElectionIndexController::class)]
 #[Group('api-mocked-testing')]
-class CollectionsTest extends WebTestCase
+final class CollectionsTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testFilterPogoShadowCollection(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -49,7 +49,7 @@ class CollectionsTest extends WebTestCase
 
     public function testFilterNegativePogoShadowCollection(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

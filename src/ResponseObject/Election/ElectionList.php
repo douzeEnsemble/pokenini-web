@@ -7,7 +7,7 @@ namespace App\ResponseObject\Election;
 use App\ResponseObject\Common\Pokemon;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-class ElectionList
+final class ElectionList
 {
     /**
      * @param Pokemon[] $items

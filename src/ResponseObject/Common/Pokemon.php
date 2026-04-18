@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 /**
  * @SuppressWarnings("PHPMD.ExcessiveParameterList")
  */
-class Pokemon
+final class Pokemon
 {
     public function __construct(
         #[SerializedName('pokemon_slug')]

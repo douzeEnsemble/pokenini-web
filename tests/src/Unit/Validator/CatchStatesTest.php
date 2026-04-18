@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(CatchStates::class)]
-class CatchStatesTest extends TestCase
+final class CatchStatesTest extends TestCase
 {
     public function testValidatedBy(): void
     {

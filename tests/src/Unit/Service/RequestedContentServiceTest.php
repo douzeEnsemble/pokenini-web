@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * @internal
  */
 #[CoversClass(RequestedContentService::class)]
-class RequestedContentServiceTest extends TestCase
+final class RequestedContentServiceTest extends TestCase
 {
     public function testGetContent(): void
     {

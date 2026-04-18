@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/election')]
-class ElectionVoteController extends AbstractController
+final class ElectionVoteController extends AbstractController
 {
     #[Route(
         '/{dexSlug}/{electionSlug}',

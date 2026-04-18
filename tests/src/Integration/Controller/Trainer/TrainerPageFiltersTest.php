@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(TrainerIndexController::class)]
 #[Group('api-mocked-testing')]
-class TrainerPageFiltersTest extends WebTestCase
+final class TrainerPageFiltersTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testPrivacyFilterOn(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -46,7 +46,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testPrivacyFilterOff(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -69,7 +69,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testHomepagedFilterOn(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -92,7 +92,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testHomepagedFilterOff(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -115,7 +115,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testReleasedFilterOn(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -138,7 +138,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testReleasedFilterOff(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -161,7 +161,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testShinyFilterOn(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -184,7 +184,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testShinyFilterOff(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -207,7 +207,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testPremiumFilterOn(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -230,7 +230,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testPremiumFilterOff(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -253,7 +253,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testAllFilterOff(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -276,7 +276,7 @@ class TrainerPageFiltersTest extends WebTestCase
 
     public function testAllFilterOn(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();

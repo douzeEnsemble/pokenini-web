@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(GetLabelsService::class)]
-class GetLabelsServiceTest extends TestCase
+final class GetLabelsServiceTest extends TestCase
 {
     use ResponseObjectTrait;
 

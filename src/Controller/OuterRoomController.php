@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/outerroom')]
-class OuterRoomController extends AbstractController
+final class OuterRoomController extends AbstractController
 {
     #[Route('')]
     public function index(): Response

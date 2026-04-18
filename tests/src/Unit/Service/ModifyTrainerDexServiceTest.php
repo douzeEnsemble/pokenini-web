@@ -16,7 +16,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  * @internal
  */
 #[CoversClass(ModifyTrainerDexService::class)]
-class ModifyTrainerDexServiceTest extends TestCase
+final class ModifyTrainerDexServiceTest extends TestCase
 {
     public function testModifyDex(): void
     {

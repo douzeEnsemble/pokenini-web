@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(ConnectController::class)]
-class ConnectControllerTest extends TestCase
+final class ConnectControllerTest extends TestCase
 {
     public function testLogout(): void
     {

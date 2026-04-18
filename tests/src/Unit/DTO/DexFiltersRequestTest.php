@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @internal
  */
 #[CoversClass(DexFiltersRequest::class)]
-class DexFiltersRequestTest extends TestCase
+final class DexFiltersRequestTest extends TestCase
 {
     public function testDexFiltersFromRequestEmpty(): void
     {

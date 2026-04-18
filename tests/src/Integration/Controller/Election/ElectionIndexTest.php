@@ -19,13 +19,13 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 #[CoversClass(ElectionIndexController::class)]
 #[Group('api-mocked-testing')]
-class ElectionIndexTest extends WebTestCase
+final class ElectionIndexTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testIndex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -70,7 +70,7 @@ class ElectionIndexTest extends WebTestCase
 
     public function testIndexShinyDex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -119,7 +119,7 @@ class ElectionIndexTest extends WebTestCase
 
     public function testIndexWithoutDisplayForm(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -172,7 +172,7 @@ class ElectionIndexTest extends WebTestCase
 
     public function testIndexDetachedCount(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -225,7 +225,7 @@ class ElectionIndexTest extends WebTestCase
 
     public function testProgressVoteStep(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -278,7 +278,7 @@ class ElectionIndexTest extends WebTestCase
 
     public function testProgressLastPageStep(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -334,7 +334,7 @@ class ElectionIndexTest extends WebTestCase
 
     public function testProgressLastOneStep(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -387,7 +387,7 @@ class ElectionIndexTest extends WebTestCase
 
     public function testIndexNonTrainer(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');

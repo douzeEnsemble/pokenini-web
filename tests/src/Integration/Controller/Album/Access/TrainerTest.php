@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class TrainerTest extends WebTestCase
+final class TrainerTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testAlbumTrainerLogged(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -42,7 +42,7 @@ class TrainerTest extends WebTestCase
 
     public function testAlbumTrainerGiven(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
@@ -57,7 +57,7 @@ class TrainerTest extends WebTestCase
 
     public function testAlbumTrainerLoggedAndGiven(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

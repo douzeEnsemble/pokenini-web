@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/istration')]
-class AdminController extends AbstractController
+final class AdminController extends AbstractController
 {
     public function __construct(
         private readonly GetReportsService $getReportsService,

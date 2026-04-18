@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Exception\EmptyContentException;
 use App\Exception\InvalidJsonException;
 use App\Exception\ModifyFailedException;
-use App\ResponseObject\Album\Dex;
 use App\Service\GetTrainerPokedexService;
 use App\Service\ModifyTrainerAlbumService;
 use App\Service\RequestedContentService;
@@ -19,7 +18,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/album')]
-class AlbumUpsertController extends AbstractController
+final class AlbumUpsertController extends AbstractController
 {
     public function __construct(
         private readonly RequestedContentService $requestedContentService,
@@ -44,9 +43,6 @@ class AlbumUpsertController extends AbstractController
             return new JsonResponse([], 404);
         }
 
-        /**
-         * @var Dex $dex
-         */
         $dex = $pokedex->getDex();
 
         if ($dex->isPremium() && !$this->isGranted('ROLE_COLLECTOR')) {

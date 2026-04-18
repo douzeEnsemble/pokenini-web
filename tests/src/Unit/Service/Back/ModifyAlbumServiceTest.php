@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\ModifyAlbumService;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -16,10 +16,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  * @internal
  */
 #[CoversClass(ModifyAlbumService::class)]
-class ModifyAlbumServiceTest extends TestCase
+final class ModifyAlbumServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
-
     public function testModifyPatch(): void
     {
         $this
@@ -87,7 +85,6 @@ class ModifyAlbumServiceTest extends TestCase
     {
         /** @var ModifyAlbumService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            ModifyAlbumService::class,
             'PATCH',
             '',
             'album/home/pikachu',
@@ -99,6 +96,25 @@ class ModifyAlbumServiceTest extends TestCase
         $service->modify('PATCH', 'home', 'pikachu', 'yes');
     }
 
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new ModifyAlbumService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
+    }
+
     private function getService(
         string $method,
         string $suffix,
@@ -106,7 +122,6 @@ class ModifyAlbumServiceTest extends TestCase
     ): ModifyAlbumService {
         /** @var ModifyAlbumService */
         return $this->getServiceWithLoggedUser(
-            ModifyAlbumService::class,
             $method,
             '',
             $suffix,

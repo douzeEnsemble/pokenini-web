@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(Mapping::class)]
-class MappingTest extends TestCase
+final class MappingTest extends TestCase
 {
     public function testGet(): void
     {

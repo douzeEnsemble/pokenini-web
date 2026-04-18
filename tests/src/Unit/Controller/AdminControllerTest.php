@@ -21,7 +21,7 @@ use Twig\Environment;
  * @internal
  */
 #[CoversClass(AdminController::class)]
-class AdminControllerTest extends TestCase
+final class AdminControllerTest extends TestCase
 {
     public function testAdminAction(): void
     {

@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(ElectionIndexController::class)]
 #[Group('api-mocked-testing')]
-class GamesTest extends WebTestCase
+final class GamesTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testFilterSwordShieldOriginalGame(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -49,7 +49,7 @@ class GamesTest extends WebTestCase
 
     public function testFilterSwordShieldAndXYOriginalGame(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -75,7 +75,7 @@ class GamesTest extends WebTestCase
 
     public function testFilterOriginalGameUnknown(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -98,7 +98,7 @@ class GamesTest extends WebTestCase
 
     public function testFilterSwordShieldGameBundle(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -124,7 +124,7 @@ class GamesTest extends WebTestCase
 
     public function testFilterSwordShieldGameBundleShiny(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -150,7 +150,7 @@ class GamesTest extends WebTestCase
 
     public function testFilterNotSwordShieldGameBundle(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -176,7 +176,7 @@ class GamesTest extends WebTestCase
 
     public function testFilterNotSwordShieldGameBundleShiny(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

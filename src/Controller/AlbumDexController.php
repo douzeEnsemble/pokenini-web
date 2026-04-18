@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/album')]
-class AlbumDexController extends AbstractController
+final class AlbumDexController extends AbstractController
 {
     public function __construct() {}
 

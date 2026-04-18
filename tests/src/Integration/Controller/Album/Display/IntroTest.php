@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class IntroTest extends WebTestCase
+final class IntroTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testIntroHome(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -72,7 +72,7 @@ class IntroTest extends WebTestCase
 
     public function testIntroDemoList3(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -117,7 +117,7 @@ class IntroTest extends WebTestCase
 
     public function testIntroDemoLiteShiny(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -164,7 +164,7 @@ class IntroTest extends WebTestCase
 
     public function testIntroGoldSilverCrystal(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -213,7 +213,7 @@ class IntroTest extends WebTestCase
 
     public function testIntroBlackWhiteFrench(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -262,7 +262,7 @@ class IntroTest extends WebTestCase
 
     public function testIntroBlackWhiteEnglish(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -311,7 +311,7 @@ class IntroTest extends WebTestCase
 
     public function testIntroDemoAnotherTrainer(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('13', 'TestProvider', new AccessToken(['access_token' => sha1('13')]));
         $user->addTrainerRole();

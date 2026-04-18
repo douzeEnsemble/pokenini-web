@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumDexController::class)]
 #[Group('api-mocked-testing')]
-class AlbumDexTest extends WebTestCase
+final class AlbumDexTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testAlbumDex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -61,7 +61,7 @@ class AlbumDexTest extends WebTestCase
 
     public function testNonConnectedHome(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/fr/album/dex');
 
@@ -76,7 +76,7 @@ class AlbumDexTest extends WebTestCase
 
     public function testConnectedHomeNoDex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('0', 'TestProvider', new AccessToken(['access_token' => sha1('0')]));
         $user->addTrainerRole();
@@ -91,7 +91,7 @@ class AlbumDexTest extends WebTestCase
 
     public function testConnectedHomeDexNoOnHome(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('1', 'TestProvider', new AccessToken(['access_token' => sha1('1')]));
         $user->addTrainerRole();
@@ -106,7 +106,7 @@ class AlbumDexTest extends WebTestCase
 
     public function testConnectedHomeSomeDex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('2', 'TestProvider', new AccessToken(['access_token' => sha1('2')]));
         $user->addTrainerRole();
@@ -123,7 +123,7 @@ class AlbumDexTest extends WebTestCase
 
     public function testAlbumDexFrench(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -150,7 +150,7 @@ class AlbumDexTest extends WebTestCase
 
     public function testAlbumDexEnglish(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(JsonDecoder::class)]
-class JsonDecoderTest extends TestCase
+final class JsonDecoderTest extends TestCase
 {
     public function testDecodeOneColor(): void
     {

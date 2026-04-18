@@ -21,14 +21,14 @@ use Symfony\Component\Serializer\SerializerInterface;
  * @internal
  */
 #[CoversClass(Labels::class)]
-class LabelsTest extends KernelTestCase
+final class LabelsTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
         self::bootKernel();
 
         /** @var SerializerInterface $serializer */
-        $serializer = static::getContainer()->get(SerializerInterface::class);
+        $serializer = self::getContainer()->get(SerializerInterface::class);
 
         $json = (string) file_get_contents('/app/tests/resources/integration/back/labels.json');
 

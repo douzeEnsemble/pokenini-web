@@ -14,13 +14,13 @@ use Symfony\Component\DomCrawler\Crawler;
  * @internal
  */
 #[CoversClass(ConnectController::class)]
-class ConnectTest extends WebTestCase
+final class ConnectTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testConnectPage(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/fr/connect');
 
@@ -41,7 +41,7 @@ class ConnectTest extends WebTestCase
 
     public function testGoogleConnectPage(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/fr/connect/g');
 
@@ -56,7 +56,7 @@ class ConnectTest extends WebTestCase
 
     public function testFakeConnectPage(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/fr/connect/f/c');
 

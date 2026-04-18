@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(Labels::class)]
-class LabelsTest extends TestCase
+final class LabelsTest extends TestCase
 {
     use ResponseObjectTrait;
 

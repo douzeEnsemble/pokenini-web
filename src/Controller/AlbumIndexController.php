@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/album')]
-class AlbumIndexController extends AbstractController
+final class AlbumIndexController extends AbstractController
 {
     public function __construct(
         private readonly GetTrainerPokedexService $getTrainerPokedexService,
@@ -47,9 +47,6 @@ class AlbumIndexController extends AbstractController
             throw $this->createNotFoundException();
         }
 
-        /**
-         * @var Dex $dex
-         */
         $dex = $pokedex->getDex();
 
         if (!$this->accessDexIsGranted($dex, $requestedTrainerId)) {

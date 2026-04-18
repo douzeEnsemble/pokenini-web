@@ -12,11 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  */
 #[CoversClass(StaticPageController::class)]
-class StaticPageTest extends WebTestCase
+final class StaticPageTest extends WebTestCase
 {
     public function testFrenchLegals(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/fr/legals');
 
@@ -27,7 +27,7 @@ class StaticPageTest extends WebTestCase
 
     public function testEnglishLegals(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/en/legals');
 
@@ -38,7 +38,7 @@ class StaticPageTest extends WebTestCase
 
     public function testFrenchPolicy(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/fr/policy');
 
@@ -49,7 +49,7 @@ class StaticPageTest extends WebTestCase
 
     public function testEnglishPolicy(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/en/policy');
 
@@ -60,7 +60,7 @@ class StaticPageTest extends WebTestCase
 
     public function testFrenchCookies(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/fr/cookies');
 
@@ -71,7 +71,7 @@ class StaticPageTest extends WebTestCase
 
     public function testEnglishCookies(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/en/cookies');
 

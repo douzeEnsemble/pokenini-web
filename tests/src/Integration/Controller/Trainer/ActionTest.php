@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumDexController::class)]
 #[Group('api-mocked-testing')]
-class ActionTest extends WebTestCase
+final class ActionTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testActionConnected(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -43,7 +43,7 @@ class ActionTest extends WebTestCase
 
     public function testActionOnlyIsPrivate(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -63,7 +63,7 @@ class ActionTest extends WebTestCase
 
     public function testActionOnlyIsOnHome(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -83,7 +83,7 @@ class ActionTest extends WebTestCase
 
     public function testActionOnPremiumAsCollector(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -104,7 +104,7 @@ class ActionTest extends WebTestCase
 
     public function testActionOnPremiumAsNonCollector(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -124,7 +124,7 @@ class ActionTest extends WebTestCase
 
     public function testActionNotConnected(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request(
             'PUT',
@@ -140,7 +140,7 @@ class ActionTest extends WebTestCase
 
     public function testActionBadRequest(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -165,7 +165,7 @@ class ActionTest extends WebTestCase
 
     public function testActionFail(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

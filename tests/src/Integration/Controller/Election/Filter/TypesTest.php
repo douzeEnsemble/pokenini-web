@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(ElectionIndexController::class)]
 #[Group('api-mocked-testing')]
-class TypesTest extends WebTestCase
+final class TypesTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testFilterPrimaryTypeFire(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -46,7 +46,7 @@ class TypesTest extends WebTestCase
 
     public function testFilterSecondaryTypePoisonOrFlying(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -72,7 +72,7 @@ class TypesTest extends WebTestCase
 
     public function testFilterPrimaryTypeFightingAndSecondaryTypeFireOrWater(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -98,7 +98,7 @@ class TypesTest extends WebTestCase
 
     public function testFilterPrimaryTypeFightingAndSecondaryTypeNullFireOrWater(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -124,7 +124,7 @@ class TypesTest extends WebTestCase
 
     public function testFilterAnyTypeFire(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -147,7 +147,7 @@ class TypesTest extends WebTestCase
 
     public function testFilterTypeUnknown(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

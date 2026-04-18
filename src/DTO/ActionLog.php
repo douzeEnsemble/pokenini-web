@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
-class ActionLog
+final class ActionLog
 {
     /**
      * @param int[] $details

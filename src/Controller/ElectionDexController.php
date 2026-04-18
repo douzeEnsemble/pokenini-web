@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/election')]
-class ElectionDexController extends AbstractController
+final class ElectionDexController extends AbstractController
 {
     #[Route('/dex', methods: ['GET'])]
     public function index(

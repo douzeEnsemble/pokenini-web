@@ -11,7 +11,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
-class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
+final class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
 {
     public function __construct(
         private readonly RouterInterface $router,

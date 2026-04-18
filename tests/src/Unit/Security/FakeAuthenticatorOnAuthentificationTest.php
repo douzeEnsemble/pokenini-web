@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  * @internal
  */
 #[CoversClass(FakeAuthenticator::class)]
-class FakeAuthenticatorOnAuthentificationTest extends TestCase
+final class FakeAuthenticatorOnAuthentificationTest extends TestCase
 {
     public function testOnAuthenticationSuccessNotATrainer(): void
     {

@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
  * @internal
  */
 #[CoversClass(ElectionVote::class)]
-class ElectionVoteTest extends TestCase
+final class ElectionVoteTest extends TestCase
 {
     public function testOk(): void
     {
