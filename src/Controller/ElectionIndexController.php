@@ -40,14 +40,13 @@ final class ElectionIndexController extends AbstractController
         $filters = FromRequest::get($request);
         $apiFilters = Mapping::get($filters);
 
-        $electionTop = $electionTopService->getTop($dexSlug, $electionSlug);
-
+        $top = $electionTopService->getTop($dexSlug, $electionSlug);
         $list = $getPokemonsListService->get($dexSlug, $electionSlug, $apiFilters);
         $metrics = $metricsService->getMetrics($dexSlug, $electionSlug);
         $pokedex = $getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters);
 
         $detachedCount = 0;
-        foreach ($electionTop->getItems() as $pokemon) {
+        foreach ($top->getItems() as $pokemon) {
             if ($pokemon->isSignificance()) {
                 ++$detachedCount;
             }
@@ -77,7 +76,7 @@ final class ElectionIndexController extends AbstractController
                 'variantForms' => $variantForms,
                 'gameBundles' => $gameBundles,
                 'collections' => $collections,
-                'electionTop' => $electionTop,
+                'electionTop' => $top,
                 'metrics' => $metrics,
                 'detachedCount' => $detachedCount,
                 'isTheLastOne' => $isTheLastOne,

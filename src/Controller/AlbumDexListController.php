@@ -20,12 +20,12 @@ final class AlbumDexListController extends AbstractController
         methods: ['GET']
     )]
     public function index(
-        GetDexListService $getDexService,
+        GetDexListService $service,
         Request $request,
     ): Response {
         $requestedTrainerId = $request->query->getAlnum('t', '');
 
-        $dex = $getDexService->get($requestedTrainerId);
+        $dex = $service->get($requestedTrainerId);
 
         return $this->render(
             'AlbumDexList/index.html.twig',

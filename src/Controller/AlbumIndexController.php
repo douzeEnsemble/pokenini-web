@@ -96,8 +96,8 @@ final class AlbumIndexController extends AbstractController
     private function accessDexIsGranted(Dex $dex, string $requestedTrainerId): bool
     {
         if ($dex->isPrivate()
-        && '' !== $requestedTrainerId
-        && !$this->userTokenService->compare($requestedTrainerId)
+            && '' !== $requestedTrainerId
+            && !$this->userTokenService->compare($requestedTrainerId)
         ) {
             return false;
         }
