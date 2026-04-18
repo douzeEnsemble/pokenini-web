@@ -20,10 +20,10 @@
 
     <plugins>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
-            <containerXml>var/cache/dev/App_KernelDevDebugContainer.xml</containerXml>
+            <containerXml>var/cache/test/App_KernelTestDebugContainer.xml</containerXml>
         </pluginClass>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin">
-            <containerXml>var/cache/dev/App_KernelDevDebugContainer.xml</containerXml>
+            <containerXml>var/cache/test/App_KernelTestDebugContainer.xml</containerXml>
         </pluginClass>
     </plugins>
 
