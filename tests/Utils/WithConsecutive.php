@@ -41,7 +41,7 @@ final class WithConsecutive
             }
 
             // prepare parameters
-            // @psalm-suppress MixedAssignment
+            /** @psalm-suppress MixedAssignment */
             foreach ($parameters as $parameter) {
                 /** @var mixed $parameter */
                 if (!$parameter instanceof Constraint) {

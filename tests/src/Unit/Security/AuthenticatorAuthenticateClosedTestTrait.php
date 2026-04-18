@@ -122,7 +122,7 @@ trait AuthenticatorAuthenticateClosedTestTrait
     }
 
     /**
-     * @param string[] $roles
+     * @param array<int, string> $roles
      */
     private function getClosedAuthenticator(array $roles): OAuth2Authenticator
     {

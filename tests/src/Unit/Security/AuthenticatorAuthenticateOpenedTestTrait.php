@@ -121,7 +121,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
     }
 
     /**
-     * @param string[] $roles
+     * @param array<int, string> $roles
      */
     private function getOpenedAuthenticator(array $roles): OAuth2Authenticator
     {

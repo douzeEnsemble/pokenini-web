@@ -46,6 +46,15 @@ final class DexFilters
             );
         }
 
+        /**
+         * @var array{
+         *  privacy: DexFilterValue,
+         *  homepaged: DexFilterValue,
+         *  released: DexFilterValue,
+         *  shiny: DexFilterValue,
+         *  premium: DexFilterValue,
+         * }
+         */
         $options = $resolver->resolve($data);
 
         return new self(

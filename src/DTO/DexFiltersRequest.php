@@ -21,6 +21,15 @@ final class DexFiltersRequest
             'm' => '',
         ]);
 
+        /**
+         * @var array{
+         *  p: string,
+         *  h: string,
+         *  r: string,
+         *  s: string,
+         *  m: string,
+         * }
+         */
         $options = $resolver->resolve($request->query->all());
 
         return DexFilters::createFromArray([
