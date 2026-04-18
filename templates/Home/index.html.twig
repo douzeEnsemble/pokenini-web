@@ -60,7 +60,7 @@
             <div class="flex-fill">
               <h3 class="fs-2 text-body-emphasis">{{ 'home.menu.album.title'|trans }}</h3>
               <p>{{- 'home.menu.album.description'|trans -}}</p>
-                <a href="{{ path('app_albumdex_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
+                <a href="{{ path('app_albumdexlist_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
                   {{ 'home.menu.album.action'|trans }}
                 </a>
             </div>

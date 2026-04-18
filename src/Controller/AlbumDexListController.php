@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Service\Back\GetDexService;
+use App\Service\Back\GetDexListService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/album')]
-final class AlbumDexController extends AbstractController
+final class AlbumDexListController extends AbstractController
 {
     public function __construct() {}
 
@@ -20,7 +20,7 @@ final class AlbumDexController extends AbstractController
         methods: ['GET']
     )]
     public function index(
-        GetDexService $getDexService,
+        GetDexListService $getDexService,
         Request $request,
     ): Response {
         $requestedTrainerId = $request->query->getAlnum('t', '');
@@ -28,7 +28,7 @@ final class AlbumDexController extends AbstractController
         $dex = $getDexService->get($requestedTrainerId);
 
         return $this->render(
-            'AlbumDex/index.html.twig',
+            'AlbumDexList/index.html.twig',
             [
                 'dex' => $dex,
             ]
