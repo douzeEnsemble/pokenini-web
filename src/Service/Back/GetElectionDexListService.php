@@ -6,7 +6,7 @@ namespace App\Service\Back;
 
 use App\Utils\JsonDecoder;
 
-class GetElectionDexService extends AbstractBackService
+class GetElectionDexListService extends AbstractBackService
 {
     /**
      * @return string[][]

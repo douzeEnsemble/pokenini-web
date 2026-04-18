@@ -1597,7 +1597,7 @@
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_dex_admin.json"
+      "file": "/var/moco/responses/election/election_dex_list_admin.json"
     }
   },
   {

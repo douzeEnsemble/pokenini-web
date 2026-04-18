@@ -46,7 +46,7 @@
             <div class="flex-fill">
               <h3 class="fs-2 text-body-emphasis">{{ 'home.menu.election.title'|trans }}</h3>
               <p>{{- 'home.menu.election.description'|trans -}}</p>
-              <a href="{{ path('app_electiondex_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
+              <a href="{{ path('app_electiondexlist_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
                   {{ 'home.menu.election.action'|trans }}
                 </a>
             </div>
