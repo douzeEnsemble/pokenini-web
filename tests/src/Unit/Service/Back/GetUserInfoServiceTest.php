@@ -21,7 +21,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  * @internal
  */
 #[CoversClass(GetUserInfoService::class)]
-class GetUserInfoServiceTest extends TestCase
+final class GetUserInfoServiceTest extends TestCase
 {
     public const ENDPOINT = 'user-info';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/user-info.json';

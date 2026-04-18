@@ -15,7 +15,7 @@ use Symfony\Component\Routing\RouterInterface;
  * @internal
  */
 #[CoversClass(FakeAuthenticator::class)]
-class FakeAuthenticatorTest extends TestCase
+final class FakeAuthenticatorTest extends TestCase
 {
     public function testSupports(): void
     {

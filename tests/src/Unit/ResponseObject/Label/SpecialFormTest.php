@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 #[CoversClass(AbstractForm::class)]
 #[CoversClass(SpecialForm::class)]
-class SpecialFormTest extends TestCase
+final class SpecialFormTest extends TestCase
 {
     public function testConstructor(): void
     {

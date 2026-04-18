@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
  * @internal
  */
 #[CoversNothing]
-class RedirectActionsTest extends AbstractBrowserTestCase
+final class RedirectActionsTest extends AbstractBrowserTestCase
 {
     #[DataProvider('providerActionItems')]
     public function testActionItems(string $action, string $item): void

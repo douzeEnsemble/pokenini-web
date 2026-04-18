@@ -16,7 +16,7 @@ use PHPUnit\Framework\Attributes\Group;
  */
 #[CoversNothing]
 #[Group('api-mocked-testing')]
-class OffcanvasTest extends AbstractBrowserTestCase
+final class OffcanvasTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 

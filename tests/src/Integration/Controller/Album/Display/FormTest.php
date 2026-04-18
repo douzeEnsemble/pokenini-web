@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class FormTest extends WebTestCase
+final class FormTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testDisplayForm(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -38,7 +38,7 @@ class FormTest extends WebTestCase
 
     public function testNonDisplayForm(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();

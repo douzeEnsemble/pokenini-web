@@ -6,7 +6,7 @@ namespace App\ResponseObject\Album;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-class Report
+final class Report
 {
     /**
      * @param ReportDetail[] $detail

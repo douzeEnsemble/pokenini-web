@@ -15,13 +15,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  */
 #[CoversClass(HomeController::class)]
-class HomeTest extends WebTestCase
+final class HomeTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testHome(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -53,7 +53,7 @@ class HomeTest extends WebTestCase
 
     public function testHomeAsAdmin(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -86,7 +86,7 @@ class HomeTest extends WebTestCase
 
     public function testNonConnectedHome(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/fr');
 
@@ -111,7 +111,7 @@ class HomeTest extends WebTestCase
 
     public function testHomeFrench(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -138,7 +138,7 @@ class HomeTest extends WebTestCase
 
     public function testHomeEnglish(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

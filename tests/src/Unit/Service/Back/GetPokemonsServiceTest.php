@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\ResponseObject\Election\ElectionList;
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\GetPokemonsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(GetPokemonsService::class)]
-class GetPokemonsServiceTest extends TestCase
+final class GetPokemonsServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
     use ResponseObjectTrait;
 
     public function testGet(): void
@@ -86,7 +88,6 @@ class GetPokemonsServiceTest extends TestCase
 
         /** @var GetPokemonsService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            GetPokemonsService::class,
             'GET',
             $json,
             'pokemons/to_choose',
@@ -105,6 +106,25 @@ class GetPokemonsServiceTest extends TestCase
         $this->assertSame('vote', $electionList->getType());
 
         $this->assertCount(3, $electionList->getItems());
+    }
+
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new GetPokemonsService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
     }
 
     /**
@@ -146,7 +166,6 @@ class GetPokemonsServiceTest extends TestCase
 
         /** @var GetPokemonsService */
         return $this->getServiceWithLoggedUser(
-            GetPokemonsService::class,
             'GET',
             $json,
             'pokemons/to_choose',

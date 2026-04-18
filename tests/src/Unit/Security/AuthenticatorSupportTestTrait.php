@@ -6,7 +6,6 @@ namespace App\Tests\Unit\Security;
 
 use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
-use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -23,8 +22,7 @@ trait AuthenticatorSupportTestTrait
 
         $getUserInfoService = $this->createMock(GetUserInfoService::class);
 
-        /** @var OAuth2Authenticator $authenticator */
-        $authenticator = new ($this->getAuthenticatorClassName())(
+        $authenticator = $this->getAuthenticatorInstance(
             $clientRegistry,
             $router,
             $getUserInfoService,

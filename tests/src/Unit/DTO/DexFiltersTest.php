@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(DexFilters::class)]
-class DexFiltersTest extends TestCase
+final class DexFiltersTest extends TestCase
 {
     public function testCreateFromArrayEmpty(): void
     {

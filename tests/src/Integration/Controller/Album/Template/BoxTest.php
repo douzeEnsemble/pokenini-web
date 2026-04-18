@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class BoxTest extends WebTestCase
+final class BoxTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testDexBoxTemplate(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -73,7 +73,7 @@ class BoxTest extends WebTestCase
 
     public function testFrenchDexBoxTemplate(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -93,7 +93,7 @@ class BoxTest extends WebTestCase
 
     public function testEnglishDexBoxTemplate(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -113,7 +113,7 @@ class BoxTest extends WebTestCase
 
     public function testFilterDexBoxTemplate(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();

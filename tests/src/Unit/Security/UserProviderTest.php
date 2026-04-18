@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @internal
  */
 #[CoversClass(UserProvider::class)]
-class UserProviderTest extends TestCase
+final class UserProviderTest extends TestCase
 {
     public function testLoadUserByIdentifier(): void
     {

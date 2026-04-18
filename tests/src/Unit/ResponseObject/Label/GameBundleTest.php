@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(GameBundle::class)]
-class GameBundleTest extends TestCase
+final class GameBundleTest extends TestCase
 {
     public function testConstructor(): void
     {

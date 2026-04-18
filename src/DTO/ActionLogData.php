@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
-class ActionLogData
+final class ActionLogData
 {
     public function __construct(
         public readonly string $item,

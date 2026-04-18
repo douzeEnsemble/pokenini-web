@@ -7,7 +7,7 @@ namespace App\Twig;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Attribute\AsTwigFunction;
 
-class AppRequestExtension
+final class AppRequestExtension
 {
     public function __construct(private readonly RequestStack $requestStack) {}
 

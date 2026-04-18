@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(GetPokemonsListService::class)]
-class GetPokemonsListServiceTest extends TestCase
+final class GetPokemonsListServiceTest extends TestCase
 {
     use ResponseObjectTrait;
 

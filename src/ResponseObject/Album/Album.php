@@ -7,7 +7,7 @@ namespace App\ResponseObject\Album;
 use App\ResponseObject\Common\Pokemon;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-class Album
+final class Album
 {
     /**
      * @param Pokemon[] $pokemons

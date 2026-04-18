@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class RolesTest extends WebTestCase
+final class RolesTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testReadNonConnectedNoToken(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/fr/album/home');
 
@@ -32,7 +32,7 @@ class RolesTest extends WebTestCase
 
     public function testReadNonConnected(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
@@ -41,7 +41,7 @@ class RolesTest extends WebTestCase
 
     public function testReadTrainer(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -58,7 +58,7 @@ class RolesTest extends WebTestCase
 
     public function testReadCollector(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addCollectorRole();
@@ -75,7 +75,7 @@ class RolesTest extends WebTestCase
 
     public function testReadAdmin(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -93,7 +93,7 @@ class RolesTest extends WebTestCase
 
     public function testWriteNonConnected(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/fr/album/home?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
@@ -102,7 +102,7 @@ class RolesTest extends WebTestCase
 
     public function testWriteTrainer(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -119,7 +119,7 @@ class RolesTest extends WebTestCase
 
     public function testWriteCollector(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -136,7 +136,7 @@ class RolesTest extends WebTestCase
 
     public function testWriteAdmin(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -154,7 +154,7 @@ class RolesTest extends WebTestCase
 
     public function testWriteTrainerOnPremiumDex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -171,7 +171,7 @@ class RolesTest extends WebTestCase
 
     public function testWriteCollectorOnPremiumDex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -189,7 +189,7 @@ class RolesTest extends WebTestCase
 
     public function testWriteAdminOnPremiumDex(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

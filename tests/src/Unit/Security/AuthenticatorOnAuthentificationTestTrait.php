@@ -113,11 +113,12 @@ trait AuthenticatorOnAuthentificationTestTrait
             ->willReturnOnConsecutiveCalls(...$routes)
         ;
 
-        $getUserInfoService = $this->createMock(GetUserInfoService::class);
+        $clientRegistry = $this->createStub(ClientRegistry::class);
+        $getUserInfoService = $this->createStub(GetUserInfoService::class);
 
         /** @var OAuth2Authenticator */
-        return new ($this->getAuthenticatorClassName())(
-            $this->createMock(ClientRegistry::class),
+        return $this->getAuthenticatorInstance(
+            $clientRegistry,
             $router,
             $getUserInfoService,
         );

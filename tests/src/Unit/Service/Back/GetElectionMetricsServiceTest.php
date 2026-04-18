@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\GetElectionMetricsService;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(GetElectionMetricsService::class)]
-class GetElectionMetricsServiceTest extends TestCase
+final class GetElectionMetricsServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
-
     public const ENDPOINT = 'election/metrics';
 
     public function testGet(): void
@@ -132,7 +134,6 @@ class GetElectionMetricsServiceTest extends TestCase
 
         /** @var GetElectionMetricsService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            GetElectionMetricsService::class,
             'GET',
             (string) file_get_contents(
                 $filename,
@@ -162,6 +163,25 @@ class GetElectionMetricsServiceTest extends TestCase
         );
     }
 
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new GetElectionMetricsService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
+    }
+
     private function getService(
         string $dexSlug,
         string $electionSlug,
@@ -171,7 +191,6 @@ class GetElectionMetricsServiceTest extends TestCase
 
         /** @var GetElectionMetricsService */
         return $this->getServiceWithLoggedUser(
-            GetElectionMetricsService::class,
             'GET',
             (string) file_get_contents($filename),
             self::ENDPOINT,

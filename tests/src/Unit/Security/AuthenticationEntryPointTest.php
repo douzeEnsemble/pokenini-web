@@ -15,7 +15,7 @@ use Symfony\Component\Routing\RouterInterface;
  * @internal
  */
 #[CoversClass(AuthenticationEntryPoint::class)]
-class AuthenticationEntryPointTest extends TestCase
+final class AuthenticationEntryPointTest extends TestCase
 {
     public function testStart(): void
     {

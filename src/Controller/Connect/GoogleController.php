@@ -7,7 +7,7 @@ namespace App\Controller\Connect;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/connect/g')]
-class GoogleController extends AbstractConnectController
+final class GoogleController extends AbstractConnectController
 {
     #[\Override]
     protected function getProviderName(): string

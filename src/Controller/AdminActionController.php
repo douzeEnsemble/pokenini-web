@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/istration/action')]
-class AdminActionController extends AbstractController
+final class AdminActionController extends AbstractController
 {
     public const string SESSION_ACTION_DATA = 'admin.action.response.content';
 

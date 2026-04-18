@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(User::class)]
-class UserGetProfileTest extends TestCase
+final class UserGetProfileTest extends TestCase
 {
     public function testGetProfileAsDefault(): void
     {

@@ -12,11 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  */
 #[CoversClass(HomeController::class)]
-class LocaleTest extends WebTestCase
+final class LocaleTest extends WebTestCase
 {
     public function testLocaleOk(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/fr');
 
@@ -25,7 +25,7 @@ class LocaleTest extends WebTestCase
 
     public function testLocaleNonOk(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/it');
 

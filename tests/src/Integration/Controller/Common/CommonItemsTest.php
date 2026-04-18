@@ -18,13 +18,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(HomeController::class)]
 #[CoversClass(ConnectController::class)]
-class CommonItemsTest extends WebTestCase
+final class CommonItemsTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testHome(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -35,14 +35,14 @@ class CommonItemsTest extends WebTestCase
 
     public function testConnect(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $this->assertCommonItems($client, '/fr/connect');
     }
 
     public function testAdministration(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();

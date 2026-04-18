@@ -13,6 +13,7 @@ class GetDexService extends AbstractBackService
      */
     public function get(?string $trainerId = null): array
     {
+        /** @psalm-suppress RiskyTruthyFalsyComparison */
         $urlQueryParams = !empty($trainerId) ? "?trainer_id={$trainerId}" : '';
 
         $json = $this->requestContent(

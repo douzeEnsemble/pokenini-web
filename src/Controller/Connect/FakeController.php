@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/connect/f')]
-class FakeController extends AbstractController
+final class FakeController extends AbstractController
 {
     // @codeCoverageIgnoreStart
     #[Route(

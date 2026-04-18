@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(User::class)]
-class UserRolesTest extends TestCase
+final class UserRolesTest extends TestCase
 {
     public function testAddAdminRole(): void
     {

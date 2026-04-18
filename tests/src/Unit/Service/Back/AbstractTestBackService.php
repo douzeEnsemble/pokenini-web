@@ -10,18 +10,18 @@ use App\Security\UserTokenService;
 use App\Service\Back\BackServiceInterface;
 use App\Tests\Utils\WithConsecutive;
 use League\OAuth2\Client\Token\AccessToken;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
-trait BackServiceTrait
+abstract class AbstractTestBackService extends TestCase
 {
     /**
      * @param array<int|string, mixed> $requestOptions
      */
-    public function getServiceWithLoggedUser(
-        string $className,
+    protected function getServiceWithLoggedUser(
         string $method,
         string $responseContent,
         string $endpoint,
@@ -44,8 +44,9 @@ trait BackServiceTrait
         );
         $userTokenService = $this->getUserTokenServiceMock('dzdz-access-token-dzdz');
 
-        return $this->instanciateService(
-            $className,
+        $serializer ??= $this->createStub(SerializerInterface::class);
+
+        return $this->makeService(
             $logger,
             $client,
             $userTokenService,
@@ -56,8 +57,7 @@ trait BackServiceTrait
     /**
      * @param array<int|string, mixed> $requestOptions
      */
-    public function getServiceWithoutLoggedUser(
-        string $className,
+    protected function getServiceWithoutLoggedUser(
         string $method,
         string $responseContent,
         string $endpoint,
@@ -80,8 +80,9 @@ trait BackServiceTrait
         );
         $userTokenService = $this->getUserTokenServiceMock(null);
 
-        return $this->instanciateService(
-            $className,
+        $serializer ??= $this->createStub(SerializerInterface::class);
+
+        return $this->makeService(
             $logger,
             $client,
             $userTokenService,
@@ -89,10 +90,19 @@ trait BackServiceTrait
         );
     }
 
+    abstract protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface;
+
     /**
      * @param array<int|string, mixed> $requestOptions
      */
-    private function getLoggerMock(
+    protected function getLoggerMock(
         string $method,
         string $responseContent,
         string $endpoint,
@@ -134,7 +144,7 @@ trait BackServiceTrait
         return $logger;
     }
 
-    private function getResponseMock(string $content): ResponseInterface
+    protected function getResponseMock(string $content): ResponseInterface
     {
         $nbCalls = empty($content) ? 1 : 2;
 
@@ -156,7 +166,7 @@ trait BackServiceTrait
     /**
      * @param array<int|string, mixed> $requestOptions
      */
-    private function getClientMock(
+    protected function getClientMock(
         string $method,
         string $content,
         string $endpoint,
@@ -196,7 +206,7 @@ trait BackServiceTrait
         return $client;
     }
 
-    private function getUserTokenServiceMock(?string $token): UserTokenService
+    protected function getUserTokenServiceMock(?string $token): UserTokenService
     {
         $userTokenService = $this->createMock(UserTokenService::class);
 
@@ -225,17 +235,13 @@ trait BackServiceTrait
         return $userTokenService;
     }
 
-    private function instanciateService(
-        string $className,
+    protected function makeService(
         LoggerInterface $logger,
         HttpClientInterface $client,
         UserTokenService $userTokenService,
-        ?SerializerInterface $serializer = null,
+        SerializerInterface $serializer,
     ): BackServiceInterface {
-        $serializer ??= $this->createMock(SerializerInterface::class);
-
-        /** @var BackServiceInterface */
-        return new $className(
+        return $this->instanciateService(
             $logger,
             $client,
             'https://api.domain',

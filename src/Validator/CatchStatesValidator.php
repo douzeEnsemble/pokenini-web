@@ -10,7 +10,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
-class CatchStatesValidator extends ConstraintValidator
+final class CatchStatesValidator extends ConstraintValidator
 {
     public function __construct(
         private readonly GetLabelsService $getService,

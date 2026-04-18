@@ -21,7 +21,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  * @internal
  */
 #[CoversClass(AdminActionService::class)]
-class AdminActionServiceTest extends TestCase
+final class AdminActionServiceTest extends TestCase
 {
     public function testExecute(): void
     {

@@ -19,14 +19,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 #[CoversClass(AdminActionController::class)]
 #[Group('api-mocked-testing')]
-class ActionInvalidateTest extends WebTestCase
+final class ActionInvalidateTest extends WebTestCase
 {
     use TestNavTrait;
 
     #[DataProvider('providerInvalidateSuccess')]
     public function testInvalidateSuccess(string $name): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -56,7 +56,7 @@ class ActionInvalidateTest extends WebTestCase
     #[DataProvider('providerInvalidateNotExists')]
     public function testInvalidateNotExists(string $name): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -93,7 +93,7 @@ class ActionInvalidateTest extends WebTestCase
 
     public function testAdminNonAdmin(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');

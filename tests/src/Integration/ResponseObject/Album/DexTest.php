@@ -13,14 +13,14 @@ use Symfony\Component\Serializer\SerializerInterface;
  * @internal
  */
 #[CoversClass(Dex::class)]
-class DexTest extends KernelTestCase
+final class DexTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
         self::bootKernel();
 
         /** @var SerializerInterface $serializer */
-        $serializer = static::getContainer()->get(SerializerInterface::class);
+        $serializer = self::getContainer()->get(SerializerInterface::class);
 
         $json = <<<'JSON'
             {
@@ -69,7 +69,7 @@ class DexTest extends KernelTestCase
         self::bootKernel();
 
         /** @var SerializerInterface $serializer */
-        $serializer = static::getContainer()->get(SerializerInterface::class);
+        $serializer = self::getContainer()->get(SerializerInterface::class);
 
         $json = <<<'JSON'
             {

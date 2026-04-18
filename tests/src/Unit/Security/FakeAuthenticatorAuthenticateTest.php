@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
  * @internal
  */
 #[CoversClass(FakeAuthenticator::class)]
-class FakeAuthenticatorAuthenticateTest extends TestCase
+final class FakeAuthenticatorAuthenticateTest extends TestCase
 {
     public function testAuthenticateUser(): void
     {

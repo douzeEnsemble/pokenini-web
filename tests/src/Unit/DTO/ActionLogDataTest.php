@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(ActionLogData::class)]
-class ActionLogDataTest extends TestCase
+final class ActionLogDataTest extends TestCase
 {
     public function testConstructorWithoutLast(): void
     {

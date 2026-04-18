@@ -5,18 +5,20 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\DTO\ElectionVote;
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\PostElectionVoteService;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(PostElectionVoteService::class)]
-class PostElectionVoteServiceTest extends TestCase
+final class PostElectionVoteServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
-
     public const ENDPOINT = 'election/vote';
 
     public function testVote(): void
@@ -83,7 +85,6 @@ class PostElectionVoteServiceTest extends TestCase
 
         /** @var PostElectionVoteService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            PostElectionVoteService::class,
             'POST',
             (string) file_get_contents($filename),
             self::ENDPOINT,
@@ -100,6 +101,25 @@ class PostElectionVoteServiceTest extends TestCase
         $service->vote($electionVote);
     }
 
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new PostElectionVoteService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
+    }
+
     /**
      * @param string[] $winnersSlugs
      * @param string[] $losersSlugs
@@ -114,7 +134,6 @@ class PostElectionVoteServiceTest extends TestCase
 
         /** @var PostElectionVoteService */
         return $this->getServiceWithLoggedUser(
-            PostElectionVoteService::class,
             'POST',
             (string) file_get_contents($filename),
             self::ENDPOINT,

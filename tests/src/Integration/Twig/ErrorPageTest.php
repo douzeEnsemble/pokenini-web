@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @internal
  */
 #[CoversNothing]
-class ErrorPageTest extends WebTestCase
+final class ErrorPageTest extends WebTestCase
 {
     use TestNavTrait;
 
@@ -50,8 +50,8 @@ class ErrorPageTest extends WebTestCase
 
     private function renderErrorTemplate(int $statusCode, string $statusText): Crawler
     {
-        static::bootKernel();
-        $container = static::getContainer();
+        self::bootKernel();
+        $container = self::getContainer();
 
         $request = Request::create('/fr/_error/'.$statusCode, 'GET');
         $request->setLocale('fr');

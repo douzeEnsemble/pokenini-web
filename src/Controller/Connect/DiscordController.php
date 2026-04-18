@@ -7,7 +7,7 @@ namespace App\Controller\Connect;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/connect/dd')]
-class DiscordController extends AbstractConnectController
+final class DiscordController extends AbstractConnectController
 {
     #[\Override]
     protected function getProviderName(): string

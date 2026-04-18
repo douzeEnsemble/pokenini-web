@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\ModifyDexService;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(ModifyDexService::class)]
-class ModifyDexServiceTest extends TestCase
+final class ModifyDexServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
-
     public function testModify(): void
     {
         $this
@@ -34,7 +36,6 @@ class ModifyDexServiceTest extends TestCase
     {
         /** @var ModifyDexService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            ModifyDexService::class,
             'PUT',
             '',
             'dex/home',
@@ -46,13 +47,31 @@ class ModifyDexServiceTest extends TestCase
         $service->modify('home', 'data-whatever');
     }
 
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new ModifyDexService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
+    }
+
     private function getService(
         string $suffix,
         string $body
     ): ModifyDexService {
         /** @var ModifyDexService */
         return $this->getServiceWithLoggedUser(
-            ModifyDexService::class,
             'PUT',
             '',
             $suffix,

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(GoogleController::class)]
-class GoogleControllerTest extends TestCase
+final class GoogleControllerTest extends TestCase
 {
     use ConnectControllerTestTrait;
 

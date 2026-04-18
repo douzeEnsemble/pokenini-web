@@ -16,7 +16,7 @@ use PHPUnit\Framework\Attributes\Group;
  */
 #[CoversNothing]
 #[Group('api-mocked-testing')]
-class ElectionTest extends AbstractBrowserTestCase
+final class ElectionTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 

@@ -15,7 +15,7 @@ use Twig\TwigFilter;
  * @internal
  */
 #[CoversClass(AppTranslatorExtension::class)]
-class AppTranslatorExtensionTest extends TestCase
+final class AppTranslatorExtensionTest extends TestCase
 {
     public function testGetFilters(): void
     {

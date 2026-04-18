@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(ElectionTop::class)]
-class ElectionTopTest extends TestCase
+final class ElectionTopTest extends TestCase
 {
     use ResponseObjectTrait;
 

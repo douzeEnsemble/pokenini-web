@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
-class AdminAction
+final class AdminAction
 {
     public function __construct(
         public readonly string $action,

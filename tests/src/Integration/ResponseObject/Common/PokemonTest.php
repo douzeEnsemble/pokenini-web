@@ -13,14 +13,14 @@ use Symfony\Component\Serializer\SerializerInterface;
  * @internal
  */
 #[CoversClass(Pokemon::class)]
-class PokemonTest extends KernelTestCase
+final class PokemonTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
         self::bootKernel();
 
         /** @var SerializerInterface $serializer */
-        $serializer = static::getContainer()->get(SerializerInterface::class);
+        $serializer = self::getContainer()->get(SerializerInterface::class);
 
         $json = <<<'JSON'
             {
@@ -97,7 +97,7 @@ class PokemonTest extends KernelTestCase
         self::bootKernel();
 
         /** @var SerializerInterface $serializer */
-        $serializer = static::getContainer()->get(SerializerInterface::class);
+        $serializer = self::getContainer()->get(SerializerInterface::class);
 
         $json = <<<'JSON'
             {

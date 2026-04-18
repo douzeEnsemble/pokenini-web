@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-    errorLevel="3"
+    errorLevel="2"
     resolveFromConfigFile="true"
     findUnusedCode="true"
     cacheDirectory="var/cache/psalm"
@@ -38,5 +38,12 @@
                 <directory name="src/Controller" />
             </errorLevel>
         </PossiblyUnusedReturnValue>
+
+        <ClassMustBeFinal>
+            <errorLevel type="suppress">
+                <directory name="src/Service" />
+                <file name="src/Security/UserTokenService.php" />
+            </errorLevel>
+        </ClassMustBeFinal>
     </issueHandlers>
 </psalm>

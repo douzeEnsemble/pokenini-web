@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(DiscordController::class)]
-class DiscordControllerTest extends TestCase
+final class DiscordControllerTest extends TestCase
 {
     use ConnectControllerTestTrait;
 

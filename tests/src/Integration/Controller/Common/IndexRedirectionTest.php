@@ -12,11 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  */
 #[CoversClass(HomeController::class)]
-class IndexRedirectionTest extends WebTestCase
+final class IndexRedirectionTest extends WebTestCase
 {
     public function testRedirection(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/');
 

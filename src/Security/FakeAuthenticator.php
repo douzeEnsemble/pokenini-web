@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
-class FakeAuthenticator extends OAuth2Authenticator
+final class FakeAuthenticator extends OAuth2Authenticator
 {
     use AuthenticatorTrait;
 
@@ -22,6 +22,9 @@ class FakeAuthenticator extends OAuth2Authenticator
         private readonly GetUserInfoService $getUserInfoService,
     ) {}
 
+    /**
+     * @phpstan-ignore return.unusedType
+     */
     #[\Override]
     public function supports(Request $request): ?bool
     {

@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\ResponseObject\Election\TopPokemon;
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\GetElectionTopService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(GetElectionTopService::class)]
-class GetElectionTopServiceTest extends TestCase
+final class GetElectionTopServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
     use ResponseObjectTrait;
 
     public function testGet(): void
@@ -75,7 +77,6 @@ class GetElectionTopServiceTest extends TestCase
 
         /** @var GetElectionTopService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            GetElectionTopService::class,
             'GET',
             $json,
             'election/top?dex_slug=home&election_slug=fav&count=5',
@@ -88,6 +89,25 @@ class GetElectionTopServiceTest extends TestCase
         $this->assertCount(5, $electionTop->getItems());
     }
 
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new GetElectionTopService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
+    }
+
     private function getService(
         string $dexSlug,
         string $electionSlug,
@@ -98,7 +118,6 @@ class GetElectionTopServiceTest extends TestCase
 
         /** @var GetElectionTopService */
         return $this->getServiceWithLoggedUser(
-            GetElectionTopService::class,
             'GET',
             (string) file_get_contents($filename),
             "election/top?dex_slug={$dexSlug}&election_slug={$electionSlug}&count={$count}",

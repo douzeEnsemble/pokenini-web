@@ -13,14 +13,14 @@ use Symfony\Component\Serializer\SerializerInterface;
  * @internal
  */
 #[CoversClass(ReportDetail::class)]
-class ReportDetailTest extends KernelTestCase
+final class ReportDetailTest extends KernelTestCase
 {
     public function testDeserialize(): void
     {
         self::bootKernel();
 
         /** @var SerializerInterface $serializer */
-        $serializer = static::getContainer()->get(SerializerInterface::class);
+        $serializer = self::getContainer()->get(SerializerInterface::class);
 
         $json = <<<'JSON'
             {

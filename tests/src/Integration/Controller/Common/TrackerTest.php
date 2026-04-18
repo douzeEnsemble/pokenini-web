@@ -15,13 +15,13 @@ use Symfony\Component\DomCrawler\Crawler;
  * @internal
  */
 #[CoversNothing]
-class TrackerTest extends WebTestCase
+final class TrackerTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testTrackerAsAdmin(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -44,7 +44,7 @@ class TrackerTest extends WebTestCase
 
     public function testTrackerAsCollector(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('4568465464', 'TestProvider', new AccessToken(['access_token' => sha1('4568465464')]));
         $user->addCollectorRole();
@@ -67,7 +67,7 @@ class TrackerTest extends WebTestCase
 
     public function testTrackerAsTrainer(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('daz5d4az6d4a6z4d6az5d', 'TestProvider', new AccessToken(['access_token' => sha1('daz5d4az6d4a6z4d6az5d')]));
         $user->addTrainerRole();
@@ -90,7 +90,7 @@ class TrackerTest extends WebTestCase
 
     public function testTrackerAsGuest(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/fr');
 

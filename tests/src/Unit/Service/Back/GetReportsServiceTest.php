@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\GetReportsService;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(GetReportsService::class)]
-class GetReportsServiceTest extends TestCase
+final class GetReportsServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
-
     public const ENDPOINT = 'istration/reports';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/reports.json';
 
@@ -23,7 +25,6 @@ class GetReportsServiceTest extends TestCase
     {
         /** @var GetReportsService $service */
         $service = $this->getServiceWithLoggedUser(
-            GetReportsService::class,
             'GET',
             (string) file_get_contents(self::RESPONSE_CONTENT),
             self::ENDPOINT,
@@ -43,7 +44,6 @@ class GetReportsServiceTest extends TestCase
     {
         /** @var GetReportsService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            GetReportsService::class,
             'GET',
             (string) file_get_contents(self::RESPONSE_CONTENT),
             self::ENDPOINT,
@@ -57,5 +57,24 @@ class GetReportsServiceTest extends TestCase
         $this->assertCount(12, $reports['dex_usage']);
         $this->assertArrayHasKey('catch_state_usage', $reports);
         $this->assertCount(6, $reports['catch_state_usage']);
+    }
+
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new GetReportsService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
     }
 }

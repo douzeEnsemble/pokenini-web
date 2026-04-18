@@ -15,7 +15,7 @@ use Twig\TwigFunction;
  * @internal
  */
 #[CoversClass(AppExtension::class)]
-class AppExtensionTest extends TestCase
+final class AppExtensionTest extends TestCase
 {
     public function testGetFilters(): void
     {

@@ -18,13 +18,13 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 #[CoversClass(TrainerIndexController::class)]
 #[Group('api-mocked-testing')]
-class TrainerPageTest extends WebTestCase
+final class TrainerPageTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testTrainerPage(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -57,7 +57,7 @@ class TrainerPageTest extends WebTestCase
 
     public function testCollectorPage(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -91,7 +91,7 @@ class TrainerPageTest extends WebTestCase
 
     public function testAdminTrainerPage(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestAdminProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -126,7 +126,7 @@ class TrainerPageTest extends WebTestCase
 
     public function testTrainerPageNotAllowed(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $client->loginUser($user, 'web');

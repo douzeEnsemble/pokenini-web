@@ -6,7 +6,7 @@ namespace App\ResponseObject\Label;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-class Labels
+final class Labels
 {
     /**
      * @param CatchState[]   $catchStates

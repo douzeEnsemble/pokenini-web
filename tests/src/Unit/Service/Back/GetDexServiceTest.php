@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\Security\UserTokenService;
+use App\Service\Back\BackServiceInterface;
 use App\Service\Back\GetDexService;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
  */
 #[CoversClass(GetDexService::class)]
-class GetDexServiceTest extends TestCase
+final class GetDexServiceTest extends AbstractTestBackService
 {
-    use BackServiceTrait;
-
     public function testGet(): void
     {
         $service = $this->getMockService(
@@ -39,7 +41,6 @@ class GetDexServiceTest extends TestCase
     {
         /** @var GetDexService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            GetDexService::class,
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex.json'),
             'dex/list',
@@ -61,7 +62,6 @@ class GetDexServiceTest extends TestCase
     {
         /** @var GetDexService $service */
         $service = $this->getServiceWithoutLoggedUser(
-            GetDexService::class,
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex_123.json'),
             'dex/list?trainer_id=123',
@@ -78,13 +78,31 @@ class GetDexServiceTest extends TestCase
         );
     }
 
+    #[\Override]
+    protected function instanciateService(
+        LoggerInterface $logger,
+        HttpClientInterface $client,
+        string $url,
+        string $cafilePath,
+        UserTokenService $userTokenService,
+        SerializerInterface $serializer,
+    ): BackServiceInterface {
+        return new GetDexService(
+            $logger,
+            $client,
+            $url,
+            $cafilePath,
+            $userTokenService,
+            $serializer,
+        );
+    }
+
     private function getMockService(
         string $filename,
         string $endpoint,
     ): GetDexService {
         /** @var GetDexService */
         return $this->getServiceWithLoggedUser(
-            GetDexService::class,
             'GET',
             (string) file_get_contents($filename),
             $endpoint,

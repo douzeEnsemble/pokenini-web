@@ -16,7 +16,7 @@ use PHPUnit\Framework\Attributes\Group;
  */
 #[CoversNothing]
 #[Group('api-mocked-testing')]
-class ModalTest extends AbstractBrowserTestCase
+final class ModalTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 

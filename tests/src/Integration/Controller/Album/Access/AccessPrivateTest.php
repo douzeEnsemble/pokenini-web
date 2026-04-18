@@ -17,13 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class AccessPrivateTest extends WebTestCase
+final class AccessPrivateTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testAccessOwnPublicAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -43,7 +43,7 @@ class AccessPrivateTest extends WebTestCase
 
     public function testAccessOwnPrivateAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -63,7 +63,7 @@ class AccessPrivateTest extends WebTestCase
 
     public function testAccessAnotherPublicAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -83,7 +83,7 @@ class AccessPrivateTest extends WebTestCase
 
     public function testAccessAnotherPrivateAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -96,7 +96,7 @@ class AccessPrivateTest extends WebTestCase
 
     public function testAccessNonExistingAlbum(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();

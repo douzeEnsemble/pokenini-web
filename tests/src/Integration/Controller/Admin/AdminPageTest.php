@@ -18,13 +18,13 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 #[CoversClass(AdminController::class)]
 #[Group('api-mocked-testing')]
-class AdminPageTest extends WebTestCase
+final class AdminPageTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testAdminHomeNotConnected(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/fr/istration');
 
@@ -33,7 +33,7 @@ class AdminPageTest extends WebTestCase
 
     public function testAdminHomeBadCredentials(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->loginUser(
             new User('34654656489621361987', 'TestProvider', new AccessToken(['access_token' => sha1('34654656489621361987')])),
@@ -47,7 +47,7 @@ class AdminPageTest extends WebTestCase
 
     public function testAdminHomeNotAllowed(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $client->loginUser($user, 'web');
@@ -146,7 +146,7 @@ class AdminPageTest extends WebTestCase
 
     private function getAdminHomeConnected(): Crawler
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();

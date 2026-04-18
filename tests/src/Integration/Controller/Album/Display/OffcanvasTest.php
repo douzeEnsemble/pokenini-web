@@ -18,13 +18,13 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class OffcanvasTest extends WebTestCase
+final class OffcanvasTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testOffcanvasHome(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -74,7 +74,7 @@ class OffcanvasTest extends WebTestCase
 
     public function testIntroDemoList3(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -121,7 +121,7 @@ class OffcanvasTest extends WebTestCase
 
     public function testIntroDemoLiteShiny(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -163,7 +163,7 @@ class OffcanvasTest extends WebTestCase
 
     public function testIntroGoldSilverCrystal(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -214,7 +214,7 @@ class OffcanvasTest extends WebTestCase
 
     public function testIntroBlackWhiteFrench(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -265,7 +265,7 @@ class OffcanvasTest extends WebTestCase
 
     public function testIntroBlackWhiteEnglish(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -316,7 +316,7 @@ class OffcanvasTest extends WebTestCase
 
     public function testIntroDemoAnotherTrainer(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('13', 'TestProvider', new AccessToken(['access_token' => sha1('13')]));
         $user->addTrainerRole();

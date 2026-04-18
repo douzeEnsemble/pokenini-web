@@ -18,13 +18,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 #[CoversClass(AlbumIndexController::class)]
 #[Group('api-mocked-testing')]
-class EnglishAlbumLocalizationTest extends WebTestCase
+final class EnglishAlbumLocalizationTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testListLanguage(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/en/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
@@ -37,7 +37,7 @@ class EnglishAlbumLocalizationTest extends WebTestCase
 
     public function testListLanguageWriteMode(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
         $user->addTrainerRole();
@@ -54,7 +54,7 @@ class EnglishAlbumLocalizationTest extends WebTestCase
 
     public function testListShiny(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $crawler = $client->request('GET', '/en/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 

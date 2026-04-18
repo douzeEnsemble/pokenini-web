@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 /**
  * @implements UserProviderInterface<UserInterface>
  */
-class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
+final class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 {
     /**
      * @SuppressWarnings("PHPMD.UnusedFormalParameter")

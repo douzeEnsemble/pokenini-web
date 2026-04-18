@@ -16,13 +16,13 @@ use Symfony\Component\DomCrawler\Crawler;
  * @internal
  */
 #[CoversClass(OuterRoomController::class)]
-class OuterRoomTest extends WebTestCase
+final class OuterRoomTest extends WebTestCase
 {
     use TestNavTrait;
 
     public function testOuterRoomPageNonConnected(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->request('GET', '/fr/outerroom');
 
@@ -31,7 +31,7 @@ class OuterRoomTest extends WebTestCase
 
     public function testOuterRoomPageConnectedAsTrainer(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
         $user->addTrainerRole();
@@ -44,7 +44,7 @@ class OuterRoomTest extends WebTestCase
 
     public function testOuterRoomPageConnectedAsAdminOnly(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addAdminRole();
@@ -57,7 +57,7 @@ class OuterRoomTest extends WebTestCase
 
     public function testOuterRoomPageConnectedAsAdmin(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
         $user->addTrainerRole();
@@ -71,7 +71,7 @@ class OuterRoomTest extends WebTestCase
 
     public function testOuterRoomPage(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
 
         $client->loginUser(
             new User('121212', 'TestProvider', new AccessToken(['access_token' => sha1('121212')])),

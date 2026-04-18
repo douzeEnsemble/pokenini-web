@@ -162,8 +162,7 @@ trait AuthenticatorAuthenticateClosedTestTrait
             )
         ;
 
-        /** @var OAuth2Authenticator */
-        return new ($this->getAuthenticatorClassName())(
+        return $this->getAuthenticatorInstance(
             $clientRegistry,
             $router,
             $getUserInfoService,

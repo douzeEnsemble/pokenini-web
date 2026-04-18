@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AlbumFilters;
 
-class Mapping
+final class Mapping
 {
     private const array FILTERS = [
         'cs' => 'catch_states',

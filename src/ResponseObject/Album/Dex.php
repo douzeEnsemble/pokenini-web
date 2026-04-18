@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 /**
  * @SuppressWarnings("PHPMD.ExcessiveParameterList")
  */
-class Dex
+final class Dex
 {
     public function __construct(
         #[SerializedName('slug')]
