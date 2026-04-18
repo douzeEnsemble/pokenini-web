@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install
         uses: ./.github/actions/tools-composer
         with:
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install
         uses: ./.github/actions/tools-composer
         with:
@@ -51,22 +51,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install
-        uses: ./.github/actions/local-tools-composer
+        uses: ./.github/actions/tools-composer
         with:
           dir: psalm
-      - name: Run
-        run: tools/psalm/vendor/bin/psalm --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions --taint-analysis --root=.
+      - name: Run 
+        run: |
+          tools/psalm/vendor/bin/psalm -c psalm.xml  --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions --root=.
+          tools/psalm/vendor/bin/psalm -c psalm-src-only.xml --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions --root=.
 
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install
-        uses: ./.github/actions/local-tools-composer
+        uses: ./.github/actions/tools-composer
         with:
           dir: phpstan
       - name: Initialize
@@ -81,13 +83,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install
         uses: ./.github/actions/tools-composer
         with:
           dir: deptrac
       - name: Run
-        run: ./tools/deptrac/vendor/bin/deptrac analyse
+        run: ./tools/deptrac/vendor/bin/deptrac analyse --report-uncovered --fail-on-uncovered
 
   w3c:
     name: W3C

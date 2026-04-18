@@ -24,11 +24,11 @@ jobs:
     name: Docker Compose Linter
     runs-on: ubuntu-latest
     container:
-      image: zavoloklom/dclint:2.2.2-alpine
+      image: zavoloklom/dclint:3.1.0-alpine
       volumes:
         - ${{ github.workspace }}:/app
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: /bin/dclint -r .
 
   dotenv-lint:
@@ -36,9 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Lint .env* files
-        uses: dotenv-linter/action-dotenv-linter@v2
+        uses: dotenv-linter/action-dotenv-linter@v3
         with:
           tool_name: DotEnv Linter
           github_token: ${{ secrets.github_token }}
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Lint moco Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:

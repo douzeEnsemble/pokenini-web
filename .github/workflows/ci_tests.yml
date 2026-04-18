@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Prepare
         uses: ./.github/actions/docker-compose
       - name: PHPUnit / Run
@@ -50,3 +50,6 @@ jobs:
             --skip-initial-tests --coverage=build/coverage \
             --min-msi=100 --min-covered-msi=100 \
             --filter=src
+      - name: Security / Symfony Security Check
+        run: |
+          docker compose exec -T php symfony security:check
