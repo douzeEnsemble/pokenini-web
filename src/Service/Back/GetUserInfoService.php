@@ -13,7 +13,7 @@ class GetUserInfoService extends AbstractBackService implements BackServiceInter
     {
         $content = $this->requestContent(
             'GET',
-            '/user-info',
+            '/user',
             [],
             $accessToken,
             $providerName,

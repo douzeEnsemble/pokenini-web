@@ -100,7 +100,7 @@
   },
   {
     "request": {
-      "uri": "/user-info",
+      "uri": "/user",
       "method": "get",
       "headers": {
         "X-Provider": {
@@ -125,7 +125,7 @@
   },
   {
     "request": {
-      "uri": "/user-info",
+      "uri": "/user",
       "method": "get",
       "headers": {
         "X-Provider": {
@@ -149,7 +149,7 @@
   },
   {
     "request": {
-      "uri": "/user-info",
+      "uri": "/user",
       "method": "get",
       "headers": {
         "X-Provider": {
@@ -174,7 +174,7 @@
   },
   {
     "request": {
-      "uri": "/user-info",
+      "uri": "/user",
       "method": "get",
       "headers": {
         "X-Provider": {
