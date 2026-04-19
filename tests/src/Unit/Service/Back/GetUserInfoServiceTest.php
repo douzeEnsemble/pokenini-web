@@ -23,8 +23,8 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(GetUserInfoService::class)]
 final class GetUserInfoServiceTest extends TestCase
 {
-    public const ENDPOINT = 'user-info';
-    public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/user-info.json';
+    public const ENDPOINT = 'user';
+    public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/user.json';
 
     public function testGet(): void
     {
@@ -36,7 +36,7 @@ final class GetUserInfoServiceTest extends TestCase
 
         $client = $this->createMock(HttpClientInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/user-info.json');
+        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/user.json');
 
         $response = $this->createMock(ResponseInterface::class);
         $response
@@ -50,7 +50,7 @@ final class GetUserInfoServiceTest extends TestCase
             ->method('request')
             ->with(
                 'GET',
-                'https://api.domain/user-info',
+                'https://api.domain/user',
                 [
                     'headers' => [
                         'accept' => 'application/json',
@@ -120,7 +120,7 @@ final class GetUserInfoServiceTest extends TestCase
 
         $client = $this->createMock(HttpClientInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/user-info.json');
+        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/user.json');
 
         $response = $this->createMock(ResponseInterface::class);
         $response
@@ -134,7 +134,7 @@ final class GetUserInfoServiceTest extends TestCase
             ->method('request')
             ->with(
                 'GET',
-                'https://api.domain/user-info',
+                'https://api.domain/user',
                 [
                     'headers' => [
                         'accept' => 'application/json',
