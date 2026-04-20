@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\Security\UserTokenService;
 use App\Service\Back\BackServiceInterface;
-use App\Service\Back\GetDexListService;
+use App\Service\Back\GetAlbumDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -15,14 +15,14 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 /**
  * @internal
  */
-#[CoversClass(GetDexListService::class)]
-final class GetDexListServiceTest extends AbstractTestBackService
+#[CoversClass(GetAlbumDexListService::class)]
+final class GetAlbumDexListServiceTest extends AbstractTestBackService
 {
     public function testGet(): void
     {
         $service = $this->getMockService(
             '/app/tests/resources/unit/service/back/dex.json',
-            '/album/dex',
+            'album/dex',
         );
 
         $expectedSlugs = [
@@ -39,11 +39,11 @@ final class GetDexListServiceTest extends AbstractTestBackService
 
     public function testGetWithEmptyTrainerId(): void
     {
-        /** @var GetDexListService $service */
+        /** @var GetAlbumDexListService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex.json'),
-            '/album/dex',
+            'album/dex',
         );
 
         $expectedSlugs = [
@@ -60,11 +60,11 @@ final class GetDexListServiceTest extends AbstractTestBackService
 
     public function testGetWithTrainerId(): void
     {
-        /** @var GetDexListService $service */
+        /** @var GetAlbumDexListService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex_123.json'),
-            '/album/dex?trainer_id=123',
+            'album/dex?trainer_id=123',
         );
 
         $expectedSlugs = [
@@ -87,7 +87,7 @@ final class GetDexListServiceTest extends AbstractTestBackService
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
     ): BackServiceInterface {
-        return new GetDexListService(
+        return new GetAlbumDexListService(
             $logger,
             $client,
             $url,
@@ -100,8 +100,8 @@ final class GetDexListServiceTest extends AbstractTestBackService
     private function getMockService(
         string $filename,
         string $endpoint,
-    ): GetDexListService {
-        /** @var GetDexListService */
+    ): GetAlbumDexListService {
+        /** @var GetAlbumDexListService */
         return $this->getServiceWithLoggedUser(
             'GET',
             (string) file_get_contents($filename),

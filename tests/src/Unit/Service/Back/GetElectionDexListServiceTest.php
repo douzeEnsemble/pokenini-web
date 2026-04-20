@@ -18,7 +18,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(GetElectionDexListService::class)]
 final class GetElectionDexListServiceTest extends AbstractTestBackService
 {
-    public const ENDPOINT = 'dex/can_hold_election';
+    public const ENDPOINT = 'election/dex';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/election_dex_list.json';
 
     public function testGet(): void
