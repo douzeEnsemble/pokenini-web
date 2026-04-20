@@ -22,7 +22,7 @@ final class GetDexListServiceTest extends AbstractTestBackService
     {
         $service = $this->getMockService(
             '/app/tests/resources/unit/service/back/dex.json',
-            'dex/list',
+            '/album/dex',
         );
 
         $expectedSlugs = [
@@ -43,7 +43,7 @@ final class GetDexListServiceTest extends AbstractTestBackService
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex.json'),
-            'dex/list',
+            '/album/dex',
         );
 
         $expectedSlugs = [
@@ -64,7 +64,7 @@ final class GetDexListServiceTest extends AbstractTestBackService
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex_123.json'),
-            'dex/list?trainer_id=123',
+            '/album/dex?trainer_id=123',
         );
 
         $expectedSlugs = [

@@ -15,7 +15,7 @@ class GetElectionDexListService extends AbstractBackService
     {
         $json = $this->requestContent(
             'GET',
-            '/dex/can_hold_election',
+            '/election/dex',
         );
 
         /** @var string[][] */

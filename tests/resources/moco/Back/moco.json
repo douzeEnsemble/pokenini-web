@@ -653,7 +653,7 @@
   },
   {
     "request": {
-      "uri": "/dex/list",
+      "uri": "/album/dex",
       "headers": {
         "X-Provider": {
           "match": ".*"
@@ -669,7 +669,7 @@
   },
   {
     "request": {
-      "uri": "/dex/list",
+      "uri": "/album/dex",
       "headers": {
         "X-Provider": {
           "match": ".*"
@@ -685,7 +685,7 @@
   },
   {
     "request": {
-      "uri": "/dex/list",
+      "uri": "/album/dex",
       "headers": {
         "accept": "application/json",
         "X-Provider": {
@@ -702,7 +702,7 @@
   },
   {
     "request": {
-      "uri": "/dex/list",
+      "uri": "/album/dex",
       "headers": {
         "accept": "application/json",
         "X-Provider": {
@@ -719,7 +719,7 @@
   },
   {
     "request": {
-      "uri": "/dex/list",
+      "uri": "/album/dex",
       "headers": {
         "accept": "application/json",
         "X-Provider": {
@@ -736,7 +736,7 @@
   },
   {
     "request": {
-      "uri": "/dex/list",
+      "uri": "/album/dex",
       "headers": {
         "accept": "application/json",
         "X-Provider": {
@@ -753,7 +753,7 @@
   },
   {
     "request": {
-      "uri": "/dex/list",
+      "uri": "/album/dex",
       "headers": {
         "accept": "application/json",
         "X-Provider": {
@@ -770,7 +770,7 @@
   },
   {
     "request": {
-      "uri": "/dex/list",
+      "uri": "/album/dex",
       "headers": {
         "accept": "application/json",
         "X-Provider": {
@@ -1583,7 +1583,7 @@
   {
     "request": {
       "uri": {
-        "match": "/dex/can_hold_election"
+        "match": "/election/dex"
       },
       "method": "get",
       "headers": {
@@ -1603,7 +1603,7 @@
   {
     "request": {
       "uri": {
-        "match": "/dex/can_hold_election"
+        "match": "/election/dex"
       },
       "method": "get",
       "headers": {
@@ -1623,7 +1623,7 @@
   {
     "request": {
       "uri": {
-        "match": "/dex/can_hold_election"
+        "match": "/election/dex"
       },
       "method": "get",
       "headers": {
