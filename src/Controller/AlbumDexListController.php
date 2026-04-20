@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Service\Back\GetDexListService;
+use App\Service\Back\GetAlbumDexListService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,7 @@ final class AlbumDexListController extends AbstractController
         methods: ['GET']
     )]
     public function index(
-        GetDexListService $service,
+        GetAlbumDexListService $service,
         Request $request,
     ): Response {
         $requestedTrainerId = $request->query->getAlnum('t', '');
