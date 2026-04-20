@@ -43,10 +43,16 @@ final class UserTokenServiceTest extends TestCase
     public function testFailGetLoggedUserId(): void
     {
         $security = $this->createMock(Security::class);
+        $security
+            ->expects($this->once())
+            ->method('getUser')
+            ->willReturn(null)
+        ;
 
         $service = new UserTokenService($security);
 
         $this->expectException(NoLoggedUserException::class);
+        $this->expectExceptionMessage('No user logged');
         $service->getLoggedUserId();
     }
 

@@ -64,6 +64,10 @@ final class ElectionVoteControllerTest extends TestCase
         $request = new Request();
 
         $electionVoteService = $this->createMock(ElectionVoteService::class);
+        $electionVoteService
+            ->expects($this->never())
+            ->method('vote')
+        ;
 
         $controller = new ElectionVoteController();
 
@@ -82,6 +86,10 @@ final class ElectionVoteControllerTest extends TestCase
         $request = new Request([], ['winners_slugs' => ['pichu']]);
 
         $electionVoteService = $this->createMock(ElectionVoteService::class);
+        $electionVoteService
+            ->expects($this->never())
+            ->method('vote')
+        ;
 
         $controller = new ElectionVoteController();
 

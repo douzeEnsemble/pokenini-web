@@ -94,7 +94,7 @@ final class AdminActionServiceTest extends TestCase
             ->willReturn($user)
         ;
 
-        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer = $this->createStub(SerializerInterface::class);
 
         $service = new AdminActionService(
             $logger,
@@ -185,7 +185,7 @@ final class AdminActionServiceTest extends TestCase
             ->willReturn($user)
         ;
 
-        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer = $this->createStub(SerializerInterface::class);
 
         $service = new AdminActionService(
             $logger,
@@ -266,7 +266,7 @@ final class AdminActionServiceTest extends TestCase
             ->willThrowException(new NoLoggedUserException('No logged user'))
         ;
 
-        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer = $this->createStub(SerializerInterface::class);
 
         $service = new AdminActionService(
             $logger,

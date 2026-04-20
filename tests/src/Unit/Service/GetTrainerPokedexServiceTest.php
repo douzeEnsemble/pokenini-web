@@ -168,7 +168,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
 
     public function testGetPokedexDataHttpException(): void
     {
-        $exception = $this->createMock(HttpExceptionInterface::class);
+        $exception = $this->createStub(HttpExceptionInterface::class);
 
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
@@ -193,7 +193,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
 
     public function testGetPokedexDataTransportException(): void
     {
-        $exception = $this->createMock(TransportExceptionInterface::class);
+        $exception = $this->createStub(TransportExceptionInterface::class);
 
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService

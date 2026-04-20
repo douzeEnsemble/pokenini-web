@@ -123,7 +123,7 @@ cc:
 .PHONY: tests
 tests: ## Execute all tests
 tests:
-	$(PHPUNIT) tests/src
+	$(PHPUNIT) tests/src --display-all
 
 .PHONY: t
 t: ## Alias of tests

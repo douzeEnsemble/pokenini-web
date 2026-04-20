@@ -24,7 +24,7 @@ trait AuthenticatorAuthenticateClosedTestTrait
     {
         $authenticator = $this->getClosedAuthenticator([]);
 
-        $request = $this->createMock(Request::class);
+        $request = $this->createStub(Request::class);
 
         $validationPassport = $authenticator->authenticate($request);
 
@@ -45,7 +45,7 @@ trait AuthenticatorAuthenticateClosedTestTrait
     {
         $authenticator = $this->getClosedAuthenticator(['ROLE_TRAINER']);
 
-        $request = $this->createMock(Request::class);
+        $request = $this->createStub(Request::class);
 
         $validationPassport = $authenticator->authenticate($request);
 
@@ -65,7 +65,7 @@ trait AuthenticatorAuthenticateClosedTestTrait
     {
         $authenticator = $this->getClosedAuthenticator(['ROLE_COLLECTOR']);
 
-        $request = $this->createMock(Request::class);
+        $request = $this->createStub(Request::class);
 
         $validationPassport = $authenticator->authenticate($request);
 
@@ -85,7 +85,7 @@ trait AuthenticatorAuthenticateClosedTestTrait
     {
         $authenticator = $this->getClosedAuthenticator(['ROLE_ADMIN']);
 
-        $request = $this->createMock(Request::class);
+        $request = $this->createStub(Request::class);
 
         $validationPassport = $authenticator->authenticate($request);
 
@@ -105,7 +105,7 @@ trait AuthenticatorAuthenticateClosedTestTrait
     {
         $authenticator = $this->getClosedAuthenticator(['ROLE_TRAINER', 'ROLE_ADMIN']);
 
-        $request = $this->createMock(Request::class);
+        $request = $this->createStub(Request::class);
 
         $validationPassport = $authenticator->authenticate($request);
 
@@ -147,6 +147,10 @@ trait AuthenticatorAuthenticateClosedTestTrait
         ;
 
         $router = $this->createMock(RouterInterface::class);
+        $router
+            ->expects($this->never())
+            ->method('generate')
+        ;
 
         $getUserInfoService = $this->createMock(GetUserInfoService::class);
         $getUserInfoService

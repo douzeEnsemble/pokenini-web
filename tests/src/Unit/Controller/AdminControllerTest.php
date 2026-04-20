@@ -68,6 +68,18 @@ final class AdminControllerTest extends TestCase
         ;
 
         $twig = $this->createMock(Environment::class);
+        $twig
+            ->expects($this->once())
+            ->method('render')
+            ->with(
+                'Admin/index.html.twig',
+                [
+                    'reportsData' => [],
+                    'actionLogsData' => [],
+                ]
+            )
+            ->willReturn('<html></html>')
+        ;
 
         $container = $this->createMock(ContainerInterface::class);
         $container
@@ -148,6 +160,18 @@ final class AdminControllerTest extends TestCase
         ;
 
         $twig = $this->createMock(Environment::class);
+        $twig
+            ->expects($this->once())
+            ->method('render')
+            ->with(
+                'Admin/index.html.twig',
+                [
+                    'reportsData' => [],
+                    'actionLogsData' => [],
+                ]
+            )
+            ->willReturn('<html></html>')
+        ;
 
         $container = $this->createMock(ContainerInterface::class);
         $container

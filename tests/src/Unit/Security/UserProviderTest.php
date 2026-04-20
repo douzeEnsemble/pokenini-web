@@ -49,9 +49,9 @@ final class UserProviderTest extends TestCase
         $provider = new UserProvider();
 
         $this->expectException(UnsupportedUserException::class);
-        $this->expectExceptionMessageMatches('/Invalid user class "MockObject_UserInterface_.{8}"\./');
+        $this->expectExceptionMessageMatches('/Invalid user class "TestStub_UserInterface_.{8}"\./');
 
-        $notUser = $this->createMock(UserInterface::class);
+        $notUser = $this->createStub(UserInterface::class);
 
         $provider->refreshUser($notUser);
     }
@@ -60,7 +60,7 @@ final class UserProviderTest extends TestCase
     {
         $provider = new UserProvider();
 
-        $user = $initialUser = $this->createMock(PasswordAuthenticatedUserInterface::class);
+        $user = $initialUser = $this->createStub(PasswordAuthenticatedUserInterface::class);
 
         $provider->upgradePassword($user, 'e3ca7fbe759a0d0afb2cbd2a62390472');
 
