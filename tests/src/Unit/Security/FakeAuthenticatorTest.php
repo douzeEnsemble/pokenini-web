@@ -19,9 +19,9 @@ final class FakeAuthenticatorTest extends TestCase
 {
     public function testSupports(): void
     {
-        $router = $this->createMock(RouterInterface::class);
+        $router = $this->createStub(RouterInterface::class);
 
-        $getUserInfoService = $this->createMock(GetUserInfoService::class);
+        $getUserInfoService = $this->createStub(GetUserInfoService::class);
 
         $authenticator = new FakeAuthenticator(
             $router,

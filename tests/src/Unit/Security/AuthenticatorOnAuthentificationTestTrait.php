@@ -41,7 +41,7 @@ trait AuthenticatorOnAuthentificationTestTrait
         ]);
 
         $response = $authenticator->onAuthenticationSuccess(
-            $this->createMock(Request::class),
+            $this->createStub(Request::class),
             $token,
             'web'
         );
@@ -74,7 +74,7 @@ trait AuthenticatorOnAuthentificationTestTrait
         ]);
 
         $response = $authenticator->onAuthenticationSuccess(
-            $this->createMock(Request::class),
+            $this->createStub(Request::class),
             $token,
             'web'
         );
@@ -90,7 +90,7 @@ trait AuthenticatorOnAuthentificationTestTrait
         $authenticator = $this->getOnAuthenticationAuthenticator([]);
 
         $response = $authenticator->onAuthenticationFailure(
-            $this->createMock(Request::class),
+            $this->createStub(Request::class),
             new AuthenticationException()
         );
 

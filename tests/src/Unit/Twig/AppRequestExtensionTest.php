@@ -20,7 +20,12 @@ final class AppRequestExtensionTest extends TestCase
     public function testGetArrayFromRequestWithoutRequest(): void
     {
         $requestStack = $this->createMock(RequestStack::class);
-        $requestStack->method('getCurrentRequest')->willReturn(null);
+        $requestStack
+            ->expects($this->once())
+            ->method('getCurrentRequest')
+            ->with()
+            ->willReturn(null)
+        ;
 
         $extension = new AppRequestExtension($requestStack);
 
@@ -34,9 +39,15 @@ final class AppRequestExtensionTest extends TestCase
     #[DataProvider('providerGetArrayFromRequestWithRequest')]
     public function testGetArrayFromRequestWithRequest(array $query, string $name, array $expected): void
     {
-        $requestStack = $this->createMock(RequestStack::class);
         $request = new Request($query);
-        $requestStack->method('getCurrentRequest')->willReturn($request);
+
+        $requestStack = $this->createMock(RequestStack::class);
+        $requestStack
+            ->expects($this->once())
+            ->method('getCurrentRequest')
+            ->with()
+            ->willReturn($request)
+        ;
 
         $extension = new AppRequestExtension($requestStack);
 

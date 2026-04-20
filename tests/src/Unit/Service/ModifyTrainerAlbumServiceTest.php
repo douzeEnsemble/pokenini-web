@@ -50,7 +50,7 @@ final class ModifyTrainerAlbumServiceTest extends TestCase
 
     public function testModifyDexWithHttpException(): void
     {
-        $exception = $this->createMock(HttpExceptionInterface::class);
+        $exception = $this->createStub(HttpExceptionInterface::class);
 
         $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
         $modifyAlbumService
@@ -104,7 +104,7 @@ final class ModifyTrainerAlbumServiceTest extends TestCase
 
     public function testModifyDexWithTransportException(): void
     {
-        $exception = $this->createMock(TransportExceptionInterface::class);
+        $exception = $this->createStub(TransportExceptionInterface::class);
 
         $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
         $modifyAlbumService

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Controller;
 
 use App\Controller\AdminActionController;
+use App\DTO\AdminAction;
 use App\Service\Back\AdminActionService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -23,6 +24,12 @@ final class AdminActionControllerTest extends TestCase
     public function testAction(): void
     {
         $adminActionService = $this->createMock(AdminActionService::class);
+        $adminActionService
+            ->expects($this->once())
+            ->method('execute')
+            ->with('invalidate', 'something')
+            ->willReturn(new AdminAction('invalidate', 'something', 'ok', '', ''))
+        ;
 
         $session = $this->createMock(SessionInterface::class);
         $session
@@ -38,6 +45,10 @@ final class AdminActionControllerTest extends TestCase
         ;
 
         $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->never())
+            ->method('critical')
+        ;
 
         $router = $this->createMock(RouterInterface::class);
         $router

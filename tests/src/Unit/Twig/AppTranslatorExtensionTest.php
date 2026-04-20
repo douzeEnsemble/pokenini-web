@@ -19,7 +19,7 @@ final class AppTranslatorExtensionTest extends TestCase
 {
     public function testGetFilters(): void
     {
-        $translator = $this->createMock(TranslatorInterface::class);
+        $translator = $this->createStub(TranslatorInterface::class);
         $extension = new AppTranslatorExtension($translator);
 
         $filters = $extension->getFilters();

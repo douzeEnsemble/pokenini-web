@@ -54,13 +54,13 @@ final class ModifyAlbumServiceTest extends AbstractTestBackService
 
     public function testModifyPost(): void
     {
-        $logger = $this->createMock(LoggerInterface::class);
+        $logger = $this->createStub(LoggerInterface::class);
 
-        $client = $this->createMock(HttpClientInterface::class);
+        $client = $this->createStub(HttpClientInterface::class);
 
-        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService = $this->createStub(UserTokenService::class);
 
-        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer = $this->createStub(SerializerInterface::class);
 
         $service = new ModifyAlbumService(
             $logger,

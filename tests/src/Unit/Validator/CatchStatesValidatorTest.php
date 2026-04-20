@@ -8,6 +8,7 @@ use App\ResponseObject\Label\CatchState;
 use App\Service\GetLabelsService;
 use App\Validator\CatchStates;
 use App\Validator\CatchStatesValidator;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -21,6 +22,7 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
  *
  * @extends ConstraintValidatorTestCase<CatchStatesValidator>
  */
+#[AllowMockObjectsWithoutExpectations]
 #[CoversClass(CatchStatesValidator::class)]
 #[UsesClass(CatchStates::class)]
 final class CatchStatesValidatorTest extends ConstraintValidatorTestCase
