@@ -18,7 +18,7 @@ class GetDexListService extends AbstractBackService
 
         $json = $this->requestContent(
             'GET',
-            "/dex/list{$urlQueryParams}",
+            "/album/dex{$urlQueryParams}",
         );
 
         /** @var string[][] */
