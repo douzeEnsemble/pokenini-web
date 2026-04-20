@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\DTO\DexFilters;
 use App\DTO\DexFiltersRequest;
-use App\Service\Back\GetAlbumDexListService;
+use App\Service\Back\GetTrainerDexListService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class TrainerIndexController extends AbstractController
 {
     public function __construct(
-        private readonly GetAlbumDexListService $getDexService,
+        private readonly GetTrainerDexListService $getDexService,
     ) {}
 
     #[Route('')]

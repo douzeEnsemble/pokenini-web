@@ -2496,5 +2496,139 @@
     "response": {
       "status": "200"
     }
+  },
+  {
+    "request": {
+      "uri": "/trainer/dex",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer admin"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/admin.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/dex",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer collector"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/collector_premium.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/dex",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 159bb9b6d090a313087d2f26135970c2db49ee72"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/159bb9b6d090a313087d2f26135970c2db49ee72.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/dex",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer b6589fc6ab0dc82cf12099d1c2d40ab994e8410c"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/b6589fc6ab0dc82cf12099d1c2d40ab994e8410c.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/dex",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 356a192b7913b04c54574d18c28d46e6395428ab"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/356a192b7913b04c54574d18c28d46e6395428ab.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/dex",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer da4b9237bacccdf19c0760cab7aec4a8359010b0"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/da4b9237bacccdf19c0760cab7aec4a8359010b0.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/dex",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 6c33064427a5b419ca8eb3f7d11a0807f66cab22"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/trainer.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/dex",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/trainer.json"
+    }
   }
 ]
