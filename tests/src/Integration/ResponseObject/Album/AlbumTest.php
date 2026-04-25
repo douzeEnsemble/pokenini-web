@@ -24,15 +24,26 @@ final class AlbumTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = self::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/pokedex_lite.json');
+        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/album_lite.json');
 
         $object = $serializer->deserialize($json, Album::class, 'json');
 
         $this->assertInstanceOf(Album::class, $object);
-        $this->assertInstanceOf(Dex::class, $object->getDex());
-        $this->assertCount(41, $object->getPokemons());
-        $this->assertContainsOnlyInstancesOf(Pokemon::class, $object->getPokemons());
-        $this->assertNotSame($object->getReport(), $object->getFilteredReport());
+
+        $this->assertInstanceOf(Dex::class, $object->getPokedex()->getDex());
+        $this->assertCount(41, $object->getPokedex()->getPokemons());
+        $this->assertContainsOnlyInstancesOf(Pokemon::class, $object->getPokedex()->getPokemons());
+        $this->assertNotSame($object->getPokedex()->getReport(), $object->getPokedex()->getFilteredReport());
+
+        $this->assertSame(
+            [
+                't1' => [
+                    'fire',
+                    'water',
+                ],
+            ],
+            $object->getFilters(),
+        );
     }
 
     public function testDeserializeWithNull(): void
@@ -44,17 +55,23 @@ final class AlbumTest extends KernelTestCase
 
         $json = <<<'JSON'
             {
-                "dex": null,
-                "pokemons": [],
-                "report": {},
-                "filtered_report": {}
+                "pokedex": {
+                    "dex": null,
+                    "pokemons": [],
+                    "report": {},
+                    "filtered_report": {}
+                },
+                "filters": []
             }
             JSON;
 
         $object = $serializer->deserialize($json, Album::class, 'json');
 
         $this->assertInstanceOf(Album::class, $object);
-        $this->assertNull($object->getDex());
-        $this->assertCount(0, $object->getPokemons());
+
+        $this->assertNull($object->getPokedex()->getDex());
+        $this->assertCount(0, $object->getPokedex()->getPokemons());
+
+        $this->assertEmpty($object->getFilters());
     }
 }

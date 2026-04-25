@@ -9,6 +9,7 @@ use App\Exception\EmptyContentException;
 use App\Exception\InvalidJsonException;
 use App\ResponseObject\Album\Album;
 use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Album\Report;
 use App\Service\GetTrainerPokedexService;
 use App\Service\ModifyTrainerAlbumService;
@@ -21,6 +22,8 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * @internal
+ *
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
  */
 #[CoversClass(AlbumUpsertController::class)]
 #[CoversClass(ModifyTrainerAlbumService::class)]
@@ -43,27 +46,30 @@ final class AlbumUpsertControllerTest extends TestCase
             ->with('douze', [])
             ->willReturn(
                 new Album(
-                    new Dex(
-                        'douze',
-                        '',
-                        '',
-                        '',
-                        false,
-                        false,
-                        false,
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        0.0,
-                        false,
-                        true,
-                        false,
+                    new Pokedex(
+                        new Dex(
+                            'douze',
+                            '',
+                            '',
+                            '',
+                            false,
+                            false,
+                            false,
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            0.0,
+                            false,
+                            true,
+                            false,
+                        ),
+                        [],
+                        new Report(null, null, null, []),
+                        new Report(null, null, null, []),
                     ),
                     [],
-                    new Report(null, null, null, []),
-                    new Report(null, null, null, []),
                 )
             )
         ;
@@ -215,10 +221,13 @@ final class AlbumUpsertControllerTest extends TestCase
             ->with('douze', [])
             ->willReturn(
                 new Album(
-                    null,
+                    new Pokedex(
+                        null,
+                        [],
+                        new Report(null, null, null, []),
+                        new Report(null, null, null, []),
+                    ),
                     [],
-                    new Report(null, null, null, []),
-                    new Report(null, null, null, []),
                 )
             )
         ;

@@ -4,45 +4,30 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Album;
 
-use App\ResponseObject\Common\Pokemon;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final class Album
 {
     /**
-     * @param Pokemon[] $pokemons
+     * @param array<string, array<int, string>|string> $filters
      */
     public function __construct(
-        #[SerializedName('dex')]
-        private readonly ?Dex $dex,
-        #[SerializedName('pokemons')]
-        private readonly array $pokemons,
-        #[SerializedName('report')]
-        private readonly Report $report,
-        #[SerializedName('filtered_report')]
-        private readonly Report $filteredReport,
+        #[SerializedName('pokedex')]
+        private readonly Pokedex $pokedex,
+        #[SerializedName('filters')]
+        private readonly array $filters,
     ) {}
 
-    public function getDex(): ?Dex
+    public function getPokedex(): Pokedex
     {
-        return $this->dex;
+        return $this->pokedex;
     }
 
     /**
-     * @return Pokemon[]
+     * @return array<string, array<int, string>|string>
      */
-    public function getPokemons(): array
+    public function getFilters(): array
     {
-        return $this->pokemons;
-    }
-
-    public function getReport(): Report
-    {
-        return $this->report;
-    }
-
-    public function getFilteredReport(): Report
-    {
-        return $this->filteredReport;
+        return $this->filters;
     }
 }
