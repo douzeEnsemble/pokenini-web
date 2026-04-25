@@ -42,10 +42,10 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $pokedexData = $service->getPokedexData('douze', []);
 
         $this->assertNotNull($pokedexData);
-        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
-        $this->assertCount(1, $pokedexData->getPokemons());
-        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
-        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
+        $this->assertSame('Stub', $pokedexData->getPokedex()->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokedex()->getPokemons());
+        $this->assertSame(2, $pokedexData->getPokedex()->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataWithFilters(): void
@@ -78,10 +78,10 @@ final class GetTrainerPokedexServiceTest extends TestCase
         );
 
         $this->assertNotNull($pokedexData);
-        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
-        $this->assertCount(1, $pokedexData->getPokemons());
-        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
-        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
+        $this->assertSame('Stub', $pokedexData->getPokedex()->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokedex()->getPokemons());
+        $this->assertSame(2, $pokedexData->getPokedex()->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataWithTrainerId(): void
@@ -106,10 +106,10 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $pokedexData = $service->getPokedexData('douze', [], '8800088');
 
         $this->assertNotNull($pokedexData);
-        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
-        $this->assertCount(1, $pokedexData->getPokemons());
-        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
-        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
+        $this->assertSame('Stub', $pokedexData->getPokedex()->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokedex()->getPokemons());
+        $this->assertSame(2, $pokedexData->getPokedex()->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataWithNullTrainerId(): void
@@ -133,10 +133,10 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $pokedexData = $service->getPokedexData('douze', [], null);
 
         $this->assertNotNull($pokedexData);
-        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
-        $this->assertCount(1, $pokedexData->getPokemons());
-        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
-        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
+        $this->assertSame('Stub', $pokedexData->getPokedex()->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokedex()->getPokemons());
+        $this->assertSame(2, $pokedexData->getPokedex()->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataWithEmptyTrainerId(): void
@@ -160,10 +160,10 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $pokedexData = $service->getPokedexData('douze', [], '');
 
         $this->assertNotNull($pokedexData);
-        $this->assertSame('Stub', $pokedexData->getDex()?->getName());
-        $this->assertCount(1, $pokedexData->getPokemons());
-        $this->assertSame(2, $pokedexData->getReport()->getTotalCaught());
-        $this->assertSame(0, $pokedexData->getFilteredReport()->getTotalCaught());
+        $this->assertSame('Stub', $pokedexData->getPokedex()->getDex()?->getName());
+        $this->assertCount(1, $pokedexData->getPokedex()->getPokemons());
+        $this->assertSame(2, $pokedexData->getPokedex()->getReport()->getTotalCaught());
+        $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetPokedexDataHttpException(): void

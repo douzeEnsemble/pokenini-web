@@ -10,6 +10,7 @@ use App\Exception\InvalidJsonException;
 use App\Exception\ModifyFailedException;
 use App\ResponseObject\Album\Album;
 use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Album\Report;
 use App\Service\GetTrainerPokedexService;
 use App\Service\ModifyTrainerDexService;
@@ -244,27 +245,30 @@ final class TrainerUpsertControllerTest extends TestCase
             ->with('douze', [])
             ->willReturn(
                 new Album(
-                    new Dex(
-                        'douze',
-                        '',
-                        '',
-                        '',
-                        false,
-                        false,
-                        false,
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        0.0,
-                        false,
-                        false,
-                        false,
+                    new Pokedex(
+                        new Dex(
+                            'douze',
+                            '',
+                            '',
+                            '',
+                            false,
+                            false,
+                            false,
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            0.0,
+                            false,
+                            false,
+                            false,
+                        ),
+                        [],
+                        new Report(null, null, null, []),
+                        new Report(null, null, null, []),
                     ),
                     [],
-                    new Report(null, null, null, []),
-                    new Report(null, null, null, []),
                 )
             )
         ;
@@ -319,27 +323,30 @@ final class TrainerUpsertControllerTest extends TestCase
             ->with('douze', [])
             ->willReturn(
                 new Album(
-                    new Dex(
-                        'douze',
-                        '',
-                        '',
-                        '',
-                        false,
-                        false,
-                        false,
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        0.0,
-                        false,
-                        true,
-                        false,
+                    new Pokedex(
+                        new Dex(
+                            'douze',
+                            '',
+                            '',
+                            '',
+                            false,
+                            false,
+                            false,
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            0.0,
+                            false,
+                            true,
+                            false,
+                        ),
+                        [],
+                        new Report(null, null, null, []),
+                        new Report(null, null, null, []),
                     ),
                     [],
-                    new Report(null, null, null, []),
-                    new Report(null, null, null, []),
                 )
             )
         ;
@@ -400,27 +407,30 @@ final class TrainerUpsertControllerTest extends TestCase
             ->with('douze', [])
             ->willReturn(
                 new Album(
-                    new Dex(
-                        'douze',
-                        '',
-                        '',
-                        '',
-                        false,
-                        false,
-                        false,
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        0.0,
-                        false,
-                        true,
-                        false,
+                    new Pokedex(
+                        new Dex(
+                            'douze',
+                            '',
+                            '',
+                            '',
+                            false,
+                            false,
+                            false,
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            0.0,
+                            false,
+                            true,
+                            false,
+                        ),
+                        [],
+                        new Report(null, null, null, []),
+                        new Report(null, null, null, []),
                     ),
-                    [],
-                    new Report(null, null, null, []),
-                    new Report(null, null, null, []),
+                    []
                 )
             )
         ;

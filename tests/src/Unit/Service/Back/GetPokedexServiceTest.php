@@ -60,10 +60,10 @@ final class GetPokedexServiceTest extends AbstractTestBackService
             ],
         );
 
-        $this->assertSame('Stub', $album->getDex()?->getName());
-        $this->assertCount(1, $album->getPokemons());
-        $this->assertSame(2, $album->getReport()->getTotalCaught());
-        $this->assertSame(0, $album->getFilteredReport()->getTotalCaught());
+        $this->assertSame('Stub', $album->getPokedex()->getDex()?->getName());
+        $this->assertCount(1, $album->getPokedex()->getPokemons());
+        $this->assertSame(2, $album->getPokedex()->getReport()->getTotalCaught());
+        $this->assertSame(0, $album->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
     public function testGetWithTrainerId(): void
@@ -106,10 +106,10 @@ final class GetPokedexServiceTest extends AbstractTestBackService
             ],
         );
 
-        $this->assertSame('Stub', $album->getDex()?->getName());
-        $this->assertCount(1, $album->getPokemons());
-        $this->assertSame(2, $album->getReport()->getTotalCaught());
-        $this->assertSame(0, $album->getFilteredReport()->getTotalCaught());
+        $this->assertSame('Stub', $album->getPokedex()->getDex()?->getName());
+        $this->assertCount(1, $album->getPokedex()->getPokemons());
+        $this->assertSame(2, $album->getPokedex()->getReport()->getTotalCaught());
+        $this->assertSame(0, $album->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
     #[\Override]

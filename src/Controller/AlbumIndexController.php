@@ -42,11 +42,16 @@ final class AlbumIndexController extends AbstractController
         $filters = FromRequest::get($request);
         $apiFilters = Mapping::get($filters);
 
-        $pokedex = $this->getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters, $requestedTrainerId);
-        if (null === $pokedex || null === $pokedex->getDex()) {
+        $album = $this->getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters, $requestedTrainerId);
+        if (null === $album || null === $album->getPokedex()->getDex()) {
             throw $this->createNotFoundException();
         }
 
+        $pokedex = $album->getPokedex();
+
+        /**
+         * @var Dex $dex
+         */
         $dex = $pokedex->getDex();
 
         if (!$this->accessDexIsGranted($dex, $requestedTrainerId)) {

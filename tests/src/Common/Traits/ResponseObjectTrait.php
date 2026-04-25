@@ -7,6 +7,7 @@ namespace App\Tests\Common\Traits;
 use App\DTO\ElectionTop;
 use App\ResponseObject\Album\Album;
 use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Album\Report;
 use App\ResponseObject\Album\ReportDetail;
 use App\ResponseObject\Common\Pokemon;
@@ -74,75 +75,86 @@ trait ResponseObjectTrait
     protected function getStubAlbum(): Album
     {
         return new Album(
-            new Dex(
-                'stubby',
-                'stub',
-                'Stub',
-                'Bout',
-                true,
-                false,
-                true,
-                'list',
-                'South',
-                'Sud',
-                'Stub of south',
-                'Bout du Sud',
-                546.46545,
-                true,
-                true,
-                true,
+            new Pokedex(
+                new Dex(
+                    'stubby',
+                    'stub',
+                    'Stub',
+                    'Bout',
+                    true,
+                    false,
+                    true,
+                    'list',
+                    'South',
+                    'Sud',
+                    'Stub of south',
+                    'Bout du Sud',
+                    546.46545,
+                    true,
+                    true,
+                    true,
+                ),
+                [
+                    $this->getStubPokemon(),
+                ],
+                new Report(
+                    3,
+                    2,
+                    1,
+                    [
+                        new ReportDetail(
+                            'no',
+                            'No',
+                            'Non',
+                            1,
+                        ),
+                        new ReportDetail(
+                            'yes',
+                            'Yes',
+                            'Oui',
+                            2,
+                        ),
+                    ]
+                ),
+                new Report(
+                    1,
+                    0,
+                    1,
+                    [
+                        new ReportDetail(
+                            'no',
+                            'No',
+                            'Non',
+                            1,
+                        ),
+                        new ReportDetail(
+                            'yes',
+                            'Yes',
+                            'Oui',
+                            0,
+                        ),
+                    ]
+                ),
             ),
             [
-                $this->getStubPokemon(),
+                't1' => [
+                    'fire',
+                    'water',
+                ],
             ],
-            new Report(
-                3,
-                2,
-                1,
-                [
-                    new ReportDetail(
-                        'no',
-                        'No',
-                        'Non',
-                        1,
-                    ),
-                    new ReportDetail(
-                        'yes',
-                        'Yes',
-                        'Oui',
-                        2,
-                    ),
-                ]
-            ),
-            new Report(
-                1,
-                0,
-                1,
-                [
-                    new ReportDetail(
-                        'no',
-                        'No',
-                        'Non',
-                        1,
-                    ),
-                    new ReportDetail(
-                        'yes',
-                        'Yes',
-                        'Oui',
-                        0,
-                    ),
-                ]
-            ),
         );
     }
 
     protected function getStubAlbumEmpty(): Album
     {
         return new Album(
-            null,
+            new Pokedex(
+                null,
+                [],
+                new Report(null, null, null, []),
+                new Report(null, null, null, []),
+            ),
             [],
-            new Report(null, null, null, []),
-            new Report(null, null, null, []),
         );
     }
 

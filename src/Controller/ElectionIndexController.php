@@ -12,6 +12,7 @@ use App\Service\GetLabelsService;
 use App\Service\GetPokemonsListService;
 use App\Service\GetTrainerPokedexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -40,10 +41,15 @@ final class ElectionIndexController extends AbstractController
         $filters = FromRequest::get($request);
         $apiFilters = Mapping::get($filters);
 
+        $album = $getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters);
+
+        if (null === $album) {
+            return new JsonResponse([], 404);
+        }
+
         $top = $electionTopService->getTop($dexSlug, $electionSlug);
         $list = $getPokemonsListService->get($dexSlug, $electionSlug, $apiFilters);
         $metrics = $metricsService->getMetrics($dexSlug, $electionSlug);
-        $pokedex = $getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters);
 
         $detachedCount = 0;
         foreach ($top->getItems() as $pokemon) {
@@ -68,7 +74,7 @@ final class ElectionIndexController extends AbstractController
             [
                 'listType' => $list->getType(),
                 'pokemons' => $list->getItems(),
-                'pokedex' => $pokedex,
+                'pokedex' => $album->getPokedex(),
                 'types' => $types,
                 'categoryForms' => $categoryForms,
                 'regionalForms' => $regionalForms,

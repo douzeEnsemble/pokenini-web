@@ -399,6 +399,19 @@ final class ElectionIndexTest extends WebTestCase
         $client->request('GET', '/fr/election/demolite');
     }
 
+    public function testIndexNoAlbum(): void
+    {
+        $client = self::createClient();
+
+        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $client->request('GET', '/fr/election/demolitetion');
+
+        $this->assertResponseStatusCodeSame(404);
+    }
+
     private function assertCardContentDemoLite(Crawler $crawler): void
     {
         $this->assertEquals(
