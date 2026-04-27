@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Common\Traits;
 
-use App\DTO\ElectionTop;
 use App\ResponseObject\Album\Album;
 use App\ResponseObject\Album\Dex;
 use App\ResponseObject\Album\Pokedex;
@@ -223,15 +222,6 @@ trait ResponseObjectTrait
             2,
             false,
         );
-    }
-
-    protected function getStubElectionTop(): ElectionTop
-    {
-        return new ElectionTop([
-            $this->getStubTopPokemon(),
-            $this->getStubTopPokemon(),
-            $this->getStubTopPokemon(),
-        ]);
     }
 
     protected function getStubElectionList(): ElectionList

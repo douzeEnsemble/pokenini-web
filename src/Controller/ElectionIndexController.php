@@ -6,13 +6,9 @@ namespace App\Controller;
 
 use App\AlbumFilters\FromRequest;
 use App\AlbumFilters\Mapping;
-use App\Service\ElectionMetricsService;
-use App\Service\ElectionTopService;
+use App\Service\ElectionIndexService;
 use App\Service\GetLabelsService;
-use App\Service\GetPokemonsListService;
-use App\Service\GetTrainerPokedexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -26,14 +22,12 @@ final class ElectionIndexController extends AbstractController
             'dexSlug' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*',
             'electionSlug' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*',
         ],
+        defaults: ['electionSlug' => ''],
         methods: ['GET']
     )]
     public function index(
-        GetPokemonsListService $getPokemonsListService,
         GetLabelsService $getLabelsService,
-        ElectionTopService $electionTopService,
-        ElectionMetricsService $metricsService,
-        GetTrainerPokedexService $getTrainerPokedexService,
+        ElectionIndexService $electionIndexService,
         Request $request,
         string $dexSlug,
         string $electionSlug = '',
@@ -41,52 +35,30 @@ final class ElectionIndexController extends AbstractController
         $filters = FromRequest::get($request);
         $apiFilters = Mapping::get($filters);
 
-        $album = $getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters);
+        $data = $electionIndexService->get($dexSlug, $electionSlug, $apiFilters);
 
-        if (null === $album) {
-            return new JsonResponse([], 404);
+        if (null === $data) {
+            throw $this->createNotFoundException('Election not found');
         }
-
-        $top = $electionTopService->getTop($dexSlug, $electionSlug);
-        $list = $getPokemonsListService->get($dexSlug, $electionSlug, $apiFilters);
-        $metrics = $metricsService->getMetrics($dexSlug, $electionSlug);
-
-        $detachedCount = 0;
-        foreach ($top->getItems() as $pokemon) {
-            if ($pokemon->isSignificance()) {
-                ++$detachedCount;
-            }
-        }
-
-        $isTheLastPage = 0 === $metrics->underMaxViewCount && $metrics->maxViewCount === count($list->getItems());
-        $isTheLastOne = $isTheLastPage && 1 === $metrics->maxViewCount;
-
-        $types = $getLabelsService->getTypes();
-        $categoryForms = $getLabelsService->getFormsCategory();
-        $regionalForms = $getLabelsService->getFormsRegional();
-        $specialForms = $getLabelsService->getFormsSpecial();
-        $variantForms = $getLabelsService->getFormsVariant();
-        $gameBundles = $getLabelsService->getGameBundles();
-        $collections = $getLabelsService->getCollections();
 
         return $this->render(
             'Election/index.html.twig',
             [
-                'listType' => $list->getType(),
-                'pokemons' => $list->getItems(),
-                'pokedex' => $album->getPokedex(),
-                'types' => $types,
-                'categoryForms' => $categoryForms,
-                'regionalForms' => $regionalForms,
-                'specialForms' => $specialForms,
-                'variantForms' => $variantForms,
-                'gameBundles' => $gameBundles,
-                'collections' => $collections,
-                'electionTop' => $top,
-                'metrics' => $metrics,
-                'detachedCount' => $detachedCount,
-                'isTheLastOne' => $isTheLastOne,
-                'isTheLastPage' => $isTheLastPage,
+                'listType' => $data->listType,
+                'pokemons' => $data->pokemons,
+                'pokedex' => $data->pokedex,
+                'types' => $getLabelsService->getTypes(),
+                'categoryForms' => $getLabelsService->getFormsCategory(),
+                'regionalForms' => $getLabelsService->getFormsRegional(),
+                'specialForms' => $getLabelsService->getFormsSpecial(),
+                'variantForms' => $getLabelsService->getFormsVariant(),
+                'gameBundles' => $getLabelsService->getGameBundles(),
+                'collections' => $getLabelsService->getCollections(),
+                'electionTop' => $data->electionTop,
+                'metrics' => $data->metrics,
+                'detachedCount' => $data->detachedCount,
+                'isTheLastOne' => $data->isTheLastOne,
+                'isTheLastPage' => $data->isTheLastPage,
             ]
         );
     }

@@ -5,8 +5,6 @@ services:
     bind:
       string $backUrl: "%env(BACK_URL)%"
       string $backCafilePath: "%env(BACK_CAFILE_PATH)%"
-      int $electionTopCount: "%env(ELECTION_TOP_COUNT)%"
-      int $electionCandidateCount: "%env(ELECTION_CANDIDATE_COUNT)%"
 
   App\:
     resource: "../src/"
