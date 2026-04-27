@@ -88,7 +88,7 @@ trait ResponseObjectTrait
                     'Sud',
                     'Stub of south',
                     'Bout du Sud',
-                    546.46545,
+                    '546.46545',
                     true,
                     true,
                     true,

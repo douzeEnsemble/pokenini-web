@@ -36,7 +36,7 @@ final class DexTest extends KernelTestCase
                 "region_french_name": "Kan-to",
                 "description": "A small pokedex",
                 "french_description": "Un petit pokédex",
-                "version": 0,
+                "version": "0.0",
                 "is_released": true,
                 "is_premium": false,
                 "is_custom": false
@@ -58,7 +58,7 @@ final class DexTest extends KernelTestCase
         $this->assertSame('Kan-to', $object->getRegionFrenchName());
         $this->assertSame('A small pokedex', $object->getDescription());
         $this->assertSame('Un petit pokédex', $object->getFrenchDescription());
-        $this->assertSame(0.0, $object->getVersion());
+        $this->assertSame('0.0', $object->getVersion());
         $this->assertTrue($object->isReleased());
         $this->assertFalse($object->isPremium());
         $this->assertFalse($object->isCustom());
@@ -85,7 +85,7 @@ final class DexTest extends KernelTestCase
                 "region_french_name": "Kan-to",
                 "description": "A small pokedex",
                 "french_description": "Un petit pokédex",
-                "version": 0,
+                "version": "0",
                 "is_released": true,
                 "is_premium": false,
                 "is_custom": false
@@ -107,7 +107,7 @@ final class DexTest extends KernelTestCase
         $this->assertSame('Kan-to', $object->getRegionFrenchName());
         $this->assertSame('A small pokedex', $object->getDescription());
         $this->assertSame('Un petit pokédex', $object->getFrenchDescription());
-        $this->assertSame(0.0, $object->getVersion());
+        $this->assertSame('0', $object->getVersion());
         $this->assertTrue($object->isReleased());
         $this->assertFalse($object->isPremium());
         $this->assertFalse($object->isCustom());

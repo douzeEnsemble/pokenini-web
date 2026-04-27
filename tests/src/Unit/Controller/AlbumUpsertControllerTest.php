@@ -60,7 +60,7 @@ final class AlbumUpsertControllerTest extends TestCase
                             '',
                             '',
                             '',
-                            0.0,
+                            '0.0',
                             false,
                             true,
                             false,

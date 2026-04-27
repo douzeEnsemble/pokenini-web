@@ -15,7 +15,7 @@
       "is_on_home": false,
       "description": "The list of obtainable Pokémons in Black and White games.\n\nPokémons have different shapes depending on the gender or not. We also have transformations as for Giratina or Shaymin.",
       "french_description": "La liste des pokémons obtenable dans les jeux Noire et Blanche.\n\nLes pokémons ont des formes différentes en fonction du genre ou pas. On a aussi des transformations comme pour Giratina ou Shaymin.",
-      "version": 2,
+      "version": "2",
       "is_released": true,
       "is_premium": false,
       "is_custom": false

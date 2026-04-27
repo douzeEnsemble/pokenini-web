@@ -13,7 +13,7 @@
       "region_french_name": "",
       "description": "All Pokémons that can be transferred to Pokémon Home.\n\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pokémons anyway, in case it changes)",
       "french_description": "Tous les pokémons pouvant être transférés sur Pokémon Home. \n\nIncluant les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
-      "version": 4,
+      "version": "4",
       "is_released": true,
       "is_premium": false,
       "is_custom": false
