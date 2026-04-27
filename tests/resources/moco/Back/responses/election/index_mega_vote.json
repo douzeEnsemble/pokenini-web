@@ -414,7 +414,7 @@
       "is_on_home": false,
       "description": "The list of all Pokémons with a mega or primal evolution in the different X, Y or Suns and Moon games (for example).",
       "french_description": "La liste de tous les pokémons ayant une méga ou primo évolution dans les différents jeux X, Y ou Soleil et Lune (par exemple).",
-      "version": 20230421.090014,
+      "version": "20230421.090014",
       "is_released": true,
       "is_premium": false,
       "is_custom": false

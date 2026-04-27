@@ -15,7 +15,7 @@
       "is_on_home": false,
       "description": "The list of obtainable Pokémons in Gold, Silver and Crystal games.\n\nOnly Unown have different forms, only the 26 letters of the alphabet.",
       "french_description": "La liste des pokémons obtenable dans les jeux Or, Argent et Cristal.\n\nSeul les Zarbi ont des formes différentes, seulement les 26 lettres de l'alphabet.",
-      "version": 20231231.091211,
+      "version": "20231231.091211",
       "is_released": true,
       "is_premium": false,
       "is_custom": false

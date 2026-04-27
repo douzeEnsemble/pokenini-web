@@ -37,7 +37,7 @@ final class Dex
         #[SerializedName('french_description')]
         private readonly string $frenchDescription,
         #[SerializedName('version')]
-        private readonly float $version,
+        private readonly string $version,
         #[SerializedName('is_released')]
         private readonly bool $isReleased,
         #[SerializedName('is_premium')]
@@ -106,7 +106,7 @@ final class Dex
         return $this->frenchDescription;
     }
 
-    public function getVersion(): float
+    public function getVersion(): string
     {
         return $this->version;
     }

@@ -15,7 +15,7 @@
       "is_on_home": false,
       "description": "The list of obtainable Pokémons in Red, Blue, Yellow and even Green games.\n\nThere were no different forms for the same Pokémon or gender at the time. So these are the first 151 Pokémons.",
       "french_description": "La liste des pokémons obtenable dans les jeux Rouge, Bleu, Jaune et même Vert.\n\nIl n'y avait pas de formes différentes pour le même pokémon ni de genre à l'époque. Donc ce sont les 151 premiers pokémons.",
-      "version": 20231231.091211,
+      "version": "20231231.091211",
       "is_released": false,
       "is_premium": false,
       "is_custom": false

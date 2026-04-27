@@ -15,7 +15,7 @@
       "is_on_home": false,
       "description": "All Pokémons that can be transferred to Pokémon Home in their shiny version.\n\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pokémons anyway, in case it changes).\nBut this is the version where you had them.",
       "french_description": "Tous les pokémons pouvant être transférés sur Pokémon Home dans leur version chromatique. \n\nIncluant les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change).\nMais il s'agit d'ici de la version où c'est toi qui les as eu.",
-      "version": 20231231.091211,
+      "version": "20231231.091211",
       "is_released": true,
       "is_premium": true,
       "is_custom": false

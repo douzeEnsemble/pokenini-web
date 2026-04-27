@@ -15,7 +15,7 @@
       "is_on_home": false,
       "description": "The list of obtainable Pokémons in Sword and Shield games, as well as the DLC \"Isle of Armor\" and \"Crown Tundra\"\n\nThese versions do not contain all existing Pokémons.\n\nGigamax forms appear in the games for certain ancient (Blastoise or Butterfree) or new (Corviknight or Drednaw) Pokémons.",
       "french_description": "La liste des pokémons obtenable dans les jeux Épée et Bouclier, ainsi que les DLC \"L'île solitaire de l'Armure\" et \"Les terres enneigées de la Couronne\"\n\nCes versions ne contiennent pas tous les pokémons existants. \n\nLes formes Gigamax apparaissent dans le jeux pour certains pokémons anciens (Tortank ou Papilusion) ou nouveaux (Corvaillus ou Torgamord).",
-      "version": 20231231.091211,
+      "version": "20231231.091211",
       "is_released": true,
       "is_premium": false,
       "is_custom": false
