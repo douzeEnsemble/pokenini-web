@@ -399,7 +399,7 @@ final class ElectionIndexTest extends WebTestCase
         $client->request('GET', '/fr/election/demolite');
     }
 
-    public function testIndexNoAlbum(): void
+    public function testIndexNotFound(): void
     {
         $client = self::createClient();
 
@@ -407,7 +407,7 @@ final class ElectionIndexTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
-        $client->request('GET', '/fr/election/demolitetion');
+        $client->request('GET', '/fr/election/demolition');
 
         $this->assertResponseStatusCodeSame(404);
     }

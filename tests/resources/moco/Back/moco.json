@@ -1643,511 +1643,209 @@
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "demolite",
-        "election_slug": "",
-        "count": "5"
+        "match": "/election/mega/favorite"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_demolite__top_5.json"
+      "file": "/var/moco/responses/election/index_mega_favorite.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "demolite",
-        "election_slug": "favorite",
-        "count": "5"
+        "match": "/election/mega/vote"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_demolite_favorite_top_5.json"
+      "file": "/var/moco/responses/election/index_mega_vote.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "demoliteshiny",
-        "election_slug": "",
-        "count": "5"
+        "match": "/election/mega/lastpage"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_demoliteshiny__top_5.json"
+      "file": "/var/moco/responses/election/index_mega_lastpage.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "",
-        "count": "5"
+        "match": "/election/mega/lastone"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_mega__top_5.json"
+      "file": "/var/moco/responses/election/index_mega_lastone.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "favorite",
-        "count": "5"
+        "match": "/election/mega$"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_mega_favorite_top_5.json"
+      "file": "/var/moco/responses/election/index_mega.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "vote",
-        "count": "5"
+        "match": "/election/mega/"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_mega_vote_top_5.json"
+      "file": "/var/moco/responses/election/index_mega.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "lastpage",
-        "count": "5"
+        "match": "/election/demolite$"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_mega_lastpage_top_5.json"
+      "file": "/var/moco/responses/election/index_demolite.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "lastone",
-        "count": "5"
+        "match": "/election/demolite/"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_mega_lastone_top_5.json"
+      "file": "/var/moco/responses/election/index_demolite.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "swordshield",
-        "election_slug": "",
-        "count": "5"
+        "match": "/election/demoliteshiny"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_swordshield__top_5.json"
+      "file": "/var/moco/responses/election/index_demoliteshiny.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/top"
-      },
-      "queries": {
-        "dex_slug": "swordshield",
-        "election_slug": "favorite",
-        "count": "5"
+        "match": "/election/swordshield"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_swordshield_favorite_top_5.json"
+      "file": "/var/moco/responses/election/index_swordshield.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "demolite",
-        "election_slug": ""
+        "match": "/election/swordshield/favorite"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_demolite__metrics.json"
+      "file": "/var/moco/responses/election/index_swordshield_favorite.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "demolite",
-        "election_slug": "favorite"
+        "match": "/election/demolite/favorite"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
       "status": "200",
-      "file": "/var/moco/responses/election/election_demolite_favorite_metrics.json"
+      "file": "/var/moco/responses/election/index_demolite.json"
     }
   },
   {
     "request": {
       "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "demoliteshiny",
-        "election_slug": ""
+        "match": "/election/[^/]+(/[^/]*)?"
       },
       "method": "get",
       "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
+        "X-Provider": { "match": ".*" },
+        "authorization": { "match": "Bearer .*" }
       }
     },
     "response": {
-      "status": "200",
-      "file": "/var/moco/responses/election/election_demoliteshiny__metrics.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": ""
-      },
-      "method": "get",
-      "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
-      }
-    },
-    "response": {
-      "status": "200",
-      "file": "/var/moco/responses/election/election_mega__metrics.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "favorite"
-      },
-      "method": "get",
-      "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
-      }
-    },
-    "response": {
-      "status": "200",
-      "file": "/var/moco/responses/election/election_mega_favorite_metrics.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "vote"
-      },
-      "method": "get",
-      "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
-      }
-    },
-    "response": {
-      "status": "200",
-      "file": "/var/moco/responses/election/election_mega_vote_metrics.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "lastpage"
-      },
-      "method": "get",
-      "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
-      }
-    },
-    "response": {
-      "status": "200",
-      "file": "/var/moco/responses/election/election_mega_lastpage_metrics.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "mega",
-        "election_slug": "lastone"
-      },
-      "method": "get",
-      "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
-      }
-    },
-    "response": {
-      "status": "200",
-      "file": "/var/moco/responses/election/election_mega_lastone_metrics.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "swordshield",
-        "election_slug": ""
-      },
-      "method": "get",
-      "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
-      }
-    },
-    "response": {
-      "status": "200",
-      "file": "/var/moco/responses/election/election_swordshield__metrics.json"
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/election/metrics"
-      },
-      "queries": {
-        "dex_slug": "swordshield",
-        "election_slug": "favorite"
-      },
-      "method": "get",
-      "headers": {
-        "accept": "application/json",
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
-      }
-    },
-    "response": {
-      "status": "200",
-      "file": "/var/moco/responses/election/election_swordshield_favorite_metrics.json"
+      "status": "404",
+      "json": {}
     }
   },
   {

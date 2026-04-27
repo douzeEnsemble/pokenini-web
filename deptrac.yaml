@@ -169,6 +169,7 @@ parameters:
       - LeagueOAuth2
       - Logger
       - SymfonyContractsHttpClient
+      - SymfonyHttpException
       - SymfonyHttpFoundation
       - SymfonySecurityBundle
       - SymfonySerializer

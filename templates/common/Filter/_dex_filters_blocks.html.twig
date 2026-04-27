@@ -254,7 +254,7 @@
   {% endblock collection_label %}
   {% block collection_widget %}
     {% set filteredCollections = getArrayFromRequest('ca', [])|filter(v => v) %}
-    <select multiple id="collection_availability" name="gbsa[]" class="form-select form-select-sm">
+    <select multiple id="collection_availability" name="ca[]" class="form-select form-select-sm">
       <option value="" {{ ((filteredCollections|filter(v => v) is empty) ? 'selected': '') }}>
         {{- 'dex.filters.collection.value.empty'|trans -}}
       </option>
