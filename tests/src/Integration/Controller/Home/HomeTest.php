@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Integration\Controller\Home;
 
 use App\Controller\HomeController;
-use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -23,7 +22,7 @@ final class HomeTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
+        $user = GetUserToken::getFakeUserToken();
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -55,7 +54,7 @@ final class HomeTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
+        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
         $user->addTrainerRole();
         $user->addAdminRole();
         $client->loginUser($user, 'web');
@@ -113,7 +112,7 @@ final class HomeTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
+        $user = GetUserToken::getFakeUserToken();
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -140,7 +139,7 @@ final class HomeTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
+        $user = GetUserToken::getFakeUserToken();
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 

@@ -6,9 +6,8 @@ namespace App\Tests\Integration\Controller\Common;
 
 use App\Controller\ConnectController;
 use App\Controller\HomeController;
-use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -26,7 +25,7 @@ final class CommonItemsTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
+        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -44,7 +43,7 @@ final class CommonItemsTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
+        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 

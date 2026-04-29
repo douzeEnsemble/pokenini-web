@@ -15,6 +15,10 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
  */
 final class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 {
+    public function __construct(
+        private readonly UserRefresher $refresher,
+    ) {}
+
     /**
      * @SuppressWarnings("PHPMD.UnusedFormalParameter")
      */
@@ -25,13 +29,16 @@ final class UserProvider implements UserProviderInterface, PasswordUpgraderInter
     }
 
     #[\Override]
+    /**
+     * @return User
+     */
     public function refreshUser(UserInterface $user): UserInterface
     {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Invalid user class "%s".', get_class($user)));
         }
 
-        return $user;
+        return $this->refresher->refresh($user);
     }
 
     #[\Override]

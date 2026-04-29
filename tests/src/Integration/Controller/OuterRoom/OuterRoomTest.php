@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Integration\Controller\OuterRoom;
 
 use App\Controller\OuterRoomController;
-use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
@@ -33,7 +32,7 @@ final class OuterRoomTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
+        $user = GetUserToken::getFakeUserToken();
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -46,7 +45,7 @@ final class OuterRoomTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
+        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
@@ -59,7 +58,7 @@ final class OuterRoomTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('8764532', 'TestProvider', new AccessToken(['access_token' => sha1('8764532')]));
+        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
         $user->addTrainerRole();
         $user->addAdminRole();
         $client->loginUser($user, 'web');
@@ -73,10 +72,9 @@ final class OuterRoomTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $client->loginUser(
-            new User('121212', 'TestProvider', new AccessToken(['access_token' => sha1('121212')])),
-            'web'
-        );
+        $user = GetUserToken::getFakeUserToken('121212', 'TestProvider');
+
+        $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/outerroom');
 

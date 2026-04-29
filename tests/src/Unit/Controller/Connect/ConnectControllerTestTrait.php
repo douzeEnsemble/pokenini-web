@@ -11,16 +11,25 @@ use Symfony\Component\HttpFoundation\Response;
 
 trait ConnectControllerTestTrait
 {
+    /**
+     * @param array<string, string> $options
+     */
     public function assertGoto(
         ConnectControllerInterface $controller,
         string $scope,
         string $clientName,
+        array $options = [],
     ): void {
         $client = $this->createMock(OAuth2ClientInterface::class);
         $client
             ->expects($this->once())
             ->method('redirect')
-            ->with([$scope], [])
+            ->with(
+                [
+                    $scope,
+                ],
+                $options
+            )
             ->willReturn(new Response())
         ;
 

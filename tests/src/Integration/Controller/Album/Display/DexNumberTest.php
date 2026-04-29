@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Integration\Controller\Album\Display;
 
 use App\Controller\AlbumIndexController;
-use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -25,7 +24,7 @@ final class DexNumberTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('109903422692691643666', 'TestProvider', new AccessToken(['access_token' => sha1('109903422692691643666')]));
+        $user = GetUserToken::getFakeUserToken('109903422692691643666', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 

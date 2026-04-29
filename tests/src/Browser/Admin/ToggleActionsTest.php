@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Browser\Admin;
 
-use App\Security\User;
 use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 
 /**
@@ -22,7 +21,7 @@ final class ToggleActionsTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('109903422692691643666', 'TestProvider', new AccessToken(['access_token' => sha1('109903422692691643666')]));
+        $user = GetUserToken::getFakeUserToken('109903422692691643666', 'TestProvider');
         $user->addAdminRole();
         $this->loginUser($client, $user);
 

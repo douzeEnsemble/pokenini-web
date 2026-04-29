@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Browser\Album;
 
-use App\Security\User;
 use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
@@ -25,7 +24,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -56,7 +55,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -87,7 +86,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -118,7 +117,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -142,7 +141,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -166,7 +165,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -194,7 +193,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -234,7 +233,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -286,7 +285,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
@@ -324,7 +323,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
