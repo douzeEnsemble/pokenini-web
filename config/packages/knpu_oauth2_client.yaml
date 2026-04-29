@@ -8,6 +8,7 @@ knpu_oauth2_client:
       client_secret: "%env(OAUTH_GOOGLE_CLIENT_SECRET)%"
       redirect_route: app_connect_google_check
       redirect_params: {}
+      access_type: offline
 
     # https://discord.com/developers/docs/topics/oauth2
     # https://discord.com/developers/applications

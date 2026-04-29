@@ -17,7 +17,14 @@ abstract class AbstractConnectController extends AbstractController implements C
     {
         return $clientRegistry
             ->getClient($this->getProviderName())
-            ->redirect([$this->getscope()], [])
+            ->redirect(
+                [
+                    $this->getscope(),
+                ],
+                [
+                    'prompt' => 'consent',
+                ],
+            )
         ;
     }
 

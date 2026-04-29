@@ -33,6 +33,7 @@
                 <directory name="src/ResponseObject" />
                 <referencedMethod name="App\Security\User::getId" />
                 <referencedMethod name="App\Security\User::getProfile" />
+                <referencedMethod name="App\Security\UserRefresher::__construct" />
             </errorLevel>
         </PossiblyUnusedMethod>
         <PossiblyUnusedProperty>
@@ -45,6 +46,7 @@
             <errorLevel type="suppress">
                 <directory name="src/Service" />
                 <file name="src/Security/UserTokenService.php" />
+                <file name="src/Security/UserRefresher.php" />
             </errorLevel>
         </ClassMustBeFinal>
     </issueHandlers>

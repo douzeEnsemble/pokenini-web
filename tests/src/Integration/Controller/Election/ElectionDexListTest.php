@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Integration\Controller\Election;
 
 use App\Controller\ElectionDexListController;
-use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -25,11 +24,7 @@ final class ElectionDexListTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User(
-            '789465465489',
-            'TestProvider',
-            new AccessToken(['access_token' => sha1('789465465489')])
-        );
+        $user = GetUserToken::getFakeUserToken('789465465489', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 

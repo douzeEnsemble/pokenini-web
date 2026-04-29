@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Browser\Album;
 
-use App\Security\User;
 use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -24,7 +23,7 @@ final class ScreenshotModeTest extends AbstractBrowserTestCase
     {
         $client = $this->getNewClient();
 
-        $user = new User('109903422692691643666', 'TestProvider', new AccessToken(['access_token' => sha1('109903422692691643666')]));
+        $user = GetUserToken::getFakeUserToken('109903422692691643666', 'TestProvider');
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 

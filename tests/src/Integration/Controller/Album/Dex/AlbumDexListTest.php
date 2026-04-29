@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Integration\Controller\Album\Dex;
 
 use App\Controller\AlbumDexListController;
-use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -25,7 +24,7 @@ final class AlbumDexListTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
+        $user = GetUserToken::getFakeUserToken();
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -78,7 +77,7 @@ final class AlbumDexListTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('0', 'TestProvider', new AccessToken(['access_token' => sha1('0')]));
+        $user = GetUserToken::getFakeUserToken('0', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -93,7 +92,7 @@ final class AlbumDexListTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('1', 'TestProvider', new AccessToken(['access_token' => sha1('1')]));
+        $user = GetUserToken::getFakeUserToken('1', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -108,7 +107,7 @@ final class AlbumDexListTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('2', 'TestProvider', new AccessToken(['access_token' => sha1('2')]));
+        $user = GetUserToken::getFakeUserToken('2', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -125,7 +124,7 @@ final class AlbumDexListTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
+        $user = GetUserToken::getFakeUserToken();
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -152,7 +151,7 @@ final class AlbumDexListTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('789465465489', 'TestProvider', new AccessToken(['access_token' => sha1('789465465489')]));
+        $user = GetUserToken::getFakeUserToken();
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 

@@ -1,0 +1,61 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Security;
+
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use League\OAuth2\Client\Token\AccessToken;
+use Symfony\Component\Security\Core\Exception\AuthenticationExpiredException;
+
+class UserRefresher
+{
+    public function __construct(
+        private readonly ClientRegistry $clientRegistry,
+    ) {}
+
+    public function refresh(User $user): User
+    {
+        $accessToken = $user->getAccessToken();
+
+        if (!$accessToken->hasExpired()) {
+            return $user;
+        }
+
+        $refreshToken = $accessToken->getRefreshToken();
+
+        if (null === $refreshToken) {
+            throw new AuthenticationExpiredException('Access token expired and no refresh token available.');
+        }
+
+        $client = $this->clientRegistry->getClient($user->getProviderName());
+        $provider = $client->getOAuth2Provider();
+
+        /**
+         * @var AccessToken
+         */
+        $newAccessToken = $provider->getAccessToken(
+            'refresh_token',
+            [
+                'refresh_token' => $refreshToken,
+            ]
+        );
+
+        $newUser = new User(
+            $user->getUserIdentifier(),
+            $user->getProviderName(),
+            $newAccessToken,
+        );
+
+        foreach ($user->getRoles() as $role) {
+            match ($role) {
+                'ROLE_ADMIN' => $newUser->addAdminRole(),
+                'ROLE_TRAINER' => $newUser->addTrainerRole(),
+                'ROLE_COLLECTOR' => $newUser->addCollectorRole(),
+                default => null,
+            };
+        }
+
+        return $newUser;
+    }
+}

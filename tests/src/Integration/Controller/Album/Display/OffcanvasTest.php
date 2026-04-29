@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Integration\Controller\Album\Display;
 
 use App\Controller\AlbumIndexController;
-use App\Security\User;
 use App\Tests\Common\Traits\TestNavTrait;
-use League\OAuth2\Client\Token\AccessToken;
+use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -26,7 +25,7 @@ final class OffcanvasTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -76,7 +75,7 @@ final class OffcanvasTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -123,7 +122,7 @@ final class OffcanvasTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -165,7 +164,7 @@ final class OffcanvasTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -216,7 +215,7 @@ final class OffcanvasTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -267,7 +266,7 @@ final class OffcanvasTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('12', 'TestProvider', new AccessToken(['access_token' => sha1('12')]));
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
@@ -318,7 +317,7 @@ final class OffcanvasTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $user = new User('13', 'TestProvider', new AccessToken(['access_token' => sha1('13')]));
+        $user = GetUserToken::getFakeUserToken('13', 'TestProvider');
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
