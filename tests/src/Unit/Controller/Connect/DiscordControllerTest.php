@@ -23,10 +23,7 @@ final class DiscordControllerTest extends TestCase
         $this->assertGoto(
             $controller,
             'openid',
-            'discord',
-            [
-                'prompt' => 'consent',
-            ]
+            'discord'
         );
     }
 }

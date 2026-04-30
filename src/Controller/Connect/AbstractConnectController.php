@@ -21,9 +21,7 @@ abstract class AbstractConnectController extends AbstractController implements C
                 [
                     $this->getscope(),
                 ],
-                [
-                    'prompt' => 'consent',
-                ],
+                [],
             )
         ;
     }
