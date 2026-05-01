@@ -17,7 +17,7 @@ class GetActionLogsService extends AbstractBackService
     {
         $json = $this->requestContent(
             'GET',
-            '/istration/action_logs'
+            '/istration/action-logs'
         );
 
         /** @var array<string, int[][]|int[][][]|null[][]|null[][][]|string[][]> */

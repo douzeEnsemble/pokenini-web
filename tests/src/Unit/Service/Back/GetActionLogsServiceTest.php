@@ -18,7 +18,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(GetActionLogsService::class)]
 final class GetActionLogsServiceTest extends AbstractTestBackService
 {
-    public const ENDPOINT = 'istration/action_logs';
+    public const ENDPOINT = 'istration/action-logs';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/action-logs.json';
 
     public function testGet(): void
