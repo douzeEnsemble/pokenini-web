@@ -114,7 +114,9 @@
     "response": {
       "status": "200",
       "json": {
-        "identifier" : "121212-admin-121212",
+        "id" : "121212-admin-121212",
+        "provider": "mock",
+        "profile": "admmin",
         "roles" : [
           "ROLE_TRAINER",
           "ROLE_COLLECTOR",
@@ -139,7 +141,9 @@
     "response": {
       "status": "200",
       "json": {
-        "identifier" : "131313-collector-131313",
+        "id" : "131313-collector-131313",
+        "provider": "mock",
+        "profile": "collector",
         "roles" : [
           "ROLE_TRAINER",
           "ROLE_COLLECTOR"
@@ -188,7 +192,9 @@
     "response": {
       "status": "200",
       "json": {
-        "identifier" : "101010-uninvited-101010",
+        "id" : "101010-uninvited-101010",
+        "provider": "mock",
+        "profile": "uninvited",
         "roles" : [
           "ROLE_TRAINER"
         ]
