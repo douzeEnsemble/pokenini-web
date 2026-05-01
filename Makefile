@@ -203,7 +203,7 @@ cq: code-quality
 .PHONY: editorconfig-linter
 editorconfig-linter: ## Execute editorconfig linter
 editorconfig-linter:
-	$(EDITORCONFIG_LINTER_CMD)
+	$(EDITORCONFIG_LINTER_CMD) editorconfig-checker --exclude=".phar"
 
 .PHONY: jsonlint
 jsonlint: ## Execute jsonlint
