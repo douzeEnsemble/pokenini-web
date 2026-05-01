@@ -42,11 +42,11 @@ final class ElectionVoteController extends AbstractController
         }
 
         $data = array_merge(
+            $requestedData,
             [
                 'dex_slug' => $dexSlug,
                 'election_slug' => $electionSlug,
             ],
-            $requestedData
         );
 
         try {
