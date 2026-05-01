@@ -56,7 +56,7 @@ trait ResponseObjectTrait
         $gameBundles = array_fill(0, $count, $gameBundle);
         ++$count;
 
-        $collection = new Collection('Toto', 'Tautaux', 'toto', 12);
+        $collection = new Collection('Toto', 'Tautaux', 'toto');
         $collections = array_fill(0, $count, $collection);
 
         return new Labels(
