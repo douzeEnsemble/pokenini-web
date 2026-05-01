@@ -39,7 +39,10 @@ final class FakeAuthenticator extends OAuth2Authenticator
     {
         $identifier = $request->query->getString('t');
 
-        $accessToken = new AccessToken(['access_token' => $identifier]);
+        $accessToken = new AccessToken([
+            'access_token' => $identifier,
+            'expires_in' => 3600, 
+        ]);
 
         return new SelfValidatingPassport(
             new UserBadge($identifier, function () use ($accessToken) {
