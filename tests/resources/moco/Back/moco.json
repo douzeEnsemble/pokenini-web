@@ -2111,7 +2111,28 @@
   {
     "request": {
       "uri": {
-        "match": "/election/vote"
+        "match": "/election/demolite/favorite"
+      },
+      "method": "post",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/election/election_vote.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/election/demolite"
       },
       "method": "post",
       "headers": {

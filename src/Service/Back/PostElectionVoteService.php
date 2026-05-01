@@ -13,11 +13,9 @@ class PostElectionVoteService extends AbstractBackService
     ): void {
         $this->requestContent(
             'POST',
-            '/election/vote',
+            "/election/{$electionVote->dexSlug}".($electionVote->electionSlug ? "/{$electionVote->electionSlug}" : ''),
             [
                 'body' => json_encode([
-                    'dex_slug' => $electionVote->dexSlug,
-                    'election_slug' => $electionVote->electionSlug,
                     'winners_slugs' => $electionVote->winnersSlugs,
                     'losers_slugs' => $electionVote->losersSlugs,
                 ]),

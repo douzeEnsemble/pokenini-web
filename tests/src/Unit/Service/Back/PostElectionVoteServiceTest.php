@@ -19,8 +19,6 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(PostElectionVoteService::class)]
 final class PostElectionVoteServiceTest extends AbstractTestBackService
 {
-    public const ENDPOINT = 'election/vote';
-
     public function testVote(): void
     {
         $electionVote = new ElectionVote([
@@ -87,11 +85,9 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
         $service = $this->getServiceWithoutLoggedUser(
             'POST',
             (string) file_get_contents($filename),
-            self::ENDPOINT,
+            'election/demo/whatever',
             [
                 'body' => (string) json_encode([
-                    'dex_slug' => 'demo',
-                    'election_slug' => 'whatever',
                     'winners_slugs' => ['pichu'],
                     'losers_slugs' => ['pikachu', 'raichu'],
                 ]),
@@ -136,11 +132,9 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
         return $this->getServiceWithLoggedUser(
             'POST',
             (string) file_get_contents($filename),
-            self::ENDPOINT,
+            "election/{$dexSlug}/{$electionSlug}",
             [
                 'body' => (string) json_encode([
-                    'dex_slug' => $dexSlug,
-                    'election_slug' => $electionSlug,
                     'winners_slugs' => $winnersSlugs,
                     'losers_slugs' => $losersSlugs,
                 ]),
