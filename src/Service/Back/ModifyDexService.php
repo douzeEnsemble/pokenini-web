@@ -12,7 +12,7 @@ class ModifyDexService extends AbstractBackService
     ): void {
         $this->request(
             'PUT',
-            "/dex/{$dexSlug}",
+            "/trainer/dex/{$dexSlug}",
             [
                 'body' => $data,
             ]

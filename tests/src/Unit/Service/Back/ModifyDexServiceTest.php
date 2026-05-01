@@ -22,7 +22,7 @@ final class ModifyDexServiceTest extends AbstractTestBackService
     {
         $this
             ->getService(
-                'dex/home',
+                'trainer/dex/home',
                 'data-whatever',
             )
             ->modify(
@@ -38,7 +38,7 @@ final class ModifyDexServiceTest extends AbstractTestBackService
         $service = $this->getServiceWithoutLoggedUser(
             'PUT',
             '',
-            'dex/home',
+            'trainer/dex/home',
             [
                 'body' => 'data-whatever',
             ],
