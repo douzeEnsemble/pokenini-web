@@ -4,8 +4,6 @@ WORKDIR /app
 
 EXPOSE 9000
 
-COPY ./.docker/php/conf.d /usr/local/etc/php/conf.d
-
 ## < Install PHP extensions
 ENV XDEBUG_MODE=off
 
@@ -56,6 +54,8 @@ COPY --link .docker/php/conf.d/app.ini $PHP_INI_DIR/conf.d/10-app.ini
 FROM php_base AS php_dev
 
 ENV APP_ENV=dev
+
+COPY --link .docker/php/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/20-app.dev.ini
 
 # hadolint ignore=DL3018,SC2086
 RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS linux-headers \
