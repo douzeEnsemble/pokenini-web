@@ -17,6 +17,8 @@ final class FakeAuthenticator extends OAuth2Authenticator
 {
     use AuthenticatorTrait;
 
+    private const int EXPIRES_IN = 3600;
+
     public function __construct(
         private readonly RouterInterface $router,
         private readonly GetUserInfoService $getUserInfoService,
@@ -41,7 +43,7 @@ final class FakeAuthenticator extends OAuth2Authenticator
 
         $accessToken = new AccessToken([
             'access_token' => $identifier,
-            'expires_in' => 3600, 
+            'expires_in' => self::EXPIRES_IN,
         ]);
 
         return new SelfValidatingPassport(
