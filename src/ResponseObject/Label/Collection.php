@@ -15,8 +15,6 @@ final class Collection
         private readonly string $frenchName,
         #[SerializedName('slug')]
         private readonly string $slug,
-        #[SerializedName('order_number')]
-        private readonly int $orderNumber,
     ) {}
 
     public function getName(): string
@@ -32,10 +30,5 @@ final class Collection
     public function getSlug(): string
     {
         return $this->slug;
-    }
-
-    public function getOrderNumber(): int
-    {
-        return $this->orderNumber;
     }
 }

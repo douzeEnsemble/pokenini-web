@@ -37,6 +37,5 @@ final class CollectionTest extends KernelTestCase
         $this->assertSame('Sword, Shield - Dynamax Adventures bosses', $object->getName());
         $this->assertSame('Sword, Shield - Boss des expéditions Dynamax', $object->getFrenchName());
         $this->assertSame('swshdynamaxadventuresbosses', $object->getSlug());
-        $this->assertSame(11, $object->getOrderNumber());
     }
 }
