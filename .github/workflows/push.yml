@@ -38,7 +38,7 @@ jobs:
           flavor: |
             latest=auto
             prefix=
-            suffix=${{ env.IMAGE_TAG_SUFFIXE }},onlatest=true
+            suffix=${{ env.IMAGE_TAG_SUFFIXE }}-arm64,onlatest=true
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -95,7 +95,7 @@ jobs:
           flavor: |
             latest=auto
             prefix=
-            suffix=${{ env.IMAGE_TAG_SUFFIXE }},onlatest=true
+            suffix=${{ env.IMAGE_TAG_SUFFIXE }}-amd64,onlatest=true
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -125,3 +125,24 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ env.PROJECT_NAME }}:latest${{ env.IMAGE_TAG_SUFFIXE }}
           cache-to: type=inline
+
+  create-manifest:
+    runs-on: ubuntu-latest
+    needs: [build-and-push-image-arm, build-and-push-image-amd]
+    steps:
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          flavor: |
+            latest=auto
+            prefix=
+            suffix=${{ env.IMAGE_TAG_SUFFIXE }},onlatest=true
+
+      - name: Create and push multi-arch manifest
+        run: |
+          docker buildx imagetools create \
+            $(echo "${{ steps.meta.outputs.tags }}" | sed 's/^/--tag /') \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}${{ env.IMAGE_TAG_SUFFIXE }}-arm64 \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}${{ env.IMAGE_TAG_SUFFIXE }}-amd64
