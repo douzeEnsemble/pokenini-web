@@ -40,7 +40,7 @@ final class AdminActionController extends AbstractController
     public function update(
         string $name,
     ): RedirectResponse {
-        return $this->execute($name, 'update');
+        return $this->execute($name, 'update', 'POST');
     }
 
     #[Route(
@@ -58,7 +58,7 @@ final class AdminActionController extends AbstractController
     public function calculate(
         string $name,
     ): RedirectResponse {
-        return $this->execute($name, 'calculate');
+        return $this->execute($name, 'calculate', 'POST');
     }
 
     #[Route(
@@ -76,15 +76,16 @@ final class AdminActionController extends AbstractController
     public function invalidate(
         string $name,
     ): RedirectResponse {
-        return $this->execute($name, 'invalidate');
+        return $this->execute($name, 'invalidate', 'DELETE');
     }
 
     private function execute(
         string $name,
         string $action,
+        string $method,
     ): RedirectResponse {
         try {
-            $adminAction = $this->adminActionService->execute($action, $name);
+            $adminAction = $this->adminActionService->execute($action, $name, $method);
         } catch (\Exception $e) {
             $this->logger->critical(
                 $e->getMessage(),

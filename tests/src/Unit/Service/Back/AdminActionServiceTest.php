@@ -105,7 +105,7 @@ final class AdminActionServiceTest extends TestCase
             $serializer,
         );
 
-        $adminAction = $service->execute('update', 'something');
+        $adminAction = $service->execute('update', 'something', 'POST');
 
         $this->assertSame('update', $adminAction->action);
         $this->assertSame('something', $adminAction->item);
@@ -196,7 +196,7 @@ final class AdminActionServiceTest extends TestCase
             $serializer,
         );
 
-        $adminAction = $service->execute('update', 'something');
+        $adminAction = $service->execute('update', 'something', 'POST');
 
         $this->assertSame('update', $adminAction->action);
         $this->assertSame('something', $adminAction->item);
@@ -213,7 +213,7 @@ final class AdminActionServiceTest extends TestCase
             ->method('info')
             ->with(...WithConsecutive::create(...[
                 [
-                    'Requesting POST /istration/action/update/something',
+                    'Requesting DELETE /istration/action/update/something',
                     [
                         'headers' => [
                             'accept' => 'application/json',
@@ -247,7 +247,7 @@ final class AdminActionServiceTest extends TestCase
             ->expects($this->once())
             ->method('request')
             ->with(
-                'POST',
+                'DELETE',
                 'https://back.local/istration/action/update/something',
                 [
                     'headers' => [
@@ -277,7 +277,7 @@ final class AdminActionServiceTest extends TestCase
             $serializer,
         );
 
-        $adminAction = $service->execute('update', 'something');
+        $adminAction = $service->execute('update', 'something', 'DELETE');
 
         $this->assertSame('update', $adminAction->action);
         $this->assertSame('something', $adminAction->item);

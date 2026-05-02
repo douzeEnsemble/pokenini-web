@@ -8,10 +8,10 @@ use App\DTO\AdminAction;
 
 class AdminActionService extends AbstractBackService implements BackServiceInterface
 {
-    public function execute(string $action, string $item): AdminAction
+    public function execute(string $action, string $item, string $method): AdminAction
     {
         $content = $this->requestContent(
-            'POST',
+            $method,
             "/istration/action/{$action}/{$item}"
         );
 
