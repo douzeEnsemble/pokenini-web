@@ -518,7 +518,7 @@
       "uri": {
         "match": "/istration/action/invalidate/labels"
       },
-      "method": "post",
+      "method": "delete",
       "headers": {
         "X-Provider": {
           "match": ".*"
@@ -544,7 +544,7 @@
       "uri": {
         "match": "/istration/action/invalidate/dex"
       },
-      "method": "post",
+      "method": "delete",
       "headers": {
         "X-Provider": {
           "match": ".*"
@@ -570,7 +570,7 @@
       "uri": {
         "match": "/istration/action/invalidate/albums"
       },
-      "method": "post",
+      "method": "delete",
       "headers": {
         "X-Provider": {
           "match": ".*"
@@ -596,7 +596,7 @@
       "uri": {
         "match": "/istration/action/invalidate/reports"
       },
-      "method": "post",
+      "method": "delete",
       "headers": {
         "X-Provider": {
           "match": ".*"
