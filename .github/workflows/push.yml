@@ -14,6 +14,8 @@ env:
 jobs:
   build-and-push-image-arm:
     runs-on: ubuntu-24.04-arm
+    env:
+      ARCH: arm64
     permissions:
       contents: read
       packages: write
@@ -38,17 +40,17 @@ jobs:
           flavor: |
             latest=auto
             prefix=
-            suffix=${{ env.IMAGE_TAG_SUFFIXE }}-arm64,onlatest=true
+            suffix=${{ env.IMAGE_TAG_SUFFIXE }}-${{ env.ARCH }},onlatest=true
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: linux/arm64
+          platforms: linux/${{ env.ARCH }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
-          platforms: linux/arm64
+          platforms: linux/${{ env.ARCH }}
 
       - name: Get tag and release status
         run: |
@@ -63,7 +65,7 @@ jobs:
           file: ./.docker/php/Dockerfile
           target: php_prod
           push: true
-          platforms: linux/arm64
+          platforms: linux/${{ env.ARCH }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ env.PROJECT_NAME }}:latest${{ env.IMAGE_TAG_SUFFIXE }}
@@ -71,6 +73,8 @@ jobs:
 
   build-and-push-image-amd:
     runs-on: ubuntu-latest
+    env:
+      ARCH: amd64
     permissions:
       contents: read
       packages: write
@@ -95,17 +99,17 @@ jobs:
           flavor: |
             latest=auto
             prefix=
-            suffix=${{ env.IMAGE_TAG_SUFFIXE }}-amd64,onlatest=true
+            suffix=${{ env.IMAGE_TAG_SUFFIXE }}-${{ env.ARCH }},onlatest=true
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: linux/amd64
+          platforms: linux/${{ env.ARCH }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
-          platforms: linux/amd64
+          platforms: linux/${{ env.ARCH }}
 
       - name: Get tag and release status
         run: |
@@ -120,7 +124,7 @@ jobs:
           file: ./.docker/php/Dockerfile
           target: php_prod
           push: true
-          platforms: linux/amd64
+          platforms: linux/${{ env.ARCH }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ env.PROJECT_NAME }}:latest${{ env.IMAGE_TAG_SUFFIXE }}
@@ -140,9 +144,19 @@ jobs:
             prefix=
             suffix=${{ env.IMAGE_TAG_SUFFIXE }},onlatest=true
 
+      - name: Lowercase image name
+        run: echo "IMAGE_NAME_LOWERED=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v4
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create and push multi-arch manifest
         run: |
           docker buildx imagetools create \
             $(echo "${{ steps.meta.outputs.tags }}" | sed 's/^/--tag /') \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}${{ env.IMAGE_TAG_SUFFIXE }}-arm64 \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}${{ env.IMAGE_TAG_SUFFIXE }}-amd64
+            ${{ env.REGISTRY }}/$IMAGE_NAME_LOWERED:${{ env.VERSION }}-arm64 \
+            ${{ env.REGISTRY }}/$IMAGE_NAME_LOWERED:${{ env.VERSION }}-amd64
