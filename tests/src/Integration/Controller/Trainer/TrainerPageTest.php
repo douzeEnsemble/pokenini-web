@@ -46,7 +46,7 @@ final class TrainerPageTest extends WebTestCase
             $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
         );
 
-        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-link')->text());
+        $this->assertCount(0, $crawler->filter('.navbar-link'));
 
         $this->assertCountFilter($crawler, 1, '.dex_is_shiny');
         $this->assertCountFilter($crawler, 2, '.dex_is_premium');
@@ -80,7 +80,7 @@ final class TrainerPageTest extends WebTestCase
             $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
         );
 
-        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-link')->text());
+        $this->assertCount(0, $crawler->filter('.navbar-link'));
 
         $this->assertCountFilter($crawler, 1, '.dex_is_shiny');
         $this->assertCountFilter($crawler, 2, '.dex_is_premium');
@@ -115,7 +115,7 @@ final class TrainerPageTest extends WebTestCase
             $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
         );
 
-        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-link')->text());
+        $this->assertCount(0, $crawler->filter('.navbar-link'));
 
         $this->assertCountFilter($crawler, 2, '.dex_is_shiny');
         $this->assertCountFilter($crawler, 3, '.dex_is_premium');
