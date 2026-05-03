@@ -36,7 +36,7 @@ final class ConnectTest extends WebTestCase
         ++$index;
         $this->assertConnectLink($crawler, 'Google', 'g', $index);
 
-        $this->assertEquals("Retour à l'accueil", $crawler->filter('.navbar-link')->text());
+        $this->assertCount(0, $crawler->filter('.navbar-link'));
     }
 
     public function testGoogleConnectPage(): void
