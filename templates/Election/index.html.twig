@@ -72,11 +72,6 @@
       watchWinnerCheckboxes();
       watchSubmitAction();
       watchCardMouseHover();
-
-      const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-      if (null !== tooltips) {
-        const tooltipList = [... tooltips].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-      }
     })();
   </script>
 
