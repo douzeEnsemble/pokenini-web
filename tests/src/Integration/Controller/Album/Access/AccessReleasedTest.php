@@ -32,6 +32,11 @@ final class AccessReleasedTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Home',
+            $crawler->filter('title')->text()
+        );
+
         $this->assertSame('Home', $crawler->filter('#album-title')->text());
         $this->assertCountFilter($crawler, 0, '#album-subtitle');
 

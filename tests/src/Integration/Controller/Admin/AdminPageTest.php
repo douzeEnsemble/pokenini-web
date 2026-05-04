@@ -149,6 +149,16 @@ final class AdminPageTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
+        $this->assertSame(
+            'Pokénini Administration',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Administration',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
 

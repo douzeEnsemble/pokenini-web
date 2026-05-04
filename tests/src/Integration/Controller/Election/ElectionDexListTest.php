@@ -32,6 +32,16 @@ final class ElectionDexListTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Choisir le dex pour lequel tu veux voter',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Choisir le dex pour lequel tu veux voter',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertSame('Choisir le dex pour lequel tu veux voter', $crawler->filter('h1')->text());
         $this->assertSame("Selon le dex, il y'a plus ou moins de pokémons, plus ou moins de formes. C'est à toi de voir", $crawler->filter('h2')->text());
 

@@ -26,6 +26,16 @@ final class HomeTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Pokénini',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertFrenchLangSwitch($crawler);
 
         $this->assertCountFilter($crawler, 6, '.album-item');

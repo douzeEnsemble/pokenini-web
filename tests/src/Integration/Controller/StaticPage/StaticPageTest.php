@@ -22,6 +22,16 @@ final class StaticPageTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
+        $this->assertSame(
+            'Pokénini Mentions Légales',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Mentions Légales',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertStringContainsString('Mentions Légales', $crawler->filter('#main-container')->text());
     }
 
@@ -32,6 +42,16 @@ final class StaticPageTest extends WebTestCase
         $crawler = $client->request('GET', '/en/legals');
 
         $this->assertResponseStatusCodeSame(200);
+
+        $this->assertSame(
+            'Pokénini Legal Notice',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Legal Notice',
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertStringContainsString('Legal Notice', $crawler->filter('#main-container')->text());
     }
@@ -44,6 +64,16 @@ final class StaticPageTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
+        $this->assertSame(
+            'Pokénini Politique de confidentialité',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Politique de confidentialité',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertStringContainsString('Politique de confidentialité', $crawler->filter('#main-container')->text());
     }
 
@@ -54,6 +84,16 @@ final class StaticPageTest extends WebTestCase
         $crawler = $client->request('GET', '/en/policy');
 
         $this->assertResponseStatusCodeSame(200);
+
+        $this->assertSame(
+            'Pokénini Privacy Policy',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Privacy Policy',
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertStringContainsString('Privacy Policy', $crawler->filter('#main-container')->text());
     }
@@ -66,6 +106,16 @@ final class StaticPageTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
+        $this->assertSame(
+            'Pokénini Cookies',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Cookies',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertStringContainsString('Cookies', $crawler->filter('#main-container')->text());
     }
 
@@ -76,6 +126,16 @@ final class StaticPageTest extends WebTestCase
         $crawler = $client->request('GET', '/en/cookies');
 
         $this->assertResponseStatusCodeSame(200);
+
+        $this->assertSame(
+            'Pokénini Cookies',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Cookies',
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertStringContainsString('Cookies', $crawler->filter('#main-container')->text());
     }

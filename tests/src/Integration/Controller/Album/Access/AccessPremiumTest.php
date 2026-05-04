@@ -33,6 +33,11 @@ final class AccessPremiumTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Home Pokémon Go',
+            $crawler->filter('title')->text()
+        );
+
         $this->assertSame('Home', $crawler->filter('#album-title')->text());
         $this->assertSame('Pokémon Go', $crawler->filter('#album-subtitle')->text());
 
@@ -51,6 +56,11 @@ final class AccessPremiumTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/homepokemongo');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            'Pokénini Home Pokémon Go',
+            $crawler->filter('title')->text()
+        );
 
         $this->assertSame('Home', $crawler->filter('#album-title')->text());
         $this->assertSame('Pokémon Go', $crawler->filter('#album-subtitle')->text());
@@ -71,6 +81,11 @@ final class AccessPremiumTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Home Pokémon Go',
+            $crawler->filter('title')->text()
+        );
+
         $this->assertSame('Home', $crawler->filter('#album-title')->text());
         $this->assertSame('Pokémon Go', $crawler->filter('#album-subtitle')->text());
 
@@ -89,6 +104,11 @@ final class AccessPremiumTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/homepokemongo?t=159bb9b6d090a313087d2f26135970c2db49ee72');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            'Pokénini Home Pokémon Go',
+            $crawler->filter('title')->text()
+        );
 
         $this->assertSame('Home', $crawler->filter('#album-title')->text());
         $this->assertSame('Pokémon Go', $crawler->filter('#album-subtitle')->text());

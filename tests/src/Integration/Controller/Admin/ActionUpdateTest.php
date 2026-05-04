@@ -146,6 +146,16 @@ final class ActionUpdateTest extends WebTestCase
         $crawler = $client->followRedirect();
         $this->assertSame('http://localhost/fr/istration', $client->getRequest()->getUri());
 
+        $this->assertSame(
+            'Pokénini Administration',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Administration',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
 
         $this->assertConnectedNavBar($crawler);

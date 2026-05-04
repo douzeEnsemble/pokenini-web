@@ -26,6 +26,16 @@ final class ConnectTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
+        $this->assertSame(
+            'Pokénini Connexion',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Connexion',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertCountFilter($crawler, 1, 'h1');
         $this->assertCountFilter($crawler, 1, '#main-container ul.nav');
         $this->assertCountFilter($crawler, 2, '#main-container ul.nav li');
