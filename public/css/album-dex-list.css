@@ -1,0 +1,6 @@
+.album-item.card {
+    transition: border-color 0.9s ease;
+}
+.album-item.card:hover {
+    border-color: var(--bs-secondary);
+}
