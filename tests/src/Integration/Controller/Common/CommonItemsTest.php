@@ -26,10 +26,11 @@ final class CommonItemsTest extends WebTestCase
         $client = self::createClient();
 
         $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
+        $user->addTrainerRole();
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $this->assertCommonItems($client, '/fr');
+        $this->assertCommonItems($client, '/fr/album/dex');
     }
 
     public function testConnect(): void

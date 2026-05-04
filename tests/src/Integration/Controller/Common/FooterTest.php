@@ -22,10 +22,11 @@ final class FooterTest extends WebTestCase
         $client = self::createClient();
 
         $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
+        $user->addTrainerRole();
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr');
+        $crawler = $client->request('GET', '/fr/album/dex');
 
         $this->assertCountFilter($crawler, 1, 'footer');
 
