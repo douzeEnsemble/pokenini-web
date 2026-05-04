@@ -30,6 +30,11 @@ final class IntroTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/home');
 
+        $this->assertSame(
+            'Pokénini Home',
+            $crawler->filter('title')->text()
+        );
+
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Home',
@@ -79,6 +84,11 @@ final class IntroTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/demolist3');
 
+        $this->assertSame(
+            'Pokénini Démo',
+            $crawler->filter('title')->text()
+        );
+
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
             'Démo',
@@ -123,6 +133,11 @@ final class IntroTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/album/demoliteshiny');
+
+        $this->assertSame(
+            'Pokénini Démo, extrait chromatique',
+            $crawler->filter('title')->text()
+        );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
@@ -170,6 +185,11 @@ final class IntroTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/album/goldsilvercrystal');
+
+        $this->assertSame(
+            'Pokénini Or, Argent, Cristal',
+            $crawler->filter('title')->text()
+        );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
@@ -219,6 +239,11 @@ final class IntroTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/album/blackwhite');
+
+        $this->assertSame(
+            'Pokénini Noire, Blanche',
+            $crawler->filter('title')->text()
+        );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(
@@ -317,6 +342,11 @@ final class IntroTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertSame(
+            'Pokénini Démo',
+            $crawler->filter('title')->text()
+        );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
         $this->assertEquals(

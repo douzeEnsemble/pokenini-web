@@ -36,6 +36,16 @@ final class ActionInvalidateTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
+        $this->assertSame(
+            'Pokénini Administration',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Administration',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
     }
 

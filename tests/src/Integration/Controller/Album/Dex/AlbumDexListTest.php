@@ -32,6 +32,16 @@ final class AlbumDexListTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Tes albums',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Tes albums',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertFrenchLangSwitch($crawler);
 
         $this->assertCountFilter($crawler, 6, '.album-item');
@@ -85,6 +95,16 @@ final class AlbumDexListTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Tes albums',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Tes albums',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertCountFilter($crawler, 0, '.album-item');
     }
 
@@ -100,6 +120,16 @@ final class AlbumDexListTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Tes albums',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Tes albums',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertCountFilter($crawler, 0, '.album-item');
     }
 
@@ -114,6 +144,16 @@ final class AlbumDexListTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/dex');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            'Pokénini Tes albums',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Tes albums',
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertCountFilter($crawler, 2, '.album-item');
         $this->assertCountFilter($crawler, 2, '.album-item h5');
@@ -131,6 +171,16 @@ final class AlbumDexListTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/dex?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            'Pokénini Tes albums',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Tes albums',
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertFrenchLangSwitch($crawler);
 
@@ -158,6 +208,16 @@ final class AlbumDexListTest extends WebTestCase
         $crawler = $client->request('GET', '/en/album/dex?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            'Pokénini Your albums',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Your albums',
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertEnglishLangSwitch($crawler);
 

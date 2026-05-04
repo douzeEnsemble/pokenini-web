@@ -32,6 +32,11 @@ final class AccessPrivateTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Home',
+            $crawler->filter('title')->text()
+        );
+
         $this->assertSame('Home', $crawler->filter('#album-title')->text());
         $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
@@ -52,6 +57,11 @@ final class AccessPrivateTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            'Pokénini Démo',
+            $crawler->filter('title')->text()
+        );
+
         $this->assertSame('Démo', $crawler->filter('#album-title')->text());
         $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
@@ -71,6 +81,11 @@ final class AccessPrivateTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            'Pokénini Démo',
+            $crawler->filter('title')->text()
+        );
 
         $this->assertSame('Démo', $crawler->filter('#album-title')->text());
         $this->assertCountFilter($crawler, 0, '#album-subtitle');

@@ -33,6 +33,16 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
+        $this->assertSame(
+            'Pokénini Ton espace de dresseur',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Ton espace de dresseur',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertCountFilter($crawler, 1, 'h1');
         $this->assertCountFilter($crawler, 2, 'table thead th');
         $this->assertCountFilter($crawler, 2, 'table tbody tr');
@@ -66,6 +76,16 @@ final class TrainerPageTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/trainer');
 
         $this->assertResponseStatusCodeSame(200);
+
+        $this->assertSame(
+            'Pokénini Ton espace de dresseur',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Ton espace de dresseur',
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertCountFilter($crawler, 1, 'h1');
         $this->assertCountFilter($crawler, 2, 'table thead th');
@@ -101,6 +121,16 @@ final class TrainerPageTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/trainer');
 
         $this->assertResponseStatusCodeSame(200);
+
+        $this->assertSame(
+            'Pokénini Ton espace de dresseur',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Ton espace de dresseur',
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertCountFilter($crawler, 1, 'h1');
         $this->assertCountFilter($crawler, 2, 'table thead th');

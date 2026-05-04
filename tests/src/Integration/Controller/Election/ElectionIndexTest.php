@@ -34,6 +34,16 @@ final class ElectionIndexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            "Pokénini C'est quoi ton préféré ?",
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            "C'est quoi ton préféré ?",
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
         $this->assertSame("Choisi d'abord", $crawler->filter('h2')->text());
 
@@ -78,6 +88,16 @@ final class ElectionIndexTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/election/demoliteshiny');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            "Pokénini C'est quoi ton préféré ?",
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            "C'est quoi ton préféré ?",
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
         $this->assertSame("Choisi d'abord", $crawler->filter('h2')->text());
@@ -127,6 +147,16 @@ final class ElectionIndexTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/election/mega');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            "Pokénini C'est quoi ton préféré ?",
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            "C'est quoi ton préféré ?",
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
         $this->assertSame("Choisi d'abord", $crawler->filter('h2')->text());
@@ -181,6 +211,16 @@ final class ElectionIndexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            "Pokénini C'est quoi ton préféré ?",
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            "C'est quoi ton préféré ?",
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
         $this->assertSame("Choisi d'abord", $crawler->filter('h2')->text());
 
@@ -234,6 +274,16 @@ final class ElectionIndexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
+        $this->assertSame(
+            "Pokénini C'est quoi ton préféré ?",
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            "C'est quoi ton préféré ?",
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
         $this->assertSame('Maintenant tu votes', $crawler->filter('h2')->text());
 
@@ -286,6 +336,16 @@ final class ElectionIndexTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/election/mega/lastpage');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            "Pokénini C'est quoi ton préféré ?",
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            "C'est quoi ton préféré ?",
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
         $this->assertSame("Y'a plus que ceux là", $crawler->filter('h2')->text());
@@ -342,6 +402,16 @@ final class ElectionIndexTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/election/mega/lastone');
 
         $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            "Pokénini C'est quoi ton préféré ?",
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            "C'est quoi ton préféré ?",
+            $crawler->filter('h1')->text()
+        );
 
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
         $this->assertSame("C'est iel !", $crawler->filter('h2')->text());

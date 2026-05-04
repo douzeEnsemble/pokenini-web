@@ -32,6 +32,16 @@ final class AdminReportsTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
+        $this->assertSame(
+            'Pokénini Administration',
+            $crawler->filter('title')->text()
+        );
+
+        $this->assertSame(
+            'Administration',
+            $crawler->filter('h1')->text()
+        );
+
         $this->assertCountFilter($crawler, 2, 'table.report-table');
         $this->assertCountFilter($crawler, 1, '.admin-item-invalidate_reports a.admin-item-cta');
 
