@@ -45,6 +45,18 @@
             <script>
                 watchCookieManager();
             </script>
+
+            <script>
+            (function() {
+              // Enable tooltips
+              [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
+                .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+              // Enable toasts
+              [...document.querySelectorAll('.toast')]
+                .map(toastEl => new bootstrap.Toast(toastEl));
+            })();
+            </script>
         {% endblock foot_javascript %}
     </body>
 </html>

@@ -32,14 +32,3 @@
   </div>
 </div>
 {% endblock %}
-
-{% block foot_javascript %}
-  {{ parent() }}
-  <script>
-  (function() {
-    // Enable tooltips
-    [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
-      .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-  })();
-  </script>
-{% endblock foot_javascript %}

@@ -33,14 +33,5 @@
 
     watchAttributes();
     watchFilters();
-
-    // Enable toasts
-    const toastElList = document.querySelectorAll('.toast')
-    const toastList = [... toastElList].map(toastEl => new bootstrap.Toast(toastEl));
-  </script>
-  <script>
-    (function () { // Enable tooltips
-      [...document.querySelectorAll('[data-bs-toggle="tooltip"]')].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-    })();
   </script>
 {% endblock foot_javascript %}
