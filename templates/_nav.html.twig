@@ -7,9 +7,14 @@
 
 <nav class="navbar fixed-bottom navbar-expand-sm bg-light">
     <div class="container-fluid">
+        {% if app.user %}
+        {% set logoPath = 'app_albumdexlist_index' %}
+        {% else %}
+        {% set logoPath = 'app_home_index' %}
+        {% endif %}
         <a
             class="navbar-brand navbar-logo"
-            href="{{ path('app_home_index', {'_locale': locale}) }}"
+            href="{{ path(logoPath, {'_locale': locale}) }}"
         >
             <img src="/img/logo/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top" loading="lazy">
         </a>
