@@ -5,7 +5,7 @@
 {% use '_nav.html.twig' %}
 {% import "AlbumDexList/_macro.html.twig" as list %}
 
-{% block title %}Pokénini{% endblock %}
+{% block title %}Pokénini {{ 'title.album.nav'|trans }}{% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
@@ -16,7 +16,7 @@
 {% block container %}
 <div id="home" class="row">
   <div class="col-lg-8 mx-auto text-center">
-    <h1>Pokénini</h1>
+    <h1>{{ 'title.album.nav'|trans }}</h1>
 
     {{ list.list(dex, locale) }}
   </div>
