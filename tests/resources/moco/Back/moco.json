@@ -793,6 +793,26 @@
   },
   {
     "request": {
+      "uri": "/album/dex",
+      "queries": {
+        "trainer_id": "0a286c2c78b485e1bcecf68febbda17084d0b2be"
+      },
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "exist" : "false"
+        },
+        "authorization": {
+          "exist" : "false"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/trainer.json"
+    }
+  },
+  {
+    "request": {
       "uri": {
         "match": "/album/demo"
       },

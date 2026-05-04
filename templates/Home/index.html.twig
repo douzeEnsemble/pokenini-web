@@ -3,123 +3,42 @@
 
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
+{% import "AlbumDexList/_macro.html.twig" as list %}
 
-{% block title %}Pokénini
-{% endblock %}
+{% block title %}Pokénini{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
+  {{ parent() }}
 
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 {% endblock stylesheets %}
 
 {% block container %}
-  <div id="home" class="row">
-    <div class="col-lg-10 mx-auto text-center">
-      <h1>Pokénini</h1>
+<div id="home" class="row">
+  <div class="col-lg-10 mx-auto text-center">
+    <h1>Pokénini</h1>
 
-      {% if connectedUserId is null %}
-        <div class="alert alert-warning" role="alert">
-          <p>
-            {{ 'home.alert.not_connected.description'|trans|htmlNl2br }}
-          </p>
-          <a href="{{ path('app_connect_index') }}" class="btn btn-warning">
-            {{ 'home.alert.not_connected.action'|trans }}
-          </a>
-        </div>
-      {% else %}
-        <div class="alert alert-light" role="alert">
-          <p>
-            {{ 'home.alert.connected.description'|trans({id: app.user.id})|htmlNl2br }}
-          </p>
-        </div>
-      {% endif %}
-
-      <div class="row mt-5">
-        <div class="col-lg-6 col-12 home-menu-item home-menu-item-election">
-          <div class="d-flex bg-body-tertiary rounded-3 p-xl-5 p-lg-3 p-2 mb-5 align-items-start">
-            <div class="icon-square text-light bg-info d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-              <i class="bi bi-balloon-heart"></i>
-            </div>
-            <div class="flex-fill">
-              <h3 class="fs-2 text-body-emphasis">{{ 'home.menu.election.title'|trans }}</h3>
-              <p>{{- 'home.menu.election.description'|trans -}}</p>
-              <a href="{{ path('app_electiondexlist_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
-                  {{ 'home.menu.election.action'|trans }}
-                </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-12 home-menu-item home-menu-item-album">
-          <div class="d-flex bg-body-tertiary rounded-3 p-xl-5 p-lg-3 p-2 mb-5 align-items-start">
-            <div class="icon-square text-light bg-info d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-              <i class="bi bi-collection"></i>
-            </div>
-            <div class="flex-fill">
-              <h3 class="fs-2 text-body-emphasis">{{ 'home.menu.album.title'|trans }}</h3>
-              <p>{{- 'home.menu.album.description'|trans -}}</p>
-                <a href="{{ path('app_albumdexlist_index') }}" class="btn btn-outline-primary {% if connectedUserId is null %}disabled{% endif %}">
-                  {{ 'home.menu.album.action'|trans }}
-                </a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="mt-3 mb-3 alert alert-warning" role="alert">
+      <p>
+        {{ 'home.alert.not_connected.description'|trans|htmlNl2br }}
+      </p>
+      <a href="{{ path('app_connect_index') }}" class="btn btn-warning">
+        {{ 'home.alert.not_connected.action'|trans }}
+      </a>
     </div>
+
+    {{ list.list(dex, locale, demoUserId) }}
   </div>
+</div>
 {% endblock %}
-
-{% macro homeItem(dex, locale, trainerId) %}
-  {% set url = path('app_albumindex_index', {'dexSlug': dex.slug, 't': trainerId}) %}
-  <div class="card col-lg-3 col-sm-6 col-12 home-item position-relative">
-    <a href="{{ url }}">
-      {% set bannerUrl = dexBannerUrl|format(dex.slug) %}
-      {% set defaultBannerUrl = '/img/banner/default.webp' %}
-      <img src="{{ bannerUrl }}" class="card-img" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';">
-    </a>
-    <div class="card-body">
-      <div class="position-absolute top-0 end-0 me-2">
-        {% if dex.isPremium %}
-          <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.isPremium.label')|trans }}">
-            <i class="bi bi-patch-plus"></i>
-          </span>
-        {% endif %}
-        {% if not dex.isReleased %}
-          <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.isReleased.label')|trans }}">
-            <i class="bi bi-lock"></i>
-          </span>
-        {% endif %}
-        {% if dex.isCustom %}
-          <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.isCustom.label')|trans }}">
-            <i class="bi bi-person"></i>
-          </span>
-        {% endif %}
-      </div>
-
-      {% set titles = (locale is same as('fr') ? dex.frenchName : dex.name)|split("\n") %}
-      {% set title = titles.0 %}
-      {% set subtitle = titles.1 is defined ? titles.1 : '' %}
-      <h5 class="card-title">
-        <a href="{{ url }}">
-          {{ title }}
-        </a>
-      </h5>
-      {% if subtitle is not empty %}
-        <h6 class="card-subtitle mb-2 text-body-secondary">
-          <a href="{{ url }}">
-            {{ subtitle }}
-          </a>
-        </h6>
-      {% endif %}
-    </div>
-  </div>
-{% endmacro %}
 
 {% block foot_javascript %}
   {{ parent() }}
   <script>
-    (function () { // Enable tooltips
-[...document.querySelectorAll('[data-bs-toggle="tooltip"]')].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-})();
+  (function() {
+    // Enable tooltips
+    [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
+      .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+  })();
   </script>
 {% endblock foot_javascript %}

@@ -18,15 +18,35 @@ final class TrackerTest extends WebTestCase
 {
     use TestNavTrait;
 
+    public function testTrackerAsGuest(): void
+    {
+        $client = self::createClient();
+
+        $crawler = $client->request('GET', '/fr');
+
+        $this->assertTarteAuCitron($crawler);
+        $this->assertMatomo($crawler);
+
+        $this->assertStringNotContainsString(
+            "_paq.push(['setCustomDimension",
+            $crawler->outerHtml()
+        );
+        $this->assertStringNotContainsString(
+            "_paq.push(['setUserId'",
+            $crawler->outerHtml()
+        );
+    }
+
     public function testTrackerAsAdmin(): void
     {
         $client = self::createClient();
 
         $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
+        $user->addTrainerRole();
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr');
+        $crawler = $client->request('GET', '/fr/album/dex');
 
         $this->assertTarteAuCitron($crawler);
         $this->assertMatomo($crawler);
@@ -46,10 +66,11 @@ final class TrackerTest extends WebTestCase
         $client = self::createClient();
 
         $user = GetUserToken::getFakeUserToken('4568465464', 'TestProvider');
+        $user->addTrainerRole();
         $user->addCollectorRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr');
+        $crawler = $client->request('GET', '/fr/album/dex');
 
         $this->assertTarteAuCitron($crawler);
         $this->assertMatomo($crawler);
@@ -72,7 +93,7 @@ final class TrackerTest extends WebTestCase
         $user->addTrainerRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr');
+        $crawler = $client->request('GET', '/fr/album/dex');
 
         $this->assertTarteAuCitron($crawler);
         $this->assertMatomo($crawler);
@@ -83,25 +104,6 @@ final class TrackerTest extends WebTestCase
         );
         $this->assertStringContainsString(
             "_paq.push(['setUserId', '88f4a8011adfd1868148addb265ef2683fdf40d8']);",
-            $crawler->outerHtml()
-        );
-    }
-
-    public function testTrackerAsGuest(): void
-    {
-        $client = self::createClient();
-
-        $crawler = $client->request('GET', '/fr');
-
-        $this->assertTarteAuCitron($crawler);
-        $this->assertMatomo($crawler);
-
-        $this->assertStringNotContainsString(
-            "_paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '",
-            $crawler->outerHtml()
-        );
-        $this->assertStringNotContainsString(
-            "_paq.push(['setUserId'",
             $crawler->outerHtml()
         );
     }
