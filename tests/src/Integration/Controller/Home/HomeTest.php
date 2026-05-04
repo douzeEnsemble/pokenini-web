@@ -28,7 +28,7 @@ final class HomeTest extends WebTestCase
 
         $this->assertFrenchLangSwitch($crawler);
 
-        $this->assertCountFilter($crawler, 6, '.home-item');
+        $this->assertCountFilter($crawler, 6, '.album-item');
 
         $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
 
