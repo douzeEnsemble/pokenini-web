@@ -3,9 +3,7 @@
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 
-{% block title %}Pokénini
-  {{ 'title.outer_room'|trans }}
-{% endblock title %}
+{% block title %}Pokénini {{ 'title.outer_room'|trans }}{% endblock title %}
 
 {% set userId = app.user.userIdentifier %}
 

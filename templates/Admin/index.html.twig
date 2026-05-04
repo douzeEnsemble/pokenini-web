@@ -13,9 +13,7 @@
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 
-{% block title %}Pokénini
-  {{ 'title.admin'|trans }}
-{% endblock %}
+{% block title %}Pokénini {{ 'title.admin'|trans }}{% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
@@ -24,8 +22,13 @@
 {% endblock stylesheets %}
 
 {% block container %}
-  {% include 'Admin/_actions.html.twig' %}
-  {% include 'Admin/_reports.html.twig' %}
+<div id="admin" class="row">
+  <div class="col-12">
+    <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
+    {% include 'Admin/_actions.html.twig' %}
+    {% include 'Admin/_reports.html.twig' %}
+  </div>
+</div>
 {% endblock %}
 
 {% block head_javascripts %}

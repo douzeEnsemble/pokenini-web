@@ -2,594 +2,595 @@ logout: "Se déconnecter"
 login: "Se connecter"
 
 number:
-    exactly: exactement {number}
-    almost: quasi {number}
-    approximately: presque {number}
-    between: entre {low} et {high}
+  exactly: exactement {number}
+  almost: quasi {number}
+  approximately: presque {number}
+  between: entre {low} et {high}
 
 nav:
-    home: "Accueil"
-    back_home: "Retour à l'accueil"
-    madebyandfor: "Fait par et pour"
-    lang:
-        fr: "Français"
-        en: "Anglais"
-    admin: "Administration"
-    connected: "Connecté"
-    login: "Se connecter"
-    share: "Lien de partage"
-    is_private: "Album privé"
-    open-offcanvas: "Ouvrir le panneau latéral"
-    cookie-manager: "Gère tes cookies"
+  home: "Accueil"
+  back_home: "Retour à l'accueil"
+  madebyandfor: "Fait par et pour"
+  lang:
+    fr: "Français"
+    en: "Anglais"
+  admin: "Administration"
+  connected: "Connecté"
+  login: "Se connecter"
+  share: "Lien de partage"
+  is_private: "Album privé"
+  open-offcanvas: "Ouvrir le panneau latéral"
+  cookie-manager: "Gère tes cookies"
 
 title:
-    home: "Accueil"
-    report: "Stats"
-    admin: "Administration"
-    admin_actions: "Données et caches"
-    admin_reports: "Rapports"
-    box: "Boite"
-    empty: " "
-    connect: "Connexion"
-    trainer: "Ton espace de dresseur"
-    outer_room: "Salle d'attente"
-    legals: "Mentions Légales"
-    policy: "Politique de confidentialité"
-    cookies: "Cookies"
-    election: 
-        nav: "C'est quoi ton préféré ?"
-        subtitle: 
-            pick: "Choisi d'abord"
-            vote: "Maintenant tu votes"
-            lastpage: "Y'a plus que ceux là"
-            lastone: "C'est iel !"
-    error:
-        unknown: "Y'a eu une erreur"
-        404: "La page n'a pas été trouvée"
-        500: "Y'a eu une merde. C'est pas toi, c'est nous"
+  home: "Accueil"
+  report: "Stats"
+  admin: "Administration"
+  admin_actions: "Données et caches"
+  admin_reports: "Rapports"
+  box: "Boite"
+  empty: " "
+  connect: "Connexion"
+  trainer: "Ton espace de dresseur"
+  outer_room: "Salle d'attente"
+  legals: "Mentions Légales"
+  policy: "Politique de confidentialité"
+  cookies: "Cookies"
+  album:
+    nav: "Tes albums"
+  election:
+    nav: "C'est quoi ton préféré ?"
+    subtitle:
+      pick: "Choisi d'abord"
+      vote: "Maintenant tu votes"
+      lastpage: "Y'a plus que ceux là"
+      lastone: "C'est iel !"
+  error:
+    unknown: "Y'a eu une erreur"
+    404: "La page n'a pas été trouvée"
+    500: "Y'a eu une merde. C'est pas toi, c'est nous"
 
 home:
-    no_dex: "Y'a pas d'album à afficher. Tu peux les rajouter sur ton <a>espace dresseur</a>."
-    alert:
-        not_connected: 
-            description: "Tu n'es pas connecté. Connecte-toi pour profiter pleinement de l'application"
-            action: "Se connecter"
-        connected: 
-            description: |
-                Salut, "{id}" ... c'est un peu bizarre de s'appeler comme ça, non ?
-                
-                Je vais t'appeler "jeune dresseur", c'est mieux. Merci d'être là <3
-    menu:
-        election: 
-            title: "C'est quoi ton préféré ?"
-            description: "Tout nouveau, tout beau, tout propre. Tu peux choisir ton pokémon préféré"
-            action: "Je veux choisir !"
-        album: 
-            title: "Attrape les tous"
-            description: "Tous les pokémons, toutes les formes, tous les jeux. Tout est là"
-            action: "Montre moi les albums"
+  no_dex: "Y'a pas d'album à afficher. Tu peux les rajouter sur ton <a>espace dresseur</a>."
+  alert:
+    not_connected:
+      description: "Tu n'es pas connecté. Connecte-toi pour profiter pleinement de l'application"
+      action: "Se connecter"
+    connected:
+      description: |
+        Salut, "{id}" ... c'est un peu bizarre de s'appeler comme ça, non ?
+
+        Je vais t'appeler "jeune dresseur", c'est mieux. Merci d'être là <3
+  menu:
+    election:
+      title: "C'est quoi ton préféré ?"
+      description: "Tout nouveau, tout beau, tout propre. Tu peux choisir ton pokémon préféré"
+      action: "Je veux choisir !"
+    album:
+      title: "Attrape les tous"
+      description: "Tous les pokémons, toutes les formes, tous les jeux. Tout est là"
+      action: "Montre moi les albums"
 
 stats:
-    total: "Total"
+  total: "Total"
 
 album:
-    icon:
-        alt:
-            regular: "Icone de"
-            shiny: "Icone chromatique de"
-        title:
-            regular: "Normal"
-            shiny: "Chromatique"
-            previous: "Précédent"
-            next: "Suivant"
-    image:
-        alt:
-            regular: "Image de"
-            shiny: "Image chromatique de"
-    update:
-        title: "Maj"
-        success:
-            prefix: "Le changement de statut de"
-            radical: "{pokemonName}"
-            suffix: "a été enregistré"
-        error:
-            prefix: "Le changement de statut de"
-            radical: "{pokemonName}"
-            suffix: "a échoué"
-    intro:
-        action:
-            mode:
-                write: "Passer en mode modification globale"
-                read: "Passer en mode lecture"
-            goto:
-                box1: "Voir la boîte numéro 1"
-                top_of_the_list: "Voir le haut de la liste"
-                top_of_the_page: "Voir le haut de la page"
-            description:
-                collapse: "Informations"
-            screenshot:
-                enable: Mode capture
-                disable: Revenir à la normale
-        label:
-            version: "Version"
-            region: "Région"
-            dex: "Dex"
-            is_shiny:
-                yes: "Formes chromatiques"
-                no: "Formes normales"
-            another_trainer_album: "Album d'un autre dresseur"
-            display_template:
-                box: "Affichage par boîte de 6 par 5 pokémons comme dans les jeux"
-                list-3: "Liste de 3 pokémons par lignes"
-                list-5: "Liste de 5 pokémons par lignes"
-                list-7: "Liste de 7 pokémons par lignes"
-        value:
-            national: "National"
-    modal:
-        national_dex_number: Numéro de dex national
-        regional_dex_number: Numéro de dex régional
-        forms: Forme
-        no_forms: Normale
-        link:
-            pokepedia: Fiche Poképédia
-            bulbapedia: Fiche Bulbapedia (anglais)
-            family: Afficher la famille
-    offcanvas:
-        informations:
-            title: Informations
-        title: Filtres
-        open_distinguish_types: Avancées
+  icon:
+    alt:
+      regular: "Icone de"
+      shiny: "Icone chromatique de"
+    title:
+      regular: "Normal"
+      shiny: "Chromatique"
+      previous: "Précédent"
+      next: "Suivant"
+  image:
+    alt:
+      regular: "Image de"
+      shiny: "Image chromatique de"
+  update:
+    title: "Maj"
+    success:
+      prefix: "Le changement de statut de"
+      radical: "{pokemonName}"
+      suffix: "a été enregistré"
+    error:
+      prefix: "Le changement de statut de"
+      radical: "{pokemonName}"
+      suffix: "a échoué"
+  intro:
+    action:
+      mode:
+        write: "Passer en mode modification globale"
+        read: "Passer en mode lecture"
+      goto:
+        box1: "Voir la boîte numéro 1"
+        top_of_the_list: "Voir le haut de la liste"
+        top_of_the_page: "Voir le haut de la page"
+      description:
+        collapse: "Informations"
+      screenshot:
+        enable: Mode capture
+        disable: Revenir à la normale
+    label:
+      version: "Version"
+      region: "Région"
+      dex: "Dex"
+      is_shiny:
+        yes: "Formes chromatiques"
+        no: "Formes normales"
+      another_trainer_album: "Album d'un autre dresseur"
+      display_template:
+        box: "Affichage par boîte de 6 par 5 pokémons comme dans les jeux"
+        list-3: "Liste de 3 pokémons par lignes"
+        list-5: "Liste de 5 pokémons par lignes"
+        list-7: "Liste de 7 pokémons par lignes"
+    value:
+      national: "National"
+  modal:
+    national_dex_number: Numéro de dex national
+    regional_dex_number: Numéro de dex régional
+    forms: Forme
+    no_forms: Normale
+    link:
+      pokepedia: Fiche Poképédia
+      bulbapedia: Fiche Bulbapedia (anglais)
+      family: Afficher la famille
+  offcanvas:
+    informations:
+      title: Informations
+    title: Filtres
+    open_distinguish_types: Avancées
 
 update:
-    labels:
-        success: "La maj des labels a été effectuée"
-        error: "La maj des labels a échouée"
-    games_collections_and_dex:
-        success: "La maj des jeux, collections et dex a été effectuée"
-        error: "La maj des jeux, collections et dex a échouée"
-    pokemons:
-        success: "La maj des pokémons a été effectuée"
-        error: "La maj des pokémons a échouée"
-    games_availabilities:
-        success: "La maj des disponibilités des jeux a été effectuée"
-        error: "La maj des disponibilités des jeux a échouée"
-    games_shinies_availabilities:
-        success: "La maj des disponibilités des jeux des chromatiques a été effectuée"
-        error: "La maj des disponibilités des jeux des chromatiques a échouée"
-    regional_dex_numbers:
-        success: "La maj des numéros de dex régionaux a été effectuée"
-        error: "La maj des numéros de dex régionaux a échouée"
-    collections_availabilities:
-        success: "La maj des collections a été effectuée"
-        error: "La maj des collections a échouée"
+  labels:
+    success: "La maj des labels a été effectuée"
+    error: "La maj des labels a échouée"
+  games_collections_and_dex:
+    success: "La maj des jeux, collections et dex a été effectuée"
+    error: "La maj des jeux, collections et dex a échouée"
+  pokemons:
+    success: "La maj des pokémons a été effectuée"
+    error: "La maj des pokémons a échouée"
+  games_availabilities:
+    success: "La maj des disponibilités des jeux a été effectuée"
+    error: "La maj des disponibilités des jeux a échouée"
+  games_shinies_availabilities:
+    success: "La maj des disponibilités des jeux des chromatiques a été effectuée"
+    error: "La maj des disponibilités des jeux des chromatiques a échouée"
+  regional_dex_numbers:
+    success: "La maj des numéros de dex régionaux a été effectuée"
+    error: "La maj des numéros de dex régionaux a échouée"
+  collections_availabilities:
+    success: "La maj des collections a été effectuée"
+    error: "La maj des collections a échouée"
 calculate:
-    game_bundles_availabilities:
-        success: "La maj des disponibilités des bundles de jeux a été effectuée"
-        error: "La maj des disponibilités des bundles de jeux a échouée"
-    game_bundles_shinies_availabilities:
-        success: "La maj des disponibilités des bundles de jeux des chromatiques a été effectuée"
-        error: "La maj des disponibilités des bundles de jeux des chromatiques a échouée"
-    dex_availabilities:
-        success: "La maj des disponibilités des dex a été effectuée"
-        error: "La maj des disponibilités des dex a échouée"
-    pokemon_availabilities:
-        success: "La maj des disponibilités par pokémons a été effectuée"
-        error: "La maj des disponibilités par pokémons a échouée"
+  game_bundles_availabilities:
+    success: "La maj des disponibilités des bundles de jeux a été effectuée"
+    error: "La maj des disponibilités des bundles de jeux a échouée"
+  game_bundles_shinies_availabilities:
+    success: "La maj des disponibilités des bundles de jeux des chromatiques a été effectuée"
+    error: "La maj des disponibilités des bundles de jeux des chromatiques a échouée"
+  dex_availabilities:
+    success: "La maj des disponibilités des dex a été effectuée"
+    error: "La maj des disponibilités des dex a échouée"
+  pokemon_availabilities:
+    success: "La maj des disponibilités par pokémons a été effectuée"
+    error: "La maj des disponibilités par pokémons a échouée"
 
 connect:
-    disclaimer: |
-        J'utilise la connexion uniquement pour l'identification (savoir qui tu es).
-        L'email ne me sert à rien, je ne le regarde même pas.
-        Je ne conserve aucune donnée autre que l'identifiant fourni par le service.
+  disclaimer: |
+    J'utilise la connexion uniquement pour l'identification (savoir qui tu es).
+    L'email ne me sert à rien, je ne le regarde même pas.
+    Je ne conserve aucune donnée autre que l'identifiant fourni par le service.
 
-        Choisis ton service d'identification préféré.
-        Tu seras redirigé vers leur site pour te connecter.
-    help: |
-        Chaque service te permet d'avoir un compte différent sur Pokénini.
-
+    Choisis ton service d'identification préféré.
+    Tu seras redirigé vers leur site pour te connecter.
+  help: |
+    Chaque service te permet d'avoir un compte différent sur Pokénini.
 
 trainer:
-    welcome: |
-        Bonjour à toi jeune dresseur.
-        Ceci est ton espace.
+  welcome: |
+    Bonjour à toi jeune dresseur.
+    Ceci est ton espace.
 
-        Tu peux y personnaliser tes albums, consulter les données personnelles et te déconnecter.
-        Amuse toi bien.
-    personnal_data:
-        title: "Données personnelles"
-        intro: "Voici les données personnelles que j'ai te concernant"
-        outro: "Voilà. C'est tout"
-        head:
-            type: "Type"
-            value: "Valeur"
-        body:
-            id: "Identifiant"
-            provider: "Service d'identification"
-    dex:
-        title: "Personnalise tes albums"
-        see: "Voir"
-        attributes:
-            is_private:
-                label: "Album privé"
-                help: "Uniquement accessible par toi"
-            is_on_home:
-                label: "Album visible sur la page d'accueil"
-                help: "La page d'accueil n'est visible que par toi. C'est ta page."
-            is_premium:
-                label: "Album premium"
-                help: "Seulement pour les utilisateurs premium"
-            is_shiny:
-                label: "Album chromatique"
-                help: "Plein de pokemons chromatiques"
-            is_custom:
-                label: "Album personnalisé"
-                help: "Rien que pour toi"
-            not:
-                is_released:
-                    label: "Album non déployé"
-                    help: "Seul les admins peuvent voir l'album, pour le moment"
-        update:
-            title: "Maj"
-            success:
-                prefix: "Le paramétrage de "
-                radical: "{dexName}"
-                suffix: "a été enregistré"
-            error:
-                prefix: "Le paramétrage de "
-                radical: "{dexName}"
-                suffix: "n'a pas été enregistré"
-    filters:
-        attributes:
-            privacy:
-                label: "Filtrer les albums privées/publics"
-                all: "Tous"
-                "on": "Privés seulement"
-                "off": "Publics seulement"
-            homepaged:
-                label: "Filtrer les albums sur l'accueil ou non"
-                all: "Tous"
-                "on": "Sur l'accueil"
-                "off": "Pas sur l'accueil"
-            released:
-                label: "Filtrer les albums disponibles, pour tout le monde"
-                all: "Tous"
-                "on": "Disponible"
-                "off": "Non disponible"
-            shiny:
-                label: "Filter les albums chromatiques ou non"
-                all: "Tous"
-                "on": "Chromatiques"
-                "off": "Normaux"
-            premium:
-                label: "Filter les albums premiums ou gratuits"
-                all: "Tous"
-                "on": "Premiums"
-                "off": "Gratuits"
-    logout:
-        title: "Session"
+    Tu peux y personnaliser tes albums, consulter les données personnelles et te déconnecter.
+    Amuse toi bien.
+  personnal_data:
+    title: "Données personnelles"
+    intro: "Voici les données personnelles que j'ai te concernant"
+    outro: "Voilà. C'est tout"
+    head:
+      type: "Type"
+      value: "Valeur"
+    body:
+      id: "Identifiant"
+      provider: "Service d'identification"
+  dex:
+    title: "Personnalise tes albums"
+    see: "Voir"
+    attributes:
+      is_private:
+        label: "Album privé"
+        help: "Uniquement accessible par toi"
+      is_on_home:
+        label: "Album visible sur la page d'accueil"
+        help: "La page d'accueil n'est visible que par toi. C'est ta page."
+      is_premium:
+        label: "Album premium"
+        help: "Seulement pour les utilisateurs premium"
+      is_shiny:
+        label: "Album chromatique"
+        help: "Plein de pokemons chromatiques"
+      is_custom:
+        label: "Album personnalisé"
+        help: "Rien que pour toi"
+      not:
+        is_released:
+          label: "Album non déployé"
+          help: "Seul les admins peuvent voir l'album, pour le moment"
+    update:
+      title: "Maj"
+      success:
+        prefix: "Le paramétrage de "
+        radical: "{dexName}"
+        suffix: "a été enregistré"
+      error:
+        prefix: "Le paramétrage de "
+        radical: "{dexName}"
+        suffix: "n'a pas été enregistré"
+  filters:
+    attributes:
+      privacy:
+        label: "Filtrer les albums privées/publics"
+        all: "Tous"
+        "on": "Privés seulement"
+        "off": "Publics seulement"
+      homepaged:
+        label: "Filtrer les albums sur l'accueil ou non"
+        all: "Tous"
+        "on": "Sur l'accueil"
+        "off": "Pas sur l'accueil"
+      released:
+        label: "Filtrer les albums disponibles, pour tout le monde"
+        all: "Tous"
+        "on": "Disponible"
+        "off": "Non disponible"
+      shiny:
+        label: "Filter les albums chromatiques ou non"
+        all: "Tous"
+        "on": "Chromatiques"
+        "off": "Normaux"
+      premium:
+        label: "Filter les albums premiums ou gratuits"
+        all: "Tous"
+        "on": "Premiums"
+        "off": "Gratuits"
+  logout:
+    title: "Session"
 
 outer_room:
-    message: |
-        Hey, merci de t'être connecté. Pour l'instant, tu n'as pas le droit d'aller plus loin.
-        Ce site est réservé qu'à certaine personne. Je sais c'est décevant.
+  message: |
+    Hey, merci de t'être connecté. Pour l'instant, tu n'as pas le droit d'aller plus loin.
+    Ce site est réservé qu'à certaine personne. Je sais c'est décevant.
 
-        Si tu veux y avoir accès, tu peux contacter mon administrateur, Renaud,
-        par email pokenini.app@gmail.com ou par un autre moyen si tu en connais.
-        Il suffit de lui transmettre cet identifiant `{id}`
+    Si tu veux y avoir accès, tu peux contacter mon administrateur, Renaud,
+    par email pokenini.app@gmail.com ou par un autre moyen si tu en connais.
+    Il suffit de lui transmettre cet identifiant `{id}`
 
-        Et si tu cliques en dessous, ça te fait l'email tout seul. Je suis pas gentil ?
+    Et si tu cliques en dessous, ça te fait l'email tout seul. Je suis pas gentil ?
 
-        (L'email ne sera pas conservé)
-    cancel: |
-        Si tu ne veux pas avoir d'accès, tu n'as rien à faire. Je n'ai rien enregistré.
-        Tu peux te déconnecter avec le lien en dessous.
-        Merci d'être passé
-    mail:
-        link: "Envoyer une demande"
-        subject: "Je peux avoir accès à Pokénini stp ?"
-        body: "Mon identifiant Google OpenId est {id}"
+    (L'email ne sera pas conservé)
+  cancel: |
+    Si tu ne veux pas avoir d'accès, tu n'as rien à faire. Je n'ai rien enregistré.
+    Tu peux te déconnecter avec le lien en dessous.
+    Merci d'être passé
+  mail:
+    link: "Envoyer une demande"
+    subject: "Je peux avoir accès à Pokénini stp ?"
+    body: "Mon identifiant Google OpenId est {id}"
 
 footer:
-    home: "Accueil"
-    legals: "Mentions Légales"
-    policy: "Politique de confidentialité"
-    cookies: "Cookies"
-    version: "Version"
+  home: "Accueil"
+  legals: "Mentions Légales"
+  policy: "Politique de confidentialité"
+  cookies: "Cookies"
+  version: "Version"
 
 error:
-    unknown:
-        text: |
-            Merde ! Y'a eu une erreur. Je sais pas où.
-            Mais t'inquiète pas c'est pas toi. C'est nous ...
-            Enfin peut être pas vu qu'on sait pas d'où vient l'erreur.
+  unknown:
+    text: |
+      Merde ! Y'a eu une erreur. Je sais pas où.
+      Mais t'inquiète pas c'est pas toi. C'est nous ...
+      Enfin peut être pas vu qu'on sait pas d'où vient l'erreur.
 
-            N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée,
-            une capture, le max d'info.
-    404:
-        text: |
-            La page que tu as demandée est introuvable. Je la trouve pas.
-            Vérifie l'URL ou reviens à la page d'accueil en utilisant le lien juste en dessous.
-    500:
-        text: |
-            Alors là c'est la merde ! Y'a eu une coui**e quelque part.
-            Elle vient de mon côté. Tu n'y es pour rien.
+      N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée,
+      une capture, le max d'info.
+  404:
+    text: |
+      La page que tu as demandée est introuvable. Je la trouve pas.
+      Vérifie l'URL ou reviens à la page d'accueil en utilisant le lien juste en dessous.
+  500:
+    text: |
+      Alors là c'est la merde ! Y'a eu une coui**e quelque part.
+      Elle vient de mon côté. Tu n'y es pour rien.
 
-            N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée,
-            une capture, le max d'info.
+      N'hésite pas à nous signaler l'erreur. Comment tu l'as rencontrée,
+      une capture, le max d'info.
 
 admin:
-    reports:
-        cache:
-            title: "Cache"
-        table:
-            hide: "Cacher la donnée"
-            show: "Afficher la donnée"
-        catch_state_counts_defined_by_trainer:
-            title: "Répartition des statuts de capture définis par les dresseurs"
-            trainer: "Dresseur"
-            nb: "Nb."
-            color: "Couleur"
-            part: "%"
-            toggle: ""
-        dex_usage:
-            title: "Utilisation des dex"
-            dex: "Dex"
-            nb: "Nombre de dresseurs"
-        catch_state_usage:
-            title: "Utilisation des statuts de capture"
-            catch_state: "Statut de capture"
-            nb: "Nb."
-            color: "Couleur"
-            part: "%"
-            toggle: ""
-    action:
-        created_at: "Démarré le"
-        done_at: "Terminé le"
-        execution_time: "Terminé en"
-    toggle:
-        last: "Voir l'action précédente"
-        current: "Voir la dernière action"
-    actions:
-        update_availabilities:
-            title: "Mises à jour des données de disponibilités"
-            games_availabilities: 
-                title: "Mise à jour des disponibilités des jeux"
-                item: "Disponibilités des jeux"
-                cta: "Mettre à jour"
-            games_shinies_availabilities: 
-                title: "Mise à jour des disponibilités des jeux des chromatiques"
-                item: "Disponibilités des jeux des chromatiques"
-                cta: "Mettre à jour"
-            collections_availabilities: 
-                title: "Mise à jour des disponibilités des collections"
-                item: "Disponibilités des collections"
-                cta: "Mettre à jour"
-        update_data:
-            title: "Mises à jour des données"
-            labels: 
-                title: "Mise à jour des labels"
-                cta: "Mettre à jour"
-            games_collections_and_dex: 
-                title: "Mise à jour des jeux, des collections et des dex"
-                cta: "Mettre à jour"
-            pokemons: 
-                title: "Mise à jour des pokémons"
-                item: "Pokémons"
-                cta: "Mettre à jour"
-            regional_dex_numbers: 
-                title: "Mise à jour des numéro des dex régionaux"
-                item: "Numéros de dex régionaux"
-                cta: "Mettre à jour"
-            game_generations: 
-                item: "Générations"
-            game_bundles: 
-                item: "Bundles de jeux"
-            games: 
-                item: "Jeux"
-            dex: 
-                item: "Dex"
-            collections: 
-                item: "Collections"
-            catch_states: 
-                item: "Statuts"
-            types: 
-                item: "Types"
-            regions: 
-                item: "Régions"
-            category_forms: 
-                item: "Catégories"
-            regional_forms: 
-                item: "Formes régionales"
-            special_forms: 
-                item: "Formes spéciales"
-            variant_forms: 
-                item: "Variantes"
-                
-        calculate_data:
-            title: "Calculs des données"
-            game_bundles_availabilities: 
-                title: "Calculs des disponibilités des bundles de jeux"
-                item: "Disponibilités des bundles"
-                cta: "Calculer"
-            game_bundles_shinies_availabilities: 
-                title: "Calculs des disponibilités des bundles de jeux des chromatiques"
-                item: "Disponibilités des bundles des chromatiques"
-                cta: "Calculer"
-            dex_availabilities: 
-                title: "Calculs des disponibilités des dex"
-                item: "Disponibilités des dex"
-                cta: "Calculer"
-            pokemon_availabilities: 
-                title: "Calculs des disponibilités par pokemons"
-                cta: "Calculer"
-            pokemon_availabilities_game_bundle: 
-                item: "Disponibilités des packs de jeux par pokémons"
-            pokemon_availabilities_game_bundle_shiny: 
-                item: "Disponibilités des chromatiques des packs de jeux par pokémons "
+  reports:
+    cache:
+      title: "Cache"
+    table:
+      hide: "Cacher la donnée"
+      show: "Afficher la donnée"
+    catch_state_counts_defined_by_trainer:
+      title: "Répartition des statuts de capture définis par les dresseurs"
+      trainer: "Dresseur"
+      nb: "Nb."
+      color: "Couleur"
+      part: "%"
+      toggle: ""
+    dex_usage:
+      title: "Utilisation des dex"
+      dex: "Dex"
+      nb: "Nombre de dresseurs"
+    catch_state_usage:
+      title: "Utilisation des statuts de capture"
+      catch_state: "Statut de capture"
+      nb: "Nb."
+      color: "Couleur"
+      part: "%"
+      toggle: ""
+  action:
+    created_at: "Démarré le"
+    done_at: "Terminé le"
+    execution_time: "Terminé en"
+  toggle:
+    last: "Voir l'action précédente"
+    current: "Voir la dernière action"
+  actions:
+    update_availabilities:
+      title: "Mises à jour des données de disponibilités"
+      games_availabilities:
+        title: "Mise à jour des disponibilités des jeux"
+        item: "Disponibilités des jeux"
+        cta: "Mettre à jour"
+      games_shinies_availabilities:
+        title: "Mise à jour des disponibilités des jeux des chromatiques"
+        item: "Disponibilités des jeux des chromatiques"
+        cta: "Mettre à jour"
+      collections_availabilities:
+        title: "Mise à jour des disponibilités des collections"
+        item: "Disponibilités des collections"
+        cta: "Mettre à jour"
+    update_data:
+      title: "Mises à jour des données"
+      labels:
+        title: "Mise à jour des labels"
+        cta: "Mettre à jour"
+      games_collections_and_dex:
+        title: "Mise à jour des jeux, des collections et des dex"
+        cta: "Mettre à jour"
+      pokemons:
+        title: "Mise à jour des pokémons"
+        item: "Pokémons"
+        cta: "Mettre à jour"
+      regional_dex_numbers:
+        title: "Mise à jour des numéro des dex régionaux"
+        item: "Numéros de dex régionaux"
+        cta: "Mettre à jour"
+      game_generations:
+        item: "Générations"
+      game_bundles:
+        item: "Bundles de jeux"
+      games:
+        item: "Jeux"
+      dex:
+        item: "Dex"
+      collections:
+        item: "Collections"
+      catch_states:
+        item: "Statuts"
+      types:
+        item: "Types"
+      regions:
+        item: "Régions"
+      category_forms:
+        item: "Catégories"
+      regional_forms:
+        item: "Formes régionales"
+      special_forms:
+        item: "Formes spéciales"
+      variant_forms:
+        item: "Variantes"
 
-        invalidate_data:
-            title: "Invalidation des caches"
-            catch_states: 
-                title: "Invalidation du cache des statuts"
-                cta: "Invalider"
-            types: 
-                title: "Invalidation du cache des types"
-                cta: "Invalider"
-            labels: 
-                title: "Invalidation du cache des labels"
-                cta: "Invalider"
-            dex: 
-                title: "Invalidation du cache des dex"
-                cta: "Invalider"
-            albums: 
-                title: "Invalidation du cache des albums"
-                cta: "Invalider"
-            actions: 
-                title: "Invalidation du cache des actions"
-                cta: "Invalider"
-        
-        reports_data: 
-            reports: 
-                title: "Invalidation du cache des rapports"
-                cta: "Invalider"
+    calculate_data:
+      title: "Calculs des données"
+      game_bundles_availabilities:
+        title: "Calculs des disponibilités des bundles de jeux"
+        item: "Disponibilités des bundles"
+        cta: "Calculer"
+      game_bundles_shinies_availabilities:
+        title: "Calculs des disponibilités des bundles de jeux des chromatiques"
+        item: "Disponibilités des bundles des chromatiques"
+        cta: "Calculer"
+      dex_availabilities:
+        title: "Calculs des disponibilités des dex"
+        item: "Disponibilités des dex"
+        cta: "Calculer"
+      pokemon_availabilities:
+        title: "Calculs des disponibilités par pokemons"
+        cta: "Calculer"
+      pokemon_availabilities_game_bundle:
+        item: "Disponibilités des packs de jeux par pokémons"
+      pokemon_availabilities_game_bundle_shiny:
+        item: "Disponibilités des chromatiques des packs de jeux par pokémons "
+
+    invalidate_data:
+      title: "Invalidation des caches"
+      catch_states:
+        title: "Invalidation du cache des statuts"
+        cta: "Invalider"
+      types:
+        title: "Invalidation du cache des types"
+        cta: "Invalider"
+      labels:
+        title: "Invalidation du cache des labels"
+        cta: "Invalider"
+      dex:
+        title: "Invalidation du cache des dex"
+        cta: "Invalider"
+      albums:
+        title: "Invalidation du cache des albums"
+        cta: "Invalider"
+      actions:
+        title: "Invalidation du cache des actions"
+        cta: "Invalider"
+
+    reports_data:
+      reports:
+        title: "Invalidation du cache des rapports"
+        cta: "Invalider"
 
 election:
-    choose:
-        action: "Je choisi celui-là"
-    the_end: "Bravo, tu as fini"
-    slug:
-        label: "Nom de l'élection"
-    filters:
-        title: "Filtres"
-        open: "Voir les filtres"
-        back: "Oula, trop compliqué !"
-        submit: 
-            label: "Filtrons ça !"
-        anytype:
-            title: "Choisis ton ou tes types préférés"
-            help: "Tu peux choisir uniquement certains types pour limiter la liste ou tu peux tous les choisir pour avoir tous les Pokémon"
-    filters-advanced:
-        title: "Filtres complets"
-        open: "Voir les filtres complets"
-    welcome:
-        title: "Prêt à choisir ton Pokémon préféré ?"
-        subtitle: "Quel Pokémon dans ta Team ?"
-        submit: 
-            label: "C'est parti !"
-        description: |
-            Tu vas pouvoir, enfin, choisir ton Pokémon préféré ! 
-            Tu penses peut-être que tu le connais déjà ? Détrompe-toi !
-            
-            Sache que ce site, testé par des experts dans le domaine, va te surprendre.
+  choose:
+    action: "Je choisi celui-là"
+  the_end: "Bravo, tu as fini"
+  slug:
+    label: "Nom de l'élection"
+  filters:
+    title: "Filtres"
+    open: "Voir les filtres"
+    back: "Oula, trop compliqué !"
+    submit:
+      label: "Filtrons ça !"
+    anytype:
+      title: "Choisis ton ou tes types préférés"
+      help: "Tu peux choisir uniquement certains types pour limiter la liste ou tu peux tous les choisir pour avoir tous les Pokémon"
+  filters-advanced:
+    title: "Filtres complets"
+    open: "Voir les filtres complets"
+  welcome:
+    title: "Prêt à choisir ton Pokémon préféré ?"
+    subtitle: "Quel Pokémon dans ta Team ?"
+    submit:
+      label: "C'est parti !"
+    description: |
+      Tu vas pouvoir, enfin, choisir ton Pokémon préféré ! 
+      Tu penses peut-être que tu le connais déjà ? Détrompe-toi !
 
-            Es-tu prêt ?!
-    top:
-        title: 
-            final: "Ton top {n}"
-            temp: "Ton top {n} temporaire"
-    actions:
-        submit: "J'ai fait mes choix"
-        reset: "Nouvelle liste"
-        filters: "Voir les filtres"
-    stats:
-        title: "Les stats"
-        vote_count: 
-            start: "Tu as voté"
-            end: "fois"
-        round: 
-            start: "Tu as fait "
-            middle: >-
-                {n, plural,
-                    =1 { tour sur }
-                    other { tours sur }
-                }
-            end: "*."
-            help: 
-                start: "* basé sur le fait de choisir"
-                end: "par tour"
-        last: "Ce sont les {n} derniers. Tu peux en rester là, ou affiner ton choix. Stoi qui décide"
-        favorite_count: 
-            start: "Tu as "
-            end: >-
-                {n, plural,
-                    =1 { favori qui se détache}
-                    other { favoris qui se détachent}
-                }
-            none: "Tu n'as pas de favoris qui se détache."
-        choose_per_turn: >
-            {value, plural,
-                =0 {exactly {value}}
-                =1 {exactly {value}}
-                one {almost {value}}
-                few {about {value}}
-                other {between {value0} and {value1}}
-            }
-    
+      Sache que ce site, testé par des experts dans le domaine, va te surprendre.
+
+      Es-tu prêt ?!
+  top:
+    title:
+      final: "Ton top {n}"
+      temp: "Ton top {n} temporaire"
+  actions:
+    submit: "J'ai fait mes choix"
+    reset: "Nouvelle liste"
+    filters: "Voir les filtres"
+  stats:
+    title: "Les stats"
+    vote_count:
+      start: "Tu as voté"
+      end: "fois"
+    round:
+      start: "Tu as fait "
+      middle: >-
+        {n, plural,
+            =1 { tour sur }
+            other { tours sur }
+        }
+      end: "*."
+      help:
+        start: "* basé sur le fait de choisir"
+        end: "par tour"
+    last: "Ce sont les {n} derniers. Tu peux en rester là, ou affiner ton choix. Stoi qui décide"
+    favorite_count:
+      start: "Tu as "
+      end: >-
+        {n, plural,
+            =1 { favori qui se détache}
+            other { favoris qui se détachent}
+        }
+      none: "Tu n'as pas de favoris qui se détache."
+    choose_per_turn: >
+      {value, plural,
+          =0 {exactly {value}}
+          =1 {exactly {value}}
+          one {almost {value}}
+          few {about {value}}
+          other {between {value0} and {value1}}
+      }
+
 dex:
-    filters:
-        submit:
-            label: Filtrer
-        reset:
-            label: Réinitialier
-        any_type:
-            label: Type
-            value:
-                empty: Tous
-        primary_type:
-            label: Premier type
-            value:
-                empty: Tous
-        secondary_type:
-            label: Second type
-            value:
-                empty: Tous
-                "null": Aucun
-        category_form:
-            label: Catégorie
-            value:
-                empty: Toutes
-                "null": Aucune
-        regional_form:
-            label: Forme régional
-            value:
-                empty: Toutes
-                "null": Aucune
-        special_form:
-            label: Forme spéciale
-            value:
-                empty: Toutes
-                "null": Aucune
-        variant_form:
-            label: Variante
-            value:
-                empty: Toutes
-                "null": Aucune
-        original_game_bundle:
-            label: Pack de jeu original
-            value:
-                empty: Tous
-        game_bundle_availability:
-            label: Disponibilités dans
-            value:
-                empty: Tous
-                negative: "Pas dans "
-        game_bundle_shiny_availability:
-            label: Disponibilités dans
-            value:
-                empty: Tous
-                negative: "Pas dans "
-        catch_states:
-            total: "Toute la collection"
-            positive: "Filtre les “{cs}”"
-            negative: "Filtre tous sauf les “{cs}”"
-        collection:
-            label: Collection
-            value:
-                empty: Peu importe
-                negative: "Pas dans "
+  filters:
+    submit:
+      label: Filtrer
+    reset:
+      label: Réinitialier
+    any_type:
+      label: Type
+      value:
+        empty: Tous
+    primary_type:
+      label: Premier type
+      value:
+        empty: Tous
+    secondary_type:
+      label: Second type
+      value:
+        empty: Tous
+        "null": Aucun
+    category_form:
+      label: Catégorie
+      value:
+        empty: Toutes
+        "null": Aucune
+    regional_form:
+      label: Forme régional
+      value:
+        empty: Toutes
+        "null": Aucune
+    special_form:
+      label: Forme spéciale
+      value:
+        empty: Toutes
+        "null": Aucune
+    variant_form:
+      label: Variante
+      value:
+        empty: Toutes
+        "null": Aucune
+    original_game_bundle:
+      label: Pack de jeu original
+      value:
+        empty: Tous
+    game_bundle_availability:
+      label: Disponibilités dans
+      value:
+        empty: Tous
+        negative: "Pas dans "
+    game_bundle_shiny_availability:
+      label: Disponibilités dans
+      value:
+        empty: Tous
+        negative: "Pas dans "
+    catch_states:
+      total: "Toute la collection"
+      positive: "Filtre les “{cs}”"
+      negative: "Filtre tous sauf les “{cs}”"
+    collection:
+      label: Collection
+      value:
+        empty: Peu importe
+        negative: "Pas dans "
 
 election_dex:
-    title: "Choisir le dex pour lequel tu veux voter"
-    subtitle: "Selon le dex, il y'a plus ou moins de pokémons, plus ou moins de formes. C'est à toi de voir"
-    dex:
-        total_count_suffixe: Pokémons
+  title: "Choisir le dex pour lequel tu veux voter"
+  subtitle: "Selon le dex, il y'a plus ou moins de pokémons, plus ou moins de formes. C'est à toi de voir"
+  dex:
+    total_count_suffixe: Pokémons
