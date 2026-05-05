@@ -1,6 +1,9 @@
 logout: "Log out"
 login: "Log in"
 
+action:
+  no_thanks: "No thanks"
+
 number:
   exactly: exactly {number}
   almost: almost {number}

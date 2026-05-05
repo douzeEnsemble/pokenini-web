@@ -195,6 +195,17 @@ final class AlbumDexListTest extends WebTestCase
         $secondAlbum = $crawler->filter('.album-item')->eq(2);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
+
+        $this->assertSame(
+            'Prêt à choisir ton Pokémon préféré ?',
+            $crawler->filter('#jumbotron h2')->text()
+        );
+        $this->assertSame(
+            'Tu vas pouvoir, enfin, choisir ton Pokémon préféré ! Tu penses peut-être que tu le connais déjà ? Détrompe-toi ! Sache que ce site, testé par des experts dans le domaine, va te surprendre. Es-tu prêt ?!',
+            $crawler->filter('#jumbotron p')->text()
+        );
+        $this->assertCountFilter($crawler, 1, '#jumbotron a[href="/fr/election/dex"]');
+        $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
     }
 
     public function testAlbumDexListEnglish(): void
@@ -232,5 +243,16 @@ final class AlbumDexListTest extends WebTestCase
         $secondAlbum = $crawler->filter('.album-item')->eq(2);
         $this->assertEquals('Home Shiny', $secondAlbum->text());
         $this->assertEquals('/en/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
+
+        $this->assertSame(
+            'Ready to pick your favorite Pokémon?',
+            $crawler->filter('#jumbotron h2')->text()
+        );
+        $this->assertSame(
+            'Now you can finally choose your favorite Pokémon! Think you already know it? Think again! This site, tested by experts in the field, will surprise you. Are you ready?!',
+            $crawler->filter('#jumbotron p')->text()
+        );
+        $this->assertCountFilter($crawler, 1, '#jumbotron a[href="/en/election/dex"]');
+        $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
     }
 }

@@ -15,6 +15,31 @@
 
 {% block container %}
 <div id="home" class="row">
+  <div id="jumbotron" class="container my-5" hidden>
+    <div class="position-relative p-5 text-center text-muted bg-body-tertiary border border-dashed rounded-5">
+      <button type="button" class="position-absolute top-0 end-0 p-3 m-3 btn-close bg-secondary bg-opacity-10 rounded-pill jumbotron-close" aria-label="Close"></button>
+
+      <i class="bi bi-heart mt-5 mb-3 fs-1"></i>
+
+      <h2 class="h1 text-body-emphasis">{{ 'election.welcome.title'|trans }}</h2>
+
+      <p class="col-lg-8 mx-auto fs-5 text-muted">
+        {{ 'election.welcome.description'|trans|htmlNl2br }}
+      </p>
+
+      <div class="d-inline-flex gap-2 mb-5">
+        <a href="{{ path('app_electiondexlist_index') }}" class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill">
+          {{ 'election.welcome.submit.label'|trans }}
+          <i class="bi bi-heart-pulse-fill ms-2"></i>
+        </a>
+        <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill jumbotron-close" type="button">
+          {{ 'action.no_thanks'|trans }}
+          <i class="bi bi-x-circle ms-2"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="col-lg-8 mx-auto text-center">
     <h1>{{ 'title.album.nav'|trans }}</h1>
 
@@ -22,3 +47,18 @@
   </div>
 </div>
 {% endblock %}
+
+
+{% block head_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/album-dex-list.js') }}"></script>
+{% endblock head_javascripts %}
+
+{% block foot_javascript %}
+    {{ parent() }}
+    <script>
+    (function() {
+        watchJumbotronCloseButton();
+    })();
+    </script>
+{% endblock foot_javascript %}
