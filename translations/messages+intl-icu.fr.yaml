@@ -1,6 +1,9 @@
 logout: "Se déconnecter"
 login: "Se connecter"
 
+action:
+  no_thanks: "Nan merci"
+
 number:
   exactly: exactement {number}
   almost: quasi {number}
