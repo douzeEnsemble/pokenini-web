@@ -44,20 +44,20 @@ final class AlbumDexListTest extends WebTestCase
 
         $this->assertFrenchLangSwitch($crawler);
 
-        $this->assertCountFilter($crawler, 6, '.album-item');
-        $this->assertCountFilter($crawler, 6, '.album-item h5');
-        $this->assertCountFilter($crawler, 1, '.album-item h6');
+        $this->assertCountFilter($crawler, 6, '.dex-item');
+        $this->assertCountFilter($crawler, 6, '.dex-item h5');
+        $this->assertCountFilter($crawler, 1, '.dex-item h6');
 
         $this->assertCountFilter($crawler, 2, '.dex_is_premium');
         $this->assertCountFilter($crawler, 0, '.dex_not_is_released');
         $this->assertCountFilter($crawler, 1, '.dex_is_custom');
 
-        $firstAlbum = $crawler->filter('.album-item')->first();
+        $firstAlbum = $crawler->filter('.dex-item')->first();
         $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
         $this->assertEquals('/fr/album/swordshield', $firstAlbum->filter('a')->attr('href'));
         $this->assertEquals('https://icon.pokenini.fr/banner/swordshield.png', $firstAlbum->filter('img')->attr('src'));
 
-        $secondAlbum = $crawler->filter('.album-item')->eq(2);
+        $secondAlbum = $crawler->filter('.dex-item')->eq(2);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
         $this->assertEquals('https://icon.pokenini.fr/banner/homeshiny.png', $secondAlbum->filter('img')->attr('src'));
@@ -105,7 +105,7 @@ final class AlbumDexListTest extends WebTestCase
             $crawler->filter('h1')->text()
         );
 
-        $this->assertCountFilter($crawler, 0, '.album-item');
+        $this->assertCountFilter($crawler, 0, '.dex-item');
     }
 
     public function testConnectedHomeDexNoOnHome(): void
@@ -130,7 +130,7 @@ final class AlbumDexListTest extends WebTestCase
             $crawler->filter('h1')->text()
         );
 
-        $this->assertCountFilter($crawler, 0, '.album-item');
+        $this->assertCountFilter($crawler, 0, '.dex-item');
     }
 
     public function testConnectedHomeSomeDex(): void
@@ -155,9 +155,9 @@ final class AlbumDexListTest extends WebTestCase
             $crawler->filter('h1')->text()
         );
 
-        $this->assertCountFilter($crawler, 2, '.album-item');
-        $this->assertCountFilter($crawler, 2, '.album-item h5');
-        $this->assertCountFilter($crawler, 0, '.album-item h6');
+        $this->assertCountFilter($crawler, 2, '.dex-item');
+        $this->assertCountFilter($crawler, 2, '.dex-item h5');
+        $this->assertCountFilter($crawler, 0, '.dex-item h6');
     }
 
     public function testAlbumDexListFrench(): void
@@ -184,15 +184,15 @@ final class AlbumDexListTest extends WebTestCase
 
         $this->assertFrenchLangSwitch($crawler);
 
-        $this->assertCountFilter($crawler, 6, '.album-item');
-        $this->assertCountFilter($crawler, 6, '.album-item h5');
-        $this->assertCountFilter($crawler, 1, '.album-item h6');
+        $this->assertCountFilter($crawler, 6, '.dex-item');
+        $this->assertCountFilter($crawler, 6, '.dex-item h5');
+        $this->assertCountFilter($crawler, 1, '.dex-item h6');
 
-        $firstAlbum = $crawler->filter('.album-item')->first();
+        $firstAlbum = $crawler->filter('.dex-item')->first();
         $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
         $this->assertEquals('/fr/album/swordshield', $firstAlbum->filter('a')->attr('href'));
 
-        $secondAlbum = $crawler->filter('.album-item')->eq(2);
+        $secondAlbum = $crawler->filter('.dex-item')->eq(2);
         $this->assertEquals('Home Chromatique', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
@@ -232,15 +232,15 @@ final class AlbumDexListTest extends WebTestCase
 
         $this->assertEnglishLangSwitch($crawler);
 
-        $this->assertCountFilter($crawler, 6, '.album-item');
-        $this->assertCountFilter($crawler, 6, '.album-item h5');
-        $this->assertCountFilter($crawler, 1, '.album-item h6');
+        $this->assertCountFilter($crawler, 6, '.dex-item');
+        $this->assertCountFilter($crawler, 6, '.dex-item h5');
+        $this->assertCountFilter($crawler, 1, '.dex-item h6');
 
-        $firstAlbum = $crawler->filter('.album-item')->first();
+        $firstAlbum = $crawler->filter('.dex-item')->first();
         $this->assertEquals('Sword, Shield', $firstAlbum->text());
         $this->assertEquals('/en/album/swordshield', $firstAlbum->filter('a')->attr('href'));
 
-        $secondAlbum = $crawler->filter('.album-item')->eq(2);
+        $secondAlbum = $crawler->filter('.dex-item')->eq(2);
         $this->assertEquals('Home Shiny', $secondAlbum->text());
         $this->assertEquals('/en/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 

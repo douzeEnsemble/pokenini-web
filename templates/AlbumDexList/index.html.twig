@@ -10,7 +10,7 @@
 {% block stylesheets %}
   {{ parent() }}
 
-  <link rel="stylesheet" href="{{ asset('css/album-dex-list.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/dex-list.css') }}">
 {% endblock stylesheets %}
 
 {% block container %}
@@ -40,10 +40,12 @@
     </div>
   </div>
 
-  <div class="col-lg-8 mx-auto text-center">
+  <div class="mx-auto text-center">
     <h1>{{ 'title.album.nav'|trans }}</h1>
 
-    {{ list.list(dex, locale) }}
+    <div class="text-start">
+    {{ list.listAlbums(dex, locale) }}
+    </div>
   </div>
 </div>
 {% endblock %}

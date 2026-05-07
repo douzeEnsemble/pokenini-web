@@ -11,12 +11,12 @@
   {{ parent() }}
 
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/album-dex-list.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/dex-list.css') }}">
 {% endblock stylesheets %}
 
 {% block container %}
 <div id="home" class="row">
-  <div class="col-lg-10 mx-auto text-center">
+  <div class="mx-auto text-center">
     <h1>Pokénini</h1>
 
     <div class="mt-3 mb-3 alert alert-warning" role="alert">
@@ -28,7 +28,9 @@
       </a>
     </div>
 
-    {{ list.list(dex, locale, demoUserId) }}
+    <div class="text-start">
+    {{ list.listAlbums(dex, locale, demoUserId) }}
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -1,52 +1,68 @@
 
-{% macro item(dex, locale, forcedTrainerId) %}
-{% set url = path('app_albumindex_index', {'dexSlug': dex.slug, 't': forcedTrainerId ?: null}) %}
-<div class="card col-lg-3 col-sm-6 col-12 album-item position-relative">
-  <a href="{{ url }}">
-    {% set bannerUrl = dexBannerUrl|format(dex.slug) %}
-    {% set defaultBannerUrl = '/img/banner/default.webp' %}
-    <img
-      src="{{ bannerUrl }}"
-      class="card-img"
-      alt=""
-      loading="lazy"
-      onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';"
-    >
-  </a>
-  <div class="card-body">
-    <div class="position-absolute top-0 end-0 me-2">
-      {% if dex.is_premium %}
-      <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}">
-        <i class="bi bi-patch-plus"></i>
-      </span>
-      {% endif %}
-      {% if not dex.is_released %}
-      <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}">
-        <i class="bi bi-lock"></i>
-      </span>
-      {% endif %}
-      {% if dex.is_custom %}
-      <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}">
-        <i class="bi bi-person"></i>
-      </span>
-      {% endif %}
-    </div>
+{% macro item(type, dex, locale, forcedTrainerId) %}
+{% set url = path('app_'~type~'index_index', {'dexSlug': dex.slug, 't': forcedTrainerId ?: null}) %}
+<div class="col-lg-3 col-md-4 col-sm-6 col-12 dex-item position-relative">
+  <div class="card">
+    <a href="{{ url }}">
+      {% set bannerUrl = dexBannerUrl|format(dex.slug) %}
+      {% set defaultBannerUrl = '/img/banner/default.webp' %}
+      <img
+        src="{{ bannerUrl }}"
+        class="card-img"
+        alt=""
+        loading="lazy"
+        onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';"
+      >
+    </a>
+    <div class="card-body">
+      <div class="position-absolute top-0 end-0 me-2">
+        {% if dex.is_premium %}
+        <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}">
+          <i class="bi bi-patch-plus"></i>
+        </span>
+        {% endif %}
+        {% if not dex.is_released %}
+        <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}">
+          <i class="bi bi-lock"></i>
+        </span>
+        {% endif %}
+        {% if dex.is_custom %}
+        <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}">
+          <i class="bi bi-person"></i>
+        </span>
+        {% endif %}
+      </div>
 
-    {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
-    {% set title = titles.0 %}
-    {% set subtitle = titles.1 is defined ? titles.1 : '' %}
-    <h5 class="card-title">
-      <a href="{{ url }}">
-        {{ title }}
-      </a>
-    </h5>
-    {% if subtitle is not empty %}
-    <h6 class="card-subtitle mb-2 text-body-secondary">
-      <a href="{{ url }}">
-        {{ subtitle }}
-      </a>
-    </h6>
-    {% endif %}
+      {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
+      {% set title = titles.0 %}
+      {% set subtitle = titles.1 is defined ? titles.1 : '' %}
+      <h5 class="card-title">
+        <a href="{{ url }}">
+          {{ title }}
+        </a>
+      </h5>
+      {% if subtitle is not empty %}
+      <h6 class="card-subtitle mb-2 text-body-secondary">
+        <a href="{{ url }}">
+          {{ subtitle }}
+        </a>
+      </h6>
+      {% endif %}
+
+      {% if dex.dex_total_count is defined %}
+      <span class="badge rounded-pill bg-primary mb-3">
+        {{ dex.dex_total_count|number_format(0, '.', ' ') }}
+        {{ 'election_dex.dex.total_count_suffixe'|trans }}
+      </span>
+      {% endif %}
+
+      {% if dex.description is defined %}
+      <p class="small text-start text-body-secondary">
+        {{ (locale is same as('fr') ? dex.french_description : dex.description) }}
+      </p>
+      {% endif %}
+
+    </div>
   </div>
 </div>
 {% endmacro %}
@@ -57,10 +73,20 @@
 </div>
 {% endmacro %}
 
-{% macro list(dex, locale, forcedTrainerId = null) %}
-<div class="row">
+{% macro listAlbums(dex, locale, forcedTrainerId = null) %}
+<div class="row g-lg-4 g-md-4 g-sm-3 g-2">
   {% for item in dex|filter(item => item.is_on_home is same as(true)) %}
-  {{ _self.item(item, locale, forcedTrainerId) }}
+  {{ _self.item('album', item, locale, forcedTrainerId) }}
+  {% else %}
+  {{ _self.none() }}
+{% endfor %}
+</div>
+{% endmacro %}
+
+{% macro listElections(dex, locale, forcedTrainerId = null) %}
+<div class="row g-lg-4 g-md-4 g-sm-3 g-2">
+  {% for item in dex|filter(item => item.is_on_home is same as(true)) %}
+  {{ _self.item('election', item, locale, forcedTrainerId) }}
   {% else %}
   {{ _self.none() }}
 {% endfor %}
