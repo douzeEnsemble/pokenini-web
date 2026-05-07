@@ -1,0 +1,11 @@
+.dex-item .card {
+    opacity: 50%;
+    transition:
+        border-color 0.4s ease,
+        opacity 0.9s ease
+    ;
+}
+.dex-item .card:hover {
+    border-color: var(--bs-secondary);
+    opacity: 100%;
+}

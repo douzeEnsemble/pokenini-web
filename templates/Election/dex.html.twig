@@ -2,6 +2,7 @@
 
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
+{% import "AlbumDexList/_macro.html.twig" as list %}
 
 {% block title %}Pokénini {{ 'election_dex.title'|trans }}{% endblock title %}
 
@@ -9,10 +10,11 @@
   {{ parent() }}
 
   <link rel="stylesheet" href="{{ asset('css/election_dex.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/dex-list.css') }}">
 {% endblock stylesheets %}
 
-{% block body %}
-  <div class="container-fluid" id="main-container">
+{% block container %}
+  <div class="mx-auto">
     <div class="row">
       <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center row">
         <h1>
@@ -25,65 +27,10 @@
         </h2>
       </div>
     </div>
-    <div class="row row-cols-lg-12 row-cols-sm-6 row-cols-2 g-xl-3 g-lg-2 g-1 text-center">
-      {% for item in dex %}
-        {% set url = path('app_electionindex_index', {'dexSlug': item.slug}) %}
-        <div class="col">
-          <div class="card election-dex-item position-relative">
-            <a href="{{ url }}">
-              {% set bannerUrl = dexBannerUrl|format(item.slug) %}
-              {% set defaultBannerUrl = '/img/banner/default.webp' %}
-              <img src="{{ bannerUrl }}" class="card-img" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';">
-            </a>
-            <div class="card-body">
-              <div class="position-absolute top-0 end-0 me-2">
-                {% if item.is_premium %}
-                  <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}">
-                    <i class="bi bi-patch-plus"></i>
-                  </span>
-                {% endif %}
-                {% if not item.is_released %}
-                  <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}">
-                    <i class="bi bi-lock"></i>
-                  </span>
-                {% endif %}
-                {% if item.is_custom %}
-                  <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}">
-                    <i class="bi bi-person"></i>
-                  </span>
-                {% endif %}
-              </div>
 
-              {% set titles = (locale is same as('fr') ? item.french_name : item.name)|split("\n") %}
-              {% set title = titles.0 %}
-              {% set subtitle = titles.1 is defined ? titles.1 : '' %}
-              <h5 class="card-title">
-                <a href="{{ url }}">
-                  {{ title }}
-                </a>
-              </h5>
-              {% if subtitle is not empty %}
-                <h6 class="card-subtitle mb-2 text-body-secondary">
-                  <a href="{{ url }}">
-                    {{ subtitle }}
-                  </a>
-                </h6>
-              {% endif %}
-
-              <span class="badge rounded-pill bg-primary mb-3">
-                {{ item.dex_total_count|number_format(0, '.', ' ') }}
-                {{ 'election_dex.dex.total_count_suffixe'|trans }}
-              </span>
-
-              <p class="small text-start text-body-secondary">{{ (locale is same as('fr') ? item.french_description : item.description) }}</p>
-              <p></p>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+    {{ list.listElections(dex, locale, null) }}
   </div>
   {% block footer %}
     {{ include('_footer.html.twig') }}
   {% endblock footer %}
-{% endblock body %}
+{% endblock container %}
