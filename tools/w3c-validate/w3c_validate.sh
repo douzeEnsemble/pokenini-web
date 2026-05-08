@@ -4,7 +4,7 @@ set -euo pipefail
 
 BASE_URI="http://localhost/"
 OUT_DIR="var/html"
-VNU_CMD="docker compose run --rm --remove-orphans vnu vnu --format text"
+VNU_CMD="docker run --rm -v $(pwd):/app ghcr.io/validator/validator:latest vnu --format text"
 
 URLS=(
 	""

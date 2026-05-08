@@ -53,15 +53,15 @@
 
 ## Docker / Infrastructure
 
-| Service                    | Image                                    | Version actuelle | Action recommandée                                                                          |
-| -------------------------- | ---------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------- |
-| `php`                      | `php:*-fpm-alpine3.23`                   | `8.5.5`          | OK — récent ; mettre à jour lors des patch releases PHP                                     |
-| `web`                      | `nginx:*-alpine`                         | `1.28-alpine`    | OK — récent                                                                                 |
-| `redis`                    | `redis:*-alpine`                         | `8.0-alpine`     | OK — Redis 8 LTS                                                                            |
-| `moco.back`                | `.docker/moco/Dockerfile`                | Moco `1.5.0`     | Surveiller — vérifier si 1.6+ existe                                                        |
-| `moco.matomo.gbl`          | idem                                     | `1.5.0`          | Surveiller                                                                                  |
-| `vnu`                      | `ghcr.io/validator/validator:latest`     | `latest`         | **Risque** — tag `latest` non reproductible ; épingler une version explicite (ex. `24.x.x`) |
-| symfony-cli (dans php dev) | `ghcr.io/symfony-cli/symfony-cli:5.17.1` | `5.17.1`         | Surveiller                                                                                  |
+| Service | Image | Version actuelle | Action recommandée |
+|---------|-------|-----------------|-------------------|
+| `php` | `php:*-fpm-alpine3.23` | `8.5.5` | OK — récent ; mettre à jour lors des patch releases PHP |
+| `web` | `nginx:*-alpine` | `1.28-alpine` | OK — récent |
+| `redis` | `redis:*-alpine` | `8.0-alpine` | OK — Redis 8 LTS |
+| `moco.back` | `.docker/moco/Dockerfile` | Moco `1.5.0` | Surveiller — vérifier si 1.6+ existe |
+| `moco.matomo.gbl` | idem | `1.5.0` | Surveiller |
+| W3C validator (w3c_validate.sh) | `ghcr.io/validator/validator:latest` | `latest` | **Risque** — tag `latest` non reproductible ; épingler une version explicite (ex. `24.x.x`). Lancé via `docker run` à la volée (plus de service Compose) |
+| symfony-cli (dans php dev) | `ghcr.io/symfony-cli/symfony-cli:5.17.1` | `5.17.1` | Surveiller |
 
 ## Outils CI (images)
 
