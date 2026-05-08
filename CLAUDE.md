@@ -123,7 +123,6 @@ Integration and browser tests run against a **Moco** mock server (`moco.back` co
 | `redis`           | APCu-compatible cache adapter              |
 | `moco.back`       | Moco mock for `pokenini-api`               |
 | `moco.matomo.gbl` | Moco mock for Matomo analytics (port 8888) |
-| `vnu`             | W3C HTML validator                         |
 
 ### Tools (separate Composer installs in `tools/`)
 
