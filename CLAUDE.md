@@ -102,9 +102,9 @@ All routes are prefixed `/{_locale}` (`en` or `fr`). Routes are defined via PHP 
 
 - **Prod/staging**: Discord or Google OAuth2 (`knpu/oauth2-client-bundle`).
 - **Dev only**: Fake authenticator. Use:
-  - `http://localhost/fr/connect/f/c?t=admin` → admin session
-  - `http://localhost/fr/connect/f/c?t=collector` → collector session
-  - `http://localhost/fr/connect/f/c?t=trainer` → trainer session
+    - `http://localhost/fr/connect/f/c?t=admin` → admin session
+    - `http://localhost/fr/connect/f/c?t=collector` → collector session
+    - `http://localhost/fr/connect/f/c?t=trainer` → trainer session
 
 ### User roles
 
@@ -132,14 +132,14 @@ PHPStan, Psalm, PHP CS Fixer, PHPMD, Deptrac, Infection, PHPInsights, jsonlint, 
 
 ```
 tests/src/
-  Unit/          # Pure PHPUnit mocks, no HTTP, no container
-  Integration/   # WebTestCase with Moco HTTP mocks, group api-mocked-testing
-  Browser/       # Symfony Panther (real browser), group api-mocked-testing
-  Common/Traits/ # Shared assertion helpers (TestNavTrait, ResponseObjectTrait)
+    Unit/          # Pure PHPUnit mocks, no HTTP, no container
+    Integration/   # WebTestCase with Moco HTTP mocks, group api-mocked-testing
+    Browser/       # Symfony Panther (real browser), group api-mocked-testing
+    Common/Traits/ # Shared assertion helpers (TestNavTrait, ResponseObjectTrait)
 tests/Utils/     # GetUserToken helper for creating fake authenticated users
 tests/resources/
-  moco/Back/     # Moco JSON fixture files for backend API
-  moco/Matomo/   # Moco JSON fixture files for Matomo
+    moco/Back/     # Moco JSON fixture files for backend API
+    moco/Matomo/   # Moco JSON fixture files for Matomo
 ```
 
 Every test class is `final`, `@internal`, uses `#[CoversClass(...)]`, and extends either `TestCase` (unit) or `WebTestCase` (integration).

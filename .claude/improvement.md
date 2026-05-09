@@ -164,10 +164,10 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 **Correction** :
 ```yaml
-  - package-ecosystem: "composer"
+-   package-ecosystem: "composer"
     directory: "/tools/phpstan"
     schedule:
-      interval: "weekly"
+        interval: "weekly"
 ```
 Répéter pour chaque outil.
 
@@ -214,7 +214,7 @@ Répéter pour chaque outil.
 **Correction** : extraire dans une variable `.env` ou en argument de build Docker :
 ```yaml
 args:
-  MOCO_VERSION: ${MOCO_VERSION:-1.5.0}
+    MOCO_VERSION: ${MOCO_VERSION:-1.5.0}
 ```
 
 **Fichiers** : `docker-compose.yaml:8,14`, `Makefile:13`
