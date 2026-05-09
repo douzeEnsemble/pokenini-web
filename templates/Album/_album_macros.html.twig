@@ -154,7 +154,7 @@
                   {% endif %}
                 </ul>
                 <div
-                  class="d-flex justify-content-evenly align-items-center text-center mb-1">
+                  class="d-flex justify-content-evenly align-items-center text-center mt-2 mb-4">
                   {# If there is no previous, we use the current item as a placeholder #}
                   {% set previous = loop.first ? item : list[loop.index0 - 1] %}
                   <a href="#modal-{{ previous.pokemonSlug }}" data-bs-target="#modal-{{ previous.pokemonSlug }}" data-bs-toggle="modal" class="album-modal-icon album-modal-icon-previous {{ loop.first ? 'invisible': 'visible' }}">
