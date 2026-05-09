@@ -25,9 +25,10 @@
       {% if dex.isDisplayForm %}
         {{ locale is same as('fr') ? item.pokemonFormsFrenchLabel : item.pokemonFormsLabel }}
         {% if
-                item.pokemonFormsFrenchLabel is empty
-                and item.pokemonFormsLabel is empty %}
-          &nbsp;
+          item.pokemonFormsFrenchLabel is empty
+          and item.pokemonFormsLabel is empty
+        %}
+        &nbsp;
         {% endif %}
       {% else %}
         &nbsp;
