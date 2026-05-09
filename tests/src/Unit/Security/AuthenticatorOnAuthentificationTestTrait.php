@@ -12,6 +12,8 @@ use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -40,16 +42,15 @@ trait AuthenticatorOnAuthentificationTestTrait
             '/success-but-not-a-trainer',
         ]);
 
-        $response = $authenticator->onAuthenticationSuccess(
-            $this->createStub(Request::class),
-            $token,
-            'web'
-        );
+        $session = new Session(new MockArraySessionStorage());
+        $request = new Request();
+        $request->setSession($session);
+
+        $response = $authenticator->onAuthenticationSuccess($request, $token, 'web');
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-
-        // @var $response RedirectResponse
         $this->assertEquals('/success-but-not-a-trainer', $response->getTargetUrl());
+        $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
     public function testOnAuthenticationSuccessTrainer(): void
@@ -73,16 +74,45 @@ trait AuthenticatorOnAuthentificationTestTrait
             '/success-trainer',
         ]);
 
-        $response = $authenticator->onAuthenticationSuccess(
-            $this->createStub(Request::class),
-            $token,
-            'web'
-        );
+        $session = new Session(new MockArraySessionStorage());
+        $request = new Request();
+        $request->setSession($session);
+
+        $response = $authenticator->onAuthenticationSuccess($request, $token, 'web');
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-
-        // @var $response RedirectResponse
         $this->assertEquals('/success-trainer', $response->getTargetUrl());
+        $this->assertSame('TestProvider', $session->get('_security_provider'));
+    }
+
+    public function testOnAuthenticationSuccessWithTargetPath(): void
+    {
+        $user = new User(
+            '1',
+            'TestProvider',
+            new AccessToken(['access_token' => 'zdazdzad-token-dazga'])
+        );
+
+        $token = $this->createMock(TokenInterface::class);
+        $token
+            ->expects($this->once())
+            ->method('getUser')
+            ->willReturn($user)
+        ;
+
+        $authenticator = $this->getOnAuthenticationAuthenticator([]);
+
+        $session = new Session(new MockArraySessionStorage());
+        $session->set('_security_target_path', '/fr/some-page');
+        $request = new Request();
+        $request->setSession($session);
+
+        $response = $authenticator->onAuthenticationSuccess($request, $token, 'web');
+
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertEquals('/fr/some-page', $response->getTargetUrl());
+        $this->assertNull($session->get('_security_target_path'));
+        $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
     public function testOnAuthenticationFailure(): void

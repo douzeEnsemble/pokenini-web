@@ -13,6 +13,8 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -38,20 +40,17 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
             ->willReturn($user)
         ;
 
-        $fakeAuthenticator = $this->getFakeAuthenticator([
-            '/success-but-not-a-trainer',
-        ]);
+        $fakeAuthenticator = $this->getFakeAuthenticator(['/success-but-not-a-trainer']);
 
-        $response = $fakeAuthenticator->onAuthenticationSuccess(
-            $this->createStub(Request::class),
-            $token,
-            'web'
-        );
+        $session = new Session(new MockArraySessionStorage());
+        $request = new Request();
+        $request->setSession($session);
+
+        $response = $fakeAuthenticator->onAuthenticationSuccess($request, $token, 'web');
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-
-        // @var $response RedirectResponse
         $this->assertEquals('/success-but-not-a-trainer', $response->getTargetUrl());
+        $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
     public function testOnAuthenticationSuccessTrainer(): void
@@ -75,16 +74,45 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
             '/success-trainer',
         ]);
 
-        $response = $fakeAuthenticator->onAuthenticationSuccess(
-            $this->createStub(Request::class),
-            $token,
-            'web'
-        );
+        $session = new Session(new MockArraySessionStorage());
+        $request = new Request();
+        $request->setSession($session);
+
+        $response = $fakeAuthenticator->onAuthenticationSuccess($request, $token, 'web');
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-
-        // @var $response RedirectResponse
         $this->assertEquals('/success-trainer', $response->getTargetUrl());
+        $this->assertSame('TestProvider', $session->get('_security_provider'));
+    }
+
+    public function testOnAuthenticationSuccessWithTargetPath(): void
+    {
+        $user = new User(
+            '1',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzad6a4d'])
+        );
+
+        $token = $this->createMock(TokenInterface::class);
+        $token
+            ->expects($this->once())
+            ->method('getUser')
+            ->willReturn($user)
+        ;
+
+        $fakeAuthenticator = $this->getFakeAuthenticator([]);
+
+        $session = new Session(new MockArraySessionStorage());
+        $session->set('_security_target_path', '/fr/some-page');
+        $request = new Request();
+        $request->setSession($session);
+
+        $response = $fakeAuthenticator->onAuthenticationSuccess($request, $token, 'web');
+
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertEquals('/fr/some-page', $response->getTargetUrl());
+        $this->assertNull($session->get('_security_target_path'));
+        $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
     public function testOnAuthenticationFailure(): void
@@ -105,9 +133,8 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
     /**
      * @param array<int, string> $routes
      */
-    private function getFakeAuthenticator(
-        array $routes = []
-    ): FakeAuthenticator {
+    private function getFakeAuthenticator(array $routes = []): FakeAuthenticator
+    {
         $router = $this->createMock(RouterInterface::class);
         $router
             ->expects($this->exactly(count($routes)))
@@ -117,9 +144,6 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
 
         $getUserInfoService = $this->createStub(GetUserInfoService::class);
 
-        return new FakeAuthenticator(
-            $router,
-            $getUserInfoService,
-        );
+        return new FakeAuthenticator($router, $getUserInfoService);
     }
 }

@@ -21,6 +21,17 @@ trait AuthenticatorTrait
         /** @var User $user */
         $user = $token->getUser();
 
+        $session = $request->getSession();
+        $session->set('_security_provider', $user->getProviderName());
+
+        /** @var null|string $targetPath */
+        $targetPath = $session->get('_security_target_path');
+        if (is_string($targetPath)) {
+            $session->remove('_security_target_path');
+
+            return new RedirectResponse($targetPath);
+        }
+
         $targetUrl = $this->router->generate('app_outerroom_index');
         if ($user->isATrainer()) {
             $targetUrl = $this->router->generate('app_home_index');
