@@ -1,4 +1,4 @@
-FROM php:8.5.5-fpm-alpine3.23 AS php_base
+FROM php:8.5.6-fpm-alpine3.23 AS php_base
 
 WORKDIR /app
 
