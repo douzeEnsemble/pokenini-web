@@ -1,6 +1,7 @@
 {
     "type": "tools",
     "require": {
+        "php": ">=8.5.5",
         "deptrac/deptrac": "^4.6.0"
     }
 }

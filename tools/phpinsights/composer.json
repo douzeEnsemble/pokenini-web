@@ -1,6 +1,7 @@
 {
     "type": "tools",
     "require": {
+        "php": ">=8.5.5",
         "nunomaduro/phpinsights": "^2.14.2"
     },
     "config": {
