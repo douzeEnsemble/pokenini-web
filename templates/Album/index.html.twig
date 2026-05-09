@@ -25,6 +25,9 @@
     .progress-bar.catch-state-{{ catchState.slug }} {
         background-color: {{ catchState.color }};
     }
+    .tooltip-{{ catchState.slug }} {
+        --bs-tooltip-bg: {{ catchState.color }};
+    }
     {% endfor %}
 
     {% for type in types %}

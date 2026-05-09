@@ -10,13 +10,17 @@
         {% for line in progressBarReport.detail %}
             {% set count = line.slug is same as('no') ? progressBarReport.totalUncaught : line.count %}
             {% set completion = progressBarReport.total ? (100 * count / progressBarReport.total)|round(2) : 0 %}
+            {% set label = (locale is same as('fr') ? line.frenchName : line.name) ~ ': ' ~ completion ~ '%' %}
             <div class="progress-bar catch-state-{{ line.slug }}"
                 role="progressbar"
-                aria-label="{{ locale is same as('fr') ? line.frenchName : line.name }}"
+                aria-label="{{ label }}"
                 style="width: {{ completion }}%;"
                 aria-valuenow="{{ completion }}"
                 aria-valuemin="0"
                 aria-valuemax="100"
+                title="{{ label }}"
+                data-bs-toggle="tooltip"
+                data-bs-custom-class="tooltip-{{ line.slug }}"
             >
                 {{ line.slug is same as('no') or line.slug is same as('yes') ? completion~'%' : '' }}
             </div>
