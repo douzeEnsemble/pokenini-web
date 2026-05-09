@@ -31,11 +31,10 @@ final class BoxTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 41, '.album-case.col');
-        $this->assertCountFilter($crawler, 5, '#box-1 .album-line');
-        $this->assertCountFilter($crawler, 6, 'div.row.album-line', 0, '.album-case.col');
-        $this->assertCountFilter($crawler, 6, 'div.row.album-line', 2, '.album-case.col');
-        $this->assertCountFilter($crawler, 2, '#box-2 .album-line');
-        $this->assertCountFilter($crawler, 7, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 2, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 1, '#box-1 .album-line');
+        $this->assertCountFilter($crawler, 30, 'div.row.album-line', 0, '.album-case.col');
+        $this->assertCountFilter($crawler, 1, '#box-2 .album-line');
         $this->assertCountFilter($crawler, 2, '.box');
         $this->assertCountFilter($crawler, 2, '.box .box-title h2');
         $this->assertCountFilter($crawler, 4, '.box .box-title a');

@@ -54,8 +54,8 @@
             </div>
         </div>
     </div>
-    <div class="col-xxl-6 col-xl-12">
-        <form id="album-form">
+    <div class="col-xxl-6">
+        <form id="album-form" class="row justify-content-lg-center">
             {% set displayTemplateName = dex.displayTemplate is defined ? dex.displayTemplate : 'box' %}
             {% set templateData = displayTemplateName|split('-') %}
             {% set mainTemplate = templateData.0 %}

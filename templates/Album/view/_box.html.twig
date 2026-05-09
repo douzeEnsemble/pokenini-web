@@ -17,11 +17,6 @@
             {% for item in list %}
             {% set boxNumber = (loop.index0 / (6*5)) + 1 %}
 
-            {% if loop.index0 is not same as(0) and (loop.index0 % 6) is same as(0) and (loop.index0 % (6*5)) is not same as(0) %}
-        </div>
-        <div class="row row-cols-6 album-line mt-1 border-top">
-            {% endif %}
-
             {% if (loop.index0) is not same as(0) and (loop.index0 % (6*5)) is same as(0) %}
         </div>
     </div>
