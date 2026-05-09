@@ -1,5 +1,6 @@
 html {
     scroll-behavior: auto !important;
+    scroll-padding-bottom: 80px;
 }
 
 .container {
