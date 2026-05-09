@@ -131,7 +131,7 @@ docker compose exec php composer audit
 
 # Outils qualité (sous tools/)
 for tool in tools/*/; do
-  echo "=== $tool ==="
-  docker compose exec php composer outdated -d "$tool"
+    echo "=== $tool ==="
+    docker compose exec php composer outdated -d "$tool"
 done
 ```
