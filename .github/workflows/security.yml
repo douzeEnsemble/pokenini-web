@@ -13,3 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: composer audit
+
+  tools-composer-audit:
+    name: Tools Composer Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: |
+          for dir in tools/*/; do
+            if [ -f "${dir}composer.json" ]; then
+              echo "==> Auditing ${dir}"
+              composer audit --working-dir="${dir}"
+            fi
+          done
