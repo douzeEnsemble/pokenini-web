@@ -48,8 +48,8 @@ Symfony efface le security token (`tokenStorage->setToken(null)`) **avant** d'ap
 
 1. Stocker `_security_provider = $user->getProviderName()` en session (à chaque login réussi)
 2. Lire `_security_target_path` en session :
-   - Si présent → rediriger vers cette URL + supprimer la clé
-   - Sinon → comportement actuel (outerroom ou home selon le rôle)
+    - Si présent → rediriger vers cette URL + supprimer la clé
+    - Sinon → comportement actuel (outerroom ou home selon le rôle)
 
 ### `AuthenticationEntryPoint` (modifié)
 
@@ -58,8 +58,8 @@ Injecter `RequestStack` en plus du `RouterInterface` existant.
 `start()` :
 1. Lire `_security_provider` depuis la session
 2. Si provider reconnu (dans `PROVIDER_ROUTES`) :
-   - Écrire `_security_target_path = $request->getUri()` en session
-   - Rediriger vers `app_connect_{provider}_goto`
+    - Écrire `_security_target_path = $request->getUri()` en session
+    - Rediriger vers `app_connect_{provider}_goto`
 3. Sinon → comportement actuel (redirect `app_home_index`)
 
 ```php
