@@ -36,11 +36,18 @@
                 <referencedMethod name="App\Security\UserRefresher::__construct" />
             </errorLevel>
         </PossiblyUnusedMethod>
+
         <PossiblyUnusedProperty>
             <errorLevel type="suppress">
                 <directory name="src/DTO" />
             </errorLevel>
         </PossiblyUnusedProperty>
+
+        <UnusedClass>
+            <errorLevel type="suppress">
+                <directory name="src/EventListener" />
+            </errorLevel>
+        </UnusedClass>
 
         <ClassMustBeFinal>
             <errorLevel type="suppress">

@@ -4,6 +4,14 @@ parameters:
   exclude_files:
     - .*test.*
   layers:    
+    - name: AppEvent
+      collectors:
+        - type: classLike
+          value: '^App\\Event\\.*'
+    - name: AppEventListener
+      collectors:
+        - type: classLike
+          value: '^App\\EventListener\\.*'
     - name: AppAlbumFilters
       collectors:
         - type: classLike
@@ -68,6 +76,14 @@ parameters:
           value: '^Psr\\Log\\LoggerInterface'
 
     # Symfony
+    - name: SymfonyContractsCache
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Contracts\\Cache\\.*'
+    - name: SymfonyContractsEventDispatcher
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Contracts\\EventDispatcher\\.*'
     - name: SymfonyContractsHttpClient
       collectors:
         - type: classLike
@@ -76,6 +92,14 @@ parameters:
       collectors:
         - type: classLike
           value: '^Symfony\\Contracts\\Translation\\.*'
+    - name: SymfonyDependencyInjection
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\DependencyInjection\\.*'
+    - name: SymfonyEventDispatcher
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\EventDispatcher\\.*'
     - name: SymfonyFrameworkBundle
       collectors:
         - type: classLike
@@ -123,9 +147,10 @@ parameters:
     AppAlbumFilters:
       - AppAlbumFilters
       - SymfonyHttpFoundation
-    AppController: 
+    AppController:
       - AppAlbumFilters
       - AppDTO
+      - AppEvent
       - AppException
       - AppResponseObject
       - AppSecurity
@@ -133,6 +158,7 @@ parameters:
       - AppValidator
       - KnpUOAuth2ClientBundle
       - Logger
+      - SymfonyContractsEventDispatcher
       - SymfonyFrameworkBundle
       - SymfonyHttpException
       - SymfonyHttpFoundation
@@ -159,8 +185,13 @@ parameters:
       - SymfonyRouting
       - SymfonySecurity
       - SymfonySecurityBundle
+    AppEvent:
+    AppEventListener:
+      - AppEvent
+      - SymfonyContractsCache
+      - SymfonyDependencyInjection
+      - SymfonyEventDispatcher
     AppService:
-      - AppCache
       - AppDTO
       - AppException
       - AppResponseObject
@@ -168,7 +199,9 @@ parameters:
       - AppUtils
       - LeagueOAuth2
       - Logger
+      - SymfonyContractsCache
       - SymfonyContractsHttpClient
+      - SymfonyDependencyInjection
       - SymfonyHttpException
       - SymfonyHttpFoundation
       - SymfonySecurityBundle

@@ -1,3 +1,8 @@
 framework:
     cache:
         app: cache.adapter.filesystem
+        pools:
+            cache.labels:
+                adapter: cache.adapter.redis_tag_aware
+                provider: '%env(REDIS_DSN)%'
+                default_lifetime: 3600

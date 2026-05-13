@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Controller;
 
 use App\Controller\AdminActionController;
 use App\DTO\AdminAction;
+use App\Event\AdminActionSucceededEvent;
 use App\Service\Back\AdminActionService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -14,6 +15,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
  * @internal
@@ -50,6 +52,13 @@ final class AdminActionControllerTest extends TestCase
             ->method('critical')
         ;
 
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher
+            ->expects($this->once())
+            ->method('dispatch')
+            ->with($this->isInstanceOf(AdminActionSucceededEvent::class))
+        ;
+
         $router = $this->createMock(RouterInterface::class);
         $router
             ->expects($this->once())
@@ -73,7 +82,8 @@ final class AdminActionControllerTest extends TestCase
         $controller = new AdminActionController(
             $adminActionService,
             $requestStack,
-            $logger
+            $logger,
+            $eventDispatcher,
         );
         $controller->setContainer($container);
 
@@ -131,6 +141,12 @@ final class AdminActionControllerTest extends TestCase
             )
         ;
 
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher
+            ->expects($this->never())
+            ->method('dispatch')
+        ;
+
         $router = $this->createMock(RouterInterface::class);
         $router
             ->expects($this->once())
@@ -154,7 +170,8 @@ final class AdminActionControllerTest extends TestCase
         $controller = new AdminActionController(
             $adminActionService,
             $requestStack,
-            $logger
+            $logger,
+            $eventDispatcher,
         );
 
         $controller->setContainer($container);

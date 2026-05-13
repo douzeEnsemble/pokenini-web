@@ -14,13 +14,16 @@ use App\ResponseObject\Label\SpecialForm;
 use App\ResponseObject\Label\Type;
 use App\ResponseObject\Label\VariantForm;
 use App\Service\Back\GetLabelsService as BackGetLabelsService;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Contracts\Cache\ItemInterface;
+use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 class GetLabelsService
 {
-    private ?Labels $labels = null;
-
     public function __construct(
         private readonly BackGetLabelsService $getService,
+        #[Autowire(service: 'cache.labels')]
+        private readonly TagAwareCacheInterface $labelsCache,
     ) {}
 
     /**
@@ -89,10 +92,10 @@ class GetLabelsService
 
     private function getLabels(): Labels
     {
-        if (null === $this->labels) {
-            $this->labels = $this->getService->get();
-        }
+        return $this->labelsCache->get('labels', function (ItemInterface $item): Labels {
+            $item->tag(['labels']);
 
-        return $this->labels;
+            return $this->getService->get();
+        });
     }
 }
