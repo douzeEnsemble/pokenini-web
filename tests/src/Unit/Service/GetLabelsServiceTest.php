@@ -9,6 +9,8 @@ use App\Service\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 
 /**
  * @internal
@@ -58,6 +60,23 @@ final class GetLabelsServiceTest extends TestCase
         $this->getService()->getCollections();
     }
 
+    public function testCacheIsInvalidatedByLabelsTag(): void
+    {
+        $backService = $this->createMock(BackGetLabelsService::class);
+        $backService
+            ->expects($this->exactly(2))
+            ->method('get')
+            ->willReturn($this->getStubLabels())
+        ;
+
+        $cache = new TagAwareAdapter(new ArrayAdapter());
+        $service = new GetLabelsService($backService, $cache);
+
+        $service->getCatchStates();
+        $cache->invalidateTags(['labels']);
+        $service->getCatchStates();
+    }
+
     private function getService(): GetLabelsService
     {
         $getLabelsService = $this->createMock(BackGetLabelsService::class);
@@ -69,6 +88,7 @@ final class GetLabelsServiceTest extends TestCase
 
         return new GetLabelsService(
             $getLabelsService,
+            new TagAwareAdapter(new ArrayAdapter()),
         );
     }
 }

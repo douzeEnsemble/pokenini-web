@@ -1,43 +1,48 @@
 {
-    "$schema": "vendor/infection/infection/resources/schema.json",
-    "source": {
-        "directories": [
-            "src"
-        ]
+    $schema: "vendor/infection/infection/resources/schema.json",
+    source: {
+        directories: [
+            "src",
+        ],
     },
-    "mutators": {
+    mutators: {
         "@default": true,
-        "RoundingFamily": {
-            "ignore": [
+        RoundingFamily: {
+            ignore: [
                 "App\\Helper\\TotalRoundCountHelper::calculate",
             ],
-            "ignoreSourceCodeByRegex": [
+            ignoreSourceCodeByRegex: [
                 "\\$this->logger->info.*",
             ]
         },
-        "CastFloat": {
-            "ignore": [
+        CastFloat: {
+            ignore: [
                 "App\\Helper\\TotalRoundCountHelper::calculate",
             ],
         },
-        "ArrayItem": {
-            "ignoreSourceCodeByRegex": [
+        ArrayItem: {
+            ignoreSourceCodeByRegex: [
                 "\\$this->logger->info.*",
             ]
+        },
+        ReturnRemoval: {
+            ignore: [
+                "App\\Helper\\A1Notation::indexToLetter",
+            ],
         },
         "global-ignoreSourceCodeByRegex": [
             "\\$query .= <<<'SUBSQL'.*",
         ],
         "global-ignore": [
-            "App\\Controller\\Connect\\FakeController::check"
+            "App\\Controller\\Connect\\FakeController::check",
         ]
     },
-    "tmpDir": "/app/var/cache/infection",
-    "timeout": 30,
-    "testFramework": "phpunit",
-    "testFrameworkOptions": '--exclude-group="browser-testing"',
-    "logs": {
-        "text": "infection_text.log",
-        "summary": "infection_summary.log",
-    }
+    tmpDir: "/app/var/cache/infection",
+    timeout: 30,
+    testFramework: "phpunit",
+    testFrameworkOptions: '--exclude-group="browser-testing"',
+    logs: {
+        "text": "/app/build/infection/infection_text.log",
+        "summary": "/app/build/infection/infection_summary.log",
+    },
 }

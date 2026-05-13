@@ -33,6 +33,7 @@
                 <directory name="src/Controller" />
             </errorLevel>
         </PossiblyUnusedMethod>
+
         <PossiblyUnusedReturnValue>
             <errorLevel type="suppress">
                 <directory name="src/Controller" />

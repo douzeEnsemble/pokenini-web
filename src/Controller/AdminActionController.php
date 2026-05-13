@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\DTO\AdminAction;
+use App\Event\AdminActionSucceededEvent;
 use App\Service\Back\AdminActionService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 #[Route('/istration/action')]
 final class AdminActionController extends AbstractController
@@ -21,6 +23,7 @@ final class AdminActionController extends AbstractController
         private readonly AdminActionService $adminActionService,
         private readonly RequestStack $requestStack,
         private readonly LoggerInterface $logger,
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {}
 
     #[Route(
@@ -102,6 +105,10 @@ final class AdminActionController extends AbstractController
                 '',
                 $e->getMessage(),
             );
+        }
+
+        if ('ok' === $adminAction->state) {
+            $this->eventDispatcher->dispatch(new AdminActionSucceededEvent($name));
         }
 
         $this->requestStack->getSession()->set(self::SESSION_ACTION_DATA, $adminAction);
