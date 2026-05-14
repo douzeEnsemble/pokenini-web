@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\Security\UserTokenService;
-use App\Service\Back\BackServiceInterface;
+use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetElectionDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
@@ -63,7 +63,7 @@ final class GetElectionDexListServiceTest extends AbstractTestBackService
         string $cafilePath,
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         return new GetElectionDexListService(
             $logger,
             $client,

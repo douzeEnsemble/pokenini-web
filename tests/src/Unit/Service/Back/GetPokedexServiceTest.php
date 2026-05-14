@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\ResponseObject\Album\Album;
 use App\Security\UserTokenService;
-use App\Service\Back\BackServiceInterface;
+use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetPokedexService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -120,7 +120,7 @@ final class GetPokedexServiceTest extends AbstractTestBackService
         string $cafilePath,
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         return new GetPokedexService(
             $logger,
             $client,

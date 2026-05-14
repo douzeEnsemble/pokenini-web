@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\ResponseObject\Label\Labels;
 use App\Security\UserTokenService;
-use App\Service\Back\BackServiceInterface;
+use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -111,7 +111,7 @@ final class GetLabelsServiceTest extends AbstractTestBackService
         string $cafilePath,
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         return new GetLabelsService(
             $logger,
             $client,

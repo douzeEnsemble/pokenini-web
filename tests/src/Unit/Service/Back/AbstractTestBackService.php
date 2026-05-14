@@ -7,7 +7,7 @@ namespace App\Tests\Unit\Service\Back;
 use App\Exception\NoLoggedUserException;
 use App\Security\User;
 use App\Security\UserTokenService;
-use App\Service\Back\BackServiceInterface;
+use App\Service\Back\AbstractBackService;
 use App\Tests\Utils\WithConsecutive;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\TestCase;
@@ -27,7 +27,7 @@ abstract class AbstractTestBackService extends TestCase
         string $endpoint,
         array $requestOptions = [],
         ?SerializerInterface $serializer = null,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         $logger = $this->getLoggerMock(
             $method,
             $responseContent,
@@ -63,7 +63,7 @@ abstract class AbstractTestBackService extends TestCase
         string $endpoint,
         array $requestOptions = [],
         ?SerializerInterface $serializer = null,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         $logger = $this->getLoggerMock(
             $method,
             $responseContent,
@@ -97,7 +97,7 @@ abstract class AbstractTestBackService extends TestCase
         string $cafilePath,
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
-    ): BackServiceInterface;
+    ): AbstractBackService;
 
     /**
      * @param array<int|string, mixed> $requestOptions
@@ -252,7 +252,7 @@ abstract class AbstractTestBackService extends TestCase
         HttpClientInterface $client,
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         return $this->instanciateService(
             $logger,
             $client,

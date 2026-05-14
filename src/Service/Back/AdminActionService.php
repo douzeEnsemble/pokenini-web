@@ -6,7 +6,7 @@ namespace App\Service\Back;
 
 use App\DTO\AdminAction;
 
-class AdminActionService extends AbstractBackService implements BackServiceInterface
+class AdminActionService extends AbstractBackService
 {
     public function execute(string $action, string $item, string $method): AdminAction
     {

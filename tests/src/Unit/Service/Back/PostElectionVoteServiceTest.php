@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\DTO\ElectionVote;
 use App\Security\UserTokenService;
-use App\Service\Back\BackServiceInterface;
+use App\Service\Back\AbstractBackService;
 use App\Service\Back\PostElectionVoteService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
@@ -105,7 +105,7 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
         string $cafilePath,
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         return new PostElectionVoteService(
             $logger,
             $client,

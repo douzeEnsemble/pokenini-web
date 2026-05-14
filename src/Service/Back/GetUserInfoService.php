@@ -7,7 +7,7 @@ namespace App\Service\Back;
 use App\DTO\UserInfo;
 use League\OAuth2\Client\Token\AccessToken;
 
-class GetUserInfoService extends AbstractBackService implements BackServiceInterface
+class GetUserInfoService extends AbstractBackService
 {
     public function get(AccessToken $accessToken, string $providerName): UserInfo
     {

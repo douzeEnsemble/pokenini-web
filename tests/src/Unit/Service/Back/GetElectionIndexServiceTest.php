@@ -7,7 +7,7 @@ namespace App\Tests\Unit\Service\Back;
 use App\Exception\NoLoggedUserException;
 use App\ResponseObject\Election\ElectionIndex;
 use App\Security\UserTokenService;
-use App\Service\Back\BackServiceInterface;
+use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetElectionIndexService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
@@ -117,7 +117,7 @@ final class GetElectionIndexServiceTest extends AbstractTestBackService
         string $cafilePath,
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         return new GetElectionIndexService(
             $logger,
             $client,
