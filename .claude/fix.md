@@ -12,7 +12,7 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
 
 ## Haute priorité
 
-- [ ] [haute] `catch (\Exception $e)` trop large dans `AdminActionController`
+- [x] [haute] `catch (\Exception $e)` trop large dans `AdminActionController`
     Fichier : `src/Controller/AdminActionController.php:89`
     Suggestion : remplacer par `catch (HttpExceptionInterface|TransportExceptionInterface|\InvalidArgumentException $e)` pour éviter de masquer des erreurs de programmation (TypeError, LogicException…). Actuellement, toute exception produit silencieusement un AdminAction d'échec sans remonter l'erreur.
 

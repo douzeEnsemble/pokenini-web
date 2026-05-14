@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 #[Route('/istration/action')]
 final class AdminActionController extends AbstractController
@@ -89,7 +91,7 @@ final class AdminActionController extends AbstractController
     ): RedirectResponse {
         try {
             $adminAction = $this->adminActionService->execute($action, $name, $method);
-        } catch (\Exception $e) {
+        } catch (HttpExceptionInterface|TransportExceptionInterface $e) {
             $this->logger->critical(
                 $e->getMessage(),
                 [
