@@ -67,13 +67,15 @@ Ce manque d'uniformité rend le codebase moins prévisible.
 
 ---
 
-### 6. Gestion d'erreur trop large dans `AdminActionController`
+### 6. ✅ Gestion d'erreur trop large dans `AdminActionController`
 
 **Problème** : `catch (\Exception $e)` attrape n'importe quelle exception, y compris les `TypeError` et `LogicException`, masquant des bugs de programmation derrière un message d'échec silencieux.
 
 **Correction** : remplacer par `catch (HttpExceptionInterface|TransportExceptionInterface|\RuntimeException $e)` et laisser les exceptions de programmation remonter.
 
 **Fichier** : `src/Controller/AdminActionController.php:89`
+
+**Traité** : `catch (\Exception $e)` remplacé par `catch (HttpExceptionInterface|TransportExceptionInterface $e)`. Les bugs de programmation (`\LogicException`, etc.) propagent désormais correctement. Test ajouté pour vérifier que `\LogicException` n'est plus avalée. 282 tests unitaires verts, PHPStan niveau 9 sans erreur.
 
 ---
 

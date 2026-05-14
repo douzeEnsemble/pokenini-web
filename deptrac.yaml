@@ -159,6 +159,7 @@ parameters:
       - KnpUOAuth2ClientBundle
       - Logger
       - SymfonyContractsEventDispatcher
+      - SymfonyContractsHttpClient
       - SymfonyFrameworkBundle
       - SymfonyHttpException
       - SymfonyHttpFoundation
