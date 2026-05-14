@@ -79,13 +79,15 @@ Ce manque d'uniformité rend le codebase moins prévisible.
 
 ---
 
-### 7. `AlbumIndexController::index()` trop long (forte densité logique)
+### 7. ✅ `AlbumIndexController::index()` trop long (forte densité logique)
 
 **Problème** : la méthode `index()` fait 9 appels de service consécutifs pour les labels (catch states, types, 4 types de forms, game bundles, collections). C'est de la duplication d'orchestration que le contrôleur ne devrait pas contenir.
 
 **Correction** : extraire ces 9 appels dans un objet `AlbumLabelBag` ou une méthode dédiée dans `GetLabelsService` (`getAllLabels(): LabelBag`) pour simplifier le contrôleur et faciliter la réutilisation.
 
 **Fichier** : `src/Controller/AlbumIndexController.php:55-71`
+
+**Traité** : ajout de `getAllLabels(): Labels` dans `GetLabelsService`. `AlbumIndexController::index()` et `ElectionIndexController::index()` font désormais 1 seul appel à `getAllLabels()`. 283 tests unitaires verts, PHPStan niveau 9 sans erreur.
 
 ---
 

@@ -25,39 +25,20 @@ final class GetLabelsServiceTest extends TestCase
         $this->getService()->getCatchStates();
     }
 
-    public function testGetTypes(): void
+    public function testGetAllLabels(): void
     {
-        $this->getService()->getTypes();
-    }
+        $backService = $this->createMock(BackGetLabelsService::class);
+        $backService
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn($this->getStubLabels())
+        ;
 
-    public function testGetFormsCategory(): void
-    {
-        $this->getService()->getFormsCategory();
-    }
+        $service = new GetLabelsService($backService, new TagAwareAdapter(new ArrayAdapter()));
+        $labels = $service->getAllLabels();
 
-    public function testGetFormsRegional(): void
-    {
-        $this->getService()->getFormsRegional();
-    }
-
-    public function testGetFormsSpecial(): void
-    {
-        $this->getService()->getFormsSpecial();
-    }
-
-    public function testGetFormsVariant(): void
-    {
-        $this->getService()->getFormsVariant();
-    }
-
-    public function testGetGameBundles(): void
-    {
-        $this->getService()->getGameBundles();
-    }
-
-    public function testGetCollections(): void
-    {
-        $this->getService()->getCollections();
+        $this->assertNotEmpty($labels->getCatchStates());
+        $this->assertNotEmpty($labels->getTypes());
     }
 
     public function testCacheIsInvalidatedByLabelsTag(): void

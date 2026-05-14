@@ -41,19 +41,21 @@ final class ElectionIndexController extends AbstractController
             throw $this->createNotFoundException('Election not found');
         }
 
+        $labels = $getLabelsService->getAllLabels();
+
         return $this->render(
             'Election/index.html.twig',
             [
                 'listType' => $data->listType,
                 'pokemons' => $data->pokemons,
                 'pokedex' => $data->pokedex,
-                'types' => $getLabelsService->getTypes(),
-                'categoryForms' => $getLabelsService->getFormsCategory(),
-                'regionalForms' => $getLabelsService->getFormsRegional(),
-                'specialForms' => $getLabelsService->getFormsSpecial(),
-                'variantForms' => $getLabelsService->getFormsVariant(),
-                'gameBundles' => $getLabelsService->getGameBundles(),
-                'collections' => $getLabelsService->getCollections(),
+                'types' => $labels->getTypes(),
+                'categoryForms' => $labels->getCategoryForms(),
+                'regionalForms' => $labels->getRegionalForms(),
+                'specialForms' => $labels->getSpecialForms(),
+                'variantForms' => $labels->getVariantForms(),
+                'gameBundles' => $labels->getGameBundles(),
+                'collections' => $labels->getCollections(),
                 'electionTop' => $data->electionTop,
                 'metrics' => $data->metrics,
                 'detachedCount' => $data->detachedCount,

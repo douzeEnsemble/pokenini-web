@@ -58,15 +58,7 @@ final class AlbumIndexController extends AbstractController
             throw $this->createNotFoundException();
         }
 
-        $catchStates = $this->getLabelsService->getCatchStates();
-        $types = $this->getLabelsService->getTypes();
-        $categoryForms = $this->getLabelsService->getFormsCategory();
-        $regionalForms = $this->getLabelsService->getFormsRegional();
-        $specialForms = $this->getLabelsService->getFormsSpecial();
-        $variantForms = $this->getLabelsService->getFormsVariant();
-        $gameBundles = $this->getLabelsService->getGameBundles();
-        $collections = $this->getLabelsService->getCollections();
-
+        $labels = $this->getLabelsService->getAllLabels();
         $pokemons = $pokedex->getPokemons();
 
         try {
@@ -81,14 +73,14 @@ final class AlbumIndexController extends AbstractController
             'report' => $pokedex->getReport(),
             'filteredReport' => $pokedex->getFilteredReport(),
             'list' => $pokemons,
-            'catchStates' => $catchStates,
-            'types' => $types,
-            'categoryForms' => $categoryForms,
-            'regionalForms' => $regionalForms,
-            'specialForms' => $specialForms,
-            'variantForms' => $variantForms,
-            'gameBundles' => $gameBundles,
-            'collections' => $collections,
+            'catchStates' => $labels->getCatchStates(),
+            'types' => $labels->getTypes(),
+            'categoryForms' => $labels->getCategoryForms(),
+            'regionalForms' => $labels->getRegionalForms(),
+            'specialForms' => $labels->getSpecialForms(),
+            'variantForms' => $labels->getVariantForms(),
+            'gameBundles' => $labels->getGameBundles(),
+            'collections' => $labels->getCollections(),
             'mode' => 'read',
             'filters' => $filters,
             'trainerId' => !empty($requestedTrainerId) ? $requestedTrainerId : $loggedTrainerId,
