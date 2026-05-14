@@ -55,13 +55,15 @@ Ce manque d'uniformité rend le codebase moins prévisible.
 
 ---
 
-### 5. `ElectionVoteService` sans valeur ajoutée
+### 5. ✅ `ElectionVoteService` sans valeur ajoutée
 
 **Problème** : `ElectionVoteService::vote` délègue directement à `PostElectionVoteService::vote` sans aucun traitement supplémentaire. Contrairement aux autres services métier, il ne gère pas les exceptions HTTP — une erreur réseau en production remonte en 500 non géré.
 
 **Correction** : ajouter la gestion `HttpExceptionInterface|TransportExceptionInterface` ou supprimer la couche et accéder directement depuis le controller.
 
 **Fichiers** : `src/Service/ElectionVoteService.php`, `src/Controller/ElectionVoteController.php`
+
+**Traité** : `ElectionVoteService::vote` attrape `HttpExceptionInterface|TransportExceptionInterface` et lance `ModifyFailedException`. Le contrôleur catch `ModifyFailedException` et redirige normalement (échec silencieux). 280 tests unitaires verts, PHPStan niveau 9 sans erreur.
 
 ---
 
