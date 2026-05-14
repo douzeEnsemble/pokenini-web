@@ -2,7 +2,7 @@
 
 ## Performance
 
-### 1. Cache des labels au niveau APCu/Redis
+### 1. ✅ Cache des labels au niveau APCu/Redis
 
 **Problème** : `GetLabelsService` maintient un cache en propriété d'objet (`?Labels $labels = null`). Ce cache est perdu à chaque requête HTTP. Les labels (catch states, types, formes…) sont des données quasi-statiques qui ne changent que sur action admin explicite. Plusieurs appels HTTP backend sont donc effectués à chaque requête.
 
@@ -10,15 +10,19 @@
 
 **Fichiers** : `src/Service/GetLabelsService.php`, `src/Service/Back/GetLabelsService.php`, `config/packages/cache.yaml`
 
+**Traité** : `TagAwareCacheInterface` avec pool `cache.labels`, invalidation via `LabelsCacheInvalidationListener` sur l'événement `AdminActionSucceededEvent` (commit `720e2f1`)
+
 ---
 
-### 2. Logs verbeux en production (réponses HTTP complètes)
+### 2. ✅ Logs verbeux en production (réponses HTTP complètes)
 
 **Problème** : `AbstractBackService::request` log systématiquement le contenu complet de chaque réponse HTTP (`$response->getContent()`) à chaque appel. Pour des payloads de centaines de Pokémons, cela représente des mégaoctets de logs par requête.
 
 **Correction** : limiter le log de la réponse à un extrait (256 premiers caractères), ou le conditionner au niveau `DEBUG` uniquement via `$this->logger->debug(...)`.
 
 **Fichier** : `src/Service/Back/AbstractBackService.php:65-80`
+
+**Traité** : `info` log tronqué à 256 chars, contenu complet déplacé en `debug` (commit `509febe`)
 
 ---
 

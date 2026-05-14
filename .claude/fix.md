@@ -44,9 +44,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
 
 ## Priorité moyenne
 
-- [ ] [moyenne] `AbstractBackService::request()` logue le contenu complet de la réponse en `info`
+- [x] [moyenne] `AbstractBackService::request()` logue le contenu complet de la réponse en `info`
     Fichier : `src/Service/Back/AbstractBackService.php:69`
     Suggestion : le log `'response' => $response->getContent()` peut produire des payloads très volumineux. Passer au niveau `debug` ou tronquer à 256 caractères pour éviter de saturer les logs en production.
+    **Traité** : réponse tronquée à 256 chars en `info`, contenu complet en `debug` (commit `509febe`)
 
 - [ ] [moyenne] `UserTokenService` n'est pas `final`
     Fichier : `src/Security/UserTokenService.php:9`
@@ -56,9 +57,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Fichier : `src/Service/ElectionVoteService.php:16-18`
     Suggestion : ajouter la gestion `HttpExceptionInterface|TransportExceptionInterface` pour être cohérent avec les autres services, ou supprimer la couche et appeler directement `PostElectionVoteService` depuis `ElectionVoteController`.
 
-- [ ] [moyenne] `GetLabelsService` (métier) utilise un cache manuel `?Labels $labels = null`
+- [x] [moyenne] `GetLabelsService` (métier) utilise un cache manuel `?Labels $labels = null`
     Fichier : `src/Service/GetLabelsService.php:20`
     Suggestion : ce cache per-request est correct mais non documenté. Ajouter un commentaire. Envisager l'APCu/Redis pour partager entre requêtes (les labels ne changent que sur action admin).
+    **Traité** : cache APCu/Redis avec `TagAwareCacheInterface`, invalidation automatique sur action admin (commit `720e2f1`)
 
 - [ ] [moyenne] Absence de gestion de l'expiration de token dans `FakeAuthenticator`
     Fichier : `src/Security/FakeAuthenticator.php:43-47`
