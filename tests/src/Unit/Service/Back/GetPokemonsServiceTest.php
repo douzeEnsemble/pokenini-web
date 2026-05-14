@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\ResponseObject\Election\ElectionList;
 use App\Security\UserTokenService;
-use App\Service\Back\BackServiceInterface;
+use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetPokemonsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -116,7 +116,7 @@ final class GetPokemonsServiceTest extends AbstractTestBackService
         string $cafilePath,
         UserTokenService $userTokenService,
         SerializerInterface $serializer,
-    ): BackServiceInterface {
+    ): AbstractBackService {
         return new GetPokemonsService(
             $logger,
             $client,

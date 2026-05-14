@@ -45,13 +45,15 @@ Ce manque d'uniformité rend le codebase moins prévisible.
 
 ---
 
-### 4. `BackServiceInterface` est vide
+### 4. ✅ `BackServiceInterface` est vide
 
 **Problème** : `BackServiceInterface` est une interface vide utilisée uniquement comme marqueur de type. Elle n'apporte aucun contrat.
 
 **Correction** : soit la supprimer (Deptrac peut se baser sur le namespace), soit y déclarer un contrat minimal (par exemple la méthode `request` de `AbstractBackService` pour permettre le mock par interface plutôt que par classe concrète).
 
 **Fichiers** : `src/Service/Back/BackServiceInterface.php`, `src/Service/Back/AbstractBackService.php`
+
+**Traité** : interface supprimée. `AbstractBackService` et les services concrets (`AdminActionService`, `GetUserInfoService`) n'implémentent plus l'interface. Les types de retour dans les tests Back sont mis à jour en `AbstractBackService`. 283 tests unitaires verts, PHPStan niveau 9, Deptrac 0 violations.
 
 ---
 
