@@ -73,10 +73,19 @@ abstract class AbstractBackService implements BackServiceInterface
             $finalOptions,
         );
 
+        $responseContent = $response->getContent();
+
         $this->logger->info(
             "Response status code: {$response->getStatusCode()}",
             [
-                'response' => $response->getContent(),
+                'response' => substr($responseContent, 0, 256),
+            ]
+        );
+
+        $this->logger->debug(
+            'Response content',
+            [
+                'full' => $responseContent,
             ]
         );
 
