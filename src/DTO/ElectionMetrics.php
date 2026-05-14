@@ -8,25 +8,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ElectionMetrics
 {
-    public int $viewCountSum;
-
-    public int $winCountSum;
-
-    public int $viewCountMax;
-
-    public int $winCountMax;
-
-    public int $underMaxViewCount;
-
-    public int $maxViewCount;
-
-    public int $dexTotalCount;
-
-    public int $roundCount;
-
-    public float $winnerAverage;
-
-    public int $totalRoundCount;
+    /**
+     * @SuppressWarnings("PHPMD.ExcessiveParameterList")
+     */
+    private function __construct(
+        public readonly int $viewCountSum,
+        public readonly int $winCountSum,
+        public readonly int $viewCountMax,
+        public readonly int $winCountMax,
+        public readonly int $underMaxViewCount,
+        public readonly int $maxViewCount,
+        public readonly int $dexTotalCount,
+        public readonly int $roundCount,
+        public readonly float $winnerAverage,
+        public readonly int $totalRoundCount,
+    ) {}
 
     /**
      * @param array{
@@ -42,10 +38,10 @@ final class ElectionMetrics
      *  total_round_count: int,
      * } $values
      */
-    public function __construct(array $values)
+    public static function createFromArray(array $values): self
     {
         $resolver = new OptionsResolver();
-        $this->configureOptions($resolver);
+        self::configureOptions($resolver);
 
         /**
          * @var array{
@@ -63,19 +59,21 @@ final class ElectionMetrics
          */
         $options = $resolver->resolve($values);
 
-        $this->viewCountSum = $options['view_count_sum'];
-        $this->winCountSum = $options['win_count_sum'];
-        $this->viewCountMax = $options['view_count_max'];
-        $this->winCountMax = $options['win_count_max'];
-        $this->underMaxViewCount = $options['under_max_view_count'];
-        $this->maxViewCount = $options['max_view_count'];
-        $this->dexTotalCount = $options['dex_total_count'];
-        $this->roundCount = $options['round_count'];
-        $this->winnerAverage = $options['winner_average'];
-        $this->totalRoundCount = $options['total_round_count'];
+        return new self(
+            $options['view_count_sum'],
+            $options['win_count_sum'],
+            $options['view_count_max'],
+            $options['win_count_max'],
+            $options['under_max_view_count'],
+            $options['max_view_count'],
+            $options['dex_total_count'],
+            $options['round_count'],
+            $options['winner_average'],
+            $options['total_round_count'],
+        );
     }
 
-    private function configureOptions(OptionsResolver $resolver): void
+    private static function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setRequired('view_count_sum');
         $resolver->setAllowedTypes('view_count_sum', 'int');

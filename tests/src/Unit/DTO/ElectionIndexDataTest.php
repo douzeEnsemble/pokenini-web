@@ -23,7 +23,7 @@ final class ElectionIndexDataTest extends TestCase
             [],
             null,
             new ElectionTop([]),
-            new ElectionMetrics(
+            ElectionMetrics::createFromArray(
                 [
                     'view_count_sum' => 82,
                     'win_count_sum' => 54,

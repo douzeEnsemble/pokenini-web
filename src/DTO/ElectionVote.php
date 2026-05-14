@@ -8,18 +8,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ElectionVote
 {
-    public string $dexSlug;
-    public string $electionSlug;
-
     /**
-     * @var array<int, string>
+     * @param array<int, string> $winnersSlugs
+     * @param array<int, string> $losersSlugs
      */
-    public array $winnersSlugs;
-
-    /**
-     * @var array<int, string>
-     */
-    public array $losersSlugs;
+    private function __construct(
+        public readonly string $dexSlug,
+        public readonly string $electionSlug,
+        public readonly array $winnersSlugs,
+        public readonly array $losersSlugs,
+    ) {}
 
     /**
      * @param array{
@@ -29,10 +27,10 @@ final class ElectionVote
      *  losers_slugs?: array<int, string>,
      * } $values
      */
-    public function __construct(array $values = [])
+    public static function createFromArray(array $values = []): self
     {
         $resolver = new OptionsResolver();
-        $this->configureOptions($resolver);
+        self::configureOptions($resolver);
 
         /**
          * @var array{
@@ -44,9 +42,6 @@ final class ElectionVote
          */
         $options = $resolver->resolve($values);
 
-        $this->dexSlug = $options['dex_slug'];
-        $this->electionSlug = $options['election_slug'];
-
         /** @var array<int, string> $winnersSlugs */
         $winnersSlugs = array_filter($options['winners_slugs']);
 
@@ -55,11 +50,15 @@ final class ElectionVote
         /** @var array<int, string> $losersSlugs */
         $losersSlugs = array_values($nonWinnersSlugs);
 
-        $this->winnersSlugs = $winnersSlugs;
-        $this->losersSlugs = $losersSlugs;
+        return new self(
+            $options['dex_slug'],
+            $options['election_slug'],
+            $winnersSlugs,
+            $losersSlugs,
+        );
     }
 
-    private function configureOptions(OptionsResolver $resolver): void
+    private static function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setRequired('dex_slug');
         $resolver->setAllowedTypes('dex_slug', 'string');

@@ -50,7 +50,7 @@ final class ElectionVoteController extends AbstractController
         );
 
         try {
-            $electionVote = new ElectionVote($data);
+            $electionVote = ElectionVote::createFromArray($data);
         } catch (\InvalidArgumentException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
