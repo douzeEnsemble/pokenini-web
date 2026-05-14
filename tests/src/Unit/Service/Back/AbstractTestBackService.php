@@ -117,28 +117,40 @@ abstract class AbstractTestBackService extends TestCase
             $headers['X-Provider'] = 'testprovider';
         }
 
+        $messages = [
+            [
+                "Requesting {$method} /{$endpoint}",
+                array_merge(
+                    [
+                        'headers' => $headers,
+                        'cafile' => './resources/certificates/cacert.pem',
+                    ],
+                    $requestOptions
+                ),
+            ],
+            [
+                'Response status code: 200',
+                [
+                    'response' => substr($responseContent, 0, 256),
+                ],
+            ],
+        ];
+
         $logger = $this->createMock(LoggerInterface::class);
         $logger
             ->expects($this->exactly(2))
             ->method('info')
-            ->with(...WithConsecutive::create(...[
+            ->with(...WithConsecutive::create(...$messages))
+        ;
+        $logger
+            ->expects($this->once())
+            ->method('debug')
+            ->with(
+                'Response content',
                 [
-                    "Requesting {$method} /{$endpoint}",
-                    array_merge(
-                        [
-                            'headers' => $headers,
-                            'cafile' => './resources/certificates/cacert.pem',
-                        ],
-                        $requestOptions
-                    ),
+                    'full' => $responseContent,
                 ],
-                [
-                    'Response status code: 200',
-                    [
-                        'response' => $responseContent,
-                    ],
-                ],
-            ]))
+            )
         ;
 
         return $logger;
