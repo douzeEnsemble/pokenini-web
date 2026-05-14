@@ -6,7 +6,9 @@ namespace App\Controller;
 
 use App\AlbumFilters\FromRequest;
 use App\DTO\ElectionVote;
+use App\Exception\ModifyFailedException;
 use App\Service\ElectionVoteService;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +29,7 @@ final class ElectionVoteController extends AbstractController
     public function vote(
         Request $request,
         ElectionVoteService $electionVoteService,
+        LoggerInterface $logger,
         string $dexSlug,
         string $electionSlug = '',
     ): Response {
@@ -55,7 +58,11 @@ final class ElectionVoteController extends AbstractController
             throw new BadRequestHttpException($e->getMessage());
         }
 
-        $electionVoteService->vote($electionVote);
+        try {
+            $electionVoteService->vote($electionVote);
+        } catch (ModifyFailedException $e) {
+            $logger->warning('Election vote failed', ['exception' => $e->getMessage()]);
+        }
 
         $filters = FromRequest::get($request);
 
