@@ -21,7 +21,7 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
 {
     public function testVote(): void
     {
-        $electionVote = new ElectionVote([
+        $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
             'election_slug' => 'whatever',
             'winners_slugs' => ['pichu'],
@@ -38,7 +38,7 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
 
     public function testVoteAllLosers(): void
     {
-        $electionVote = new ElectionVote([
+        $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
             'election_slug' => 'whatever',
             'winners_slugs' => [],
@@ -55,7 +55,7 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
 
     public function testVoteAllWinners(): void
     {
-        $electionVote = new ElectionVote([
+        $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
             'election_slug' => 'whatever',
             'winners_slugs' => ['pikachu', 'pichu', 'raichu'],
@@ -72,7 +72,7 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
 
     public function testVoteWithoutLoggedUser(): void
     {
-        $electionVote = new ElectionVote([
+        $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
             'election_slug' => 'whatever',
             'winners_slugs' => ['pichu'],

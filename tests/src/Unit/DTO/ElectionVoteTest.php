@@ -17,9 +17,17 @@ use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
 #[CoversClass(ElectionVote::class)]
 final class ElectionVoteTest extends TestCase
 {
+    public function testPropertiesAreReadonly(): void
+    {
+        $this->assertTrue((new \ReflectionProperty(ElectionVote::class, 'dexSlug'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionVote::class, 'electionSlug'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionVote::class, 'winnersSlugs'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionVote::class, 'losersSlugs'))->isReadOnly());
+    }
+
     public function testOk(): void
     {
-        $object = new ElectionVote([
+        $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'election_slug' => 'douze',
             'winners_slugs' => ['pikachu'],
@@ -34,7 +42,7 @@ final class ElectionVoteTest extends TestCase
 
     public function testWinnerAsLoser(): void
     {
-        $object = new ElectionVote([
+        $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'election_slug' => 'douze',
             'winners_slugs' => ['pikachu'],
@@ -49,7 +57,7 @@ final class ElectionVoteTest extends TestCase
 
     public function testWinnersAsLosers(): void
     {
-        $object = new ElectionVote([
+        $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'election_slug' => 'douze',
             'winners_slugs' => ['pikachu', 'pichu'],
@@ -64,7 +72,7 @@ final class ElectionVoteTest extends TestCase
 
     public function testWithEmptyWinners(): void
     {
-        $object = new ElectionVote([
+        $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'election_slug' => 'douze',
             'winners_slugs' => ['pichu', ''],
@@ -79,7 +87,7 @@ final class ElectionVoteTest extends TestCase
 
     public function testWithEmptyLosers(): void
     {
-        $object = new ElectionVote([
+        $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'election_slug' => 'douze',
             'winners_slugs' => ['pichu'],
@@ -96,7 +104,7 @@ final class ElectionVoteTest extends TestCase
     {
         $this->expectException(MissingOptionsException::class);
 
-        new ElectionVote([
+        ElectionVote::createFromArray([
             'election_slug' => 'douze',
             'winners_slugs' => ['pikachu'],
             'losers_slugs' => ['pichu', 'raichu'],
@@ -112,7 +120,7 @@ final class ElectionVoteTest extends TestCase
          *
          * @phpstan-ignore argument.type
          */
-        new ElectionVote([
+        ElectionVote::createFromArray([
             'dex_slug' => 12,
             'winners_slugs' => ['pikachu'],
             'losers_slugs' => ['pichu', 'raichu'],
@@ -121,7 +129,7 @@ final class ElectionVoteTest extends TestCase
 
     public function testMissingElectionSlug(): void
     {
-        $object = new ElectionVote([
+        $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'winners_slugs' => ['pikachu'],
             'losers_slugs' => ['pichu', 'raichu'],
@@ -142,7 +150,7 @@ final class ElectionVoteTest extends TestCase
          *
          * @phpstan-ignore argument.type
          */
-        new ElectionVote([
+        ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'election_slug' => false,
             'winners_slugs' => ['pikachu'],
@@ -159,7 +167,7 @@ final class ElectionVoteTest extends TestCase
          *
          * @phpstan-ignore argument.type
          */
-        new ElectionVote([
+        ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'winners_slugs' => [54654],
             'losers_slugs' => ['pichu', 'raichu'],
@@ -175,7 +183,7 @@ final class ElectionVoteTest extends TestCase
          *
          * @phpstan-ignore argument.type
          */
-        new ElectionVote([
+        ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'winners_slugs' => ['pikachu'],
             'losers_slugs' => 'pichu',
@@ -189,7 +197,7 @@ final class ElectionVoteTest extends TestCase
         /**
          * @psalm-suppress InvalidArgument
          */
-        new ElectionVote([
+        ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
             'election_slug' => 'douze',
             'winners_slugs' => ['pikachu'],

@@ -17,9 +17,23 @@ use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 #[CoversClass(ElectionMetrics::class)]
 final class ElectionMetricsTest extends TestCase
 {
+    public function testPropertiesAreReadonly(): void
+    {
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'viewCountSum'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'winCountSum'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'viewCountMax'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'winCountMax'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'underMaxViewCount'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'maxViewCount'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'dexTotalCount'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'roundCount'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'winnerAverage'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'totalRoundCount'))->isReadOnly());
+    }
+
     public function testOk(): void
     {
-        $object = new ElectionMetrics(
+        $object = ElectionMetrics::createFromArray(
             [
                 'view_count_sum' => 82,
                 'win_count_sum' => 54,
@@ -68,7 +82,7 @@ final class ElectionMetricsTest extends TestCase
          *
          * @phpstan-ignore argument.type
          */
-        new ElectionMetrics($properties);
+        ElectionMetrics::createFromArray($properties);
     }
 
     /**
@@ -135,7 +149,7 @@ final class ElectionMetricsTest extends TestCase
          *
          * @phpstan-ignore argument.type
          */
-        new ElectionMetrics($properties);
+        ElectionMetrics::createFromArray($properties);
     }
 
     /**

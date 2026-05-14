@@ -28,7 +28,7 @@
 
 ## Qualité du code
 
-### 3. Incohérence de paradigme dans les DTO
+### 3. ✅ Incohérence de paradigme dans les DTO
 
 **Problème** : les DTO utilisent deux patterns incompatibles :
 - `ElectionIndexData` : promotionnel readonly, propriétés publiques — accès direct.
@@ -40,6 +40,8 @@ Ce manque d'uniformité rend le codebase moins prévisible.
 **Correction** : adopter un pattern unique — le constructor readonly promotionnel (comme `ElectionIndexData` et `UserInfo`). Éliminer les propriétés mutables publiques non nécessaires.
 
 **Fichiers** : `src/DTO/ElectionMetrics.php`, `src/DTO/ElectionVote.php`
+
+**Traité** : constructeur privé + `public readonly` promotionnel + factory `createFromArray` (pattern `DexFilters`). Tous les sites d'appel mis à jour. PHPStan niveau 9 + 277 tests unitaires verts.
 
 ---
 

@@ -31,7 +31,7 @@ class ElectionIndexService
             $response->getPokemons(),
             $response->getPokedex(),
             new ElectionTop($response->getElectionTop()),
-            new ElectionMetrics($response->getMetrics()),
+            ElectionMetrics::createFromArray($response->getMetrics()),
             $response->getDetachedCount(),
             $response->isTheLastOne(),
             $response->isTheLastPage(),

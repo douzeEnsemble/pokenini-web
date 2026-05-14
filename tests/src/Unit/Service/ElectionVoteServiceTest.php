@@ -18,7 +18,7 @@ final class ElectionVoteServiceTest extends TestCase
 {
     public function testVote(): void
     {
-        $electionVote = new ElectionVote([
+        $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
             'election_slug' => 'whatever',
             'winners_slugs' => ['pichu'],
@@ -40,7 +40,7 @@ final class ElectionVoteServiceTest extends TestCase
 
     public function testVoteWinnerAsLoser(): void
     {
-        $electionVote = new ElectionVote([
+        $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
             'election_slug' => 'whatever',
             'winners_slugs' => ['pichu'],
@@ -62,7 +62,7 @@ final class ElectionVoteServiceTest extends TestCase
 
     public function testVoteAllLosers(): void
     {
-        $electionVote = new ElectionVote([
+        $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
             'election_slug' => 'whatever',
             'winners_slugs' => [],
@@ -84,7 +84,7 @@ final class ElectionVoteServiceTest extends TestCase
 
     public function testVoteAllWinners(): void
     {
-        $electionVote = new ElectionVote([
+        $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
             'election_slug' => 'whatever',
             'winners_slugs' => ['pikachu', 'pichu', 'raichu'],
