@@ -52,7 +52,7 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : le log `'response' => $response->getContent()` peut produire des payloads très volumineux. Passer au niveau `debug` ou tronquer à 256 caractères pour éviter de saturer les logs en production.
     **Traité** : réponse tronquée à 256 chars en `info`, contenu complet en `debug` (commit `509febe`)
 
-- [ ] [moyenne] `UserTokenService` n'est pas `final`
+- [x] [moyenne] `UserTokenService` n'est pas `final`
     Fichier : `src/Security/UserTokenService.php:9`
     Suggestion : ajouter `final` pour cohérence avec les conventions du projet (toutes les classes concrètes sont `final`). Pas d'héritage prévu.
 
