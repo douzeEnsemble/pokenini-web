@@ -46,4 +46,18 @@ final class DexFiltersRequestTest extends TestCase
         $this->assertFalse($filters->shiny->value);
         $this->assertFalse($filters->premium->value);
     }
+
+    public function testDexFiltersFromRequestIgnoresUnknownParams(): void
+    {
+        $request = new Request([
+            'p' => '1',
+            'utm_source' => 'newsletter',
+            'unknown_param' => 'foo',
+        ]);
+
+        $filters = DexFiltersRequest::DexFiltersFromRequest($request);
+
+        $this->assertTrue($filters->privacy->value);
+        $this->assertNull($filters->homepaged->value);
+    }
 }
