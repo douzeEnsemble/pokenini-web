@@ -14,7 +14,7 @@ final class ConnectController extends AbstractController
     #[Route('/logout', methods: ['GET'])]
     public function logout(): void
     {
-        throw new \Exception('Don\'t forget to activate logout in security.yaml');
+        throw new \LogicException('Don\'t forget to activate logout in security.yaml');
     }
 
     #[Route('', methods: ['GET'])]
