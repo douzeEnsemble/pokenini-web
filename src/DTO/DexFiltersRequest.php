@@ -21,6 +21,8 @@ final class DexFiltersRequest
             'm' => '',
         ]);
 
+        $resolver->setIgnoreUndefined();
+
         /**
          * @var array{
          *  p: string,

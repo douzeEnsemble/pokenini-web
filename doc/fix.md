@@ -33,9 +33,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Fichier : `src/Controller/ConnectController.php:16`
     Suggestion : utiliser `\LogicException` à la place, plus idiomatique et documenté dans Symfony pour forcer la gestion par le firewall.
 
-- [ ] [haute] `DexFiltersRequest::dexFiltersFromRequest` ignore les paramètres inconnus sans les rejeter
+- [x] [haute] `DexFiltersRequest::dexFiltersFromRequest` ignore les paramètres inconnus sans les rejeter
     Fichier : `src/DTO/DexFiltersRequest.php:14`
     Suggestion : ajouter `$resolver->setDefined([...])` et `$resolver->setIgnoreUndefined()` ou valider que la query string ne contient pas de clés inattendues.
+    **Traité** : ajout de `$resolver->setIgnoreUndefined()` pour que les paramètres inconnus (ex. `utm_source`) soient silencieusement ignorés au lieu de lever une `UndefinedOptionsException`.
 
 - [ ] [haute] Image Docker `vnu` utilise `latest` sans tag fixé
     Fichier : `docker-compose.yaml:30`
