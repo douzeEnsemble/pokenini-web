@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetReportsService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -65,7 +65,7 @@ final class GetReportsServiceTest extends AbstractTestBackService
         HttpClientInterface $client,
         string $url,
         string $cafilePath,
-        UserTokenService $userTokenService,
+        UserTokenServiceInterface $userTokenService,
         SerializerInterface $serializer,
     ): AbstractBackService {
         return new GetReportsService(

@@ -7,12 +7,13 @@ namespace App\Security;
 use App\Exception\NoLoggedUserException;
 use Symfony\Bundle\SecurityBundle\Security;
 
-final class UserTokenService
+final class UserTokenService implements UserTokenServiceInterface
 {
     public function __construct(
         private readonly Security $security
     ) {}
 
+    #[\Override]
     public function getLoggedUser(): User
     {
         /** @var null|User $user */
@@ -25,6 +26,7 @@ final class UserTokenService
         return $user;
     }
 
+    #[\Override]
     public function getLoggedUserId(): string
     {
         $user = $this->getLoggedUser();
@@ -32,11 +34,12 @@ final class UserTokenService
         return sha1($user->getUserIdentifier());
     }
 
+    #[\Override]
     public function compare(string $identifier): bool
     {
         try {
             $loggedUserId = $this->getLoggedUserId();
-        } catch (NoLoggedUserException $e) {
+        } catch (NoLoggedUserException) {
             return false;
         }
 

@@ -56,9 +56,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Fichier : `src/Security/UserTokenService.php:9`
     Suggestion : ajouter `final` pour cohérence avec les conventions du projet (toutes les classes concrètes sont `final`). Pas d'héritage prévu.
 
-- [ ] [moyenne] `ElectionVoteService::vote` est une couche de passe-plat triviale sans valeur ajoutée
+- [x] [moyenne] `ElectionVoteService::vote` est une couche de passe-plat triviale sans valeur ajoutée
     Fichier : `src/Service/ElectionVoteService.php:16-18`
     Suggestion : ajouter la gestion `HttpExceptionInterface|TransportExceptionInterface` pour être cohérent avec les autres services, ou supprimer la couche et appeler directement `PostElectionVoteService` depuis `ElectionVoteController`.
+    **Non applicable** : la gestion `HttpExceptionInterface|TransportExceptionInterface → ModifyFailedException` est déjà en place. Le service suit le même pattern que `ModifyTrainerDexService`. La couche est nécessaire (Deptrac interdit l'accès direct aux `Service\Back` depuis les contrôleurs).
 
 - [x] [moyenne] `GetLabelsService` (métier) utilise un cache manuel `?Labels $labels = null`
     Fichier : `src/Service/GetLabelsService.php:20`

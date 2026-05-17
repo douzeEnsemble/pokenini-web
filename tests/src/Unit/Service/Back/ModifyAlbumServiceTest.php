@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\ModifyAlbumService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -58,7 +58,7 @@ final class ModifyAlbumServiceTest extends AbstractTestBackService
 
         $client = $this->createStub(HttpClientInterface::class);
 
-        $userTokenService = $this->createStub(UserTokenService::class);
+        $userTokenService = $this->createStub(UserTokenServiceInterface::class);
 
         $serializer = $this->createStub(SerializerInterface::class);
 
@@ -102,7 +102,7 @@ final class ModifyAlbumServiceTest extends AbstractTestBackService
         HttpClientInterface $client,
         string $url,
         string $cafilePath,
-        UserTokenService $userTokenService,
+        UserTokenServiceInterface $userTokenService,
         SerializerInterface $serializer,
     ): AbstractBackService {
         return new ModifyAlbumService(

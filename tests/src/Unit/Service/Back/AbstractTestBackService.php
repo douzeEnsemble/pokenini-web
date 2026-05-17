@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\Exception\NoLoggedUserException;
 use App\Security\User;
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Tests\Utils\WithConsecutive;
 use League\OAuth2\Client\Token\AccessToken;
@@ -95,7 +95,7 @@ abstract class AbstractTestBackService extends TestCase
         HttpClientInterface $client,
         string $url,
         string $cafilePath,
-        UserTokenService $userTokenService,
+        UserTokenServiceInterface $userTokenService,
         SerializerInterface $serializer,
     ): AbstractBackService;
 
@@ -218,9 +218,9 @@ abstract class AbstractTestBackService extends TestCase
         return $client;
     }
 
-    protected function getUserTokenServiceMock(?string $token): UserTokenService
+    protected function getUserTokenServiceMock(?string $token): UserTokenServiceInterface
     {
-        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService = $this->createMock(UserTokenServiceInterface::class);
 
         if (null === $token) {
             $userTokenService
@@ -250,7 +250,7 @@ abstract class AbstractTestBackService extends TestCase
     protected function makeService(
         LoggerInterface $logger,
         HttpClientInterface $client,
-        UserTokenService $userTokenService,
+        UserTokenServiceInterface $userTokenService,
         SerializerInterface $serializer,
     ): AbstractBackService {
         return $this->instanciateService(
