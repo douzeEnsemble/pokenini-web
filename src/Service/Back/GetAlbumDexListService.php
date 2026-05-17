@@ -13,12 +13,12 @@ class GetAlbumDexListService extends AbstractBackService
      */
     public function get(?string $trainerId = null): array
     {
-        /** @psalm-suppress RiskyTruthyFalsyComparison */
-        $urlQueryParams = !empty($trainerId) ? "?trainer_id={$trainerId}" : '';
+        $options = (null !== $trainerId && '' !== $trainerId) ? ['query' => ['trainer_id' => $trainerId]] : [];
 
         $json = $this->requestContent(
             'GET',
-            "/album/dex{$urlQueryParams}",
+            '/album/dex',
+            $options,
         );
 
         /** @var string[][] */

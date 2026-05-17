@@ -64,7 +64,8 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
             (string) file_get_contents('/app/tests/resources/unit/service/back/dex_123.json'),
-            'album/dex?trainer_id=123',
+            'album/dex',
+            ['query' => ['trainer_id' => '123']],
         );
 
         $expectedSlugs = [
