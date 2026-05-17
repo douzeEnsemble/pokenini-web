@@ -71,26 +71,26 @@ Browser → Nginx → Symfony (PHP-FPM)
                       ↓
               Controller
                 ↓         ↓
-           Service     AlbumFilters (query param parsing)
+            Service    AlbumFilters (query param parsing)
                 ↓
-         Service\Back (HTTP client to pokenini-api)
+          Service\Back (HTTP client to pokenini-api)
                 ↓
-         ResponseObject (deserialized from JSON)
+          ResponseObject (deserialized from JSON)
 ```
 
 ### Source layers (`src/`)
 
-| Layer | Role |
-|---|---|
-| `Controller/` | One controller per feature page. Thin: delegates to Services, renders Twig. |
-| `Service/` | Orchestration layer. Composes Back services, handles null/exception from HTTP. |
-| `Service/Back/` | All HTTP calls to the backend API. Extend `AbstractBackService` which handles auth headers (Bearer token + X-Provider), cafile, and logging. |
-| `ResponseObject/` | Plain PHP objects populated by the Symfony Serializer from API JSON. No logic. |
-| `DTO/` | Input/output data containers between Controller and Service, not tied to API shape. |
-| `AlbumFilters/` | Two static helpers: `FromRequest` parses query params into a filter array; `Mapping` transforms them to API-compatible filter params. |
-| `Security/` | OAuth2 authenticators (Discord, Google, Fake for dev). `User` holds roles and `AccessToken`. `UserTokenService` exposes `getLoggedUserId()` which is `sha1($userIdentifier)` — this is the trainer ID used in URLs as `?t=`. |
-| `Twig/` | Twig extensions for app-specific helpers. |
-| `Validator/` | Custom Symfony constraints (e.g. `CatchStates`). |
+| Layer             | Role                                                                                                                                                                                                                         |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Controller/`     | One controller per feature page. Thin: delegates to Services, renders Twig.                                                                                                                                                  |
+| `Service/`        | Orchestration layer. Composes Back services, handles null/exception from HTTP.                                                                                                                                               |
+| `Service/Back/`   | All HTTP calls to the backend API. Extend `AbstractBackService` which handles auth headers (Bearer token + X-Provider), cafile, and logging.                                                                                 |
+| `ResponseObject/` | Plain PHP objects populated by the Symfony Serializer from API JSON. No logic.                                                                                                                                               |
+| `DTO/`            | Input/output data containers between Controller and Service, not tied to API shape.                                                                                                                                          |
+| `AlbumFilters/`   | Two static helpers: `FromRequest` parses query params into a filter array; `Mapping` transforms them to API-compatible filter params.                                                                                        |
+| `Security/`       | OAuth2 authenticators (Discord, Google, Fake for dev). `User` holds roles and `AccessToken`. `UserTokenService` exposes `getLoggedUserId()` which is `sha1($userIdentifier)` — this is the trainer ID used in URLs as `?t=`. |
+| `Twig/`           | Twig extensions for app-specific helpers.                                                                                                                                                                                    |
+| `Validator/`      | Custom Symfony constraints (e.g. `CatchStates`).                                                                                                                                                                             |
 
 Layer dependencies are enforced by **Deptrac** (`deptrac.yaml`). Controllers must not reach into `Service\Back` directly.
 
@@ -116,14 +116,14 @@ Integration and browser tests run against a **Moco** mock server (`moco.back` co
 
 ### Infrastructure
 
-| Service | Purpose |
-|---|---|
-| `php` | PHP 8.4 FPM (dev image) |
-| `web` | Nginx, port 80/443 |
-| `redis` | APCu-compatible cache adapter |
-| `moco.back` | Moco mock for `pokenini-api` |
+| Service           | Purpose                                    |
+| ----------------- | ------------------------------------------ |
+| `php`             | PHP 8.4 FPM (dev image)                    |
+| `web`             | Nginx, port 80/443                         |
+| `redis`           | APCu-compatible cache adapter              |
+| `moco.back`       | Moco mock for `pokenini-api`               |
 | `moco.matomo.gbl` | Moco mock for Matomo analytics (port 8888) |
-| `vnu` | W3C HTML validator |
+| `vnu`             | W3C HTML validator                         |
 
 ### Tools (separate Composer installs in `tools/`)
 

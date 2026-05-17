@@ -68,18 +68,18 @@ pokenini-web/
 
 ## Rôle de chaque couche
 
-| Couche | Rôle | Règle de dépendance (Deptrac) |
-|--------|------|-------------------------------|
-| `Controller/` | Point d'entrée HTTP. Lit Request, appelle Service, rend Twig. Aucune logique métier. | Peut dépendre de : Service, DTO, Exception, ResponseObject, Security, AlbumFilters, Validator |
-| `Service/` | Orchestration. Combine plusieurs Back services, gère `HttpExceptionInterface|TransportExceptionInterface` → null/exception métier. | Peut dépendre de : Service\Back, DTO, Exception, ResponseObject, Security, Utils |
-| `Service\Back/` | Client HTTP pur vers pokenini-api. Hérite `AbstractBackService` (Bearer token, X-Provider, cafile, log). Désérialisent via Symfony Serializer. | Peut dépendre de : Utils, Exception, ResponseObject, Security, Serializer |
-| `ResponseObject/` | POPOs désérialisés depuis le JSON de l'API. Constructeur promotionnel readonly + `#[SerializedName]`. Aucune logique. | Peut dépendre de : Serializer seulement |
-| `DTO/` | Conteneurs de transfert Controller ↔ Service. Deux variantes : immutables (factory `createFromArray`) ou avec `OptionsResolver` pour la validation. | Peut dépendre de : DTO, ResponseObject, HttpFoundation, OptionsResolver |
-| `AlbumFilters/` | Deux classes statiques : `FromRequest` (query params → filtres internes) + `Mapping` (filtres → params API). | Dépend uniquement de HttpFoundation |
-| `Security/` | `User` (stocke `AccessToken` + rôles). Authenticateurs OAuth2 (Discord, Google, Fake). `UserTokenService` : `getLoggedUserId()` = `sha1(userIdentifier)`. `UserRefresher` rafraîchit le token expiré. | Peut dépendre de : DTO, Service, KnpU, LeagueOAuth2, SymfonySecurity |
-| `Twig/` | Extensions Twig : filtres `ksort`, `sha1`, `htmlNl2br`, `almost_exactly` ; fonctions `version()`, `getArrayFromRequest()`. | Dépend de Twig, HttpFoundation, SymfonyContractsTranslation |
-| `Utils/` | `JsonDecoder` : wrapper `json_decode` avec `JSON_THROW_ON_ERROR` et profondeur 5. | Aucune dépendance App |
-| `Validator/` | `CatchStates` (contrainte) + `CatchStatesValidator` (interroge `GetLabelsService` pour valider les slugs). | Peut dépendre de : Service, Validator |
+| Couche            | Rôle                                                                                                                                                                                                  | Règle de dépendance (Deptrac)                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Controller/`     | Point d'entrée HTTP. Lit Request, appelle Service, rend Twig. Aucune logique métier.                                                                                                                  | Peut dépendre de : Service, DTO, Exception, ResponseObject, Security, AlbumFilters, Validator |
+| `Service/`        | Orchestration. Combine plusieurs Back services, gère `HttpExceptionInterface                                                                                                                          | TransportExceptionInterface` → null/exception métier.                                         | Peut dépendre de : Service\Back, DTO, Exception, ResponseObject, Security, Utils |
+| `Service\Back/`   | Client HTTP pur vers pokenini-api. Hérite `AbstractBackService` (Bearer token, X-Provider, cafile, log). Désérialisent via Symfony Serializer.                                                        | Peut dépendre de : Utils, Exception, ResponseObject, Security, Serializer                     |
+| `ResponseObject/` | POPOs désérialisés depuis le JSON de l'API. Constructeur promotionnel readonly + `#[SerializedName]`. Aucune logique.                                                                                 | Peut dépendre de : Serializer seulement                                                       |
+| `DTO/`            | Conteneurs de transfert Controller ↔ Service. Deux variantes : immutables (factory `createFromArray`) ou avec `OptionsResolver` pour la validation.                                                   | Peut dépendre de : DTO, ResponseObject, HttpFoundation, OptionsResolver                       |
+| `AlbumFilters/`   | Deux classes statiques : `FromRequest` (query params → filtres internes) + `Mapping` (filtres → params API).                                                                                          | Dépend uniquement de HttpFoundation                                                           |
+| `Security/`       | `User` (stocke `AccessToken` + rôles). Authenticateurs OAuth2 (Discord, Google, Fake). `UserTokenService` : `getLoggedUserId()` = `sha1(userIdentifier)`. `UserRefresher` rafraîchit le token expiré. | Peut dépendre de : DTO, Service, KnpU, LeagueOAuth2, SymfonySecurity                          |
+| `Twig/`           | Extensions Twig : filtres `ksort`, `sha1`, `htmlNl2br`, `almost_exactly` ; fonctions `version()`, `getArrayFromRequest()`.                                                                            | Dépend de Twig, HttpFoundation, SymfonyContractsTranslation                                   |
+| `Utils/`          | `JsonDecoder` : wrapper `json_decode` avec `JSON_THROW_ON_ERROR` et profondeur 5.                                                                                                                     | Aucune dépendance App                                                                         |
+| `Validator/`      | `CatchStates` (contrainte) + `CatchStatesValidator` (interroge `GetLabelsService` pour valider les slugs).                                                                                            | Peut dépendre de : Service, Validator                                                         |
 
 ---
 
@@ -114,89 +114,89 @@ POST /{locale}/album/{dexSlug}/update (JSON body: pokemon_slug + catch_state)
         │
         ▼
 AlbumUpsertController::update()
-        │
-        ├── Symfony Validator (contrainte CatchStates)
-        │       └── CatchStatesValidator → GetLabelsService → Service\Back\GetLabelsService
-        │
-        ├── ModifyTrainerAlbumService::update()
-        │       └── Service\Back\ModifyAlbumService::modify('PUT', '/album/{dex}/pokemon/{slug}')
-        │
-        └── JsonResponse(200) ou JsonResponse(4xx)
+  │
+  ├── Symfony Validator (contrainte CatchStates)
+  │       └── CatchStatesValidator → GetLabelsService → Service\Back\GetLabelsService
+  │
+  ├── ModifyTrainerAlbumService::update()
+  │       └── Service\Back\ModifyAlbumService::modify('PUT', '/album/{dex}/pokemon/{slug}')
+  │
+  └── JsonResponse(200) ou JsonResponse(4xx)
 ```
 
 ## Flux d'authentification OAuth2
 
 ```
 Browser → /{locale}/connect/discord → DiscordController::goto → OAuth2 redirect
-       ← OAuth2 callback → /connect/discord/c → DiscordAuthenticator::authenticate
-          └── fetchAccessToken(client)
-          └── loadFromAccessToken (AuthenticatorTrait)
-              └── GetUserInfoService::get($accessToken, 'discord') → /user → UserInfo
-              └── new User($id, 'discord', $accessToken)
-              └── addRoles selon UserInfo::getRoles()
-          └── onAuthenticationSuccess → redirect home ou outerroom
+  ← OAuth2 callback → /connect/discord/c → DiscordAuthenticator::authenticate
+    └── fetchAccessToken(client)
+    └── loadFromAccessToken (AuthenticatorTrait)
+      └── GetUserInfoService::get($accessToken, 'discord') → /user → UserInfo
+      └── new User($id, 'discord', $accessToken)
+      └── addRoles selon UserInfo::getRoles()
+    └── onAuthenticationSuccess → redirect home ou outerroom
 ```
 
 ---
 
 ## Points d'entrée
 
-| URL | Contrôleur | Accès |
-|-----|-----------|-------|
-| `/{locale}/` | `HomeController` | PUBLIC |
-| `/{locale}/album/dex` | `AlbumDexListController` | ROLE_TRAINER |
-| `/{locale}/album/{dexSlug}` | `AlbumIndexController` | PUBLIC (avec conditions internes) |
-| `/{locale}/album/{dexSlug}/{pokemonSlug}` (PATCH/PUT) | `AlbumUpsertController` | ROLE_TRAINER |
-| `/{locale}/trainer` | `TrainerIndexController` | ROLE_TRAINER |
-| `/{locale}/trainer/dex/{dexSlug}` (PUT) | `TrainerUpsertController` | ROLE_TRAINER |
-| `/{locale}/election/{dexSlug}/{electionSlug}` (GET) | `ElectionIndexController` | ROLE_TRAINER |
-| `/{locale}/election/{dexSlug}/{electionSlug}` (POST) | `ElectionVoteController` | ROLE_TRAINER |
-| `/{locale}/election/dex` | `ElectionDexListController` | ROLE_TRAINER |
-| `/{locale}/istration` | `AdminController` | ROLE_ADMIN |
-| `/{locale}/istration/action/*` | `AdminActionController` | ROLE_ADMIN |
-| `/{locale}/connect/discord` | `DiscordController` | PUBLIC |
-| `/{locale}/connect/google` | `GoogleController` | PUBLIC |
-| `/{locale}/connect/f/c?t={role}` | `FakeController` | dev uniquement |
-| `/{locale}/outerroom` | `OuterRoomController` | ROLE_USER |
+| URL                                                   | Contrôleur                  | Accès                             |
+| ----------------------------------------------------- | --------------------------- | --------------------------------- |
+| `/{locale}/`                                          | `HomeController`            | PUBLIC                            |
+| `/{locale}/album/dex`                                 | `AlbumDexListController`    | ROLE_TRAINER                      |
+| `/{locale}/album/{dexSlug}`                           | `AlbumIndexController`      | PUBLIC (avec conditions internes) |
+| `/{locale}/album/{dexSlug}/{pokemonSlug}` (PATCH/PUT) | `AlbumUpsertController`     | ROLE_TRAINER                      |
+| `/{locale}/trainer`                                   | `TrainerIndexController`    | ROLE_TRAINER                      |
+| `/{locale}/trainer/dex/{dexSlug}` (PUT)               | `TrainerUpsertController`   | ROLE_TRAINER                      |
+| `/{locale}/election/{dexSlug}/{electionSlug}` (GET)   | `ElectionIndexController`   | ROLE_TRAINER                      |
+| `/{locale}/election/{dexSlug}/{electionSlug}` (POST)  | `ElectionVoteController`    | ROLE_TRAINER                      |
+| `/{locale}/election/dex`                              | `ElectionDexListController` | ROLE_TRAINER                      |
+| `/{locale}/istration`                                 | `AdminController`           | ROLE_ADMIN                        |
+| `/{locale}/istration/action/*`                        | `AdminActionController`     | ROLE_ADMIN                        |
+| `/{locale}/connect/discord`                           | `DiscordController`         | PUBLIC                            |
+| `/{locale}/connect/google`                            | `GoogleController`          | PUBLIC                            |
+| `/{locale}/connect/f/c?t={role}`                      | `FakeController`            | dev uniquement                    |
+| `/{locale}/outerroom`                                 | `OuterRoomController`       | ROLE_USER                         |
 
 ---
 
 ## Dépendances entre modules (Deptrac)
 
-| Couche | Peut dépendre de |
-|--------|-----------------|
-| AppController | AppAlbumFilters, AppDTO, AppException, AppResponseObject, AppSecurity, AppService, AppValidator |
-| AppService | AppDTO, AppException, AppResponseObject, AppSecurity, AppUtils, LeagueOAuth2, SymfonyContracts |
-| AppService\Back | AppException, AppResponseObject, AppSecurity, AppUtils, LeagueOAuth2, SymfonySerializer |
-| AppResponseObject | SymfonySerializer uniquement |
-| AppDTO | AppDTO, AppResponseObject, SymfonyOptionsResolver, SymfonyHttpFoundation |
-| AppAlbumFilters | SymfonyHttpFoundation uniquement |
-| AppSecurity | AppDTO, AppException, AppService, KnpUOAuth2, LeagueOAuth2, SymfonySecurity |
-| AppTwig | SymfonyTranslation, SymfonyHttpFoundation, Twig |
-| AppValidator | AppService, AppValidator, SymfonyValidator |
-| AppUtils | aucune dépendance App |
+| Couche            | Peut dépendre de                                                                                |
+| ----------------- | ----------------------------------------------------------------------------------------------- |
+| AppController     | AppAlbumFilters, AppDTO, AppException, AppResponseObject, AppSecurity, AppService, AppValidator |
+| AppService        | AppDTO, AppException, AppResponseObject, AppSecurity, AppUtils, LeagueOAuth2, SymfonyContracts  |
+| AppService\Back   | AppException, AppResponseObject, AppSecurity, AppUtils, LeagueOAuth2, SymfonySerializer         |
+| AppResponseObject | SymfonySerializer uniquement                                                                    |
+| AppDTO            | AppDTO, AppResponseObject, SymfonyOptionsResolver, SymfonyHttpFoundation                        |
+| AppAlbumFilters   | SymfonyHttpFoundation uniquement                                                                |
+| AppSecurity       | AppDTO, AppException, AppService, KnpUOAuth2, LeagueOAuth2, SymfonySecurity                     |
+| AppTwig           | SymfonyTranslation, SymfonyHttpFoundation, Twig                                                 |
+| AppValidator      | AppService, AppValidator, SymfonyValidator                                                      |
+| AppUtils          | aucune dépendance App                                                                           |
 
 ---
 
 ## Infrastructure Docker
 
-| Service Docker | Image | Version | Rôle |
-|---------------|-------|---------|------|
-| `php` | `.docker/php/Dockerfile` (php:8.5.5-fpm-alpine3.23) | 8.5.5 | PHP-FPM + Xdebug + Chromedriver (dev) |
-| `web` | `nginx:1.28-alpine` | 1.28 | Reverse proxy HTTP/443 → PHP-FPM |
-| `redis` | `redis:8.0-alpine` | 8.0 | Cache session/app |
-| `moco.back` | `.docker/moco/Dockerfile` (Moco 1.5.0) | 1.5.0 | Mock HTTP pour pokenini-api |
-| `moco.matomo.gbl` | idem | 1.5.0 | Mock HTTP pour Matomo analytics (port 8888) |
-| `vnu` | `ghcr.io/validator/validator:latest` | latest | Validateur W3C HTML |
+| Service Docker    | Image                                               | Version | Rôle                                        |
+| ----------------- | --------------------------------------------------- | ------- | ------------------------------------------- |
+| `php`             | `.docker/php/Dockerfile` (php:8.5.5-fpm-alpine3.23) | 8.5.5   | PHP-FPM + Xdebug + Chromedriver (dev)       |
+| `web`             | `nginx:1.28-alpine`                                 | 1.28    | Reverse proxy HTTP/443 → PHP-FPM            |
+| `redis`           | `redis:8.0-alpine`                                  | 8.0     | Cache session/app                           |
+| `moco.back`       | `.docker/moco/Dockerfile` (Moco 1.5.0)              | 1.5.0   | Mock HTTP pour pokenini-api                 |
+| `moco.matomo.gbl` | idem                                                | 1.5.0   | Mock HTTP pour Matomo analytics (port 8888) |
+| `vnu`             | `ghcr.io/validator/validator:latest`                | latest  | Validateur W3C HTML                         |
 
 ## Environnements
 
-| Env | Auth | API Backend | Cache | Notes |
-|-----|------|-------------|-------|-------|
-| `dev` | Fake authenticator (`/connect/f/c?t=role`) | `http://moco.back` (Moco) | Redis local | `APP_ENV=dev`, Xdebug activable |
-| `test` | `GetUserToken::getFakeUserToken()` | `http://moco.back` (Moco) | Redis local | Groupe `api-mocked-testing` obligatoire |
-| `panther` | idem test | idem | idem | Chrome headless via Panther |
-| `prod` | Discord/Google OAuth2 | pokenini-api réel (HTTPS + cafile) | Redis | `APP_ENV=prod`, Xdebug off |
+| Env       | Auth                                       | API Backend                        | Cache       | Notes                                   |
+| --------- | ------------------------------------------ | ---------------------------------- | ----------- | --------------------------------------- |
+| `dev`     | Fake authenticator (`/connect/f/c?t=role`) | `http://moco.back` (Moco)          | Redis local | `APP_ENV=dev`, Xdebug activable         |
+| `test`    | `GetUserToken::getFakeUserToken()`         | `http://moco.back` (Moco)          | Redis local | Groupe `api-mocked-testing` obligatoire |
+| `panther` | idem test                                  | idem                               | idem        | Chrome headless via Panther             |
+| `prod`    | Discord/Google OAuth2                      | pokenini-api réel (HTTPS + cafile) | Redis       | `APP_ENV=prod`, Xdebug off              |
 
 ## Gestion des outils qualité
 
