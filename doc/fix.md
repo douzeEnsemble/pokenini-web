@@ -16,9 +16,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Fichier : `src/Controller/AdminActionController.php:89`
     Suggestion : remplacer par `catch (HttpExceptionInterface|TransportExceptionInterface|\InvalidArgumentException $e)` pour éviter de masquer des erreurs de programmation (TypeError, LogicException…). Actuellement, toute exception produit silencieusement un AdminAction d'échec sans remonter l'erreur.
 
-- [ ] [haute] `phpunit.xml.dist` référence PHPUnit 11.3 mais le schéma XSD pointe vers 11.4
+- [x] [haute] `phpunit.xml.dist` référence PHPUnit 11.3 mais le schéma XSD pointe vers 11.4
     Fichier : `phpunit.xml.dist:4`
     Suggestion : aligner `xsi:noNamespaceSchemaLocation` sur `https://schema.phpunit.de/13.1/phpunit.xsd` correspondant à `phpunit/phpunit ^13.1.8` déclaré dans `composer.json:49`.
+    **Traité** : XSD aligné sur `13.1` et `SYMFONY_PHPUNIT_VERSION` mis à jour de `11.3` → `13.1`.
 
 - [ ] [haute] `AlbumDexListController` a un constructeur vide explicite inutile
     Fichier : `src/Controller/AlbumDexListController.php:16`
