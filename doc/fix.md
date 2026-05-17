@@ -25,7 +25,7 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Fichier : `src/Controller/AlbumDexListController.php:16`
     Suggestion : supprimer `public function __construct() {}` — PHP l'hérite de `AbstractController` sans déclaration.
 
-- [ ] [haute] `GetAlbumDexListService` construit l'URL avec query string à la main
+- [x] [haute] `GetAlbumDexListService` construit l'URL avec query string à la main
     Fichier : `src/Service/Back/GetAlbumDexListService.php:17`
     Suggestion : passer `['query' => ['trainer_id' => $trainerId]]` comme option HTTP au lieu de concaténer la query string manuellement — cohérent avec toutes les autres Back services.
 
