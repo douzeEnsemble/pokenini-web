@@ -13,8 +13,6 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/album')]
 final class AlbumDexListController extends AbstractController
 {
-    public function __construct() {}
-
     #[Route(
         '/dex',
         methods: ['GET']
