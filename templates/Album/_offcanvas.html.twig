@@ -6,9 +6,9 @@
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <form class="mt-3 mb-3" method="get" action="{{ path('app_albumindex_index', {'dexSlug': currentDexSlug}) }}">
-      <h6>
+      <h2 class="h5">
         {{ 'album.offcanvas.filters.title'|trans }}
-      </h6>
+      </h2>
       <div class="row mb-3">
         <div class="col-6">
           {{ block('anyTypes_label', 'common/Filter/_dex_filters_blocks.html.twig') }}
@@ -74,9 +74,9 @@
     </form>
 
     <div>
-      <h6>
+      <h2>
         {{ 'album.offcanvas.informations.title'|trans }}
-      </h6>
+      </h2>
 
       <ul
         class="list-group list-group-horizontal group-icons">

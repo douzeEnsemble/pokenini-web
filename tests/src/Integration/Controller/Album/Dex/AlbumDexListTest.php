@@ -45,8 +45,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertFrenchLangSwitch($crawler);
 
         $this->assertCountFilter($crawler, 6, '.dex-item');
-        $this->assertCountFilter($crawler, 6, '.dex-item h5');
-        $this->assertCountFilter($crawler, 1, '.dex-item h6');
+        $this->assertCountFilter($crawler, 6, '.dex-item h2');
+        $this->assertCountFilter($crawler, 1, '.dex-item h3');
 
         $this->assertCountFilter($crawler, 2, '.dex_is_premium');
         $this->assertCountFilter($crawler, 0, '.dex_not_is_released');
@@ -156,8 +156,8 @@ final class AlbumDexListTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 2, '.dex-item');
-        $this->assertCountFilter($crawler, 2, '.dex-item h5');
-        $this->assertCountFilter($crawler, 0, '.dex-item h6');
+        $this->assertCountFilter($crawler, 2, '.dex-item h2');
+        $this->assertCountFilter($crawler, 0, '.dex-item h3');
     }
 
     public function testAlbumDexListFrench(): void
@@ -185,8 +185,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertFrenchLangSwitch($crawler);
 
         $this->assertCountFilter($crawler, 6, '.dex-item');
-        $this->assertCountFilter($crawler, 6, '.dex-item h5');
-        $this->assertCountFilter($crawler, 1, '.dex-item h6');
+        $this->assertCountFilter($crawler, 6, '.dex-item h2');
+        $this->assertCountFilter($crawler, 1, '.dex-item h3');
 
         $firstAlbum = $crawler->filter('.dex-item')->first();
         $this->assertEquals('Épée, Bouclier', $firstAlbum->text());
@@ -233,8 +233,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertEnglishLangSwitch($crawler);
 
         $this->assertCountFilter($crawler, 6, '.dex-item');
-        $this->assertCountFilter($crawler, 6, '.dex-item h5');
-        $this->assertCountFilter($crawler, 1, '.dex-item h6');
+        $this->assertCountFilter($crawler, 6, '.dex-item h2');
+        $this->assertCountFilter($crawler, 1, '.dex-item h3');
 
         $firstAlbum = $crawler->filter('.dex-item')->first();
         $this->assertEquals('Sword, Shield', $firstAlbum->text());

@@ -14,16 +14,16 @@ trait ModalTestTrait
         string $primaryName,
         string $secondaryName,
     ): void {
-        $this->assertCountFilter($crawler, 1, "#modal-{$pokemonSlug} h4.modal-title");
+        $this->assertCountFilter($crawler, 1, "#modal-{$pokemonSlug} h3.modal-title");
         $this->assertEquals(
             "{$primaryName} / {$secondaryName}",
-            $crawler->filter("#modal-{$pokemonSlug} h4.modal-title")->text()
+            $crawler->filter("#modal-{$pokemonSlug} h3.modal-title")->text()
         );
 
-        $this->assertCountFilter($crawler, 1, "#modal-{$pokemonSlug} h4.modal-title .modal-subtitle");
+        $this->assertCountFilter($crawler, 1, "#modal-{$pokemonSlug} h3.modal-title .modal-subtitle");
         $this->assertEquals(
             "/ {$secondaryName}",
-            $crawler->filter("#modal-{$pokemonSlug} h4.modal-title .modal-subtitle")->text()
+            $crawler->filter("#modal-{$pokemonSlug} h3.modal-title .modal-subtitle")->text()
         );
     }
 
