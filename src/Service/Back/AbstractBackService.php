@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Back;
 
 use App\Exception\NoLoggedUserException;
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -19,7 +19,7 @@ abstract class AbstractBackService
         protected readonly HttpClientInterface $client,
         protected readonly string $backUrl,
         protected readonly string $backCafilePath,
-        protected readonly UserTokenService $userTokenService,
+        protected readonly UserTokenServiceInterface $userTokenService,
         protected readonly SerializerInterface $serializer,
     ) {}
 

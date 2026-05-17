@@ -7,7 +7,7 @@ namespace App\Tests\Unit\Service\Back;
 use App\DTO\UserInfo;
 use App\Exception\NoLoggedUserException;
 use App\Security\User;
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetUserInfoService;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -69,7 +69,7 @@ final class GetUserInfoServiceTest extends TestCase
             new AccessToken(['access_token' => 'abcde-access-token-abcde']),
         );
 
-        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService = $this->createMock(UserTokenServiceInterface::class);
         $userTokenService
             ->expects($this->once())
             ->method('getLoggedUser')
@@ -147,7 +147,7 @@ final class GetUserInfoServiceTest extends TestCase
             ->willReturn($response)
         ;
 
-        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService = $this->createMock(UserTokenServiceInterface::class);
         $userTokenService
             ->expects($this->once())
             ->method('getLoggedUser')

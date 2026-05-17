@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\Exception\NoLoggedUserException;
 use App\Security\User;
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AdminActionService;
 use App\Tests\Utils\WithConsecutive;
 use League\OAuth2\Client\Token\AccessToken;
@@ -87,7 +87,7 @@ final class AdminActionServiceTest extends TestCase
             new AccessToken(['access_token' => 'dzdz-access-token-dzdz']),
         );
 
-        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService = $this->createMock(UserTokenServiceInterface::class);
         $userTokenService
             ->expects($this->once())
             ->method('getLoggedUser')
@@ -178,7 +178,7 @@ final class AdminActionServiceTest extends TestCase
             new AccessToken(['access_token' => 'dzdz-access-token-dzdz']),
         );
 
-        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService = $this->createMock(UserTokenServiceInterface::class);
         $userTokenService
             ->expects($this->once())
             ->method('getLoggedUser')
@@ -259,7 +259,7 @@ final class AdminActionServiceTest extends TestCase
             ->willReturn($response)
         ;
 
-        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService = $this->createMock(UserTokenServiceInterface::class);
         $userTokenService
             ->expects($this->once())
             ->method('getLoggedUser')

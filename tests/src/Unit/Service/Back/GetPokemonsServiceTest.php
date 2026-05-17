@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service\Back;
 
 use App\ResponseObject\Election\ElectionList;
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetPokemonsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
@@ -114,7 +114,7 @@ final class GetPokemonsServiceTest extends AbstractTestBackService
         HttpClientInterface $client,
         string $url,
         string $cafilePath,
-        UserTokenService $userTokenService,
+        UserTokenServiceInterface $userTokenService,
         SerializerInterface $serializer,
     ): AbstractBackService {
         return new GetPokemonsService(

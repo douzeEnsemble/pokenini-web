@@ -6,7 +6,7 @@ namespace App\Tests\Unit\Service\Back;
 
 use App\Exception\NoLoggedUserException;
 use App\ResponseObject\Election\ElectionIndex;
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetElectionIndexService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -86,7 +86,7 @@ final class GetElectionIndexServiceTest extends AbstractTestBackService
 
         $logger = $this->createStub(LoggerInterface::class);
 
-        $userTokenService = $this->createMock(UserTokenService::class);
+        $userTokenService = $this->createMock(UserTokenServiceInterface::class);
         $userTokenService
             ->expects($this->once())
             ->method('getLoggedUser')
@@ -115,7 +115,7 @@ final class GetElectionIndexServiceTest extends AbstractTestBackService
         HttpClientInterface $client,
         string $url,
         string $cafilePath,
-        UserTokenService $userTokenService,
+        UserTokenServiceInterface $userTokenService,
         SerializerInterface $serializer,
     ): AbstractBackService {
         return new GetElectionIndexService(

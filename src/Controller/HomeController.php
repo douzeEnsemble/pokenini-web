@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\NoLoggedUserException;
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetAlbumDexListService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,7 +16,7 @@ final class HomeController extends AbstractController
 {
     #[Route('')]
     public function index(
-        UserTokenService $userTokenService,
+        UserTokenServiceInterface $userTokenService,
         GetAlbumDexListService $service,
         string $demoUserId,
     ): Response {
@@ -24,7 +24,7 @@ final class HomeController extends AbstractController
             $userTokenService->getLoggedUserId();
 
             return new RedirectResponse($this->generateUrl('app_albumdexlist_index'));
-        } catch (NoLoggedUserException $e) {
+        } catch (NoLoggedUserException) {
             // nothing to do
         }
 

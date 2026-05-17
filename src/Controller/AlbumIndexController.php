@@ -9,7 +9,7 @@ use App\AlbumFilters\Mapping;
 use App\Exception\NoLoggedUserException;
 use App\ResponseObject\Album\Dex;
 use App\Security\User;
-use App\Security\UserTokenService;
+use App\Security\UserTokenServiceInterface;
 use App\Service\GetLabelsService;
 use App\Service\GetTrainerPokedexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +23,7 @@ final class AlbumIndexController extends AbstractController
     public function __construct(
         private readonly GetTrainerPokedexService $getTrainerPokedexService,
         private readonly GetLabelsService $getLabelsService,
-        private readonly UserTokenService $userTokenService,
+        private readonly UserTokenServiceInterface $userTokenService,
     ) {}
 
     #[Route(
@@ -63,7 +63,7 @@ final class AlbumIndexController extends AbstractController
 
         try {
             $loggedTrainerId = $this->userTokenService->getLoggedUserId();
-        } catch (NoLoggedUserException $e) {
+        } catch (NoLoggedUserException) {
             $loggedTrainerId = null;
         }
 
