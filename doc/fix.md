@@ -38,9 +38,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : ajouter `$resolver->setDefined([...])` et `$resolver->setIgnoreUndefined()` ou valider que la query string ne contient pas de clés inattendues.
     **Traité** : ajout de `$resolver->setIgnoreUndefined()` pour que les paramètres inconnus (ex. `utm_source`) soient silencieusement ignorés au lieu de lever une `UndefinedOptionsException`.
 
-- [ ] [haute] Image Docker `vnu` utilise `latest` sans tag fixé
+- [x] [haute] Image Docker `vnu` utilise `latest` sans tag fixé
     Fichier : `docker-compose.yaml:30`
     Suggestion : fixer une version explicite (ex. `ghcr.io/validator/validator:24.x`) pour garantir la reproductibilité des builds.
+    **Non applicable** : le projet `validator/validator` n'a plus de releases versionnées depuis 20.6.30 (2020). Le tag `latest` est le seul tag de release maintenu et correspond à la build de production courante.
 
 ---
 
