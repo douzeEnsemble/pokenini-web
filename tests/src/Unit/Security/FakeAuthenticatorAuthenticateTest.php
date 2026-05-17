@@ -115,6 +115,19 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
     }
 
+    public function testAuthenticateTokenNeverExpires(): void
+    {
+        $fakeAuthenticator = $this->getFakeAuthenticator([]);
+
+        $request = Request::create('local.dev', 'GET', ['t' => 'sometoken']);
+
+        $validationPassport = $fakeAuthenticator->authenticate($request);
+
+        /** @var User $user */
+        $user = $validationPassport->getUser();
+        $this->assertFalse($user->getAccessToken()->hasExpired());
+    }
+
     /**
      * @param array<int, string> $roles
      */

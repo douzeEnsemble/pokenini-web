@@ -17,8 +17,6 @@ final class FakeAuthenticator extends OAuth2Authenticator
 {
     use AuthenticatorTrait;
 
-    private const int EXPIRES_IN = 3600;
-
     public function __construct(
         private readonly RouterInterface $router,
         private readonly GetUserInfoService $getUserInfoService,
@@ -41,9 +39,11 @@ final class FakeAuthenticator extends OAuth2Authenticator
     {
         $identifier = $request->query->getString('t');
 
+        // expires is set to PHP_INT_MAX so dev sessions never expire and
+        // UserRefresher never attempts an OAuth refresh for the fake provider.
         $accessToken = new AccessToken([
             'access_token' => $identifier,
-            'expires_in' => self::EXPIRES_IN,
+            'expires' => PHP_INT_MAX,
         ]);
 
         return new SelfValidatingPassport(
