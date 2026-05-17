@@ -36,17 +36,17 @@
       {% set titles = (locale is same as('fr') ? dex.french_name : dex.name)|split("\n") %}
       {% set title = titles.0 %}
       {% set subtitle = titles.1 is defined ? titles.1 : '' %}
-      <h5 class="card-title">
+      <h2 class="h5 card-title">
         <a href="{{ url }}">
           {{ title }}
         </a>
-      </h5>
+      </h2>
       {% if subtitle is not empty %}
-      <h6 class="card-subtitle mb-2 text-body-secondary">
+      <h3 class="h6 card-subtitle mb-2 text-body-secondary">
         <a href="{{ url }}">
           {{ subtitle }}
         </a>
-      </h6>
+      </h3>
       {% endif %}
 
       {% if dex.dex_total_count is defined %}
