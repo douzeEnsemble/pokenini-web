@@ -7,7 +7,7 @@ namespace App\Security;
 use App\Exception\NoLoggedUserException;
 use Symfony\Bundle\SecurityBundle\Security;
 
-class UserTokenService
+final class UserTokenService
 {
     public function __construct(
         private readonly Security $security
