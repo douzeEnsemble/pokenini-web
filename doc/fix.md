@@ -66,9 +66,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : ce cache per-request est correct mais non documenté. Ajouter un commentaire. Envisager l'APCu/Redis pour partager entre requêtes (les labels ne changent que sur action admin).
     **Traité** : cache APCu/Redis avec `TagAwareCacheInterface`, invalidation automatique sur action admin (commit `720e2f1`)
 
-- [ ] [moyenne] Absence de gestion de l'expiration de token dans `FakeAuthenticator`
+- [x] [moyenne] Absence de gestion de l'expiration de token dans `FakeAuthenticator`
     Fichier : `src/Security/FakeAuthenticator.php:43-47`
     Suggestion : le `EXPIRES_IN = 3600` est codé en dur. Si le token fake expire, `UserRefresher` va tenter un refresh OAuth2 qui n'existe pas pour le Fake provider. Ajouter un `expires_in` très large ou traiter le cas dans `UserRefresher`.
+    **Traité** : suppression de `EXPIRES_IN = 3600` et passage de `expires => PHP_INT_MAX` directement dans l'`AccessToken` — les sessions de dev n'expirent jamais, `UserRefresher` ne tente jamais de refresh OAuth pour `FaKe`. Test `testAuthenticateTokenNeverExpires` ajouté.
 
 - [ ] [moyenne] `ActionLog::createFromArray` utilise des accès de tableau non typés avec casts manuels
     Fichier : `src/DTO/ActionLog.php:27-40`
