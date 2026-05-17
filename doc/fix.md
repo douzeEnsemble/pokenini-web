@@ -29,7 +29,7 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Fichier : `src/Service/Back/GetAlbumDexListService.php:17`
     Suggestion : passer `['query' => ['trainer_id' => $trainerId]]` comme option HTTP au lieu de concaténer la query string manuellement — cohérent avec toutes les autres Back services.
 
-- [ ] [haute] `ConnectController::logout` lance une `\Exception` générique
+- [x] [haute] `ConnectController::logout` lance une `\Exception` générique
     Fichier : `src/Controller/ConnectController.php:16`
     Suggestion : utiliser `\LogicException` à la place, plus idiomatique et documenté dans Symfony pour forcer la gestion par le firewall.
 
