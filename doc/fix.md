@@ -91,9 +91,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : le pattern `/istration` semble être une troncature volontaire de `/administration` pour obscurcir l'URL admin (sécurité par l'obscurité). Si intentionnel, ajouter un commentaire explicite.
     **Traité** : commentaire ajouté dans `security.yaml` explicitant que la troncature est volontaire.
 
-- [ ] [moyenne] `AppExtension::getVersion()` utilise un chemin hardcodé `__DIR__.'/../../resources/metadata/'`
+- [x] [moyenne] `AppExtension::getVersion()` utilise un chemin hardcodé `__DIR__.'/../../resources/metadata/'`
     Fichier : `src/Twig/AppExtension.php:54`
     Suggestion : passer le chemin de base du projet via injection de dépendance (paramètre `%kernel.project_dir%`) plutôt qu'un chemin relatif basé sur `__DIR__`.
+    **Traité** : constructeur ajouté avec `string $projectDir`, binding `string $projectDir: "%kernel.project_dir%"` ajouté dans `services.yaml`. Tests mis à jour avec `dirname(__DIR__, 4)`.
 
 - [ ] [moyenne] `GetUserToken` dans `tests/Utils/` utilise un token OAuth factice hardcodé
     Fichier : `tests/Utils/GetUserToken.php`

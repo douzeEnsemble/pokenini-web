@@ -3,6 +3,7 @@ services:
     autowire: true
     autoconfigure: true
     bind:
+      string $projectDir: "%kernel.project_dir%"
       string $backUrl: "%env(BACK_URL)%"
       string $backCafilePath: "%env(BACK_CAFILE_PATH)%"
       string $demoUserId: "%env(DEMO_USER_ID)%"
