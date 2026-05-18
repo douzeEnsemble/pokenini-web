@@ -96,9 +96,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : passer le chemin de base du projet via injection de dépendance (paramètre `%kernel.project_dir%`) plutôt qu'un chemin relatif basé sur `__DIR__`.
     **Traité** : constructeur ajouté avec `string $projectDir`, binding `string $projectDir: "%kernel.project_dir%"` ajouté dans `services.yaml`. Tests mis à jour avec `dirname(__DIR__, 4)`.
 
-- [ ] [moyenne] `GetUserToken` dans `tests/Utils/` utilise un token OAuth factice hardcodé
+- [x] [moyenne] `GetUserToken` dans `tests/Utils/` utilise un token OAuth factice hardcodé
     Fichier : `tests/Utils/GetUserToken.php`
     Suggestion : vérifier que le token n'est pas un vrai token d'API accidentellement commité. Si c'est un faux token de test, ajouter un commentaire explicite.
+    **Traité** : les tokens sont générés par `sha1($identifier)` et `md5($identifier)` — pas de vraies credentials. Commentaire explicite ajouté.
 
 ---
 

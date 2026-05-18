@@ -13,6 +13,7 @@ final class GetUserToken
         string $identifier = '789465465489',
         string $providerName = 'TestProvider',
     ): User {
+        // Fake tokens derived from the identifier — not real OAuth credentials.
         return new User(
             $identifier,
             $providerName,
