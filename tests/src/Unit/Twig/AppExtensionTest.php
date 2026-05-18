@@ -19,7 +19,7 @@ final class AppExtensionTest extends TestCase
 {
     public function testGetFilters(): void
     {
-        $extension = new AppExtension();
+        $extension = new AppExtension(dirname(__DIR__, 4));
 
         $filters = $extension->getFilters();
 
@@ -64,7 +64,7 @@ final class AppExtensionTest extends TestCase
 
     public function testGetFunctions(): void
     {
-        $extension = new AppExtension();
+        $extension = new AppExtension(dirname(__DIR__, 4));
 
         $functions = $extension->getFunctions();
 
@@ -84,7 +84,7 @@ final class AppExtensionTest extends TestCase
 
     public function testKsort(): void
     {
-        $extension = new AppExtension();
+        $extension = new AppExtension(dirname(__DIR__, 4));
 
         $data = [
             'b' => 1,
@@ -104,7 +104,7 @@ final class AppExtensionTest extends TestCase
 
     public function testSha1(): void
     {
-        $extension = new AppExtension();
+        $extension = new AppExtension(dirname(__DIR__, 4));
 
         $this->assertSame('0b9c2625dc21ef05f6ad4ddf47c5f203837aa32c', $extension->sha1('toto'));
         $this->assertSame('f7e79ca8eb0b31ee4d5d6c181416667ffee528ed', $extension->sha1('titi'));
@@ -112,14 +112,14 @@ final class AppExtensionTest extends TestCase
 
     public function testHtmlNl2br(): void
     {
-        $extension = new AppExtension();
+        $extension = new AppExtension(dirname(__DIR__, 4));
 
         $this->assertSame("a<br>\nb", $extension->htmlNl2br("a\nb"));
     }
 
     public function testVersion(): void
     {
-        $extension = new AppExtension();
+        $extension = new AppExtension(dirname(__DIR__, 4));
 
         $this->assertSame(
             '0.0.toto',

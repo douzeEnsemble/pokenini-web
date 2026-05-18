@@ -10,6 +10,8 @@ use Twig\TwigFunction;
 
 final class AppExtension extends AbstractExtension
 {
+    public function __construct(private readonly string $projectDir) {}
+
     #[\Override]
     public function getFilters(): array
     {
@@ -53,7 +55,7 @@ final class AppExtension extends AbstractExtension
     public function getVersion(string $filename = 'version'): string
     {
         $version = '0.0.toto';
-        $filePath = __DIR__.'/../../resources/metadata/'.$filename;
+        $filePath = $this->projectDir.'/resources/metadata/'.$filename;
 
         if (!is_file($filePath)) {
             return $version;
