@@ -76,9 +76,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : utiliser la désérialisation Symfony (comme `UserInfo`, `Album`…) plutôt que des `createFromArray` manuels avec casts — élimine les `@psalm-suppress RiskyCast` et les `/** @var */` forcés.
     **Traité** : `ActionLog` déplacé dans `ResponseObject/` avec `#[SerializedName]`, `createFromArray` supprimée. `GetActionLogsService` utilise `$this->serializer->deserialize()`. `ActionLogTest` supprimé, assertions de champ ajoutées dans `GetActionLogsServiceTest`.
 
-- [ ] [moyenne] `TrainerIndexController::filtersTrainerDex` compare avec `==` (pas `===`)
+- [x] [moyenne] `TrainerIndexController::filtersTrainerDex` compare avec `==` (pas `===`)
     Fichier : `src/Controller/TrainerIndexController.php:53,60,66,72,78`
     Suggestion : les comparaisons `$filters->xxx->value == $item['is_private']` sont intentionnellement lâches (bool vs string JSON). Documenter l'intention ou normaliser les valeurs du tableau en booléens à la désérialisation.
+    **Traité** : `json_decode` retourne déjà des `bool` PHP pour ces champs — les deux côtés sont `bool`, donc `==` a été remplacé par `===`. Docblock `string[][]` corrigé en `array<array<string, mixed>>` dans le contrôleur et le service.
 
 - [ ] [moyenne] `dependabot.yml` ne couvre que le `composer` racine, pas les `tools/*/composer.json`
     Fichier : `.github/dependabot.yml`
