@@ -62,9 +62,14 @@ abstract class AbstractBackService
             $options
         );
 
+        $logOptions = $finalOptions;
+        if (is_array($logOptions['headers']) && isset($logOptions['headers']['Authorization'])) {
+            $logOptions['headers']['Authorization'] = '[REDACTED]';
+        }
+
         $this->logger->info(
             "Requesting {$method} {$endpointUrl}",
-            $finalOptions
+            $logOptions
         );
 
         $response = $this->client->request(
