@@ -113,7 +113,7 @@ abstract class AbstractTestBackService extends TestCase
             'accept' => 'application/json',
         ];
         if (null !== $token) {
-            $headers['Authorization'] = 'Bearer '.$token;
+            $headers['Authorization'] = '[REDACTED]';
             $headers['X-Provider'] = 'testprovider';
         }
 

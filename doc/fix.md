@@ -105,9 +105,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
 
 ## Basse priorité
 
-- [ ] [basse] `AbstractBackService::request` log les options de requête entières (contenu potentiellement sensible)
+- [x] [basse] `AbstractBackService::request` log les options de requête entières (contenu potentiellement sensible)
     Fichier : `src/Service/Back/AbstractBackService.php:64-68`
     Suggestion : le `$finalOptions` logué contient le header `Authorization: Bearer <token>`. Exclure ou masquer les en-têtes sensibles avant logging.
+    **Traité** : `$logOptions` créé comme copie de `$finalOptions` avec `Authorization` remplacé par `[REDACTED]` avant le log ; `$finalOptions` reste intact pour l'appel HTTP. Tests mis à jour en conséquence.
 
 - [ ] [basse] `ModifyAlbumService::modify` valide la méthode HTTP en interne mais l'erreur est silencieuse pour le client
     Fichier : `src/Service/Back/ModifyAlbumService.php:17-20`
