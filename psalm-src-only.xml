@@ -40,6 +40,7 @@
         <PossiblyUnusedProperty>
             <errorLevel type="suppress">
                 <directory name="src/DTO" />
+                <directory name="src/ResponseObject" />
             </errorLevel>
         </PossiblyUnusedProperty>
 
