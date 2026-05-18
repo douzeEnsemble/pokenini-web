@@ -69,7 +69,7 @@ final class GetTrainerDexListServiceTest extends AbstractTestBackService
     }
 
     /**
-     * @param string[][] $items
+     * @param array<array<string, mixed>> $items
      *
      * @return string[]
      */
@@ -78,6 +78,7 @@ final class GetTrainerDexListServiceTest extends AbstractTestBackService
         $slugs = [];
 
         foreach ($items as $item) {
+            assert(is_string($item['slug']));
             $slugs[] = $item['slug'];
         }
 

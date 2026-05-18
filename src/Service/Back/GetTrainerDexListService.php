@@ -9,7 +9,7 @@ use App\Utils\JsonDecoder;
 class GetTrainerDexListService extends AbstractBackService
 {
     /**
-     * @return string[][]
+     * @return array<array<string, mixed>>
      */
     public function get(): array
     {
@@ -18,7 +18,7 @@ class GetTrainerDexListService extends AbstractBackService
             '/trainer/dex',
         );
 
-        /** @var string[][] */
+        /** @var array<array<string, mixed>> */
         return JsonDecoder::decode($json);
     }
 }

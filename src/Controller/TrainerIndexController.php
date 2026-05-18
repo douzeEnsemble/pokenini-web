@@ -40,9 +40,9 @@ final class TrainerIndexController extends AbstractController
     }
 
     /**
-     * @param string[][] $trainerDex
+     * @param array<array<string, mixed>> $trainerDex
      *
-     * @return string[][]
+     * @return array<array<string, mixed>>
      */
     private function filtersTrainerDex(array $trainerDex, DexFilters $filters): array
     {
@@ -52,7 +52,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->privacy->value == $item['is_private'];
+                    return $filters->privacy->value === $item['is_private'];
                 }
             );
         }
@@ -61,7 +61,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->homepaged->value == $item['is_on_home'];
+                    return $filters->homepaged->value === $item['is_on_home'];
                 }
             );
         }
@@ -70,7 +70,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->shiny->value == $item['is_shiny'];
+                    return $filters->shiny->value === $item['is_shiny'];
                 }
             );
         }
@@ -79,7 +79,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->released->value == $item['is_released'];
+                    return $filters->released->value === $item['is_released'];
                 }
             );
         }
@@ -88,7 +88,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->premium->value == $item['is_premium'];
+                    return $filters->premium->value === $item['is_premium'];
                 }
             );
         }
