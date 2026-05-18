@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
-use App\DTO\ActionLog;
 use App\DTO\ActionLogData;
+use App\ResponseObject\ActionLog;
 use App\Utils\JsonDecoder;
 
 class GetActionLogsService extends AbstractBackService
@@ -20,21 +20,18 @@ class GetActionLogsService extends AbstractBackService
             '/istration/action-logs'
         );
 
-        /** @var array<string, int[][]|int[][][]|null[][]|null[][][]|string[][]> */
+        /** @var array<string, array{current: array{created_at: string, done_at: null|string, execution_time: null|int, details: array<string, int>, error_trace: null|string}, last: null|array{created_at: string, done_at: null|string, execution_time: null|int, details: array<string, int>, error_trace: null|string}}> */
         $actionLogsData = JsonDecoder::decode($json);
 
         $list = [];
         foreach ($actionLogsData as $item => $data) {
-            /** @var int[]|int[][]|string[] */
             $currentData = $data['current'];
-
-            /** @var int[]|int[][]|string[] */
             $lastData = $data['last'];
 
             $list[$item] = new ActionLogData(
                 $item,
-                ActionLog::createFromArray($currentData),
-                $lastData ? ActionLog::createFromArray($lastData) : null,
+                $this->serializer->deserialize((string) json_encode($currentData), ActionLog::class, 'json'),
+                $lastData ? $this->serializer->deserialize((string) json_encode($lastData), ActionLog::class, 'json') : null,
             );
         }
 

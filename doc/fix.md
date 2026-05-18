@@ -71,9 +71,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : le `EXPIRES_IN = 3600` est codé en dur. Si le token fake expire, `UserRefresher` va tenter un refresh OAuth2 qui n'existe pas pour le Fake provider. Ajouter un `expires_in` très large ou traiter le cas dans `UserRefresher`.
     **Traité** : suppression de `EXPIRES_IN = 3600` et passage de `expires => PHP_INT_MAX` directement dans l'`AccessToken` — les sessions de dev n'expirent jamais, `UserRefresher` ne tente jamais de refresh OAuth pour `FaKe`. Test `testAuthenticateTokenNeverExpires` ajouté.
 
-- [ ] [moyenne] `ActionLog::createFromArray` utilise des accès de tableau non typés avec casts manuels
+- [x] [moyenne] `ActionLog::createFromArray` utilise des accès de tableau non typés avec casts manuels
     Fichier : `src/DTO/ActionLog.php:27-40`
     Suggestion : utiliser la désérialisation Symfony (comme `UserInfo`, `Album`…) plutôt que des `createFromArray` manuels avec casts — élimine les `@psalm-suppress RiskyCast` et les `/** @var */` forcés.
+    **Traité** : `ActionLog` déplacé dans `ResponseObject/` avec `#[SerializedName]`, `createFromArray` supprimée. `GetActionLogsService` utilise `$this->serializer->deserialize()`. `ActionLogTest` supprimé, assertions de champ ajoutées dans `GetActionLogsServiceTest`.
 
 - [ ] [moyenne] `TrainerIndexController::filtersTrainerDex` compare avec `==` (pas `===`)
     Fichier : `src/Controller/TrainerIndexController.php:53,60,66,72,78`
