@@ -86,9 +86,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : ajouter des entrées pour chaque sous-répertoire `tools/` afin que Dependabot surveille aussi `phpstan`, `psalm`, `infection`, etc.
     **Traité** : entrées ajoutées pour les 8 sous-répertoires disposant d'un `composer.json` : `deptrac`, `infection`, `jsonlint`, `php-cs-fixer`, `phpinsights`, `phpmd`, `phpstan`, `psalm`.
 
-- [ ] [moyenne] Règle de routing `access_control` utilise `^/(en|fr)/istration`
+- [x] [moyenne] Règle de routing `access_control` utilise `^/(en|fr)/istration`
     Fichier : `config/packages/security.yaml:20`
     Suggestion : le pattern `/istration` semble être une troncature volontaire de `/administration` pour obscurcir l'URL admin (sécurité par l'obscurité). Si intentionnel, ajouter un commentaire explicite.
+    **Traité** : commentaire ajouté dans `security.yaml` explicitant que la troncature est volontaire.
 
 - [ ] [moyenne] `AppExtension::getVersion()` utilise un chemin hardcodé `__DIR__.'/../../resources/metadata/'`
     Fichier : `src/Twig/AppExtension.php:54`
