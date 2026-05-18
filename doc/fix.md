@@ -81,9 +81,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : les comparaisons `$filters->xxx->value == $item['is_private']` sont intentionnellement lâches (bool vs string JSON). Documenter l'intention ou normaliser les valeurs du tableau en booléens à la désérialisation.
     **Traité** : `json_decode` retourne déjà des `bool` PHP pour ces champs — les deux côtés sont `bool`, donc `==` a été remplacé par `===`. Docblock `string[][]` corrigé en `array<array<string, mixed>>` dans le contrôleur et le service.
 
-- [ ] [moyenne] `dependabot.yml` ne couvre que le `composer` racine, pas les `tools/*/composer.json`
+- [x] [moyenne] `dependabot.yml` ne couvre que le `composer` racine, pas les `tools/*/composer.json`
     Fichier : `.github/dependabot.yml`
     Suggestion : ajouter des entrées pour chaque sous-répertoire `tools/` afin que Dependabot surveille aussi `phpstan`, `psalm`, `infection`, etc.
+    **Traité** : entrées ajoutées pour les 8 sous-répertoires disposant d'un `composer.json` : `deptrac`, `infection`, `jsonlint`, `php-cs-fixer`, `phpinsights`, `phpmd`, `phpstan`, `psalm`.
 
 - [ ] [moyenne] Règle de routing `access_control` utilise `^/(en|fr)/istration`
     Fichier : `config/packages/security.yaml:20`
