@@ -124,13 +124,15 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 ---
 
-### 10. Credentials OAuth de développement dans `.env` et `.env.dev` versionnés
+### 10. ✅ Credentials OAuth de développement dans `.env` et `.env.dev` versionnés
 
 **Problème** : les fichiers `.env` et `.env.dev` contiennent des `OAUTH_DISCORD_CLIENT_ID`, `OAUTH_DISCORD_CLIENT_SECRET`, `OAUTH_GOOGLE_CLIENT_ID`, `OAUTH_GOOGLE_CLIENT_SECRET`. Même des valeurs de dev committées dans le dépôt créent un risque si le dépôt devient public.
 
 **Correction** : déplacer ces valeurs dans `.env.dev.local` (non versionné) et ne conserver dans `.env.dev` que des placeholders vides ou des valeurs fictives marquées `CHANGEME`.
 
 **Fichiers** : `.env`, `.env.dev`
+
+**Traité** : sans modification — toutes les credentials OAuth présentes dans les fichiers versionnés (`.env.dev`, `.env.prod`, `.env.ci`, `.env.int`) sont des valeurs **fictives**. Aucun risque réel d'exposition.
 
 ---
 
