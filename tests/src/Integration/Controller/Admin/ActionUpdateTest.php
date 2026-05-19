@@ -107,7 +107,7 @@ final class ActionUpdateTest extends WebTestCase
 
         $this->expectException(AccessDeniedException::class);
 
-        $client->request('GET', '/fr/istration/action/update/labels');
+        $client->request('POST', '/fr/istration/action/update/labels');
     }
 
     public function testAdminUpdateThenGoToIndex(): void
@@ -118,7 +118,9 @@ final class ActionUpdateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $client->request('GET', '/fr/istration/action/update/labels');
+        $crawler = $client->request('GET', '/fr/istration');
+        $form = $crawler->filter('#update_labels form')->form();
+        $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -140,7 +142,9 @@ final class ActionUpdateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $client->request('GET', "/fr/istration/action/update/{$name}");
+        $crawler = $client->request('GET', '/fr/istration');
+        $form = $crawler->filter("#update_{$name} form")->form();
+        $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();

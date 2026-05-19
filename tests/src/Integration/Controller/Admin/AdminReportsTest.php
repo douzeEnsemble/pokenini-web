@@ -43,7 +43,7 @@ final class AdminReportsTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 2, 'table.report-table');
-        $this->assertCountFilter($crawler, 1, '.admin-item-invalidate_reports a.admin-item-cta');
+        $this->assertCountFilter($crawler, 1, '.admin-item-invalidate_reports button.admin-item-cta');
 
         $this->assertCountFilter($crawler, 1, 'canvas#catch_state_counts_defined_by_trainer');
         $this->assertCountFilter($crawler, 1, 'table#report-table-catch_state_counts_defined_by_trainer');
