@@ -115,17 +115,20 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : l'`\InvalidArgumentException` levée remonte jusqu'au handler d'erreur Symfony par défaut. Documenter ce comportement ou la capturer explicitement dans `ModifyTrainerAlbumService`.
     **Traité** : commentaire ajouté dans `ModifyTrainerAlbumService` au-dessus du `catch` pour documenter que `\InvalidArgumentException` est intentionnellement non catchée — c'est une erreur de programmation (méthode HTTP invalide), pas une erreur réseau. Le routing Symfony (`methods: ['PATCH', 'PUT']`) rend cette exception inatteignable via HTTP.
 
-- [ ] [basse] `infection_summary.log` et `infection_text.log` présents à la racine du dépôt
+- [x] [basse] `infection_summary.log` et `infection_text.log` présents à la racine du dépôt
     Fichier : `infection_summary.log`, `infection_text.log`
     Suggestion : ajouter ces fichiers au `.gitignore` (artefacts de build).
+    **Traité** : fichiers supprimés
 
-- [ ] [basse] `build/coverage/` présent à la racine
+- [x] [basse] `build/coverage/` présent à la racine
     Fichier : `build/`
     Suggestion : vérifier que `build/` est bien dans `.gitignore`.
+    **Traité** : c'est ignoré
 
-- [ ] [basse] `AlbumFilters\Mapping::get()` traite les valeurs `string` comme des tableaux à un élément
+- [x] [basse] `AlbumFilters\Mapping::get()` traite les valeurs `string` comme des tableaux à un élément
     Fichier : `src/AlbumFilters/Mapping.php:30`
     Suggestion : la logique `is_array($value) ? $value : [$value]` force toutes les valeurs à être des tableaux en sortie, même les scalaires. Documenter ce comportement intentionnel avec un commentaire ou normaliser l'entrée dès `FromRequest`.
+    **Traité** : commentaire ajouté dans `Mapping::get()` expliquant que `STRING_FILTERS` retourne un scalaire et `MULTIPLE_FILTERS` un tableau, et que l'API attend toujours des tableaux — le wrapping est donc intentionnel.
 
 - [ ] [basse] `JsonDecoder::decode()` fixe la profondeur à 5
     Fichier : `src/Utils/JsonDecoder.php:9`
