@@ -23,9 +23,6 @@ URLS=(
 	"en/cookies"
 	"fr/trainer"
 	"fr/istration"
-	"fr/istration/action/calculate/pokemon_availabilities"
-	"fr/istration/action/invalidate/reports"
-	"fr/istration/action/update/labels"
 )
 
 authenticate() {

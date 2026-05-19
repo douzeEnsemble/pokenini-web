@@ -120,6 +120,8 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 **Fichier** : `src/Controller/AdminActionController.php:26-79`
 
+**Traité** : routes passées en `methods: ['POST']`. Chaque méthode valide `isCsrfTokenValid('admin_{action}', $request->request->getString('_token'))` et lève `AccessDeniedException` si le token est invalide. Le macro `actionButton` remplace `<a href>` par `<form method="post">` avec champ caché `_token`. 3 tests unitaires de rejet CSRF ajoutés, tous les tests existants mis à jour avec mocks CSRF stricts. Tests d'intégration et browser mis à jour.
+
 ---
 
 ### 10. Credentials OAuth de développement dans `.env` et `.env.dev` versionnés

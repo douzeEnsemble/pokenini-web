@@ -115,10 +115,17 @@
     currentState,
     bgStyle
 ) %}
+  {% set csrfId = 'admin_' ~ actionPrefix %}
   <div class="text-end border-top border-{{ bgStyle }} pt-3">
-    <a href="{{ path('app_adminaction_'~actionPrefix, {'name': item}) }}" class="btn btn-outline-primary admin-item-cta {{ currentState == 'pending' ? 'disabled' : '' }}">
-      {{ ('admin.actions.'~action~'.'~item~'.cta')|trans }}
-    </a>
+    <form method="post" action="{{ path('app_adminaction_'~actionPrefix, {'name': item}) }}">
+      <input type="hidden" name="_token" value="{{ csrf_token(csrfId) }}">
+      <button
+        type="submit"
+        class="btn btn-outline-primary admin-item-cta{{ currentState == 'pending' ? ' disabled' : '' }}"
+        {% if currentState == 'pending' %}disabled{% endif %}
+      >
+        {{ ('admin.actions.'~action~'.'~item~'.cta')|trans }}
+      </button>
 
     {% if currentState == 'pending' %}
       {% set query = app.request.query.all %}
@@ -130,6 +137,7 @@
         <i class="bi bi-arrow-clockwise"></i>
       </a>
     {% endif %}
+    </form>
   </div>
 {% endmacro %}
 

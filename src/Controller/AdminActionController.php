@@ -10,6 +10,7 @@ use App\Service\Back\AdminActionService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -30,7 +31,7 @@ final class AdminActionController extends AbstractController
 
     #[Route(
         '/update/{name}',
-        methods: ['GET'],
+        methods: ['POST'],
         condition: "params['name']
             in [
                 'labels',
@@ -44,13 +45,18 @@ final class AdminActionController extends AbstractController
     )]
     public function update(
         string $name,
+        Request $request,
     ): RedirectResponse {
+        if (!$this->isCsrfTokenValid('admin_update', $request->request->getString('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
+
         return $this->execute($name, 'update', 'POST');
     }
 
     #[Route(
         '/calculate/{name}',
-        methods: ['GET'],
+        methods: ['POST'],
         condition: "params['name']
             in [
                 'game_bundles_availabilities',
@@ -62,13 +68,18 @@ final class AdminActionController extends AbstractController
     )]
     public function calculate(
         string $name,
+        Request $request,
     ): RedirectResponse {
+        if (!$this->isCsrfTokenValid('admin_calculate', $request->request->getString('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
+
         return $this->execute($name, 'calculate', 'POST');
     }
 
     #[Route(
         '/invalidate/{name}',
-        methods: ['GET'],
+        methods: ['POST'],
         condition: "params['name']
             in [
                 'labels',
@@ -80,7 +91,12 @@ final class AdminActionController extends AbstractController
     )]
     public function invalidate(
         string $name,
+        Request $request,
     ): RedirectResponse {
+        if (!$this->isCsrfTokenValid('admin_invalidate', $request->request->getString('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
+
         return $this->execute($name, 'invalidate', 'DELETE');
     }
 

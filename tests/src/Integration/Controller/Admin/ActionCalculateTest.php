@@ -46,7 +46,9 @@ final class ActionCalculateTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         // For testing purpose, this case will fail in API side
-        $client->request('GET', '/fr/istration/action/calculate/dex_availabilities');
+        $crawler = $client->request('GET', '/fr/istration');
+        $form = $crawler->filter('#calculate_dex_availabilities form')->form();
+        $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -70,7 +72,9 @@ final class ActionCalculateTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         // For testing purpose, this case will fail in API side
-        $client->request('GET', '/fr/istration/action/calculate/dex_availabilities');
+        $crawler = $client->request('GET', '/fr/istration');
+        $form = $crawler->filter('#calculate_dex_availabilities form')->form();
+        $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
@@ -118,7 +122,7 @@ final class ActionCalculateTest extends WebTestCase
 
         $this->expectException(AccessDeniedException::class);
 
-        $client->request('GET', '/fr/istration/action/calculate/dex_availabilities');
+        $client->request('POST', '/fr/istration/action/calculate/dex_availabilities');
     }
 
     private function testAdminCalculate(string $name): void
@@ -129,7 +133,9 @@ final class ActionCalculateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $client->request('GET', "/fr/istration/action/calculate/{$name}");
+        $crawler = $client->request('GET', '/fr/istration');
+        $form = $crawler->filter("#calculate_{$name} form")->form();
+        $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();

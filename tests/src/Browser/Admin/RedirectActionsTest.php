@@ -24,7 +24,10 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $user->addAdminRole();
         $this->loginUser($client, $user);
 
-        $client->request('GET', "/fr/istration/action/{$action}/{$item}");
+        $client->request('GET', '/fr/istration');
+
+        $form = $client->getCrawler()->filter("#{$action}_{$item} form")->form();
+        $client->submit($form);
 
         $this->assertSame(
             "http://127.0.0.1:9080/fr/istration#{$action}_{$item}",

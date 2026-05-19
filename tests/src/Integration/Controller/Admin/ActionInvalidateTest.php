@@ -31,7 +31,9 @@ final class ActionInvalidateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $client->request('GET', "/fr/istration/action/invalidate/{$name}");
+        $crawler = $client->request('GET', '/fr/istration');
+        $form = $crawler->filter("#invalidate_{$name} form")->form();
+        $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();

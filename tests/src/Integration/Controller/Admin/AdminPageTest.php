@@ -66,13 +66,13 @@ final class AdminPageTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, 'h2');
         $this->assertCountFilter($crawler, 18, 'h3');
-        $this->assertCountFilter($crawler, 15, '.admin-item a.admin-item-cta');
+        $this->assertCountFilter($crawler, 15, '.admin-item button.admin-item-cta');
 
-        $this->assertCountFilter($crawler, 7, '.admin-item-update a.admin-item-cta');
-        $this->assertCountFilter($crawler, 4, '.admin-item-calculate a.admin-item-cta');
-        $this->assertCountFilter($crawler, 4, '.admin-item-invalidate a.admin-item-cta');
+        $this->assertCountFilter($crawler, 7, '.admin-item-update button.admin-item-cta');
+        $this->assertCountFilter($crawler, 4, '.admin-item-calculate button.admin-item-cta');
+        $this->assertCountFilter($crawler, 4, '.admin-item-invalidate button.admin-item-cta');
         $this->assertCountFilter($crawler, 2, 'table.report-table');
-        $this->assertCountFilter($crawler, 1, '.admin-item-invalidate_reports a.admin-item-cta');
+        $this->assertCountFilter($crawler, 1, '.admin-item-invalidate_reports button.admin-item-cta');
 
         $this->assertCountFilter($crawler, 3, '.admin-item-cta.disabled');
         $this->assertCountFilter($crawler, 1, '#update_games_collections_and_dex .admin-item-cta.disabled');
