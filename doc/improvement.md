@@ -108,6 +108,8 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 **Fichier** : `src/Service/Back/AbstractBackService.php:65-68`
 
+**Traité** : `$logOptions` copie `$finalOptions` et remplace `Authorization` par `'[REDACTED]'` avant le log `info`. Le client HTTP reçoit toujours le token réel via `$finalOptions`. `AbstractTestBackService::getLoggerMock()` vérifie que le logger n'obtient jamais que `[REDACTED]`. 35 tests unitaires Back verts.
+
 ---
 
 ### 9. Absence de protection CSRF sur les actions admin (GET)
