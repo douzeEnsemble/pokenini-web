@@ -136,13 +136,15 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 ---
 
-### 11. Mot de passe Redis hardcodé dans docker-compose
+### 11. ✅ Mot de passe Redis hardcodé dans docker-compose
 
-**Problème** : `redis-server --requirepass douze` dans `docker-compose.yaml` expose un mot de passe en clair dans un fichier versionné. Ce pattern peut se retrouver accidentellement en staging/prod.
+**Problème** : `redis-server --requirepass douze` dans `docker-compose.yaml` expose un mot de passe en clair dans un fichier versionné. Ce pattern peut se retrouver accidentellement en staging/prod. De plus, le `REDIS_DSN` Symfony ne contenait pas le mot de passe, rendant le cache `cache.labels` non fonctionnel.
 
 **Correction** : utiliser une variable d'environnement `${REDIS_PASSWORD:-douze}` et documenter que la valeur par défaut est uniquement pour le dev.
 
-**Fichier** : `docker-compose.yaml:22`
+**Fichier** : `docker-compose.yaml:39`
+
+**Traité** : `REDIS_PASSWORD=douze` ajouté dans `.env` (base, lue par Docker Compose) et dans chaque `.env.*` de dev/test (`.env.prod` avec `!ChangeMe!`). `REDIS_DSN` mis à jour en `redis://:${REDIS_PASSWORD}@redis:6379/0` dans tous les fichiers env. `docker-compose.yaml` utilise `${REDIS_PASSWORD:-douze}`. 194 tests d'intégration verts.
 
 ---
 
