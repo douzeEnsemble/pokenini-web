@@ -130,6 +130,7 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : la logique `is_array($value) ? $value : [$value]` force toutes les valeurs à être des tableaux en sortie, même les scalaires. Documenter ce comportement intentionnel avec un commentaire ou normaliser l'entrée dès `FromRequest`.
     **Traité** : commentaire ajouté dans `Mapping::get()` expliquant que `STRING_FILTERS` retourne un scalaire et `MULTIPLE_FILTERS` un tableau, et que l'API attend toujours des tableaux — le wrapping est donc intentionnel.
 
-- [ ] [basse] `JsonDecoder::decode()` fixe la profondeur à 5
+- [x] [basse] `JsonDecoder::decode()` fixe la profondeur à 5
     Fichier : `src/Utils/JsonDecoder.php:9`
     Suggestion : vérifier que la profondeur 5 couvre bien tous les payloads API actuels et futurs.
+    **Traité** : vérifié sur les 78 fixtures Moco — profondeur maximale réelle = 4 niveaux de conteneurs (root → pokedex → pokemons[] → pokemon{}), conforme à `depth=5` (qui tolère 4 niveaux). Commentaire ajouté dans `JsonDecoder.php`.
