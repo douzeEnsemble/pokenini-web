@@ -35,6 +35,7 @@ class ModifyTrainerAlbumService
                 $pokemonSlug,
                 $content,
             );
+            // \InvalidArgumentException is intentionally left uncaught: an invalid HTTP method is a programming error that should propagate and fail loudly.
         } catch (HttpExceptionInterface|TransportExceptionInterface $e) {
             throw new ModifyFailedException();
         }
