@@ -33,6 +33,8 @@ final class Mapping
 
         foreach ($filters as $filterName => $value) {
             $newKey = self::FILTERS[$filterName];
+            // STRING_FILTERS yield a scalar string; MULTIPLE_FILTERS yield a string[].
+            // The API always expects arrays, so scalars are wrapped in a single-element array.
             $mappedFilters[$newKey] = is_array($value) ? $value : [$value];
         }
 
