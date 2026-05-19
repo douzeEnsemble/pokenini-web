@@ -110,9 +110,10 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
     Suggestion : le `$finalOptions` logué contient le header `Authorization: Bearer <token>`. Exclure ou masquer les en-têtes sensibles avant logging.
     **Traité** : `$logOptions` créé comme copie de `$finalOptions` avec `Authorization` remplacé par `[REDACTED]` avant le log ; `$finalOptions` reste intact pour l'appel HTTP. Tests mis à jour en conséquence.
 
-- [ ] [basse] `ModifyAlbumService::modify` valide la méthode HTTP en interne mais l'erreur est silencieuse pour le client
+- [x] [basse] `ModifyAlbumService::modify` valide la méthode HTTP en interne mais l'erreur est silencieuse pour le client
     Fichier : `src/Service/Back/ModifyAlbumService.php:17-20`
     Suggestion : l'`\InvalidArgumentException` levée remonte jusqu'au handler d'erreur Symfony par défaut. Documenter ce comportement ou la capturer explicitement dans `ModifyTrainerAlbumService`.
+    **Traité** : commentaire ajouté dans `ModifyTrainerAlbumService` au-dessus du `catch` pour documenter que `\InvalidArgumentException` est intentionnellement non catchée — c'est une erreur de programmation (méthode HTTP invalide), pas une erreur réseau. Le routing Symfony (`methods: ['PATCH', 'PUT']`) rend cette exception inatteignable via HTTP.
 
 - [ ] [basse] `infection_summary.log` et `infection_text.log` présents à la racine du dépôt
     Fichier : `infection_summary.log`, `infection_text.log`
