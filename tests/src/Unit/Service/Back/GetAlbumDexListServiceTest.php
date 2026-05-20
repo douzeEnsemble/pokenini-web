@@ -58,6 +58,20 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
         );
     }
 
+    public function testGetThrowsJsonExceptionOnInvalidJson(): void
+    {
+        $this->expectException(\JsonException::class);
+
+        /** @var GetAlbumDexListService $service */
+        $service = $this->getServiceWithLoggedUser(
+            'GET',
+            'not valid json',
+            'album/dex',
+        );
+
+        $service->get();
+    }
+
     public function testGetWithTrainerId(): void
     {
         /** @var GetAlbumDexListService $service */

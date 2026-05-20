@@ -162,13 +162,15 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 ---
 
-### 13. `JsonDecoder::decode()` non testé pour les cas d'erreur
+### 13. ✅ `JsonDecoder::decode()` non testé pour les cas d'erreur
 
 **Problème** : `JsonDecoder::decode()` utilise `JSON_THROW_ON_ERROR` mais aucun test ne vérifie que `InvalidJsonException` est bien lancée et remontée correctement depuis les Back Services.
 
 **Correction** : ajouter un test unitaire qui passe du JSON invalide et vérifie que `JsonException` est bien propagée.
 
 **Fichiers** : `src/Utils/JsonDecoder.php`, `src/Exception/InvalidJsonException.php`
+
+**Traité** : `testGetThrowsJsonExceptionOnInvalidJson` ajouté dans `GetAlbumDexListServiceTest` : passe `'not valid json'` comme réponse HTTP et vérifie que `\JsonException` remonte sans être avalée. 279 tests unitaires verts.
 
 ---
 
