@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\AlbumFilters\FromRequest;
-use App\AlbumFilters\Mapping;
 use App\Exception\NoLoggedUserException;
 use App\ResponseObject\Album\Dex;
 use App\Security\User;
@@ -39,8 +38,8 @@ final class AlbumIndexController extends AbstractController
     ): Response {
         $requestedTrainerId = $request->query->getAlnum('t', '');
 
-        $filters = FromRequest::get($request);
-        $apiFilters = Mapping::get($filters);
+        $filterBag = FromRequest::get($request);
+        $apiFilters = $filterBag->toApiParams();
 
         $album = $this->getTrainerPokedexService->getPokedexData($dexSlug, $apiFilters, $requestedTrainerId);
         if (null === $album || null === $album->getPokedex()->getDex()) {
@@ -82,7 +81,7 @@ final class AlbumIndexController extends AbstractController
             'gameBundles' => $labels->getGameBundles(),
             'collections' => $labels->getCollections(),
             'mode' => 'read',
-            'filters' => $filters,
+            'filters' => $filterBag->toRouteParams(),
             'trainerId' => !empty($requestedTrainerId) ? $requestedTrainerId : $loggedTrainerId,
             'loggedTrainerId' => $loggedTrainerId,
             'requestedTrainerId' => $requestedTrainerId,
