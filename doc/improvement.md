@@ -174,13 +174,15 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 ---
 
-### 14. `testListCachesCleared` utilise `exec` pour vider le cache
+### 14. ✅ `testListCachesCleared` utilise `exec` pour vider le cache
 
 **Problème** : `exec('rm -Rf /app/var/cache/test/*')` dans un test est une dépendance sur le chemin absolu du container Docker, pas portable en dehors de l'environnement Docker.
 
 **Correction** : utiliser `$this->getContainer()->get('cache.app')->clear()` ou une commande Symfony `cache:pool:clear` via le KernelBrowser en test.
 
 **Fichier** : `tests/src/Integration/Controller/Album/Display/CommonTest.php:83`
+
+**Traité** : remplacé par `self::bootKernel()` + `self::getContainer()->get('cache.app')->clear()` + `self::ensureKernelShutdown()`. Portable, sans dépendance sur le chemin Docker. 1 test vert, 46 assertions.
 
 ---
 
