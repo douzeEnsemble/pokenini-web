@@ -207,13 +207,15 @@ Répéter pour chaque outil.
 
 ## Maintenabilité / DevX
 
-### 16. Filtre `AlbumFilters\Mapping` : couplage implicite avec `FromRequest`
+### 16. ✅ Filtre `AlbumFilters\Mapping` : couplage implicite avec `FromRequest`
 
 **Problème** : `Mapping::get()` accepte `string[]|string[][]` et fait une détection de type `is_array($value)` en interne. Si `FromRequest::get()` change son format de sortie, `Mapping` peut silencieusement produire des résultats incorrects sans erreur de type.
 
 **Correction** : introduire un type dédié (ex. `AlbumFilterBag`) que `FromRequest` retourne et que `Mapping` attend, éliminant la détection de type runtime.
 
 **Fichiers** : `src/AlbumFilters/Mapping.php:28-30`, `src/AlbumFilters/FromRequest.php`
+
+**Traité** : `AlbumFilterBag` readonly value object avec `toApiParams()` (absorbe `Mapping`) et `toRouteParams()`. `FromRequest::get()` retourne `AlbumFilterBag`. `Mapping` supprimée. PHPStan niveau 9 + tests unitaires verts.
 
 ---
 
