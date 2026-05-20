@@ -7,19 +7,19 @@ namespace App\AlbumFilters;
 final readonly class AlbumFilterBag
 {
     private const array MAPPING = [
-        'cs'   => 'catch_states',
-        'f'    => 'families',
-        'fc'   => 'category_forms',
-        'fr'   => 'regional_forms',
-        'fs'   => 'special_forms',
-        'fv'   => 'variant_forms',
-        'at'   => 'any_types',
-        't1'   => 'primary_types',
-        't2'   => 'secondary_types',
-        'ogb'  => 'original_game_bundles',
-        'gba'  => 'game_bundle_availabilities',
+        'cs' => 'catch_states',
+        'f' => 'families',
+        'fc' => 'category_forms',
+        'fr' => 'regional_forms',
+        'fs' => 'special_forms',
+        'fv' => 'variant_forms',
+        'at' => 'any_types',
+        't1' => 'primary_types',
+        't2' => 'secondary_types',
+        'ogb' => 'original_game_bundles',
+        'gba' => 'game_bundle_availabilities',
         'gbsa' => 'game_bundle_shiny_availabilities',
-        'ca'   => 'collection_availabilities',
+        'ca' => 'collection_availabilities',
     ];
 
     /**

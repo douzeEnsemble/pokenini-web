@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\AlbumFilters\FromRequest;
-use App\AlbumFilters\Mapping;
 use App\Service\ElectionIndexService;
 use App\Service\GetLabelsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,8 +31,8 @@ final class ElectionIndexController extends AbstractController
         string $dexSlug,
         string $electionSlug = '',
     ): Response {
-        $filters = FromRequest::get($request);
-        $apiFilters = Mapping::get($filters);
+        $filterBag = FromRequest::get($request);
+        $apiFilters = $filterBag->toApiParams();
 
         $data = $electionIndexService->get($dexSlug, $electionSlug, $apiFilters);
 

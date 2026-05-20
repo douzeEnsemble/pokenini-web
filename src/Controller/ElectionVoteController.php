@@ -64,7 +64,7 @@ final class ElectionVoteController extends AbstractController
             $logger->warning('Election vote failed', ['exception' => $e->getMessage()]);
         }
 
-        $filters = FromRequest::get($request);
+        $filterBag = FromRequest::get($request);
 
         return $this->redirectToRoute(
             'app_electionindex_index',
@@ -73,7 +73,7 @@ final class ElectionVoteController extends AbstractController
                     'dexSlug' => $electionVote->dexSlug,
                     'electionSlug' => $electionVote->electionSlug,
                 ],
-                $filters,
+                $filterBag->toRouteParams(),
             ),
         );
     }
