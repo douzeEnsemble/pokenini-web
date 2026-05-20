@@ -81,7 +81,9 @@ final class CommonTest extends WebTestCase
      */
     public function testListCachesCleared(): void
     {
-        exec('rm -Rf /app/var/cache/test/*');
+        self::bootKernel();
+        self::getContainer()->get('cache.app')->clear();
+        self::ensureKernelShutdown();
 
         $this->testListVirgin();
     }
