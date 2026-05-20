@@ -186,7 +186,7 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 ---
 
-### 15. `dependabot.yml` ne surveille pas les `tools/`
+### 15. ✅ `dependabot.yml` ne surveille pas les `tools/`
 
 **Problème** : les sous-projets `tools/phpstan`, `tools/psalm`, `tools/infection`, etc. ont leurs propres `composer.json` avec des versions fixées manuellement. Dependabot ne les surveille pas.
 
@@ -200,6 +200,8 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 Répéter pour chaque outil.
 
 **Fichier** : `.github/dependabot.yml`
+
+**Traité** : sans modification — `.github/dependabot.yml` couvre déjà tous les sous-répertoires `tools/` ayant un `composer.json` (`deptrac`, `infection`, `jsonlint`, `php-cs-fixer`, `phpinsights`, `phpmd`, `phpstan`, `psalm`). Les autres répertoires (`cachetool`, `coverage`, `opcache-reset`, etc.) n'ont pas de `composer.json` et ne nécessitent aucune entrée Dependabot.
 
 ---
 
