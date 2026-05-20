@@ -27,16 +27,14 @@ final class FromRequest
         'ca',
     ];
 
-    /**
-     * @return string[]|string[][]
-     */
-    public static function get(Request $request): array
+    public static function get(Request $request): AlbumFilterBag
     {
-        $filters = [];
+        $stringFilters = [];
+        $multipleFilters = [];
 
         foreach (self::STRING_FILTERS as $filterName) {
             if ($request->query->has($filterName)) {
-                $filters[$filterName] = $request->query->getString($filterName);
+                $stringFilters[$filterName] = $request->query->getString($filterName);
             }
         }
 
@@ -45,10 +43,13 @@ final class FromRequest
                 /** @var null|string[] $values */
                 $values = $request->query->all()[$filterName];
                 $values ??= [];
-                $filters[$filterName] = array_filter($values);
+                $multipleFilters[$filterName] = array_filter($values);
             }
         }
 
-        return $filters;
+        return new AlbumFilterBag(
+            stringFilters: $stringFilters,
+            multipleFilters: $multipleFilters,
+        );
     }
 }
