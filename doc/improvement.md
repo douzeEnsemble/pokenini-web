@@ -95,7 +95,7 @@ Ce manque d'uniformité rend le codebase moins prévisible.
 
 ## Sécurité
 
-### 8. Tokens OAuth exposés dans les logs
+### 8. ✅ Tokens OAuth exposés dans les logs
 
 **Problème** : `AbstractBackService::request` log `$finalOptions` qui contient le header `Authorization: Bearer <access_token_complet>`. Si les logs sont exportés vers un agrégateur externe, les tokens OAuth des utilisateurs sont exposés.
 
@@ -112,7 +112,7 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 ---
 
-### 9. Absence de protection CSRF sur les actions admin (GET)
+### 9. ✅ Absence de protection CSRF sur les actions admin (GET)
 
 **Problème** : les actions admin (update, calculate, invalidate) sont déclenchées par des requêtes GET. Un lien malveillant dans un e-mail suffit à déclencher une action si l'admin est connecté.
 
