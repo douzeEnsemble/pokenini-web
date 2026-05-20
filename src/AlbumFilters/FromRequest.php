@@ -43,7 +43,7 @@ final class FromRequest
                 /** @var null|string[] $values */
                 $values = $request->query->all()[$filterName];
                 $values ??= [];
-                $multipleFilters[$filterName] = array_filter($values);
+                $multipleFilters[$filterName] = array_values(array_filter($values));
             }
         }
 
