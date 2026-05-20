@@ -150,13 +150,15 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 ## Tests
 
-### 12. Absence de tests unitaires pour les Back Services
+### 12. ✅ Absence de tests unitaires pour les Back Services
 
 **Problème** : les `Service\Back\*` n'ont que des tests d'intégration (via Moco). Si Moco n'est pas disponible ou que le schéma JSON change, il n'y a pas de filet de sécurité rapide pour détecter les régressions de désérialisation.
 
 **Correction** : ajouter des tests unitaires de désérialisation pour les ResponseObjects critiques (`Dex`, `Pokemon`, `Album`) en passant du JSON fixture directement au Serializer Symfony.
 
 **Fichiers** : `tests/src/Unit/` (dossier absent pour `Service/Back/`)
+
+**Traité** : 19 classes de tests (30 méthodes) dans `tests/src/Integration/ResponseObject/` couvrent tous les ResponseObjects (`Album`, `Pokedex`, `Dex`, `Pokemon`, `Report`, `ReportDetail`, `ElectionIndex`, `ElectionList`, `TopPokemon`, `ActionLog`, et tous les labels dont `CatchState`). Chaque test utilise `KernelTestCase` avec le `SerializerInterface` réel du container — aucune dépendance Moco.
 
 ---
 
