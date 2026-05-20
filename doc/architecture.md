@@ -19,9 +19,9 @@ Périmètre fonctionnel :
 ```
 pokenini-web/
 ├── src/                        # Code applicatif (PSR-4: App\)
-│   ├── AlbumFilters/           # Deux helpers statiques : parsing filtres URL ↔ filtres API
-│   │   ├── FromRequest         # Parse query params → tableau court (clés abrégées)
-│   │   └── Mapping             # Tableau court → clés longues API
+│   ├── AlbumFilters/           # Parsing filtres URL → AlbumFilterBag (value object)
+│   │   ├── FromRequest         # Parse query params → AlbumFilterBag
+│   │   └── AlbumFilterBag      # toApiParams() (clés longues API) + toRouteParams() (Twig/redirect)
 │   ├── Controller/             # Un contrôleur par page/fonctionnalité ; délègue aux Services
 │   │   └── Connect/            # Contrôleurs OAuth2 (Discord, Google, Fake)
 │   ├── DTO/                    # Conteneurs de données Controller ↔ Service
@@ -75,7 +75,7 @@ pokenini-web/
 | `Service\Back/`   | Client HTTP pur vers pokenini-api. Hérite `AbstractBackService` (Bearer token, X-Provider, cafile, log). Désérialisent via Symfony Serializer.                                                        | Peut dépendre de : Utils, Exception, ResponseObject, Security, Serializer                     |
 | `ResponseObject/` | POPOs désérialisés depuis le JSON de l'API. Constructeur promotionnel readonly + `#[SerializedName]`. Aucune logique.                                                                                 | Peut dépendre de : Serializer seulement                                                       |
 | `DTO/`            | Conteneurs de transfert Controller ↔ Service. Deux variantes : immutables (factory `createFromArray`) ou avec `OptionsResolver` pour la validation.                                                   | Peut dépendre de : DTO, ResponseObject, HttpFoundation, OptionsResolver                       |
-| `AlbumFilters/`   | Deux classes statiques : `FromRequest` (query params → filtres internes) + `Mapping` (filtres → params API).                                                                                          | Dépend uniquement de HttpFoundation                                                           |
+| `AlbumFilters/`   | `FromRequest` parse les query params en `AlbumFilterBag` (value object). `AlbumFilterBag::toApiParams()` mappe les clés courtes vers les clés API longues ; `toRouteParams()` retourne le tableau mixte pour Twig/redirectToRoute. | Dépend uniquement de HttpFoundation                                                           |
 | `Security/`       | `User` (stocke `AccessToken` + rôles). Authenticateurs OAuth2 (Discord, Google, Fake). `UserTokenService` : `getLoggedUserId()` = `sha1(userIdentifier)`. `UserRefresher` rafraîchit le token expiré. | Peut dépendre de : DTO, Service, KnpU, LeagueOAuth2, SymfonySecurity                          |
 | `Twig/`           | Extensions Twig : filtres `ksort`, `sha1`, `htmlNl2br`, `almost_exactly` ; fonctions `version()`, `getArrayFromRequest()`.                                                                            | Dépend de Twig, HttpFoundation, SymfonyContractsTranslation                                   |
 | `Utils/`          | `JsonDecoder` : wrapper `json_decode` avec `JSON_THROW_ON_ERROR` et profondeur 5.                                                                                                                     | Aucune dépendance App                                                                         |
@@ -91,8 +91,8 @@ GET /{locale}/album/{dexSlug}?t={trainerId}&cs=caught&fc[]=mega
         ▼
 AlbumIndexController::index()
         │
-        ├── AlbumFilters\FromRequest::get($request)     → $filters (court-circuitage URL→interne)
-        ├── AlbumFilters\Mapping::get($filters)         → $apiFilters (interne→API)
+        ├── AlbumFilters\FromRequest::get($request)       → $filterBag (AlbumFilterBag)
+        ├── $filterBag->toApiParams()                    → $apiFilters (clés longues API)
         │
         ├── GetTrainerPokedexService::getPokedexData()  → ?Album
         │       └── Service\Back\GetPokedexService::get() ou getWithTrainerId()
