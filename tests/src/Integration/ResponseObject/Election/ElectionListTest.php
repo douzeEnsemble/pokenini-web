@@ -8,6 +8,7 @@ use App\ResponseObject\Common\Pokemon;
 use App\ResponseObject\Election\ElectionList;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -23,7 +24,7 @@ final class ElectionListTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = self::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/pokemons_all_b_12.json');
+        $json = (new Filesystem())->readFile('/app/tests/resources/unit/service/back/pokemons_all_b_12.json');
 
         $object = $serializer->deserialize($json, ElectionList::class, 'json');
 

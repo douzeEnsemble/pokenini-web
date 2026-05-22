@@ -9,6 +9,7 @@ use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetTrainerDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -63,7 +64,7 @@ final class GetTrainerDexListServiceTest extends AbstractTestBackService
         /** @var GetTrainerDexListService */
         return $this->getServiceWithLoggedUser(
             'GET',
-            (string) file_get_contents($filename),
+            (new Filesystem())->readFile($filename),
             $endpoint,
         );
     }

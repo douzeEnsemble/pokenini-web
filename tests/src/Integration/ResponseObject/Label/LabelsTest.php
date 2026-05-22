@@ -15,6 +15,7 @@ use App\ResponseObject\Label\Type;
 use App\ResponseObject\Label\VariantForm;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -30,7 +31,7 @@ final class LabelsTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = self::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/integration/back/labels.json');
+        $json = (new Filesystem())->readFile('/app/tests/resources/integration/back/labels.json');
 
         $object = $serializer->deserialize($json, Labels::class, 'json');
 

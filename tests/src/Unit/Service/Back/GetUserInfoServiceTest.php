@@ -13,6 +13,7 @@ use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -36,7 +37,7 @@ final class GetUserInfoServiceTest extends TestCase
 
         $client = $this->createMock(HttpClientInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/user.json');
+        $json = (new Filesystem())->readFile('/app/tests/resources/unit/service/back/user.json');
 
         $response = $this->createMock(ResponseInterface::class);
         $response
@@ -120,7 +121,7 @@ final class GetUserInfoServiceTest extends TestCase
 
         $client = $this->createMock(HttpClientInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/user.json');
+        $json = (new Filesystem())->readFile('/app/tests/resources/unit/service/back/user.json');
 
         $response = $this->createMock(ResponseInterface::class);
         $response

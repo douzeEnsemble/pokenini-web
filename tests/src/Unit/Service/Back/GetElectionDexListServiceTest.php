@@ -9,6 +9,7 @@ use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetElectionDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -26,7 +27,7 @@ final class GetElectionDexListServiceTest extends AbstractTestBackService
         /** @var GetElectionDexListService $service */
         $service = $this->getServiceWithLoggedUser(
             'GET',
-            (string) file_get_contents(self::RESPONSE_CONTENT),
+            (new Filesystem())->readFile(self::RESPONSE_CONTENT),
             self::ENDPOINT,
         );
 
@@ -43,7 +44,7 @@ final class GetElectionDexListServiceTest extends AbstractTestBackService
         /** @var GetElectionDexListService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
-            (string) file_get_contents(self::RESPONSE_CONTENT),
+            (new Filesystem())->readFile(self::RESPONSE_CONTENT),
             self::ENDPOINT,
         );
 

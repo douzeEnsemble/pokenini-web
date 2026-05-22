@@ -9,6 +9,7 @@ use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Common\Pokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -23,8 +24,9 @@ final class PokedexTest extends KernelTestCase
 
         /** @var SerializerInterface $serializer */
         $serializer = self::getContainer()->get(SerializerInterface::class);
+        $filesystem = new Filesystem();
 
-        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/pokedex_lite.json');
+        $json = $filesystem->readFile('/app/tests/resources/unit/service/back/pokedex_lite.json');
 
         $object = $serializer->deserialize($json, Pokedex::class, 'json');
 

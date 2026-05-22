@@ -96,6 +96,10 @@ parameters:
       collectors:
         - type: classLike
           value: '^Symfony\\Component\\DependencyInjection\\.*'
+    - name: SymfonyFilesystem
+      collectors:
+        - type: classLike
+          value: '^Symfony\\Component\\Filesystem\\.*'
     - name: SymfonyEventDispatcher
       collectors:
         - type: classLike
@@ -203,6 +207,7 @@ parameters:
       - SymfonyContractsCache
       - SymfonyContractsHttpClient
       - SymfonyDependencyInjection
+      - SymfonyFilesystem
       - SymfonyHttpException
       - SymfonyHttpFoundation
       - SymfonySecurityBundle
