@@ -6,3 +6,6 @@ framework:
                 adapter: cache.adapter.redis_tag_aware
                 provider: '%env(REDIS_DSN)%'
                 default_lifetime: 3600
+            cache.app_version:
+                adapter: cache.adapter.redis
+                provider: '%env(REDIS_DSN)%'

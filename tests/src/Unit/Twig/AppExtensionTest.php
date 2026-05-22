@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Twig;
 
+use App\Service\AppVersionService;
 use App\Twig\AppExtension;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +20,7 @@ final class AppExtensionTest extends TestCase
 {
     public function testGetFilters(): void
     {
-        $extension = new AppExtension(dirname(__DIR__, 4));
+        $extension = new AppExtension($this->createStub(AppVersionService::class));
 
         $filters = $extension->getFilters();
 
@@ -64,7 +65,7 @@ final class AppExtensionTest extends TestCase
 
     public function testGetFunctions(): void
     {
-        $extension = new AppExtension(dirname(__DIR__, 4));
+        $extension = new AppExtension($this->createStub(AppVersionService::class));
 
         $functions = $extension->getFunctions();
 
@@ -84,7 +85,7 @@ final class AppExtensionTest extends TestCase
 
     public function testKsort(): void
     {
-        $extension = new AppExtension(dirname(__DIR__, 4));
+        $extension = new AppExtension($this->createStub(AppVersionService::class));
 
         $data = [
             'b' => 1,
@@ -104,7 +105,7 @@ final class AppExtensionTest extends TestCase
 
     public function testSha1(): void
     {
-        $extension = new AppExtension(dirname(__DIR__, 4));
+        $extension = new AppExtension($this->createStub(AppVersionService::class));
 
         $this->assertSame('0b9c2625dc21ef05f6ad4ddf47c5f203837aa32c', $extension->sha1('toto'));
         $this->assertSame('f7e79ca8eb0b31ee4d5d6c181416667ffee528ed', $extension->sha1('titi'));
@@ -112,23 +113,38 @@ final class AppExtensionTest extends TestCase
 
     public function testHtmlNl2br(): void
     {
-        $extension = new AppExtension(dirname(__DIR__, 4));
+        $extension = new AppExtension($this->createStub(AppVersionService::class));
 
         $this->assertSame("a<br>\nb", $extension->htmlNl2br("a\nb"));
     }
 
     public function testVersion(): void
     {
-        $extension = new AppExtension(dirname(__DIR__, 4));
+        $versionService = $this->createMock(AppVersionService::class);
+        $versionService
+            ->expects($this->once())
+            ->method('getVersion')
+            ->with('version')
+            ->willReturn('1.2.12')
+        ;
 
-        $this->assertSame(
-            '0.0.toto',
-            $extension->getVersion('non_existent_file'),
-        );
+        $extension = new AppExtension($versionService);
 
-        $this->assertSame(
-            '1.2.12',
-            $extension->getVersion(),
-        );
+        $this->assertSame('1.2.12', $extension->getVersion());
+    }
+
+    public function testVersionDelegatesToService(): void
+    {
+        $versionService = $this->createMock(AppVersionService::class);
+        $versionService
+            ->expects($this->once())
+            ->method('getVersion')
+            ->with('changelog')
+            ->willReturn('some-value')
+        ;
+
+        $extension = new AppExtension($versionService);
+
+        $this->assertSame('some-value', $extension->getVersion('changelog'));
     }
 }

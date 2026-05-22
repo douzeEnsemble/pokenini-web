@@ -209,6 +209,7 @@ parameters:
       - SymfonySerializer
       - SymfonyValidator
     AppTwig:
+      - AppService
       - SymfonyContractsTranslation
       - SymfonyHttpFoundation
       - Twig

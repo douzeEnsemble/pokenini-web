@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use App\Service\AppVersionService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 final class AppExtension extends AbstractExtension
 {
-    public function __construct(private readonly string $projectDir) {}
+    public function __construct(private readonly AppVersionService $versionService) {}
 
     #[\Override]
     public function getFilters(): array
@@ -54,14 +55,6 @@ final class AppExtension extends AbstractExtension
 
     public function getVersion(string $filename = 'version'): string
     {
-        $version = '0.0.toto';
-        $filePath = $this->projectDir.'/resources/metadata/'.$filename;
-
-        if (!is_file($filePath)) {
-            return $version;
-        }
-
-        /** @var string */
-        return file_get_contents($filePath);
+        return $this->versionService->getVersion($filename);
     }
 }
