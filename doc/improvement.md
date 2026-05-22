@@ -219,13 +219,15 @@ Répéter pour chaque outil.
 
 ---
 
-### 17. `Twig\AppExtension::getVersion()` lit un fichier à chaque rendu
+### 17. ✅ `Twig\AppExtension::getVersion()` lit un fichier à chaque rendu
 
 **Problème** : `getVersion()` appelle `file_get_contents()` à chaque invocation depuis Twig, sans cache. Sur des pages qui affichent la version plusieurs fois, cela génère plusieurs lectures disque.
 
 **Correction** : mémoriser la valeur dans une propriété de classe (`private ?string $version = null`) et ne lire le fichier qu'une fois par cycle de vie du service.
 
 **Fichier** : `src/Twig/AppExtension.php:48-59`
+
+**Traité** : `AppVersionService` (pool Redis `cache.app_version`) centralise la lecture et le cache de version. `AppExtension` lui délègue via injection. Pool purgé par `cache:pool:clear cache.app_version` dans la cible `make cc` (appelée à chaque `make start`). Deptrac mis à jour pour autoriser `AppTwig → AppService`. 11 tests unitaires verts, PHPStan niveau 9, Deptrac 0 violation.
 
 ---
 

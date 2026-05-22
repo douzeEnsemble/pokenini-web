@@ -118,6 +118,8 @@ cc: ## Clear the cache
 cc:
 	@$(SYMFONY) cache:clear --env=dev
 	@$(SYMFONY) cache:clear --env=test
+	@$(SYMFONY) cache:pool:clear cache.app_version --env=dev
+	@$(SYMFONY) cache:pool:clear cache.app_version --env=test
 
 ## —— Tests 🧪 ———————————————————————————————————————————————————————————————
 .PHONY: tests
