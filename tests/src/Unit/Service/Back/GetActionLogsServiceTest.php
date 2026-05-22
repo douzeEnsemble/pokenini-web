@@ -10,6 +10,7 @@ use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetActionLogsService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
@@ -37,7 +38,7 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
         /** @var GetActionLogsService $service */
         $service = $this->getServiceWithLoggedUser(
             'GET',
-            (string) file_get_contents(self::RESPONSE_CONTENT),
+            (new Filesystem())->readFile(self::RESPONSE_CONTENT),
             self::ENDPOINT,
             [],
             $this->buildSerializer(),
@@ -51,7 +52,7 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
         /** @var GetActionLogsService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
-            (string) file_get_contents(self::RESPONSE_CONTENT),
+            (new Filesystem())->readFile(self::RESPONSE_CONTENT),
             self::ENDPOINT,
             [],
             $this->buildSerializer(),

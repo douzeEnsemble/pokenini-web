@@ -17,6 +17,7 @@
         "symfony/console": "8.0.*",
         "symfony/dotenv": "8.0.*",
         "symfony/expression-language": "8.0.*",
+        "symfony/filesystem": "8.0.*",
         "symfony/flex": "^2.10.0",
         "symfony/framework-bundle": "8.0.*",
         "symfony/http-client": "8.0.*",

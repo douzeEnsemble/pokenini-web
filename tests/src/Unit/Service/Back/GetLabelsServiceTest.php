@@ -11,6 +11,7 @@ use App\Service\Back\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -27,7 +28,7 @@ final class GetLabelsServiceTest extends AbstractTestBackService
 
     public function testGet(): void
     {
-        $json = (string) file_get_contents(self::RESPONSE_CONTENT);
+        $json = (new Filesystem())->readFile(self::RESPONSE_CONTENT);
 
         $labels = $this->getStubLabels();
 
@@ -66,7 +67,7 @@ final class GetLabelsServiceTest extends AbstractTestBackService
 
     public function testWithoutLoggedUser(): void
     {
-        $json = (string) file_get_contents(self::RESPONSE_CONTENT);
+        $json = (new Filesystem())->readFile(self::RESPONSE_CONTENT);
 
         $labels = $this->getStubLabels();
 

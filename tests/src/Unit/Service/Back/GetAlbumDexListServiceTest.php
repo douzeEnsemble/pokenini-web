@@ -9,6 +9,7 @@ use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetAlbumDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -42,7 +43,7 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
         /** @var GetAlbumDexListService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
-            (string) file_get_contents('/app/tests/resources/unit/service/back/dex.json'),
+            (new Filesystem())->readFile('/app/tests/resources/unit/service/back/dex.json'),
             'album/dex',
         );
 
@@ -77,7 +78,7 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
         /** @var GetAlbumDexListService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
-            (string) file_get_contents('/app/tests/resources/unit/service/back/dex_123.json'),
+            (new Filesystem())->readFile('/app/tests/resources/unit/service/back/dex_123.json'),
             'album/dex',
             ['query' => ['trainer_id' => '123']],
         );
@@ -119,7 +120,7 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
         /** @var GetAlbumDexListService */
         return $this->getServiceWithLoggedUser(
             'GET',
-            (string) file_get_contents($filename),
+            (new Filesystem())->readFile($filename),
             $endpoint,
         );
     }

@@ -10,6 +10,7 @@ use App\Service\Back\AbstractBackService;
 use App\Service\Back\PostElectionVoteService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -84,7 +85,7 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
         /** @var PostElectionVoteService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'POST',
-            (string) file_get_contents($filename),
+            (new Filesystem())->readFile($filename),
             'election/demo/whatever',
             [
                 'body' => (string) json_encode([
@@ -131,7 +132,7 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
         /** @var PostElectionVoteService */
         return $this->getServiceWithLoggedUser(
             'POST',
-            (string) file_get_contents($filename),
+            (new Filesystem())->readFile($filename),
             "election/{$dexSlug}/{$electionSlug}",
             [
                 'body' => (string) json_encode([

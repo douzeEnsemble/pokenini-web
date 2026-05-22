@@ -11,6 +11,7 @@ use App\Service\Back\GetPokemonsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -72,7 +73,7 @@ final class GetPokemonsServiceTest extends AbstractTestBackService
     {
         $dir = '/app/tests/resources/unit/service/back';
         $filename = "{$dir}/pokemons_123__3.json";
-        $json = (string) file_get_contents($filename);
+        $json = (new Filesystem())->readFile($filename);
 
         $serializer = $this->createMock(SerializerInterface::class);
         $serializer
@@ -139,7 +140,7 @@ final class GetPokemonsServiceTest extends AbstractTestBackService
     ): GetPokemonsService {
         $dir = '/app/tests/resources/unit/service/back';
         $filename = "{$dir}/pokemons_{$dexSlug}_{$electionSlug}_{$count}{$filtersStr}.json";
-        $json = (string) file_get_contents($filename);
+        $json = (new Filesystem())->readFile($filename);
 
         $serializer = $this->createMock(SerializerInterface::class);
         $serializer

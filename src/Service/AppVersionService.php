@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
@@ -14,6 +15,7 @@ class AppVersionService
         private readonly string $projectDir,
         #[Autowire(service: 'cache.app_version')]
         private readonly CacheInterface $cache,
+        private readonly Filesystem $filesystem,
     ) {}
 
     public function getVersion(string $filename = 'version'): string
@@ -23,7 +25,7 @@ class AppVersionService
 
             $filePath = $this->projectDir.'/resources/metadata/'.$filename;
 
-            return is_file($filePath) ? (string) file_get_contents($filePath) : '0.0.toto';
+            return $this->filesystem->exists($filePath) ? $this->filesystem->readFile($filePath) : '0.0.toto';
         });
     }
 }

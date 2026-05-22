@@ -7,6 +7,7 @@ namespace App\Tests\Integration\ResponseObject\Election;
 use App\ResponseObject\Election\TopPokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -148,7 +149,7 @@ final class TopPokemonTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = self::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/moco/Back/responses/election/election_mega__top_5.json');
+        $json = (new Filesystem())->readFile('/app/tests/resources/moco/Back/responses/election/election_mega__top_5.json');
 
         /** @var TopPokemon[] $objects */
         $objects = $serializer->deserialize($json, TopPokemon::class.'[]', 'json');

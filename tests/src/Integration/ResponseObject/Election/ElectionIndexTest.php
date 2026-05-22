@@ -10,6 +10,7 @@ use App\ResponseObject\Election\ElectionIndex;
 use App\ResponseObject\Election\TopPokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -25,7 +26,7 @@ final class ElectionIndexTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = self::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/integration/back/election_index.json');
+        $json = (new Filesystem())->readFile('/app/tests/resources/integration/back/election_index.json');
 
         $object = $serializer->deserialize($json, ElectionIndex::class, 'json');
 

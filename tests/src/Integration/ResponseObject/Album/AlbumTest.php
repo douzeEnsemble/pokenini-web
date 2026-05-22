@@ -9,6 +9,7 @@ use App\ResponseObject\Album\Dex;
 use App\ResponseObject\Common\Pokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -24,7 +25,7 @@ final class AlbumTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = self::getContainer()->get(SerializerInterface::class);
 
-        $json = (string) file_get_contents('/app/tests/resources/unit/service/back/album_lite.json');
+        $json = (new Filesystem())->readFile('/app/tests/resources/unit/service/back/album_lite.json');
 
         $object = $serializer->deserialize($json, Album::class, 'json');
 

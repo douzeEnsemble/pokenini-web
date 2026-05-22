@@ -8,6 +8,7 @@ use App\Service\AppVersionService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
@@ -19,14 +20,14 @@ final class AppVersionServiceTest extends TestCase
 {
     public function testGetVersionReturnsFileContent(): void
     {
-        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter());
+        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
 
         $this->assertSame('1.2.12', $service->getVersion());
     }
 
     public function testGetVersionReturnsFallbackForMissingFile(): void
     {
-        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter());
+        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
 
         $this->assertSame('0.0.toto', $service->getVersion('non_existent_file'));
     }
@@ -37,7 +38,7 @@ final class AppVersionServiceTest extends TestCase
         mkdir($tmpDir.'/resources/metadata', 0o755, true);
         file_put_contents($tmpDir.'/resources/metadata/version', '1.0.0');
 
-        $service = new AppVersionService($tmpDir, new ArrayAdapter());
+        $service = new AppVersionService($tmpDir, new ArrayAdapter(), new Filesystem());
 
         $this->assertSame('1.0.0', $service->getVersion());
 
@@ -58,7 +59,7 @@ final class AppVersionServiceTest extends TestCase
         file_put_contents($tmpDir.'/resources/metadata/version', '1.0.0');
         file_put_contents($tmpDir.'/resources/metadata/changelog', '2024-01-01');
 
-        $service = new AppVersionService($tmpDir, new ArrayAdapter());
+        $service = new AppVersionService($tmpDir, new ArrayAdapter(), new Filesystem());
 
         $this->assertSame('1.0.0', $service->getVersion('version'));
         $this->assertSame('2024-01-01', $service->getVersion('changelog'));
@@ -80,7 +81,7 @@ final class AppVersionServiceTest extends TestCase
             ->willReturn('1.0.0')
         ;
 
-        $service = new AppVersionService('/tmp', $cache);
+        $service = new AppVersionService('/tmp', $cache, new Filesystem());
 
         $this->assertSame('1.0.0', $service->getVersion());
     }
@@ -95,7 +96,7 @@ final class AppVersionServiceTest extends TestCase
             ->willReturn('2024-01-01')
         ;
 
-        $service = new AppVersionService('/tmp', $cache);
+        $service = new AppVersionService('/tmp', $cache, new Filesystem());
 
         $this->assertSame('2024-01-01', $service->getVersion('changelog'));
     }
@@ -115,7 +116,7 @@ final class AppVersionServiceTest extends TestCase
             })
         ;
 
-        $service = new AppVersionService(dirname(__DIR__, 4), $cache);
+        $service = new AppVersionService(dirname(__DIR__, 4), $cache, new Filesystem());
 
         $this->assertSame('1.2.12', $service->getVersion());
     }
