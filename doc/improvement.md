@@ -231,13 +231,15 @@ Répéter pour chaque outil.
 
 ---
 
-### 18. Deux configurations Psalm sans commentaire explicatif
+### 18. ✅ Deux configurations Psalm sans commentaire explicatif
 
 **Problème** : le projet maintient `psalm.xml` et `psalm-src-only.xml` sans documentation sur leur différence. La commande `make psalm` les exécute tous deux.
 
 **Correction** : ajouter un commentaire en tête de chaque fichier XML expliquant la différence (ex : taint analysis complète vs analyse de src sans tests).
 
 **Fichiers** : `psalm.xml`, `psalm-src-only.xml`, `Makefile:243-245`
+
+**Traité** : commentaires XML ajoutés aux deux fichiers de configuration Psalm expliquant la différence (complet vs src-only). Messages informatifs ajoutés au Makefile pour clarifier quelle configuration s'exécute à quel moment.
 
 ---
 
