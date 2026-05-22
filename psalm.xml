@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+    Complete Psalm configuration: analyzes both src/ and tests/ with full taint analysis.
+    Used by CI/CD and `make psalm` for comprehensive static analysis across the entire codebase.
+    See psalm-src-only.xml for a faster, src-only variant used for local development.
+-->
 <psalm
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"

@@ -239,10 +239,12 @@ phpmd: tools/phpmd/vendor/bin/phpmd
 	@$(PHP) tools/phpmd/vendor/bin/phpmd src,tests text phpmd.ruleset.xml
 
 .PHONY: psalm
-psalm: ## Execute psalm
+psalm: ## Execute psalm (both full + src-only configs)
 psalm: tools/psalm/vendor/bin/psalm
 	@$(PHP_CONT) rm -Rf var/cache/psalm
+	@echo "Psalm: running complete analysis (src + tests)..."
 	@$(PHP) tools/psalm/vendor/bin/psalm -c psalm.xml --no-diff --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions
+	@echo "Psalm: running src-only analysis (faster, relaxed rules)..."
 	@$(PHP) tools/psalm/vendor/bin/psalm -c psalm-src-only.xml --no-diff --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions
 
 .PHONY: psalm-fix

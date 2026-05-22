@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+    Psalm configuration for src/ only: analyzes only src/ directory without tests.
+    Faster than psalm.xml (no test deserialization overhead) with relaxed unused-code rules (PossiblyUnusedProperty, UnusedClass).
+    Useful for quick local feedback during development. For CI/CD and comprehensive analysis, use psalm.xml.
+-->
 <psalm
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
