@@ -259,10 +259,12 @@ args:
 
 ---
 
-### 20. Pas de Makefile target pour lancer un test de mutation sur un seul fichier
+### 20. ✅ Pas de Makefile target pour lancer un test de mutation sur un seul fichier
 
 **Problème** : `make measures` lance Infection sur tout `src/`. Il n'existe pas de commande rapide pour cibler un seul fichier ou classe lors du développement, ce qui ralentit le cycle TDD/mutation.
 
 **Correction** : ajouter une target `make infection-file f=src/...` qui passe `--filter=$f` à Infection.
 
 **Fichier** : `Makefile`
+
+⚠️ **Note** : Cette approche Makefile n'est pas vraiment utile en pratique — préférence personnelle: exécuter directement dans le container via `make bash` + commande shell pour plus de flexibilité et contrôle.
