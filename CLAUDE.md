@@ -135,7 +135,7 @@ Tests in group `api-mocked-testing` depend on these. Never mock the HTTP client 
 
 ### Tools (separate Composer installs in `tools/`)
 
-PHPStan, Psalm, PHP CS Fixer, PHPMD, Deptrac, Infection, PHPInsights, jsonlint, cachetool. Each has its own `vendor/` under `tools/<name>/`. Run via `make <toolname>` or directly via `docker compose exec php php tools/<name>/vendor/bin/<name>`.
+PHPStan, Psalm, PHP CS Fixer, PHPMD, Deptrac, Infection, jsonlint, cachetool. Each has its own `vendor/` under `tools/<name>/`. Run via `make <toolname>` or directly via `docker compose exec php php tools/<name>/vendor/bin/<name>`.
 
 **Psalm** runs twice: once for taint analysis (`--taint-analysis`), once for standard analysis (baselines configured separately).
 

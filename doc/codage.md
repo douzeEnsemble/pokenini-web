@@ -18,7 +18,6 @@ Outils qualité actifs :
 | Deptrac | ^4.6.0 | `make deptrac` |
 | Infection | ^0.32.7 (100 % MSI) | `make infection` |
 | PHPUnit | ^13.1.8 | `make tests` |
-| PHPInsights | ^2.14.2 | `make phpinsights` |
 
 ---
 

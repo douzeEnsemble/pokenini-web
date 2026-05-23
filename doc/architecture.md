@@ -55,7 +55,6 @@ pokenini-web/
 │   ├── infection/
 │   ├── jsonlint/
 │   ├── php-cs-fixer/
-│   ├── phpinsights/
 │   ├── phpmd/
 │   ├── phpstan/
 │   └── psalm/

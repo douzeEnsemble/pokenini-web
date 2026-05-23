@@ -46,7 +46,6 @@
 | phpmd        | `phpmd/phpmd`               | `^2.15`            | OK                                                                                                  |
 | infection    | `infection/infection`       | `^0.32.7`          | OK — récent                                                                                         |
 | deptrac      | `deptrac/deptrac`           | `^4.6.0`           | OK                                                                                                  |
-| phpinsights  | `nunomaduro/phpinsights`    | `^2.14.2`          | OK                                                                                                  |
 | jsonlint     | `seld/jsonlint`             | `^1.11`            | OK                                                                                                  |
 
 **Note Psalm** : la version `6.16.1` est épinglée sans `^`. Si Psalm 6.17+ est sorti, mettre à jour manuellement. Envisager de dépingler vers `^6.16` pour bénéficier des correctifs de patch automatiquement.
