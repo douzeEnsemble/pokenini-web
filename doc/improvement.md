@@ -201,7 +201,7 @@ Répéter pour chaque outil.
 
 **Fichier** : `.github/dependabot.yml`
 
-**Traité** : sans modification — `.github/dependabot.yml` couvre déjà tous les sous-répertoires `tools/` ayant un `composer.json` (`deptrac`, `infection`, `jsonlint`, `php-cs-fixer`, `phpinsights`, `phpmd`, `phpstan`, `psalm`). Les autres répertoires (`cachetool`, `coverage`, `opcache-reset`, etc.) n'ont pas de `composer.json` et ne nécessitent aucune entrée Dependabot.
+**Traité** : sans modification — `.github/dependabot.yml` couvre déjà tous les sous-répertoires `tools/` ayant un `composer.json` (`deptrac`, `infection`, `jsonlint`, `php-cs-fixer`, `phpmd`, `phpstan`, `psalm`). Les autres répertoires (`cachetool`, `coverage`, `opcache-reset`, etc.) n'ont pas de `composer.json` et ne nécessitent aucune entrée Dependabot.
 
 ---
 
