@@ -243,7 +243,7 @@ Répéter pour chaque outil.
 
 ---
 
-### 19. Version Moco hardcodée dans `Makefile` et `docker-compose.yaml`
+### 19. ✅ Version Moco hardcodée dans `Makefile` et `docker-compose.yaml`
 
 **Problème** : la version Moco `1.5.0` est dupliquée dans `docker-compose.yaml:8` (deux services) et dans `Makefile:13`. Si elle est mise à jour, il faut modifier les 3 occurrences.
 
@@ -254,6 +254,8 @@ args:
 ```
 
 **Fichiers** : `docker-compose.yaml:8,14`, `Makefile:13`
+
+**Traité** : `MOCO_VERSION=1.6.1` ajouté dans `.env`. `docker-compose.yaml` utilise `${MOCO_VERSION:-1.5.0}` pour les deux services `moco.back` et `moco.matomo.gbl` (lignes 8 et 17). La version peut désormais être surchargeante via la variable d'environnement `MOCO_VERSION`.
 
 ---
 
