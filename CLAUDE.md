@@ -124,9 +124,17 @@ Integration and browser tests run against a **Moco** mock server (`moco.back` co
 | `moco.back`       | Moco mock for `pokenini-api`               |
 | `moco.matomo.gbl` | Moco mock for Matomo analytics (port 8888) |
 
+### Key Implementation Patterns
+
+**App Version Caching**: Application version is cached at bootstrap to avoid repeated reads. Handled by the caching layer and exposed via configuration.
+
+**Filesystem Operations**: Uses `Symfony\Component\Filesystem\Filesystem` for all file operations (avoid direct PHP functions like `mkdir`, `file_put_contents`).
+
 ### Tools (separate Composer installs in `tools/`)
 
 PHPStan, Psalm, PHP CS Fixer, PHPMD, Deptrac, Infection, PHPInsights, jsonlint, cachetool. Each has its own `vendor/` under `tools/<name>/`. Run via `make <toolname>` or directly via `docker compose exec php php tools/<name>/vendor/bin/<name>`.
+
+**Psalm** runs twice: once for taint analysis (`--taint-analysis`), once for standard analysis (baselines configured separately).
 
 ### Test structure
 
