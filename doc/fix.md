@@ -15,6 +15,7 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
 - [x] [haute] `catch (\Exception $e)` trop large dans `AdminActionController`
     Fichier : `src/Controller/AdminActionController.php:89`
     Suggestion : remplacer par `catch (HttpExceptionInterface|TransportExceptionInterface|\InvalidArgumentException $e)` pour éviter de masquer des erreurs de programmation (TypeError, LogicException…). Actuellement, toute exception produit silencieusement un AdminAction d'échec sans remonter l'erreur.
+    **Traité** : `catch (HttpExceptionInterface|TransportExceptionInterface $e)` en `AdminActionController.php:110`. `\InvalidArgumentException` volontairement non incluse — `AdminActionService::execute()` ne la lève pas (chemin : `requestContent()` → `request()` → HttpClient, `json_decode` silencieux, constructeur `AdminAction` sans validation). L'ajouter aurait été du code mort. Les erreurs de programmation (TypeError, LogicException…) remontent désormais correctement.
 
 - [x] [haute] `phpunit.xml.dist` référence PHPUnit 11.3 mais le schéma XSD pointe vers 11.4
     Fichier : `phpunit.xml.dist:4`
