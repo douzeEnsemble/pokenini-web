@@ -84,7 +84,7 @@ grep -rn "TODO\|FIXME\|HACK\|XXX\|@deprecated\|@todo" src/ tests/ --include="*.p
 - [x] [moyenne] `dependabot.yml` ne couvre que le `composer` racine, pas les `tools/*/composer.json`
     Fichier : `.github/dependabot.yml`
     Suggestion : ajouter des entrées pour chaque sous-répertoire `tools/` afin que Dependabot surveille aussi `phpstan`, `psalm`, `infection`, etc.
-    **Traité** : entrées ajoutées pour les 8 sous-répertoires disposant d'un `composer.json` : `deptrac`, `infection`, `jsonlint`, `php-cs-fixer`, `phpinsights`, `phpmd`, `phpstan`, `psalm`.
+    **Traité** : entrées ajoutées pour les 8 sous-répertoires disposant d'un `composer.json` : `deptrac`, `infection`, `jsonlint`, `php-cs-fixer`, `phpmd`, `phpstan`, `psalm`.
 
 - [x] [moyenne] Règle de routing `access_control` utilise `^/(en|fr)/istration`
     Fichier : `config/packages/security.yaml:20`
