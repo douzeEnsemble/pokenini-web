@@ -27,11 +27,6 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "composer"
-    directory: "/tools/phpinsights"
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "composer"
     directory: "/tools/phpmd"
     schedule:
       interval: "weekly"
