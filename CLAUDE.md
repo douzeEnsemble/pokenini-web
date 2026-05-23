@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-**Pokénini Web** — Symfony 8.0 frontend (PHP 8.4) for a Pokémon living/alternate/gender extended dex tracker. It communicates with a separate backend API (`pokenini-api`) over HTTP. No database — all data comes from that API.
+**Pokénini Web** — Symfony 8.0 frontend (PHP ≥ 8.5) for a Pokémon living/alternate/gender extended dex tracker. It communicates with a separate backend API (`pokenini-api`) over HTTP. No database — all data comes from that API.
 
 ## Commands
 
@@ -20,10 +20,9 @@ make composer c="require foo/bar"
 ### Tests
 
 ```bash
-make tests          # all tests (unit + integration + browser)
+make tests          # all tests (unit + integration)
 make tests-unit     # Unit only
 make tests-integration  # Integration only
-make tb             # Browser (Panther) tests
 make tests-api-mocked   # only tests in group api-mocked-testing
 ```
 
@@ -73,7 +72,7 @@ Browser → Nginx → Symfony (PHP-FPM)
                 ↓         ↓
             Service    AlbumFilters (query param parsing)
                 ↓
-          Service\Back (HTTP client to pokenini-api)
+          Service\Api (HTTP client to pokenini-api)
                 ↓
           ResponseObject (deserialized from JSON)
 ```
@@ -84,7 +83,7 @@ Browser → Nginx → Symfony (PHP-FPM)
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Controller/`     | One controller per feature page. Thin: delegates to Services, renders Twig.                                                                                                                                                  |
 | `Service/`        | Orchestration layer. Composes Back services, handles null/exception from HTTP.                                                                                                                                               |
-| `Service/Back/`   | All HTTP calls to the backend API. Extend `AbstractBackService` which handles auth headers (Bearer token + X-Provider), cafile, and logging.                                                                                 |
+| `Service/Api/`    | All HTTP calls to the backend API. Extend `AbstractApiService` which handles auth headers (Bearer token + X-Provider), cafile, and logging.                                                                                  |
 | `ResponseObject/` | Plain PHP objects populated by the Symfony Serializer from API JSON. No logic.                                                                                                                                               |
 | `DTO/`            | Input/output data containers between Controller and Service, not tied to API shape.                                                                                                                                          |
 | `AlbumFilters/`   | `FromRequest` parses query params into an `AlbumFilterBag` value object. `AlbumFilterBag` provides `toApiParams()` (maps short keys to long API keys, normalises to `string[][]`) and `toRouteParams()` (returns the mixed array for Twig/redirectToRoute). |
@@ -92,7 +91,7 @@ Browser → Nginx → Symfony (PHP-FPM)
 | `Twig/`           | Twig extensions for app-specific helpers.                                                                                                                                                                                    |
 | `Validator/`      | Custom Symfony constraints (e.g. `CatchStates`).                                                                                                                                                                             |
 
-Layer dependencies are enforced by **Deptrac** (`deptrac.yaml`). Controllers must not reach into `Service\Back` directly.
+Layer dependencies are enforced by **Deptrac** (`deptrac.yaml`). Controllers must not reach into `Service\Api` directly.
 
 ### Routing
 
@@ -112,17 +111,21 @@ All routes are prefixed `/{_locale}` (`en` or `fr`). Routes are defined via PHP 
 
 ### HTTP mock server (Moco)
 
-Integration and browser tests run against a **Moco** mock server (`moco.back` container) that replays fixtures from `tests/resources/moco/Back/`. Tests in group `api-mocked-testing` depend on it. Never mock the HTTP client in integration tests — use Moco fixtures.
+Integration tests run against **Moco** mock servers that replay JSON fixtures:
+- `moco.api` container → fixtures in `tests/resources/moco/Api/` (pokenini-api responses)
+- `moco.oauth2` container → fixtures in `tests/resources/moco/OAuth/` (OAuth2 provider responses)
+
+Tests in group `api-mocked-testing` depend on these. Never mock the HTTP client in integration tests — use Moco fixtures.
 
 ### Infrastructure
 
-| Service           | Purpose                                    |
-| ----------------- | ------------------------------------------ |
-| `php`             | PHP 8.4 FPM (dev image)                    |
-| `web`             | Nginx, port 80/443                         |
-| `redis`           | APCu-compatible cache adapter              |
-| `moco.back`       | Moco mock for `pokenini-api`               |
-| `moco.matomo.gbl` | Moco mock for Matomo analytics (port 8888) |
+| Service       | Purpose                              |
+| ------------- | ------------------------------------ |
+| `php`         | PHP 8.5 FPM (dev image)              |
+| `web`         | Nginx                                |
+| `redis`       | Cache backend (Symfony Cache + tags) |
+| `moco.api`    | Moco mock for `pokenini-api`         |
+| `moco.oauth2` | Moco mock for OAuth2 providers       |
 
 ### Key Implementation Patterns
 
@@ -142,12 +145,11 @@ PHPStan, Psalm, PHP CS Fixer, PHPMD, Deptrac, Infection, PHPInsights, jsonlint, 
 tests/src/
     Unit/          # Pure PHPUnit mocks, no HTTP, no container
     Integration/   # WebTestCase with Moco HTTP mocks, group api-mocked-testing
-    Browser/       # Symfony Panther (real browser), group api-mocked-testing
-    Common/Traits/ # Shared assertion helpers (TestNavTrait, ResponseObjectTrait)
-tests/Utils/     # GetUserToken helper for creating fake authenticated users
+    Common/Traits/ # Shared PHPUnit helpers (WithConsecutive)
+tests/Utils/     # Shared test utilities
 tests/resources/
-    moco/Back/     # Moco JSON fixture files for backend API
-    moco/Matomo/   # Moco JSON fixture files for Matomo
+    moco/Api/      # Moco JSON fixture files for pokenini-api
+    moco/OAuth/    # Moco JSON fixture files for OAuth2 providers
 ```
 
 Every test class is `final`, `@internal`, uses `#[CoversClass(...)]`, and extends either `TestCase` (unit) or `WebTestCase` (integration).
