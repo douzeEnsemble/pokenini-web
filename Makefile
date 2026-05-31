@@ -27,20 +27,29 @@ TMPDIR=$$(mktemp -d); \
 SPINNER=('⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏'); \
 printf "Running $$N $$LABEL sequentially…\n\n"; \
 for tool in $$TOOLS; do \
-	printf "  \033[33m⏳\033[0m  %s\n" "$$tool"; \
+	printf "  \033[2m○\033[0m  %s\n" "$$tool"; \
+done; \
+for tool in $$TOOLS; do \
+	idx=0; \
+	for t in $$TOOLS; do \
+		[ "$$t" = "$$tool" ] && break; \
+		idx=$$((idx + 1)); \
+	done; \
+	lines_up=$$((N - idx)); \
 	( $(MAKE) --no-print-directory $$tool > "$$TMPDIR/$$tool.log" 2>&1; echo $$? > "$$TMPDIR/$$tool.exit" ) & \
 	spin_idx=0; \
 	while [ ! -f "$$TMPDIR/$$tool.exit" ]; do \
 		spin_char=$${SPINNER[$$((spin_idx % 10))]}; \
-		printf "\033[1A\r\033[2K  \033[33m%s\033[0m  %s\n" "$$spin_char" "$$tool"; \
+		printf "\033[%dA\r\033[2K  \033[33m%s\033[0m  %s\033[%dB\r" "$$lines_up" "$$spin_char" "$$tool" "$$lines_up"; \
 		spin_idx=$$((spin_idx + 1)); \
 		sleep 0.1; \
 	done; \
 	exit_code=$$(cat "$$TMPDIR/$$tool.exit"); \
 	if [ "$$exit_code" -eq 0 ]; then \
-		printf "\033[1A\r\033[2K  \033[32m✔\033[0m  %s\n" "$$tool"; \
+		printf "\033[%dA\r\033[2K  \033[32m✔\033[0m  %s\033[%dB\r" "$$lines_up" "$$tool" "$$lines_up"; \
 	else \
-		printf "\033[1A\r\033[2K  \033[31m✘\033[0m  %s\n" "$$tool"; \
+		printf "\033[%dA\r\033[2K  \033[31m✘\033[0m  %s\033[%dB\r" "$$lines_up" "$$tool" "$$lines_up"; \
+		printf "\n"; \
 		cat "$$TMPDIR/$$tool.log"; \
 		rm -rf "$$TMPDIR"; \
 		exit 1; \
@@ -367,8 +376,7 @@ w3c:
 .PHONY: measures
 measures: ## Execute all measures tools
 measures: clear-build
-	$(call sequential_runner,coverage-generate,coverage generation)
-	$(call parallel_runner,coverage-check infection,measures)
+	$(call sequential_runner,coverage-generate coverage-check infection,measures)
 
 .PHONY: m
 m: ## Alias of measures
