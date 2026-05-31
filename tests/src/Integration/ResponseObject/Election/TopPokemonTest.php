@@ -149,7 +149,7 @@ final class TopPokemonTest extends KernelTestCase
         /** @var SerializerInterface $serializer */
         $serializer = self::getContainer()->get(SerializerInterface::class);
 
-        $json = (new Filesystem())->readFile('/app/tests/resources/moco/Back/responses/election/election_mega__top_5.json');
+        $json = (new Filesystem())->readFile('/app/tests/resources/integration/back/election_mega_top_5.json');
 
         /** @var TopPokemon[] $objects */
         $objects = $serializer->deserialize($json, TopPokemon::class.'[]', 'json');

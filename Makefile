@@ -452,8 +452,8 @@ security-check:
 .PHONY: check-moco-refs
 check-moco-refs: ## Check moco file references integrity (no Docker needed)
 check-moco-refs:
-	@tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/Api/moco.json tests/resources/moco/Api
-	@tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/OAuth/moco.json tests/resources/moco/OAuth
+	@tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/Back/moco.json tests/resources/moco/Back
+	@tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/Matomo/moco.json tests/resources/moco/Matomo
 
 ## —— Cleaning 🧽 ———————————————————————————————————————————————————————————————
 .PHONY: clean-unused-files
