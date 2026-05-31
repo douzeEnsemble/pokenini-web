@@ -95,6 +95,10 @@ RUN ln -sf /usr/bin/chromium-browser /usr/local/bin/chrome \
 	&& ln -sf /usr/bin/chromedriver /usr/local/bin/chromedriver
 ## > Install chromedriver
 
+RUN addgroup -g 1000 app && adduser -u 1000 -G app -s /bin/sh -D app
+
+USER app
+
 FROM php_base AS php_prod
 
 ENV APP_ENV=prod
