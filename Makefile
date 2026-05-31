@@ -9,18 +9,110 @@ PHP_CONT = $(DOCKER_COMP) exec php
 PHP      = $(PHP_CONT) php
 COMPOSER = $(PHP_CONT) composer
 SYMFONY  = $(PHP) bin/console
-PHPUNIT  = $(PHP) vendor/bin/phpunit
+PHPUNIT  = $(PHP) vendor/bin/phpunit --display-all
 DOCKERCOMPOSE_LINTER_CMD = docker run -t --rm -v ${PWD}:/app zavoloklom/dclint:3.1.0-alpine
 DOTENV_LINTER_CMD = docker run -t --rm -v ${PWD}:/app -w /app dotenvlinter/dotenv-linter:4.0.0
+HADOLINT_CMD = docker run -t --rm -v ${PWD}:/app hadolint/hadolint:v2.14.0-alpine hadolint
 EDITORCONFIG_LINTER_CMD = docker run --rm --volume=${PWD}:/check mstruebing/editorconfig-checker:v3.6.0
 
 # Misc
+SHELL := /bin/bash
 .DEFAULT_GOAL = help
 
+define sequential_runner
+@TOOLS="$(1)"; \
+LABEL="$(2)"; \
+N=0; for t in $$TOOLS; do N=$$((N+1)); done; \
+TMPDIR=$$(mktemp -d); \
+SPINNER=('⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏'); \
+printf "Running $$N $$LABEL sequentially…\n\n"; \
+for tool in $$TOOLS; do \
+	printf "  \033[33m⏳\033[0m  %s\n" "$$tool"; \
+	( $(MAKE) --no-print-directory $$tool > "$$TMPDIR/$$tool.log" 2>&1; echo $$? > "$$TMPDIR/$$tool.exit" ) & \
+	spin_idx=0; \
+	while [ ! -f "$$TMPDIR/$$tool.exit" ]; do \
+		spin_char=$${SPINNER[$$((spin_idx % 10))]}; \
+		printf "\033[1A\r\033[2K  \033[33m%s\033[0m  %s\n" "$$spin_char" "$$tool"; \
+		spin_idx=$$((spin_idx + 1)); \
+		sleep 0.1; \
+	done; \
+	exit_code=$$(cat "$$TMPDIR/$$tool.exit"); \
+	if [ "$$exit_code" -eq 0 ]; then \
+		printf "\033[1A\r\033[2K  \033[32m✔\033[0m  %s\n" "$$tool"; \
+	else \
+		printf "\033[1A\r\033[2K  \033[31m✘\033[0m  %s\n" "$$tool"; \
+		cat "$$TMPDIR/$$tool.log"; \
+		rm -rf "$$TMPDIR"; \
+		exit 1; \
+	fi; \
+done; \
+printf "\n"; \
+rm -rf "$$TMPDIR"
+endef
+
+define parallel_runner
+@TOOLS="$(1)"; \
+LABEL="$(2)"; \
+N=0; for t in $$TOOLS; do N=$$((N+1)); done; \
+TMPDIR=$$(mktemp -d); \
+SPINNER=('⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏'); \
+printf "Launching $$N $$LABEL in parallel…\n\n"; \
+for tool in $$TOOLS; do \
+	printf "  \033[33m⏳\033[0m  %s\n" "$$tool"; \
+done; \
+for tool in $$TOOLS; do \
+	( $(MAKE) --no-print-directory $$tool > "$$TMPDIR/$$tool.log" 2>&1; echo $$? > "$$TMPDIR/$$tool.exit" ) & \
+done; \
+PENDING="$$TOOLS"; \
+FAILED=0; \
+spin_idx=0; \
+while [ -n "$$PENDING" ]; do \
+	spin_char=$${SPINNER[$$((spin_idx % 10))]}; \
+	NEW_PENDING=""; \
+	for tool in $$PENDING; do \
+		idx=0; \
+		for t in $$TOOLS; do \
+			[ "$$t" = "$$tool" ] && break; \
+			idx=$$((idx + 1)); \
+		done; \
+		lines_up=$$((N - idx)); \
+		if [ -f "$$TMPDIR/$$tool.exit" ]; then \
+			exit_code=$$(cat "$$TMPDIR/$$tool.exit"); \
+			if [ "$$exit_code" -eq 0 ]; then \
+				printf "\033[%dA\r\033[2K  \033[32m✔\033[0m  %s\033[%dB\r" "$$lines_up" "$$tool" "$$lines_up"; \
+			else \
+				printf "\033[%dA\r\033[2K  \033[31m✘\033[0m  %s\033[%dB\r" "$$lines_up" "$$tool" "$$lines_up"; \
+				FAILED=1; \
+			fi; \
+		else \
+			printf "\033[%dA\r\033[2K  \033[33m%s\033[0m  %s\033[%dB\r" "$$lines_up" "$$spin_char" "$$tool" "$$lines_up"; \
+			NEW_PENDING="$$NEW_PENDING $$tool"; \
+		fi; \
+	done; \
+	PENDING="$$NEW_PENDING"; \
+	spin_idx=$$((spin_idx + 1)); \
+	[ -n "$$PENDING" ] && sleep 0.1; \
+done; \
+printf "\n"; \
+if [ $$FAILED -eq 0 ]; then \
+	printf "\033[32mAll $$LABEL passed.\033[0m\n"; \
+else \
+	for tool in $$TOOLS; do \
+		exit_code=$$(cat "$$TMPDIR/$$tool.exit"); \
+		if [ "$$exit_code" -ne 0 ]; then \
+			printf "\n\033[31m── %s ──────────────────────────────────────────────────\033[0m\n" "$$tool"; \
+			cat "$$TMPDIR/$$tool.log"; \
+		fi; \
+	done; \
+fi; \
+rm -rf "$$TMPDIR"; \
+[ $$FAILED -eq 0 ]
+endef
+
 ## —— 🎵 🐳 The Symfony-docker Makefile 🐳 🎵 ——————————————————————————————————
+.PHONY: help
 help: ## Outputs this help screen
 	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
-.PHONY: help
 
 ## —— Directories and files 📁 ————————————————————————————————————————————————————————————————
 .env: ## Create .env files (not phony to check the file)
@@ -120,11 +212,21 @@ cc:
 	@$(SYMFONY) cache:pool:clear cache.app_version --env=dev
 	@$(SYMFONY) cache:pool:clear cache.app_version --env=test
 
+## —— CI 🚀 ———————————————————————————————————————————————————————————————————
+.PHONY: all
+all: ## Run all checks (infra-quality, code-quality, tests, measures, security)
+all:
+	$(call parallel_runner,infra-quality code-quality tests measures security,test suites)
+
+.PHONY: a
+a: ## Alias of all
+a: all
+
 ## —— Tests 🧪 ———————————————————————————————————————————————————————————————
 .PHONY: tests
 tests: ## Execute all tests
 tests:
-	$(PHPUNIT) tests/src --display-all
+	$(call parallel_runner,tests-unit tests-integration tests-browser,test suites)
 
 .PHONY: t
 t: ## Alias of tests
@@ -134,13 +236,13 @@ t: tests
 tests-unit: ## Execute unit tests
 	$(PHPUNIT) tests/src/Unit
 
-.PHONY: tests-integration
-tests-integration: ## Execute integration tests
-	$(PHPUNIT) tests/src/Integration
-
 .PHONY: tu
 tu: ## Alias of tests-unit
 tu: tests-unit
+
+.PHONY: tests-integration
+tests-integration: ## Execute integration tests
+	$(PHPUNIT) tests/src/Integration
 
 .PHONY: ti
 ti: ## Alias of tests-integration
@@ -153,19 +255,11 @@ tests-browser: ## Execute browser tests for Web module
 tb: tests-browser
 	$(PHPUNIT) tests/src/Browser
 
-.PHONY: tests-api-mocked
-tests-api-mocked: ## Execute tests on the group api-mocked-testing only
-	$(PHPUNIT) tests/src/Integration --group=api-mocked-testing
-	$(PHPUNIT) tests/src/Browser --group=api-mocked-testing
-
-## —— Quality 👌 ———————————————————————————————————————————————————————————————
-.PHONY: quality
-quality: ## Execute all quality analyses
-quality: infra-quality code-quality
-
+## —— Infra Quality 🏗️ ———————————————————————————————————————————————————————————————
 .PHONY: infra-quality
 infra-quality: ## Execute all infra quality analyses
-infra-quality: docker-compose-linter dockerfile-linter dotenv-linter
+infra-quality:
+	$(call parallel_runner,docker-compose-linter dockerfile-linter dotenv-linter check-moco-refs,infra-quality checks)
 
 .PHONY: iq
 iq: ## Alias of infra-quality
@@ -182,20 +276,22 @@ docker-compose-fixer: ## Run Docker Compose fixer
 .PHONY: dockerfile-linter
 dockerfile-linter: ## Run Dockerfile linter
 	@find .docker -name 'Dockerfile' | while read -r dockerfile; do \
-		docker run -t --rm -v ${PWD}:/app hadolint/hadolint:2.12.0-alpine hadolint "/app/$$dockerfile"; \
+		$(HADOLINT_CMD) "/app/$$dockerfile"; \
 	done
 
 .PHONY: dotenv-linter
 dotenv-linter: ## Run DotEnv linter
 	$(DOTENV_LINTER_CMD) check . -r
 
-.PHONY: dotenv-linter
+.PHONY: dotenv-fixer
 dotenv-fixer: ## Run DotEnv fixer
 	$(DOTENV_LINTER_CMD) fix . -r --no-backup
 
+## —— Code Quality 🔍 ———————————————————————————————————————————————————————————————
 .PHONY: code-quality
 code-quality: ## Execute all code quality analyses
-code-quality: editorconfig-linter jsonlint validate-autoloader phpcsfixer phpmd psalm phpstan deptrac w3c
+code-quality:
+	$(call parallel_runner,editorconfig-linter jsonlint validate-autoloader phpcsfixer phpmd psalm phpstan deptrac w3c,code-quality checks)
 
 .PHONY: cq
 cq: ## Alias of code-quality
@@ -238,18 +334,18 @@ phpmd: tools/phpmd/vendor/bin/phpmd
 	@$(PHP) tools/phpmd/vendor/bin/phpmd src,tests text phpmd.ruleset.xml
 
 .PHONY: psalm
-psalm: ## Execute psalm (both full + src-only configs)
+psalm: ## Execute psalm
 psalm: tools/psalm/vendor/bin/psalm
 	@$(PHP_CONT) rm -Rf var/cache/psalm
-	@echo "Psalm: running complete analysis (src + tests)..."
-	@$(PHP) tools/psalm/vendor/bin/psalm -c psalm.xml --no-diff --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions
-	@echo "Psalm: running src-only analysis (faster, relaxed rules)..."
-	@$(PHP) tools/psalm/vendor/bin/psalm -c psalm-src-only.xml --no-diff --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions
+	$(call parallel_runner,psalm-xml psalm-src-xml,psalm analyses)
 
-.PHONY: psalm-fix
-psalm-fix: ## Execute psalm auto fixing
-psalm-fix: tools/psalm/vendor/bin/psalm
-	@$(PHP) tools/psalm/vendor/bin/psalm --alter --issues=UnnecessaryVarAnnotation,UnusedVariable,PossiblyUnusedMethod,MissingParamType
+.PHONY: psalm-xml
+psalm-xml: tools/psalm/vendor/bin/psalm
+	@$(PHP) tools/psalm/vendor/bin/psalm -c psalm.xml --no-diff --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions
+
+.PHONY: psalm-src-xml
+psalm-src-xml: tools/psalm/vendor/bin/psalm
+	@$(PHP) tools/psalm/vendor/bin/psalm -c psalm-src-only.xml --no-diff --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions
 
 .PHONY: phpstan
 phpstan: ## Execute phpstan analyse
@@ -270,7 +366,9 @@ w3c:
 ## —— Measures 📏 ———————————————————————————————————————————————————————————————
 .PHONY: measures
 measures: ## Execute all measures tools
-measures: coverage infection
+measures: clear-build
+	$(call sequential_runner,coverage-generate,coverage generation)
+	$(call parallel_runner,coverage-check infection,measures)
 
 .PHONY: m
 m: ## Alias of measures
@@ -278,7 +376,11 @@ m: measures
 
 .PHONY: clear-build
 clear-build: ## Clear build directory
-	rm -Rf build/coverage*
+	@rm -Rf build/coverage*
+
+.PHONY: coverage-generate
+coverage-generate: ## Generate PHPUnit coverage data (Xdebug)
+coverage-generate: build/coverage/coverage-xml
 
 build/coverage/coverage-xml: ## Generate coverage report
 	$(DOCKER_COMP) exec \
@@ -289,11 +391,15 @@ build/coverage/coverage-xml: ## Generate coverage report
 			--coverage-xml=build/coverage/coverage-xml \
 			--log-junit=build/coverage/junit.xml
 
-.PHONY: coverage
-coverage: ## Execute PHPUnit Coverage to check the score
-coverage: clear-build build/coverage/coverage-xml
+.PHONY: coverage-check
+coverage-check: ## Check PHPUnit coverage score (requires build/coverage/coverage-xml)
+coverage-check: build/coverage/coverage-xml
 	@$(PHP_CONT) php tools/coverage/coverage.php build/coverage/coverage.xml 100 true \
 	|| (echo "❌ Coverage check failed, generating HTML report..." && $(MAKE) coverage-html && exit 1)
+
+.PHONY: coverage
+coverage: ## Execute PHPUnit Coverage to check the score
+coverage: clear-build build/coverage/coverage-xml coverage-check
 
 .PHONY: coverage-html
 coverage-html: ## Execute PHPUnit Coverage in HTML
@@ -318,7 +424,8 @@ infection: build/coverage/coverage-xml tools/infection/vendor/bin/infection clea
 ## —— Security 🛡️ ———————————————————————————————————————————————————————————————
 .PHONY: security
 security: ## Execute all security commands
-security: composer-audit security-checker
+security:
+	$(call parallel_runner,composer-audit composer-audit-tools security-check,security checks)
 
 .PHONY: s
 s: ## Alias of security
@@ -329,23 +436,24 @@ composer-audit: ## Execute Composer Audit
 composer-audit: c=audit
 composer-audit: composer
 
-tools/php-security-checker:
-	mkdir tools/php-security-checker
+.PHONY: composer-audit-tools
+composer-audit-tools: ## Execute Composer Audit on quality tools
+composer-audit-tools:
+	@for tool in tools/deptrac tools/infection tools/jsonlint tools/php-cs-fixer tools/phpmd tools/phpstan tools/psalm; do \
+		echo "Auditing $$tool..."; \
+		$(COMPOSER) audit --working-dir=$$tool; \
+	done
 
-tools/php-security-checker/local-php-security-checker: ## Download the file if needed
-tools/php-security-checker/local-php-security-checker: tools/php-security-checker
-	wget https://github.com/fabpot/local-php-security-checker/releases/download/v2.1.3/local-php-security-checker_linux_amd64 -O tools/php-security-checker/local-php-security-checker
-	chmod a+x tools/php-security-checker/local-php-security-checker
+.PHONY: security-check
+security-check: ## Execute Symfony Security Checker
+security-check:
+	@$(PHP_CONT) symfony security:check
 
-.PHONY: security-checker
-security-checker: ## Execute Security Checker
-security-checker: tools/php-security-checker/local-php-security-checker
-	tools/php-security-checker/local-php-security-checker
-
-.PHONY: owasp-check
-owasp-check: ## Execute OWASP Dependency Check
-owasp-check:
-	@tools/owasp-check/dependency-check.sh ${NVD_API_KEY}
+.PHONY: check-moco-refs
+check-moco-refs: ## Check moco file references integrity (no Docker needed)
+check-moco-refs:
+	@tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/Api/moco.json tests/resources/moco/Api
+	@tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/OAuth/moco.json tests/resources/moco/OAuth
 
 ## —— Cleaning 🧽 ———————————————————————————————————————————————————————————————
 .PHONY: clean-unused-files
