@@ -22,6 +22,10 @@
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
+            <exclude>tests/src/Browser</exclude>
+        </testsuite>
+        <testsuite name="Browser Test Suite">
+            <directory>tests/src/Browser</directory>
         </testsuite>
     </testsuites>
     <extensions>

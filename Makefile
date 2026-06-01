@@ -259,10 +259,11 @@ ti: tests-integration
 
 .PHONY: tests-browser
 tests-browser: ## Execute browser tests for Web module
+	$(PHPUNIT) tests/src/Browser
 
 .PHONY: tb
+tb: ## Alias of tests-browser
 tb: tests-browser
-	$(PHPUNIT) tests/src/Browser
 
 ## —— Infra Quality 🏗️ ———————————————————————————————————————————————————————————————
 .PHONY: infra-quality
@@ -394,7 +395,7 @@ build/coverage/coverage-xml: ## Generate coverage report
 	$(DOCKER_COMP) exec \
 		-e XDEBUG_MODE=coverage -T php \
 		php vendor/bin/phpunit \
-			--exclude-group="browser-testing" \
+			--exclude-testsuite="Browser Test Suite" \
 			--coverage-clover=build/coverage/coverage.xml \
 			--coverage-xml=build/coverage/coverage-xml \
 			--log-junit=build/coverage/junit.xml
@@ -414,7 +415,7 @@ coverage-html: ## Execute PHPUnit Coverage in HTML
 	$(DOCKER_COMP) exec \
 		-e XDEBUG_MODE=coverage -T php \
 		php vendor/bin/phpunit \
-			--exclude-group="browser-testing" \
+			--exclude-testsuite="Browser Test Suite" \
 			--coverage-html=build/coverage/coverage-html
 
 .PHONY: clear-infection-cache
