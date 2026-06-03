@@ -34,6 +34,8 @@ services:
     depends_on:
       chrome:
         condition: service_healthy
+      firefox:
+        condition: service_healthy
 
   redis:
     image: redis:8.0-alpine
@@ -44,6 +46,16 @@ services:
 
   chrome:
     image: selenium/standalone-chromium:4
+    shm_size: '2g'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4444/status"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 15s
+
+  firefox:
+    image: selenium/standalone-firefox:4
     shm_size: '2g'
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4444/status"]
