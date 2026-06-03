@@ -257,9 +257,18 @@ tests-integration: ## Execute integration tests
 ti: ## Alias of tests-integration
 ti: tests-integration
 
+.PHONY: tests-browser-chrome
+tests-browser-chrome: ## Execute browser tests against Chrome
+	PANTHER_SELENIUM_HOST=http://chrome:4444/wd/hub PANTHER_BROWSER_NAME=chrome $(PHPUNIT) tests/src/Browser
+
+.PHONY: tests-browser-firefox
+tests-browser-firefox: ## Execute browser tests against Firefox
+	PANTHER_SELENIUM_HOST=http://firefox:4444/wd/hub PANTHER_BROWSER_NAME=firefox $(PHPUNIT) tests/src/Browser
+
 .PHONY: tests-browser
-tests-browser: ## Execute browser tests for Web module
-	$(PHPUNIT) tests/src/Browser
+tests-browser: ## Execute browser tests (Chrome + Firefox in parallel)
+tests-browser:
+	$(call parallel_runner,tests-browser-chrome tests-browser-firefox,browser test suites)
 
 .PHONY: tb
 tb: ## Alias of tests-browser
