@@ -29,8 +29,11 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $form = $client->getCrawler()->filter("#{$action}_{$item} form")->form();
         $client->submit($form);
 
+        $rawUri = getenv('PANTHER_EXTERNAL_BASE_URI');
+        $baseUri = rtrim(false !== $rawUri ? $rawUri : 'http://127.0.0.1:9080', '/');
+
         $this->assertSame(
-            "http://127.0.0.1:9080/fr/istration#{$action}_{$item}",
+            "{$baseUri}/fr/istration#{$action}_{$item}",
             $client->getCurrentURL()
         );
     }

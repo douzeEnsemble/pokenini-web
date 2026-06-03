@@ -893,6 +893,24 @@
           "match": ".*"
         },
         "authorization": {
+          "match": "Bearer trainer"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/7b52009b64fd0a2a49e6d8a939753077792b0554/demo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/demo"
+      },
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
           "match": "Bearer collector"
         }
       }
@@ -953,6 +971,24 @@
     },
     "response": {
       "file": "/var/moco/responses/album/159bb9b6d090a313087d2f26135970c2db49ee72/goldsilvercrystal.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/goldsilvercrystal"
+      },
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer trainer"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/7b52009b64fd0a2a49e6d8a939753077792b0554/goldsilvercrystal.json"
     }
   },
   {
@@ -1339,6 +1375,28 @@
         },
         "authorization": {
           "match": "Bearer collector"
+        }
+      },
+      "text": {
+        "match": "\\{(\"is_private\": ?(?:true|false),? ?)?(\"is_on_home\": ?(?:true|false))?\\}"
+      }
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/trainer/dex/redgreenblueyellow"
+      },
+      "method": "put",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer trainer"
         }
       },
       "text": {

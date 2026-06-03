@@ -67,33 +67,11 @@ COPY --link \
 	--from=ghcr.io/symfony-cli/symfony-cli:5.17.1 \
 	/usr/local/bin/symfony /usr/local/bin/symfony
 
-## < Install chromedriver
-ENV PANTHER_NO_SANDBOX=1
+## < Panther / Selenium
 ENV PANTHER_NO_REDUCED_MOTION=1
 ENV PANTHER_ERROR_SCREENSHOT_DIR=/app/var/screenshots
-ENV PANTHER_DEVTOOLS=disabled
-ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
-ENV PANTHER_CHROME_DRIVER_BINARY=/usr/local/bin/chromedriver
-ENV PANTHER_CHROME_BINARY=/usr/local/bin/chrome
-ENV GNUPGHOME=/usr/local/share/gnupg
-
-# hadolint ignore=DL3018
-RUN apk add --no-cache \
-	gnupg \
-	unzip \
-	wget \
-	chromium \
-	chromium-chromedriver \
-	fontconfig \
-	freetype \
-	libx11 \
-	libxext \
-	libxrender \
-	libxtst
-
-RUN ln -sf /usr/bin/chromium-browser /usr/local/bin/chrome \
-	&& ln -sf /usr/bin/chromedriver /usr/local/bin/chromedriver
-## > Install chromedriver
+ENV PANTHER_EXTERNAL_BASE_URI=http://web:8080
+## > Panther / Selenium
 
 RUN addgroup -g 1000 app && adduser -u 1000 -G app -s /bin/sh -D app
 

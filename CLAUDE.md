@@ -112,20 +112,21 @@ All routes are prefixed `/{_locale}` (`en` or `fr`). Routes are defined via PHP 
 ### HTTP mock server (Moco)
 
 Integration tests run against **Moco** mock servers that replay JSON fixtures:
-- `moco.api` container → fixtures in `tests/resources/moco/Api/` (pokenini-api responses)
-- `moco.oauth2` container → fixtures in `tests/resources/moco/OAuth/` (OAuth2 provider responses)
+- `moco.back` container → fixtures in `tests/resources/moco/Back/` (pokenini-back API responses)
+- `moco.matomo.gbl` container → fixtures in `tests/resources/moco/Matomo/` (Matomo analytics responses)
 
 Tests in group `api-mocked-testing` depend on these. Never mock the HTTP client in integration tests — use Moco fixtures.
 
 ### Infrastructure
 
-| Service       | Purpose                              |
-| ------------- | ------------------------------------ |
-| `php`         | PHP 8.5 FPM (dev image)              |
-| `web`         | Nginx                                |
-| `redis`       | Cache backend (Symfony Cache + tags) |
-| `moco.api`    | Moco mock for `pokenini-api`         |
-| `moco.oauth2` | Moco mock for OAuth2 providers       |
+| Service            | Purpose                                                           |
+| ------------------ | ----------------------------------------------------------------- |
+| `php`              | PHP 8.5 FPM (dev image)                                           |
+| `web`              | Nginx                                                             |
+| `redis`            | Cache backend (Symfony Cache + tags)                              |
+| `moco.back`        | Moco mock for `pokenini-back` API responses                       |
+| `moco.matomo.gbl`  | Moco mock for Matomo analytics responses                          |
+| `chrome`           | Selenium Standalone Chromium (WebDriver for Panther browser tests)|
 
 ### Key Implementation Patterns
 
@@ -145,11 +146,12 @@ PHPStan, Psalm, PHP CS Fixer, PHPMD, Deptrac, Infection, jsonlint, cachetool. Ea
 tests/src/
     Unit/          # Pure PHPUnit mocks, no HTTP, no container
     Integration/   # WebTestCase with Moco HTTP mocks, group api-mocked-testing
+    Browser/       # Browser tests using Panther + Selenium Chrome
     Common/Traits/ # Shared PHPUnit helpers (WithConsecutive)
 tests/Utils/     # Shared test utilities
 tests/resources/
-    moco/Api/      # Moco JSON fixture files for pokenini-api
-    moco/OAuth/    # Moco JSON fixture files for OAuth2 providers
+    moco/Back/     # Moco JSON fixture files for pokenini-back API
+    moco/Matomo/   # Moco JSON fixture files for Matomo analytics
 ```
 
 Every test class is `final`, `@internal`, uses `#[CoversClass(...)]`, and extends either `TestCase` (unit) or `WebTestCase` (integration).
