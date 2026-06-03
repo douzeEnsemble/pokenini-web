@@ -23,7 +23,7 @@ done
 
 if [ -d "$RESPONSES_DIR" ]; then
 	while IFS= read -r file; do
-		if ! printf '%s\n' "${REFERENCED_FILES[@]+"${REFERENCED_FILES[@]}"}" | grep -qxF "$file"; then
+		if ! printf '%s\n' "${REFERENCED_FILES[@]+"${REFERENCED_FILES[@]}"}" | grep -xF "$file" > /dev/null; then
 			echo "❌ Unreferenced file in responses: $file"
 			errors=$((errors + 1))
 		fi
