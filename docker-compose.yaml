@@ -31,6 +31,9 @@ services:
     environment:
       - PHP_CS_FIXER_IGNORE_ENV=1
     tty: true
+    depends_on:
+      chrome:
+        condition: service_healthy
 
   redis:
     image: redis:8.0-alpine
@@ -38,6 +41,16 @@ services:
       - redis_data:/data
     command: redis-server --requirepass ${REDIS_PASSWORD:-douze}
     restart: always
+
+  chrome:
+    image: selenium/standalone-chromium:4
+    shm_size: '2g'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4444/status"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 15s
 
   web:
     image: nginx:1.28-alpine
@@ -48,6 +61,8 @@ services:
     ports:
       - '127.0.0.1:80:8080'
       - '127.0.0.1:443:8080'
+    depends_on:
+      - php
 
 volumes:
   redis_data:  
