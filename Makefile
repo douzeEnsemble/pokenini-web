@@ -259,11 +259,11 @@ ti: tests-integration
 
 .PHONY: tests-browser-chrome
 tests-browser-chrome: ## Execute browser tests against Chrome
-	PANTHER_SELENIUM_HOST=http://chrome:4444/wd/hub PANTHER_BROWSER_NAME=chrome $(PHPUNIT) --cache-directory=.phpunit.cache/chrome tests/src/Browser
+	$(DOCKER_COMP) exec -e PANTHER_SELENIUM_HOST=http://chrome:4444/wd/hub -e PANTHER_BROWSER_NAME=chrome php php vendor/bin/phpunit --display-all --cache-directory=.phpunit.cache/chrome tests/src/Browser
 
 .PHONY: tests-browser-firefox
 tests-browser-firefox: ## Execute browser tests against Firefox
-	PANTHER_SELENIUM_HOST=http://firefox:4444/wd/hub PANTHER_BROWSER_NAME=firefox $(PHPUNIT) --cache-directory=.phpunit.cache/firefox tests/src/Browser
+	$(DOCKER_COMP) exec -e PANTHER_SELENIUM_HOST=http://firefox:4444/wd/hub -e PANTHER_BROWSER_NAME=firefox php php vendor/bin/phpunit --display-all --cache-directory=.phpunit.cache/firefox tests/src/Browser
 
 .PHONY: tests-browser
 tests-browser: ## Execute browser tests (Chrome + Firefox in parallel)
