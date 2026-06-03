@@ -20,9 +20,12 @@ make composer c="require foo/bar"
 ### Tests
 
 ```bash
-make tests          # all tests (unit + integration)
+make tests          # all tests (unit + integration + browser: Chrome + Firefox in parallel)
 make tests-unit     # Unit only
 make tests-integration  # Integration only
+make tests-browser  # Browser tests (Chrome + Firefox in parallel)
+make tests-browser-chrome   # Browser tests against Chrome only
+make tests-browser-firefox  # Browser tests against Firefox only
 make tests-api-mocked   # only tests in group api-mocked-testing
 ```
 
@@ -127,6 +130,7 @@ Tests in group `api-mocked-testing` depend on these. Never mock the HTTP client 
 | `moco.back`        | Moco mock for `pokenini-back` API responses                       |
 | `moco.matomo.gbl`  | Moco mock for Matomo analytics responses                          |
 | `chrome`           | Selenium Standalone Chromium (WebDriver for Panther browser tests)|
+| `firefox`          | Selenium Standalone Firefox (WebDriver for Panther browser tests) |
 
 ### Key Implementation Patterns
 
@@ -146,7 +150,7 @@ PHPStan, Psalm, PHP CS Fixer, PHPMD, Deptrac, Infection, jsonlint, cachetool. Ea
 tests/src/
     Unit/          # Pure PHPUnit mocks, no HTTP, no container
     Integration/   # WebTestCase with Moco HTTP mocks, group api-mocked-testing
-    Browser/       # Browser tests using Panther + Selenium Chrome
+    Browser/       # Browser tests using Panther + Selenium (Chrome + Firefox)
     Common/Traits/ # Shared PHPUnit helpers (WithConsecutive)
 tests/Utils/     # Shared test utilities
 tests/resources/
