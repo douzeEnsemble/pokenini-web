@@ -14,14 +14,19 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
 {
     protected static function getNewClient(): Client
     {
-        $capabilities = DesiredCapabilities::chrome();
+        $host = getenv('PANTHER_SELENIUM_HOST') ?: 'http://chrome:4444/wd/hub';
+        $browserName = getenv('PANTHER_BROWSER_NAME') ?: 'chrome';
+
+        $capabilities = 'firefox' === $browserName
+            ? DesiredCapabilities::firefox()
+            : DesiredCapabilities::chrome();
         $capabilities->setCapability('acceptInsecureCerts', true);
 
         return static::createPantherClient(
             ['browser' => static::SELENIUM],
             [],
             [
-                'host' => 'http://chrome:4444/wd/hub',
+                'host' => $host,
                 'capabilities' => $capabilities,
             ],
         );
