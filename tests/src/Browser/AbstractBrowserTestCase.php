@@ -6,7 +6,6 @@ namespace App\Tests\Browser;
 
 use App\Security\User;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
-use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\PantherTestCase;
 
@@ -38,8 +37,7 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
     {
         $client->request('GET', '/fr/connect/f/c?t='.$user->getProfile());
 
-        $cookieJar = $client->getCookieJar();
-        $trackerCookie = new Cookie('tarteaucitron', '!matomocloud=true', null, null, '', false, false);
-        $cookieJar->set($trackerCookie);
+        // JS with explicit path=/ : Panther's addCookie omits it, Firefox then defaults to the current URL path (/fr/connect/f/c) which doesn't match /fr/*
+        $client->executeScript("document.cookie = 'tarteaucitron=!matomocloud=true; path=/';");
     }
 }
