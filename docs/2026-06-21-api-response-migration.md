@@ -63,12 +63,16 @@ La Tâche 3 est rédigée pour l'**option A**.
 
 ## Fichiers modifiés par tâche
 
-### Tâche 1 — game_bundles (`generation_slug` → `generation.slug`)
+### Tâche 1 — game_bundles (`generation_slug` → `generation.slug`) ✅ IMPLÉMENTÉE
+- Create : `src/ResponseObject/Label/Generation.php`
 - Modify : `src/ResponseObject/Label/GameBundle.php`
 - Modify : `tests/resources/moco/Back/responses/labels.json`
 - Modify : `tests/resources/unit/service/back/labels.json`
 - Modify : `tests/resources/integration/back/labels.json`
-- Modify : test(s) unitaire(s) de `GameBundle` / `Labels` (`tests/src/Integration/.../LabelsTest.php` ou unit ResponseObject correspondant) si assertion sur `getGenerationSlug()`
+- Create : `tests/src/Unit/ResponseObject/Label/GenerationTest.php`
+- Modify : `tests/src/Unit/ResponseObject/Label/GameBundleTest.php`
+- Modify : `tests/src/Integration/ResponseObject/Label/GameBundleTest.php`
+- Modify : `tests/src/Common/Traits/ResponseObjectTrait.php`
 
 ### Tâche 2 — reports (`nb` → `count`, objets imbriqués)
 - Modify : `templates/Admin/_reports.html.twig`
@@ -92,16 +96,15 @@ La Tâche 3 est rédigée pour l'**option A**.
 
 ---
 
-## Task 1 — game_bundles : `generation_slug` → `generation.slug`
+## Task 1 — game_bundles : `generation_slug` → `generation.slug` ✅ IMPLÉMENTÉE
 
-**Interfaces :** `GameBundle::getGenerationSlug(): string` — **conserver la signature publique** pour ne pas casser les templates de filtres (`_dex_filters_blocks.html.twig` lit `gameBundles[].slug`/`.frenchName` ; vérifier s'il lit aussi la génération).
+> **Statut : terminée (option 1a, mini-VO).** Code et fixtures modifiés ; tests non exécutés (validation de syntaxe JSON uniquement). À valider avec `make quality` / `make measures`.
 
-- [ ] **Étape 1 — `src/ResponseObject/Label/GameBundle.php`**
+**Interfaces :** `GameBundle::getGenerationSlug(): string` — signature publique **conservée**. Vérifié : les contrôleurs ne lisent que `getGameBundles()` et les templates de filtres `gameBundles[].slug`/`.frenchName` ; la génération n'est pas lue côté vue → aucun template impacté.
 
-  Remplacer la propriété plate `generation_slug` par une sous-structure imbriquée. Deux approches :
+- [x] **Étape 1 — `src/ResponseObject/Label/GameBundle.php`** *(option 1a retenue)*
 
-  - **1a (mini-VO)** : introduire un petit VO `Generation` (`slug`) et désérialiser `generation` dedans, puis exposer `getGenerationSlug()` qui délègue à `$this->generation->getSlug()`.
-  - **1b (sans VO)** : la désérialisation Symfony ne pose pas le `generation.slug` directement sur une propriété scalaire. Préférer **1a** pour rester idiomatique avec le Serializer.
+  4ᵉ paramètre `#[SerializedName('generation_slug')] string $generationSlug` → `#[SerializedName('generation')] Generation $generation`. `getGenerationSlug()` conservée, délègue à `$this->generation->getSlug()`.
 
   ```php
   public function __construct(
@@ -117,28 +120,23 @@ La Tâche 3 est rédigée pour l'**option A**.
   }
   ```
 
-  Créer `src/ResponseObject/Label/Generation.php` (`final`, propriété `#[SerializedName('slug')] string $slug`, getter `getSlug()`).
+  Créé : `src/ResponseObject/Label/Generation.php` (`final`, `#[SerializedName('slug')] string $slug`, getter `getSlug()`).
 
-- [ ] **Étape 2 — Fixtures `labels.json` (×3)**
+- [x] **Étape 2 — Fixtures `labels.json` (×3)**
 
-  Dans chacun des 3 fichiers, pour **chaque** entrée de `game_bundles`, remplacer :
-  ```json
-  "generation_slug": "1"
-  ```
-  par :
-  ```json
-  "generation": { "slug": "1" }
-  ```
+  Dans chacun des 3 fichiers, chaque entrée de `game_bundles` : `"generation_slug": "X"` → `"generation": { "slug": "X" }` (18 occurrences/fichier). JSON revalidé.
   Fichiers : `tests/resources/moco/Back/responses/labels.json`, `tests/resources/unit/service/back/labels.json`, `tests/resources/integration/back/labels.json`.
 
-- [ ] **Étape 3 — Tests**
+- [x] **Étape 3 — Tests**
 
-  Mettre à jour tout test asserant sur la désérialisation des `GameBundle` (compte inchangé, `getGenerationSlug()` doit toujours renvoyer la bonne valeur). Ajouter un test unitaire pour le VO `Generation` si la politique de couverture l'exige.
+  - `tests/src/Unit/ResponseObject/Label/GameBundleTest.php` : construction avec `new Generation('gen_y')`.
+  - `tests/src/Integration/ResponseObject/Label/GameBundleTest.php` : JSON `generation_slug` → `generation: { slug }`.
+  - `tests/src/Common/Traits/ResponseObjectTrait.php` : stub `GameBundle` mis à jour (`new Generation('gen_y')`).
+  - **Créé** : `tests/src/Unit/ResponseObject/Label/GenerationTest.php` (couverture du VO).
 
-- [ ] **Étape 4 — Vérification (à lancer manuellement)**
+- [ ] **Étape 4 — Vérification (à lancer manuellement, non exécutée)**
   ```bash
-  docker compose exec php php vendor/bin/phpunit --filter Labels
-  docker compose exec php php vendor/bin/phpunit --filter GameBundle
+  docker compose exec php php vendor/bin/phpunit --filter 'GameBundle|Generation|Labels'
   ```
 
 ---

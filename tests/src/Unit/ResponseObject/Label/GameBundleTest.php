@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\ResponseObject\Label;
 
 use App\ResponseObject\Label\GameBundle;
+use App\ResponseObject\Label\Generation;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +21,7 @@ final class GameBundleTest extends TestCase
             'Toto',
             'Tautaux',
             'toto',
-            'gen_y',
+            new Generation('gen_y'),
         );
 
         $this->assertSame('Toto', $object->getName());

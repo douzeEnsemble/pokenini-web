@@ -27,7 +27,7 @@ final class GameBundleTest extends KernelTestCase
                 "name": "Red, Green, Blue, Yellow",
                 "french_name": "Rouge, Vert, Bleu, Jaune",
                 "slug": "redgreenblueyellow",
-                "generation_slug": "1"
+                "generation": { "slug": "1" }
             }
             JSON;
 
