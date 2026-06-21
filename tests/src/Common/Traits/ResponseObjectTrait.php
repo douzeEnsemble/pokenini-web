@@ -16,6 +16,7 @@ use App\ResponseObject\Label\CatchState;
 use App\ResponseObject\Label\CategoryForm;
 use App\ResponseObject\Label\Collection;
 use App\ResponseObject\Label\GameBundle;
+use App\ResponseObject\Label\Generation;
 use App\ResponseObject\Label\Labels;
 use App\ResponseObject\Label\RegionalForm;
 use App\ResponseObject\Label\SpecialForm;
@@ -52,7 +53,7 @@ trait ResponseObjectTrait
         $variantForms = array_fill(0, $count, $variantForm);
         ++$count;
 
-        $gameBundle = new GameBundle('Toto', 'Tautaux', 'toto', 'gen_y');
+        $gameBundle = new GameBundle('Toto', 'Tautaux', 'toto', new Generation('gen_y'));
         $gameBundles = array_fill(0, $count, $gameBundle);
         ++$count;
 

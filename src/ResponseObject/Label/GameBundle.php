@@ -15,8 +15,8 @@ final class GameBundle
         private readonly string $frenchName,
         #[SerializedName('slug')]
         private readonly string $slug,
-        #[SerializedName('generation_slug')]
-        private readonly string $generationSlug,
+        #[SerializedName('generation')]
+        private readonly Generation $generation,
     ) {}
 
     public function getName(): string
@@ -36,6 +36,6 @@ final class GameBundle
 
     public function getGenerationSlug(): string
     {
-        return $this->generationSlug;
+        return $this->generation->getSlug();
     }
 }

@@ -280,109 +280,109 @@
       "name": "Red, Green, Blue, Yellow",
       "french_name": "Rouge, Vert, Bleu, Jaune",
       "slug": "redgreenblueyellow",
-      "generation_slug": "1"
+      "generation": { "slug": "1" }
     },
     {
       "name": "Gold, Silver, Crystal",
       "french_name": "Or, Argent, Cristal",
       "slug": "goldsilvercrystal",
-      "generation_slug": "2"
+      "generation": { "slug": "2" }
     },
     {
       "name": "Ruby, Sapphire, Emerald",
       "french_name": "Rubis, Saphir, \u00c9meraude",
       "slug": "rubysapphireemerald",
-      "generation_slug": "3"
+      "generation": { "slug": "3" }
     },
     {
       "name": "Fire Red, Leaf Green",
       "french_name": "Rouge Feu, Vert Feuille",
       "slug": "fireredleafgreen",
-      "generation_slug": "3"
+      "generation": { "slug": "3" }
     },
     {
       "name": "Diamond, Pearl, Platinium",
       "french_name": "Diamant, Perle, Platine",
       "slug": "diamondpearlplatinium",
-      "generation_slug": "4"
+      "generation": { "slug": "4" }
     },
     {
       "name": "Heart Gold, Soul Silver",
       "french_name": "Or HeartGold, Argent SoulSilver",
       "slug": "heartgoldsoulsilver",
-      "generation_slug": "4"
+      "generation": { "slug": "4" }
     },
     {
       "name": "Black, White",
       "french_name": "Noir, Blanc",
       "slug": "blackwhite",
-      "generation_slug": "5"
+      "generation": { "slug": "5" }
     },
     {
       "name": "Black 2, White 2",
       "french_name": "Noir 2, Blanc 2",
       "slug": "black2white2",
-      "generation_slug": "5"
+      "generation": { "slug": "5" }
     },
     {
       "name": "X, Y",
       "french_name": "X, Y",
       "slug": "xy",
-      "generation_slug": "6"
+      "generation": { "slug": "6" }
     },
     {
       "name": "Omega Ruby, Alpha Sapphire",
       "french_name": "Rubis Om\u00e9ga, Saphir Alpha",
       "slug": "omegarubyalphasapphire",
-      "generation_slug": "6"
+      "generation": { "slug": "6" }
     },
     {
       "name": "Sun, Moon",
       "french_name": "Soleil, Lune",
       "slug": "sunmoon",
-      "generation_slug": "7"
+      "generation": { "slug": "7" }
     },
     {
       "name": "Ultra Sun, Ultra Moon",
       "french_name": "Ultra-Soleil, Ultra-Lune",
       "slug": "ultrasunultramoon",
-      "generation_slug": "7"
+      "generation": { "slug": "7" }
     },
     {
       "name": "Let\u0027s Go Pikachu, Let\u0027s Go Eevee",
       "french_name": "Let\u0027s Go Pikachu, Let\u0027s Go \u00c9voli",
       "slug": "letsgopikachuletsgoeevee",
-      "generation_slug": "7"
+      "generation": { "slug": "7" }
     },
     {
       "name": "Pokemon Go",
       "french_name": "Pok\u00e9mon Go",
       "slug": "pokemongo",
-      "generation_slug": "7"
+      "generation": { "slug": "7" }
     },
     {
       "name": "Sword, Shield",
       "french_name": "\u00c9p\u00e9e, Bouclier",
       "slug": "swordshield",
-      "generation_slug": "8"
+      "generation": { "slug": "8" }
     },
     {
       "name": "Brilliant Diamond, Shining Pearl",
       "french_name": "Diamant \u00c9tincelant, Perle Scintillante",
       "slug": "brilliantdiamondshiningpearl",
-      "generation_slug": "8"
+      "generation": { "slug": "8" }
     },
     {
       "name": "Pok\u00e9mon Legends Arceus",
       "french_name": "L\u00e9gendes Pok\u00e9mon : Arceus",
       "slug": "pokemonlegendsarceus",
-      "generation_slug": "8"
+      "generation": { "slug": "8" }
     },
     {
       "name": "Scarlet, Violet",
       "french_name": "\u00c9carlate, Violet",
       "slug": "scarletviolet",
-      "generation_slug": "8"
+      "generation": { "slug": "8" }
     }
   ],
   "collections": [
