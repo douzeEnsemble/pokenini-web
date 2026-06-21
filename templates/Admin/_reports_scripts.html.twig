@@ -40,7 +40,7 @@
 <script>
   (function () {
     {% set catchStateCountsDefinedByTrainerLabels = reportsData.catch_state_counts_defined_by_trainer|map(d => d.trainer) %}
-    {% set catchStateCountsDefinedByTrainerData = reportsData.catch_state_counts_defined_by_trainer|map(d => d.nb) %}
+    {% set catchStateCountsDefinedByTrainerData = reportsData.catch_state_counts_defined_by_trainer|map(d => d.count) %}
 
     const tableLegendPlugin = {
       id: 'tableLegend',
@@ -121,8 +121,8 @@
 
 <script>
   (function () {
-    {% set dexUsageLabels = reportsData.dex_usage|map(d => locale is same as('fr') ? d.french_name : d.name) %}
-    {% set dexUsageData = reportsData.dex_usage|map(d => d.nb) %}
+    {% set dexUsageLabels = reportsData.dex_usage|map(d => locale is same as('fr') ? d.dex.french_name : d.dex.name) %}
+    {% set dexUsageData = reportsData.dex_usage|map(d => d.count) %}
     new Chart(document.getElementById('dex_usage'), {
       locale: '{{ locale }}',
       type: 'bar',
@@ -182,9 +182,9 @@
 
 <script>
   (function () {
-    {% set catchStateUsageLabels = reportsData.catch_state_usage|map(d => locale is same as('fr') ? d.french_name : d.name) %}
-    {% set catchStateUsageData = reportsData.catch_state_usage|map(d => d.nb) %}
-    {% set catchStateUsageColors = reportsData.catch_state_usage|map(d => d.color) %}
+    {% set catchStateUsageLabels = reportsData.catch_state_usage|map(d => locale is same as('fr') ? d.catch_state.french_name : d.catch_state.name) %}
+    {% set catchStateUsageData = reportsData.catch_state_usage|map(d => d.count) %}
+    {% set catchStateUsageColors = reportsData.catch_state_usage|map(d => d.catch_state.color) %}
 
     const catchStatePatterns = pattern.generate({{ catchStateUsageColors|json_encode()|raw }});
 

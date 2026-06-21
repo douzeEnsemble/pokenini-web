@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        {% set total = reportsData.catch_state_counts_defined_by_trainer|reduce((total, d) => total + d.nb) %}
+        {% set total = reportsData.catch_state_counts_defined_by_trainer|reduce((total, d) => total + d.count) %}
         {% for row in reportsData.catch_state_counts_defined_by_trainer %}
           <tr class="active align-middle" id="catch_state_counts_defined_by_trainer-row-{{ row.trainer }}">
             <td class="d-none d-lg-block">
@@ -48,10 +48,10 @@
               <canvas id="catch_state_counts_defined_by_trainer-legend-{{ row.trainer }}"></canvas>
             </td>
             <td>
-              {{ row.nb|number_format(0, '.', ' ') }}
+              {{ row.count|number_format(0, '.', ' ') }}
             </td>
             <td>
-              {{ (row.nb*100/total)|number_format(2, '.', ' ') }}
+              {{ (row.count*100/total)|number_format(2, '.', ' ') }}
             </td>
             <th scope="row">
               <a class="link-dark" href="#catch_state_counts_defined_by_trainer" id="catch_state_counts_defined_by_trainer-text-{{ row.trainer }}">
@@ -105,9 +105,9 @@
         </tr>
       </thead>
       <tbody>
-        {% set total = reportsData.catch_state_usage|reduce((total, d) => total + d.nb) %}
+        {% set total = reportsData.catch_state_usage|reduce((total, d) => total + d.count) %}
         {% for row in reportsData.catch_state_usage %}
-          {% set label = locale is same as('fr') ? row.french_name : row.name %}
+          {% set label = locale is same as('fr') ? row.catch_state.french_name : row.catch_state.name %}
           <tr class="active align-middle" id="catch_state_usage-row-{{ label }}">
             <td class="d-none d-xl-block">
               <button type="button" class="btn btn-light" id="catch_state_usage-toggle-{{ label }}">
@@ -124,10 +124,10 @@
               </a>
             </th>
             <td>
-              {{ row.nb|number_format(0, '.', ' ') }}
+              {{ row.count|number_format(0, '.', ' ') }}
             </td>
             <td>
-              {{ (row.nb*100/total)|number_format(2, '.', ' ') }}
+              {{ (row.count*100/total)|number_format(2, '.', ' ') }}
             </td>
           </tr>
         {% endfor %}

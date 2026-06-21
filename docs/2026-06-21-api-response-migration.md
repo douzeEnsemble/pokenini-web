@@ -141,7 +141,9 @@ La Tâche 3 est rédigée pour l'**option A**.
 
 ---
 
-## Task 2 — reports : `nb` → `count` + objets `dex`/`catch_state` imbriqués
+## Task 2 — reports : `nb` → `count` + objets `dex`/`catch_state` imbriqués ✅ IMPLÉMENTÉE
+
+> **Statut : terminée.** Templates + 3 fixtures modifiés ; format aligné sur la source `pokenini-back/.../functional/controller/Admin/reports.json` (slugs exacts repris). Aucun test à modifier (assertions de comptage et valeurs inchangées). Tests non exécutés.
 
 **Rappel du nouveau format** (depuis le diff Back `functional/controller/Admin/reports.json`) :
 ```json
@@ -160,24 +162,25 @@ La Tâche 3 est rédigée pour l'**option A**.
 
 `GetReportsService::get()` renvoie le tableau brut décodé → aucun changement de signature, mais les **templates** lisent les anciennes clés.
 
-- [ ] **Étape 1 — `templates/Admin/_reports.html.twig`**
+- [x] **Étape 1 — `templates/Admin/_reports.html.twig`**
 
   - `catch_state_counts_defined_by_trainer` : `d.nb` / `row.nb` → `d.count` / `row.count` (l.38, 51, 54). `row.trainer` inchangé.
   - `catch_state_usage` : `d.nb` / `row.nb` → `count` (l.108, 127, 130) ; `row.french_name` / `row.name` → `row.catch_state.french_name` / `row.catch_state.name` (l.110).
+  - Les `.nb` restants sont des clés de traduction (`admin.reports.*.nb`), laissées telles quelles.
 
-- [ ] **Étape 2 — `templates/Admin/_reports_scripts.html.twig`**
+- [x] **Étape 2 — `templates/Admin/_reports_scripts.html.twig`**
 
   - `catch_state_counts_defined_by_trainer` (l.43) : `d.nb` → `d.count`. `d.trainer` inchangé (l.42).
   - `dex_usage` (l.124-125) : `d.french_name`/`d.name` → `d.dex.french_name`/`d.dex.name` ; `d.nb` → `d.count`.
   - `catch_state_usage` (l.185-187) : `d.french_name`/`d.name`/`d.color` → `d.catch_state.french_name`/`d.catch_state.name`/`d.catch_state.color` ; `d.nb` → `d.count`.
 
-- [ ] **Étape 3 — Fixtures reports (×3)**
+- [x] **Étape 3 — Fixtures reports (×3)**
 
-  Appliquer le nouveau format aux 3 fichiers : `tests/resources/moco/Back/responses/reports.json`, `tests/resources/unit/service/back/reports.json`, `tests/resources/unit/service/api/reports.json` (`nb`→`count`, imbrication `dex`/`catch_state` avec `slug`). Conserver les valeurs numériques actuelles.
+  Nouveau format appliqué aux 3 fichiers (slugs exacts repris de la fixture source du Back). Styles d'échappement préservés : `\uXXXX` pour `moco/Back/responses/reports.json` et `unit/service/back/reports.json`, UTF-8 brut pour `unit/service/api/reports.json` (fixture orpheline, non référencée par un test). Valeurs numériques conservées.
 
-- [ ] **Étape 4 — Tests AdminController / reports**
+- [x] **Étape 4 — Tests AdminController / reports**
 
-  Mettre à jour les snapshots HTML/W3C si présents, et toute assertion unitaire sur la structure renvoyée par `GetReportsService`.
+  Aucune modification nécessaire : `GetReportsServiceTest` n'asserte que les comptages (3/12/6, inchangés) ; `AdminReportsTest` n'asserte que des comptages d'éléments et des valeurs rendues (`94`, `1.61`, `28`, `0.48`) issues de `count` et des libellés — toutes inchangées. Aucun snapshot HTML/W3C présent pour cette page.
 
 - [ ] **Étape 5 — Vérification (à lancer manuellement)**
   ```bash
