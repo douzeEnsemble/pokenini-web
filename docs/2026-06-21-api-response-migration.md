@@ -1,0 +1,305 @@
+# Plan de migration — Refactoring des réponses API (côté pokenini-web)
+
+> **Pour les workers agentiques :** SOUS-SKILL RECOMMANDÉE : `superpowers:subagent-driven-development` ou `superpowers:executing-plans` pour exécuter ce plan tâche par tâche. Les étapes utilisent la syntaxe checkbox (`- [ ]`).
+
+**Goal :** Adapter `pokenini-web` aux changements de réponses introduits par la migration `pokenini-api/feature/refactoring_responses`, répercutés à l'identique par `pokenini-back` (déjà migré sur la branche `feature/ci`).
+
+**Contexte architectural clé :** `pokenini-web` n'appelle **jamais** l'API directement — il passe par `pokenini-back` (BFF). Or le Back, bien qu'il « suive les mêmes modifications », a délibérément **absorbé en interne** la plupart des breaking changes pour garder son contrat de sortie stable vis-à-vis du Web. La vérité terrain de ce que le Web reçoit, ce sont les fixtures `tests/resources/functional/controller/*` du Back. Leur diff montre que **seuls 3 changements** atteignent réellement `pokenini-web`.
+
+**Tech stack :** PHP 8.4, Symfony 8.0, Twig, Symfony Serializer (désérialisation des `ResponseObject`), Moco (mock HTTP), PHPUnit.
+
+## Contraintes globales
+
+- `declare(strict_types=1)` dans tous les fichiers PHP.
+- Classes `final` pour DTO / ResponseObject / tests ; classes non-`final` pour les Services.
+- PHPStan niveau 9 + Psalm strict : phpDoc à jour partout.
+- 100 % de couverture et 100 % MSI (Infection) requis.
+- `make quality` et `make measures` doivent être verts avant push.
+- **Aucun commit ne doit être créé.**
+- **Aucune exécution de test dans le cadre de ce plan** — les commandes de vérification sont listées à titre indicatif, à lancer manuellement par la suite.
+
+---
+
+## Périmètre réel côté Web : 3 changements
+
+| # | Source (endpoint Back) | Consommé par | Nature du changement | Impact Web |
+|---|------------------------|--------------|----------------------|------------|
+| 1 | `/labels` → `game_bundles[]` | `ResponseObject\Label\GameBundle` | `generation_slug: "1"` → `generation: { "slug": "1" }` | ResponseObject + fixtures + tests |
+| 2 | `/istration/reports` | `Service\Back\GetReportsService` (tableau brut) → templates Admin | `nb` → `count` ; `dex`/`catch_state` deviennent des objets imbriqués (avec `slug`) | 2 templates Twig + fixtures + tests |
+| 3 | `election_top[]` (dans la réponse ElectionIndex) | `ResponseObject\Election\TopPokemon` | Structure plate → imbriquée : `pokemon{slug,labels,national_dex_number}`, `forms`, `types{primary,secondary}`, `score{elo,significance}` | ResponseObject (refonte) + macros/template + fixtures + tests |
+
+### Hors périmètre (vérifié — NE PAS toucher)
+
+Ces endpoints sont concernés par `migration.md` côté API mais **n'impactent pas le Web**, car le Back a gardé son contrat de sortie stable (diff `functional/controller/*` vide sur ces points) :
+
+- **`/forms` (consolidation)** — le Back continue d'exposer `/labels` avec les formes en `string[][]` inchangées. `ResponseObject\Label\Labels` et les `AbstractForm` ne bougent pas.
+- **`/action_logs` (objet → tableau)** — absorbé par le Back ; sa sortie `/istration/action-logs` reste un objet keyé par `action_type`. `ActionLog` / `ActionLogData` inchangés.
+- **`/election/metrics` (`completion`)** — absorbé par le Back ; le bloc `metrics` de la réponse ElectionIndex reste plat (`view_count_sum`, `under_max_view_count`, `max_view_count`…). `DTO\ElectionMetrics` inchangé.
+- **`/election/vote` (`trainer` imbriqué)** — c'est un body de requête côté Back→API ; le Web envoie son propre format au Back, inchangé.
+- **Album, `/pokemons/to_choose`, `/debogage/*`** — formes de réponse Web inchangées (ajouts non-breaking côté API non répercutés dans le contrat Back→Web).
+
+> ⚠️ **À re-vérifier au démarrage** : confirmer que les fixtures Back `functional/controller/Labels/all.json`, `.../ElectionIndex/demolite.json` (bloc `metrics`) et l'absence de `Admin/action-logs.json` dans le diff de migration tiennent toujours sur la version du Back déployée. Si le Back enrichit son contrat (ex. ajoute `game_bundles` à `election_top`), élargir le périmètre en conséquence.
+
+---
+
+## ✅ Décision tranchée : Option A (adapter le Web sans changer le Back)
+
+Le nouveau format `election_top` renvoyé par le Back **ne contient plus** certains champs que le Web utilisait :
+
+| Champ utilisé par le Web | Présent dans le nouveau payload ? | Conséquence |
+|--------------------------|-----------------------------------|-------------|
+| `pokemon_icon` (macros image `_image_macros.html.twig`) | ❌ Non | L'URL d'image/icône du top ne peut plus être construite directement |
+| `pokemon_simplified_name` / `pokemon_simplified_french_name` (libellé du top, `_top.html.twig` l.23) | ❌ Non (seul `labels.name` / `labels.french_name` existe) | Le top afficherait le **nom complet** (ex. « Venusaur ♂️ ») au lieu du nom simplifié (« Venusaur ») |
+| `pokemon_name` / `pokemon_french_name` (alt des images) | ✅ via `pokemon.labels.{name,french_name}` | OK |
+
+**Options :**
+
+- **(A) — RETENUE : adapter le Web sans changer le Back.** Dans le nouveau `TopPokemon`, dériver `getPokemonIcon()` à partir de `pokemon.slug` (dans les fixtures actuelles `icon == slug` pour tous les pokémons du top), et faire pointer `getPokemonSimplifiedName()`/`getPokemonSimplifiedFrenchName()` sur `labels.name`/`labels.french_name`. Régression assumée : libellés du top non simplifiés + icône dérivée du slug (risque marginal si un pokémon a un icône ≠ slug).
+- **(B) — Écartée.** Enrichir le contrat du Back (`icon` + `simplified_name`/`simplified_french_name` dans `election_top`).
+
+La Tâche 3 est rédigée pour l'**option A**.
+
+---
+
+## Fichiers modifiés par tâche
+
+### Tâche 1 — game_bundles (`generation_slug` → `generation.slug`)
+- Modify : `src/ResponseObject/Label/GameBundle.php`
+- Modify : `tests/resources/moco/Back/responses/labels.json`
+- Modify : `tests/resources/unit/service/back/labels.json`
+- Modify : `tests/resources/integration/back/labels.json`
+- Modify : test(s) unitaire(s) de `GameBundle` / `Labels` (`tests/src/Integration/.../LabelsTest.php` ou unit ResponseObject correspondant) si assertion sur `getGenerationSlug()`
+
+### Tâche 2 — reports (`nb` → `count`, objets imbriqués)
+- Modify : `templates/Admin/_reports.html.twig`
+- Modify : `templates/Admin/_reports_scripts.html.twig`
+- Modify : `tests/resources/moco/Back/responses/reports.json`
+- Modify : `tests/resources/unit/service/back/reports.json`
+- Modify : `tests/resources/unit/service/api/reports.json`
+- Modify : tests d'intégration `AdminController` / reports (snapshot W3C/HTML si présent)
+
+### Tâche 3 — election_top (plat → imbriqué)
+- Modify : `src/ResponseObject/Election/TopPokemon.php` (refonte)
+- Create : value objects imbriqués nécessaires (voir Tâche 3, étape 1)
+- Modify (si besoin) : `templates/Election/_top.html.twig` + `templates/common/Pokemon/_image_macros.html.twig` (uniquement si l'option A ne suffit pas à garder les getters publics stables)
+- Modify : `tests/resources/moco/Back/responses/election/index_*.json` (9 fichiers contenant `election_top`)
+- Modify : `tests/resources/unit/service/back/election_top_5_home_fav.json`
+- Modify : `tests/resources/unit/service/back/election_top_10_demo_pref.json`
+- Modify : `tests/resources/integration/back/election_mega_top_5.json`
+- Modify : `tests/src/Integration/.../TopPokemonTest.php` + tests ElectionIndex concernés
+
+> Les 9 fixtures moco `index_*.json` : `index_demolite.json`, `index_demoliteshiny.json`, `index_mega.json`, `index_mega_favorite.json`, `index_mega_lastone.json`, `index_mega_lastpage.json`, `index_mega_vote.json`, `index_swordshield.json`, `index_swordshield_favorite.json`.
+
+---
+
+## Task 1 — game_bundles : `generation_slug` → `generation.slug`
+
+**Interfaces :** `GameBundle::getGenerationSlug(): string` — **conserver la signature publique** pour ne pas casser les templates de filtres (`_dex_filters_blocks.html.twig` lit `gameBundles[].slug`/`.frenchName` ; vérifier s'il lit aussi la génération).
+
+- [ ] **Étape 1 — `src/ResponseObject/Label/GameBundle.php`**
+
+  Remplacer la propriété plate `generation_slug` par une sous-structure imbriquée. Deux approches :
+
+  - **1a (mini-VO)** : introduire un petit VO `Generation` (`slug`) et désérialiser `generation` dedans, puis exposer `getGenerationSlug()` qui délègue à `$this->generation->getSlug()`.
+  - **1b (sans VO)** : la désérialisation Symfony ne pose pas le `generation.slug` directement sur une propriété scalaire. Préférer **1a** pour rester idiomatique avec le Serializer.
+
+  ```php
+  public function __construct(
+      #[SerializedName('name')] private readonly string $name,
+      #[SerializedName('french_name')] private readonly string $frenchName,
+      #[SerializedName('slug')] private readonly string $slug,
+      #[SerializedName('generation')] private readonly Generation $generation,
+  ) {}
+
+  public function getGenerationSlug(): string
+  {
+      return $this->generation->getSlug();
+  }
+  ```
+
+  Créer `src/ResponseObject/Label/Generation.php` (`final`, propriété `#[SerializedName('slug')] string $slug`, getter `getSlug()`).
+
+- [ ] **Étape 2 — Fixtures `labels.json` (×3)**
+
+  Dans chacun des 3 fichiers, pour **chaque** entrée de `game_bundles`, remplacer :
+  ```json
+  "generation_slug": "1"
+  ```
+  par :
+  ```json
+  "generation": { "slug": "1" }
+  ```
+  Fichiers : `tests/resources/moco/Back/responses/labels.json`, `tests/resources/unit/service/back/labels.json`, `tests/resources/integration/back/labels.json`.
+
+- [ ] **Étape 3 — Tests**
+
+  Mettre à jour tout test asserant sur la désérialisation des `GameBundle` (compte inchangé, `getGenerationSlug()` doit toujours renvoyer la bonne valeur). Ajouter un test unitaire pour le VO `Generation` si la politique de couverture l'exige.
+
+- [ ] **Étape 4 — Vérification (à lancer manuellement)**
+  ```bash
+  docker compose exec php php vendor/bin/phpunit --filter Labels
+  docker compose exec php php vendor/bin/phpunit --filter GameBundle
+  ```
+
+---
+
+## Task 2 — reports : `nb` → `count` + objets `dex`/`catch_state` imbriqués
+
+**Rappel du nouveau format** (depuis le diff Back `functional/controller/Admin/reports.json`) :
+```json
+{
+  "catch_state_counts_defined_by_trainer": [
+    { "count": 5735, "trainer": "f86c…" }
+  ],
+  "dex_usage": [
+    { "count": 2, "dex": { "slug": "homeshiny", "name": "Home Shiny", "french_name": "Home Chromatique" } }
+  ],
+  "catch_state_usage": [
+    { "count": 36, "catch_state": { "slug": "no", "name": "No", "french_name": "Non", "color": "#e57373" } }
+  ]
+}
+```
+
+`GetReportsService::get()` renvoie le tableau brut décodé → aucun changement de signature, mais les **templates** lisent les anciennes clés.
+
+- [ ] **Étape 1 — `templates/Admin/_reports.html.twig`**
+
+  - `catch_state_counts_defined_by_trainer` : `d.nb` / `row.nb` → `d.count` / `row.count` (l.38, 51, 54). `row.trainer` inchangé.
+  - `catch_state_usage` : `d.nb` / `row.nb` → `count` (l.108, 127, 130) ; `row.french_name` / `row.name` → `row.catch_state.french_name` / `row.catch_state.name` (l.110).
+
+- [ ] **Étape 2 — `templates/Admin/_reports_scripts.html.twig`**
+
+  - `catch_state_counts_defined_by_trainer` (l.43) : `d.nb` → `d.count`. `d.trainer` inchangé (l.42).
+  - `dex_usage` (l.124-125) : `d.french_name`/`d.name` → `d.dex.french_name`/`d.dex.name` ; `d.nb` → `d.count`.
+  - `catch_state_usage` (l.185-187) : `d.french_name`/`d.name`/`d.color` → `d.catch_state.french_name`/`d.catch_state.name`/`d.catch_state.color` ; `d.nb` → `d.count`.
+
+- [ ] **Étape 3 — Fixtures reports (×3)**
+
+  Appliquer le nouveau format aux 3 fichiers : `tests/resources/moco/Back/responses/reports.json`, `tests/resources/unit/service/back/reports.json`, `tests/resources/unit/service/api/reports.json` (`nb`→`count`, imbrication `dex`/`catch_state` avec `slug`). Conserver les valeurs numériques actuelles.
+
+- [ ] **Étape 4 — Tests AdminController / reports**
+
+  Mettre à jour les snapshots HTML/W3C si présents, et toute assertion unitaire sur la structure renvoyée par `GetReportsService`.
+
+- [ ] **Étape 5 — Vérification (à lancer manuellement)**
+  ```bash
+  docker compose exec php php vendor/bin/phpunit --filter Admin
+  docker compose exec php php vendor/bin/phpunit --filter Report
+  ```
+
+---
+
+## Task 3 — election_top : structure plate → imbriquée (option A)
+
+**Nouveau format d'une entrée** (depuis le diff Back `functional/controller/ElectionIndex/demolite.json`) :
+```json
+{
+  "pokemon": {
+    "slug": "venusaur-f",
+    "labels": { "name": "Venusaur ♀", "french_name": "Florizarre ♀" },
+    "national_dex_number": 3
+  },
+  "forms": { "variant": { "slug": "gender", "name": "Gender", "french_name": "Sexe" } },
+  "types": {
+    "primary": { "slug": "grass", "name": "Grass", "french_name": "Plante", "color": "#78C850" },
+    "secondary": { "slug": "poison", "name": "Poison", "french_name": "Poison", "color": "#A040A0" }
+  },
+  "score": { "elo": 1040, "significance": false }
+}
+```
+`forms` peut valoir `null` ou contenir n'importe lequel de `category`/`regional`/`special`/`variant` ; `types.secondary` peut être `null`.
+
+**Interfaces (à conserver pour ne pas casser les vues) :** `TopPokemon` doit continuer d'exposer au minimum `getPokemonSlug()`, `getPokemonName()`, `getPokemonFrenchName()`, `getPokemonSimplifiedName()`, `getPokemonSimplifiedFrenchName()`, `getPokemonIcon()`, `getElo()`, `isSignificance()` (utilisés par `_top.html.twig` et `_image_macros.html.twig`). Objectif : **zéro changement de template** sous l'option A.
+
+- [ ] **Étape 1 — Value objects imbriqués**
+
+  Créer (ou réutiliser) sous `src/ResponseObject/Election/` :
+  - `TopPokemonInfo` : `#[SerializedName('slug')] string $slug`, `#[SerializedName('labels')] TopPokemonLabels $labels`, `#[SerializedName('national_dex_number')] int $nationalDexNumber`.
+  - `TopPokemonLabels` : `name`, `french_name`.
+  - `TopPokemonScore` : `elo` (int), `significance` (bool).
+  - `forms` / `types` : réutiliser au maximum les VO existants `Label\Type` (slug, name, french_name, color) et les `AbstractForm`/sous-classes pour `category`/`regional`/`special`/`variant`. Prévoir un `TopPokemonForms` (4 propriétés nullables) et un `TopPokemonTypes` (`primary`, `secondary` nullable).
+
+  > Le Web désérialise `ElectionIndex` (donc `election_top` → `TopPokemon[]`) **via Symfony Serializer** (`GetElectionIndexService` l.31). Les sous-objets typés sont donc indispensables : un simple `SerializedName('pokemon.slug')` n'est pas supporté.
+
+- [ ] **Étape 2 — Refonte `TopPokemon.php`**
+
+  Nouveau constructeur :
+  ```php
+  public function __construct(
+      #[SerializedName('pokemon')] private readonly TopPokemonInfo $pokemon,
+      #[SerializedName('forms')] private readonly ?TopPokemonForms $forms,
+      #[SerializedName('types')] private readonly TopPokemonTypes $types,
+      #[SerializedName('score')] private readonly TopPokemonScore $score,
+  ) {}
+  ```
+  Getters de compatibilité (option A) :
+  ```php
+  public function getPokemonSlug(): string            { return $this->pokemon->getSlug(); }
+  public function getPokemonName(): string            { return $this->pokemon->getLabels()->getName(); }
+  public function getPokemonFrenchName(): string      { return $this->pokemon->getLabels()->getFrenchName(); }
+  public function getPokemonSimplifiedName(): string  { return $this->pokemon->getLabels()->getName(); }        // pas de simplifié dans le payload
+  public function getPokemonSimplifiedFrenchName(): string { return $this->pokemon->getLabels()->getFrenchName(); }
+  public function getPokemonIcon(): string            { return $this->pokemon->getSlug(); }                     // dérivé du slug
+  public function getPokemonNationalDexNumber(): int  { return $this->pokemon->getNationalDexNumber(); }
+  public function getElo(): int                       { return $this->score->getElo(); }
+  public function isSignificance(): bool              { return $this->score->isSignificance(); }
+  ```
+  Supprimer les anciens getters devenus sans source (`getPokemonFormsLabel`, `getCatchState*`, `getFamilyLeadSlug`, `getPokemonRegionalDexNumber`, `getPokemonFamilyOrder`, `getPokemon*FormsFrenchLabel`, etc.) **seulement après** avoir vérifié par `grep` qu'aucun template/test ne les utilise. Exposer `getForms()` / `getTypes()` si une vue en a besoin.
+
+- [ ] **Étape 3 — Vérifier les templates (devrait être no-op sous option A)**
+
+  `grep -rn "electionTop\|item\.\(pokemon\|elo\|significance\)" templates/` pour confirmer que seuls les getters conservés sont utilisés. `_top.html.twig` (l.13, 20, 23) et `_image_macros.html.twig` (l.18, 20, 48, 50) doivent fonctionner sans modification. Si un getter supprimé est référencé, soit le conserver, soit adapter le template.
+
+- [ ] **Étape 4 — Fixtures moco `index_*.json` (×9)**
+
+  Dans chaque fichier, convertir **chaque** entrée du tableau `election_top` du format plat vers le format imbriqué ci-dessus. Le reste de la réponse (`pokemons`, `pokedex`, `metrics`…) **reste inchangé** (le tableau `pokemons` garde la forme plate `pokemon_slug`, `pokemon_icon`, etc. — ne pas le toucher).
+
+- [ ] **Étape 5 — Fixtures unit/back + intégration**
+
+  Même conversion pour :
+  - `tests/resources/unit/service/back/election_top_5_home_fav.json`
+  - `tests/resources/unit/service/back/election_top_10_demo_pref.json`
+  - `tests/resources/integration/back/election_mega_top_5.json`
+
+- [ ] **Étape 6 — Tests `TopPokemon` + ElectionIndex**
+
+  Mettre à jour `TopPokemonTest` (asserter sur la nouvelle structure et les getters de compatibilité) et les tests d'intégration ElectionIndex. Régénérer les snapshots HTML/W3C si la migration change le rendu (sous option A, le rendu du libellé du top change : nom complet au lieu de simplifié — ajuster les attendus en conséquence).
+
+- [ ] **Étape 7 — Vérification (à lancer manuellement)**
+  ```bash
+  docker compose exec php php vendor/bin/phpunit --filter TopPokemon
+  docker compose exec php php vendor/bin/phpunit --filter ElectionIndex
+  ```
+
+---
+
+## Vérification finale (à lancer manuellement, hors périmètre de ce plan)
+
+- [ ] `make quality` — 0 erreur PHPStan/Psalm/PHPMD/Deptrac/CS Fixer + W3C.
+- [ ] `make tests` — unit + intégration + browser (Chrome + Firefox) verts.
+- [ ] `make measures` — 100 % couverture + 100 % MSI.
+
+> Procédure de régénération des snapshots : décommenter le `file_put_contents('tests/last.html', …)` (ou l'équivalent JSON) dans le test, relancer le test ciblé, copier le fichier généré dans le répertoire de référence, puis recommenter.
+
+---
+
+## Self-Review — Couverture du spec
+
+| Changement API (`migration.md`) | Atteint le Web ? | Tâche | Couvert ? |
+|---|---|---|---|
+| `GET /forms` (consolidation) | Non (absorbé par le Back) | — | N/A |
+| `GET /game_bundles` (generation imbriqué) | **Oui** (via `/labels`) | Task 1 | ✅ |
+| `GET /reports` (slugs + count) | **Oui** | Task 2 | ✅ |
+| `GET /election/top` (structure imbriquée) | **Oui** | Task 3 | ✅ |
+| `GET /action_logs` (tableau `action_type`) | Non (absorbé par le Back) | — | N/A |
+| `GET /election/metrics` (`completion`) | Non (absorbé par le Back) | — | N/A |
+| `POST /election/vote` (`trainer` imbriqué) | Non (body Back→API) | — | N/A |
+| `GET /album/*` (ajouts non-breaking) | Non (non répercuté) | — | N/A |
+| `GET /pokemons/to_choose` (ajouts) | Non (non répercuté) | — | N/A |
+| `GET /debogage/*` | Non exposé par le Back | — | N/A |
+| Renommages camelCase→snake_case | Déjà en snake_case côté Back→Web | — | N/A |
+
+**Risques résiduels à valider :**
+1. Décision A vs B sur les champs perdus d'`election_top` (icône + nom simplifié) — voir section « Décision requise ».
+2. Re-confirmer, sur la version du Back effectivement déployée, que `metrics`, `action_logs` et les formes restent stables côté contrat Web (sinon élargir le périmètre).
+3. Vérifier qu'aucun autre template/JS ne lit les getters supprimés de `TopPokemon` avant suppression.
