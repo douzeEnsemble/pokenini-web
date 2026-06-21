@@ -11,8 +11,12 @@ jobs:
     name: Composer Audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - run: composer audit
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Composer install
+        uses: ./.github/actions/local-composer
+      - name: Run
+        run: composer audit
 
   tools-composer-audit:
     name: Tools Composer Audit (${{ matrix.tool }})
