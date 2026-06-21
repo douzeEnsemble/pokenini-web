@@ -95,7 +95,7 @@ final class UserRefresherTest extends TestCase
         );
 
         $this->expectException(AuthenticationExpiredException::class);
-        $this->expectExceptionMessage('Access token expired and no refresh token available.');
+        $this->expectExceptionMessageIsOrContains('Access token expired and no refresh token available.');
 
         $provider->refresh($user);
     }

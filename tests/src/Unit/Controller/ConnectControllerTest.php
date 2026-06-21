@@ -19,7 +19,7 @@ final class ConnectControllerTest extends TestCase
         $controller = new ConnectController();
 
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("Don't forget to activate logout in security.yaml");
+        $this->expectExceptionMessageIsOrContains("Don't forget to activate logout in security.yaml");
 
         $controller->logout();
     }

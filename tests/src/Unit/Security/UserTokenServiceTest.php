@@ -52,7 +52,7 @@ final class UserTokenServiceTest extends TestCase
         $service = new UserTokenService($security);
 
         $this->expectException(NoLoggedUserException::class);
-        $this->expectExceptionMessage('No user logged');
+        $this->expectExceptionMessageIsOrContains('No user logged');
         $service->getLoggedUserId();
     }
 
@@ -123,7 +123,7 @@ final class UserTokenServiceTest extends TestCase
         $service = new UserTokenService($security);
 
         $this->expectException(NoLoggedUserException::class);
-        $this->expectExceptionMessage('No user logged');
+        $this->expectExceptionMessageIsOrContains('No user logged');
 
         $service->getLoggedUser();
     }
