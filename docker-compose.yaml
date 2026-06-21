@@ -26,6 +26,9 @@ services:
       context: .
       dockerfile: ./.docker/php/Dockerfile
       target: php_dev
+      args:
+        UID: ${APP_UID:-1000}
+        GID: ${APP_GID:-1000}
     volumes:
       - .:/app
     environment:
