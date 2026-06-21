@@ -178,7 +178,7 @@ bash: sh
 
 .PHONY: restart-mocks
 restart-mocks: ## Restart Moco mocks
-	$(DOCKER_COMP) restart moco.back
+	$(DOCKER_COMP) restart moco.back moco.matomo.gbl
 
 ## —— Data 💾 ————————————————————————————————————————————————————————————————
 .PHONY: data
