@@ -87,7 +87,7 @@ final class ElectionVoteControllerTest extends TestCase
         $controller = new ElectionVoteController();
 
         $this->expectException(BadRequestHttpException::class);
-        $this->expectExceptionMessage('Data cannot be empty');
+        $this->expectExceptionMessageIsOrContains('Data cannot be empty');
         $controller->vote(
             $request,
             $electionVoteService,
@@ -165,7 +165,7 @@ final class ElectionVoteControllerTest extends TestCase
         $controller = new ElectionVoteController();
 
         $this->expectException(BadRequestHttpException::class);
-        $this->expectExceptionMessage('The required option "losers_slugs');
+        $this->expectExceptionMessageIsOrContains('The required option "losers_slugs');
         $controller->vote(
             $request,
             $electionVoteService,
