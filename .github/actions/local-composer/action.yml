@@ -15,4 +15,4 @@ runs:
 
     - name: Run composer install
       shell: bash
-      run: composer install --no-interaction --prefer-dist
+      run: composer install --prefer-dist --no-progress --no-interaction
