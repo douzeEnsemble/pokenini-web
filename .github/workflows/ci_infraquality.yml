@@ -60,3 +60,14 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: ./.docker/php/Dockerfile
+
+  moco-refs:
+    name: Moco References
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+      - name: Check moco file references
+        run: |
+          tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/Back/moco.json tests/resources/moco/Back
+          tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/Matomo/moco.json tests/resources/moco/Matomo
