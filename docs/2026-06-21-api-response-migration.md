@@ -30,10 +30,10 @@
 | 1 | `game_bundles` (via `/labels`) | `ResponseObject\Label\GameBundle` | `generation_slug` → `generation.slug` | ✅ FAIT (`1a521c9`) |
 | 2 | `reports` (`/istration/reports`) | `Service\Back\GetReportsService` → templates Admin | `nb` → `count` ; `dex`/`catch_state` imbriqués (avec `slug`) | ✅ FAIT (`bfdba3e`) |
 | 3 | `election_top` (réponse ElectionIndex) | `ResponseObject\Election\TopPokemon` | Plat → imbriqué (`pokemon`/`forms`/`types`/`score`) | ✅ FAIT (`1c59b41`, `a72ce4d`) |
-| 4 | `forms` (via `/labels`) | `ResponseObject\Label\Labels` | 4 tableaux plats → objet imbriqué `forms{category,regional,special,variant}` | ⬜ À FAIRE |
-| 5 | `election/metrics` (réponse ElectionIndex) | `DTO\ElectionMetrics` | `under_max_view_count`/`max_view_count` → `completion{under_max_count,at_max_count}` (+ `view_count`/`win_count` imbriqués `{sum,max}`) | ⬜ À FAIRE |
-| 6 | `action_logs` (`/istration/action-logs`) | `Service\Back\GetActionLogsService` | Objet à clés dynamiques → tableau avec `action_type` | ⬜ À FAIRE |
-| 7 | `election/vote` (`POST /election/...`) | `Service\Back\PostElectionVoteService` | Réponse imbriquée `trainer` + `score` | ⬜ À FAIRE (vérification — no-op probable) |
+| 4 | `forms` (via `/labels`) | `ResponseObject\Label\Labels` | 4 tableaux plats → objet imbriqué `forms{category,regional,special,variant}` | ✅ FAIT (`e98c5fc`) |
+| 5 | `election/metrics` (réponse ElectionIndex) | `DTO\ElectionMetrics` | `under_max_view_count`/`max_view_count` → `completion{under_max_count,at_max_count}` (+ `view_count`/`win_count` imbriqués `{sum,max}`) | ✅ FAIT |
+| 6 | `action_logs` (`/istration/action-logs`) | `Service\Back\GetActionLogsService` | Objet à clés dynamiques → tableau avec `action_type` | ✅ FAIT |
+| 7 | `election/vote` (`POST /election/...`) | `Service\Back\PostElectionVoteService` | Réponse imbriquée `trainer` + `score` | ✅ VÉRIFIÉ (no-op) |
 
 ### Hors périmètre (vérifié — NE PAS toucher)
 
@@ -88,7 +88,7 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
 ---
 
-## Task 4 — forms : 4 tableaux plats → objet `forms` imbriqué ⬜ À FAIRE
+## Task 4 — forms : 4 tableaux plats → objet `forms` imbriqué ✅ FAIT
 
 **État actuel :** `src/ResponseObject/Label/Labels.php:26-33` expose 4 tableaux en tête : `category_forms`, `regional_forms`, `special_forms`, `variant_forms` (chacun `array<int, *Form>`, classes héritant de `AbstractForm` : `name`/`french_name`/`slug`).
 
@@ -106,7 +106,7 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
 **Interface à conserver :** `Labels::getCategoryForms()`, `getRegionalForms()`, `getSpecialForms()`, `getVariantForms()` (lues par `ElectionIndexController` et `templates/common/Filter/_dex_filters_blocks.html.twig`). Objectif : **zéro changement de template/contrôleur**.
 
-- [ ] **Étape 1 — VO `Forms`**
+- [x] **Étape 1 — VO `Forms`**
 
   Créer `src/ResponseObject/Label/Forms.php` (`final`, `declare(strict_types=1)`), constructeur :
   ```php
@@ -127,7 +127,7 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
   > Le Serializer doit pouvoir typer chaque sous-tableau : conserver le typage générique via phpDoc `@param array<int, CategoryForm>` comme pour les autres tableaux de `Labels` (le Serializer s'appuie sur le phpDoc du constructeur pour la dénormalisation des collections).
 
-- [ ] **Étape 2 — Refonte `Labels.php`**
+- [x] **Étape 2 — Refonte `Labels.php`**
 
   Remplacer les 4 paramètres `category_forms`/`regional_forms`/`special_forms`/`variant_forms` par un seul :
   ```php
@@ -142,30 +142,30 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
   ```
   Mettre à jour le phpDoc du constructeur. `catch_states`, `types`, `game_bundles`, `collections` inchangés.
 
-- [ ] **Étape 3 — Fixtures `labels.json` (×3)**
+- [x] **Étape 3 — Fixtures `labels.json` (×3)**
 
   Dans chaque fichier, remplacer les 4 tableaux de tête `"category_forms": [...]`, `"regional_forms": [...]`, `"special_forms": [...]`, `"variant_forms": [...]` par un unique bloc imbriqué `"forms": { "category": [...], "regional": [...], "special": [...], "variant": [...] }` (mêmes objets `{slug,name,french_name}`, valeurs et échappement préservés).
   Fichiers : `tests/resources/moco/Back/responses/labels.json`, `tests/resources/unit/service/back/labels.json`, `tests/resources/integration/back/labels.json`.
 
-- [ ] **Étape 4 — Vérifier templates/contrôleur (no-op attendu)**
+- [x] **Étape 4 — Vérifier templates/contrôleur (no-op attendu)**
 
   `grep -rn "CategoryForms\|RegionalForms\|SpecialForms\|VariantForms\|categoryForms\|regionalForms" templates/ src/Controller/` : confirmer que seuls les getters conservés sont utilisés (`_dex_filters_blocks.html.twig`, `ElectionIndexController`). Aucune modif attendue.
 
-- [ ] **Étape 5 — Tests**
+- [x] **Étape 5 — Tests**
 
   - Créer `tests/src/Unit/ResponseObject/Label/FormsTest.php` (couverture du VO).
   - Mettre à jour `tests/src/Unit/ResponseObject/Label/LabelsTest.php` (construction via `new Forms([...], [...], [...], [...])`).
   - Mettre à jour `tests/src/Integration/ResponseObject/Label/LabelsTest.php` (JSON imbriqué).
   - Mettre à jour le stub `Labels` dans `tests/src/Common/Traits/ResponseObjectTrait.php` si présent (`new Forms(...)`).
 
-- [ ] **Étape 6 — Vérification (manuelle)**
+- [x] **Étape 6 — Vérification (manuelle)**
   ```bash
   docker compose exec php php vendor/bin/phpunit --filter 'Labels|Forms'
   ```
 
 ---
 
-## Task 5 — election/metrics : `completion` imbriqué ⬜ À FAIRE
+## Task 5 — election/metrics : `completion` imbriqué ✅ FAIT
 
 **État actuel :** `src/DTO/ElectionMetrics.php` est plat — `createFromArray()` (via `OptionsResolver`) lit `view_count_sum`, `win_count_sum`, `view_count_max`, `win_count_max`, `under_max_view_count`, `max_view_count`, `dex_total_count`, `round_count`, `winner_average`, `total_round_count`. Construit dans `Service\ElectionIndexService::get()` à partir de `ElectionIndex::getMetrics()` (tableau brut).
 
@@ -185,7 +185,7 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
 **Interface à conserver :** propriétés publiques `viewCountSum/winCountSum/viewCountMax/winCountMax/underMaxViewCount/maxViewCount/dexTotalCount/roundCount/winnerAverage/totalRoundCount` (lues par `templates/Election/_bar_top.html.twig` : `underMaxViewCount`, `maxViewCount`, `roundCount`, `totalRoundCount` ; et `_info.html.twig` : `roundCount`, `totalRoundCount`, `winnerAverage`). Objectif : **zéro changement de template** — l'imbrication n'affecte que le **parsing** dans `createFromArray()`.
 
-- [ ] **Étape 1 — Adapter `ElectionMetrics::createFromArray()`**
+- [x] **Étape 1 — Adapter `ElectionMetrics::createFromArray()`**
 
   Reconfigurer l'`OptionsResolver` pour la nouvelle forme imbriquée, **sans changer le constructeur ni les propriétés** :
   - `completion` : tableau requis `{at_max_count:int, under_max_count:int}` → alimente `maxViewCount = completion['at_max_count']` et `underMaxViewCount = completion['under_max_count']`.
@@ -199,7 +199,7 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
   > **Garde-fou Back** : si la sortie réelle du Back garde `view_count_sum`/… plats et n'imbrique **que** `completion`, ne migrer que `completion` et laisser `view_count`/`win_count` plats. Voir « Hypothèses à confirmer ».
 
-- [ ] **Étape 2 — Fixtures metrics**
+- [x] **Étape 2 — Fixtures metrics**
 
   Reconstruire le bloc `metrics` à la forme imbriquée dans :
   - les fixtures moco `tests/resources/moco/Back/responses/election/index_*.json` qui portent un bloc `metrics` (vérifier chacune par `grep -l '"metrics"'`) ;
@@ -209,19 +209,19 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
   Valeurs numériques conservées : `under_max_view_count` → `completion.under_max_count`, `max_view_count` → `completion.at_max_count`, `view_count_sum`/`view_count_max` → `view_count.{sum,max}`, idem `win_count`.
 
-- [ ] **Étape 3 — Tests**
+- [x] **Étape 3 — Tests**
 
   - `tests/src/Unit/DTO/ElectionMetricsTest.php` : alimenter `createFromArray()` avec la forme imbriquée ; couvrir les cas d'erreur (sous-tableau manquant / mal typé) pour 100 % MSI.
   - Vérifier les tests intégration `ElectionIndex` (n'assertent que des comptages/titres → a priori inchangés ; sinon ajuster).
 
-- [ ] **Étape 4 — Vérification (manuelle)**
+- [x] **Étape 4 — Vérification (manuelle)**
   ```bash
   docker compose exec php php vendor/bin/phpunit --filter 'ElectionMetrics|ElectionIndex'
   ```
 
 ---
 
-## Task 6 — action_logs : objet à clés → tableau `action_type` ⬜ À FAIRE
+## Task 6 — action_logs : objet à clés → tableau `action_type` ✅ FAIT
 
 **État actuel :** `src/Service/Back/GetActionLogsService.php:23-38` décode un **objet à clés dynamiques** (`array<string, {current, last}>`), itère `foreach ($actionLogsData as $item => $data)` et construit `array<string, ActionLogData>` keyé par `action_type`. Le template `templates/Admin/_macros.html.twig` fait un **accès par clé** `actionLogsData[actionItem]`.
 
@@ -235,7 +235,7 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
 **Décision : ré-indexer dans le service** pour préserver le contrat de sortie `array<string, ActionLogData>` keyé par `action_type` → **zéro changement de template/contrôleur**. `ActionLog` (`created_at`/`done_at`/`execution_time`/`details`/`error_trace`) inchangé.
 
-- [ ] **Étape 1 — Adapter `GetActionLogsService::get()`**
+- [x] **Étape 1 — Adapter `GetActionLogsService::get()`**
 
   - Changer le phpDoc de décodage : `array<int, array{action_type: string, current: ...|null, last: ...|null}>`.
   - Itérer la **liste** ; pour chaque entrée, lire `action_type` (clé de sortie) et `current`/`last`. Construire `$list[$entry['action_type']] = new ActionLogData($entry['action_type'], ...)`.
@@ -243,7 +243,7 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
   > Si `current` peut être `null`, `ActionLogData`/template doivent le tolérer. Vérifier `src/DTO/ActionLogData.php` et `_macros.html.twig` (l.23-32, 39-53). Si le contrat actuel garantit toujours `current`, conserver l'hypothèse non-nullable.
 
-- [ ] **Étape 2 — Fixtures `action-logs.json` (×2)**
+- [x] **Étape 2 — Fixtures `action-logs.json` (×2)**
 
   Convertir l'objet racine en **tableau** dans :
   - `tests/resources/moco/Back/responses/action-logs.json`
@@ -251,35 +251,35 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
   Chaque ancienne entrée `"<action_type>": { "item": ..., "current": ..., "last": ... }` → `{ "action_type": "<action_type>", "current": ..., "last": ... }`. Conserver l'ordre et les valeurs. (Le champ `item` redondant est remplacé par `action_type`.)
 
-- [ ] **Étape 3 — Tests**
+- [x] **Étape 3 — Tests**
 
   - `tests/src/Unit/Service/Back/GetActionLogsServiceTest.php` : entrée tableau → sortie keyée inchangée ; couvrir `last: null` et (si applicable) `current: null`.
   - Tests intégration `AdminController`/action-logs : assertions de rendu inchangées si la sortie keyée est préservée ; sinon ajuster.
 
-- [ ] **Étape 4 — Vérification (manuelle)**
+- [x] **Étape 4 — Vérification (manuelle)**
   ```bash
   docker compose exec php php vendor/bin/phpunit --filter 'ActionLog|Admin'
   ```
 
 ---
 
-## Task 7 — election/vote : vérification (no-op probable) ⬜ À FAIRE
+## Task 7 — election/vote : vérification (no-op confirmé) ✅ VÉRIFIÉ
 
 **État actuel :** le vote est **fire-and-forget**. `Controller\ElectionVoteController` construit un `DTO\ElectionVote` puis `Service\Back\PostElectionVoteService::vote()` envoie au Back un corps `{ "winners_slugs": [...], "losers_slugs": [...] }` (les `dex_slug`/`election_slug` sont dans l'URL). **La réponse n'est pas consommée.**
 
 **Analyse `migration.md`** : le changement `/election/vote` porte sur (a) la **réponse** (`trainer_external_id` → `trainer.external_id`, ajout `score`/`pokemons_elo`) et (b) le **corps Back→API**. Aucun des deux n'impacte le corps **Web→Back** ni un parsing côté Web. → **Aucun changement de code attendu.**
 
-- [ ] **Étape 1 — Confirmer le no-op**
+- [x] **Étape 1 — Confirmer le no-op**
 
   - Vérifier que `PostElectionVoteService::vote()` retourne `void` et n'invoque aucun désérialiseur sur la réponse.
   - `grep -rn "election_vote\|pokemons_elo\|trainer_external_id" src/ templates/` : confirmer qu'aucun code/template ne lit la réponse de vote.
   - Confirmer que le corps Web→Back reste `{winners_slugs, losers_slugs}` (pas de `trainer` imbriqué attendu par le Back sur ce contrat).
 
-- [ ] **Étape 2 — (Optionnel) Rafraîchir les fixtures inutilisées**
+- [ ] **Étape 2 — (Optionnel) Rafraîchir les fixtures inutilisées** — _ignoré volontairement : réponse de vote non consommée, et le Back n'a pas migré ce contrat (sa fixture API porte encore `trainer_external_id` plat). Pas de source de vérité pour la forme `trainer.external_id`+`score`._
 
   Par fidélité au nouveau contrat, mettre à jour `tests/resources/moco/Back/responses/election/election_vote.json` et `tests/resources/unit/service/back/election_vote_demo_whatever.json` vers la forme `election_vote.trainer.external_id` + `pokemons_elo` + `score`. **Sans impact fonctionnel** (non parsées). À ne faire que si l'on tient à l'exactitude documentaire des fixtures.
 
-- [ ] **Étape 3 — Vérification (manuelle)**
+- [x] **Étape 3 — Vérification (manuelle)**
   ```bash
   docker compose exec php php vendor/bin/phpunit --filter 'ElectionVote'
   ```
@@ -300,13 +300,13 @@ Avant d'exécuter chaque tâche À FAIRE, **confirmer la forme exacte** dans les
 
 | Changement API (`migration.md`) | Atteint le Web ? | Tâche | Statut |
 |---|---|---|---|
-| `GET /forms` (consolidation) | **Oui** (via `/labels`) | Task 4 | ⬜ À FAIRE |
+| `GET /forms` (consolidation) | **Oui** (via `/labels`) | Task 4 | ✅ FAIT |
 | `GET /game_bundles` (generation imbriqué) | **Oui** (via `/labels`) | Task 1 | ✅ FAIT |
 | `GET /reports` (slugs + count) | **Oui** | Task 2 | ✅ FAIT |
 | `GET /election/top` (structure imbriquée) | **Oui** | Task 3 | ✅ FAIT |
-| `GET /election/metrics` (`completion`) | **Oui** | Task 5 | ⬜ À FAIRE |
-| `GET /action_logs` (tableau `action_type`) | **Oui** | Task 6 | ⬜ À FAIRE |
-| `POST /election/vote` (`trainer` imbriqué + `score`) | Réponse non consommée | Task 7 | ⬜ VÉRIF (no-op) |
+| `GET /election/metrics` (`completion`) | **Oui** | Task 5 | ✅ FAIT |
+| `GET /action_logs` (tableau `action_type`) | **Oui** | Task 6 | ✅ FAIT |
+| `POST /election/vote` (`trainer` imbriqué + `score`) | Réponse non consommée | Task 7 | ✅ VÉRIFIÉ (no-op) |
 | `GET /album/*` (ajouts non-breaking) | Non (additif, ignoré) | — | N/A |
 | `GET /pokemons/to_choose` (ajouts) | Non (additif, ignoré) | — | N/A |
 | `GET /debogage/*` | Non consommé | — | N/A |
