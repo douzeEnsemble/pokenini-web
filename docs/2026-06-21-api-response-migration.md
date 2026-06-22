@@ -190,7 +190,18 @@ La Tâche 3 est rédigée pour l'**option A**.
 
 ---
 
-## Task 3 — election_top : structure plate → imbriquée (option A)
+## Task 3 — election_top : structure plate → imbriquée (option A) ✅ IMPLÉMENTÉE
+
+> **Statut : terminée.** 3 VO créés + refonte `TopPokemon` + tests + 12 fixtures (65 entrées) reconstruites. Tests non exécutés (lint PHP `php -l` OK + JSON + structure validés statiquement).
+>
+> **Contrat réel vérifié dans le code source (`pokenini-api`/`pokenini-back` @ `feature/adapt_from_web`) :**
+> - Le Web ne voit **jamais** l'API directement ; il consomme la réponse du Back. `pokenini-back/GetElectionTopService` fait `return $item` (passe-plat de l'item API) en **ajoutant seulement** `pokemon['pokemon_icon'] = pokemon['slug']`. Donc le Web reçoit **le bloc `pokemon` riche de l'API + `pokemon_icon` (= slug)**, ainsi que `forms`, `types`, `score`.
+> - `pokemon_icon` vaut **toujours** le slug (imposé par le Back) → l'option A « icône = slug » est exactement le comportement réel. Conservée.
+> - **`score.elo` est un `float`** (`pokenini-api/DTO/Response/ElectionEloScoreResponse::$elo`, non casté par le Back). **Bug corrigé** : `TopPokemonScore::$elo` / `getElo()` et `TopPokemon::getElo()` passés de `int` à `float` ; tests ajustés (`1000.0`, `1016.5`, `1250.5`).
+>
+> **Décision propriétaire (confirmée) :**
+> - **Code** : option A littérale conservée (icône = slug, simplifié = nom complet) ; `forms`/`types`/champs riches **non mappés** (le Serializer ignore les clés en trop, comme `TopPokemon` ignorait déjà `primary_type_*`). VO `TopPokemonForms`/`TopPokemonTypes` non créés.
+> - **Fixtures** : fidélité **maximale** au vrai contrat. Bloc `pokemon` complet (labels 6 champs, `regional_dex_number`, `icon`, `family_order`, `family_lead`, `original_game_bundle`, `order_number`, `game_bundles`, `pokemon_icon`), `forms` (4 clés `category/regional/special/variant`), `types{primary,secondary}` avec **vraies couleurs** et **vrais french_name de formes** repris de `pokenini-api` (tables extraites de ses fixtures). Seul `game_bundles` est dérivé de `original_game_bundle` (donnée par-pokémon absente des sources ; slug réel utilisé). Ordre des clés calqué sur les DTO API.
 
 **Nouveau format d'une entrée** (depuis le diff Back `functional/controller/ElectionIndex/demolite.json`) :
 ```json
@@ -212,17 +223,17 @@ La Tâche 3 est rédigée pour l'**option A**.
 
 **Interfaces (à conserver pour ne pas casser les vues) :** `TopPokemon` doit continuer d'exposer au minimum `getPokemonSlug()`, `getPokemonName()`, `getPokemonFrenchName()`, `getPokemonSimplifiedName()`, `getPokemonSimplifiedFrenchName()`, `getPokemonIcon()`, `getElo()`, `isSignificance()` (utilisés par `_top.html.twig` et `_image_macros.html.twig`). Objectif : **zéro changement de template** sous l'option A.
 
-- [ ] **Étape 1 — Value objects imbriqués**
+- [x] **Étape 1 — Value objects imbriqués**
 
-  Créer (ou réutiliser) sous `src/ResponseObject/Election/` :
+  Créés sous `src/ResponseObject/Election/` :
   - `TopPokemonInfo` : `#[SerializedName('slug')] string $slug`, `#[SerializedName('labels')] TopPokemonLabels $labels`, `#[SerializedName('national_dex_number')] int $nationalDexNumber`.
   - `TopPokemonLabels` : `name`, `french_name`.
   - `TopPokemonScore` : `elo` (int), `significance` (bool).
-  - `forms` / `types` : réutiliser au maximum les VO existants `Label\Type` (slug, name, french_name, color) et les `AbstractForm`/sous-classes pour `category`/`regional`/`special`/`variant`. Prévoir un `TopPokemonForms` (4 propriétés nullables) et un `TopPokemonTypes` (`primary`, `secondary` nullable).
+  - ~~`forms` / `types`~~ : **non créés** (décision propriétaire — non consommés, ignorés par le Serializer). `TopPokemonForms`/`TopPokemonTypes` abandonnés.
 
   > Le Web désérialise `ElectionIndex` (donc `election_top` → `TopPokemon[]`) **via Symfony Serializer** (`GetElectionIndexService` l.31). Les sous-objets typés sont donc indispensables : un simple `SerializedName('pokemon.slug')` n'est pas supporté.
 
-- [ ] **Étape 2 — Refonte `TopPokemon.php`**
+- [x] **Étape 2 — Refonte `TopPokemon.php`**
 
   Nouveau constructeur :
   ```php
@@ -247,24 +258,21 @@ La Tâche 3 est rédigée pour l'**option A**.
   ```
   Supprimer les anciens getters devenus sans source (`getPokemonFormsLabel`, `getCatchState*`, `getFamilyLeadSlug`, `getPokemonRegionalDexNumber`, `getPokemonFamilyOrder`, `getPokemon*FormsFrenchLabel`, etc.) **seulement après** avoir vérifié par `grep` qu'aucun template/test ne les utilise. Exposer `getForms()` / `getTypes()` si une vue en a besoin.
 
-- [ ] **Étape 3 — Vérifier les templates (devrait être no-op sous option A)**
+- [x] **Étape 3 — Vérifier les templates (no-op sous option A — confirmé)**
 
   `grep -rn "electionTop\|item\.\(pokemon\|elo\|significance\)" templates/` pour confirmer que seuls les getters conservés sont utilisés. `_top.html.twig` (l.13, 20, 23) et `_image_macros.html.twig` (l.18, 20, 48, 50) doivent fonctionner sans modification. Si un getter supprimé est référencé, soit le conserver, soit adapter le template.
 
-- [ ] **Étape 4 — Fixtures moco `index_*.json` (×9)**
+- [x] **Étape 4 — Fixtures moco `index_*.json` (×9)**
 
-  Dans chaque fichier, convertir **chaque** entrée du tableau `election_top` du format plat vers le format imbriqué ci-dessus. Le reste de la réponse (`pokemons`, `pokedex`, `metrics`…) **reste inchangé** (le tableau `pokemons` garde la forme plate `pokemon_slug`, `pokemon_icon`, etc. — ne pas le toucher).
+  Chaque entrée `election_top` reconstruite à la forme **exacte du contrat Back→Web** : `{ pokemon{…11 champs…}, forms, types{primary,secondary}, score{elo:float, significance} }`, ordre des clés calqué sur les DTO `pokenini-api`. Données réelles : champs `pokemon` repris des fixtures plates d'origine (git HEAD) ; couleurs de types et french_name de formes repris des tables de référence `pokenini-api` ; `game_bundles` dérivé de `original_game_bundle` (slug réel). Tout le reste (`pokemons`, `pokedex`, `metrics`…) **inchangé** (vérifié par diff). Indentation (2) et UTF-8 brut préservés.
 
-- [ ] **Étape 5 — Fixtures unit/back + intégration**
+- [x] **Étape 5 — Fixtures unit/back + intégration**
 
-  Même conversion pour :
-  - `tests/resources/unit/service/back/election_top_5_home_fav.json`
-  - `tests/resources/unit/service/back/election_top_10_demo_pref.json`
-  - `tests/resources/integration/back/election_mega_top_5.json`
+  Même reconstruction fidèle. `election_mega_top_5.json` : les entrées n'ayant pas leurs propres `types`/`order_number`/`original_game_bundle`, ces champs sont repris par jointure sur le slug depuis la carte globale des entrées moco (les mêmes méga-pokémons figurent dans `index_mega.json`). Les deux `election_top_*.json` orphelins portent leurs propres `types`/`order_number` ; `game_bundles` y est vide (pas de `original_game_bundle` source). Échappement préservé (indent 4 ; UTF-8 brut pour l'intégration ; ASCII `\uXXXX` + apostrophe `'` pour les orphelins). 65 entrées au total sur les 12 fichiers.
 
-- [ ] **Étape 6 — Tests `TopPokemon` + ElectionIndex**
+- [x] **Étape 6 — Tests `TopPokemon` + ElectionIndex**
 
-  Mettre à jour `TopPokemonTest` (asserter sur la nouvelle structure et les getters de compatibilité) et les tests d'intégration ElectionIndex. Régénérer les snapshots HTML/W3C si la migration change le rendu (sous option A, le rendu du libellé du top change : nom complet au lieu de simplifié — ajuster les attendus en conséquence).
+  `TopPokemonTest` réécrit (désérialisation imbriquée + getters de compat + cas `significance: true` + `elo` **float** `1016.5`/`1000.0`). 3 tests unitaires VO créés (`TopPokemonLabelsTest`, `TopPokemonInfoTest`, `TopPokemonScoreTest` avec `elo` `1250.5`). Stub `getStubTopPokemon()` du trait migré vers les VO. Tests d'intégration `ElectionIndexTest` : aucune modif nécessaire (n'assertent que des comptages + le titre `h4`, pas le texte des libellés du top → le passage au nom complet sous option A ne change pas les attendus). Aucun snapshot HTML/W3C pour cette page.
 
 - [ ] **Étape 7 — Vérification (à lancer manuellement)**
   ```bash

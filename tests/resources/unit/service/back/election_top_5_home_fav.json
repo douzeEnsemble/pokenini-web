@@ -1,165 +1,229 @@
 [
     {
-        "pokemon_slug": "rattata-f",
-        "pokemon_name": "Rattata \u2640",
-        "pokemon_national_dex_number": 19,
-        "pokemon_simplified_name": "Rattata",
-        "pokemon_forms_label": "\u2640\ufe0f",
-        "pokemon_french_name": "Rattata \u2640\ufe0f",
-        "pokemon_simplified_french_name": "Rattata",
-        "pokemon_forms_french_label": "\u2640\ufe0f",
-        "pokemon_icon": "rattata-f",
-        "pokemon_family_order": 5,
-        "family_lead_slug": null,
-        "category_form_slug": null,
-        "category_form_name": null,
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": null,
-        "special_form_name": null,
-        "variant_form_slug": "gender",
-        "variant_form_name": "Gender",
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "primary_type_slug": "normal",
-        "primary_type_name": "Normal",
-        "primary_type_french_name": "Normal",
-        "secondary_type_slug": null,
-        "secondary_type_name": null,
-        "secondary_type_french_name": null,
-        "pokemon_order_number": "9999-0019-005",
-        "elo": 1040,
-        "significance": false
+        "pokemon": {
+            "slug": "rattata-f",
+            "labels": {
+                "name": "Rattata \u2640",
+                "french_name": "Rattata \u2640\ufe0f",
+                "simplified_name": "Rattata",
+                "simplified_french_name": "Rattata",
+                "forms_label": "\u2640\ufe0f",
+                "forms_french_label": "\u2640\ufe0f"
+            },
+            "national_dex_number": 19,
+            "regional_dex_number": null,
+            "icon": "rattata-f",
+            "family_order": 5,
+            "family_lead": null,
+            "original_game_bundle": null,
+            "order_number": "9999-0019-005",
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "rattata-f"
+        },
+        "forms": {
+            "category": null,
+            "regional": null,
+            "special": null,
+            "variant": {
+                "slug": "gender",
+                "name": "Gender",
+                "french_name": "Sexe"
+            }
+        },
+        "types": {
+            "primary": {
+                "slug": "normal",
+                "name": "Normal",
+                "french_name": "Normal",
+                "color": "#A8A878"
+            },
+            "secondary": null
+        },
+        "score": {
+            "elo": 1040.0,
+            "significance": false
+        }
     },
     {
-        "pokemon_slug": "rattata-alola",
-        "pokemon_name": "Rattata-Alola",
-        "pokemon_national_dex_number": 19,
-        "pokemon_simplified_name": "Rattata",
-        "pokemon_forms_label": "Alolan",
-        "pokemon_french_name": "Rattata d\u0027Alola",
-        "pokemon_simplified_french_name": "Rattata",
-        "pokemon_forms_french_label": "d\u0027Alola",
-        "pokemon_icon": "rattata-alola",
-        "pokemon_family_order": 6,
-        "family_lead_slug": null,
-        "regional_form_slug": "alolan",
-        "regional_form_name": "Alolan",
-        "special_form_slug": null,
-        "special_form_name": null,
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "primary_type_slug": "dark",
-        "primary_type_name": "Dark",
-        "primary_type_french_name": "T\u00e9n\u00e8bre",
-        "secondary_type_slug": "normal",
-        "secondary_type_name": "Normal",
-        "secondary_type_french_name": "Normal",
-        "pokemon_order_number": "9999-0019-006",
-        "elo": 1040,
-        "significance": false
+        "pokemon": {
+            "slug": "rattata-alola",
+            "labels": {
+                "name": "Rattata-Alola",
+                "french_name": "Rattata d\u0027Alola",
+                "simplified_name": "Rattata",
+                "simplified_french_name": "Rattata",
+                "forms_label": "Alolan",
+                "forms_french_label": "d\u0027Alola"
+            },
+            "national_dex_number": 19,
+            "regional_dex_number": null,
+            "icon": "rattata-alola",
+            "family_order": 6,
+            "family_lead": null,
+            "original_game_bundle": null,
+            "order_number": "9999-0019-006",
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "rattata-alola"
+        },
+        "forms": {
+            "category": null,
+            "regional": {
+                "slug": "alolan",
+                "name": "Alolan",
+                "french_name": "d\u0027Alola"
+            },
+            "special": null,
+            "variant": null
+        },
+        "types": {
+            "primary": {
+                "slug": "dark",
+                "name": "Dark",
+                "french_name": "T\u00e9n\u00e8bre",
+                "color": "#705848"
+            },
+            "secondary": {
+                "slug": "normal",
+                "name": "Normal",
+                "french_name": "Normal",
+                "color": "#A8A878"
+            }
+        },
+        "score": {
+            "elo": 1040.0,
+            "significance": false
+        }
     },
     {
-        "pokemon_slug": "fearow",
-        "pokemon_name": "Fearow",
-        "pokemon_national_dex_number": 22,
-        "pokemon_simplified_name": "Fearow",
-        "pokemon_forms_label": "",
-        "pokemon_french_name": "Rapasdepic",
-        "pokemon_simplified_french_name": "Rapasdepic",
-        "pokemon_forms_french_label": "",
-        "pokemon_icon": "fearow",
-        "pokemon_family_order": 1,
-        "family_lead_slug": "spearow",
-        "category_form_slug": null,
-        "category_form_name": null,
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": null,
-        "special_form_name": null,
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "primary_type_slug": "normal",
-        "primary_type_name": "Normal",
-        "primary_type_french_name": "Normal",
-        "secondary_type_slug": "flying",
-        "secondary_type_name": "Flying",
-        "secondary_type_french_name": "Vol",
-        "pokemon_order_number": "9999-0022-001",
-        "elo": 1040,
-        "significance": false
+        "pokemon": {
+            "slug": "fearow",
+            "labels": {
+                "name": "Fearow",
+                "french_name": "Rapasdepic",
+                "simplified_name": "Fearow",
+                "simplified_french_name": "Rapasdepic",
+                "forms_label": null,
+                "forms_french_label": null
+            },
+            "national_dex_number": 22,
+            "regional_dex_number": null,
+            "icon": "fearow",
+            "family_order": 1,
+            "family_lead": {
+                "slug": "spearow"
+            },
+            "original_game_bundle": null,
+            "order_number": "9999-0022-001",
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "fearow"
+        },
+        "forms": null,
+        "types": {
+            "primary": {
+                "slug": "normal",
+                "name": "Normal",
+                "french_name": "Normal",
+                "color": "#A8A878"
+            },
+            "secondary": {
+                "slug": "flying",
+                "name": "Flying",
+                "french_name": "Vol",
+                "color": "#A890F0"
+            }
+        },
+        "score": {
+            "elo": 1040.0,
+            "significance": false
+        }
     },
     {
-        "pokemon_slug": "ekans",
-        "pokemon_name": "Ekans",
-        "pokemon_national_dex_number": 23,
-        "pokemon_simplified_name": "Ekans",
-        "pokemon_forms_label": "",
-        "pokemon_french_name": "Abo",
-        "pokemon_simplified_french_name": "Abo",
-        "pokemon_forms_french_label": "",
-        "pokemon_icon": "ekans",
-        "pokemon_family_order": 0,
-        "family_lead_slug": null,
-        "category_form_slug": null,
-        "category_form_name": null,
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": null,
-        "special_form_name": null,
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "primary_type_slug": "poison",
-        "primary_type_name": "Poison",
-        "primary_type_french_name": "Poison",
-        "secondary_type_slug": null,
-        "secondary_type_name": null,
-        "secondary_type_french_name": null,
-        "pokemon_order_number": "9999-0023-000",
-        "elo": 1040,
-        "significance": false
+        "pokemon": {
+            "slug": "ekans",
+            "labels": {
+                "name": "Ekans",
+                "french_name": "Abo",
+                "simplified_name": "Ekans",
+                "simplified_french_name": "Abo",
+                "forms_label": null,
+                "forms_french_label": null
+            },
+            "national_dex_number": 23,
+            "regional_dex_number": null,
+            "icon": "ekans",
+            "family_order": 0,
+            "family_lead": null,
+            "original_game_bundle": null,
+            "order_number": "9999-0023-000",
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "ekans"
+        },
+        "forms": null,
+        "types": {
+            "primary": {
+                "slug": "poison",
+                "name": "Poison",
+                "french_name": "Poison",
+                "color": "#A040A0"
+            },
+            "secondary": null
+        },
+        "score": {
+            "elo": 1040.0,
+            "significance": false
+        }
     },
     {
-        "pokemon_slug": "arbok",
-        "pokemon_name": "Arbok",
-        "pokemon_national_dex_number": 24,
-        "pokemon_simplified_name": "Arbok",
-        "pokemon_forms_label": "",
-        "pokemon_french_name": "Arbok",
-        "pokemon_simplified_french_name": "Arbok",
-        "pokemon_forms_french_label": "",
-        "pokemon_icon": "arbok",
-        "pokemon_family_order": 1,
-        "family_lead_slug": "ekans",
-        "category_form_slug": null,
-        "category_form_name": null,
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": null,
-        "special_form_name": null,
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "primary_type_slug": "poison",
-        "primary_type_name": "Poison",
-        "primary_type_french_name": "Poison",
-        "secondary_type_slug": null,
-        "secondary_type_name": null,
-        "secondary_type_french_name": null,
-        "pokemon_order_number": "9999-0024-001",
-        "elo": 1040,
-        "significance": false
+        "pokemon": {
+            "slug": "arbok",
+            "labels": {
+                "name": "Arbok",
+                "french_name": "Arbok",
+                "simplified_name": "Arbok",
+                "simplified_french_name": "Arbok",
+                "forms_label": null,
+                "forms_french_label": null
+            },
+            "national_dex_number": 24,
+            "regional_dex_number": null,
+            "icon": "arbok",
+            "family_order": 1,
+            "family_lead": {
+                "slug": "ekans"
+            },
+            "original_game_bundle": null,
+            "order_number": "9999-0024-001",
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "arbok"
+        },
+        "forms": null,
+        "types": {
+            "primary": {
+                "slug": "poison",
+                "name": "Poison",
+                "french_name": "Poison",
+                "color": "#A040A0"
+            },
+            "secondary": null
+        },
+        "score": {
+            "elo": 1040.0,
+            "significance": false
+        }
     }
 ]
