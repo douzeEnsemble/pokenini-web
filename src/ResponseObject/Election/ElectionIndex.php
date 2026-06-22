@@ -14,12 +14,9 @@ final class ElectionIndex
      * @param Pokemon[]    $pokemons
      * @param TopPokemon[] $electionTop
      * @param array{
-     *      view_count_sum: int,
-     *      win_count_sum: int,
-     *      view_count_max: int,
-     *      win_count_max: int,
-     *      under_max_view_count: int,
-     *      max_view_count: int,
+     *      view_count: array{sum: int, max: int},
+     *      win_count: array{sum: int, max: int},
+     *      completion: array{under_max_count: int, at_max_count: int},
      *      dex_total_count: int,
      *      round_count: int,
      *      winner_average: float,
@@ -73,12 +70,9 @@ final class ElectionIndex
 
     /**
      * @return array{
-     *  view_count_sum: int,
-     *  win_count_sum: int,
-     *  view_count_max: int,
-     *  win_count_max: int,
-     *  under_max_view_count: int,
-     *  max_view_count: int,
+     *  view_count: array{sum: int, max: int},
+     *  win_count: array{sum: int, max: int},
+     *  completion: array{under_max_count: int, at_max_count: int},
      *  dex_total_count: int,
      *  round_count: int,
      *  winner_average: float,

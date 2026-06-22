@@ -25,12 +25,9 @@ final class ElectionIndexDataTest extends TestCase
             new ElectionTop([]),
             ElectionMetrics::createFromArray(
                 [
-                    'view_count_sum' => 82,
-                    'win_count_sum' => 54,
-                    'view_count_max' => 42,
-                    'win_count_max' => 52,
-                    'under_max_view_count' => 62,
-                    'max_view_count' => 27,
+                    'view_count' => ['sum' => 82, 'max' => 42],
+                    'win_count' => ['sum' => 54, 'max' => 52],
+                    'completion' => ['under_max_count' => 62, 'at_max_count' => 27],
                     'dex_total_count' => 50,
                     'round_count' => 7,
                     'winner_average' => 7.71,

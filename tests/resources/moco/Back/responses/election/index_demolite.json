@@ -3911,12 +3911,9 @@
     }
   ],
   "metrics": {
-    "view_count_sum": 12,
-    "win_count_sum": 3,
-    "view_count_max": 1,
-    "win_count_max": 1,
-    "under_max_view_count": 1,
-    "max_view_count": 5,
+    "view_count": { "sum": 12, "max": 1 },
+    "win_count": { "sum": 3, "max": 1 },
+    "completion": { "under_max_count": 1, "at_max_count": 5 },
     "dex_total_count": 48,
     "round_count": 1,
     "total_round_count": 6,

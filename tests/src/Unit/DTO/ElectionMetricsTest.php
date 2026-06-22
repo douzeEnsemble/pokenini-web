@@ -35,12 +35,9 @@ final class ElectionMetricsTest extends TestCase
     {
         $object = ElectionMetrics::createFromArray(
             [
-                'view_count_sum' => 82,
-                'win_count_sum' => 54,
-                'view_count_max' => 42,
-                'win_count_max' => 52,
-                'under_max_view_count' => 62,
-                'max_view_count' => 27,
+                'view_count' => ['sum' => 82, 'max' => 42],
+                'win_count' => ['sum' => 54, 'max' => 52],
+                'completion' => ['under_max_count' => 62, 'at_max_count' => 27],
                 'dex_total_count' => 50,
                 'round_count' => 7,
                 'winner_average' => 7.71,
@@ -60,134 +57,155 @@ final class ElectionMetricsTest extends TestCase
         $this->assertSame(13, $object->totalRoundCount);
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     #[DataProvider('providerMissingProperty')]
-    public function testMissingProperty(string $missingProperty): void
+    public function testMissingProperty(array $values): void
     {
-        $properties = [
-            'view_count_sum' => '1',
-            'win_count_sum' => 2,
-            'view_count_max' => 3,
-            'win_count_max' => 4,
-            'under_max_view_count' => 5,
-            'max_view_count' => 6,
-            'dex_total_count' => 50,
-        ];
-
-        unset($properties[$missingProperty]);
-
         $this->expectException(MissingOptionsException::class);
 
         /**
-         * @psalm-suppress InvalidArgument
+         * @psalm-suppress ArgumentTypeCoercion
          *
          * @phpstan-ignore argument.type
          */
-        ElectionMetrics::createFromArray($properties);
+        ElectionMetrics::createFromArray($values);
     }
 
     /**
-     * @return array<string, array{missingProperty: string}>
+     * @return array<string, array{values: array<string, mixed>}>
      */
     public static function providerMissingProperty(): array
     {
-        return [
-            'missing_view_count_sum' => [
-                'missingProperty' => 'view_count_sum',
-            ],
-            'missing_win_count_sum' => [
-                'missingProperty' => 'win_count_sum',
-            ],
-            'missing_view_count_max' => [
-                'missingProperty' => 'view_count_max',
-            ],
-            'missing_win_count_max' => [
-                'missingProperty' => 'win_count_max',
-            ],
-            'missing_under_max_view_count' => [
-                'missingProperty' => 'under_max_view_count',
-            ],
-            'missing_max_view_count' => [
-                'missingProperty' => 'max_view_count',
-            ],
-            'missing_dex_total_count' => [
-                'missingProperty' => 'dex_total_count',
-            ],
-            'missing_round_count' => [
-                'missingProperty' => 'round_count',
-            ],
-            'missing_winner_average' => [
-                'missingProperty' => 'winner_average',
-            ],
-            'missing_total_round_count' => [
-                'missingProperty' => 'total_round_count',
-            ],
+        $paths = [
+            ['view_count'],
+            ['view_count', 'sum'],
+            ['view_count', 'max'],
+            ['win_count'],
+            ['win_count', 'sum'],
+            ['win_count', 'max'],
+            ['completion'],
+            ['completion', 'under_max_count'],
+            ['completion', 'at_max_count'],
+            ['dex_total_count'],
+            ['round_count'],
+            ['winner_average'],
+            ['total_round_count'],
         ];
+
+        $cases = [];
+        foreach ($paths as $path) {
+            $cases['missing_'.implode('_', $path)] = ['values' => self::removePath($path)];
+        }
+
+        return $cases;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     #[DataProvider('providerBadValue')]
-    public function testBadValue(string $badlyTypedProperty): void
+    public function testBadValue(array $values): void
     {
-        $properties = [
-            'view_count_sum' => 82,
-            'win_count_sum' => 54,
-            'view_count_max' => 42,
-            'win_count_max' => 52,
-            'under_max_view_count' => 62,
-            'max_view_count' => 27,
+        $this->expectException(InvalidOptionsException::class);
+
+        /**
+         * @psalm-suppress ArgumentTypeCoercion
+         *
+         * @phpstan-ignore argument.type
+         */
+        ElectionMetrics::createFromArray($values);
+    }
+
+    /**
+     * @return array<string, array{values: array<string, mixed>}>
+     */
+    public static function providerBadValue(): array
+    {
+        $paths = [
+            ['view_count'],
+            ['view_count', 'sum'],
+            ['view_count', 'max'],
+            ['win_count'],
+            ['win_count', 'sum'],
+            ['win_count', 'max'],
+            ['completion'],
+            ['completion', 'under_max_count'],
+            ['completion', 'at_max_count'],
+            ['dex_total_count'],
+            ['round_count'],
+            ['winner_average'],
+            ['total_round_count'],
+        ];
+
+        $cases = [];
+        foreach ($paths as $path) {
+            $cases['bad_'.implode('_', $path)] = ['values' => self::corruptPath($path)];
+        }
+
+        return $cases;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function validData(): array
+    {
+        return [
+            'view_count' => ['sum' => 82, 'max' => 42],
+            'win_count' => ['sum' => 54, 'max' => 52],
+            'completion' => ['under_max_count' => 62, 'at_max_count' => 27],
             'dex_total_count' => 50,
             'round_count' => 7,
             'winner_average' => 7.71,
             'total_round_count' => 13,
         ];
-
-        $properties[$badlyTypedProperty] = (string) $properties[$badlyTypedProperty];
-
-        $this->expectException(InvalidOptionsException::class);
-
-        /**
-         * @psalm-suppress InvalidArgument
-         *
-         * @phpstan-ignore argument.type
-         */
-        ElectionMetrics::createFromArray($properties);
     }
 
     /**
-     * @return array<string, array{badlyTypedProperty: string}>
+     * @param list<string> $path
+     *
+     * @return array<string, mixed>
      */
-    public static function providerBadValue(): array
+    private static function removePath(array $path): array
     {
-        return [
-            'badly_typed_view_count_sum' => [
-                'badlyTypedProperty' => 'view_count_sum',
-            ],
-            'badly_typed_win_count_sum' => [
-                'badlyTypedProperty' => 'win_count_sum',
-            ],
-            'badly_typed_view_count_max' => [
-                'badlyTypedProperty' => 'view_count_max',
-            ],
-            'badly_typed_win_count_max' => [
-                'badlyTypedProperty' => 'win_count_max',
-            ],
-            'badly_typed_under_max_view_count' => [
-                'badlyTypedProperty' => 'under_max_view_count',
-            ],
-            'badly_typed_max_view_count' => [
-                'badlyTypedProperty' => 'max_view_count',
-            ],
-            'badly_typed_dex_total_count' => [
-                'badlyTypedProperty' => 'dex_total_count',
-            ],
-            'badly_typed_round_count' => [
-                'badlyTypedProperty' => 'round_count',
-            ],
-            'badly_typed_winner_average' => [
-                'badlyTypedProperty' => 'winner_average',
-            ],
-            'badly_typed_total_round_count' => [
-                'badlyTypedProperty' => 'total_round_count',
-            ],
-        ];
+        $data = self::validData();
+
+        if (1 === \count($path)) {
+            unset($data[$path[0]]);
+
+            return $data;
+        }
+
+        /** @var array<string, mixed> $sub */
+        $sub = $data[$path[0]];
+        unset($sub[$path[1]]);
+        $data[$path[0]] = $sub;
+
+        return $data;
+    }
+
+    /**
+     * @param list<string> $path
+     *
+     * @return array<string, mixed>
+     */
+    private static function corruptPath(array $path): array
+    {
+        $data = self::validData();
+
+        if (1 === \count($path)) {
+            $data[$path[0]] = 'not-an-array';
+
+            return $data;
+        }
+
+        /** @var array<string, mixed> $sub */
+        $sub = $data[$path[0]];
+        $sub[$path[1]] = 'not-an-int';
+        $data[$path[0]] = $sub;
+
+        return $data;
     }
 }
