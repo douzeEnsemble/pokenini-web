@@ -13,6 +13,10 @@ final class TopPokemonLabels
         private readonly string $name,
         #[SerializedName('french_name')]
         private readonly string $frenchName,
+        #[SerializedName('simplified_name')]
+        private readonly string $simplifiedName,
+        #[SerializedName('simplified_french_name')]
+        private readonly string $simplifiedFrenchName,
     ) {}
 
     public function getName(): string
@@ -23,5 +27,15 @@ final class TopPokemonLabels
     public function getFrenchName(): string
     {
         return $this->frenchName;
+    }
+
+    public function getSimplifiedName(): string
+    {
+        return $this->simplifiedName;
+    }
+
+    public function getSimplifiedFrenchName(): string
+    {
+        return $this->simplifiedFrenchName;
     }
 }

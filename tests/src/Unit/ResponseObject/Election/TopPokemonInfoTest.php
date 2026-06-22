@@ -17,11 +17,12 @@ final class TopPokemonInfoTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $labels = new TopPokemonLabels('Mega Venusaur', 'Mega Florizarre');
-        $object = new TopPokemonInfo('venusaur-mega', $labels, 3);
+        $labels = new TopPokemonLabels('Mega Venusaur', 'Mega Florizarre', 'Venusaur', 'Florizarre');
+        $object = new TopPokemonInfo('venusaur-mega', $labels, 3, 'venusaur-mega');
 
         $this->assertSame('venusaur-mega', $object->getSlug());
         $this->assertSame($labels, $object->getLabels());
         $this->assertSame(3, $object->getNationalDexNumber());
+        $this->assertSame('venusaur-mega', $object->getIcon());
     }
 }

@@ -202,8 +202,9 @@ trait ResponseObjectTrait
         return new TopPokemon(
             new TopPokemonInfo(
                 'bulbasaur',
-                new TopPokemonLabels('Bulbasaur', 'Bulbizarre'),
+                new TopPokemonLabels('Bulbasaur', 'Bulbizarre', 'Bulbasaur', 'Bulbizarre'),
                 1,
+                'bulbasaur',
             ),
             new TopPokemonScore(1, false),
         );

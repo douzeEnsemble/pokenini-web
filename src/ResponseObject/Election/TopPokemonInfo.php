@@ -15,6 +15,8 @@ final class TopPokemonInfo
         private readonly TopPokemonLabels $labels,
         #[SerializedName('national_dex_number')]
         private readonly int $nationalDexNumber,
+        #[SerializedName('pokemon_icon')]
+        private readonly string $icon,
     ) {}
 
     public function getSlug(): string
@@ -30,5 +32,10 @@ final class TopPokemonInfo
     public function getNationalDexNumber(): int
     {
         return $this->nationalDexNumber;
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon;
     }
 }
