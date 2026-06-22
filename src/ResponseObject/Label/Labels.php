@@ -9,28 +9,18 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 final class Labels
 {
     /**
-     * @param array<int, CatchState>   $catchStates
-     * @param array<int, Type>         $types
-     * @param array<int, CategoryForm> $categoryForms
-     * @param array<int, RegionalForm> $regionalForms
-     * @param array<int, SpecialForm>  $specialForms
-     * @param array<int, VariantForm>  $variantForms
-     * @param array<int, GameBundle>   $gameBundles
-     * @param array<int, Collection>   $collections
+     * @param array<int, CatchState> $catchStates
+     * @param array<int, Type>       $types
+     * @param array<int, GameBundle> $gameBundles
+     * @param array<int, Collection> $collections
      */
     public function __construct(
         #[SerializedName('catch_states')]
         private readonly array $catchStates,
         #[SerializedName('types')]
         private readonly array $types,
-        #[SerializedName('category_forms')]
-        private readonly array $categoryForms,
-        #[SerializedName('regional_forms')]
-        private readonly array $regionalForms,
-        #[SerializedName('special_forms')]
-        private readonly array $specialForms,
-        #[SerializedName('variant_forms')]
-        private readonly array $variantForms,
+        #[SerializedName('forms')]
+        private readonly Forms $forms,
         #[SerializedName('game_bundles')]
         private readonly array $gameBundles,
         #[SerializedName('collections')]
@@ -58,7 +48,7 @@ final class Labels
      */
     public function getCategoryForms(): array
     {
-        return $this->categoryForms;
+        return $this->forms->getCategory();
     }
 
     /**
@@ -66,7 +56,7 @@ final class Labels
      */
     public function getRegionalForms(): array
     {
-        return $this->regionalForms;
+        return $this->forms->getRegional();
     }
 
     /**
@@ -74,7 +64,7 @@ final class Labels
      */
     public function getSpecialForms(): array
     {
-        return $this->specialForms;
+        return $this->forms->getSpecial();
     }
 
     /**
@@ -82,7 +72,7 @@ final class Labels
      */
     public function getVariantForms(): array
     {
-        return $this->variantForms;
+        return $this->forms->getVariant();
     }
 
     /**
