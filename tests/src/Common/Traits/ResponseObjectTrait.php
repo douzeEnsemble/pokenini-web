@@ -12,6 +12,9 @@ use App\ResponseObject\Album\ReportDetail;
 use App\ResponseObject\Common\Pokemon;
 use App\ResponseObject\Election\ElectionList;
 use App\ResponseObject\Election\TopPokemon;
+use App\ResponseObject\Election\TopPokemonInfo;
+use App\ResponseObject\Election\TopPokemonLabels;
+use App\ResponseObject\Election\TopPokemonScore;
 use App\ResponseObject\Label\CatchState;
 use App\ResponseObject\Label\CategoryForm;
 use App\ResponseObject\Label\Collection;
@@ -197,31 +200,12 @@ trait ResponseObjectTrait
     protected function getStubTopPokemon(): TopPokemon
     {
         return new TopPokemon(
-            'bulbasaur',
-            'Bulbasaur',
-            1,
-            'Bulbasaur',
-            '',
-            'Bulbizarre',
-            'Bulbizarre',
-            '',
-            'bulbasaur',
-            0,
-            null,
-            'starter',
-            'Starter',
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            1,
-            2,
-            false,
+            new TopPokemonInfo(
+                'bulbasaur',
+                new TopPokemonLabels('Bulbasaur', 'Bulbizarre'),
+                1,
+            ),
+            new TopPokemonScore(1, false),
         );
     }
 

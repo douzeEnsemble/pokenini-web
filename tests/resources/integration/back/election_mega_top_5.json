@@ -1,127 +1,247 @@
 [
     {
-        "pokemon_slug": "venusaur-mega",
-        "pokemon_name": "Mega Venusaur",
-        "pokemon_national_dex_number": 3,
-        "pokemon_simplified_name": "Venusaur",
-        "pokemon_forms_label": "Mega",
-        "pokemon_french_name": "Mega Florizarre",
-        "pokemon_simplified_french_name": "Florizarre",
-        "pokemon_forms_french_label": "Mega",
-        "pokemon_icon": "venusaur-mega",
-        "pokemon_family_order": 4,
-        "family_lead_slug": "bulbasaur",
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": "mega",
-        "special_form_name": "Mega",
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "pokemon_regional_dex_number": null,
-        "elo": 1000,
-        "significance": false
+        "pokemon": {
+            "slug": "venusaur-mega",
+            "labels": {
+                "name": "Mega Venusaur",
+                "french_name": "Mega Florizarre",
+                "simplified_name": "Venusaur",
+                "simplified_french_name": "Florizarre",
+                "forms_label": "Mega",
+                "forms_french_label": "Mega"
+            },
+            "national_dex_number": 3,
+            "regional_dex_number": null,
+            "icon": "venusaur-mega",
+            "family_order": 4,
+            "family_lead": {
+                "slug": "bulbasaur"
+            },
+            "original_game_bundle": {
+                "slug": "redgreenblueyellow"
+            },
+            "order_number": "9999-0003-004",
+            "game_bundles": {
+                "normal": [
+                    {
+                        "slug": "redgreenblueyellow"
+                    }
+                ],
+                "shiny": [
+                    {
+                        "slug": "redgreenblueyellow"
+                    }
+                ]
+            },
+            "pokemon_icon": "venusaur-mega"
+        },
+        "forms": {
+            "category": null,
+            "regional": null,
+            "special": {
+                "slug": "mega",
+                "name": "Mega",
+                "french_name": "Mega"
+            },
+            "variant": null
+        },
+        "types": {
+            "primary": {
+                "slug": "grass",
+                "name": "Grass",
+                "french_name": "Plante",
+                "color": "#78C850"
+            },
+            "secondary": {
+                "slug": "poison",
+                "name": "Poison",
+                "french_name": "Poison",
+                "color": "#A040A0"
+            }
+        },
+        "score": {
+            "elo": 1000.0,
+            "significance": false
+        }
     },
     {
-        "pokemon_slug": "blastoise-mega",
-        "pokemon_name": "Mega Blastoise",
-        "pokemon_national_dex_number": 9,
-        "pokemon_simplified_name": "Blastoise",
-        "pokemon_forms_label": "Mega",
-        "pokemon_french_name": "Mega Tortank",
-        "pokemon_simplified_french_name": "Tortank",
-        "pokemon_forms_french_label": "Mega",
-        "pokemon_icon": "blastoise-mega",
-        "pokemon_family_order": 3,
-        "family_lead_slug": "squirtle",
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": "mega",
-        "special_form_name": "Mega",
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "pokemon_regional_dex_number": null,
-        "elo": 1000,
-        "significance": false
+        "pokemon": {
+            "slug": "blastoise-mega",
+            "labels": {
+                "name": "Mega Blastoise",
+                "french_name": "Mega Tortank",
+                "simplified_name": "Blastoise",
+                "simplified_french_name": "Tortank",
+                "forms_label": "Mega",
+                "forms_french_label": "Mega"
+            },
+            "national_dex_number": 9,
+            "regional_dex_number": null,
+            "icon": "blastoise-mega",
+            "family_order": 3,
+            "family_lead": {
+                "slug": "squirtle"
+            },
+            "original_game_bundle": null,
+            "order_number": null,
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "blastoise-mega"
+        },
+        "forms": {
+            "category": null,
+            "regional": null,
+            "special": {
+                "slug": "mega",
+                "name": "Mega",
+                "french_name": "Mega"
+            },
+            "variant": null
+        },
+        "types": {
+            "primary": null,
+            "secondary": null
+        },
+        "score": {
+            "elo": 1000.0,
+            "significance": false
+        }
     },
     {
-        "pokemon_slug": "beedrill-mega",
-        "pokemon_name": "Mega Beedrill",
-        "pokemon_national_dex_number": 15,
-        "pokemon_simplified_name": "Beedrill",
-        "pokemon_forms_label": "Mega",
-        "pokemon_french_name": "Mega Dardargnan",
-        "pokemon_simplified_french_name": "Dardargnan",
-        "pokemon_forms_french_label": "Mega",
-        "pokemon_icon": "beedrill-mega",
-        "pokemon_family_order": 3,
-        "family_lead_slug": "weedle",
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": "mega",
-        "special_form_name": "Mega",
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "pokemon_regional_dex_number": null,
-        "elo": 1000,
-        "significance": false
+        "pokemon": {
+            "slug": "beedrill-mega",
+            "labels": {
+                "name": "Mega Beedrill",
+                "french_name": "Mega Dardargnan",
+                "simplified_name": "Beedrill",
+                "simplified_french_name": "Dardargnan",
+                "forms_label": "Mega",
+                "forms_french_label": "Mega"
+            },
+            "national_dex_number": 15,
+            "regional_dex_number": null,
+            "icon": "beedrill-mega",
+            "family_order": 3,
+            "family_lead": {
+                "slug": "weedle"
+            },
+            "original_game_bundle": null,
+            "order_number": null,
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "beedrill-mega"
+        },
+        "forms": {
+            "category": null,
+            "regional": null,
+            "special": {
+                "slug": "mega",
+                "name": "Mega",
+                "french_name": "Mega"
+            },
+            "variant": null
+        },
+        "types": {
+            "primary": null,
+            "secondary": null
+        },
+        "score": {
+            "elo": 1000.0,
+            "significance": false
+        }
     },
     {
-        "pokemon_slug": "pidgeot-mega",
-        "pokemon_name": "Mega Pidgeot",
-        "pokemon_national_dex_number": 18,
-        "pokemon_simplified_name": "Pidgeot",
-        "pokemon_forms_label": "Mega",
-        "pokemon_french_name": "Mega Roucarnage",
-        "pokemon_simplified_french_name": "Roucarnage",
-        "pokemon_forms_french_label": "Mega",
-        "pokemon_icon": "pidgeot-mega",
-        "pokemon_family_order": 3,
-        "family_lead_slug": "pidgey",
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": "mega",
-        "special_form_name": "Mega",
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "pokemon_regional_dex_number": null,
-        "elo": 1000,
-        "significance": false
+        "pokemon": {
+            "slug": "pidgeot-mega",
+            "labels": {
+                "name": "Mega Pidgeot",
+                "french_name": "Mega Roucarnage",
+                "simplified_name": "Pidgeot",
+                "simplified_french_name": "Roucarnage",
+                "forms_label": "Mega",
+                "forms_french_label": "Mega"
+            },
+            "national_dex_number": 18,
+            "regional_dex_number": null,
+            "icon": "pidgeot-mega",
+            "family_order": 3,
+            "family_lead": {
+                "slug": "pidgey"
+            },
+            "original_game_bundle": null,
+            "order_number": null,
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "pidgeot-mega"
+        },
+        "forms": {
+            "category": null,
+            "regional": null,
+            "special": {
+                "slug": "mega",
+                "name": "Mega",
+                "french_name": "Mega"
+            },
+            "variant": null
+        },
+        "types": {
+            "primary": null,
+            "secondary": null
+        },
+        "score": {
+            "elo": 1000.0,
+            "significance": false
+        }
     },
     {
-        "pokemon_slug": "alakazam-mega",
-        "pokemon_name": "Mega Alakazam",
-        "pokemon_national_dex_number": 65,
-        "pokemon_simplified_name": "Alakazam",
-        "pokemon_forms_label": "Mega",
-        "pokemon_french_name": "Mega Alakazam",
-        "pokemon_simplified_french_name": "Alakazam",
-        "pokemon_forms_french_label": "Mega",
-        "pokemon_icon": "alakazam-mega",
-        "pokemon_family_order": 10,
-        "family_lead_slug": "abra",
-        "regional_form_slug": null,
-        "regional_form_name": null,
-        "special_form_slug": "mega",
-        "special_form_name": "Mega",
-        "variant_form_slug": null,
-        "variant_form_name": null,
-        "catch_state_slug": null,
-        "catch_state_name": null,
-        "catch_state_french_name": null,
-        "pokemon_regional_dex_number": null,
-        "elo": 1000,
-        "significance": false
+        "pokemon": {
+            "slug": "alakazam-mega",
+            "labels": {
+                "name": "Mega Alakazam",
+                "french_name": "Mega Alakazam",
+                "simplified_name": "Alakazam",
+                "simplified_french_name": "Alakazam",
+                "forms_label": "Mega",
+                "forms_french_label": "Mega"
+            },
+            "national_dex_number": 65,
+            "regional_dex_number": null,
+            "icon": "alakazam-mega",
+            "family_order": 10,
+            "family_lead": {
+                "slug": "abra"
+            },
+            "original_game_bundle": null,
+            "order_number": null,
+            "game_bundles": {
+                "normal": [],
+                "shiny": []
+            },
+            "pokemon_icon": "alakazam-mega"
+        },
+        "forms": {
+            "category": null,
+            "regional": null,
+            "special": {
+                "slug": "mega",
+                "name": "Mega",
+                "french_name": "Mega"
+            },
+            "variant": null
+        },
+        "types": {
+            "primary": null,
+            "secondary": null
+        },
+        "score": {
+            "elo": 1000.0,
+            "significance": false
+        }
     }
 ]
