@@ -32,7 +32,7 @@ final class TopPokemon
 
     public function getPokemonSimplifiedName(): string
     {
-        return $this->pokemon->getLabels()->getName();
+        return $this->pokemon->getLabels()->getSimplifiedName();
     }
 
     public function getPokemonFrenchName(): string
@@ -42,12 +42,12 @@ final class TopPokemon
 
     public function getPokemonSimplifiedFrenchName(): string
     {
-        return $this->pokemon->getLabels()->getFrenchName();
+        return $this->pokemon->getLabels()->getSimplifiedFrenchName();
     }
 
     public function getPokemonIcon(): string
     {
-        return $this->pokemon->getSlug();
+        return $this->pokemon->getIcon();
     }
 
     public function getElo(): float

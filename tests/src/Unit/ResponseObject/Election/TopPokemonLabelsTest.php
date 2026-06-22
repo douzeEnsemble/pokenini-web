@@ -16,9 +16,11 @@ final class TopPokemonLabelsTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $object = new TopPokemonLabels('Mega Venusaur', 'Mega Florizarre');
+        $object = new TopPokemonLabels('Mega Venusaur', 'Mega Florizarre', 'Venusaur', 'Florizarre');
 
         $this->assertSame('Mega Venusaur', $object->getName());
         $this->assertSame('Mega Florizarre', $object->getFrenchName());
+        $this->assertSame('Venusaur', $object->getSimplifiedName());
+        $this->assertSame('Florizarre', $object->getSimplifiedFrenchName());
     }
 }

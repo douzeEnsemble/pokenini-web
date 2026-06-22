@@ -29,9 +29,12 @@ final class TopPokemonTest extends KernelTestCase
                     "slug": "venusaur-mega",
                     "labels": {
                         "name": "Mega Venusaur",
-                        "french_name": "Mega Florizarre"
+                        "french_name": "Mega Florizarre",
+                        "simplified_name": "Venusaur",
+                        "simplified_french_name": "Florizarre"
                     },
-                    "national_dex_number": 3
+                    "national_dex_number": 3,
+                    "pokemon_icon": "venusaur-mega"
                 },
                 "score": {
                     "elo": 1000,
@@ -45,9 +48,9 @@ final class TopPokemonTest extends KernelTestCase
         $this->assertSame('venusaur-mega', $object->getPokemonSlug());
         $this->assertSame('Mega Venusaur', $object->getPokemonName());
         $this->assertSame(3, $object->getPokemonNationalDexNumber());
-        $this->assertSame('Mega Venusaur', $object->getPokemonSimplifiedName());
+        $this->assertSame('Venusaur', $object->getPokemonSimplifiedName());
         $this->assertSame('Mega Florizarre', $object->getPokemonFrenchName());
-        $this->assertSame('Mega Florizarre', $object->getPokemonSimplifiedFrenchName());
+        $this->assertSame('Florizarre', $object->getPokemonSimplifiedFrenchName());
         $this->assertSame('venusaur-mega', $object->getPokemonIcon());
         $this->assertSame(1000.0, $object->getElo());
         $this->assertFalse($object->isSignificance());
@@ -66,9 +69,12 @@ final class TopPokemonTest extends KernelTestCase
                     "slug": "venusaur-mega",
                     "labels": {
                         "name": "Mega Venusaur",
-                        "french_name": "Mega Florizarre"
+                        "french_name": "Mega Florizarre",
+                        "simplified_name": "Venusaur",
+                        "simplified_french_name": "Florizarre"
                     },
-                    "national_dex_number": 3
+                    "national_dex_number": 3,
+                    "pokemon_icon": "venusaur-mega"
                 },
                 "score": {
                     "elo": 1016.5,
