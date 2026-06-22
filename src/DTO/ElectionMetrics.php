@@ -26,12 +26,9 @@ final class ElectionMetrics
 
     /**
      * @param array{
-     *  view_count_sum: int,
-     *  win_count_sum: int,
-     *  view_count_max: int,
-     *  win_count_max: int,
-     *  under_max_view_count: int,
-     *  max_view_count: int,
+     *  view_count: array{sum: int, max: int},
+     *  win_count: array{sum: int, max: int},
+     *  completion: array{under_max_count: int, at_max_count: int},
      *  dex_total_count: int,
      *  round_count: int,
      *  winner_average: float,
@@ -45,12 +42,9 @@ final class ElectionMetrics
 
         /**
          * @var array{
-         *  view_count_sum: int,
-         *  win_count_sum: int,
-         *  view_count_max: int,
-         *  win_count_max: int,
-         *  under_max_view_count: int,
-         *  max_view_count: int,
+         *  view_count: array<array-key, int>,
+         *  win_count: array<array-key, int>,
+         *  completion: array<array-key, int>,
          *  dex_total_count: int,
          *  round_count: int,
          *  winner_average: float,
@@ -59,13 +53,17 @@ final class ElectionMetrics
          */
         $options = $resolver->resolve($values);
 
+        $viewCount = self::resolveSumMax($options['view_count']);
+        $winCount = self::resolveSumMax($options['win_count']);
+        $completion = self::resolveCompletion($options['completion']);
+
         return new self(
-            $options['view_count_sum'],
-            $options['win_count_sum'],
-            $options['view_count_max'],
-            $options['win_count_max'],
-            $options['under_max_view_count'],
-            $options['max_view_count'],
+            $viewCount['sum'],
+            $winCount['sum'],
+            $viewCount['max'],
+            $winCount['max'],
+            $completion['under_max_count'],
+            $completion['at_max_count'],
             $options['dex_total_count'],
             $options['round_count'],
             $options['winner_average'],
@@ -75,23 +73,14 @@ final class ElectionMetrics
 
     private static function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setRequired('view_count_sum');
-        $resolver->setAllowedTypes('view_count_sum', 'int');
+        $resolver->setRequired('view_count');
+        $resolver->setAllowedTypes('view_count', 'array');
 
-        $resolver->setRequired('win_count_sum');
-        $resolver->setAllowedTypes('win_count_sum', 'int');
+        $resolver->setRequired('win_count');
+        $resolver->setAllowedTypes('win_count', 'array');
 
-        $resolver->setRequired('view_count_max');
-        $resolver->setAllowedTypes('view_count_max', 'int');
-
-        $resolver->setRequired('win_count_max');
-        $resolver->setAllowedTypes('win_count_max', 'int');
-
-        $resolver->setRequired('under_max_view_count');
-        $resolver->setAllowedTypes('under_max_view_count', 'int');
-
-        $resolver->setRequired('max_view_count');
-        $resolver->setAllowedTypes('max_view_count', 'int');
+        $resolver->setRequired('completion');
+        $resolver->setAllowedTypes('completion', 'array');
 
         $resolver->setRequired('dex_total_count');
         $resolver->setAllowedTypes('dex_total_count', 'int');
@@ -104,5 +93,43 @@ final class ElectionMetrics
 
         $resolver->setRequired('total_round_count');
         $resolver->setAllowedTypes('total_round_count', 'int');
+    }
+
+    /**
+     * @param array<array-key, int> $value
+     *
+     * @return array{sum: int, max: int}
+     */
+    private static function resolveSumMax(array $value): array
+    {
+        $resolver = new OptionsResolver();
+
+        $resolver->setRequired('sum');
+        $resolver->setAllowedTypes('sum', 'int');
+
+        $resolver->setRequired('max');
+        $resolver->setAllowedTypes('max', 'int');
+
+        /** @var array{sum: int, max: int} */
+        return $resolver->resolve($value);
+    }
+
+    /**
+     * @param array<array-key, int> $value
+     *
+     * @return array{under_max_count: int, at_max_count: int}
+     */
+    private static function resolveCompletion(array $value): array
+    {
+        $resolver = new OptionsResolver();
+
+        $resolver->setRequired('under_max_count');
+        $resolver->setAllowedTypes('under_max_count', 'int');
+
+        $resolver->setRequired('at_max_count');
+        $resolver->setAllowedTypes('at_max_count', 'int');
+
+        /** @var array{under_max_count: int, at_max_count: int} */
+        return $resolver->resolve($value);
     }
 }

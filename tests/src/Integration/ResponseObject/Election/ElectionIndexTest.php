@@ -40,12 +40,12 @@ final class ElectionIndexTest extends KernelTestCase
         $this->assertFalse($object->isTheLastOne());
         $this->assertFalse($object->isTheLastPage());
 
-        $this->assertSame(63, $object->getMetrics()['view_count_sum']);
-        $this->assertSame(16, $object->getMetrics()['win_count_sum']);
-        $this->assertSame(1, $object->getMetrics()['view_count_max']);
-        $this->assertSame(1, $object->getMetrics()['win_count_max']);
-        $this->assertSame(1, $object->getMetrics()['under_max_view_count']);
-        $this->assertSame(5, $object->getMetrics()['max_view_count']);
+        $this->assertSame(63, $object->getMetrics()['view_count']['sum']);
+        $this->assertSame(16, $object->getMetrics()['win_count']['sum']);
+        $this->assertSame(1, $object->getMetrics()['view_count']['max']);
+        $this->assertSame(1, $object->getMetrics()['win_count']['max']);
+        $this->assertSame(1, $object->getMetrics()['completion']['under_max_count']);
+        $this->assertSame(5, $object->getMetrics()['completion']['at_max_count']);
         $this->assertSame(48, $object->getMetrics()['dex_total_count']);
         $this->assertSame(5, $object->getMetrics()['round_count']);
         $this->assertSame(3.2, $object->getMetrics()['winner_average']);
@@ -66,12 +66,9 @@ final class ElectionIndexTest extends KernelTestCase
                 "pokedex": null,
                 "election_top": [],
                 "metrics": {
-                    "view_count_sum": 0,
-                    "win_count_sum": 0,
-                    "view_count_max": 0,
-                    "win_count_max": 0,
-                    "under_max_view_count": 0,
-                    "max_view_count": 0,
+                    "view_count": { "sum": 0, "max": 0 },
+                    "win_count": { "sum": 0, "max": 0 },
+                    "completion": { "under_max_count": 0, "at_max_count": 0 },
                     "dex_total_count": 0,
                     "round_count": 0,
                     "winner_average": 0.0,
@@ -93,12 +90,12 @@ final class ElectionIndexTest extends KernelTestCase
         $this->assertTrue($object->isTheLastOne());
         $this->assertTrue($object->isTheLastPage());
 
-        $this->assertSame(0, $object->getMetrics()['view_count_sum']);
-        $this->assertSame(0, $object->getMetrics()['win_count_sum']);
-        $this->assertSame(0, $object->getMetrics()['view_count_max']);
-        $this->assertSame(0, $object->getMetrics()['win_count_max']);
-        $this->assertSame(0, $object->getMetrics()['under_max_view_count']);
-        $this->assertSame(0, $object->getMetrics()['max_view_count']);
+        $this->assertSame(0, $object->getMetrics()['view_count']['sum']);
+        $this->assertSame(0, $object->getMetrics()['win_count']['sum']);
+        $this->assertSame(0, $object->getMetrics()['view_count']['max']);
+        $this->assertSame(0, $object->getMetrics()['win_count']['max']);
+        $this->assertSame(0, $object->getMetrics()['completion']['under_max_count']);
+        $this->assertSame(0, $object->getMetrics()['completion']['at_max_count']);
         $this->assertSame(0, $object->getMetrics()['dex_total_count']);
         $this->assertSame(0, $object->getMetrics()['round_count']);
         $this->assertSame(0.0, $object->getMetrics()['winner_average']);
