@@ -8,128 +8,97 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ElectionMetrics
 {
-    /**
-     * @SuppressWarnings("PHPMD.ExcessiveParameterList")
-     */
     private function __construct(
-        public readonly int $viewCountSum,
-        public readonly int $winCountSum,
-        public readonly int $viewCountMax,
-        public readonly int $winCountMax,
-        public readonly int $underMaxViewCount,
-        public readonly int $maxViewCount,
+        public readonly ElectionMetricsCounts $viewCount,
+        public readonly ElectionMetricsCounts $winCount,
+        public readonly ElectionMetricsCompletion $completion,
         public readonly int $dexTotalCount,
         public readonly int $roundCount,
         public readonly float $winnerAverage,
         public readonly int $totalRoundCount,
     ) {}
 
+    public function getViewCount(): ElectionMetricsCounts
+    {
+        return $this->viewCount;
+    }
+
+    public function getWinCount(): ElectionMetricsCounts
+    {
+        return $this->winCount;
+    }
+
+    public function getCompletion(): ElectionMetricsCompletion
+    {
+        return $this->completion;
+    }
+
+    public function getDexTotalCount(): int
+    {
+        return $this->dexTotalCount;
+    }
+
+    public function getRoundCount(): int
+    {
+        return $this->roundCount;
+    }
+
+    public function getWinnerAverage(): float
+    {
+        return $this->winnerAverage;
+    }
+
+    public function getTotalRoundCount(): int
+    {
+        return $this->totalRoundCount;
+    }
+
     /**
      * @param array{
-     *  view_count: array{sum: int, max: int},
-     *  win_count: array{sum: int, max: int},
-     *  completion: array{under_max_count: int, at_max_count: int},
-     *  dex_total_count: int,
-     *  round_count: int,
-     *  winner_average: float,
-     *  total_round_count: int,
-     * } $values
+     *   view_count: array{sum: int, max: int},
+     *   win_count: array{sum: int, max: int},
+     *   completion: array{under_max_count: int, at_max_count: int},
+     *   dex_total_count: int,
+     *   round_count: int,
+     *   winner_average: float|int,
+     *   total_round_count: int
+     * } $data
      */
-    public static function createFromArray(array $values): self
+    public static function createFromArray(array $data): self
     {
         $resolver = new OptionsResolver();
-        self::configureOptions($resolver);
+        $resolver->setRequired(['view_count', 'win_count', 'completion', 'dex_total_count', 'round_count', 'winner_average', 'total_round_count']);
+        $resolver->setAllowedTypes('view_count', 'array');
+        $resolver->setAllowedTypes('win_count', 'array');
+        $resolver->setAllowedTypes('completion', 'array');
+        $resolver->setAllowedTypes('dex_total_count', 'int');
+        $resolver->setAllowedTypes('round_count', 'int');
+        $resolver->setAllowedTypes('winner_average', ['int', 'float']);
+        $resolver->setAllowedTypes('total_round_count', 'int');
 
-        /**
-         * @var array{
-         *  view_count: array<array-key, int>,
-         *  win_count: array<array-key, int>,
-         *  completion: array<array-key, int>,
-         *  dex_total_count: int,
-         *  round_count: int,
-         *  winner_average: float,
-         *  total_round_count: int,
-         * }
-         */
-        $options = $resolver->resolve($values);
-
-        $viewCount = self::resolveSumMax($options['view_count']);
-        $winCount = self::resolveSumMax($options['win_count']);
-        $completion = self::resolveCompletion($options['completion']);
+        /** @var array{view_count: array{sum: int, max: int}, win_count: array{sum: int, max: int}, completion: array{under_max_count: int, at_max_count: int}, dex_total_count: int, round_count: int, winner_average: float|int, total_round_count: int} $resolved */
+        $resolved = $resolver->resolve($data);
 
         return new self(
-            $viewCount['sum'],
-            $winCount['sum'],
-            $viewCount['max'],
-            $winCount['max'],
-            $completion['under_max_count'],
-            $completion['at_max_count'],
-            $options['dex_total_count'],
-            $options['round_count'],
-            $options['winner_average'],
-            $options['total_round_count'],
+            new ElectionMetricsCounts(self::int($resolved['view_count'], 'sum'), self::int($resolved['view_count'], 'max')),
+            new ElectionMetricsCounts(self::int($resolved['win_count'], 'sum'), self::int($resolved['win_count'], 'max')),
+            new ElectionMetricsCompletion(self::int($resolved['completion'], 'under_max_count'), self::int($resolved['completion'], 'at_max_count')),
+            $resolved['dex_total_count'],
+            $resolved['round_count'],
+            (float) $resolved['winner_average'],
+            $resolved['total_round_count'],
         );
     }
 
-    private static function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setRequired('view_count');
-        $resolver->setAllowedTypes('view_count', 'array');
-
-        $resolver->setRequired('win_count');
-        $resolver->setAllowedTypes('win_count', 'array');
-
-        $resolver->setRequired('completion');
-        $resolver->setAllowedTypes('completion', 'array');
-
-        $resolver->setRequired('dex_total_count');
-        $resolver->setAllowedTypes('dex_total_count', 'int');
-
-        $resolver->setRequired('round_count');
-        $resolver->setAllowedTypes('round_count', 'int');
-
-        $resolver->setRequired('winner_average');
-        $resolver->setAllowedTypes('winner_average', ['float']);
-
-        $resolver->setRequired('total_round_count');
-        $resolver->setAllowedTypes('total_round_count', 'int');
-    }
-
     /**
-     * @param array<array-key, int> $value
-     *
-     * @return array{sum: int, max: int}
+     * @param array<string, mixed> $sub
      */
-    private static function resolveSumMax(array $value): array
+    private static function int(array $sub, string $key): int
     {
-        $resolver = new OptionsResolver();
+        if (!isset($sub[$key]) || !is_int($sub[$key])) {
+            throw new \InvalidArgumentException(sprintf('Missing or invalid metrics key "%s".', $key));
+        }
 
-        $resolver->setRequired('sum');
-        $resolver->setAllowedTypes('sum', 'int');
-
-        $resolver->setRequired('max');
-        $resolver->setAllowedTypes('max', 'int');
-
-        /** @var array{sum: int, max: int} */
-        return $resolver->resolve($value);
-    }
-
-    /**
-     * @param array<array-key, int> $value
-     *
-     * @return array{under_max_count: int, at_max_count: int}
-     */
-    private static function resolveCompletion(array $value): array
-    {
-        $resolver = new OptionsResolver();
-
-        $resolver->setRequired('under_max_count');
-        $resolver->setAllowedTypes('under_max_count', 'int');
-
-        $resolver->setRequired('at_max_count');
-        $resolver->setAllowedTypes('at_max_count', 'int');
-
-        /** @var array{under_max_count: int, at_max_count: int} */
-        return $resolver->resolve($value);
+        return $sub[$key];
     }
 }

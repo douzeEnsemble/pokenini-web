@@ -45,15 +45,15 @@ final class TopPokemonTest extends KernelTestCase
 
         $object = $serializer->deserialize($json, TopPokemon::class, 'json');
 
-        $this->assertSame('venusaur-mega', $object->getPokemonSlug());
-        $this->assertSame('Mega Venusaur', $object->getPokemonName());
-        $this->assertSame(3, $object->getPokemonNationalDexNumber());
-        $this->assertSame('Venusaur', $object->getPokemonSimplifiedName());
-        $this->assertSame('Mega Florizarre', $object->getPokemonFrenchName());
-        $this->assertSame('Florizarre', $object->getPokemonSimplifiedFrenchName());
-        $this->assertSame('venusaur-mega', $object->getPokemonIcon());
-        $this->assertSame(1000.0, $object->getElo());
-        $this->assertFalse($object->isSignificance());
+        $this->assertSame('venusaur-mega', $object->getPokemon()->getSlug());
+        $this->assertSame('Mega Venusaur', $object->getPokemon()->getLabels()->getName());
+        $this->assertSame(3, $object->getPokemon()->getNationalDexNumber());
+        $this->assertSame('Venusaur', $object->getPokemon()->getLabels()->getSimplifiedName());
+        $this->assertSame('Mega Florizarre', $object->getPokemon()->getLabels()->getFrenchName());
+        $this->assertSame('Florizarre', $object->getPokemon()->getLabels()->getSimplifiedFrenchName());
+        $this->assertSame('venusaur-mega', $object->getPokemon()->getIcon());
+        $this->assertSame(1000.0, $object->getScore()->getElo());
+        $this->assertFalse($object->getScore()->isSignificance());
     }
 
     public function testDeserializeSignificant(): void
@@ -85,8 +85,8 @@ final class TopPokemonTest extends KernelTestCase
 
         $object = $serializer->deserialize($json, TopPokemon::class, 'json');
 
-        $this->assertSame(1016.5, $object->getElo());
-        $this->assertTrue($object->isSignificance());
+        $this->assertSame(1016.5, $object->getScore()->getElo());
+        $this->assertTrue($object->getScore()->isSignificance());
     }
 
     public function testDeserializeArray(): void

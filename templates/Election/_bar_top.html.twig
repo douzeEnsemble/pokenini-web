@@ -3,8 +3,8 @@
     {% set progress = metrics.totalRoundCount ? (100 * metrics.roundCount / metrics.totalRoundCount)|round(0) : 0 %}
 
     {% set progressColor = 'pick' == listType ? 'info' : 'warning' %}
-    {% set progressColor = (0 == metrics.underMaxViewCount and metrics.maxViewCount == pokemons|length) ? 'danger' : progressColor %}
-    {% set progressColor = (0 == metrics.underMaxViewCount and metrics.maxViewCount == pokemons|length and 1 == pokemons|length) ? 'success' : progressColor %}
+    {% set progressColor = (0 == metrics.completion.underMaxCount and metrics.completion.atMaxCount == pokemons|length) ? 'danger' : progressColor %}
+    {% set progressColor = (0 == metrics.completion.underMaxCount and metrics.completion.atMaxCount == pokemons|length and 1 == pokemons|length) ? 'success' : progressColor %}
     <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
       {% set tooltipContent =
         ('election.stats.round.start'|trans({'n': metrics.roundCount})) ~

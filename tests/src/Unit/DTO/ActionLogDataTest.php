@@ -31,9 +31,9 @@ final class ActionLogDataTest extends TestCase
             null
         );
 
-        $this->assertEquals('truc', $actionLogData->item);
-        $this->assertEquals($actionLog, $actionLogData->current);
-        $this->assertNull($actionLogData->last);
+        $this->assertSame('truc', $actionLogData->getActionType());
+        $this->assertSame($actionLog, $actionLogData->getCurrent());
+        $this->assertNull($actionLogData->getLast());
     }
 
     public function testConstructorWithLast(): void
@@ -60,8 +60,17 @@ final class ActionLogDataTest extends TestCase
             $actionLogLast,
         );
 
-        $this->assertEquals('truc', $actionLogData->item);
-        $this->assertEquals($actionLogCurrent, $actionLogData->current);
-        $this->assertEquals($actionLogLast, $actionLogData->last);
+        $this->assertSame('truc', $actionLogData->getActionType());
+        $this->assertSame($actionLogCurrent, $actionLogData->getCurrent());
+        $this->assertSame($actionLogLast, $actionLogData->getLast());
+    }
+
+    public function testConstructorWithoutCurrent(): void
+    {
+        $actionLogData = new ActionLogData('truc');
+
+        $this->assertSame('truc', $actionLogData->getActionType());
+        $this->assertNull($actionLogData->getCurrent());
+        $this->assertNull($actionLogData->getLast());
     }
 }

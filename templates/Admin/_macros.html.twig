@@ -20,16 +20,15 @@
   {% set currentActionLog = null %}
   {% set lastActionLog = null %}
 
-  {% if actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
-    and actionLogsData[actionItem].current is defined and actionLogsData[actionItem].current is not empty
-  %}
-    {% set currentActionLog = actionLogsData[actionItem].current %}
+  {% set matches = actionLogsData|default([])|filter(candidate => candidate.actionType == actionItem) %}
+  {% set entry = matches is empty ? null : matches|first %}
+
+  {% if entry is not null and entry.current is not null %}
+    {% set currentActionLog = entry.current %}
   {% endif %}
 
-  {% if actionLogsData[actionItem] is defined and actionLogsData[actionItem] is not empty
-    and actionLogsData[actionItem].last is defined and actionLogsData[actionItem].last is not empty
-  %}
-    {% set lastActionLog = actionLogsData[actionItem].last %}
+  {% if entry is not null and entry.last is not null %}
+    {% set lastActionLog = entry.last %}
   {% endif %}
 
   {% set currentState = updatedState %}

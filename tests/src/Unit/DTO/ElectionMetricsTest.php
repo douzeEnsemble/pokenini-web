@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Unit\DTO;
 
 use App\DTO\ElectionMetrics;
+use App\DTO\ElectionMetricsCompletion;
+use App\DTO\ElectionMetricsCounts;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -15,16 +17,15 @@ use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
  * @internal
  */
 #[CoversClass(ElectionMetrics::class)]
+#[CoversClass(ElectionMetricsCounts::class)]
+#[CoversClass(ElectionMetricsCompletion::class)]
 final class ElectionMetricsTest extends TestCase
 {
     public function testPropertiesAreReadonly(): void
     {
-        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'viewCountSum'))->isReadOnly());
-        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'winCountSum'))->isReadOnly());
-        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'viewCountMax'))->isReadOnly());
-        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'winCountMax'))->isReadOnly());
-        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'underMaxViewCount'))->isReadOnly());
-        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'maxViewCount'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'viewCount'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'winCount'))->isReadOnly());
+        $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'completion'))->isReadOnly());
         $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'dexTotalCount'))->isReadOnly());
         $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'roundCount'))->isReadOnly());
         $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'winnerAverage'))->isReadOnly());
@@ -45,23 +46,40 @@ final class ElectionMetricsTest extends TestCase
             ],
         );
 
-        $this->assertSame(82, $object->viewCountSum);
-        $this->assertSame(54, $object->winCountSum);
-        $this->assertSame(42, $object->viewCountMax);
-        $this->assertSame(52, $object->winCountMax);
-        $this->assertSame(62, $object->underMaxViewCount);
-        $this->assertSame(27, $object->maxViewCount);
-        $this->assertSame(50, $object->dexTotalCount);
-        $this->assertSame(7, $object->roundCount);
-        $this->assertSame(7.71, $object->winnerAverage);
-        $this->assertSame(13, $object->totalRoundCount);
+        $this->assertSame(82, $object->getViewCount()->getSum());
+        $this->assertSame(42, $object->getViewCount()->getMax());
+        $this->assertSame(54, $object->getWinCount()->getSum());
+        $this->assertSame(52, $object->getWinCount()->getMax());
+        $this->assertSame(62, $object->getCompletion()->getUnderMaxCount());
+        $this->assertSame(27, $object->getCompletion()->getAtMaxCount());
+        $this->assertSame(50, $object->getDexTotalCount());
+        $this->assertSame(7, $object->getRoundCount());
+        $this->assertSame(7.71, $object->getWinnerAverage());
+        $this->assertSame(13, $object->getTotalRoundCount());
+    }
+
+    public function testWinnerAverageAcceptsInt(): void
+    {
+        $object = ElectionMetrics::createFromArray(
+            [
+                'view_count' => ['sum' => 5, 'max' => 1],
+                'win_count' => ['sum' => 10, 'max' => 1],
+                'completion' => ['under_max_count' => 15, 'at_max_count' => 15],
+                'dex_total_count' => 21,
+                'round_count' => 3,
+                'winner_average' => 2,
+                'total_round_count' => 7,
+            ],
+        );
+
+        $this->assertSame(2.0, $object->getWinnerAverage());
     }
 
     /**
      * @param array<string, mixed> $values
      */
-    #[DataProvider('providerMissingProperty')]
-    public function testMissingProperty(array $values): void
+    #[DataProvider('providerMissingTopLevelProperty')]
+    public function testMissingTopLevelProperty(array $values): void
     {
         $this->expectException(MissingOptionsException::class);
 
@@ -76,27 +94,23 @@ final class ElectionMetricsTest extends TestCase
     /**
      * @return array<string, array{values: array<string, mixed>}>
      */
-    public static function providerMissingProperty(): array
+    public static function providerMissingTopLevelProperty(): array
     {
-        $paths = [
-            ['view_count'],
-            ['view_count', 'sum'],
-            ['view_count', 'max'],
-            ['win_count'],
-            ['win_count', 'sum'],
-            ['win_count', 'max'],
-            ['completion'],
-            ['completion', 'under_max_count'],
-            ['completion', 'at_max_count'],
-            ['dex_total_count'],
-            ['round_count'],
-            ['winner_average'],
-            ['total_round_count'],
+        $topLevelKeys = [
+            'view_count',
+            'win_count',
+            'completion',
+            'dex_total_count',
+            'round_count',
+            'winner_average',
+            'total_round_count',
         ];
 
         $cases = [];
-        foreach ($paths as $path) {
-            $cases['missing_'.implode('_', $path)] = ['values' => self::removePath($path)];
+        foreach ($topLevelKeys as $key) {
+            $data = self::validData();
+            unset($data[$key]);
+            $cases['missing_'.$key] = ['values' => $data];
         }
 
         return $cases;
@@ -105,8 +119,8 @@ final class ElectionMetricsTest extends TestCase
     /**
      * @param array<string, mixed> $values
      */
-    #[DataProvider('providerBadValue')]
-    public function testBadValue(array $values): void
+    #[DataProvider('providerBadTopLevelType')]
+    public function testBadTopLevelType(array $values): void
     {
         $this->expectException(InvalidOptionsException::class);
 
@@ -121,27 +135,111 @@ final class ElectionMetricsTest extends TestCase
     /**
      * @return array<string, array{values: array<string, mixed>}>
      */
-    public static function providerBadValue(): array
+    public static function providerBadTopLevelType(): array
     {
-        $paths = [
-            ['view_count'],
-            ['view_count', 'sum'],
-            ['view_count', 'max'],
-            ['win_count'],
-            ['win_count', 'sum'],
-            ['win_count', 'max'],
-            ['completion'],
-            ['completion', 'under_max_count'],
-            ['completion', 'at_max_count'],
-            ['dex_total_count'],
-            ['round_count'],
-            ['winner_average'],
-            ['total_round_count'],
+        $topLevelKeys = [
+            'view_count',
+            'win_count',
+            'completion',
+            'dex_total_count',
+            'round_count',
+            'winner_average',
+            'total_round_count',
         ];
 
         $cases = [];
-        foreach ($paths as $path) {
-            $cases['bad_'.implode('_', $path)] = ['values' => self::corruptPath($path)];
+        foreach ($topLevelKeys as $key) {
+            $data = self::validData();
+            $data[$key] = 'not-valid';
+            $cases['bad_'.$key] = ['values' => $data];
+        }
+
+        return $cases;
+    }
+
+    /**
+     * @param array<string, mixed> $values
+     */
+    #[DataProvider('providerMissingSubKey')]
+    public function testMissingSubKey(array $values): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        /**
+         * @psalm-suppress ArgumentTypeCoercion
+         *
+         * @phpstan-ignore argument.type
+         */
+        ElectionMetrics::createFromArray($values);
+    }
+
+    /**
+     * @return array<string, array{values: array<string, mixed>}>
+     */
+    public static function providerMissingSubKey(): array
+    {
+        $subPaths = [
+            ['view_count', 'sum'],
+            ['view_count', 'max'],
+            ['win_count', 'sum'],
+            ['win_count', 'max'],
+            ['completion', 'under_max_count'],
+            ['completion', 'at_max_count'],
+        ];
+
+        $cases = [];
+        foreach ($subPaths as $path) {
+            $data = self::validData();
+
+            /** @var array<string, mixed> $sub */
+            $sub = $data[$path[0]];
+            unset($sub[$path[1]]);
+            $data[$path[0]] = $sub;
+            $cases['missing_'.$path[0].'_'.$path[1]] = ['values' => $data];
+        }
+
+        return $cases;
+    }
+
+    /**
+     * @param array<string, mixed> $values
+     */
+    #[DataProvider('providerBadSubKeyType')]
+    public function testBadSubKeyType(array $values): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        /**
+         * @psalm-suppress ArgumentTypeCoercion
+         *
+         * @phpstan-ignore argument.type
+         */
+        ElectionMetrics::createFromArray($values);
+    }
+
+    /**
+     * @return array<string, array{values: array<string, mixed>}>
+     */
+    public static function providerBadSubKeyType(): array
+    {
+        $subPaths = [
+            ['view_count', 'sum'],
+            ['view_count', 'max'],
+            ['win_count', 'sum'],
+            ['win_count', 'max'],
+            ['completion', 'under_max_count'],
+            ['completion', 'at_max_count'],
+        ];
+
+        $cases = [];
+        foreach ($subPaths as $path) {
+            $data = self::validData();
+
+            /** @var array<string, mixed> $sub */
+            $sub = $data[$path[0]];
+            $sub[$path[1]] = 'not-an-int';
+            $data[$path[0]] = $sub;
+            $cases['bad_'.$path[0].'_'.$path[1]] = ['values' => $data];
         }
 
         return $cases;
@@ -161,51 +259,5 @@ final class ElectionMetricsTest extends TestCase
             'winner_average' => 7.71,
             'total_round_count' => 13,
         ];
-    }
-
-    /**
-     * @param list<string> $path
-     *
-     * @return array<string, mixed>
-     */
-    private static function removePath(array $path): array
-    {
-        $data = self::validData();
-
-        if (1 === \count($path)) {
-            unset($data[$path[0]]);
-
-            return $data;
-        }
-
-        /** @var array<string, mixed> $sub */
-        $sub = $data[$path[0]];
-        unset($sub[$path[1]]);
-        $data[$path[0]] = $sub;
-
-        return $data;
-    }
-
-    /**
-     * @param list<string> $path
-     *
-     * @return array<string, mixed>
-     */
-    private static function corruptPath(array $path): array
-    {
-        $data = self::validData();
-
-        if (1 === \count($path)) {
-            $data[$path[0]] = 'not-an-array';
-
-            return $data;
-        }
-
-        /** @var array<string, mixed> $sub */
-        $sub = $data[$path[0]];
-        $sub[$path[1]] = 'not-an-int';
-        $data[$path[0]] = $sub;
-
-        return $data;
     }
 }

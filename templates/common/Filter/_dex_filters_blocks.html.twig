@@ -83,7 +83,7 @@
       <option value="null" {{ (('null' in filteredCategoryForms) ? 'selected': '') }}>
         {{- 'dex.filters.category_form.value.null'|trans -}}
       </option>
-      {% for item in categoryForms %}
+      {% for item in forms.category %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredCategoryForms) ? 'selected': '') }}>
           {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
         </option>
@@ -108,7 +108,7 @@
       <option value="null" {{ (('null' in filteredRegionalForms) ? 'selected': '') }}>
         {{- 'dex.filters.regional_form.value.null'|trans -}}
       </option>
-      {% for item in regionalForms %}
+      {% for item in forms.regional %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredRegionalForms) ? 'selected': '') }}>
           {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
         </option>
@@ -133,7 +133,7 @@
       <option value="null" {{ (('null' in filteredSpecialForms) ? 'selected': '') }}>
         {{- 'dex.filters.special_form.value.null'|trans -}}
       </option>
-      {% for item in specialForms %}
+      {% for item in forms.special %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredSpecialForms) ? 'selected': '') }}>
           {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
         </option>
@@ -158,7 +158,7 @@
       <option value="null" {{ (('null' in filteredVariantForms) ? 'selected': '') }}>
         {{- 'dex.filters.variant_form.value.null'|trans -}}
       </option>
-      {% for item in variantForms %}
+      {% for item in forms.variant %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredVariantForms) ? 'selected': '') }}>
           {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
         </option>

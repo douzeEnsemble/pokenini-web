@@ -15,48 +15,13 @@ final class TopPokemon
         private readonly TopPokemonScore $score,
     ) {}
 
-    public function getPokemonSlug(): string
+    public function getPokemon(): TopPokemonInfo
     {
-        return $this->pokemon->getSlug();
+        return $this->pokemon;
     }
 
-    public function getPokemonName(): string
+    public function getScore(): TopPokemonScore
     {
-        return $this->pokemon->getLabels()->getName();
-    }
-
-    public function getPokemonNationalDexNumber(): int
-    {
-        return $this->pokemon->getNationalDexNumber();
-    }
-
-    public function getPokemonSimplifiedName(): string
-    {
-        return $this->pokemon->getLabels()->getSimplifiedName();
-    }
-
-    public function getPokemonFrenchName(): string
-    {
-        return $this->pokemon->getLabels()->getFrenchName();
-    }
-
-    public function getPokemonSimplifiedFrenchName(): string
-    {
-        return $this->pokemon->getLabels()->getSimplifiedFrenchName();
-    }
-
-    public function getPokemonIcon(): string
-    {
-        return $this->pokemon->getIcon();
-    }
-
-    public function getElo(): float
-    {
-        return $this->score->getElo();
-    }
-
-    public function isSignificance(): bool
-    {
-        return $this->score->isSignificance();
+        return $this->score;
     }
 }
