@@ -43,36 +43,9 @@ final class Labels
         return $this->types;
     }
 
-    /**
-     * @return array<int, CategoryForm>
-     */
-    public function getCategoryForms(): array
+    public function getForms(): Forms
     {
-        return $this->forms->getCategory();
-    }
-
-    /**
-     * @return array<int, RegionalForm>
-     */
-    public function getRegionalForms(): array
-    {
-        return $this->forms->getRegional();
-    }
-
-    /**
-     * @return array<int, SpecialForm>
-     */
-    public function getSpecialForms(): array
-    {
-        return $this->forms->getSpecial();
-    }
-
-    /**
-     * @return array<int, VariantForm>
-     */
-    public function getVariantForms(): array
-    {
-        return $this->forms->getVariant();
+        return $this->forms;
     }
 
     /**

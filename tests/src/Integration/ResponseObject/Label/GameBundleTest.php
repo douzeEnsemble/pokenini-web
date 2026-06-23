@@ -37,6 +37,6 @@ final class GameBundleTest extends KernelTestCase
         $this->assertSame('Red, Green, Blue, Yellow', $object->getName());
         $this->assertSame('Rouge, Vert, Bleu, Jaune', $object->getFrenchName());
         $this->assertSame('redgreenblueyellow', $object->getSlug());
-        $this->assertSame('1', $object->getGenerationSlug());
+        $this->assertSame('1', $object->getGeneration()->getSlug());
     }
 }

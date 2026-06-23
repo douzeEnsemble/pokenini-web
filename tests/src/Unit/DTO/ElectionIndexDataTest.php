@@ -43,16 +43,16 @@ final class ElectionIndexDataTest extends TestCase
         $this->assertSame([], $object->pokemons);
         $this->assertSame(null, $object->pokedex);
         $this->assertCount(0, $object->electionTop->getItems());
-        $this->assertSame(82, $object->metrics->viewCountSum);
-        $this->assertSame(54, $object->metrics->winCountSum);
-        $this->assertSame(42, $object->metrics->viewCountMax);
-        $this->assertSame(52, $object->metrics->winCountMax);
-        $this->assertSame(62, $object->metrics->underMaxViewCount);
-        $this->assertSame(27, $object->metrics->maxViewCount);
-        $this->assertSame(50, $object->metrics->dexTotalCount);
-        $this->assertSame(7, $object->metrics->roundCount);
-        $this->assertSame(7.71, $object->metrics->winnerAverage);
-        $this->assertSame(13, $object->metrics->totalRoundCount);
+        $this->assertSame(82, $object->metrics->getViewCount()->getSum());
+        $this->assertSame(42, $object->metrics->getViewCount()->getMax());
+        $this->assertSame(54, $object->metrics->getWinCount()->getSum());
+        $this->assertSame(52, $object->metrics->getWinCount()->getMax());
+        $this->assertSame(62, $object->metrics->getCompletion()->getUnderMaxCount());
+        $this->assertSame(27, $object->metrics->getCompletion()->getAtMaxCount());
+        $this->assertSame(50, $object->metrics->getDexTotalCount());
+        $this->assertSame(7, $object->metrics->getRoundCount());
+        $this->assertSame(7.71, $object->metrics->getWinnerAverage());
+        $this->assertSame(13, $object->metrics->getTotalRoundCount());
 
         $this->assertSame(0, $object->detachedCount);
         $this->assertSame(true, $object->isTheLastOne);

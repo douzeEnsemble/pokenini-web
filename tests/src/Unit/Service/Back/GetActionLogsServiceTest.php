@@ -98,9 +98,10 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
     {
         $actionLogs = $service->get();
 
-        $this->assertCount(10, $actionLogs);
+        self::assertIsList($actionLogs);
+        self::assertCount(11, $actionLogs);
 
-        $expectedLogs = [
+        $expectedActionTypes = [
             'calculate_dex_availabilities',
             'calculate_pokemon_availabilities',
             'calculate_game_bundles_availabilities',
@@ -111,28 +112,40 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
             'update_labels',
             'update_pokemons',
             'update_collections_availabilities',
+            'update_regional_dex_numbers',
         ];
 
-        foreach ($expectedLogs as $key) {
-            $this->assertArrayHasKey($key, $actionLogs);
+        $byActionType = [];
+        foreach ($actionLogs as $entry) {
+            $byActionType[$entry->getActionType()] = $entry;
         }
 
-        // Cas minimal : last = null, current sans valeurs optionnelles
-        $calcGameBundles = $actionLogs['calculate_game_bundles_availabilities'];
-        $this->assertNull($calcGameBundles->last);
-        $this->assertEquals(new \DateTime('2023-03-21T07:15:04+00:00'), $calcGameBundles->current->createdAt);
-        $this->assertNull($calcGameBundles->current->doneAt);
-        $this->assertNull($calcGameBundles->current->executionTime);
-        $this->assertSame([], $calcGameBundles->current->details);
-        $this->assertNull($calcGameBundles->current->errorTrace);
+        foreach ($expectedActionTypes as $actionType) {
+            $this->assertArrayHasKey($actionType, $byActionType);
+        }
 
-        // Cas complet : last avec toutes les valeurs non-null
-        $calcDex = $actionLogs['calculate_dex_availabilities'];
-        $this->assertNotNull($calcDex->last);
-        $this->assertEquals(new \DateTime('2023-03-20T09:14:36+00:00'), $calcDex->last->createdAt);
-        $this->assertEquals(new \DateTime('2023-03-20T10:05:08+00:00'), $calcDex->last->doneAt);
-        $this->assertSame(3032, $calcDex->last->executionTime);
-        $this->assertSame(['dex_availabilities' => 22472], $calcDex->last->details);
-        $this->assertNull($calcDex->last->errorTrace);
+        // Branch: last = null, current non-null (last null branch)
+        $calcGameBundles = $byActionType['calculate_game_bundles_availabilities'];
+        $this->assertNull($calcGameBundles->getLast());
+        $this->assertNotNull($calcGameBundles->getCurrent());
+        $this->assertEquals(new \DateTime('2023-03-21T07:15:04+00:00'), $calcGameBundles->getCurrent()->createdAt);
+        $this->assertNull($calcGameBundles->getCurrent()->doneAt);
+        $this->assertNull($calcGameBundles->getCurrent()->executionTime);
+        $this->assertSame([], $calcGameBundles->getCurrent()->details);
+        $this->assertNull($calcGameBundles->getCurrent()->errorTrace);
+
+        // Branch: current = null (current null branch)
+        $updateRegionalDex = $byActionType['update_regional_dex_numbers'];
+        $this->assertNull($updateRegionalDex->getCurrent());
+        $this->assertNull($updateRegionalDex->getLast());
+
+        // Branch: current non-null, last non-null (all values present)
+        $calcDex = $byActionType['calculate_dex_availabilities'];
+        $this->assertNotNull($calcDex->getLast());
+        $this->assertEquals(new \DateTime('2023-03-20T09:14:36+00:00'), $calcDex->getLast()->createdAt);
+        $this->assertEquals(new \DateTime('2023-03-20T10:05:08+00:00'), $calcDex->getLast()->doneAt);
+        $this->assertSame(3032, $calcDex->getLast()->executionTime);
+        $this->assertSame(['dex_availabilities' => 22472], $calcDex->getLast()->details);
+        $this->assertNull($calcDex->getLast()->errorTrace);
     }
 }

@@ -11,7 +11,7 @@ use App\Utils\JsonDecoder;
 class GetActionLogsService extends AbstractBackService
 {
     /**
-     * @return array<string, ActionLogData>
+     * @return array<int, ActionLogData>
      */
     public function get(): array
     {
@@ -20,19 +20,15 @@ class GetActionLogsService extends AbstractBackService
             '/istration/action-logs'
         );
 
-        /** @var array<int, array{action_type: string, current: array{created_at: string, done_at: null|string, execution_time: null|int, details: array<string, int>, error_trace: null|string}, last: null|array{created_at: string, done_at: null|string, execution_time: null|int, details: array<string, int>, error_trace: null|string}}> */
-        $actionLogsData = JsonDecoder::decode($json);
+        /** @var array<int, array{action_type: string, current: null|array<string, mixed>, last: null|array<string, mixed>}> $rows */
+        $rows = JsonDecoder::decode($json);
 
         $list = [];
-        foreach ($actionLogsData as $data) {
-            $actionType = $data['action_type'];
-            $currentData = $data['current'];
-            $lastData = $data['last'];
-
-            $list[$actionType] = new ActionLogData(
-                $actionType,
-                $this->serializer->deserialize((string) json_encode($currentData), ActionLog::class, 'json'),
-                $lastData ? $this->serializer->deserialize((string) json_encode($lastData), ActionLog::class, 'json') : null,
+        foreach ($rows as $row) {
+            $list[] = new ActionLogData(
+                $row['action_type'],
+                null === $row['current'] ? null : $this->serializer->deserialize((string) json_encode($row['current']), ActionLog::class, 'json'),
+                null === $row['last'] ? null : $this->serializer->deserialize((string) json_encode($row['last']), ActionLog::class, 'json'),
             );
         }
 

@@ -24,10 +24,10 @@ final class LabelsTest extends TestCase
 
         $this->assertCount(1, $object->getCatchStates());
         $this->assertCount(2, $object->getTypes());
-        $this->assertCount(3, $object->getCategoryForms());
-        $this->assertCount(4, $object->getRegionalForms());
-        $this->assertCount(5, $object->getSpecialForms());
-        $this->assertCount(6, $object->getVariantForms());
+        $this->assertCount(3, $object->getForms()->getCategory());
+        $this->assertCount(4, $object->getForms()->getRegional());
+        $this->assertCount(5, $object->getForms()->getSpecial());
+        $this->assertCount(6, $object->getForms()->getVariant());
         $this->assertCount(7, $object->getGameBundles());
         $this->assertCount(8, $object->getCollections());
     }
@@ -44,10 +44,10 @@ final class LabelsTest extends TestCase
 
         $this->assertSame([], $object->getCatchStates());
         $this->assertSame([], $object->getTypes());
-        $this->assertSame([], $object->getCategoryForms());
-        $this->assertSame([], $object->getRegionalForms());
-        $this->assertSame([], $object->getSpecialForms());
-        $this->assertSame([], $object->getVariantForms());
+        $this->assertSame([], $object->getForms()->getCategory());
+        $this->assertSame([], $object->getForms()->getRegional());
+        $this->assertSame([], $object->getForms()->getSpecial());
+        $this->assertSame([], $object->getForms()->getVariant());
         $this->assertSame([], $object->getGameBundles());
         $this->assertSame([], $object->getCollections());
     }

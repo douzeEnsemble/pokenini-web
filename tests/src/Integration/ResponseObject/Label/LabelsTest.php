@@ -41,17 +41,17 @@ final class LabelsTest extends KernelTestCase
         $this->assertCount(18, $object->getTypes());
         $this->assertContainsOnlyInstancesOf(Type::class, $object->getTypes());
 
-        $this->assertCount(6, $object->getCategoryForms());
-        $this->assertContainsOnlyInstancesOf(CategoryForm::class, $object->getCategoryForms());
+        $this->assertCount(6, $object->getForms()->getCategory());
+        $this->assertContainsOnlyInstancesOf(CategoryForm::class, $object->getForms()->getCategory());
 
-        $this->assertCount(4, $object->getRegionalForms());
-        $this->assertContainsOnlyInstancesOf(RegionalForm::class, $object->getRegionalForms());
+        $this->assertCount(4, $object->getForms()->getRegional());
+        $this->assertContainsOnlyInstancesOf(RegionalForm::class, $object->getForms()->getRegional());
 
-        $this->assertCount(7, $object->getSpecialForms());
-        $this->assertContainsOnlyInstancesOf(SpecialForm::class, $object->getSpecialForms());
+        $this->assertCount(7, $object->getForms()->getSpecial());
+        $this->assertContainsOnlyInstancesOf(SpecialForm::class, $object->getForms()->getSpecial());
 
-        $this->assertCount(7, $object->getVariantForms());
-        $this->assertContainsOnlyInstancesOf(VariantForm::class, $object->getVariantForms());
+        $this->assertCount(7, $object->getForms()->getVariant());
+        $this->assertContainsOnlyInstancesOf(VariantForm::class, $object->getForms()->getVariant());
 
         $this->assertCount(18, $object->getGameBundles());
         $this->assertContainsOnlyInstancesOf(GameBundle::class, $object->getGameBundles());

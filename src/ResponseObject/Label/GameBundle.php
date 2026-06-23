@@ -34,8 +34,8 @@ final class GameBundle
         return $this->slug;
     }
 
-    public function getGenerationSlug(): string
+    public function getGeneration(): Generation
     {
-        return $this->generation->getSlug();
+        return $this->generation;
     }
 }

@@ -198,5 +198,10 @@
       },
       "error_trace": null
     }
+  },
+  {
+    "action_type": "update_regional_dex_numbers",
+    "current": null,
+    "last": null
   }
 ]
