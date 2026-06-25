@@ -1,6 +1,6 @@
 # ResponseObject Deserialization Tests — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Ajouter les 2 tests de désérialisation manquants (`ActionLog` et `CatchState`) dans `tests/src/Integration/ResponseObject/`, puis marquer le point 12 de `doc/improvement.md` comme traité.
 
@@ -15,7 +15,7 @@
 **Files:**
 - Create: `tests/src/Integration/ResponseObject/ActionLogTest.php`
 
-- [ ] **Step 1 : Écrire le test (il doit passer car le code source existe déjà)**
+- [x] **Step 1 : Écrire le test (il doit passer car le code source existe déjà)**
 
 Créer `tests/src/Integration/ResponseObject/ActionLogTest.php` :
 
@@ -96,7 +96,7 @@ final class ActionLogTest extends KernelTestCase
 }
 ```
 
-- [ ] **Step 2 : Lancer le test**
+- [x] **Step 2 : Lancer le test**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Integration/ResponseObject/ActionLogTest.php
@@ -104,7 +104,7 @@ docker compose exec php php vendor/bin/phpunit tests/src/Integration/ResponseObj
 
 Expected : 2 tests passent (OK, 2 tests, 0 failures).
 
-- [ ] **Step 3 : Vérifier PHPStan**
+- [x] **Step 3 : Vérifier PHPStan**
 
 ```bash
 docker compose exec php php tools/phpstan/vendor/bin/phpstan analyse tests/src/Integration/ResponseObject/ActionLogTest.php --memory-limit=-1
@@ -119,7 +119,7 @@ Expected : `[OK] No errors`.
 **Files:**
 - Create: `tests/src/Integration/ResponseObject/Label/CatchStateTest.php`
 
-- [ ] **Step 1 : Écrire le test**
+- [x] **Step 1 : Écrire le test**
 
 Créer `tests/src/Integration/ResponseObject/Label/CatchStateTest.php` :
 
@@ -168,7 +168,7 @@ final class CatchStateTest extends KernelTestCase
 }
 ```
 
-- [ ] **Step 2 : Lancer le test**
+- [x] **Step 2 : Lancer le test**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Integration/ResponseObject/Label/CatchStateTest.php
@@ -176,7 +176,7 @@ docker compose exec php php vendor/bin/phpunit tests/src/Integration/ResponseObj
 
 Expected : 1 test passe (OK, 1 test, 0 failures).
 
-- [ ] **Step 3 : Vérifier PHPStan**
+- [x] **Step 3 : Vérifier PHPStan**
 
 ```bash
 docker compose exec php php tools/phpstan/vendor/bin/phpstan analyse tests/src/Integration/ResponseObject/Label/CatchStateTest.php --memory-limit=-1
@@ -191,7 +191,7 @@ Expected : `[OK] No errors`.
 **Files:**
 - Modify: `doc/improvement.md`
 
-- [ ] **Step 1 : Ajouter la section "Traité" au point 12**
+- [x] **Step 1 : Ajouter la section "Traité" au point 12**
 
 Dans `doc/improvement.md`, au point 12, après la ligne `**Fichiers** : \`tests/src/Unit/\` (dossier absent pour \`Service/Back/\`)`, ajouter :
 
@@ -199,7 +199,7 @@ Dans `doc/improvement.md`, au point 12, après la ligne `**Fichiers** : \`tests/
 **Traité** : 19 tests de désérialisation dans `tests/src/Integration/ResponseObject/` couvrent tous les ResponseObjects (`Album`, `Pokedex`, `Dex`, `Pokemon`, `Report`, `ReportDetail`, `ElectionIndex`, `ElectionList`, `TopPokemon`, `ActionLog`, et tous les labels dont `CatchState`). Chaque test utilise `KernelTestCase` avec le `SerializerInterface` réel du container — aucune dépendance Moco.
 ```
 
-- [ ] **Step 2 : Lancer tous les tests d'intégration ResponseObject**
+- [x] **Step 2 : Lancer tous les tests d'intégration ResponseObject**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Integration/ResponseObject/
@@ -207,7 +207,7 @@ docker compose exec php php vendor/bin/phpunit tests/src/Integration/ResponseObj
 
 Expected : tous les tests passent (19 tests, 0 failures).
 
-- [ ] **Step 3 : Lancer la suite qualité complète**
+- [x] **Step 3 : Lancer la suite qualité complète**
 
 ```bash
 make code-quality

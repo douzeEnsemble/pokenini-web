@@ -1,6 +1,6 @@
 # Election Top — Complete Property Mapping
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Compléter le mapping de TOUTES les propriétés de `election_top` dans la réponse composite du Back — les ResponseObjects actuels ne capturent qu'un sous-ensemble minimal et laissent `forms`, `types`, et 6 champs de `pokemon` non désérialisés.
 
@@ -146,7 +146,7 @@ Ces deux VOs sont indépendants de tout le reste et doivent être créés en pre
 
 ---
 
-- [ ] **Step 1 : Créer `TopPokemonSlugRef.php`**
+- [x] **Step 1 : Créer `TopPokemonSlugRef.php`**
 
 ```php
 <?php
@@ -171,7 +171,7 @@ final class TopPokemonSlugRef
 }
 ```
 
-- [ ] **Step 2 : Créer `TopPokemonGameBundles.php`**
+- [x] **Step 2 : Créer `TopPokemonGameBundles.php`**
 
 ```php
 <?php
@@ -213,7 +213,7 @@ final class TopPokemonGameBundles
 }
 ```
 
-- [ ] **Step 3 : Créer `tests/src/Unit/ResponseObject/Election/TopPokemonSlugRefTest.php`**
+- [x] **Step 3 : Créer `tests/src/Unit/ResponseObject/Election/TopPokemonSlugRefTest.php`**
 
 ```php
 <?php
@@ -241,7 +241,7 @@ final class TopPokemonSlugRefTest extends TestCase
 }
 ```
 
-- [ ] **Step 4 : Créer `tests/src/Unit/ResponseObject/Election/TopPokemonGameBundlesTest.php`**
+- [x] **Step 4 : Créer `tests/src/Unit/ResponseObject/Election/TopPokemonGameBundlesTest.php`**
 
 ```php
 <?php
@@ -304,7 +304,7 @@ final class TopPokemonGameBundlesTest extends TestCase
 
 ---
 
-- [ ] **Step 5 : Créer `TopPokemonForms.php`**
+- [x] **Step 5 : Créer `TopPokemonForms.php`**
 
 ```php
 <?php
@@ -354,7 +354,7 @@ final class TopPokemonForms
 }
 ```
 
-- [ ] **Step 6 : Créer `TopPokemonTypes.php`**
+- [x] **Step 6 : Créer `TopPokemonTypes.php`**
 
 ```php
 <?php
@@ -387,7 +387,7 @@ final class TopPokemonTypes
 }
 ```
 
-- [ ] **Step 7 : Créer `tests/src/Unit/ResponseObject/Election/TopPokemonFormsTest.php`**
+- [x] **Step 7 : Créer `tests/src/Unit/ResponseObject/Election/TopPokemonFormsTest.php`**
 
 ```php
 <?php
@@ -437,7 +437,7 @@ final class TopPokemonFormsTest extends TestCase
 }
 ```
 
-- [ ] **Step 8 : Créer `tests/src/Unit/ResponseObject/Election/TopPokemonTypesTest.php`**
+- [x] **Step 8 : Créer `tests/src/Unit/ResponseObject/Election/TopPokemonTypesTest.php`**
 
 ```php
 <?php
@@ -504,7 +504,7 @@ final class TopPokemonTypesTest extends TestCase
 
 ---
 
-- [ ] **Step 9 : Modifier `TopPokemonLabels.php`** — ajouter `forms_label` et `forms_french_label`
+- [x] **Step 9 : Modifier `TopPokemonLabels.php`** — ajouter `forms_label` et `forms_french_label`
 
 Remplacer le contenu par :
 
@@ -566,7 +566,7 @@ final class TopPokemonLabels
 }
 ```
 
-- [ ] **Step 10 : Modifier `TopPokemonLabelsTest.php`** — mettre à jour le constructeur et ajouter les assertions
+- [x] **Step 10 : Modifier `TopPokemonLabelsTest.php`** — mettre à jour le constructeur et ajouter les assertions
 
 Remplacer le corps de `testConstructor` :
 
@@ -614,7 +614,7 @@ public function testNullForms(): void
 
 ---
 
-- [ ] **Step 11 : Modifier `TopPokemonInfo.php`**
+- [x] **Step 11 : Modifier `TopPokemonInfo.php`**
 
 Remplacer le contenu par :
 
@@ -707,7 +707,7 @@ final class TopPokemonInfo
 }
 ```
 
-- [ ] **Step 12 : Modifier `TopPokemonInfoTest.php`** — mettre à jour la signature et couvrir tous les getters
+- [x] **Step 12 : Modifier `TopPokemonInfoTest.php`** — mettre à jour la signature et couvrir tous les getters
 
 Remplacer le contenu du fichier par :
 
@@ -828,7 +828,7 @@ final class TopPokemonInfoTest extends TestCase
 
 ---
 
-- [ ] **Step 13 : Modifier `TopPokemon.php`**
+- [x] **Step 13 : Modifier `TopPokemon.php`**
 
 Remplacer le contenu par :
 
@@ -876,7 +876,7 @@ final class TopPokemon
 }
 ```
 
-- [ ] **Step 14 : Modifier `TopPokemonTest.php`** — enrichir le JSON inline et les assertions
+- [x] **Step 14 : Modifier `TopPokemonTest.php`** — enrichir le JSON inline et les assertions
 
 Remplacer le contenu de `testDeserialize` (garder les autres méthodes inchangées) :
 
@@ -1072,7 +1072,7 @@ Ajouter un test pour `forms: null` au niveau top-level :
 
 ---
 
-- [ ] **Step 15 : Vérifier les stubs dans `ResponseObjectTrait`**
+- [x] **Step 15 : Vérifier les stubs dans `ResponseObjectTrait`**
 
 ```bash
 grep -rn "TopPokemon\|TopPokemonInfo\|TopPokemonLabels" tests/src/Common/
@@ -1080,7 +1080,7 @@ grep -rn "TopPokemon\|TopPokemonInfo\|TopPokemonLabels" tests/src/Common/
 
 Si des stubs construisent `TopPokemon`, `TopPokemonInfo` ou `TopPokemonLabels` directement, mettre à jour les appels pour inclure les nouveaux paramètres requis.
 
-- [ ] **Step 16 : Vérifier les autres tests qui instancient les classes modifiées**
+- [x] **Step 16 : Vérifier les autres tests qui instancient les classes modifiées**
 
 ```bash
 grep -rn "new TopPokemon\|new TopPokemonInfo\|new TopPokemonLabels" tests/
@@ -1088,7 +1088,7 @@ grep -rn "new TopPokemon\|new TopPokemonInfo\|new TopPokemonLabels" tests/
 
 Mettre à jour tous les appels identifiés (signature de constructeur élargie).
 
-- [ ] **Step 17 : Vérification statique (pas de commit)**
+- [x] **Step 17 : Vérification statique (pas de commit)**
 
 ```bash
 docker compose exec php php tools/phpstan/vendor/bin/phpstan --memory-limit=-1
@@ -1097,7 +1097,7 @@ docker compose exec php php tools/psalm/vendor/bin/psalm --show-info=false --no-
 
 Expected: 0 erreur. Si des erreurs de baseline apparaissent sur les nouvelles suppressions `@SuppressWarnings("PHPMD.ExcessiveParameterList")` dans `TopPokemonInfo`, les ajouter à `phpmd.ruleset.xml` ou régénérer la baseline PHPMD.
 
-- [ ] **Step 18 : Vérification couverture (référence)**
+- [x] **Step 18 : Vérification couverture (référence)**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/ResponseObject/Election tests/src/Integration/ResponseObject/Election/TopPokemonTest.php

@@ -1,6 +1,6 @@
 # Web API Response Migration — Completion Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Terminer la migration de `pokenini-web` vers le nouveau format de réponses de l'API — la seule partie restante est la consommation correcte des champs *enrichis* de `election_top` (`labels.simplified_name`, `labels.simplified_french_name`, `pokemon.pokemon_icon`) qui sont actuellement perdus.
 
@@ -115,7 +115,7 @@ Aucune fixture Moco/intégration à modifier : elles **contiennent déjà** `sim
 
 ---
 
-- [ ] **Step 1 : Écrire le test unitaire `TopPokemonLabels` (échec attendu)**
+- [x] **Step 1 : Écrire le test unitaire `TopPokemonLabels` (échec attendu)**
 
 Remplacer le corps de `tests/src/Unit/ResponseObject/Election/TopPokemonLabelsTest.php::testConstructor` par :
 
@@ -131,12 +131,12 @@ public function testConstructor(): void
 }
 ```
 
-- [ ] **Step 2 : Lancer le test, vérifier l'échec**
+- [x] **Step 2 : Lancer le test, vérifier l'échec**
 
 Run: `docker compose exec php php vendor/bin/phpunit tests/src/Unit/ResponseObject/Election/TopPokemonLabelsTest.php`
 Expected: FAIL — `Too few arguments to function ... __construct()` / `Call to undefined method ...getSimplifiedName()`.
 
-- [ ] **Step 3 : Implémenter `TopPokemonLabels`**
+- [x] **Step 3 : Implémenter `TopPokemonLabels`**
 
 Remplacer le contenu de `src/ResponseObject/Election/TopPokemonLabels.php` par :
 
@@ -184,12 +184,12 @@ final class TopPokemonLabels
 }
 ```
 
-- [ ] **Step 4 : Lancer le test, vérifier le succès**
+- [x] **Step 4 : Lancer le test, vérifier le succès**
 
 Run: `docker compose exec php php vendor/bin/phpunit tests/src/Unit/ResponseObject/Election/TopPokemonLabelsTest.php`
 Expected: PASS.
 
-- [ ] **Step 5 : Écrire le test unitaire `TopPokemonInfo` (échec attendu)**
+- [x] **Step 5 : Écrire le test unitaire `TopPokemonInfo` (échec attendu)**
 
 Remplacer le corps de `tests/src/Unit/ResponseObject/Election/TopPokemonInfoTest.php::testConstructor` par :
 
@@ -206,12 +206,12 @@ public function testConstructor(): void
 }
 ```
 
-- [ ] **Step 6 : Lancer le test, vérifier l'échec**
+- [x] **Step 6 : Lancer le test, vérifier l'échec**
 
 Run: `docker compose exec php php vendor/bin/phpunit tests/src/Unit/ResponseObject/Election/TopPokemonInfoTest.php`
 Expected: FAIL — `Too few arguments` / `Call to undefined method ...getIcon()`.
 
-- [ ] **Step 7 : Implémenter `TopPokemonInfo`**
+- [x] **Step 7 : Implémenter `TopPokemonInfo`**
 
 Remplacer le contenu de `src/ResponseObject/Election/TopPokemonInfo.php` par :
 
@@ -261,12 +261,12 @@ final class TopPokemonInfo
 
 > Note : on mappe `pokemon_icon` (alias injecté délibérément par le BFF) plutôt que `icon`, pour refléter le contrat explicite du Back et l'ancien comportement web (`#[SerializedName('pokemon_icon')]`).
 
-- [ ] **Step 8 : Lancer le test, vérifier le succès**
+- [x] **Step 8 : Lancer le test, vérifier le succès**
 
 Run: `docker compose exec php php vendor/bin/phpunit tests/src/Unit/ResponseObject/Election/TopPokemonInfoTest.php`
 Expected: PASS.
 
-- [ ] **Step 9 : Corriger les délégations dans `TopPokemon`**
+- [x] **Step 9 : Corriger les délégations dans `TopPokemon`**
 
 Dans `src/ResponseObject/Election/TopPokemon.php`, remplacer les 3 getters incorrects :
 
@@ -289,7 +289,7 @@ Dans `src/ResponseObject/Election/TopPokemon.php`, remplacer les 3 getters incor
 
 (Les autres getters — `getPokemonSlug`, `getPokemonName`, `getPokemonNationalDexNumber`, `getPokemonFrenchName`, `getElo`, `isSignificance` — restent inchangés.)
 
-- [ ] **Step 10 : Mettre à jour le test d'intégration de désérialisation (échec attendu d'abord)**
+- [x] **Step 10 : Mettre à jour le test d'intégration de désérialisation (échec attendu d'abord)**
 
 Dans `tests/src/Integration/ResponseObject/Election/TopPokemonTest.php`, dans `testDeserialize`, enrichir le bloc `labels` du JSON et corriger les assertions qui figeaient la régression :
 
@@ -331,12 +331,12 @@ Faire de même pour le bloc `labels` + `pokemon_icon` de `testDeserializeSignifi
 
 > `testDeserializeArray` et `testDeserializeEmptyArray` n'ont pas besoin de modification : la fixture `election_mega_top_5.json` contient déjà les champs enrichis.
 
-- [ ] **Step 11 : Lancer le test d'intégration, vérifier le succès**
+- [x] **Step 11 : Lancer le test d'intégration, vérifier le succès**
 
 Run: `docker compose exec php php vendor/bin/phpunit tests/src/Integration/ResponseObject/Election/TopPokemonTest.php`
 Expected: PASS (les 4 tests).
 
-- [ ] **Step 12 : Vérification finale (pas de commit)**
+- [x] **Step 12 : Vérification finale (pas de commit)**
 
 Lancer les tests touchés puis la qualité statique :
 

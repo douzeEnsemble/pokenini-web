@@ -1,6 +1,6 @@
 # AlbumFilterBag Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Remplacer le tableau mixte `string[]|string[][]` retourné par `FromRequest` par un value object typé `AlbumFilterBag`, absorber la logique de `Mapping` dedans, et supprimer la classe `Mapping`.
 
@@ -17,7 +17,7 @@
 - Create: `tests/src/Unit/AlbumFilters/AlbumFilterBagTest.php`
 - Delete: `tests/src/Unit/AlbumFilters/MappingTest.php`
 
-- [ ] **Step 1 : Écrire le test (doit échouer)**
+- [x] **Step 1 : Écrire le test (doit échouer)**
 
 Créer `tests/src/Unit/AlbumFilters/AlbumFilterBagTest.php` :
 
@@ -108,7 +108,7 @@ final class AlbumFilterBagTest extends TestCase
 }
 ```
 
-- [ ] **Step 2 : Lancer le test — vérifier qu'il échoue**
+- [x] **Step 2 : Lancer le test — vérifier qu'il échoue**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/AlbumFilters/AlbumFilterBagTest.php
@@ -116,7 +116,7 @@ docker compose exec php php vendor/bin/phpunit tests/src/Unit/AlbumFilters/Album
 
 Attendu : FAIL — `Class "App\AlbumFilters\AlbumFilterBag" not found`.
 
-- [ ] **Step 3 : Créer `AlbumFilterBag`**
+- [x] **Step 3 : Créer `AlbumFilterBag`**
 
 Créer `src/AlbumFilters/AlbumFilterBag.php` :
 
@@ -182,7 +182,7 @@ final readonly class AlbumFilterBag
 }
 ```
 
-- [ ] **Step 4 : Lancer le test — vérifier qu'il passe**
+- [x] **Step 4 : Lancer le test — vérifier qu'il passe**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/AlbumFilters/AlbumFilterBagTest.php
@@ -190,13 +190,13 @@ docker compose exec php php vendor/bin/phpunit tests/src/Unit/AlbumFilters/Album
 
 Attendu : 3 tests, vert.
 
-- [ ] **Step 5 : Supprimer `MappingTest.php`**
+- [x] **Step 5 : Supprimer `MappingTest.php`**
 
 ```bash
 rm tests/src/Unit/AlbumFilters/MappingTest.php
 ```
 
-- [ ] **Step 6 : Commit**
+- [x] **Step 6 : Commit**
 
 ```bash
 git add src/AlbumFilters/AlbumFilterBag.php tests/src/Unit/AlbumFilters/AlbumFilterBagTest.php tests/src/Unit/AlbumFilters/MappingTest.php
@@ -211,7 +211,7 @@ git commit -m "feat: introduce AlbumFilterBag value object, remove MappingTest"
 - Modify: `src/AlbumFilters/FromRequest.php`
 - Modify: `tests/src/Unit/AlbumFilters/FromRequestTest.php`
 
-- [ ] **Step 1 : Mettre à jour `FromRequestTest`**
+- [x] **Step 1 : Mettre à jour `FromRequestTest`**
 
 Remplacer le contenu de `tests/src/Unit/AlbumFilters/FromRequestTest.php` :
 
@@ -311,7 +311,7 @@ final class FromRequestTest extends TestCase
 }
 ```
 
-- [ ] **Step 2 : Lancer le test — vérifier qu'il échoue**
+- [x] **Step 2 : Lancer le test — vérifier qu'il échoue**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/AlbumFilters/FromRequestTest.php
@@ -319,7 +319,7 @@ docker compose exec php php vendor/bin/phpunit tests/src/Unit/AlbumFilters/FromR
 
 Attendu : FAIL — `FromRequest::get()` retourne encore un `array`.
 
-- [ ] **Step 3 : Mettre à jour `FromRequest`**
+- [x] **Step 3 : Mettre à jour `FromRequest`**
 
 Remplacer le contenu de `src/AlbumFilters/FromRequest.php` :
 
@@ -381,7 +381,7 @@ final class FromRequest
 }
 ```
 
-- [ ] **Step 4 : Lancer le test — vérifier qu'il passe**
+- [x] **Step 4 : Lancer le test — vérifier qu'il passe**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/AlbumFilters/FromRequestTest.php
@@ -389,7 +389,7 @@ docker compose exec php php vendor/bin/phpunit tests/src/Unit/AlbumFilters/FromR
 
 Attendu : 3 tests, vert.
 
-- [ ] **Step 5 : Commit**
+- [x] **Step 5 : Commit**
 
 ```bash
 git add src/AlbumFilters/FromRequest.php tests/src/Unit/AlbumFilters/FromRequestTest.php
@@ -406,7 +406,7 @@ git commit -m "refactor: FromRequest::get() returns AlbumFilterBag"
 - Modify: `src/Controller/ElectionVoteController.php`
 - Delete: `src/AlbumFilters/Mapping.php`
 
-- [ ] **Step 1 : Mettre à jour `AlbumIndexController`**
+- [x] **Step 1 : Mettre à jour `AlbumIndexController`**
 
 Dans `src/Controller/AlbumIndexController.php`, supprimer l'import de `Mapping` et remplacer les deux lignes concernées :
 
@@ -427,7 +427,7 @@ use App\AlbumFilters\FromRequest;
         $apiFilters = $filterBag->toApiParams();
 ```
 
-- [ ] **Step 2 : Mettre à jour `ElectionIndexController`**
+- [x] **Step 2 : Mettre à jour `ElectionIndexController`**
 
 Dans `src/Controller/ElectionIndexController.php`, même changement :
 
@@ -448,7 +448,7 @@ use App\AlbumFilters\FromRequest;
         $apiFilters = $filterBag->toApiParams();
 ```
 
-- [ ] **Step 3 : Mettre à jour `ElectionVoteController`**
+- [x] **Step 3 : Mettre à jour `ElectionVoteController`**
 
 Dans `src/Controller/ElectionVoteController.php`, remplacer l'usage de `$filters` dans `array_merge` :
 
@@ -484,13 +484,13 @@ Après :
         );
 ```
 
-- [ ] **Step 4 : Supprimer `Mapping.php`**
+- [x] **Step 4 : Supprimer `Mapping.php`**
 
 ```bash
 rm src/AlbumFilters/Mapping.php
 ```
 
-- [ ] **Step 5 : Lancer les tests unitaires**
+- [x] **Step 5 : Lancer les tests unitaires**
 
 ```bash
 make tests-unit
@@ -498,7 +498,7 @@ make tests-unit
 
 Attendu : tous les tests unitaires verts (aucune référence à `Mapping` ne doit subsister).
 
-- [ ] **Step 6 : Commit**
+- [x] **Step 6 : Commit**
 
 ```bash
 git add src/Controller/AlbumIndexController.php src/Controller/ElectionIndexController.php src/Controller/ElectionVoteController.php src/AlbumFilters/Mapping.php
@@ -511,7 +511,7 @@ git commit -m "refactor: use AlbumFilterBag in controllers, remove Mapping class
 
 **Files:** aucun fichier supplémentaire
 
-- [ ] **Step 1 : Lancer tous les tests**
+- [x] **Step 1 : Lancer tous les tests**
 
 ```bash
 make tests-unit
@@ -519,7 +519,7 @@ make tests-unit
 
 Attendu : vert.
 
-- [ ] **Step 2 : Lancer les outils de qualité**
+- [x] **Step 2 : Lancer les outils de qualité**
 
 ```bash
 make code-quality
@@ -534,7 +534,7 @@ git add -p
 git commit -m "style: fix code style after AlbumFilterBag refactor"
 ```
 
-- [ ] **Step 3 : Mettre à jour `doc/improvement.md`**
+- [x] **Step 3 : Mettre à jour `doc/improvement.md`**
 
 Dans `doc/improvement.md`, au point **#16**, ajouter après `**Fichiers** : ...` :
 
@@ -542,7 +542,7 @@ Dans `doc/improvement.md`, au point **#16**, ajouter après `**Fichiers** : ...`
 **Traité** : `AlbumFilterBag` readonly value object avec `toApiParams()` (absorbe `Mapping`) et `toRouteParams()`. `FromRequest::get()` retourne `AlbumFilterBag`. `Mapping` supprimée. PHPStan niveau 9 + tests unitaires verts.
 ```
 
-- [ ] **Step 4 : Commit final**
+- [x] **Step 4 : Commit final**
 
 ```bash
 git add doc/improvement.md

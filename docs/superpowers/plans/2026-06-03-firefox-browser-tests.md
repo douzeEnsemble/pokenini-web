@@ -1,6 +1,6 @@
 # Firefox Browser Tests Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Run the 11 existing Panther browser test scenarios against both Chrome and Firefox in parallel.
 
@@ -25,7 +25,7 @@
 **Files:**
 - Modify: `docker-compose.yaml` (lines 34–36 for php dependency, after line 53 for new service)
 
-- [ ] **Step 1: Add the `firefox` service after the `chrome` service**
+- [x] **Step 1: Add the `firefox` service after the `chrome` service**
 
 In `docker-compose.yaml`, replace:
 
@@ -65,7 +65,7 @@ With:
       start_period: 15s
 ```
 
-- [ ] **Step 2: Add `firefox` as a healthy dependency of the `php` service**
+- [x] **Step 2: Add `firefox` as a healthy dependency of the `php` service**
 
 In `docker-compose.yaml`, replace:
 
@@ -85,7 +85,7 @@ With:
         condition: service_healthy
 ```
 
-- [ ] **Step 3: Validate the Docker Compose file**
+- [x] **Step 3: Validate the Docker Compose file**
 
 ```bash
 docker compose config --quiet
@@ -93,7 +93,7 @@ docker compose config --quiet
 
 Expected: no output, exit code 0.
 
-- [ ] **Step 4: Start the stack and verify Firefox comes up healthy**
+- [x] **Step 4: Start the stack and verify Firefox comes up healthy**
 
 ```bash
 make start
@@ -102,7 +102,7 @@ docker compose ps firefox
 
 Expected: `firefox` row shows `healthy` in the Status column.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add docker-compose.yaml
@@ -116,7 +116,7 @@ git commit -m "feat: add selenium/standalone-firefox service to Docker Compose"
 **Files:**
 - Modify: `tests/src/Browser/AbstractBrowserTestCase.php`
 
-- [ ] **Step 1: Update `getNewClient()` to read browser from env vars**
+- [x] **Step 1: Update `getNewClient()` to read browser from env vars**
 
 Replace the entire `getNewClient()` method:
 
@@ -161,7 +161,7 @@ With:
     }
 ```
 
-- [ ] **Step 2: Verify Chrome tests still pass (default env — no vars set)**
+- [x] **Step 2: Verify Chrome tests still pass (default env — no vars set)**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Browser
@@ -169,7 +169,7 @@ docker compose exec php php vendor/bin/phpunit tests/src/Browser
 
 Expected: all browser tests pass (same as before — no env vars set → defaults to Chrome).
 
-- [ ] **Step 3: Verify Firefox tests pass (env vars set manually)**
+- [x] **Step 3: Verify Firefox tests pass (env vars set manually)**
 
 ```bash
 docker compose exec -e PANTHER_SELENIUM_HOST=http://firefox:4444/wd/hub -e PANTHER_BROWSER_NAME=firefox php php vendor/bin/phpunit tests/src/Browser
@@ -177,7 +177,7 @@ docker compose exec -e PANTHER_SELENIUM_HOST=http://firefox:4444/wd/hub -e PANTH
 
 Expected: all 11 browser tests pass against Firefox.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add tests/src/Browser/AbstractBrowserTestCase.php
@@ -191,7 +191,7 @@ git commit -m "feat: parameterize browser tests via PANTHER_SELENIUM_HOST and PA
 **Files:**
 - Modify: `Makefile` (lines 260–266)
 
-- [ ] **Step 1: Replace `tests-browser` with three targets**
+- [x] **Step 1: Replace `tests-browser` with three targets**
 
 In `Makefile`, replace:
 
@@ -220,7 +220,7 @@ tests-browser:
 
 Note: the indent in the Makefile recipe lines must be a **tab**, not spaces.
 
-- [ ] **Step 2: Run `make tests-browser` and verify both browsers run in parallel**
+- [x] **Step 2: Run `make tests-browser` and verify both browsers run in parallel**
 
 ```bash
 make tests-browser
@@ -228,7 +228,7 @@ make tests-browser
 
 Expected: `parallel_runner` output showing both `tests-browser-chrome` and `tests-browser-firefox` launching, both completing successfully.
 
-- [ ] **Step 3: Run `make tests` to verify full test suite still works**
+- [x] **Step 3: Run `make tests` to verify full test suite still works**
 
 ```bash
 make tests
@@ -236,7 +236,7 @@ make tests
 
 Expected: unit, integration, and browser (Chrome + Firefox) all pass.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add Makefile
