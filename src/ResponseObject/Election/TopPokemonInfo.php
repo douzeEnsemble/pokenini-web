@@ -6,6 +6,9 @@ namespace App\ResponseObject\Election;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
+/**
+ * @SuppressWarnings("PHPMD.ExcessiveParameterList")
+ */
 final class TopPokemonInfo
 {
     public function __construct(
@@ -15,8 +18,20 @@ final class TopPokemonInfo
         private readonly TopPokemonLabels $labels,
         #[SerializedName('national_dex_number')]
         private readonly int $nationalDexNumber,
-        #[SerializedName('pokemon_icon')]
+        #[SerializedName('regional_dex_number')]
+        private readonly ?int $regionalDexNumber,
+        #[SerializedName('icon')]
         private readonly string $icon,
+        #[SerializedName('family_order')]
+        private readonly int $familyOrder,
+        #[SerializedName('family_lead')]
+        private readonly ?TopPokemonSlugRef $familyLead,
+        #[SerializedName('original_game_bundle')]
+        private readonly ?TopPokemonSlugRef $originalGameBundle,
+        #[SerializedName('order_number')]
+        private readonly ?string $orderNumber,
+        #[SerializedName('game_bundles')]
+        private readonly TopPokemonGameBundles $gameBundles,
     ) {}
 
     public function getSlug(): string
@@ -34,8 +49,38 @@ final class TopPokemonInfo
         return $this->nationalDexNumber;
     }
 
+    public function getRegionalDexNumber(): ?int
+    {
+        return $this->regionalDexNumber;
+    }
+
     public function getIcon(): string
     {
         return $this->icon;
+    }
+
+    public function getFamilyOrder(): int
+    {
+        return $this->familyOrder;
+    }
+
+    public function getFamilyLead(): ?TopPokemonSlugRef
+    {
+        return $this->familyLead;
+    }
+
+    public function getOriginalGameBundle(): ?TopPokemonSlugRef
+    {
+        return $this->originalGameBundle;
+    }
+
+    public function getOrderNumber(): ?string
+    {
+        return $this->orderNumber;
+    }
+
+    public function getGameBundles(): TopPokemonGameBundles
+    {
+        return $this->gameBundles;
     }
 }

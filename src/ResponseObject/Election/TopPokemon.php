@@ -11,6 +11,10 @@ final class TopPokemon
     public function __construct(
         #[SerializedName('pokemon')]
         private readonly TopPokemonInfo $pokemon,
+        #[SerializedName('forms')]
+        private readonly ?TopPokemonForms $forms,
+        #[SerializedName('types')]
+        private readonly TopPokemonTypes $types,
         #[SerializedName('score')]
         private readonly TopPokemonScore $score,
     ) {}
@@ -18,6 +22,16 @@ final class TopPokemon
     public function getPokemon(): TopPokemonInfo
     {
         return $this->pokemon;
+    }
+
+    public function getForms(): ?TopPokemonForms
+    {
+        return $this->forms;
+    }
+
+    public function getTypes(): TopPokemonTypes
+    {
+        return $this->types;
     }
 
     public function getScore(): TopPokemonScore

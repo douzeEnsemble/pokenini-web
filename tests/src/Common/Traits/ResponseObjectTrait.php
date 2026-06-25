@@ -12,9 +12,12 @@ use App\ResponseObject\Album\ReportDetail;
 use App\ResponseObject\Common\Pokemon;
 use App\ResponseObject\Election\ElectionList;
 use App\ResponseObject\Election\TopPokemon;
+use App\ResponseObject\Election\TopPokemonGameBundles;
 use App\ResponseObject\Election\TopPokemonInfo;
 use App\ResponseObject\Election\TopPokemonLabels;
 use App\ResponseObject\Election\TopPokemonScore;
+use App\ResponseObject\Election\TopPokemonSlugRef;
+use App\ResponseObject\Election\TopPokemonTypes;
 use App\ResponseObject\Label\CatchState;
 use App\ResponseObject\Label\CategoryForm;
 use App\ResponseObject\Label\Collection;
@@ -205,10 +208,18 @@ trait ResponseObjectTrait
         return new TopPokemon(
             new TopPokemonInfo(
                 'bulbasaur',
-                new TopPokemonLabels('Bulbasaur', 'Bulbizarre', 'Bulbasaur', 'Bulbizarre'),
+                new TopPokemonLabels('Bulbasaur', 'Bulbizarre', 'Bulbasaur', 'Bulbizarre', null, null),
                 1,
+                null,
                 'bulbasaur',
+                1,
+                new TopPokemonSlugRef('bulbasaur'),
+                null,
+                null,
+                new TopPokemonGameBundles([], []),
             ),
+            null,                          // forms: null is valid; TopPokemonForms not imported (unused)
+            new TopPokemonTypes(null, null),
             new TopPokemonScore(1, false),
         );
     }
