@@ -17,6 +17,10 @@ final class TopPokemonLabels
         private readonly string $simplifiedName,
         #[SerializedName('simplified_french_name')]
         private readonly string $simplifiedFrenchName,
+        #[SerializedName('forms_label')]
+        private readonly ?string $formsLabel,
+        #[SerializedName('forms_french_label')]
+        private readonly ?string $formsFrenchLabel,
     ) {}
 
     public function getName(): string
@@ -37,5 +41,15 @@ final class TopPokemonLabels
     public function getSimplifiedFrenchName(): string
     {
         return $this->simplifiedFrenchName;
+    }
+
+    public function getFormsLabel(): ?string
+    {
+        return $this->formsLabel;
+    }
+
+    public function getFormsFrenchLabel(): ?string
+    {
+        return $this->formsFrenchLabel;
     }
 }
