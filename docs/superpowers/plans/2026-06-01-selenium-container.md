@@ -1,6 +1,6 @@
 # Selenium Container Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Remplacer l'installation de Chrome/chromedriver dans le container PHP par un service Docker dédié `selenium/standalone-chromium`, et connecter Panther à ce service via WebDriver distant.
 
@@ -15,7 +15,7 @@
 **Files:**
 - Modify: `docker-compose.yaml`
 
-- [ ] **Step 1 : Ajouter le service**
+- [x] **Step 1 : Ajouter le service**
 
 Dans `docker-compose.yaml`, ajouter le service `chrome` après le service `redis` :
 
@@ -89,7 +89,7 @@ volumes:
   redis_data:
 ```
 
-- [ ] **Step 2 : Vérifier que le service démarre**
+- [x] **Step 2 : Vérifier que le service démarre**
 
 ```bash
 docker compose up chrome -d
@@ -105,7 +105,7 @@ Expected : `Started Selenium Standalone` dans les logs, pas d'erreur.
 **Files:**
 - Modify: `.docker/php/Dockerfile:70-96`
 
-- [ ] **Step 1 : Retirer le bloc Chrome et adapter les ENV Panther**
+- [x] **Step 1 : Retirer le bloc Chrome et adapter les ENV Panther**
 
 Supprimer les lignes 70-96 (bloc `## < Install chromedriver` … `## > Install chromedriver`) et remplacer les ENV Panther Chrome-spécifiques par la configuration Remote WebDriver.
 
@@ -155,7 +155,7 @@ ENV PANTHER_EXTERNAL_BASE_URI=http://web:8080
 - `PANTHER_NO_SANDBOX` et `PANTHER_CHROME_ARGUMENTS` ne sont plus pertinents : le sandbox et le shm sont configurés côté container Selenium.
 - `PANTHER_DEVTOOLS=disabled` était Chrome-spécifique, inutile avec Selenium distant.
 
-- [ ] **Step 2 : Rebuild le container PHP**
+- [x] **Step 2 : Rebuild le container PHP**
 
 ```bash
 docker compose build php
@@ -163,7 +163,7 @@ docker compose build php
 
 Expected : build sans erreur, image plus légère (~150-200 Mo de moins).
 
-- [ ] **Step 3 : Vérifier que Chrome n'est plus dans l'image**
+- [x] **Step 3 : Vérifier que Chrome n'est plus dans l'image**
 
 ```bash
 docker compose run --rm php which chromium-browser 2>&1
@@ -178,7 +178,7 @@ Expected : `which: no chromium-browser in (...)` — le binaire n'existe plus.
 **Files:**
 - Modify: `tests/src/Browser/AbstractBrowserTestCase.php`
 
-- [ ] **Step 1 : Remplacer createPantherClient par createSeleniumClient**
+- [x] **Step 1 : Remplacer createPantherClient par createSeleniumClient**
 
 `createPantherClient` démarre un chromedriver local. `createSeleniumClient` se connecte à un WebDriver distant.
 
@@ -198,7 +198,7 @@ protected static function getNewClient(): Client
 - `acceptInsecureCerts` remplace l'ancien `--ignore-certificate-errors` du chromedriver local.
 - `PANTHER_EXTERNAL_BASE_URI` (défini dans le Dockerfile) est lue automatiquement par Panther pour construire les URLs.
 
-- [ ] **Step 2 : Vérifier que le fichier compile (pas d'import mort)**
+- [x] **Step 2 : Vérifier que le fichier compile (pas d'import mort)**
 
 L'import `Symfony\Component\Panther\PantherTestCase` reste valide — `createSeleniumClient` est une méthode statique de `PantherTestCase`. Aucun import à ajouter ni supprimer.
 
@@ -214,13 +214,13 @@ Expected : `No syntax errors detected`.
 
 **Files:** aucun fichier modifié dans cette tâche — validation uniquement.
 
-- [ ] **Step 1 : Redémarrer la stack complète**
+- [x] **Step 1 : Redémarrer la stack complète**
 
 ```bash
 docker compose down && docker compose up -d
 ```
 
-- [ ] **Step 2 : Vérifier que le container chrome est healthy**
+- [x] **Step 2 : Vérifier que le container chrome est healthy**
 
 ```bash
 docker compose ps chrome
@@ -228,7 +228,7 @@ docker compose ps chrome
 
 Expected : état `running` (ou `healthy` si healthcheck configuré).
 
-- [ ] **Step 3 : Lancer les tests browser**
+- [x] **Step 3 : Lancer les tests browser**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Browser
@@ -238,7 +238,7 @@ Expected : tous les tests passent, sans erreur `chromedriver not found` ni `conn
 
 En cas d'échec : récupérer les screenshots dans `var/screenshots/` pour diagnostiquer.
 
-- [ ] **Step 4 : Lancer la suite complète**
+- [x] **Step 4 : Lancer la suite complète**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/
@@ -253,7 +253,7 @@ Expected : tests unit + integration + browser tous verts.
 **Files:**
 - Modify: `CLAUDE.md`
 
-- [ ] **Step 1 : Mettre à jour la section Infrastructure de CLAUDE.md**
+- [x] **Step 1 : Mettre à jour la section Infrastructure de CLAUDE.md**
 
 Dans le tableau Infrastructure, remplacer la ligne PHP FPM et ajouter le service chrome :
 

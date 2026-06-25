@@ -1,6 +1,6 @@
 # ActionLog Symfony Serializer Refactoring — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Remplacer `ActionLog::createFromArray` par la désérialisation Symfony pour éliminer les casts manuels, les `@psalm-suppress RiskyCast` et les `/** @var */` forcés.
 
@@ -28,7 +28,7 @@
 
 > Ces assertions passent avec l'implémentation actuelle (`createFromArray`) ET avec la future (`denormalize`). On fixe d'abord le comportement attendu avant de refactorer.
 
-- [ ] **Step 1 : Remplacer le contenu complet de `GetActionLogsServiceTest.php`**
+- [x] **Step 1 : Remplacer le contenu complet de `GetActionLogsServiceTest.php`**
 
 ```php
 <?php
@@ -162,7 +162,7 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
 }
 ```
 
-- [ ] **Step 2 : Lancer les tests pour vérifier qu'ils passent (GREEN)**
+- [x] **Step 2 : Lancer les tests pour vérifier qu'ils passent (GREEN)**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/Back/GetActionLogsServiceTest.php
@@ -177,7 +177,7 @@ Résultat attendu : `OK (2 tests, N assertions)` — pas d'erreur.
 **Files:**
 - Modify: `src/DTO/ActionLog.php`
 
-- [ ] **Step 1 : Remplacer le contenu complet de `ActionLog.php`**
+- [x] **Step 1 : Remplacer le contenu complet de `ActionLog.php`**
 
 ```php
 <?php
@@ -215,7 +215,7 @@ final class ActionLog
 **Files:**
 - Modify: `src/Service/Back/GetActionLogsService.php`
 
-- [ ] **Step 1 : Remplacer le contenu complet de `GetActionLogsService.php`**
+- [x] **Step 1 : Remplacer le contenu complet de `GetActionLogsService.php`**
 
 ```php
 <?php
@@ -263,7 +263,7 @@ class GetActionLogsService extends AbstractBackService
 }
 ```
 
-- [ ] **Step 2 : Lancer les tests pour vérifier que tout passe encore (GREEN)**
+- [x] **Step 2 : Lancer les tests pour vérifier que tout passe encore (GREEN)**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/Back/GetActionLogsServiceTest.php
@@ -278,13 +278,13 @@ Résultat attendu : `OK (2 tests, N assertions)`.
 **Files:**
 - Delete: `tests/src/Unit/DTO/ActionLogTest.php`
 
-- [ ] **Step 1 : Supprimer le fichier**
+- [x] **Step 1 : Supprimer le fichier**
 
 ```bash
 rm /home/renaud/projects/pokenini-web/tests/src/Unit/DTO/ActionLogTest.php
 ```
 
-- [ ] **Step 2 : Lancer tous les tests unitaires pour vérifier l'absence de régression**
+- [x] **Step 2 : Lancer tous les tests unitaires pour vérifier l'absence de régression**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit --testsuite=Unit
@@ -296,13 +296,13 @@ Résultat attendu : tous les tests passent, pas de mention de `ActionLogTest`.
 
 ## Task 5 : Vérification qualité et commit
 
-- [ ] **Step 1 : Lancer le fixer de style**
+- [x] **Step 1 : Lancer le fixer de style**
 
 ```bash
 make phpcsfixer-fix
 ```
 
-- [ ] **Step 2 : Lancer les outils de qualité complets**
+- [x] **Step 2 : Lancer les outils de qualité complets**
 
 ```bash
 make code-quality
@@ -310,7 +310,7 @@ make code-quality
 
 Résultat attendu : `phpcsfixer`, `psalm`, `phpstan`, `phpmd`, `deptrac` passent sans erreur.
 
-- [ ] **Step 3 : Committer**
+- [x] **Step 3 : Committer**
 
 ```bash
 git add src/DTO/ActionLog.php \

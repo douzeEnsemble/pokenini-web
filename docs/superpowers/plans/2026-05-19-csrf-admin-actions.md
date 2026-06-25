@@ -1,6 +1,6 @@
 # CSRF Protection for Admin Actions — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Protect admin action routes against CSRF by switching from GET to POST with Symfony CSRF token validation.
 
@@ -27,7 +27,7 @@
 **Files:**
 - Modify: `tests/src/Unit/Controller/AdminActionControllerTest.php`
 
-- [ ] **Step 1.1 — Add use statements**
+- [x] **Step 1.1 — Add use statements**
 
 At the top of `AdminActionControllerTest.php`, add alongside existing uses:
 
@@ -37,7 +37,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 ```
 
-- [ ] **Step 1.2 — Add 3 new test methods**
+- [x] **Step 1.2 — Add 3 new test methods**
 
 Append these three methods before the closing `}` of the class:
 
@@ -106,7 +106,7 @@ public function testInvalidateInvalidCsrfToken(): void
 }
 ```
 
-- [ ] **Step 1.3 — Run new tests to verify they fail**
+- [x] **Step 1.3 — Run new tests to verify they fail**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Controller/AdminActionControllerTest.php --filter "testUpdateInvalidCsrfToken|testCalculateInvalidCsrfToken|testInvalidateInvalidCsrfToken"
@@ -122,7 +122,7 @@ Expected: FAIL — PHP `ArgumentCountError` (controller doesn't accept `Request`
 - Modify: `src/Controller/AdminActionController.php`
 - Modify: `tests/src/Unit/Controller/AdminActionControllerTest.php`
 
-- [ ] **Step 2.1 — Add `Request` use statement to controller**
+- [x] **Step 2.1 — Add `Request` use statement to controller**
 
 In `src/Controller/AdminActionController.php`, add alongside existing uses:
 
@@ -130,7 +130,7 @@ In `src/Controller/AdminActionController.php`, add alongside existing uses:
 use Symfony\Component\HttpFoundation\Request;
 ```
 
-- [ ] **Step 2.2 — Update `update()` method**
+- [x] **Step 2.2 — Update `update()` method**
 
 Replace:
 
@@ -185,7 +185,7 @@ With:
     }
 ```
 
-- [ ] **Step 2.3 — Update `calculate()` method**
+- [x] **Step 2.3 — Update `calculate()` method**
 
 Replace:
 
@@ -236,7 +236,7 @@ With:
     }
 ```
 
-- [ ] **Step 2.4 — Update `invalidate()` method**
+- [x] **Step 2.4 — Update `invalidate()` method**
 
 Replace:
 
@@ -287,7 +287,7 @@ With:
     }
 ```
 
-- [ ] **Step 2.5 — Update `testAction()` in the test file**
+- [x] **Step 2.5 — Update `testAction()` in the test file**
 
 Replace the entire `testAction()` method:
 
@@ -350,7 +350,7 @@ public function testAction(): void
 }
 ```
 
-- [ ] **Step 2.6 — Update `testFailUpdateLogs()` and `testFailCalculateLogs()`**
+- [x] **Step 2.6 — Update `testFailUpdateLogs()` and `testFailCalculateLogs()`**
 
 Replace the calls at the end of each method:
 
@@ -370,7 +370,7 @@ public function testFailCalculateLogs(): void
 }
 ```
 
-- [ ] **Step 2.7 — Update `testTransportExceptionIsLogged()`**
+- [x] **Step 2.7 — Update `testTransportExceptionIsLogged()`**
 
 Replace the entire method:
 
@@ -421,7 +421,7 @@ public function testTransportExceptionIsLogged(): void
 }
 ```
 
-- [ ] **Step 2.8 — Update `testLogicExceptionPropagates()`**
+- [x] **Step 2.8 — Update `testLogicExceptionPropagates()`**
 
 Replace the entire method:
 
@@ -465,7 +465,7 @@ public function testLogicExceptionPropagates(): void
 }
 ```
 
-- [ ] **Step 2.9 — Update `assertFailActionLogs()` helper**
+- [x] **Step 2.9 — Update `assertFailActionLogs()` helper**
 
 Replace the entire private method:
 
@@ -531,7 +531,7 @@ private function assertFailActionLogs(string $action): AdminActionController
 }
 ```
 
-- [ ] **Step 2.10 — Run all unit tests**
+- [x] **Step 2.10 — Run all unit tests**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Controller/AdminActionControllerTest.php
@@ -546,7 +546,7 @@ Expected: all 8 tests PASS.
 **Files:**
 - Modify: `templates/Admin/_macros.html.twig`
 
-- [ ] **Step 3.1 — Replace `actionButton` macro**
+- [x] **Step 3.1 — Replace `actionButton` macro**
 
 In `_macros.html.twig`, replace the entire `actionButton` macro (lines 111–134):
 
@@ -594,7 +594,7 @@ Note: the refresh link is unchanged — it remains an `<a>` as it does not trigg
 **Files:**
 - Modify: `tests/src/Integration/Controller/Admin/AdminPageTest.php`
 
-- [ ] **Step 4.1 — Update 5 selector strings**
+- [x] **Step 4.1 — Update 5 selector strings**
 
 In `AdminPageTest::testAdminHome()`, apply these replacements (each is an independent `assertCountFilter` call):
 
@@ -608,7 +608,7 @@ In `AdminPageTest::testAdminHome()`, apply these replacements (each is an indepe
 
 The disabled-class assertions (`.admin-item-cta.disabled`) are unchanged — the button keeps the CSS class.
 
-- [ ] **Step 4.2 — Run integration tests**
+- [x] **Step 4.2 — Run integration tests**
 
 ```bash
 make tests-integration
@@ -623,7 +623,7 @@ Expected: all integration tests PASS.
 **Files:**
 - Modify: `tests/src/Browser/Admin/RedirectActionsTest.php`
 
-- [ ] **Step 5.1 — Replace direct GET with form submission**
+- [x] **Step 5.1 — Replace direct GET with form submission**
 
 Replace the body of `testActionItems()`:
 
@@ -650,7 +650,7 @@ public function testActionItems(string $action, string $item): void
 
 Explanation: navigating to `/fr/istration` renders the page with CSRF tokens embedded in each form's hidden `_token` field. `getCrawler()->filter("#update_labels form")->form()` extracts the form including the valid token. `submit($form)` sends the POST with the correct token.
 
-- [ ] **Step 5.2 — Run browser tests**
+- [x] **Step 5.2 — Run browser tests**
 
 ```bash
 make tb
@@ -662,7 +662,7 @@ Expected: all browser tests PASS.
 
 ## Task 6 — Quality checks
 
-- [ ] **Step 6.1 — Run full test suite**
+- [x] **Step 6.1 — Run full test suite**
 
 ```bash
 make tests
@@ -670,7 +670,7 @@ make tests
 
 Expected: all tests (unit + integration + browser) PASS.
 
-- [ ] **Step 6.2 — Run code quality**
+- [x] **Step 6.2 — Run code quality**
 
 ```bash
 make code-quality
@@ -678,7 +678,7 @@ make code-quality
 
 Expected: no errors. If PHPStan or Psalm report an issue with `getString()` on `ParameterBag`, confirm the method exists in Symfony 8.0 (`Symfony\Component\HttpFoundation\ParameterBag::getString()` was added in Symfony 6.4).
 
-- [ ] **Step 6.3 — Update improvement.md to mark point 9 as treated**
+- [x] **Step 6.3 — Update improvement.md to mark point 9 as treated**
 
 In `doc/improvement.md`, add after the `**Fichier**` line of point 9:
 
