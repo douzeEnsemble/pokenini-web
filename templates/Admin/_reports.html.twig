@@ -37,15 +37,15 @@
       <tbody>
         {% set total = reportsData.catch_state_counts_defined_by_trainer|reduce((total, d) => total + d.count) %}
         {% for row in reportsData.catch_state_counts_defined_by_trainer %}
-          <tr class="active align-middle" id="catch_state_counts_defined_by_trainer-row-{{ row.trainer }}">
+          <tr class="active align-middle" id="catch_state_counts_defined_by_trainer-row-{{ row.trainer.external_id }}">
             <td class="d-none d-lg-block">
-              <button type="button" class="btn btn-light" id="catch_state_counts_defined_by_trainer-toggle-{{ row.trainer }}">
+              <button type="button" class="btn btn-light" id="catch_state_counts_defined_by_trainer-toggle-{{ row.trainer.external_id }}">
                 <i title="{{ 'admin.reports.table.hide'|trans }}" class="bi bi-eye-slash toggle-icon disable-icon"></i>
                 <i title="{{ 'admin.reports.table.show'|trans }}" class="bi bi-eye toggle-icon active-icon"></i>
               </button>
             </td>
             <td class="canvas-container overflow-hidden">
-              <canvas id="catch_state_counts_defined_by_trainer-legend-{{ row.trainer }}"></canvas>
+              <canvas id="catch_state_counts_defined_by_trainer-legend-{{ row.trainer.external_id }}"></canvas>
             </td>
             <td>
               {{ row.count|number_format(0, '.', ' ') }}
@@ -54,8 +54,8 @@
               {{ (row.count*100/total)|number_format(2, '.', ' ') }}
             </td>
             <th scope="row">
-              <a class="link-dark" href="#catch_state_counts_defined_by_trainer" id="catch_state_counts_defined_by_trainer-text-{{ row.trainer }}">
-                {{ row.trainer }}
+              <a class="link-dark" href="#catch_state_counts_defined_by_trainer" id="catch_state_counts_defined_by_trainer-text-{{ row.trainer.external_id }}">
+                {{ row.trainer.external_id }}
               </a>
             </th>
           </tr>

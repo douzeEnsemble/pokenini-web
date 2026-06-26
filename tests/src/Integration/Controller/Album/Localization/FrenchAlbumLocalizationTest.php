@@ -154,7 +154,7 @@ final class FrenchAlbumLocalizationTest extends WebTestCase
                 ->text()
         );
         $this->assertEquals(
-            'Af. reproduire',
+            'af. reproduire',
             $crawler
                 ->filter('#venusaur-f .album-case-catch-state')
                 ->text()

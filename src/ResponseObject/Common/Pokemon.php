@@ -4,223 +4,169 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Common;
 
+use App\ResponseObject\Label\CatchState;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-/**
- * @SuppressWarnings("PHPMD.ExcessiveParameterList")
- */
 final class Pokemon
 {
     public function __construct(
-        #[SerializedName('pokemon_slug')]
-        private readonly string $pokemonSlug,
-        #[SerializedName('pokemon_name')]
-        private readonly string $pokemonName,
-        #[SerializedName('pokemon_national_dex_number')]
-        private readonly int $pokemonNationalDexNumber,
-        #[SerializedName('pokemon_simplified_name')]
-        private readonly string $pokemonSimplifiedName,
-        #[SerializedName('pokemon_forms_label')]
-        private readonly string $pokemonFormsLabel,
-        #[SerializedName('pokemon_french_name')]
-        private readonly string $pokemonFrenchName,
-        #[SerializedName('pokemon_simplified_french_name')]
-        private readonly string $pokemonSimplifiedFrenchName,
-        #[SerializedName('pokemon_forms_french_label')]
-        private readonly string $pokemonFormsFrenchLabel,
-        #[SerializedName('pokemon_icon')]
-        private readonly string $pokemonIcon,
-        #[SerializedName('pokemon_family_order')]
-        private readonly int $pokemonFamilyOrder,
-        #[SerializedName('family_lead_slug')]
-        private readonly ?string $familyLeadSlug,
-        #[SerializedName('category_form_slug')]
-        private readonly ?string $categoryFormSlug,
-        #[SerializedName('category_form_name')]
-        private readonly ?string $categoryFormName,
-        #[SerializedName('regional_form_slug')]
-        private readonly ?string $regionalFormSlug,
-        #[SerializedName('regional_form_name')]
-        private readonly ?string $regionalFormName,
-        #[SerializedName('special_form_slug')]
-        private readonly ?string $specialFormSlug,
-        #[SerializedName('special_form_name')]
-        private readonly ?string $specialFormName,
-        #[SerializedName('variant_form_slug')]
-        private readonly ?string $variantFormSlug,
-        #[SerializedName('variant_form_name')]
-        private readonly ?string $variantFormName,
-        #[SerializedName('catch_state_slug')]
-        private readonly ?string $catchStateSlug,
-        #[SerializedName('catch_state_name')]
-        private readonly ?string $catchStateName,
-        #[SerializedName('catch_state_french_name')]
-        private readonly ?string $catchStateFrenchName,
-        #[SerializedName('pokemon_regional_dex_number')]
-        private readonly ?int $pokemonRegionalDexNumber,
-        #[SerializedName('primary_type_slug')]
-        private readonly ?string $primaryTypeSlug,
-        #[SerializedName('primary_type_name')]
-        private readonly ?string $primaryTypeName,
-        #[SerializedName('primary_type_french_name')]
-        private readonly ?string $primaryTypeFrenchName,
-        #[SerializedName('secondary_type_slug')]
-        private readonly ?string $secondaryTypeSlug,
-        #[SerializedName('secondary_type_name')]
-        private readonly ?string $secondaryTypeName,
-        #[SerializedName('secondary_type_french_name')]
-        private readonly ?string $secondaryTypeFrenchName,
-        #[SerializedName('pokemon_order_number')]
-        private readonly string $pokemonOrderNumber,
+        #[SerializedName('pokemon')]
+        private readonly PokemonData $pokemon,
+        #[SerializedName('catch_state')]
+        private readonly ?CatchState $catchState,
+        #[SerializedName('forms')]
+        private readonly ?PokemonForms $forms,
+        #[SerializedName('types')]
+        private readonly PokemonTypes $types,
     ) {}
 
     public function getPokemonSlug(): string
     {
-        return $this->pokemonSlug;
+        return $this->pokemon->getSlug();
     }
 
     public function getPokemonName(): string
     {
-        return $this->pokemonName;
-    }
-
-    public function getPokemonNationalDexNumber(): int
-    {
-        return $this->pokemonNationalDexNumber;
-    }
-
-    public function getPokemonSimplifiedName(): string
-    {
-        return $this->pokemonSimplifiedName;
-    }
-
-    public function getPokemonFormsLabel(): string
-    {
-        return $this->pokemonFormsLabel;
+        return $this->pokemon->getName();
     }
 
     public function getPokemonFrenchName(): string
     {
-        return $this->pokemonFrenchName;
+        return $this->pokemon->getFrenchName();
     }
 
-    public function getPokemonSimplifiedFrenchName(): string
+    public function getPokemonNationalDexNumber(): int
     {
-        return $this->pokemonSimplifiedFrenchName;
-    }
-
-    public function getPokemonFormsFrenchLabel(): string
-    {
-        return $this->pokemonFormsFrenchLabel;
-    }
-
-    public function getPokemonIcon(): string
-    {
-        return $this->pokemonIcon;
-    }
-
-    public function getPokemonFamilyOrder(): int
-    {
-        return $this->pokemonFamilyOrder;
-    }
-
-    public function getFamilyLeadSlug(): ?string
-    {
-        return $this->familyLeadSlug;
-    }
-
-    public function getCategoryFormSlug(): ?string
-    {
-        return $this->categoryFormSlug;
-    }
-
-    public function getCategoryFormName(): ?string
-    {
-        return $this->categoryFormName;
-    }
-
-    public function getRegionalFormSlug(): ?string
-    {
-        return $this->regionalFormSlug;
-    }
-
-    public function getRegionalFormName(): ?string
-    {
-        return $this->regionalFormName;
-    }
-
-    public function getSpecialFormSlug(): ?string
-    {
-        return $this->specialFormSlug;
-    }
-
-    public function getSpecialFormName(): ?string
-    {
-        return $this->specialFormName;
-    }
-
-    public function getVariantFormSlug(): ?string
-    {
-        return $this->variantFormSlug;
-    }
-
-    public function getVariantFormName(): ?string
-    {
-        return $this->variantFormName;
-    }
-
-    public function getCatchStateSlug(): ?string
-    {
-        return $this->catchStateSlug;
-    }
-
-    public function getCatchStateName(): ?string
-    {
-        return $this->catchStateName;
-    }
-
-    public function getCatchStateFrenchName(): ?string
-    {
-        return $this->catchStateFrenchName;
+        return $this->pokemon->getNationalDexNumber();
     }
 
     public function getPokemonRegionalDexNumber(): ?int
     {
-        return $this->pokemonRegionalDexNumber;
+        return $this->pokemon->getRegionalDexNumber();
     }
 
-    public function getPrimaryTypeSlug(): ?string
+    public function getPokemonSimplifiedName(): string
     {
-        return $this->primaryTypeSlug;
+        return $this->pokemon->getSimplifiedName();
     }
 
-    public function getPrimaryTypeName(): ?string
+    public function getPokemonFormsLabel(): string
     {
-        return $this->primaryTypeName;
+        return $this->pokemon->getFormsLabel();
     }
 
-    public function getPrimaryTypeFrenchName(): ?string
+    public function getPokemonSimplifiedFrenchName(): string
     {
-        return $this->primaryTypeFrenchName;
+        return $this->pokemon->getSimplifiedFrenchName();
     }
 
-    public function getSecondaryTypeSlug(): ?string
+    public function getPokemonFormsFrenchLabel(): string
     {
-        return $this->secondaryTypeSlug;
+        return $this->pokemon->getFormsFrenchLabel();
     }
 
-    public function getSecondaryTypeName(): ?string
+    public function getPokemonIcon(): string
     {
-        return $this->secondaryTypeName;
+        return $this->pokemon->getIcon();
     }
 
-    public function getSecondaryTypeFrenchName(): ?string
+    public function getPokemonFamilyOrder(): int
     {
-        return $this->secondaryTypeFrenchName;
+        return $this->pokemon->getFamilyOrder();
+    }
+
+    public function getFamilyLeadSlug(): ?string
+    {
+        return $this->pokemon->getFamilyLead()?->getSlug();
     }
 
     public function getPokemonOrderNumber(): string
     {
-        return $this->pokemonOrderNumber;
+        return $this->pokemon->getOrderNumber();
+    }
+
+    public function getCatchStateSlug(): ?string
+    {
+        return $this->catchState?->getSlug();
+    }
+
+    public function getCatchStateName(): ?string
+    {
+        return $this->catchState?->getName();
+    }
+
+    public function getCatchStateFrenchName(): ?string
+    {
+        return $this->catchState?->getFrenchName();
+    }
+
+    public function getCategoryFormSlug(): ?string
+    {
+        return $this->forms?->getCategory()?->getSlug();
+    }
+
+    public function getCategoryFormName(): ?string
+    {
+        return $this->forms?->getCategory()?->getName();
+    }
+
+    public function getRegionalFormSlug(): ?string
+    {
+        return $this->forms?->getRegional()?->getSlug();
+    }
+
+    public function getRegionalFormName(): ?string
+    {
+        return $this->forms?->getRegional()?->getName();
+    }
+
+    public function getSpecialFormSlug(): ?string
+    {
+        return $this->forms?->getSpecial()?->getSlug();
+    }
+
+    public function getSpecialFormName(): ?string
+    {
+        return $this->forms?->getSpecial()?->getName();
+    }
+
+    public function getVariantFormSlug(): ?string
+    {
+        return $this->forms?->getVariant()?->getSlug();
+    }
+
+    public function getVariantFormName(): ?string
+    {
+        return $this->forms?->getVariant()?->getName();
+    }
+
+    public function getPrimaryTypeSlug(): ?string
+    {
+        return $this->types->getPrimary()?->getSlug();
+    }
+
+    public function getPrimaryTypeName(): ?string
+    {
+        return $this->types->getPrimary()?->getName();
+    }
+
+    public function getPrimaryTypeFrenchName(): ?string
+    {
+        return $this->types->getPrimary()?->getFrenchName();
+    }
+
+    public function getSecondaryTypeSlug(): ?string
+    {
+        return $this->types->getSecondary()?->getSlug();
+    }
+
+    public function getSecondaryTypeName(): ?string
+    {
+        return $this->types->getSecondary()?->getName();
+    }
+
+    public function getSecondaryTypeFrenchName(): ?string
+    {
+        return $this->types->getSecondary()?->getFrenchName();
     }
 }

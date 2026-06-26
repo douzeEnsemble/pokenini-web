@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Integration\ResponseObject\Album;
 
 use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\DexFlags;
+use App\ResponseObject\Album\DexRegion;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -28,18 +30,21 @@ final class DexTest extends KernelTestCase
                 "original_slug": "litelite",
                 "name": "Demo light",
                 "french_name": "Démo, extrait",
-                "is_shiny": false,
-                "is_private": false,
-                "is_display_form": true,
+                "flags": {
+                    "is_shiny": false,
+                    "is_private": false,
+                    "is_on_home": false,
+                    "is_display_form": true,
+                    "is_released": true,
+                    "is_premium": false,
+                    "is_custom": false
+                },
                 "display_template": "box",
-                "region_name": "Kanto",
-                "region_french_name": "Kan-to",
+                "region": { "name": "Kanto", "french_name": "Kan-to" },
+                "selection_rule": "",
                 "description": "A small pokedex",
                 "french_description": "Un petit pokédex",
-                "version": "0.0",
-                "is_released": true,
-                "is_premium": false,
-                "is_custom": false
+                "version": "0.0"
             }
             JSON;
 
@@ -62,6 +67,11 @@ final class DexTest extends KernelTestCase
         $this->assertTrue($object->isReleased());
         $this->assertFalse($object->isPremium());
         $this->assertFalse($object->isCustom());
+        $this->assertFalse($object->isOnHome());
+        $this->assertSame('', $object->getSelectionRule());
+        // @phpstan-ignore method.alreadyNarrowedType
+        $this->assertInstanceOf(DexFlags::class, $object->getFlags());
+        $this->assertInstanceOf(DexRegion::class, $object->getRegion());
     }
 
     public function testDeserializeWithNull(): void
@@ -77,18 +87,21 @@ final class DexTest extends KernelTestCase
                 "original_slug": "litelite",
                 "name": "Demo light",
                 "french_name": "Démo, extrait",
-                "is_shiny": false,
-                "is_private": false,
-                "is_display_form": true,
+                "flags": {
+                    "is_shiny": false,
+                    "is_private": false,
+                    "is_on_home": false,
+                    "is_display_form": true,
+                    "is_released": true,
+                    "is_premium": false,
+                    "is_custom": false
+                },
                 "display_template": null,
-                "region_name": "Kanto",
-                "region_french_name": "Kan-to",
+                "region": null,
+                "selection_rule": "",
                 "description": "A small pokedex",
                 "french_description": "Un petit pokédex",
-                "version": "0",
-                "is_released": true,
-                "is_premium": false,
-                "is_custom": false
+                "version": "0"
             }
             JSON;
 
@@ -103,13 +116,18 @@ final class DexTest extends KernelTestCase
         $this->assertFalse($object->isPrivate());
         $this->assertTrue($object->isDisplayForm());
         $this->assertNull($object->getDisplayTemplate());
-        $this->assertSame('Kanto', $object->getRegionName());
-        $this->assertSame('Kan-to', $object->getRegionFrenchName());
+        $this->assertNull($object->getRegionName());
+        $this->assertNull($object->getRegionFrenchName());
         $this->assertSame('A small pokedex', $object->getDescription());
         $this->assertSame('Un petit pokédex', $object->getFrenchDescription());
         $this->assertSame('0', $object->getVersion());
         $this->assertTrue($object->isReleased());
         $this->assertFalse($object->isPremium());
         $this->assertFalse($object->isCustom());
+        $this->assertFalse($object->isOnHome());
+        $this->assertSame('', $object->getSelectionRule());
+        // @phpstan-ignore method.alreadyNarrowedType
+        $this->assertInstanceOf(DexFlags::class, $object->getFlags());
+        $this->assertNull($object->getRegion());
     }
 }

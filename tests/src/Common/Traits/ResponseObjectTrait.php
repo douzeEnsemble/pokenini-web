@@ -6,10 +6,15 @@ namespace App\Tests\Common\Traits;
 
 use App\ResponseObject\Album\Album;
 use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\DexFlags;
+use App\ResponseObject\Album\DexRegion;
 use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Album\Report;
 use App\ResponseObject\Album\ReportDetail;
 use App\ResponseObject\Common\Pokemon;
+use App\ResponseObject\Common\PokemonData;
+use App\ResponseObject\Common\PokemonForms;
+use App\ResponseObject\Common\PokemonTypes;
 use App\ResponseObject\Election\ElectionList;
 use App\ResponseObject\Election\TopPokemon;
 use App\ResponseObject\Election\TopPokemonGameBundles;
@@ -90,18 +95,21 @@ trait ResponseObjectTrait
                     'stub',
                     'Stub',
                     'Bout',
-                    true,
-                    false,
-                    true,
+                    new DexFlags(
+                        isShiny: true,
+                        isPrivate: false,
+                        isOnHome: true,
+                        isDisplayForm: true,
+                        isReleased: true,
+                        isPremium: false,
+                        isCustom: true,
+                    ),
+                    null,
+                    new DexRegion('South', 'Sud'),
                     'list',
-                    'South',
-                    'Sud',
                     'Stub of south',
                     'Bout du Sud',
                     '546.46545',
-                    true,
-                    true,
-                    true,
                 ),
                 [
                     $this->getStubPokemon(),
@@ -170,36 +178,35 @@ trait ResponseObjectTrait
     protected function getStubPokemon(): Pokemon
     {
         return new Pokemon(
-            'bulbasaur',
-            'Bulbasaur',
-            1,
-            'Bulbasaur',
-            '',
-            'Bulbizarre',
-            'Bulbizarre',
-            '',
-            'bulbasaur',
-            0,
-            null,
-            'starter',
-            'Starter',
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            'grass',
-            'Grass',
-            'Plante',
-            'poison',
-            'Poison',
-            'Poison',
-            '9999-0001-000',
+            new PokemonData(
+                'bulbasaur',
+                'Bulbasaur',
+                'Bulbizarre',
+                1,
+                null,
+                'Bulbasaur',
+                'Starter',
+                'Bulbizarre',
+                'Starter',
+                'bulbasaur',
+                0,
+                null,
+                null,
+                '9999-0001-000',
+                [],
+                [],
+            ),
+            new CatchState('starter', 'Starter', 'starter', '#00ff00'),
+            new PokemonForms(
+                new CategoryForm('Toto', 'Tautaux', 'toto'),
+                null,
+                null,
+                null,
+            ),
+            new PokemonTypes(
+                new Type('grass', 'Grass', 'Plante', '#00ff00'),
+                new Type('poison', 'Poison', 'Poison', '#ff00ff'),
+            ),
         );
     }
 

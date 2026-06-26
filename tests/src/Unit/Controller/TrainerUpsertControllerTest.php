@@ -10,6 +10,7 @@ use App\Exception\InvalidJsonException;
 use App\Exception\ModifyFailedException;
 use App\ResponseObject\Album\Album;
 use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\DexFlags;
 use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Album\Report;
 use App\Service\GetTrainerPokedexService;
@@ -62,24 +63,14 @@ final class TrainerUpsertControllerTest extends TestCase
             ->willReturn('{"key": "value"}')
         ;
 
-        $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
-        $authorizationChecker
-            ->expects($this->once())
-            ->method('isGranted')
-            ->with('ROLE_COLLECTOR')
-            ->willReturn(true)
-        ;
-
         $container = $this->createMock(ContainerInterface::class);
         $container
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('has')
-            ->willReturn(true)
         ;
         $container
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('get')
-            ->willReturn($authorizationChecker)
         ;
 
         $controller = new TrainerUpsertController(
@@ -251,18 +242,21 @@ final class TrainerUpsertControllerTest extends TestCase
                             '',
                             '',
                             '',
-                            false,
-                            false,
-                            false,
-                            '',
-                            '',
+                            new DexFlags(
+                                isShiny: false,
+                                isPrivate: false,
+                                isOnHome: false,
+                                isDisplayForm: false,
+                                isReleased: false,
+                                isPremium: false,
+                                isCustom: false,
+                            ),
+                            null,
+                            null,
                             '',
                             '',
                             '',
                             '0.0',
-                            false,
-                            false,
-                            false,
                         ),
                         [],
                         new Report(null, null, null, []),
@@ -329,18 +323,21 @@ final class TrainerUpsertControllerTest extends TestCase
                             '',
                             '',
                             '',
-                            false,
-                            false,
-                            false,
-                            '',
-                            '',
+                            new DexFlags(
+                                isShiny: false,
+                                isPrivate: false,
+                                isOnHome: false,
+                                isDisplayForm: false,
+                                isReleased: false,
+                                isPremium: true,
+                                isCustom: false,
+                            ),
+                            null,
+                            null,
                             '',
                             '',
                             '',
                             '0.0',
-                            false,
-                            true,
-                            false,
                         ),
                         [],
                         new Report(null, null, null, []),
@@ -413,18 +410,21 @@ final class TrainerUpsertControllerTest extends TestCase
                             '',
                             '',
                             '',
-                            false,
-                            false,
-                            false,
-                            '',
-                            '',
+                            new DexFlags(
+                                isShiny: false,
+                                isPrivate: false,
+                                isOnHome: false,
+                                isDisplayForm: false,
+                                isReleased: false,
+                                isPremium: true,
+                                isCustom: false,
+                            ),
+                            null,
+                            null,
                             '',
                             '',
                             '',
                             '0.0',
-                            false,
-                            true,
-                            false,
                         ),
                         [],
                         new Report(null, null, null, []),
