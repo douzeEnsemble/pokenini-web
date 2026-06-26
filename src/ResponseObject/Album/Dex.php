@@ -20,30 +20,20 @@ final class Dex
         private readonly string $name,
         #[SerializedName('french_name')]
         private readonly string $frenchName,
-        #[SerializedName('is_shiny')]
-        private readonly bool $isShiny,
-        #[SerializedName('is_private')]
-        private readonly bool $isPrivate,
-        #[SerializedName('is_display_form')]
-        private readonly bool $isDisplayForm,
+        #[SerializedName('flags')]
+        private readonly DexFlags $flags,
         #[SerializedName('display_template')]
         private readonly ?string $displayTemplate,
-        #[SerializedName('region_name')]
-        private readonly ?string $regionName,
-        #[SerializedName('region_french_name')]
-        private readonly ?string $regionFrenchName,
+        #[SerializedName('region')]
+        private readonly ?DexRegion $region,
+        #[SerializedName('selection_rule')]
+        private readonly string $selectionRule,
         #[SerializedName('description')]
         private readonly string $description,
         #[SerializedName('french_description')]
         private readonly string $frenchDescription,
         #[SerializedName('version')]
         private readonly string $version,
-        #[SerializedName('is_released')]
-        private readonly bool $isReleased,
-        #[SerializedName('is_premium')]
-        private readonly bool $isPremium,
-        #[SerializedName('is_custom')]
-        private readonly bool $isCustom,
     ) {}
 
     public function getSlug(): string
@@ -66,19 +56,9 @@ final class Dex
         return $this->frenchName;
     }
 
-    public function isShiny(): bool
+    public function getFlags(): DexFlags
     {
-        return $this->isShiny;
-    }
-
-    public function isPrivate(): bool
-    {
-        return $this->isPrivate;
-    }
-
-    public function isDisplayForm(): bool
-    {
-        return $this->isDisplayForm;
+        return $this->flags;
     }
 
     public function getDisplayTemplate(): ?string
@@ -86,14 +66,14 @@ final class Dex
         return $this->displayTemplate;
     }
 
-    public function getRegionName(): ?string
+    public function getRegion(): ?DexRegion
     {
-        return $this->regionName;
+        return $this->region;
     }
 
-    public function getRegionFrenchName(): ?string
+    public function getSelectionRule(): string
     {
-        return $this->regionFrenchName;
+        return $this->selectionRule;
     }
 
     public function getDescription(): string
@@ -111,18 +91,50 @@ final class Dex
         return $this->version;
     }
 
+    // ── Delegation methods — keep public API unchanged for Twig templates ──
+
+    public function isShiny(): bool
+    {
+        return $this->flags->isShiny();
+    }
+
+    public function isPrivate(): bool
+    {
+        return $this->flags->isPrivate();
+    }
+
+    public function isOnHome(): bool
+    {
+        return $this->flags->isOnHome();
+    }
+
+    public function isDisplayForm(): bool
+    {
+        return $this->flags->isDisplayForm();
+    }
+
     public function isReleased(): bool
     {
-        return $this->isReleased;
+        return $this->flags->isReleased();
     }
 
     public function isPremium(): bool
     {
-        return $this->isPremium;
+        return $this->flags->isPremium();
     }
 
     public function isCustom(): bool
     {
-        return $this->isCustom;
+        return $this->flags->isCustom();
+    }
+
+    public function getRegionName(): ?string
+    {
+        return $this->region?->getName();
+    }
+
+    public function getRegionFrenchName(): ?string
+    {
+        return $this->region?->getFrenchName();
     }
 }

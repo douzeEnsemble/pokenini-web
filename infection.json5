@@ -30,6 +30,11 @@
                 "App\\Helper\\A1Notation::indexToLetter",
             ],
         },
+        NullSafeMethodCall: {
+            ignore: [
+                "App\\ResponseObject\\Common\\Pokemon::*",
+            ],
+        },
         "global-ignoreSourceCodeByRegex": [
             "\\$query .= <<<'SUBSQL'.*",
         ],

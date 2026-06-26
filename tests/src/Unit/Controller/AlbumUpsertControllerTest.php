@@ -9,6 +9,7 @@ use App\Exception\EmptyContentException;
 use App\Exception\InvalidJsonException;
 use App\ResponseObject\Album\Album;
 use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\DexFlags;
 use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Album\Report;
 use App\Service\GetTrainerPokedexService;
@@ -18,7 +19,6 @@ use App\Validator\CatchStates;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * @internal
@@ -52,18 +52,21 @@ final class AlbumUpsertControllerTest extends TestCase
                             '',
                             '',
                             '',
-                            false,
-                            false,
-                            false,
-                            '',
-                            '',
+                            new DexFlags(
+                                isShiny: false,
+                                isPrivate: false,
+                                isOnHome: false,
+                                isDisplayForm: false,
+                                isReleased: false,
+                                isPremium: false,
+                                isCustom: false,
+                            ),
+                            null,
+                            null,
                             '',
                             '',
                             '',
                             '0.0',
-                            false,
-                            true,
-                            false,
                         ),
                         [],
                         new Report(null, null, null, []),
@@ -81,24 +84,15 @@ final class AlbumUpsertControllerTest extends TestCase
             ->with('douze', 'machi', '{"key": "value"}')
         ;
 
-        $authorizationChecker = $this->createMock(AuthorizationCheckerInterface::class);
-        $authorizationChecker
-            ->expects($this->once())
-            ->method('isGranted')
-            ->with('ROLE_COLLECTOR')
-            ->willReturn(true)
-        ;
-
         $container = $this->createMock(ContainerInterface::class);
         $container
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('has')
             ->willReturn(true)
         ;
         $container
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('get')
-            ->willReturn($authorizationChecker)
         ;
 
         $controller = new AlbumUpsertController(

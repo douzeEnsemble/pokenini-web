@@ -2,15 +2,15 @@
   "catch_state_counts_defined_by_trainer": [
     {
       "count": 5735,
-      "trainer": "f86cbe805674d85f7806b175b70647a6a9334631"
+      "trainer": { "external_id": "f86cbe805674d85f7806b175b70647a6a9334631" }
     },
     {
       "count": 94,
-      "trainer": "48372ccfb7a21abc6c5e024a4fcb1eb1d86bb947"
+      "trainer": { "external_id": "48372ccfb7a21abc6c5e024a4fcb1eb1d86bb947" }
     },
     {
       "count": 9,
-      "trainer": "9f948cad5ce9173c3533d4cb4eac4d2589d64244"
+      "trainer": { "external_id": "9f948cad5ce9173c3533d4cb4eac4d2589d64244" }
     }
   ],
   "dex_usage": [

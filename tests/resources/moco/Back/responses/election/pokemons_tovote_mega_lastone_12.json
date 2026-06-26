@@ -1,38 +1,54 @@
 {
-    "type": "vote",
-    "items": [
-        {
-            "pokemon_slug": "audino-mega",
-            "pokemon_name": "Mega Audino",
-            "pokemon_national_dex_number": 531,
-            "pokemon_simplified_name": "Audino",
-            "pokemon_forms_label": "Mega",
-            "pokemon_french_name": "Mega Nanm\u00e9ou\u00efe",
-            "pokemon_simplified_french_name": "Nanm\u00e9ou\u00efe",
-            "pokemon_forms_french_label": "Mega",
-            "pokemon_icon": "audino-mega",
-            "pokemon_family_order": 1,
-            "family_lead_slug": "audino",
-            "category_form_slug": null,
-            "category_form_name": null,
-            "regional_form_slug": null,
-            "regional_form_name": null,
-            "special_form_slug": "mega",
-            "special_form_name": "Mega",
-            "variant_form_slug": null,
-            "variant_form_name": null,
-            "catch_state_slug": null,
-            "catch_state_name": null,
-            "catch_state_french_name": null,
-            "pokemon_regional_dex_number": null,
-            "primary_type_slug": "normal",
-            "primary_type_name": "Normal",
-            "primary_type_french_name": "Normal",
-            "secondary_type_slug": "fairy",
-            "secondary_type_name": "Fairy",
-            "secondary_type_french_name": "F\u00e9e",
-            "original_game_bundle_slug": "xy",
-            "pokemon_order_number": "9999-0531-001"
+  "type": "vote",
+  "items": [
+    {
+      "pokemon": {
+        "slug": "audino-mega",
+        "name": "Mega Audino",
+        "french_name": "Mega Nanméouïe",
+        "national_dex_number": 531,
+        "regional_dex_number": null,
+        "simplified_name": "Audino",
+        "forms_label": "Mega",
+        "simplified_french_name": "Nanméouïe",
+        "forms_french_label": "Mega",
+        "icon": "audino-mega",
+        "family_order": 1,
+        "family_lead": {
+          "slug": "audino"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0531-001",
+        "game_bundles": [],
+        "game_bundles_shiny": []
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": "Mega"
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "normal",
+          "name": "Normal",
+          "french_name": "Normal",
+          "color": "#9199a1"
+        },
+        "secondary": {
+          "slug": "fairy",
+          "name": "Fairy",
+          "french_name": "Fée",
+          "color": "#ef8fe7"
         }
-    ]
+      }
+    }
+  ]
 }
