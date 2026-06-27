@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+/**
+ * @phpstan-import-type TrainerDexItem from GetTrainerDexListService
+ *
+ * @psalm-import-type TrainerDexItem from GetTrainerDexListService
+ */
 #[Route('/trainer')]
 final class TrainerIndexController extends AbstractController
 {
@@ -40,9 +45,9 @@ final class TrainerIndexController extends AbstractController
     }
 
     /**
-     * @param array<array<string, mixed>> $trainerDex
+     * @param list<TrainerDexItem> $trainerDex
      *
-     * @return array<array<string, mixed>>
+     * @return array<int, TrainerDexItem>
      */
     private function filtersTrainerDex(array $trainerDex, DexFilters $filters): array
     {
@@ -52,7 +57,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->privacy->value === $item['is_private'];
+                    return $filters->privacy->value === $item['flags']['is_private'];
                 }
             );
         }
@@ -61,7 +66,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->homepaged->value === $item['is_on_home'];
+                    return $filters->homepaged->value === $item['flags']['is_on_home'];
                 }
             );
         }
@@ -70,7 +75,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->shiny->value === $item['is_shiny'];
+                    return $filters->shiny->value === $item['flags']['is_shiny'];
                 }
             );
         }
@@ -79,7 +84,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->released->value === $item['is_released'];
+                    return $filters->released->value === $item['flags']['is_released'];
                 }
             );
         }
@@ -88,7 +93,7 @@ final class TrainerIndexController extends AbstractController
             $dex = array_filter(
                 $dex,
                 function ($item) use ($filters) {
-                    return $filters->premium->value === $item['is_premium'];
+                    return $filters->premium->value === $item['flags']['is_premium'];
                 }
             );
         }

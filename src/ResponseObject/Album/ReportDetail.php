@@ -4,34 +4,36 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Album;
 
+use App\ResponseObject\Label\CatchState;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final class ReportDetail
 {
     public function __construct(
-        #[SerializedName('slug')]
-        private readonly string $slug,
-        #[SerializedName('name')]
-        private readonly string $name,
-        #[SerializedName('french_name')]
-        private readonly string $frenchName,
+        #[SerializedName('catch_state')]
+        private readonly CatchState $catchState,
         #[SerializedName('count')]
         private readonly int $count,
     ) {}
 
     public function getSlug(): string
     {
-        return $this->slug;
+        return $this->catchState->getSlug();
     }
 
     public function getName(): string
     {
-        return $this->name;
+        return $this->catchState->getName();
     }
 
     public function getFrenchName(): string
     {
-        return $this->frenchName;
+        return $this->catchState->getFrenchName();
+    }
+
+    public function getColor(): string
+    {
+        return $this->catchState->getColor();
     }
 
     public function getCount(): int

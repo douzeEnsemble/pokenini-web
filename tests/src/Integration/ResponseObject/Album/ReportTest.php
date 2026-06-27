@@ -30,15 +30,21 @@ final class ReportTest extends KernelTestCase
                 "total_uncaught": 17,
                 "detail": [
                     {
-                        "slug": "no",
-                        "name": "No",
-                        "french_name": "Non",
+                        "catch_state": {
+                            "name": "No",
+                            "french_name": "Non",
+                            "slug": "no",
+                            "color": "#e57373"
+                        },
                         "count": 1
                     },
                     {
-                        "slug": "yes",
-                        "name": "Yes",
-                        "french_name": "Oui",
+                        "catch_state": {
+                            "name": "Yes",
+                            "french_name": "Oui",
+                            "slug": "yes",
+                            "color": "#66bb6a"
+                        },
                         "count": 20
                     }
                 ]

@@ -119,18 +119,8 @@ trait ResponseObjectTrait
                     2,
                     1,
                     [
-                        new ReportDetail(
-                            'no',
-                            'No',
-                            'Non',
-                            1,
-                        ),
-                        new ReportDetail(
-                            'yes',
-                            'Yes',
-                            'Oui',
-                            2,
-                        ),
+                        new ReportDetail(new CatchState('No', 'Non', 'no', '#e57373'), 1),
+                        new ReportDetail(new CatchState('Yes', 'Oui', 'yes', '#66bb6a'), 2),
                     ]
                 ),
                 new Report(
@@ -138,18 +128,8 @@ trait ResponseObjectTrait
                     0,
                     1,
                     [
-                        new ReportDetail(
-                            'no',
-                            'No',
-                            'Non',
-                            1,
-                        ),
-                        new ReportDetail(
-                            'yes',
-                            'Yes',
-                            'Oui',
-                            0,
-                        ),
+                        new ReportDetail(new CatchState('No', 'Non', 'no', '#e57373'), 1),
+                        new ReportDetail(new CatchState('Yes', 'Oui', 'yes', '#66bb6a'), 0),
                     ]
                 ),
             ),
