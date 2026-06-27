@@ -1883,46 +1883,67 @@
       "total_uncaught": 37,
       "detail": [
         {
-          "slug": "no",
-          "name": "No",
-          "french_name": "Non",
+          "catch_state": {
+            "name": "No",
+            "french_name": "Non",
+            "slug": "no",
+            "color": "#e57373"
+          },
           "count": 37
         },
         {
-          "slug": "toevolve",
-          "name": "To evolve",
-          "french_name": "Af. évoluer",
+          "catch_state": {
+            "name": "To evolve",
+            "french_name": "Af. évoluer",
+            "slug": "toevolve",
+            "color": "#9575cd"
+          },
           "count": 0
         },
         {
-          "slug": "tobreed",
-          "name": "To breed",
-          "french_name": "Af. reproduire",
+          "catch_state": {
+            "name": "To breed",
+            "french_name": "Af. reproduire",
+            "slug": "tobreed",
+            "color": "#4fc3f7"
+          },
           "count": 0
         },
         {
-          "slug": "totransfer",
-          "name": "To transfer",
-          "french_name": "À transférer",
+          "catch_state": {
+            "name": "To transfer",
+            "french_name": "À transférer",
+            "slug": "totransfer",
+            "color": "#ffd54f"
+          },
           "count": 0
         },
         {
-          "slug": "totrade",
-          "name": "To trade",
-          "french_name": "À échanger",
+          "catch_state": {
+            "name": "To trade",
+            "french_name": "À échanger",
+            "slug": "totrade",
+            "color": "#ff9100"
+          },
           "count": 0
         },
         {
-          "slug": "yes",
-          "name": "Yes",
-          "french_name": "Oui",
+          "catch_state": {
+            "name": "Yes",
+            "french_name": "Oui",
+            "slug": "yes",
+            "color": "#66bb6a"
+          },
           "count": 0
         }
       ]
     },
-    "filtered_report": {}
+    "filtered_report": []
   },
   "filters": {
-    "t1": ["fire", "water"]
+    "t1": [
+      "fire",
+      "water"
+    ]
   }
 }

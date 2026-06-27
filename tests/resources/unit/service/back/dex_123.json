@@ -1,30 +1,34 @@
 [
   {
-    "is_shiny": false,
-    "is_private": false,
-    "is_on_home": false,
-    "is_display_form": false,
-    "display_template": "list-7",
-    "name": "Home Pokemon Go",
-    "french_name": "Home Pokemon Go",
     "slug": "homepokemongo",
     "original_slug": "homepokemongo",
-    "is_released": true,
-    "is_premium": false,
-    "is_custom": false
+    "name": "Home Pokemon Go",
+    "french_name": "Home Pokemon Go",
+    "flags": {
+      "is_shiny": false,
+      "is_private": false,
+      "is_on_home": false,
+      "is_display_form": false,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "list-7"
   },
   {
-    "is_shiny": false,
-    "is_private": true,
-    "is_on_home": false,
-    "is_display_form": true,
-    "display_template": "list-3",
-    "name": "Alpha",
-    "french_name": "Baron",
     "slug": "alpha",
     "original_slug": "alpha",
-    "is_released": true,
-    "is_premium": false,
-    "is_custom": false
+    "name": "Alpha",
+    "french_name": "Baron",
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "list-3"
   }
 ]

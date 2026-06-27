@@ -24,9 +24,12 @@ final class ReportDetailTest extends KernelTestCase
 
         $json = <<<'JSON'
             {
-                "slug": "yes",
-                "name": "Yes",
-                "french_name": "Oui",
+                "catch_state": {
+                    "name": "Yes",
+                    "french_name": "Oui",
+                    "slug": "yes",
+                    "color": "#66bb6a"
+                },
                 "count": 20
             }
             JSON;
@@ -37,6 +40,7 @@ final class ReportDetailTest extends KernelTestCase
         $this->assertSame('yes', $object->getSlug());
         $this->assertSame('Yes', $object->getName());
         $this->assertSame('Oui', $object->getFrenchName());
+        $this->assertSame('#66bb6a', $object->getColor());
         $this->assertSame(20, $object->getCount());
     }
 }

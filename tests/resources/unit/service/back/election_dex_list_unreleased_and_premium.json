@@ -4,12 +4,14 @@
     "original_slug": "home",
     "name": "Home",
     "french_name": "Home",
-    "is_shiny": false,
-    "is_display_form": true,
+    "flags": {
+      "is_shiny": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": true
+    },
     "description": "",
     "french_description": "",
-    "is_released": true,
-    "is_premium": true,
     "dex_total_count": 22
   },
   {
@@ -17,12 +19,14 @@
     "original_slug": "homeshiny",
     "name": "Home Shiny",
     "french_name": "Home Shiny",
-    "is_shiny": false,
-    "is_display_form": true,
+    "flags": {
+      "is_shiny": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false
+    },
     "description": "",
     "french_description": "",
-    "is_released": true,
-    "is_premium": false,
     "dex_total_count": 22
   },
   {
@@ -30,12 +34,14 @@
     "original_slug": "redgreenblueyellow",
     "name": "Red / Green / Blue / Yellow",
     "french_name": "Rouge / Vert / Bleu / Jaune",
-    "is_shiny": false,
-    "is_display_form": true,
+    "flags": {
+      "is_shiny": false,
+      "is_display_form": true,
+      "is_released": false,
+      "is_premium": true
+    },
     "description": "The list of obtainable Pokémons in Red, Blue, Yellow and even Green games",
     "french_description": "La liste des pokémons obtenable dans les jeux Rouge, Bleu, Jaune et même Vert.",
-    "is_released": false,
-    "is_premium": true,
     "dex_total_count": 7
   },
   {
@@ -43,12 +49,14 @@
     "original_slug": "redgreenblueyellowshiny",
     "name": "Red / Green / Blue / Yellow (Shiny)",
     "french_name": "Rouge / Vert / Bleu / Jaune (Chromatique)",
-    "is_shiny": false,
-    "is_display_form": true,
+    "flags": {
+      "is_shiny": false,
+      "is_display_form": true,
+      "is_released": false,
+      "is_premium": false
+    },
     "description": "The list of obtainable Pokémons in Red, Blue, Yellow and even Green games",
     "french_description": "La liste des pokémons obtenable dans les jeux Rouge, Bleu, Jaune et même Vert.",
-    "is_released": false,
-    "is_premium": false,
     "dex_total_count": 7
   }
 ]
