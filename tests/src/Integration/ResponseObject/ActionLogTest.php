@@ -42,6 +42,29 @@ final class ActionLogTest extends KernelTestCase
         $this->assertNull($object->errorTrace);
     }
 
+    public function testDeserializeWithNullDetails(): void
+    {
+        self::bootKernel();
+
+        /** @var SerializerInterface $serializer */
+        $serializer = self::getContainer()->get(SerializerInterface::class);
+
+        $json = <<<'JSON'
+            {
+                "created_at": "2025-06-10T18:01:33+00:00",
+                "done_at": null,
+                "execution_time": null,
+                "details": null,
+                "error_trace": null
+            }
+            JSON;
+
+        $object = $serializer->deserialize($json, ActionLog::class, 'json');
+
+        $this->assertInstanceOf(ActionLog::class, $object);
+        $this->assertNull($object->details);
+    }
+
     public function testDeserializeWithDoneAt(): void
     {
         self::bootKernel();

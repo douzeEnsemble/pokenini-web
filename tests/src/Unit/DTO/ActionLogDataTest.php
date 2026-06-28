@@ -18,8 +18,8 @@ final class ActionLogDataTest extends TestCase
     public function testConstructorWithoutLast(): void
     {
         $actionLog = new ActionLog(
-            new \DateTime('2023-03-21 08:34:47+00'),
-            new \DateTime('2023-03-22 08:34:47+00'),
+            new \DateTimeImmutable('2023-03-21 08:34:47+00'),
+            new \DateTimeImmutable('2023-03-22 08:34:47+00'),
             12,
             ['truc' => 1, 'bidule' => 2],
             'Something bad happen',
@@ -39,16 +39,16 @@ final class ActionLogDataTest extends TestCase
     public function testConstructorWithLast(): void
     {
         $actionLogCurrent = new ActionLog(
-            new \DateTime('2023-03-21 08:34:47+00'),
-            new \DateTime('2023-03-22 08:34:47+00'),
+            new \DateTimeImmutable('2023-03-21 08:34:47+00'),
+            new \DateTimeImmutable('2023-03-22 08:34:47+00'),
             12,
             ['truc' => 1, 'bidule' => 2],
             'Something bad happen',
         );
 
         $actionLogLast = new ActionLog(
-            new \DateTime('2022-03-21 08:34:47+00'),
-            new \DateTime('2022-03-22 08:34:47+00'),
+            new \DateTimeImmutable('2022-03-21 08:34:47+00'),
+            new \DateTimeImmutable('2022-03-22 08:34:47+00'),
             12,
             ['truc' => 1, 'bidule' => 2],
             '',
