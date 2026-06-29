@@ -41,10 +41,29 @@ final class AppVersionServiceTest extends TestCase
         $service = new AppVersionService($tmpDir, new ArrayAdapter(), new Filesystem());
 
         $this->assertSame('1.0.0', $service->getVersion());
+        $this->assertSame('1.0.0', $service->getVersion()); // same mtime → cache hit
 
-        file_put_contents($tmpDir.'/resources/metadata/version', '2.0.0');
+        unlink($tmpDir.'/resources/metadata/version');
+        rmdir($tmpDir.'/resources/metadata');
+        rmdir($tmpDir.'/resources');
+        rmdir($tmpDir);
+    }
+
+    public function testGetVersionInvalidatedOnFileChange(): void
+    {
+        $tmpDir = sys_get_temp_dir().'/pokenini_version_test_'.uniqid();
+        mkdir($tmpDir.'/resources/metadata', 0o755, true);
+        file_put_contents($tmpDir.'/resources/metadata/version', '1.0.0');
+
+        $service = new AppVersionService($tmpDir, new ArrayAdapter(), new Filesystem());
 
         $this->assertSame('1.0.0', $service->getVersion());
+
+        // Simulate deployment: new content + bumped mtime
+        file_put_contents($tmpDir.'/resources/metadata/version', '2.0.0');
+        touch($tmpDir.'/resources/metadata/version', time() + 1);
+
+        $this->assertSame('2.0.0', $service->getVersion());
 
         unlink($tmpDir.'/resources/metadata/version');
         rmdir($tmpDir.'/resources/metadata');
@@ -73,32 +92,52 @@ final class AppVersionServiceTest extends TestCase
 
     public function testGetVersionUsesCorrectCacheKey(): void
     {
+        $tmpDir = sys_get_temp_dir().'/pokenini_version_test_'.uniqid();
+        mkdir($tmpDir.'/resources/metadata', 0o755, true);
+        file_put_contents($tmpDir.'/resources/metadata/version', '1.0.0');
+        $mtime = filemtime($tmpDir.'/resources/metadata/version');
+
         $cache = $this->createMock(CacheInterface::class);
         $cache
             ->expects($this->once())
             ->method('get')
-            ->with('app_version_version', $this->isCallable())
+            ->with('app_version_version_'.(false !== $mtime ? $mtime : ''), $this->isCallable())
             ->willReturn('1.0.0')
         ;
 
-        $service = new AppVersionService('/tmp', $cache, new Filesystem());
+        $service = new AppVersionService($tmpDir, $cache, new Filesystem());
 
         $this->assertSame('1.0.0', $service->getVersion());
+
+        unlink($tmpDir.'/resources/metadata/version');
+        rmdir($tmpDir.'/resources/metadata');
+        rmdir($tmpDir.'/resources');
+        rmdir($tmpDir);
     }
 
     public function testGetVersionIncludesFilenameInCacheKey(): void
     {
+        $tmpDir = sys_get_temp_dir().'/pokenini_version_test_'.uniqid();
+        mkdir($tmpDir.'/resources/metadata', 0o755, true);
+        file_put_contents($tmpDir.'/resources/metadata/changelog', '2024-01-01');
+        $mtime = filemtime($tmpDir.'/resources/metadata/changelog');
+
         $cache = $this->createMock(CacheInterface::class);
         $cache
             ->expects($this->once())
             ->method('get')
-            ->with('app_version_changelog', $this->isCallable())
+            ->with('app_version_changelog_'.(false !== $mtime ? $mtime : ''), $this->isCallable())
             ->willReturn('2024-01-01')
         ;
 
-        $service = new AppVersionService('/tmp', $cache, new Filesystem());
+        $service = new AppVersionService($tmpDir, $cache, new Filesystem());
 
         $this->assertSame('2024-01-01', $service->getVersion('changelog'));
+
+        unlink($tmpDir.'/resources/metadata/changelog');
+        rmdir($tmpDir.'/resources/metadata');
+        rmdir($tmpDir.'/resources');
+        rmdir($tmpDir);
     }
 
     public function testGetVersionCallbackReadsFile(): void
