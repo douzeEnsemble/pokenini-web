@@ -20,12 +20,19 @@ class AppVersionService
 
     public function getVersion(string $filename = 'version'): string
     {
-        return $this->cache->get('app_version_'.$filename, function (ItemInterface $item) use ($filename): string {
+        $filePath = $this->projectDir.'/resources/metadata/'.$filename;
+
+        if (!$this->filesystem->exists($filePath)) {
+            return '0.0.toto';
+        }
+
+        $mtime = filemtime($filePath);
+        $cacheKey = 'app_version_'.$filename.'_'.(false !== $mtime ? $mtime : '');
+
+        return $this->cache->get($cacheKey, function (ItemInterface $item) use ($filePath): string {
             unset($item);
 
-            $filePath = $this->projectDir.'/resources/metadata/'.$filename;
-
-            return $this->filesystem->exists($filePath) ? $this->filesystem->readFile($filePath) : '0.0.toto';
+            return $this->filesystem->readFile($filePath);
         });
     }
 }
