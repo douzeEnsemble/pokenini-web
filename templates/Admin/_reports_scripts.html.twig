@@ -39,7 +39,7 @@
 
 <script>
   (function () {
-    {% set catchStateCountsDefinedByTrainerLabels = reportsData.catch_state_counts_defined_by_trainer|map(d => d.trainer) %}
+    {% set catchStateCountsDefinedByTrainerLabels = reportsData.catch_state_counts_defined_by_trainer|map(d => d.trainer.external_id) %}
     {% set catchStateCountsDefinedByTrainerData = reportsData.catch_state_counts_defined_by_trainer|map(d => d.count) %}
 
     const tableLegendPlugin = {
