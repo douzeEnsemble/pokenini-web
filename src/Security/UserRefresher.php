@@ -41,6 +41,16 @@ class UserRefresher
             ]
         );
 
+        // Providers (e.g. Google) don't always return a new refresh token on each refresh —
+        // carry the old one forward so the next expiry can still be refreshed.
+        if (null === $newAccessToken->getRefreshToken()) {
+            $newAccessToken = new AccessToken([
+                'access_token' => $newAccessToken->getToken(),
+                'refresh_token' => $refreshToken,
+                'expires' => $newAccessToken->getExpires(),
+            ]);
+        }
+
         $newUser = new User(
             $user->getUserIdentifier(),
             $user->getProviderName(),
