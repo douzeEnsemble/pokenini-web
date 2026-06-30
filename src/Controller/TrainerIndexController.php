@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\DTO\DexFilters;
 use App\DTO\DexFiltersRequest;
+use App\ResponseObject\Album\DexListItem;
 use App\Service\Back\GetTrainerDexListService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,11 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-/**
- * @phpstan-import-type TrainerDexItem from GetTrainerDexListService
- *
- * @psalm-import-type TrainerDexItem from GetTrainerDexListService
- */
 #[Route('/trainer')]
 final class TrainerIndexController extends AbstractController
 {
@@ -45,9 +41,9 @@ final class TrainerIndexController extends AbstractController
     }
 
     /**
-     * @param list<TrainerDexItem> $trainerDex
+     * @param DexListItem[] $trainerDex
      *
-     * @return array<int, TrainerDexItem>
+     * @return DexListItem[]
      */
     private function filtersTrainerDex(array $trainerDex, DexFilters $filters): array
     {
@@ -56,8 +52,8 @@ final class TrainerIndexController extends AbstractController
         if (null !== $filters->privacy->value) {
             $dex = array_filter(
                 $dex,
-                function ($item) use ($filters) {
-                    return $filters->privacy->value === $item['flags']['is_private'];
+                function (DexListItem $item) use ($filters) {
+                    return $filters->privacy->value === $item->getFlags()->isPrivate();
                 }
             );
         }
@@ -65,8 +61,8 @@ final class TrainerIndexController extends AbstractController
         if (null !== $filters->homepaged->value) {
             $dex = array_filter(
                 $dex,
-                function ($item) use ($filters) {
-                    return $filters->homepaged->value === $item['flags']['is_on_home'];
+                function (DexListItem $item) use ($filters) {
+                    return $filters->homepaged->value === $item->getFlags()->isOnHome();
                 }
             );
         }
@@ -74,8 +70,8 @@ final class TrainerIndexController extends AbstractController
         if (null !== $filters->shiny->value) {
             $dex = array_filter(
                 $dex,
-                function ($item) use ($filters) {
-                    return $filters->shiny->value === $item['flags']['is_shiny'];
+                function (DexListItem $item) use ($filters) {
+                    return $filters->shiny->value === $item->getFlags()->isShiny();
                 }
             );
         }
@@ -83,8 +79,8 @@ final class TrainerIndexController extends AbstractController
         if (null !== $filters->released->value) {
             $dex = array_filter(
                 $dex,
-                function ($item) use ($filters) {
-                    return $filters->released->value === $item['flags']['is_released'];
+                function (DexListItem $item) use ($filters) {
+                    return $filters->released->value === $item->getFlags()->isReleased();
                 }
             );
         }
@@ -92,8 +88,8 @@ final class TrainerIndexController extends AbstractController
         if (null !== $filters->premium->value) {
             $dex = array_filter(
                 $dex,
-                function ($item) use ($filters) {
-                    return $filters->premium->value === $item['flags']['is_premium'];
+                function (DexListItem $item) use ($filters) {
+                    return $filters->premium->value === $item->getFlags()->isPremium();
                 }
             );
         }

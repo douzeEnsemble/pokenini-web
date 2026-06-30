@@ -1,9 +1,12 @@
 [
   {
-    "slug": "homepokemongo",
-    "original_slug": "homepokemongo",
-    "name": "Home Pokemon Go",
-    "french_name": "Home Pokemon Go",
+    "dex": { "slug": "homepokemongo" },
+    "settings": {
+      "name": "Home Pokemon Go",
+      "french_name": "Home Pokemon Go",
+      "slug": "homepokemongo",
+      "display_template": "list-7"
+    },
     "flags": {
       "is_shiny": false,
       "is_private": false,
@@ -12,14 +15,16 @@
       "is_released": true,
       "is_premium": false,
       "is_custom": false
-    },
-    "display_template": "list-7"
+    }
   },
   {
-    "slug": "alpha",
-    "original_slug": "alpha",
-    "name": "Alpha",
-    "french_name": "Baron",
+    "dex": { "slug": "alpha" },
+    "settings": {
+      "name": "Alpha",
+      "french_name": "Baron",
+      "slug": "alpha",
+      "display_template": "list-3"
+    },
     "flags": {
       "is_shiny": false,
       "is_private": true,
@@ -28,14 +33,16 @@
       "is_released": true,
       "is_premium": false,
       "is_custom": false
-    },
-    "display_template": "list-3"
+    }
   },
   {
-    "slug": "mega",
-    "original_slug": "mega",
-    "name": "Mega",
-    "french_name": "Méga",
+    "dex": { "slug": "mega" },
+    "settings": {
+      "name": "Mega",
+      "french_name": "Méga",
+      "slug": "mega",
+      "display_template": "list-3"
+    },
     "flags": {
       "is_shiny": false,
       "is_private": true,
@@ -44,7 +51,6 @@
       "is_released": true,
       "is_premium": false,
       "is_custom": false
-    },
-    "display_template": "list-3"
+    }
   }
 ]

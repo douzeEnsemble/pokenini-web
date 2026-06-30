@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
-use App\Utils\JsonDecoder;
+use App\ResponseObject\Album\DexListItem;
 
 class GetAlbumDexListService extends AbstractBackService
 {
     /**
-     * @return string[][]
+     * @return DexListItem[]
      */
     public function get(?string $trainerId = null): array
     {
@@ -21,7 +21,7 @@ class GetAlbumDexListService extends AbstractBackService
             $options,
         );
 
-        /** @var string[][] */
-        return JsonDecoder::decode($json);
+        /** @var DexListItem[] */
+        return $this->serializer->deserialize($json, DexListItem::class.'[]', 'json');
     }
 }

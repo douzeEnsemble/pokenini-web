@@ -14,47 +14,48 @@
   <div class="card-body">
     <div class="row">
       {% for dex in trainerDex %}
-        {% set canEdit = dex.flags.is_premium == false or is_granted('ROLE_COLLECTOR') %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 mb-sm-3 trainer-dex-item border rounded border-opacity-50 position-relative" id="trainer-dex-{{ dex.slug }}">
+        {% set canEdit = dex.flags.isPremium == false or is_granted('ROLE_COLLECTOR') %}
+        {% set flagMap = {'is_private': dex.flags.isPrivate, 'is_on_home': dex.flags.isOnHome} %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 mb-sm-3 trainer-dex-item border rounded border-opacity-50 position-relative" id="trainer-dex-{{ dex.dex.slug }}">
           <div class="position-absolute top-0 end-0 me-2">
-            {% if dex.flags.is_shiny %}
+            {% if dex.flags.isShiny %}
               <span class="dex_is_shiny badge text-bg-warning" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_shiny.label')|trans }}">
                 <i class="bi bi-stars"></i>
               </span>
             {% endif %}
-            {% if dex.flags.is_premium %}
+            {% if dex.flags.isPremium %}
               <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}">
                 <i class="bi bi-patch-plus"></i>
               </span>
             {% endif %}
-            {% if not dex.flags.is_released %}
+            {% if not dex.flags.isReleased %}
               <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}">
                 <i class="bi bi-lock"></i>
               </span>
             {% endif %}
-            {% if dex.flags.is_custom %}
+            {% if dex.flags.isCustom %}
               <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}">
                 <i class="bi bi-person"></i>
               </span>
             {% endif %}
           </div>
 
-          {% set bannerUrl = dexBannerUrl|format(dex.slug) %}
+          {% set bannerUrl = dexBannerUrl|format(dex.dex.slug) %}
           {% set defaultBannerUrl = dexBannerUrl|format('default') %}
           <img src="{{ bannerUrl }}" class="img-fluid" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';">
-          <a class="float-end btn btn-light btn-sm" href="{{ path('app_albumindex_index', {'dexSlug': dex.slug}) }}" title="{{ 'trainer.dex.see'|trans }}">
+          <a class="float-end btn btn-light btn-sm" href="{{ path('app_albumindex_index', {'dexSlug': dex.dex.slug}) }}" title="{{ 'trainer.dex.see'|trans }}">
             <i class="bi bi-eye-fill"></i>
             {{ 'trainer.dex.see'|trans }}
           </a>
           <h5>
-            {{ locale is same as('fr') ? dex.french_name : dex.name }}
+            {{ locale is same as('fr') ? dex.settings.frenchName : dex.settings.name }}
           </h5>
           <hr>
-          <form data-dex="{{ dex.slug }}">
+          <form data-dex="{{ dex.dex.slug }}">
             {% for attribute in attributes %}
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" name="{{ dex.slug }}-{{ attribute }}" id="{{ dex.slug }}-{{ attribute }}" {{ dex.flags[attribute] ? 'checked' : '' }} {{ canEdit ? '' : 'disabled' }}>
-                <label class="form-check-label" for="{{ dex.slug }}-{{ attribute }}">
+                <input class="form-check-input" type="checkbox" role="switch" name="{{ dex.dex.slug }}-{{ attribute }}" id="{{ dex.dex.slug }}-{{ attribute }}" {{ flagMap[attribute] ? 'checked' : '' }} {{ canEdit ? '' : 'disabled' }}>
+                <label class="form-check-label" for="{{ dex.dex.slug }}-{{ attribute }}">
                   <i class="bi bi-{{ attributesIcons[attribute] }}"></i>
                   {{ ('trainer.dex.attributes.'~attribute~'.label')|trans }}
                 </label>
@@ -69,8 +70,8 @@
 
       <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
         {% for dex in trainerDex %}
-          {% set dexName = locale is same as('fr') ? dex.french_name : dex.name %}
-          <div id="successToast-{{ dex.slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+          {% set dexName = locale is same as('fr') ? dex.settings.frenchName : dex.settings.name %}
+          <div id="successToast-{{ dex.dex.slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
               <div class="toast-body">
                 {{ 'trainer.dex.update.success.prefix'|trans }}
@@ -81,7 +82,7 @@
             </div>
           </div>
 
-          <div id="errorToast-{{ dex.slug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+          <div id="errorToast-{{ dex.dex.slug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
               <div class="toast-body">
                 {{ 'trainer.dex.update.error.prefix'|trans }}

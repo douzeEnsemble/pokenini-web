@@ -1,338 +1,107 @@
 [
   {
-    "slug": "redgreenblueyellow",
-    "original_slug": "redgreenblueyellow",
-    "name": "Red, Green, Blue, Yellow",
-    "french_name": "Rouge, Vert, Bleu, Jaune",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "redgreenblueyellow" },
+    "settings": { "name": "Red, Green, Blue, Yellow", "french_name": "Rouge, Vert, Bleu, Jaune", "slug": "redgreenblueyellow", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "goldsilvercrystal",
-    "original_slug": "goldsilvercrystal",
-    "name": "Gold, Silver, Crystal",
-    "french_name": "Or, Argent, Cristal",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "goldsilvercrystal" },
+    "settings": { "name": "Gold, Silver, Crystal", "french_name": "Or, Argent, Cristal", "slug": "goldsilvercrystal", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "rubysapphireemerald",
-    "original_slug": "rubysapphireemerald",
-    "name": "Ruby, Sapphire, Emerald",
-    "french_name": "Rubis, Saphir, Émeraude",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "rubysapphireemerald" },
+    "settings": { "name": "Ruby, Sapphire, Emerald", "french_name": "Rubis, Saphir, Émeraude", "slug": "rubysapphireemerald", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "fireredleafgreen",
-    "original_slug": "fireredleafgreen",
-    "name": "Red Fire, Leaf Green",
-    "french_name": "Rouge Feu, Vert Feuille",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "fireredleafgreen" },
+    "settings": { "name": "Red Fire, Leaf Green", "french_name": "Rouge Feu, Vert Feuille", "slug": "fireredleafgreen", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "diamondpearlplatinium",
-    "original_slug": "diamondpearlplatinium",
-    "name": "Diamond, Pearl, Platinium",
-    "french_name": "Diamant, Perle, Platine",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "diamondpearlplatinium" },
+    "settings": { "name": "Diamond, Pearl, Platinium", "french_name": "Diamant, Perle, Platine", "slug": "diamondpearlplatinium", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "heartgoldsoulsilver",
-    "original_slug": "heartgoldsoulsilver",
-    "name": "Heart Gold, Soul Silver",
-    "french_name": "Or HeartGold, Argent SoulSilver",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "heartgoldsoulsilver" },
+    "settings": { "name": "Heart Gold, Soul Silver", "french_name": "Or HeartGold, Argent SoulSilver", "slug": "heartgoldsoulsilver", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "blackwhite",
-    "original_slug": "blackwhite",
-    "name": "Black, White",
-    "french_name": "Noire, Blanche",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "blackwhite" },
+    "settings": { "name": "Black, White", "french_name": "Noire, Blanche", "slug": "blackwhite", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "black2white2",
-    "original_slug": "black2white2",
-    "name": "Black 2, White 2",
-    "french_name": "Noire 2, Blanche 2",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "black2white2" },
+    "settings": { "name": "Black 2, White 2", "french_name": "Noire 2, Blanche 2", "slug": "black2white2", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "xy",
-    "original_slug": "xy",
-    "name": "X, Y",
-    "french_name": "X, Y",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "xy" },
+    "settings": { "name": "X, Y", "french_name": "X, Y", "slug": "xy", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "omegarubyalphasapphire",
-    "original_slug": "omegarubyalphasapphire",
-    "name": "Omega Ruby, Alpha Sapphire",
-    "french_name": "Rubis Oméga, Saphir Alpha",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "omegarubyalphasapphire" },
+    "settings": { "name": "Omega Ruby, Alpha Sapphire", "french_name": "Rubis Oméga, Saphir Alpha", "slug": "omegarubyalphasapphire", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "sunmoon",
-    "original_slug": "sunmoon",
-    "name": "Sun, Moon",
-    "french_name": "Soleil, Lune",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "sunmoon" },
+    "settings": { "name": "Sun, Moon", "french_name": "Soleil, Lune", "slug": "sunmoon", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "ultrasunultramoon",
-    "original_slug": "ultrasunultramoon",
-    "name": "Ultra Sun, Ultra Moon",
-    "french_name": "Ultra Soleil, Ultra Lune",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "ultrasunultramoon" },
+    "settings": { "name": "Ultra Sun, Ultra Moon", "french_name": "Ultra Soleil, Ultra Lune", "slug": "ultrasunultramoon", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "letsgopikachuletsgoeevee",
-    "original_slug": "letsgopikachuletsgoeevee",
-    "name": "Let's Go Pikachu, Let's Go Eevee",
-    "french_name": "Let's Go Pikachu, Let's Go Évoli",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "letsgopikachuletsgoeevee" },
+    "settings": { "name": "Let's Go Pikachu, Let's Go Eevee", "french_name": "Let's Go Pikachu, Let's Go Évoli", "slug": "letsgopikachuletsgoeevee", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "swordshield",
-    "original_slug": "swordshield",
-    "name": "Sword, Shield",
-    "french_name": "Épée, Bouclier",
-    "flags": {
-      "is_shiny": false,
-      "is_private": false,
-      "is_on_home": true,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "swordshield" },
+    "settings": { "name": "Sword, Shield", "french_name": "Épée, Bouclier", "slug": "swordshield", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "brillantdiamondshiningpearl",
-    "original_slug": "brillantdiamondshiningpearl",
-    "name": "Brillant Diamond, Shining Pearl",
-    "french_name": "Diamant Étincelant, Perle Scintillante",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "brillantdiamondshiningpearl" },
+    "settings": { "name": "Brillant Diamond, Shining Pearl", "french_name": "Diamant Étincelant, Perle Scintillante", "slug": "brillantdiamondshiningpearl", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "pokemonlegendsarceus",
-    "original_slug": "pokemonlegendsarceus",
-    "name": "Pokémon Legends Arceus",
-    "french_name": "Légendes Pokémon : Arceus",
-    "flags": {
-      "is_shiny": false,
-      "is_private": true,
-      "is_on_home": false,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "pokemonlegendsarceus" },
+    "settings": { "name": "Pokémon Legends Arceus", "french_name": "Légendes Pokémon : Arceus", "slug": "pokemonlegendsarceus", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "home",
-    "original_slug": "home",
-    "name": "Home",
-    "french_name": "Home",
-    "flags": {
-      "is_shiny": false,
-      "is_private": false,
-      "is_on_home": true,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "home" },
+    "settings": { "name": "Home", "french_name": "Home", "slug": "home", "display_template": "box" },
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "homeshiny",
-    "original_slug": "homeshiny",
-    "name": "Home\nShiny",
-    "french_name": "Home\nChromatique",
-    "flags": {
-      "is_shiny": true,
-      "is_private": false,
-      "is_on_home": true,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": false
-    },
-    "display_template": "box"
+    "dex": { "slug": "homeshiny" },
+    "settings": { "name": "Home\nShiny", "french_name": "Home\nChromatique", "slug": "homeshiny", "display_template": "box" },
+    "flags": { "is_shiny": true, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
   },
   {
-    "slug": "homepogo",
-    "original_slug": "homepokemongo",
-    "name": "Home Pokemon Go",
-    "french_name": "Home Pokemon Go",
-    "flags": {
-      "is_shiny": false,
-      "is_private": false,
-      "is_on_home": true,
-      "is_display_form": false,
-      "is_released": true,
-      "is_premium": false,
-      "is_custom": true
-    },
-    "display_template": "list-7"
+    "dex": { "slug": "homepogo" },
+    "settings": { "name": "Home Pokemon Go", "french_name": "Home Pokemon Go", "slug": "homepogo", "display_template": "list-7" },
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": false, "is_released": true, "is_premium": false, "is_custom": true }
   },
   {
-    "slug": "alpha",
-    "original_slug": "alpha",
-    "name": "Alpha",
-    "french_name": "Baron",
-    "flags": {
-      "is_shiny": false,
-      "is_private": false,
-      "is_on_home": true,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": true,
-      "is_custom": false
-    },
-    "display_template": "list-3"
+    "dex": { "slug": "alpha" },
+    "settings": { "name": "Alpha", "french_name": "Baron", "slug": "alpha", "display_template": "list-3" },
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false }
   },
   {
-    "slug": "mega",
-    "original_slug": "mega",
-    "name": "Mega",
-    "french_name": "Méga",
-    "flags": {
-      "is_shiny": false,
-      "is_private": false,
-      "is_on_home": true,
-      "is_display_form": true,
-      "is_released": true,
-      "is_premium": true,
-      "is_custom": false
-    },
-    "display_template": "list-3"
+    "dex": { "slug": "mega" },
+    "settings": { "name": "Mega", "french_name": "Méga", "slug": "mega", "display_template": "list-3" },
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false }
   }
 ]

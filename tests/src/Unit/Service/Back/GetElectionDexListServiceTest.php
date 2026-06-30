@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\ResponseObject\Album\DexFlags;
+use App\ResponseObject\Election\ElectionDexListItem;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetElectionDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -19,39 +20,48 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(GetElectionDexListService::class)]
 final class GetElectionDexListServiceTest extends AbstractTestBackService
 {
-    public const ENDPOINT = 'election/dex';
-    public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/election_dex_list.json';
-
     public function testGet(): void
     {
-        /** @var GetElectionDexListService $service */
-        $service = $this->getServiceWithLoggedUser(
-            'GET',
-            (new Filesystem())->readFile(self::RESPONSE_CONTENT),
-            self::ENDPOINT,
-        );
+        $json = '{"doesnt": "matter"}';
 
-        $this->assertEquals(
-            [
-                'homeshiny',
-            ],
+        $items = $this->makeItems(['homeshiny']);
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with($json, ElectionDexListItem::class.'[]', 'json')
+            ->willReturn($items)
+        ;
+
+        /** @var GetElectionDexListService $service */
+        $service = $this->getServiceWithLoggedUser('GET', $json, 'election/dex', [], $serializer);
+
+        $this->assertSame(
+            ['homeshiny'],
             self::extractSlugs($service->get()),
         );
     }
 
     public function testWithoutLoggedUser(): void
     {
-        /** @var GetElectionDexListService $service */
-        $service = $this->getServiceWithoutLoggedUser(
-            'GET',
-            (new Filesystem())->readFile(self::RESPONSE_CONTENT),
-            self::ENDPOINT,
-        );
+        $json = '{"doesnt": "matter"}';
 
-        $this->assertEquals(
-            [
-                'homeshiny',
-            ],
+        $items = $this->makeItems(['homeshiny']);
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with($json, ElectionDexListItem::class.'[]', 'json')
+            ->willReturn($items)
+        ;
+
+        /** @var GetElectionDexListService $service */
+        $service = $this->getServiceWithoutLoggedUser('GET', $json, 'election/dex', [], $serializer);
+
+        $this->assertSame(
+            ['homeshiny'],
             self::extractSlugs($service->get()),
         );
     }
@@ -76,18 +86,39 @@ final class GetElectionDexListServiceTest extends AbstractTestBackService
     }
 
     /**
-     * @param string[][] $items
+     * @param string[] $slugs
+     *
+     * @return ElectionDexListItem[]
+     */
+    private function makeItems(array $slugs): array
+    {
+        return array_map(fn (string $slug) => new ElectionDexListItem(
+            slug: $slug,
+            name: $slug,
+            frenchName: $slug,
+            flags: new DexFlags(
+                isShiny: false,
+                isPrivate: false,
+                isOnHome: true,
+                isDisplayForm: true,
+                isReleased: true,
+                isPremium: false,
+                isCustom: false,
+            ),
+            displayTemplate: 'box',
+            description: null,
+            frenchDescription: null,
+            dexTotalCount: null,
+        ), $slugs);
+    }
+
+    /**
+     * @param ElectionDexListItem[] $items
      *
      * @return string[]
      */
     private static function extractSlugs(array $items): array
     {
-        $slugs = [];
-
-        foreach ($items as $item) {
-            $slugs[] = $item['slug'];
-        }
-
-        return $slugs;
+        return array_map(fn (ElectionDexListItem $item) => $item->getSlug(), $items);
     }
 }
