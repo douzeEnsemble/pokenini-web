@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
-use App\Utils\JsonDecoder;
+use App\ResponseObject\Election\ElectionDexListItem;
 
 class GetElectionDexListService extends AbstractBackService
 {
-    /**
-     * @return string[][]
-     */
+    /** @return ElectionDexListItem[] */
     public function get(): array
     {
-        $json = $this->requestContent(
-            'GET',
-            '/election/dex',
-        );
+        $json = $this->requestContent('GET', '/election/dex');
 
-        /** @var string[][] */
-        return JsonDecoder::decode($json);
+        /** @var ElectionDexListItem[] */
+        return $this->serializer->deserialize($json, ElectionDexListItem::class.'[]', 'json');
     }
 }

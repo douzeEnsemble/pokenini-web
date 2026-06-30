@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
+use App\ResponseObject\Album\DexFlags;
+use App\ResponseObject\Album\DexListItem;
+use App\ResponseObject\Album\DexListItemRef;
+use App\ResponseObject\Album\DexListItemSettings;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetAlbumDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -21,75 +24,75 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
 {
     public function testGet(): void
     {
-        $service = $this->getMockService(
-            '/app/tests/resources/unit/service/back/dex.json',
-            'album/dex',
-        );
+        $json = '{"doesnt": "matter"}';
 
-        $expectedSlugs = [
-            'homepokemongo',
-            'alpha',
-            'mega',
-        ];
+        $items = $this->makeItems(['homepokemongo', 'alpha', 'mega']);
 
-        $this->assertEquals(
-            $expectedSlugs,
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with($json, DexListItem::class.'[]', 'json')
+            ->willReturn($items)
+        ;
+
+        /** @var GetAlbumDexListService $service */
+        $service = $this->getServiceWithLoggedUser('GET', $json, 'album/dex', [], $serializer);
+
+        $this->assertSame(
+            ['homepokemongo', 'alpha', 'mega'],
             self::extractSlugs($service->get()),
         );
     }
 
     public function testGetWithEmptyTrainerId(): void
     {
+        $json = '{"doesnt": "matter"}';
+
+        $items = $this->makeItems(['homepokemongo', 'alpha', 'mega']);
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with($json, DexListItem::class.'[]', 'json')
+            ->willReturn($items)
+        ;
+
         /** @var GetAlbumDexListService $service */
-        $service = $this->getServiceWithoutLoggedUser(
-            'GET',
-            (new Filesystem())->readFile('/app/tests/resources/unit/service/back/dex.json'),
-            'album/dex',
-        );
+        $service = $this->getServiceWithoutLoggedUser('GET', $json, 'album/dex', [], $serializer);
 
-        $expectedSlugs = [
-            'homepokemongo',
-            'alpha',
-            'mega',
-        ];
-
-        $this->assertEquals(
-            $expectedSlugs,
+        $this->assertSame(
+            ['homepokemongo', 'alpha', 'mega'],
             self::extractSlugs($service->get('')),
         );
     }
 
-    public function testGetThrowsJsonExceptionOnInvalidJson(): void
-    {
-        $this->expectException(\JsonException::class);
-
-        /** @var GetAlbumDexListService $service */
-        $service = $this->getServiceWithLoggedUser(
-            'GET',
-            'not valid json',
-            'album/dex',
-        );
-
-        $service->get();
-    }
-
     public function testGetWithTrainerId(): void
     {
+        $json = '{"doesnt": "matter"}';
+
+        $items = $this->makeItems(['homepokemongo', 'alpha']);
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with($json, DexListItem::class.'[]', 'json')
+            ->willReturn($items)
+        ;
+
         /** @var GetAlbumDexListService $service */
         $service = $this->getServiceWithoutLoggedUser(
             'GET',
-            (new Filesystem())->readFile('/app/tests/resources/unit/service/back/dex_123.json'),
+            $json,
             'album/dex',
             ['query' => ['trainer_id' => '123']],
+            $serializer,
         );
 
-        $expectedSlugs = [
-            'homepokemongo',
-            'alpha',
-        ];
-
-        $this->assertEquals(
-            $expectedSlugs,
+        $this->assertSame(
+            ['homepokemongo', 'alpha'],
             self::extractSlugs($service->get('123')),
         );
     }
@@ -113,31 +116,40 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
         );
     }
 
-    private function getMockService(
-        string $filename,
-        string $endpoint,
-    ): GetAlbumDexListService {
-        /** @var GetAlbumDexListService */
-        return $this->getServiceWithLoggedUser(
-            'GET',
-            (new Filesystem())->readFile($filename),
-            $endpoint,
-        );
+    /**
+     * @param string[] $slugs
+     *
+     * @return DexListItem[]
+     */
+    private function makeItems(array $slugs): array
+    {
+        return array_map(fn (string $slug) => new DexListItem(
+            dex: new DexListItemRef(slug: $slug),
+            settings: new DexListItemSettings(
+                name: $slug,
+                frenchName: $slug,
+                slug: $slug,
+                displayTemplate: 'box',
+            ),
+            flags: new DexFlags(
+                isShiny: false,
+                isPrivate: false,
+                isOnHome: false,
+                isDisplayForm: false,
+                isReleased: true,
+                isPremium: false,
+                isCustom: false,
+            ),
+        ), $slugs);
     }
 
     /**
-     * @param string[][] $items
+     * @param DexListItem[] $items
      *
      * @return string[]
      */
     private static function extractSlugs(array $items): array
     {
-        $slugs = [];
-
-        foreach ($items as $item) {
-            $slugs[] = $item['slug'];
-        }
-
-        return $slugs;
+        return array_map(fn (DexListItem $item) => $item->getDex()->getSlug(), $items);
     }
 }

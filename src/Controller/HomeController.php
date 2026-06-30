@@ -28,12 +28,12 @@ final class HomeController extends AbstractController
             // nothing to do
         }
 
-        $dex = $service->get($demoUserId);
+        $album = $service->get($demoUserId);
 
         return $this->render(
             'Home/index.html.twig',
             [
-                'dex' => $dex,
+                'dex' => $album,
                 'demoUserId' => $demoUserId,
             ]
         );
