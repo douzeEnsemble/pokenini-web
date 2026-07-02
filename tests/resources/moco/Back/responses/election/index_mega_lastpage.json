@@ -4,15 +4,18 @@
     {
       "pokemon": {
         "slug": "charizard-mega-y",
-        "name": "Mega Charizard Y",
-        "french_name": "Mega Dracaufeu Y",
+        "labels": {
+          "name": "Mega Charizard Y",
+          "french_name": "Mega Dracaufeu Y",
+          "simplified_name": "Charizard",
+          "simplified_french_name": "Dracaufeu",
+          "forms_label": "Mega Y",
+          "forms_french_label": "Mega Y"
+        },
         "national_dex_number": 6,
         "regional_dex_number": null,
-        "simplified_name": "Charizard",
-        "forms_label": "Mega Y",
-        "simplified_french_name": "Dracaufeu",
-        "forms_french_label": "Mega Y",
         "icon": "charizard-mega-y",
+        "pokemon_icon": "charizard-mega-y",
         "family_order": 4,
         "family_lead": {
           "slug": "charmander"
@@ -21,8 +24,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0006-004",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -53,15 +58,18 @@
     {
       "pokemon": {
         "slug": "beedrill-mega",
-        "name": "Mega Beedrill",
-        "french_name": "Mega Dardargnan",
+        "labels": {
+          "name": "Mega Beedrill",
+          "french_name": "Mega Dardargnan",
+          "simplified_name": "Beedrill",
+          "simplified_french_name": "Dardargnan",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 15,
         "regional_dex_number": null,
-        "simplified_name": "Beedrill",
-        "forms_label": "Mega",
-        "simplified_french_name": "Dardargnan",
-        "forms_french_label": "Mega",
         "icon": "beedrill-mega",
+        "pokemon_icon": "beedrill-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "weedle"
@@ -70,8 +78,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0015-003",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -102,15 +112,18 @@
     {
       "pokemon": {
         "slug": "pidgeot-mega",
-        "name": "Mega Pidgeot",
-        "french_name": "Mega Roucarnage",
+        "labels": {
+          "name": "Mega Pidgeot",
+          "french_name": "Mega Roucarnage",
+          "simplified_name": "Pidgeot",
+          "simplified_french_name": "Roucarnage",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 18,
         "regional_dex_number": null,
-        "simplified_name": "Pidgeot",
-        "forms_label": "Mega",
-        "simplified_french_name": "Roucarnage",
-        "forms_french_label": "Mega",
         "icon": "pidgeot-mega",
+        "pokemon_icon": "pidgeot-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "pidgey"
@@ -119,8 +132,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0018-003",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -151,15 +166,18 @@
     {
       "pokemon": {
         "slug": "mewtwo-mega-x",
-        "name": "Mega Mewtwo X",
-        "french_name": "Mega Mewtwo X",
+        "labels": {
+          "name": "Mega Mewtwo X",
+          "french_name": "Mega Mewtwo X",
+          "simplified_name": "Mewtwo",
+          "simplified_french_name": "Mewtwo",
+          "forms_label": "Mega X",
+          "forms_french_label": "Mega X"
+        },
         "national_dex_number": 150,
         "regional_dex_number": null,
-        "simplified_name": "Mewtwo",
-        "forms_label": "Mega X",
-        "simplified_french_name": "Mewtwo",
-        "forms_french_label": "Mega X",
         "icon": "mewtwo-mega-x",
+        "pokemon_icon": "mewtwo-mega-x",
         "family_order": 1,
         "family_lead": {
           "slug": "mewtwo"
@@ -168,8 +186,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0150-001",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -204,15 +224,18 @@
     {
       "pokemon": {
         "slug": "ampharos-mega",
-        "name": "Mega Ampharos",
-        "french_name": "Mega Pharamp",
+        "labels": {
+          "name": "Mega Ampharos",
+          "french_name": "Mega Pharamp",
+          "simplified_name": "Ampharos",
+          "simplified_french_name": "Pharamp",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 181,
         "regional_dex_number": null,
-        "simplified_name": "Ampharos",
-        "forms_label": "Mega",
-        "simplified_french_name": "Pharamp",
-        "forms_french_label": "Mega",
         "icon": "ampharos-mega",
+        "pokemon_icon": "ampharos-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "mareep"
@@ -221,8 +244,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0181-003",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -253,15 +278,18 @@
     {
       "pokemon": {
         "slug": "heracross-mega",
-        "name": "Mega Heracross",
-        "french_name": "Mega Scarhino",
+        "labels": {
+          "name": "Mega Heracross",
+          "french_name": "Mega Scarhino",
+          "simplified_name": "Heracross",
+          "simplified_french_name": "Scarhino",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 214,
         "regional_dex_number": null,
-        "simplified_name": "Heracross",
-        "forms_label": "Mega",
-        "simplified_french_name": "Scarhino",
-        "forms_french_label": "Mega",
         "icon": "heracross-mega",
+        "pokemon_icon": "heracross-mega",
         "family_order": 5,
         "family_lead": {
           "slug": "heracross"
@@ -270,8 +298,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0214-005",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -302,15 +332,18 @@
     {
       "pokemon": {
         "slug": "sceptile-mega",
-        "name": "Mega Sceptile",
-        "french_name": "Mega Jungko",
+        "labels": {
+          "name": "Mega Sceptile",
+          "french_name": "Mega Jungko",
+          "simplified_name": "Sceptile",
+          "simplified_french_name": "Jungko",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 254,
         "regional_dex_number": null,
-        "simplified_name": "Sceptile",
-        "forms_label": "Mega",
-        "simplified_french_name": "Jungko",
-        "forms_french_label": "Mega",
         "icon": "sceptile-mega",
+        "pokemon_icon": "sceptile-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "treecko"
@@ -319,8 +352,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0254-003",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -351,15 +386,18 @@
     {
       "pokemon": {
         "slug": "banette-mega",
-        "name": "Mega Banette",
-        "french_name": "Mega Branette",
+        "labels": {
+          "name": "Mega Banette",
+          "french_name": "Mega Branette",
+          "simplified_name": "Banette",
+          "simplified_french_name": "Branette",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 354,
         "regional_dex_number": null,
-        "simplified_name": "Banette",
-        "forms_label": "Mega",
-        "simplified_french_name": "Branette",
-        "forms_french_label": "Mega",
         "icon": "banette-mega",
+        "pokemon_icon": "banette-mega",
         "family_order": 2,
         "family_lead": {
           "slug": "shuppet"
@@ -368,8 +406,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0354-002",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -395,15 +435,18 @@
     {
       "pokemon": {
         "slug": "salamence-mega",
-        "name": "Mega Salamence",
-        "french_name": "Mega Drattak",
+        "labels": {
+          "name": "Mega Salamence",
+          "french_name": "Mega Drattak",
+          "simplified_name": "Salamence",
+          "simplified_french_name": "Drattak",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 373,
         "regional_dex_number": null,
-        "simplified_name": "Salamence",
-        "forms_label": "Mega",
-        "simplified_french_name": "Drattak",
-        "forms_french_label": "Mega",
         "icon": "salamence-mega",
+        "pokemon_icon": "salamence-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "bagon"
@@ -412,8 +455,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0373-003",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -444,15 +489,18 @@
     {
       "pokemon": {
         "slug": "latias-mega",
-        "name": "Mega Latias",
-        "french_name": "Mega Latias",
+        "labels": {
+          "name": "Mega Latias",
+          "french_name": "Mega Latias",
+          "simplified_name": "Latias",
+          "simplified_french_name": "Latias",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 380,
         "regional_dex_number": null,
-        "simplified_name": "Latias",
-        "forms_label": "Mega",
-        "simplified_french_name": "Latias",
-        "forms_french_label": "Mega",
         "icon": "latias-mega",
+        "pokemon_icon": "latias-mega",
         "family_order": 1,
         "family_lead": {
           "slug": "latias"
@@ -461,8 +509,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0380-001",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -497,15 +547,18 @@
     {
       "pokemon": {
         "slug": "audino-mega",
-        "name": "Mega Audino",
-        "french_name": "Mega Nanméouïe",
+        "labels": {
+          "name": "Mega Audino",
+          "french_name": "Mega Nanméouïe",
+          "simplified_name": "Audino",
+          "simplified_french_name": "Nanméouïe",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 531,
         "regional_dex_number": null,
-        "simplified_name": "Audino",
-        "forms_label": "Mega",
-        "simplified_french_name": "Nanméouïe",
-        "forms_french_label": "Mega",
         "icon": "audino-mega",
+        "pokemon_icon": "audino-mega",
         "family_order": 1,
         "family_lead": {
           "slug": "audino"
@@ -514,8 +567,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0531-001",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -570,15 +625,18 @@
       {
         "pokemon": {
           "slug": "venusaur-mega",
-          "name": "Mega Venusaur",
-          "french_name": "Mega Florizarre",
+          "labels": {
+            "name": "Mega Venusaur",
+            "french_name": "Mega Florizarre",
+            "simplified_name": "Venusaur",
+            "simplified_french_name": "Florizarre",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 3,
           "regional_dex_number": null,
-          "simplified_name": "Venusaur",
-          "forms_label": "Mega",
-          "simplified_french_name": "Florizarre",
-          "forms_french_label": "Mega",
           "icon": "venusaur-mega",
+          "pokemon_icon": "venusaur-mega",
           "family_order": 4,
           "family_lead": {
             "slug": "bulbasaur"
@@ -587,46 +645,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0003-004",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -657,15 +717,18 @@
       {
         "pokemon": {
           "slug": "charizard-mega-x",
-          "name": "Mega Charizard X",
-          "french_name": "Mega Dracaufeu X",
+          "labels": {
+            "name": "Mega Charizard X",
+            "french_name": "Mega Dracaufeu X",
+            "simplified_name": "Charizard",
+            "simplified_french_name": "Dracaufeu",
+            "forms_label": "Mega X",
+            "forms_french_label": "Mega X"
+          },
           "national_dex_number": 6,
           "regional_dex_number": null,
-          "simplified_name": "Charizard",
-          "forms_label": "Mega X",
-          "simplified_french_name": "Dracaufeu",
-          "forms_french_label": "Mega X",
           "icon": "charizard-mega-x",
+          "pokemon_icon": "charizard-mega-x",
           "family_order": 3,
           "family_lead": {
             "slug": "charmander"
@@ -674,46 +737,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0006-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -744,15 +809,18 @@
       {
         "pokemon": {
           "slug": "charizard-mega-y",
-          "name": "Mega Charizard Y",
-          "french_name": "Mega Dracaufeu Y",
+          "labels": {
+            "name": "Mega Charizard Y",
+            "french_name": "Mega Dracaufeu Y",
+            "simplified_name": "Charizard",
+            "simplified_french_name": "Dracaufeu",
+            "forms_label": "Mega Y",
+            "forms_french_label": "Mega Y"
+          },
           "national_dex_number": 6,
           "regional_dex_number": null,
-          "simplified_name": "Charizard",
-          "forms_label": "Mega Y",
-          "simplified_french_name": "Dracaufeu",
-          "forms_french_label": "Mega Y",
           "icon": "charizard-mega-y",
+          "pokemon_icon": "charizard-mega-y",
           "family_order": 4,
           "family_lead": {
             "slug": "charmander"
@@ -761,46 +829,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0006-004",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -831,15 +901,18 @@
       {
         "pokemon": {
           "slug": "blastoise-mega",
-          "name": "Mega Blastoise",
-          "french_name": "Mega Tortank",
+          "labels": {
+            "name": "Mega Blastoise",
+            "french_name": "Mega Tortank",
+            "simplified_name": "Blastoise",
+            "simplified_french_name": "Tortank",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 9,
           "regional_dex_number": null,
-          "simplified_name": "Blastoise",
-          "forms_label": "Mega",
-          "simplified_french_name": "Tortank",
-          "forms_french_label": "Mega",
           "icon": "blastoise-mega",
+          "pokemon_icon": "blastoise-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "squirtle"
@@ -848,46 +921,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0009-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -913,15 +988,18 @@
       {
         "pokemon": {
           "slug": "beedrill-mega",
-          "name": "Mega Beedrill",
-          "french_name": "Mega Dardargnan",
+          "labels": {
+            "name": "Mega Beedrill",
+            "french_name": "Mega Dardargnan",
+            "simplified_name": "Beedrill",
+            "simplified_french_name": "Dardargnan",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 15,
           "regional_dex_number": null,
-          "simplified_name": "Beedrill",
-          "forms_label": "Mega",
-          "simplified_french_name": "Dardargnan",
-          "forms_french_label": "Mega",
           "icon": "beedrill-mega",
+          "pokemon_icon": "beedrill-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "weedle"
@@ -930,46 +1008,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0015-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1000,15 +1080,18 @@
       {
         "pokemon": {
           "slug": "pidgeot-mega",
-          "name": "Mega Pidgeot",
-          "french_name": "Mega Roucarnage",
+          "labels": {
+            "name": "Mega Pidgeot",
+            "french_name": "Mega Roucarnage",
+            "simplified_name": "Pidgeot",
+            "simplified_french_name": "Roucarnage",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 18,
           "regional_dex_number": null,
-          "simplified_name": "Pidgeot",
-          "forms_label": "Mega",
-          "simplified_french_name": "Roucarnage",
-          "forms_french_label": "Mega",
           "icon": "pidgeot-mega",
+          "pokemon_icon": "pidgeot-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "pidgey"
@@ -1017,46 +1100,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0018-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1087,15 +1172,18 @@
       {
         "pokemon": {
           "slug": "alakazam-mega",
-          "name": "Mega Alakazam",
-          "french_name": "Mega Alakazam",
+          "labels": {
+            "name": "Mega Alakazam",
+            "french_name": "Mega Alakazam",
+            "simplified_name": "Alakazam",
+            "simplified_french_name": "Alakazam",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 65,
           "regional_dex_number": null,
-          "simplified_name": "Alakazam",
-          "forms_label": "Mega",
-          "simplified_french_name": "Alakazam",
-          "forms_french_label": "Mega",
           "icon": "alakazam-mega",
+          "pokemon_icon": "alakazam-mega",
           "family_order": 10,
           "family_lead": {
             "slug": "abra"
@@ -1104,46 +1192,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0065-010",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1169,15 +1259,18 @@
       {
         "pokemon": {
           "slug": "slowbro-mega",
-          "name": "Mega Slowbro",
-          "french_name": "Mega Flagadoss",
+          "labels": {
+            "name": "Mega Slowbro",
+            "french_name": "Mega Flagadoss",
+            "simplified_name": "Slowbro",
+            "simplified_french_name": "Flagadoss",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 80,
           "regional_dex_number": null,
-          "simplified_name": "Slowbro",
-          "forms_label": "Mega",
-          "simplified_french_name": "Flagadoss",
-          "forms_french_label": "Mega",
           "icon": "slowbro-mega",
+          "pokemon_icon": "slowbro-mega",
           "family_order": 4,
           "family_lead": {
             "slug": "slowpoke"
@@ -1186,46 +1279,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0080-004",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1256,15 +1351,18 @@
       {
         "pokemon": {
           "slug": "gengar-mega",
-          "name": "Mega Gengar",
-          "french_name": "Mega Ectoplasma",
+          "labels": {
+            "name": "Mega Gengar",
+            "french_name": "Mega Ectoplasma",
+            "simplified_name": "Gengar",
+            "simplified_french_name": "Ectoplasma",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 94,
           "regional_dex_number": null,
-          "simplified_name": "Gengar",
-          "forms_label": "Mega",
-          "simplified_french_name": "Ectoplasma",
-          "forms_french_label": "Mega",
           "icon": "gengar-mega",
+          "pokemon_icon": "gengar-mega",
           "family_order": 6,
           "family_lead": {
             "slug": "gastly"
@@ -1273,46 +1371,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0094-006",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1343,15 +1443,18 @@
       {
         "pokemon": {
           "slug": "kangaskhan-mega",
-          "name": "Mega Kangaskhan",
-          "french_name": "Mega Kangourex",
+          "labels": {
+            "name": "Mega Kangaskhan",
+            "french_name": "Mega Kangourex",
+            "simplified_name": "Kangaskhan",
+            "simplified_french_name": "Kangourex",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 115,
           "regional_dex_number": null,
-          "simplified_name": "Kangaskhan",
-          "forms_label": "Mega",
-          "simplified_french_name": "Kangourex",
-          "forms_french_label": "Mega",
           "icon": "kangaskhan-mega",
+          "pokemon_icon": "kangaskhan-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "kangaskhan"
@@ -1360,46 +1463,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0115-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1425,15 +1530,18 @@
       {
         "pokemon": {
           "slug": "pinsir-mega",
-          "name": "Mega Pinsir",
-          "french_name": "Mega Scarabrute",
+          "labels": {
+            "name": "Mega Pinsir",
+            "french_name": "Mega Scarabrute",
+            "simplified_name": "Pinsir",
+            "simplified_french_name": "Scarabrute",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 127,
           "regional_dex_number": null,
-          "simplified_name": "Pinsir",
-          "forms_label": "Mega",
-          "simplified_french_name": "Scarabrute",
-          "forms_french_label": "Mega",
           "icon": "pinsir-mega",
+          "pokemon_icon": "pinsir-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "pinsir"
@@ -1442,46 +1550,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0127-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1512,15 +1622,18 @@
       {
         "pokemon": {
           "slug": "gyarados-mega",
-          "name": "Mega Gyarados",
-          "french_name": "Mega Léviator",
+          "labels": {
+            "name": "Mega Gyarados",
+            "french_name": "Mega Léviator",
+            "simplified_name": "Gyarados",
+            "simplified_french_name": "Léviator",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 130,
           "regional_dex_number": null,
-          "simplified_name": "Gyarados",
-          "forms_label": "Mega",
-          "simplified_french_name": "Léviator",
-          "forms_french_label": "Mega",
           "icon": "gyarados-mega",
+          "pokemon_icon": "gyarados-mega",
           "family_order": 9,
           "family_lead": {
             "slug": "magikarp"
@@ -1529,46 +1642,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0130-009",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1599,15 +1714,18 @@
       {
         "pokemon": {
           "slug": "aerodactyl-mega",
-          "name": "Mega Aerodactyl",
-          "french_name": "Mega Ptéra",
+          "labels": {
+            "name": "Mega Aerodactyl",
+            "french_name": "Mega Ptéra",
+            "simplified_name": "Aerodactyl",
+            "simplified_french_name": "Ptéra",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 142,
           "regional_dex_number": null,
-          "simplified_name": "Aerodactyl",
-          "forms_label": "Mega",
-          "simplified_french_name": "Ptéra",
-          "forms_french_label": "Mega",
           "icon": "aerodactyl-mega",
+          "pokemon_icon": "aerodactyl-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "aerodactyl"
@@ -1616,46 +1734,48 @@
             "slug": "xy"
           },
           "order_number": "9999-0142-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1686,15 +1806,18 @@
       {
         "pokemon": {
           "slug": "mewtwo-mega-x",
-          "name": "Mega Mewtwo X",
-          "french_name": "Mega Mewtwo X",
+          "labels": {
+            "name": "Mega Mewtwo X",
+            "french_name": "Mega Mewtwo X",
+            "simplified_name": "Mewtwo",
+            "simplified_french_name": "Mewtwo",
+            "forms_label": "Mega X",
+            "forms_french_label": "Mega X"
+          },
           "national_dex_number": 150,
           "regional_dex_number": null,
-          "simplified_name": "Mewtwo",
-          "forms_label": "Mega X",
-          "simplified_french_name": "Mewtwo",
-          "forms_french_label": "Mega X",
           "icon": "mewtwo-mega-x",
+          "pokemon_icon": "mewtwo-mega-x",
           "family_order": 1,
           "family_lead": {
             "slug": "mewtwo"
@@ -1703,40 +1826,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0150-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1771,15 +1896,18 @@
       {
         "pokemon": {
           "slug": "mewtwo-mega-y",
-          "name": "Mega Mewtwo Y",
-          "french_name": "Mega Mewtwo Y",
+          "labels": {
+            "name": "Mega Mewtwo Y",
+            "french_name": "Mega Mewtwo Y",
+            "simplified_name": "Mewtwo",
+            "simplified_french_name": "Mewtwo",
+            "forms_label": "Mega Y",
+            "forms_french_label": "Mega Y"
+          },
           "national_dex_number": 150,
           "regional_dex_number": null,
-          "simplified_name": "Mewtwo",
-          "forms_label": "Mega Y",
-          "simplified_french_name": "Mewtwo",
-          "forms_french_label": "Mega Y",
           "icon": "mewtwo-mega-y",
+          "pokemon_icon": "mewtwo-mega-y",
           "family_order": 2,
           "family_lead": {
             "slug": "mewtwo"
@@ -1788,40 +1916,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0150-002",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1851,15 +1981,18 @@
       {
         "pokemon": {
           "slug": "ampharos-mega",
-          "name": "Mega Ampharos",
-          "french_name": "Mega Pharamp",
+          "labels": {
+            "name": "Mega Ampharos",
+            "french_name": "Mega Pharamp",
+            "simplified_name": "Ampharos",
+            "simplified_french_name": "Pharamp",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 181,
           "regional_dex_number": null,
-          "simplified_name": "Ampharos",
-          "forms_label": "Mega",
-          "simplified_french_name": "Pharamp",
-          "forms_french_label": "Mega",
           "icon": "ampharos-mega",
+          "pokemon_icon": "ampharos-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "mareep"
@@ -1868,40 +2001,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0181-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1932,15 +2067,18 @@
       {
         "pokemon": {
           "slug": "steelix-mega",
-          "name": "Mega Steelix",
-          "french_name": "Mega Steelix",
+          "labels": {
+            "name": "Mega Steelix",
+            "french_name": "Mega Steelix",
+            "simplified_name": "Steelix",
+            "simplified_french_name": "Steelix",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 208,
           "regional_dex_number": null,
-          "simplified_name": "Steelix",
-          "forms_label": "Mega",
-          "simplified_french_name": "Steelix",
-          "forms_french_label": "Mega",
           "icon": "steelix-mega",
+          "pokemon_icon": "steelix-mega",
           "family_order": 6,
           "family_lead": {
             "slug": "onix"
@@ -1949,40 +2087,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0208-006",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2013,15 +2153,18 @@
       {
         "pokemon": {
           "slug": "scizor-mega",
-          "name": "Mega Scizor",
-          "french_name": "Mega Cizayox",
+          "labels": {
+            "name": "Mega Scizor",
+            "french_name": "Mega Cizayox",
+            "simplified_name": "Scizor",
+            "simplified_french_name": "Cizayox",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 212,
           "regional_dex_number": null,
-          "simplified_name": "Scizor",
-          "forms_label": "Mega",
-          "simplified_french_name": "Cizayox",
-          "forms_french_label": "Mega",
           "icon": "scizor-mega",
+          "pokemon_icon": "scizor-mega",
           "family_order": 8,
           "family_lead": {
             "slug": "scyther"
@@ -2030,40 +2173,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0212-008",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2094,15 +2239,18 @@
       {
         "pokemon": {
           "slug": "heracross-mega",
-          "name": "Mega Heracross",
-          "french_name": "Mega Scarhino",
+          "labels": {
+            "name": "Mega Heracross",
+            "french_name": "Mega Scarhino",
+            "simplified_name": "Heracross",
+            "simplified_french_name": "Scarhino",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 214,
           "regional_dex_number": null,
-          "simplified_name": "Heracross",
-          "forms_label": "Mega",
-          "simplified_french_name": "Scarhino",
-          "forms_french_label": "Mega",
           "icon": "heracross-mega",
+          "pokemon_icon": "heracross-mega",
           "family_order": 5,
           "family_lead": {
             "slug": "heracross"
@@ -2111,34 +2259,36 @@
             "slug": "xy"
           },
           "order_number": "9999-0214-005",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2169,15 +2319,18 @@
       {
         "pokemon": {
           "slug": "houndoom-mega",
-          "name": "Mega Houndoom",
-          "french_name": "Mega Démolosse",
+          "labels": {
+            "name": "Mega Houndoom",
+            "french_name": "Mega Démolosse",
+            "simplified_name": "Houndoom",
+            "simplified_french_name": "Démolosse",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 229,
           "regional_dex_number": null,
-          "simplified_name": "Houndoom",
-          "forms_label": "Mega",
-          "simplified_french_name": "Démolosse",
-          "forms_french_label": "Mega",
           "icon": "houndoom-mega",
+          "pokemon_icon": "houndoom-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "houndour"
@@ -2186,40 +2339,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0229-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2250,15 +2405,18 @@
       {
         "pokemon": {
           "slug": "tyranitar-mega",
-          "name": "Mega Tyranitar",
-          "french_name": "Mega Tyranocif",
+          "labels": {
+            "name": "Mega Tyranitar",
+            "french_name": "Mega Tyranocif",
+            "simplified_name": "Tyranitar",
+            "simplified_french_name": "Tyranocif",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 248,
           "regional_dex_number": null,
-          "simplified_name": "Tyranitar",
-          "forms_label": "Mega",
-          "simplified_french_name": "Tyranocif",
-          "forms_french_label": "Mega",
           "icon": "tyranitar-mega",
+          "pokemon_icon": "tyranitar-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "larvitar"
@@ -2267,40 +2425,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0248-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2331,15 +2491,18 @@
       {
         "pokemon": {
           "slug": "sceptile-mega",
-          "name": "Mega Sceptile",
-          "french_name": "Mega Jungko",
+          "labels": {
+            "name": "Mega Sceptile",
+            "french_name": "Mega Jungko",
+            "simplified_name": "Sceptile",
+            "simplified_french_name": "Jungko",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 254,
           "regional_dex_number": null,
-          "simplified_name": "Sceptile",
-          "forms_label": "Mega",
-          "simplified_french_name": "Jungko",
-          "forms_french_label": "Mega",
           "icon": "sceptile-mega",
+          "pokemon_icon": "sceptile-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "treecko"
@@ -2348,40 +2511,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0254-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2412,15 +2577,18 @@
       {
         "pokemon": {
           "slug": "blaziken-mega",
-          "name": "Mega Blaziken",
-          "french_name": "Mega Braségali",
+          "labels": {
+            "name": "Mega Blaziken",
+            "french_name": "Mega Braségali",
+            "simplified_name": "Blaziken",
+            "simplified_french_name": "Braségali",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 257,
           "regional_dex_number": null,
-          "simplified_name": "Blaziken",
-          "forms_label": "Mega",
-          "simplified_french_name": "Braségali",
-          "forms_french_label": "Mega",
           "icon": "blaziken-mega",
+          "pokemon_icon": "blaziken-mega",
           "family_order": 10,
           "family_lead": {
             "slug": "torchic"
@@ -2429,40 +2597,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0257-010",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2493,15 +2663,18 @@
       {
         "pokemon": {
           "slug": "swampert-mega",
-          "name": "Mega Swampert",
-          "french_name": "Mega Laggron",
+          "labels": {
+            "name": "Mega Swampert",
+            "french_name": "Mega Laggron",
+            "simplified_name": "Swampert",
+            "simplified_french_name": "Laggron",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 260,
           "regional_dex_number": null,
-          "simplified_name": "Swampert",
-          "forms_label": "Mega",
-          "simplified_french_name": "Laggron",
-          "forms_french_label": "Mega",
           "icon": "swampert-mega",
+          "pokemon_icon": "swampert-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "mudkip"
@@ -2510,40 +2683,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0260-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2574,15 +2749,18 @@
       {
         "pokemon": {
           "slug": "gardevoir-mega",
-          "name": "Mega Gardevoir",
-          "french_name": "Mega Gardevoir",
+          "labels": {
+            "name": "Mega Gardevoir",
+            "french_name": "Mega Gardevoir",
+            "simplified_name": "Gardevoir",
+            "simplified_french_name": "Gardevoir",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 282,
           "regional_dex_number": null,
-          "simplified_name": "Gardevoir",
-          "forms_label": "Mega",
-          "simplified_french_name": "Gardevoir",
-          "forms_french_label": "Mega",
           "icon": "gardevoir-mega",
+          "pokemon_icon": "gardevoir-mega",
           "family_order": 6,
           "family_lead": {
             "slug": "ralts"
@@ -2591,40 +2769,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0282-006",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2655,15 +2835,18 @@
       {
         "pokemon": {
           "slug": "sableye-mega",
-          "name": "Mega Sableye",
-          "french_name": "Mega Ténéfix",
+          "labels": {
+            "name": "Mega Sableye",
+            "french_name": "Mega Ténéfix",
+            "simplified_name": "Sableye",
+            "simplified_french_name": "Ténéfix",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 302,
           "regional_dex_number": null,
-          "simplified_name": "Sableye",
-          "forms_label": "Mega",
-          "simplified_french_name": "Ténéfix",
-          "forms_french_label": "Mega",
           "icon": "sableye-mega",
+          "pokemon_icon": "sableye-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "sableye"
@@ -2672,40 +2855,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0302-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2736,15 +2921,18 @@
       {
         "pokemon": {
           "slug": "mawile-mega",
-          "name": "Mega Mawile",
-          "french_name": "Mega Mysdibule",
+          "labels": {
+            "name": "Mega Mawile",
+            "french_name": "Mega Mysdibule",
+            "simplified_name": "Mawile",
+            "simplified_french_name": "Mysdibule",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 303,
           "regional_dex_number": null,
-          "simplified_name": "Mawile",
-          "forms_label": "Mega",
-          "simplified_french_name": "Mysdibule",
-          "forms_french_label": "Mega",
           "icon": "mawile-mega",
+          "pokemon_icon": "mawile-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "mawile"
@@ -2753,34 +2941,36 @@
             "slug": "xy"
           },
           "order_number": "9999-0303-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2811,15 +3001,18 @@
       {
         "pokemon": {
           "slug": "aggron-mega",
-          "name": "Mega Aggron",
-          "french_name": "Mega Galeking",
+          "labels": {
+            "name": "Mega Aggron",
+            "french_name": "Mega Galeking",
+            "simplified_name": "Aggron",
+            "simplified_french_name": "Galeking",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 306,
           "regional_dex_number": null,
-          "simplified_name": "Aggron",
-          "forms_label": "Mega",
-          "simplified_french_name": "Galeking",
-          "forms_french_label": "Mega",
           "icon": "aggron-mega",
+          "pokemon_icon": "aggron-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "aron"
@@ -2828,40 +3021,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0306-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2887,15 +3082,18 @@
       {
         "pokemon": {
           "slug": "medicham-mega",
-          "name": "Mega Medicham",
-          "french_name": "Mega Charmina",
+          "labels": {
+            "name": "Mega Medicham",
+            "french_name": "Mega Charmina",
+            "simplified_name": "Medicham",
+            "simplified_french_name": "Charmina",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 308,
           "regional_dex_number": null,
-          "simplified_name": "Medicham",
-          "forms_label": "Mega",
-          "simplified_french_name": "Charmina",
-          "forms_french_label": "Mega",
           "icon": "medicham-mega",
+          "pokemon_icon": "medicham-mega",
           "family_order": 4,
           "family_lead": {
             "slug": "meditite"
@@ -2904,40 +3102,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0308-004",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -2968,15 +3168,18 @@
       {
         "pokemon": {
           "slug": "manectric-mega",
-          "name": "Mega Manectric",
-          "french_name": "Mega Élecsprint",
+          "labels": {
+            "name": "Mega Manectric",
+            "french_name": "Mega Élecsprint",
+            "simplified_name": "Manectric",
+            "simplified_french_name": "Élecsprint",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 310,
           "regional_dex_number": null,
-          "simplified_name": "Manectric",
-          "forms_label": "Mega",
-          "simplified_french_name": "Élecsprint",
-          "forms_french_label": "Mega",
           "icon": "manectric-mega",
+          "pokemon_icon": "manectric-mega",
           "family_order": 2,
           "family_lead": {
             "slug": "electrike"
@@ -2985,40 +3188,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0310-002",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3044,15 +3249,18 @@
       {
         "pokemon": {
           "slug": "sharpedo-mega",
-          "name": "Mega Sharpedo",
-          "french_name": "Mega Sharpedo",
+          "labels": {
+            "name": "Mega Sharpedo",
+            "french_name": "Mega Sharpedo",
+            "simplified_name": "Sharpedo",
+            "simplified_french_name": "Sharpedo",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 319,
           "regional_dex_number": null,
-          "simplified_name": "Sharpedo",
-          "forms_label": "Mega",
-          "simplified_french_name": "Sharpedo",
-          "forms_french_label": "Mega",
           "icon": "sharpedo-mega",
+          "pokemon_icon": "sharpedo-mega",
           "family_order": 2,
           "family_lead": {
             "slug": "carvanha"
@@ -3061,34 +3269,36 @@
             "slug": "xy"
           },
           "order_number": "9999-0319-002",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3119,15 +3329,18 @@
       {
         "pokemon": {
           "slug": "camerupt-mega",
-          "name": "Mega Camerupt",
-          "french_name": "Mega Camérupt",
+          "labels": {
+            "name": "Mega Camerupt",
+            "french_name": "Mega Camérupt",
+            "simplified_name": "Camerupt",
+            "simplified_french_name": "Camérupt",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 323,
           "regional_dex_number": null,
-          "simplified_name": "Camerupt",
-          "forms_label": "Mega",
-          "simplified_french_name": "Camérupt",
-          "forms_french_label": "Mega",
           "icon": "camerupt-mega",
+          "pokemon_icon": "camerupt-mega",
           "family_order": 4,
           "family_lead": {
             "slug": "numel"
@@ -3136,37 +3349,39 @@
             "slug": "xy"
           },
           "order_number": "9999-0323-004",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3197,15 +3412,18 @@
       {
         "pokemon": {
           "slug": "altaria-mega",
-          "name": "Mega Altaria",
-          "french_name": "Mega Altaria",
+          "labels": {
+            "name": "Mega Altaria",
+            "french_name": "Mega Altaria",
+            "simplified_name": "Altaria",
+            "simplified_french_name": "Altaria",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 334,
           "regional_dex_number": null,
-          "simplified_name": "Altaria",
-          "forms_label": "Mega",
-          "simplified_french_name": "Altaria",
-          "forms_french_label": "Mega",
           "icon": "altaria-mega",
+          "pokemon_icon": "altaria-mega",
           "family_order": 2,
           "family_lead": {
             "slug": "swablu"
@@ -3214,40 +3432,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0334-002",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3278,15 +3498,18 @@
       {
         "pokemon": {
           "slug": "banette-mega",
-          "name": "Mega Banette",
-          "french_name": "Mega Branette",
+          "labels": {
+            "name": "Mega Banette",
+            "french_name": "Mega Branette",
+            "simplified_name": "Banette",
+            "simplified_french_name": "Branette",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 354,
           "regional_dex_number": null,
-          "simplified_name": "Banette",
-          "forms_label": "Mega",
-          "simplified_french_name": "Branette",
-          "forms_french_label": "Mega",
           "icon": "banette-mega",
+          "pokemon_icon": "banette-mega",
           "family_order": 2,
           "family_lead": {
             "slug": "shuppet"
@@ -3295,40 +3518,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0354-002",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3354,15 +3579,18 @@
       {
         "pokemon": {
           "slug": "absol-mega",
-          "name": "Mega Absol",
-          "french_name": "Mega Absol",
+          "labels": {
+            "name": "Mega Absol",
+            "french_name": "Mega Absol",
+            "simplified_name": "Absol",
+            "simplified_french_name": "Absol",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 359,
           "regional_dex_number": null,
-          "simplified_name": "Absol",
-          "forms_label": "Mega",
-          "simplified_french_name": "Absol",
-          "forms_french_label": "Mega",
           "icon": "absol-mega",
+          "pokemon_icon": "absol-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "absol"
@@ -3371,40 +3599,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0359-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3430,15 +3660,18 @@
       {
         "pokemon": {
           "slug": "glalie-mega",
-          "name": "Mega Glalie",
-          "french_name": "Mega Oniglali",
+          "labels": {
+            "name": "Mega Glalie",
+            "french_name": "Mega Oniglali",
+            "simplified_name": "Glalie",
+            "simplified_french_name": "Oniglali",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 362,
           "regional_dex_number": null,
-          "simplified_name": "Glalie",
-          "forms_label": "Mega",
-          "simplified_french_name": "Oniglali",
-          "forms_french_label": "Mega",
           "icon": "glalie-mega",
+          "pokemon_icon": "glalie-mega",
           "family_order": 4,
           "family_lead": {
             "slug": "snorunt"
@@ -3447,40 +3680,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0362-004",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3506,15 +3741,18 @@
       {
         "pokemon": {
           "slug": "salamence-mega",
-          "name": "Mega Salamence",
-          "french_name": "Mega Drattak",
+          "labels": {
+            "name": "Mega Salamence",
+            "french_name": "Mega Drattak",
+            "simplified_name": "Salamence",
+            "simplified_french_name": "Drattak",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 373,
           "regional_dex_number": null,
-          "simplified_name": "Salamence",
-          "forms_label": "Mega",
-          "simplified_french_name": "Drattak",
-          "forms_french_label": "Mega",
           "icon": "salamence-mega",
+          "pokemon_icon": "salamence-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "bagon"
@@ -3523,40 +3761,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0373-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3587,15 +3827,18 @@
       {
         "pokemon": {
           "slug": "metagross-mega",
-          "name": "Mega Metagross",
-          "french_name": "Mega Métalosse",
+          "labels": {
+            "name": "Mega Metagross",
+            "french_name": "Mega Métalosse",
+            "simplified_name": "Metagross",
+            "simplified_french_name": "Métalosse",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 376,
           "regional_dex_number": null,
-          "simplified_name": "Metagross",
-          "forms_label": "Mega",
-          "simplified_french_name": "Métalosse",
-          "forms_french_label": "Mega",
           "icon": "metagross-mega",
+          "pokemon_icon": "metagross-mega",
           "family_order": 3,
           "family_lead": {
             "slug": "beldum"
@@ -3604,34 +3847,36 @@
             "slug": "xy"
           },
           "order_number": "9999-0376-003",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3662,15 +3907,18 @@
       {
         "pokemon": {
           "slug": "latias-mega",
-          "name": "Mega Latias",
-          "french_name": "Mega Latias",
+          "labels": {
+            "name": "Mega Latias",
+            "french_name": "Mega Latias",
+            "simplified_name": "Latias",
+            "simplified_french_name": "Latias",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 380,
           "regional_dex_number": null,
-          "simplified_name": "Latias",
-          "forms_label": "Mega",
-          "simplified_french_name": "Latias",
-          "forms_french_label": "Mega",
           "icon": "latias-mega",
+          "pokemon_icon": "latias-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "latias"
@@ -3679,40 +3927,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0380-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3747,15 +3997,18 @@
       {
         "pokemon": {
           "slug": "latios-mega",
-          "name": "Mega Latios",
-          "french_name": "Mega Latios",
+          "labels": {
+            "name": "Mega Latios",
+            "french_name": "Mega Latios",
+            "simplified_name": "Latios",
+            "simplified_french_name": "Latios",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 381,
           "regional_dex_number": null,
-          "simplified_name": "Latios",
-          "forms_label": "Mega",
-          "simplified_french_name": "Latios",
-          "forms_french_label": "Mega",
           "icon": "latios-mega",
+          "pokemon_icon": "latios-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "latios"
@@ -3764,40 +4017,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0381-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3832,15 +4087,18 @@
       {
         "pokemon": {
           "slug": "kyogre-primal",
-          "name": "Primal Kyogre",
-          "french_name": "Primo-Kyogre",
+          "labels": {
+            "name": "Primal Kyogre",
+            "french_name": "Primo-Kyogre",
+            "simplified_name": "Kyogre",
+            "simplified_french_name": "Kyogre",
+            "forms_label": "Primal",
+            "forms_french_label": "Primo"
+          },
           "national_dex_number": 382,
           "regional_dex_number": null,
-          "simplified_name": "Kyogre",
-          "forms_label": "Primal",
-          "simplified_french_name": "Kyogre",
-          "forms_french_label": "Primo",
           "icon": "kyogre-primal",
+          "pokemon_icon": "kyogre-primal",
           "family_order": 1,
           "family_lead": {
             "slug": "kyogre"
@@ -3849,88 +4107,90 @@
             "slug": "xy"
           },
           "order_number": "9999-0382-001",
-          "game_bundles": [
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -3960,15 +4220,18 @@
       {
         "pokemon": {
           "slug": "groudon-primal",
-          "name": "Primal Groudon",
-          "french_name": "Primo-Groudon",
+          "labels": {
+            "name": "Primal Groudon",
+            "french_name": "Primo-Groudon",
+            "simplified_name": "Groudon",
+            "simplified_french_name": "Groudon",
+            "forms_label": "Primal",
+            "forms_french_label": "Primo"
+          },
           "national_dex_number": 383,
           "regional_dex_number": null,
-          "simplified_name": "Groudon",
-          "forms_label": "Primal",
-          "simplified_french_name": "Groudon",
-          "forms_french_label": "Primo",
           "icon": "groudon-primal",
+          "pokemon_icon": "groudon-primal",
           "family_order": 1,
           "family_lead": {
             "slug": "groudon"
@@ -3977,88 +4240,90 @@
             "slug": "xy"
           },
           "order_number": "9999-0383-001",
-          "game_bundles": [
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -4093,15 +4358,18 @@
       {
         "pokemon": {
           "slug": "rayquaza-mega",
-          "name": "Mega Rayquaza",
-          "french_name": "Mega Rayquaza",
+          "labels": {
+            "name": "Mega Rayquaza",
+            "french_name": "Mega Rayquaza",
+            "simplified_name": "Rayquaza",
+            "simplified_french_name": "Rayquaza",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 384,
           "regional_dex_number": null,
-          "simplified_name": "Rayquaza",
-          "forms_label": "Mega",
-          "simplified_french_name": "Rayquaza",
-          "forms_french_label": "Mega",
           "icon": "rayquaza-mega",
+          "pokemon_icon": "rayquaza-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "rayquaza"
@@ -4110,40 +4378,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0384-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -4178,15 +4448,18 @@
       {
         "pokemon": {
           "slug": "lopunny-mega",
-          "name": "Mega Lopunny",
-          "french_name": "Mega Lockpin",
+          "labels": {
+            "name": "Mega Lopunny",
+            "french_name": "Mega Lockpin",
+            "simplified_name": "Lopunny",
+            "simplified_french_name": "Lockpin",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 428,
           "regional_dex_number": null,
-          "simplified_name": "Lopunny",
-          "forms_label": "Mega",
-          "simplified_french_name": "Lockpin",
-          "forms_french_label": "Mega",
           "icon": "lopunny-mega",
+          "pokemon_icon": "lopunny-mega",
           "family_order": 4,
           "family_lead": {
             "slug": "buneary"
@@ -4195,40 +4468,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0428-004",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -4259,15 +4534,18 @@
       {
         "pokemon": {
           "slug": "garchomp-mega",
-          "name": "Mega Garchomp",
-          "french_name": "Mega Carchacrok",
+          "labels": {
+            "name": "Mega Garchomp",
+            "french_name": "Mega Carchacrok",
+            "simplified_name": "Garchomp",
+            "simplified_french_name": "Carchacrok",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 445,
           "regional_dex_number": null,
-          "simplified_name": "Garchomp",
-          "forms_label": "Mega",
-          "simplified_french_name": "Carchacrok",
-          "forms_french_label": "Mega",
           "icon": "garchomp-mega",
+          "pokemon_icon": "garchomp-mega",
           "family_order": 12,
           "family_lead": {
             "slug": "gible"
@@ -4276,40 +4554,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0445-012",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -4340,15 +4620,18 @@
       {
         "pokemon": {
           "slug": "lucario-mega",
-          "name": "Mega Lucario",
-          "french_name": "Mega Lucario",
+          "labels": {
+            "name": "Mega Lucario",
+            "french_name": "Mega Lucario",
+            "simplified_name": "Lucario",
+            "simplified_french_name": "Lucario",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 448,
           "regional_dex_number": null,
-          "simplified_name": "Lucario",
-          "forms_label": "Mega",
-          "simplified_french_name": "Lucario",
-          "forms_french_label": "Mega",
           "icon": "lucario-mega",
+          "pokemon_icon": "lucario-mega",
           "family_order": 4,
           "family_lead": {
             "slug": "riolu"
@@ -4357,40 +4640,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0448-004",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -4421,15 +4706,18 @@
       {
         "pokemon": {
           "slug": "abomasnow-mega",
-          "name": "Mega Abomasnow",
-          "french_name": "Mega Blizzaroi",
+          "labels": {
+            "name": "Mega Abomasnow",
+            "french_name": "Mega Blizzaroi",
+            "simplified_name": "Abomasnow",
+            "simplified_french_name": "Blizzaroi",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 460,
           "regional_dex_number": null,
-          "simplified_name": "Abomasnow",
-          "forms_label": "Mega",
-          "simplified_french_name": "Blizzaroi",
-          "forms_french_label": "Mega",
           "icon": "abomasnow-mega",
+          "pokemon_icon": "abomasnow-mega",
           "family_order": 8,
           "family_lead": {
             "slug": "snover"
@@ -4438,40 +4726,42 @@
             "slug": "xy"
           },
           "order_number": "9999-0460-008",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -4502,15 +4792,18 @@
       {
         "pokemon": {
           "slug": "gallade-mega",
-          "name": "Mega Gallade",
-          "french_name": "Mega Gallame",
+          "labels": {
+            "name": "Mega Gallade",
+            "french_name": "Mega Gallame",
+            "simplified_name": "Gallade",
+            "simplified_french_name": "Gallame",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 475,
           "regional_dex_number": null,
-          "simplified_name": "Gallade",
-          "forms_label": "Mega",
-          "simplified_french_name": "Gallame",
-          "forms_french_label": "Mega",
           "icon": "gallade-mega",
+          "pokemon_icon": "gallade-mega",
           "family_order": 9,
           "family_lead": {
             "slug": "ralts"
@@ -4519,34 +4812,36 @@
             "slug": "xy"
           },
           "order_number": "9999-0475-009",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -4577,15 +4872,18 @@
       {
         "pokemon": {
           "slug": "audino-mega",
-          "name": "Mega Audino",
-          "french_name": "Mega Nanméouïe",
+          "labels": {
+            "name": "Mega Audino",
+            "french_name": "Mega Nanméouïe",
+            "simplified_name": "Audino",
+            "simplified_french_name": "Nanméouïe",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 531,
           "regional_dex_number": null,
-          "simplified_name": "Audino",
-          "forms_label": "Mega",
-          "simplified_french_name": "Nanméouïe",
-          "forms_french_label": "Mega",
           "icon": "audino-mega",
+          "pokemon_icon": "audino-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "audino"
@@ -4594,34 +4892,36 @@
             "slug": "xy"
           },
           "order_number": "9999-0531-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -4652,15 +4952,18 @@
       {
         "pokemon": {
           "slug": "diancie-mega",
-          "name": "Mega Diancie",
-          "french_name": "Mega Diancie",
+          "labels": {
+            "name": "Mega Diancie",
+            "french_name": "Mega Diancie",
+            "simplified_name": "Diancie",
+            "simplified_french_name": "Diancie",
+            "forms_label": "Mega",
+            "forms_french_label": "Mega"
+          },
           "national_dex_number": 719,
           "regional_dex_number": null,
-          "simplified_name": "Diancie",
-          "forms_label": "Mega",
-          "simplified_french_name": "Diancie",
-          "forms_french_label": "Mega",
           "icon": "diancie-mega",
+          "pokemon_icon": "diancie-mega",
           "family_order": 1,
           "family_lead": {
             "slug": "diancie"
@@ -4669,37 +4972,39 @@
             "slug": "xy"
           },
           "order_number": "9999-0719-001",
-          "game_bundles": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "pokemongo"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {

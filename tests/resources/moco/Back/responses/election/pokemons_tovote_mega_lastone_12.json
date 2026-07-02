@@ -4,15 +4,18 @@
     {
       "pokemon": {
         "slug": "audino-mega",
-        "name": "Mega Audino",
-        "french_name": "Mega Nanméouïe",
+        "labels": {
+          "name": "Mega Audino",
+          "french_name": "Mega Nanméouïe",
+          "simplified_name": "Audino",
+          "simplified_french_name": "Nanméouïe",
+          "forms_label": "Mega",
+          "forms_french_label": "Mega"
+        },
         "national_dex_number": 531,
         "regional_dex_number": null,
-        "simplified_name": "Audino",
-        "forms_label": "Mega",
-        "simplified_french_name": "Nanméouïe",
-        "forms_french_label": "Mega",
         "icon": "audino-mega",
+        "pokemon_icon": "audino-mega",
         "family_order": 1,
         "family_lead": {
           "slug": "audino"
@@ -21,8 +24,10 @@
           "slug": "xy"
         },
         "order_number": "9999-0531-001",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {

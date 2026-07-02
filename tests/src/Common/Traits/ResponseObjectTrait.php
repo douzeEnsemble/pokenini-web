@@ -11,9 +11,11 @@ use App\ResponseObject\Album\DexRegion;
 use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Album\Report;
 use App\ResponseObject\Album\ReportDetail;
+use App\ResponseObject\Common\GameBundlesGroup;
 use App\ResponseObject\Common\Pokemon;
 use App\ResponseObject\Common\PokemonData;
 use App\ResponseObject\Common\PokemonForms;
+use App\ResponseObject\Common\PokemonLabels;
 use App\ResponseObject\Common\PokemonTypes;
 use App\ResponseObject\Election\ElectionList;
 use App\ResponseObject\Election\TopPokemon;
@@ -159,22 +161,23 @@ trait ResponseObjectTrait
     {
         return new Pokemon(
             new PokemonData(
-                'bulbasaur',
-                'Bulbasaur',
-                'Bulbizarre',
-                1,
-                null,
-                'Bulbasaur',
-                'Starter',
-                'Bulbizarre',
-                'Starter',
-                'bulbasaur',
-                0,
-                null,
-                null,
-                '9999-0001-000',
-                [],
-                [],
+                slug: 'bulbasaur',
+                labels: new PokemonLabels(
+                    name: 'Bulbasaur',
+                    frenchName: 'Bulbizarre',
+                    simplifiedName: 'Bulbasaur',
+                    simplifiedFrenchName: 'Bulbizarre',
+                    formsLabel: 'Starter',
+                    formsFrenchLabel: 'Starter',
+                ),
+                nationalDexNumber: 1,
+                regionalDexNumber: null,
+                icon: 'bulbasaur',
+                familyOrder: 0,
+                familyLead: null,
+                originalGameBundle: null,
+                orderNumber: '9999-0001-000',
+                gameBundles: new GameBundlesGroup(normal: [], shiny: []),
             ),
             new CatchState('starter', 'Starter', 'starter', '#00ff00'),
             new PokemonForms(
