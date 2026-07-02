@@ -386,7 +386,7 @@ w3c:
 .PHONY: measures
 measures: ## Execute all measures tools
 measures: clear-build
-	$(call sequential_runner,coverage-generate coverage-check infection,measures)
+	$(call sequential_runner,coverage-generate coverage-check mutation,measures)
 
 .PHONY: m
 m: ## Alias of measures
@@ -431,9 +431,9 @@ coverage-html: ## Execute PHPUnit Coverage in HTML
 clear-infection-cache:
 	@$(PHP_CONT) rm -Rf var/cache/infection
 
-.PHONY: infection
-infection: ## Execute all Infection testing
-infection: build/coverage/coverage-xml tools/infection/vendor/bin/infection clear-infection-cache
+.PHONY: mutation
+mutation: ## Execute all Infection testing
+mutation: build/coverage/coverage-xml tools/infection/vendor/bin/infection clear-infection-cache
 	@$(PHP) tools/infection/vendor/bin/infection --threads=4 --no-progress \
 		--skip-initial-tests --coverage=build/coverage \
 		--min-msi=100 --min-covered-msi=100 \
