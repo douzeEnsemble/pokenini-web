@@ -20,10 +20,12 @@ final class CollectionTest extends TestCase
             'Toto',
             'Tautaux',
             'toto',
+            11,
         );
 
         $this->assertSame('Toto', $object->getName());
         $this->assertSame('Tautaux', $object->getFrenchName());
         $this->assertSame('toto', $object->getSlug());
+        $this->assertSame(11, $object->getOrderNumber());
     }
 }

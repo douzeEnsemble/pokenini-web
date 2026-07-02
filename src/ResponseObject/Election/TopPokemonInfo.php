@@ -22,6 +22,8 @@ final class TopPokemonInfo
         private readonly ?int $regionalDexNumber,
         #[SerializedName('icon')]
         private readonly string $icon,
+        #[SerializedName('pokemon_icon')]
+        private readonly string $pokemonIcon,
         #[SerializedName('family_order')]
         private readonly int $familyOrder,
         #[SerializedName('family_lead')]
@@ -57,6 +59,11 @@ final class TopPokemonInfo
     public function getIcon(): string
     {
         return $this->icon;
+    }
+
+    public function getPokemonIcon(): string
+    {
+        return $this->pokemonIcon;
     }
 
     public function getFamilyOrder(): int

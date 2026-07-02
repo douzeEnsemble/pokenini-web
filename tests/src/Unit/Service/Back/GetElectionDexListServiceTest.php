@@ -94,6 +94,7 @@ final class GetElectionDexListServiceTest extends AbstractTestBackService
     {
         return array_map(fn (string $slug) => new ElectionDexListItem(
             slug: $slug,
+            originalSlug: $slug,
             name: $slug,
             frenchName: $slug,
             flags: new DexFlags(

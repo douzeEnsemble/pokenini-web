@@ -9,7 +9,7 @@ use App\Utils\JsonDecoder;
 class GetReportsService extends AbstractBackService
 {
     /**
-     * @return string[][]
+     * @return array<string, list<array<string, mixed>>>
      */
     public function get(): array
     {
@@ -18,7 +18,7 @@ class GetReportsService extends AbstractBackService
             '/istration/reports',
         );
 
-        /** @var string[][] */
+        /** @var array<string, list<array<string, mixed>>> */
         return JsonDecoder::decode($json);
     }
 }

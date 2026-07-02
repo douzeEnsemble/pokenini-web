@@ -29,6 +29,7 @@ final class ElectionDexListItemTest extends TestCase
 
         $item = new ElectionDexListItem(
             slug: 'swordshield',
+            originalSlug: 'swordshield',
             name: 'Sword, Shield',
             frenchName: 'Épée, Bouclier',
             flags: $flags,
@@ -39,6 +40,7 @@ final class ElectionDexListItemTest extends TestCase
         );
 
         $this->assertSame('swordshield', $item->getSlug());
+        $this->assertSame('swordshield', $item->getOriginalSlug());
         $this->assertSame('Sword, Shield', $item->getName());
         $this->assertSame('Épée, Bouclier', $item->getFrenchName());
         $this->assertSame($flags, $item->getFlags());
@@ -52,6 +54,7 @@ final class ElectionDexListItemTest extends TestCase
     {
         $item = new ElectionDexListItem(
             slug: 'test',
+            originalSlug: 'test',
             name: 'Test',
             frenchName: 'Test',
             flags: new DexFlags(
