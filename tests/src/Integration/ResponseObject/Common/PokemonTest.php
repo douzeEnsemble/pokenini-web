@@ -26,21 +26,25 @@ final class PokemonTest extends KernelTestCase
             {
                 "pokemon": {
                     "slug": "charizard-mega-y",
-                    "name": "Mega Charizard Y",
-                    "french_name": "Méga Dracaufeu Y",
+                    "labels": {
+                        "name": "Mega Charizard Y",
+                        "french_name": "Méga Dracaufeu Y",
+                        "simplified_name": "Charizard",
+                        "simplified_french_name": "Dracaufeu",
+                        "forms_label": "Mega Y",
+                        "forms_french_label": "Méga Y"
+                    },
                     "national_dex_number": 6,
                     "regional_dex_number": 9854,
-                    "simplified_name": "Charizard",
-                    "forms_label": "Mega Y",
-                    "simplified_french_name": "Dracaufeu",
-                    "forms_french_label": "Méga Y",
                     "icon": "charizard-mega-y",
                     "family_order": 4,
                     "family_lead": { "slug": "charmander" },
                     "original_game_bundle": { "slug": "xy" },
                     "order_number": "9999-0006-004",
-                    "game_bundles": [{ "slug": "xy" }, { "slug": "omegarubyalphasapphire" }],
-                    "game_bundles_shiny": [{ "slug": "xy" }]
+                    "game_bundles": {
+                        "normal": [{ "slug": "xy" }, { "slug": "omegarubyalphasapphire" }],
+                        "shiny": [{ "slug": "xy" }]
+                    }
                 },
                 "catch_state": {
                     "slug": "yes",
@@ -107,21 +111,25 @@ final class PokemonTest extends KernelTestCase
             {
                 "pokemon": {
                     "slug": "charizard-mega-y",
-                    "name": "Mega Charizard Y",
-                    "french_name": "Méga Dracaufeu Y",
+                    "labels": {
+                        "name": "Mega Charizard Y",
+                        "french_name": "Méga Dracaufeu Y",
+                        "simplified_name": "Charizard",
+                        "simplified_french_name": "Dracaufeu",
+                        "forms_label": "Mega Y",
+                        "forms_french_label": "Méga Y"
+                    },
                     "national_dex_number": 6,
                     "regional_dex_number": null,
-                    "simplified_name": "Charizard",
-                    "forms_label": "Mega Y",
-                    "simplified_french_name": "Dracaufeu",
-                    "forms_french_label": "Méga Y",
                     "icon": "charizard-mega-y",
                     "family_order": 4,
                     "family_lead": { "slug": "charmander" },
                     "original_game_bundle": { "slug": "xy" },
                     "order_number": "9999-0006-004",
-                    "game_bundles": [{ "slug": "xy" }],
-                    "game_bundles_shiny": []
+                    "game_bundles": {
+                        "normal": [{ "slug": "xy" }],
+                        "shiny": []
+                    }
                 },
                 "catch_state": null,
                 "forms": {
@@ -183,21 +191,25 @@ final class PokemonTest extends KernelTestCase
             {
                 "pokemon": {
                     "slug": "bulbasaur",
-                    "name": "Bulbasaur",
-                    "french_name": "Bulbizarre",
+                    "labels": {
+                        "name": "Bulbasaur",
+                        "french_name": "Bulbizarre",
+                        "simplified_name": "Bulbasaur",
+                        "simplified_french_name": "Bulbizarre",
+                        "forms_label": "",
+                        "forms_french_label": ""
+                    },
                     "national_dex_number": 1,
                     "regional_dex_number": null,
-                    "simplified_name": "Bulbasaur",
-                    "forms_label": "",
-                    "simplified_french_name": "Bulbizarre",
-                    "forms_french_label": "",
                     "icon": "bulbasaur",
                     "family_order": 0,
                     "family_lead": null,
                     "original_game_bundle": null,
                     "order_number": "0001-0001-000",
-                    "game_bundles": [],
-                    "game_bundles_shiny": []
+                    "game_bundles": {
+                        "normal": [],
+                        "shiny": []
+                    }
                 },
                 "catch_state": null,
                 "forms": null,

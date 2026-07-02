@@ -28,14 +28,16 @@
       {
         "pokemon": {
           "slug": "bulbasaur",
-          "name": "Bulbasaur",
-          "french_name": "Bulbizarre",
+          "labels": {
+            "name": "Bulbasaur",
+            "french_name": "Bulbizarre",
+            "simplified_name": "Bulbasaur",
+            "simplified_french_name": "Bulbizarre",
+            "forms_label": "",
+            "forms_french_label": ""
+          },
           "national_dex_number": 1,
           "regional_dex_number": null,
-          "simplified_name": "Bulbasaur",
-          "forms_label": "",
-          "simplified_french_name": "Bulbizarre",
-          "forms_french_label": "",
           "icon": "bulbasaur",
           "family_order": 0,
           "family_lead": null,
@@ -43,130 +45,132 @@
             "slug": "redgreenblueyellow"
           },
           "order_number": "9999-0001-00",
-          "game_bundles": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -197,14 +201,16 @@
       {
         "pokemon": {
           "slug": "ivysaur",
-          "name": "Ivysaur",
-          "french_name": "Herbizarre",
+          "labels": {
+            "name": "Ivysaur",
+            "french_name": "Herbizarre",
+            "simplified_name": "Ivysaur",
+            "simplified_french_name": "Herbizarre",
+            "forms_label": "",
+            "forms_french_label": ""
+          },
           "national_dex_number": 2,
           "regional_dex_number": null,
-          "simplified_name": "Ivysaur",
-          "forms_label": "",
-          "simplified_french_name": "Herbizarre",
-          "forms_french_label": "",
           "icon": "ivysaur",
           "family_order": 1,
           "family_lead": {
@@ -214,130 +220,132 @@
             "slug": "redgreenblueyellow"
           },
           "order_number": "9999-0002-01",
-          "game_bundles": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -364,14 +372,16 @@
       {
         "pokemon": {
           "slug": "venusaur",
-          "name": "Venusaur ♂️",
-          "french_name": "Florizarre ♂️",
+          "labels": {
+            "name": "Venusaur ♂️",
+            "french_name": "Florizarre ♂️",
+            "simplified_name": "Venusaur",
+            "simplified_french_name": "Florizarre",
+            "forms_label": "♂️",
+            "forms_french_label": "♂️"
+          },
           "national_dex_number": 3,
           "regional_dex_number": null,
-          "simplified_name": "Venusaur",
-          "forms_label": "♂️",
-          "simplified_french_name": "Florizarre",
-          "forms_french_label": "♂️",
           "icon": "venusaur",
           "family_order": 2,
           "family_lead": {
@@ -381,130 +391,132 @@
             "slug": "redgreenblueyellow"
           },
           "order_number": "9999-0003-02",
-          "game_bundles": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -531,14 +543,16 @@
       {
         "pokemon": {
           "slug": "venusaur-f",
-          "name": "Venusaur ♀",
-          "french_name": "Florizarre ♀",
+          "labels": {
+            "name": "Venusaur ♀",
+            "french_name": "Florizarre ♀",
+            "simplified_name": "Venusaur",
+            "simplified_french_name": "Florizarre",
+            "forms_label": "♀️",
+            "forms_french_label": "♀️"
+          },
           "national_dex_number": 3,
           "regional_dex_number": null,
-          "simplified_name": "Venusaur",
-          "forms_label": "♀️",
-          "simplified_french_name": "Florizarre",
-          "forms_french_label": "♀️",
           "icon": "venusaur",
           "family_order": 3,
           "family_lead": {
@@ -548,130 +562,132 @@
             "slug": "redgreenblueyellow"
           },
           "order_number": "9999-0003-03",
-          "game_bundles": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -702,14 +718,16 @@
       {
         "pokemon": {
           "slug": "charmander",
-          "name": "Charmander",
-          "french_name": "Salamèche",
+          "labels": {
+            "name": "Charmander",
+            "french_name": "Salamèche",
+            "simplified_name": "Charmander",
+            "simplified_french_name": "Salamèche",
+            "forms_label": "",
+            "forms_french_label": ""
+          },
           "national_dex_number": 4,
           "regional_dex_number": null,
-          "simplified_name": "Charmander",
-          "forms_label": "",
-          "simplified_french_name": "Salamèche",
-          "forms_french_label": "",
           "icon": "charmander",
           "family_order": 0,
           "family_lead": null,
@@ -717,130 +735,132 @@
             "slug": "redgreenblueyellow"
           },
           "order_number": "9999-0004-00",
-          "game_bundles": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -866,14 +886,16 @@
       {
         "pokemon": {
           "slug": "charmeleon",
-          "name": "Charmeleon",
-          "french_name": "Reptincel",
+          "labels": {
+            "name": "Charmeleon",
+            "french_name": "Reptincel",
+            "simplified_name": "Charmeleon",
+            "simplified_french_name": "Reptincel",
+            "forms_label": "",
+            "forms_french_label": ""
+          },
           "national_dex_number": 5,
           "regional_dex_number": null,
-          "simplified_name": "Charmeleon",
-          "forms_label": "",
-          "simplified_french_name": "Reptincel",
-          "forms_french_label": "",
           "icon": "charmeleon",
           "family_order": 1,
           "family_lead": {
@@ -883,130 +905,132 @@
             "slug": "redgreenblueyellow"
           },
           "order_number": "9999-0005-01",
-          "game_bundles": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1028,14 +1052,16 @@
       {
         "pokemon": {
           "slug": "charizard",
-          "name": "Charizard",
-          "french_name": "Dracaufeu",
+          "labels": {
+            "name": "Charizard",
+            "french_name": "Dracaufeu",
+            "simplified_name": "Charizard",
+            "simplified_french_name": "Dracaufeu",
+            "forms_label": "",
+            "forms_french_label": ""
+          },
           "national_dex_number": 6,
           "regional_dex_number": null,
-          "simplified_name": "Charizard",
-          "forms_label": "",
-          "simplified_french_name": "Dracaufeu",
-          "forms_french_label": "",
           "icon": "charizard",
           "family_order": 2,
           "family_lead": {
@@ -1045,130 +1071,132 @@
             "slug": "redgreenblueyellow"
           },
           "order_number": "9999-0006-02",
-          "game_bundles": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ],
-          "game_bundles_shiny": [
-            {
-              "slug": "redgreenblueyellow"
-            },
-            {
-              "slug": "goldsilvercrystal"
-            },
-            {
-              "slug": "rubysapphireemerald"
-            },
-            {
-              "slug": "fireredleafgreen"
-            },
-            {
-              "slug": "diamondpearlplatinium"
-            },
-            {
-              "slug": "heartgoldsoulsilver"
-            },
-            {
-              "slug": "blackwhite"
-            },
-            {
-              "slug": "black2white2"
-            },
-            {
-              "slug": "xy"
-            },
-            {
-              "slug": "omegarubyalphasapphire"
-            },
-            {
-              "slug": "sunmoon"
-            },
-            {
-              "slug": "ultrasunultramoon"
-            },
-            {
-              "slug": "letsgopikachuletsgoeevee"
-            },
-            {
-              "slug": "pokemongo"
-            },
-            {
-              "slug": "swordshield"
-            },
-            {
-              "slug": "swordshieldexpansionpass"
-            },
-            {
-              "slug": "brilliantdiamondshiningpearl"
-            },
-            {
-              "slug": "pokemonlegendsarceus"
-            },
-            {
-              "slug": "scarletviolet"
-            },
-            {
-              "slug": "scarletvioletthehiddentreasureofareazero"
-            }
-          ]
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "redgreenblueyellow"
+              },
+              {
+                "slug": "goldsilvercrystal"
+              },
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "swordshieldexpansionpass"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              },
+              {
+                "slug": "pokemonlegendsarceus"
+              },
+              {
+                "slug": "scarletviolet"
+              },
+              {
+                "slug": "scarletvioletthehiddentreasureofareazero"
+              }
+            ]
+          }
         },
         "catch_state": null,
         "forms": {
@@ -1254,7 +1282,12 @@
         }
       ]
     },
-    "filtered_report": {"total": null, "total_caught": null, "total_uncaught": null, "detail": []}
+    "filtered_report": {
+      "total": null,
+      "total_caught": null,
+      "total_uncaught": null,
+      "detail": []
+    }
   },
   "filters": []
 }

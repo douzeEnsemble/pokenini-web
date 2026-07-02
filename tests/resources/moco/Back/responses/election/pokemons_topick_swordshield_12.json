@@ -4,21 +4,26 @@
     {
       "pokemon": {
         "slug": "grookey",
-        "name": "Grookey",
-        "french_name": "Ouistempo",
+        "labels": {
+          "name": "Grookey",
+          "french_name": "Ouistempo",
+          "simplified_name": "Grookey",
+          "simplified_french_name": "Ouistempo",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 810,
         "regional_dex_number": null,
-        "simplified_name": "Grookey",
-        "forms_label": "",
-        "simplified_french_name": "Ouistempo",
-        "forms_french_label": "",
         "icon": "grookey",
+        "pokemon_icon": "grookey",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": null,
         "order_number": "001-0810-000",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -40,23 +45,28 @@
     {
       "pokemon": {
         "slug": "thwackey",
-        "name": "Thwackey",
-        "french_name": "Badabouin",
+        "labels": {
+          "name": "Thwackey",
+          "french_name": "Badabouin",
+          "simplified_name": "Thwackey",
+          "simplified_french_name": "Badabouin",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 811,
         "regional_dex_number": null,
-        "simplified_name": "Thwackey",
-        "forms_label": "",
-        "simplified_french_name": "Badabouin",
-        "forms_french_label": "",
         "icon": "thwackey",
+        "pokemon_icon": "thwackey",
         "family_order": 1,
         "family_lead": {
           "slug": "grookey"
         },
         "original_game_bundle": null,
         "order_number": "002-0811-001",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -78,15 +88,18 @@
     {
       "pokemon": {
         "slug": "rillaboom",
-        "name": "Rillaboom",
-        "french_name": "Gorythmic",
+        "labels": {
+          "name": "Rillaboom",
+          "french_name": "Gorythmic",
+          "simplified_name": "Rillaboom",
+          "simplified_french_name": "Gorythmic",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 812,
         "regional_dex_number": null,
-        "simplified_name": "Rillaboom",
-        "forms_label": "",
-        "simplified_french_name": "Gorythmic",
-        "forms_french_label": "",
         "icon": "rillaboom",
+        "pokemon_icon": "rillaboom",
         "family_order": 2,
         "family_lead": {
           "slug": "grookey"
@@ -95,8 +108,10 @@
           "slug": "redgreenblueyellow"
         },
         "order_number": "003-0812-002",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -118,15 +133,18 @@
     {
       "pokemon": {
         "slug": "rillaboom-gmax",
-        "name": "Gigantamax Rillaboom",
-        "french_name": "Gigamax Gorythmic",
+        "labels": {
+          "name": "Gigantamax Rillaboom",
+          "french_name": "Gigamax Gorythmic",
+          "simplified_name": "Rillaboom",
+          "simplified_french_name": "Gorythmic",
+          "forms_label": "Gigantamax",
+          "forms_french_label": "Gigamax"
+        },
         "national_dex_number": 812,
         "regional_dex_number": null,
-        "simplified_name": "Rillaboom",
-        "forms_label": "Gigantamax",
-        "simplified_french_name": "Gorythmic",
-        "forms_french_label": "Gigamax",
         "icon": "rillaboom-gmax",
+        "pokemon_icon": "rillaboom-gmax",
         "family_order": 3,
         "family_lead": {
           "slug": "grookey"
@@ -135,8 +153,10 @@
           "slug": "redgreenblueyellow"
         },
         "order_number": "003-0812-003",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -162,23 +182,28 @@
     {
       "pokemon": {
         "slug": "scorbunny",
-        "name": "Scorbunny",
-        "french_name": "Flambino",
+        "labels": {
+          "name": "Scorbunny",
+          "french_name": "Flambino",
+          "simplified_name": "Scorbunny",
+          "simplified_french_name": "Flambino",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 813,
         "regional_dex_number": null,
-        "simplified_name": "Scorbunny",
-        "forms_label": "",
-        "simplified_french_name": "Flambino",
-        "forms_french_label": "",
         "icon": "scorbunny",
+        "pokemon_icon": "scorbunny",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": {
           "slug": "redgreenblueyellow"
         },
         "order_number": "004-0813-000",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -200,15 +225,18 @@
     {
       "pokemon": {
         "slug": "raboot",
-        "name": "Raboot",
-        "french_name": "Lapyro",
+        "labels": {
+          "name": "Raboot",
+          "french_name": "Lapyro",
+          "simplified_name": "Raboot",
+          "simplified_french_name": "Lapyro",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 814,
         "regional_dex_number": null,
-        "simplified_name": "Raboot",
-        "forms_label": "",
-        "simplified_french_name": "Lapyro",
-        "forms_french_label": "",
         "icon": "raboot",
+        "pokemon_icon": "raboot",
         "family_order": 1,
         "family_lead": {
           "slug": "scorbunny"
@@ -217,8 +245,10 @@
           "slug": "redgreenblueyellow"
         },
         "order_number": "005-0814-001",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -240,15 +270,18 @@
     {
       "pokemon": {
         "slug": "cinderace",
-        "name": "Cinderace",
-        "french_name": "Pyrobut",
+        "labels": {
+          "name": "Cinderace",
+          "french_name": "Pyrobut",
+          "simplified_name": "Cinderace",
+          "simplified_french_name": "Pyrobut",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 815,
         "regional_dex_number": null,
-        "simplified_name": "Cinderace",
-        "forms_label": "",
-        "simplified_french_name": "Pyrobut",
-        "forms_french_label": "",
         "icon": "cinderace",
+        "pokemon_icon": "cinderace",
         "family_order": 2,
         "family_lead": {
           "slug": "scorbunny"
@@ -257,8 +290,10 @@
           "slug": "redgreenblueyellow"
         },
         "order_number": "006-0815-002",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -280,15 +315,18 @@
     {
       "pokemon": {
         "slug": "cinderace-gmax",
-        "name": "Gigantamax Cinderace",
-        "french_name": "Gigamax Pyrobut",
+        "labels": {
+          "name": "Gigantamax Cinderace",
+          "french_name": "Gigamax Pyrobut",
+          "simplified_name": "Cinderace",
+          "simplified_french_name": "Pyrobut",
+          "forms_label": "Gigantamax",
+          "forms_french_label": "Gigamax"
+        },
         "national_dex_number": 815,
         "regional_dex_number": null,
-        "simplified_name": "Cinderace",
-        "forms_label": "Gigantamax",
-        "simplified_french_name": "Pyrobut",
-        "forms_french_label": "Gigamax",
         "icon": "cinderace-gmax",
+        "pokemon_icon": "cinderace-gmax",
         "family_order": 3,
         "family_lead": {
           "slug": "scorbunny"
@@ -297,8 +335,10 @@
           "slug": "redgreenblueyellow"
         },
         "order_number": "006-0815-003",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -324,23 +364,28 @@
     {
       "pokemon": {
         "slug": "sobble",
-        "name": "Sobble",
-        "french_name": "Larméléon",
+        "labels": {
+          "name": "Sobble",
+          "french_name": "Larméléon",
+          "simplified_name": "Sobble",
+          "simplified_french_name": "Larméléon",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 816,
         "regional_dex_number": null,
-        "simplified_name": "Sobble",
-        "forms_label": "",
-        "simplified_french_name": "Larméléon",
-        "forms_french_label": "",
         "icon": "sobble",
+        "pokemon_icon": "sobble",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": {
           "slug": "redgreenblueyellow"
         },
         "order_number": "007-0816-000",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -362,15 +407,18 @@
     {
       "pokemon": {
         "slug": "drizzile",
-        "name": "Drizzile",
-        "french_name": "Arrozard",
+        "labels": {
+          "name": "Drizzile",
+          "french_name": "Arrozard",
+          "simplified_name": "Drizzile",
+          "simplified_french_name": "Arrozard",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 817,
         "regional_dex_number": null,
-        "simplified_name": "Drizzile",
-        "forms_label": "",
-        "simplified_french_name": "Arrozard",
-        "forms_french_label": "",
         "icon": "drizzile",
+        "pokemon_icon": "drizzile",
         "family_order": 1,
         "family_lead": {
           "slug": "sobble"
@@ -379,8 +427,10 @@
           "slug": "redgreenblueyellow"
         },
         "order_number": "008-0817-001",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -402,15 +452,18 @@
     {
       "pokemon": {
         "slug": "inteleon",
-        "name": "Inteleon",
-        "french_name": "Lézargus",
+        "labels": {
+          "name": "Inteleon",
+          "french_name": "Lézargus",
+          "simplified_name": "Inteleon",
+          "simplified_french_name": "Lézargus",
+          "forms_label": "",
+          "forms_french_label": ""
+        },
         "national_dex_number": 818,
         "regional_dex_number": null,
-        "simplified_name": "Inteleon",
-        "forms_label": "",
-        "simplified_french_name": "Lézargus",
-        "forms_french_label": "",
         "icon": "inteleon",
+        "pokemon_icon": "inteleon",
         "family_order": 2,
         "family_lead": {
           "slug": "sobble"
@@ -419,8 +472,10 @@
           "slug": "redgreenblueyellow"
         },
         "order_number": "009-0818-002",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {
@@ -442,15 +497,18 @@
     {
       "pokemon": {
         "slug": "inteleon-gmax",
-        "name": "Gigantamax Inteleon",
-        "french_name": "Gigamax Lézargus",
+        "labels": {
+          "name": "Gigantamax Inteleon",
+          "french_name": "Gigamax Lézargus",
+          "simplified_name": "Inteleon",
+          "simplified_french_name": "Lézargus",
+          "forms_label": "Gigantamax",
+          "forms_french_label": "Gigamax"
+        },
         "national_dex_number": 818,
         "regional_dex_number": null,
-        "simplified_name": "Inteleon",
-        "forms_label": "Gigantamax",
-        "simplified_french_name": "Lézargus",
-        "forms_french_label": "Gigamax",
         "icon": "inteleon-gmax",
+        "pokemon_icon": "inteleon-gmax",
         "family_order": 3,
         "family_lead": {
           "slug": "sobble"
@@ -459,8 +517,10 @@
           "slug": "redgreenblueyellow"
         },
         "order_number": "009-0818-003",
-        "game_bundles": [],
-        "game_bundles_shiny": []
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        }
       },
       "catch_state": null,
       "forms": {

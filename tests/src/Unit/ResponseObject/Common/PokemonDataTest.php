@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ResponseObject\Common;
 
+use App\ResponseObject\Common\GameBundlesGroup;
 use App\ResponseObject\Common\PokemonData;
+use App\ResponseObject\Common\PokemonLabels;
 use App\ResponseObject\Common\PokemonSlugRef;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -24,21 +26,22 @@ final class PokemonDataTest extends TestCase
 
         $data = new PokemonData(
             slug: 'charizard-mega-y',
-            name: 'Mega Charizard Y',
-            frenchName: 'Méga Dracaufeu Y',
+            labels: new PokemonLabels(
+                name: 'Mega Charizard Y',
+                frenchName: 'Méga Dracaufeu Y',
+                simplifiedName: 'Charizard',
+                simplifiedFrenchName: 'Dracaufeu',
+                formsLabel: 'Mega Y',
+                formsFrenchLabel: 'Méga Y',
+            ),
             nationalDexNumber: 6,
             regionalDexNumber: null,
-            simplifiedName: 'Charizard',
-            formsLabel: 'Mega Y',
-            simplifiedFrenchName: 'Dracaufeu',
-            formsFrenchLabel: 'Méga Y',
             icon: 'charizard-mega-y',
             familyOrder: 4,
             familyLead: $familyLead,
             originalGameBundle: $originalGameBundle,
             orderNumber: '9999-0006-004',
-            gameBundles: [$bundle1],
-            gameBundlesShiny: [$bundle2],
+            gameBundles: new GameBundlesGroup(normal: [$bundle1], shiny: [$bundle2]),
         );
 
         $this->assertSame('charizard-mega-y', $data->getSlug());
@@ -63,25 +66,54 @@ final class PokemonDataTest extends TestCase
     {
         $data = new PokemonData(
             slug: 'bulbasaur',
-            name: 'Bulbasaur',
-            frenchName: 'Bulbizarre',
+            labels: new PokemonLabels(
+                name: 'Bulbasaur',
+                frenchName: 'Bulbizarre',
+                simplifiedName: 'Bulbasaur',
+                simplifiedFrenchName: 'Bulbizarre',
+                formsLabel: '',
+                formsFrenchLabel: '',
+            ),
             nationalDexNumber: 1,
             regionalDexNumber: 1,
-            simplifiedName: 'Bulbasaur',
-            formsLabel: '',
-            simplifiedFrenchName: 'Bulbizarre',
-            formsFrenchLabel: '',
             icon: 'bulbasaur',
             familyOrder: 0,
             familyLead: null,
             originalGameBundle: null,
             orderNumber: '0001-0001-000',
-            gameBundles: [],
-            gameBundlesShiny: [],
+            gameBundles: new GameBundlesGroup(normal: [], shiny: []),
         );
 
         $this->assertNull($data->getFamilyLead());
         $this->assertNull($data->getOriginalGameBundle());
         $this->assertSame(1, $data->getRegionalDexNumber());
+    }
+
+    public function testNullableLabels(): void
+    {
+        $data = new PokemonData(
+            slug: 'bulbasaur',
+            labels: new PokemonLabels(
+                name: 'Bulbasaur',
+                frenchName: 'Bulbizarre',
+                simplifiedName: null,
+                simplifiedFrenchName: null,
+                formsLabel: null,
+                formsFrenchLabel: null,
+            ),
+            nationalDexNumber: 1,
+            regionalDexNumber: null,
+            icon: 'bulbasaur',
+            familyOrder: 0,
+            familyLead: null,
+            originalGameBundle: null,
+            orderNumber: '0001-0001-000',
+            gameBundles: new GameBundlesGroup(normal: [], shiny: []),
+        );
+
+        $this->assertSame('', $data->getSimplifiedName());
+        $this->assertSame('', $data->getSimplifiedFrenchName());
+        $this->assertSame('', $data->getFormsLabel());
+        $this->assertSame('', $data->getFormsFrenchLabel());
     }
 }

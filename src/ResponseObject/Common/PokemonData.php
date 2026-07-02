@@ -6,34 +6,20 @@ namespace App\ResponseObject\Common;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-/**
- * @SuppressWarnings("PHPMD.ExcessiveParameterList")
- */
 final class PokemonData
 {
     /**
-     * @param PokemonSlugRef[] $gameBundles
-     * @param PokemonSlugRef[] $gameBundlesShiny
+     * @SuppressWarnings("PHPMD.ExcessiveParameterList")
      */
     public function __construct(
         #[SerializedName('slug')]
         private readonly string $slug,
-        #[SerializedName('name')]
-        private readonly string $name,
-        #[SerializedName('french_name')]
-        private readonly string $frenchName,
+        #[SerializedName('labels')]
+        private readonly PokemonLabels $labels,
         #[SerializedName('national_dex_number')]
         private readonly int $nationalDexNumber,
         #[SerializedName('regional_dex_number')]
         private readonly ?int $regionalDexNumber,
-        #[SerializedName('simplified_name')]
-        private readonly string $simplifiedName,
-        #[SerializedName('forms_label')]
-        private readonly string $formsLabel,
-        #[SerializedName('simplified_french_name')]
-        private readonly string $simplifiedFrenchName,
-        #[SerializedName('forms_french_label')]
-        private readonly string $formsFrenchLabel,
         #[SerializedName('icon')]
         private readonly string $icon,
         #[SerializedName('family_order')]
@@ -45,9 +31,7 @@ final class PokemonData
         #[SerializedName('order_number')]
         private readonly string $orderNumber,
         #[SerializedName('game_bundles')]
-        private readonly array $gameBundles,
-        #[SerializedName('game_bundles_shiny')]
-        private readonly array $gameBundlesShiny,
+        private readonly GameBundlesGroup $gameBundles,
     ) {}
 
     public function getSlug(): string
@@ -57,12 +41,12 @@ final class PokemonData
 
     public function getName(): string
     {
-        return $this->name;
+        return $this->labels->getName();
     }
 
     public function getFrenchName(): string
     {
-        return $this->frenchName;
+        return $this->labels->getFrenchName();
     }
 
     public function getNationalDexNumber(): int
@@ -77,22 +61,22 @@ final class PokemonData
 
     public function getSimplifiedName(): string
     {
-        return $this->simplifiedName;
+        return $this->labels->getSimplifiedName() ?? '';
     }
 
     public function getFormsLabel(): string
     {
-        return $this->formsLabel;
+        return $this->labels->getFormsLabel() ?? '';
     }
 
     public function getSimplifiedFrenchName(): string
     {
-        return $this->simplifiedFrenchName;
+        return $this->labels->getSimplifiedFrenchName() ?? '';
     }
 
     public function getFormsFrenchLabel(): string
     {
-        return $this->formsFrenchLabel;
+        return $this->labels->getFormsFrenchLabel() ?? '';
     }
 
     public function getIcon(): string
@@ -125,7 +109,7 @@ final class PokemonData
      */
     public function getGameBundles(): array
     {
-        return $this->gameBundles;
+        return $this->gameBundles->getNormal();
     }
 
     /**
@@ -133,6 +117,6 @@ final class PokemonData
      */
     public function getGameBundlesShiny(): array
     {
-        return $this->gameBundlesShiny;
+        return $this->gameBundles->getShiny();
     }
 }
