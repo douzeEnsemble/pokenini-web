@@ -69,7 +69,7 @@ trait ResponseObjectTrait
         $gameBundles = array_fill(0, $count, $gameBundle);
         ++$count;
 
-        $collection = new Collection('Toto', 'Tautaux', 'toto');
+        $collection = new Collection('Toto', 'Tautaux', 'toto', 1);
         $collections = array_fill(0, $count, $collection);
 
         return new Labels(
@@ -198,6 +198,7 @@ trait ResponseObjectTrait
                 new TopPokemonLabels('Bulbasaur', 'Bulbizarre', 'Bulbasaur', 'Bulbizarre', null, null),
                 1,
                 null,
+                'bulbasaur',
                 'bulbasaur',
                 1,
                 new TopPokemonSlugRef('bulbasaur'),

@@ -12,6 +12,8 @@ final class ElectionDexListItem
     public function __construct(
         #[SerializedName('slug')]
         private readonly string $slug,
+        #[SerializedName('original_slug')]
+        private readonly string $originalSlug,
         #[SerializedName('name')]
         private readonly string $name,
         #[SerializedName('french_name')]
@@ -31,6 +33,11 @@ final class ElectionDexListItem
     public function getSlug(): string
     {
         return $this->slug;
+    }
+
+    public function getOriginalSlug(): string
+    {
+        return $this->originalSlug;
     }
 
     public function getName(): string

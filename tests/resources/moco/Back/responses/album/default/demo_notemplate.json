@@ -6939,7 +6939,7 @@
         }
       ]
     },
-    "filtered_report": []
+    "filtered_report": {"total": null, "total_caught": null, "total_uncaught": null, "detail": []}
   },
   "filters": []
 }

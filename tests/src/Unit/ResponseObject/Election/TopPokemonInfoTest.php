@@ -30,6 +30,7 @@ final class TopPokemonInfoTest extends TestCase
             3,
             null,
             'venusaur-mega',
+            'venusaur-mega',
             4,
             $familyLead,
             $origBundle,
@@ -42,6 +43,7 @@ final class TopPokemonInfoTest extends TestCase
         $this->assertSame(3, $object->getNationalDexNumber());
         $this->assertNull($object->getRegionalDexNumber());
         $this->assertSame('venusaur-mega', $object->getIcon());
+        $this->assertSame('venusaur-mega', $object->getPokemonIcon());
         $this->assertSame(4, $object->getFamilyOrder());
         $this->assertSame($familyLead, $object->getFamilyLead());
         $this->assertSame($origBundle, $object->getOriginalGameBundle());
@@ -60,6 +62,7 @@ final class TopPokemonInfoTest extends TestCase
             $labels,
             9,
             null,
+            'blastoise-mega',
             'blastoise-mega',
             3,
             $familyLead,
@@ -84,6 +87,7 @@ final class TopPokemonInfoTest extends TestCase
             1,
             null,
             'bulbasaur',
+            'bulbasaur',
             0,
             null,
             null,
@@ -105,6 +109,7 @@ final class TopPokemonInfoTest extends TestCase
             $labels,
             26,
             14,
+            'raichu',
             'raichu',
             2,
             $familyLead,
