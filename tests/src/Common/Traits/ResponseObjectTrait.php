@@ -28,7 +28,6 @@ use App\ResponseObject\Election\TopPokemonTypes;
 use App\ResponseObject\Label\CatchState;
 use App\ResponseObject\Label\CategoryForm;
 use App\ResponseObject\Label\Collection;
-use App\ResponseObject\Label\Forms;
 use App\ResponseObject\Label\GameBundle;
 use App\ResponseObject\Label\Generation;
 use App\ResponseObject\Label\Labels;
@@ -77,12 +76,10 @@ trait ResponseObjectTrait
         return new Labels(
             $catchStates,
             $types,
-            new Forms(
-                $categoryForms,
-                $regionalForms,
-                $specialForms,
-                $variantForms,
-            ),
+            $categoryForms,
+            $regionalForms,
+            $specialForms,
+            $variantForms,
             $gameBundles,
             $collections,
         );

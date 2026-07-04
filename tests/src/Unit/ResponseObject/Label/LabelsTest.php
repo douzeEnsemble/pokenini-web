@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ResponseObject\Label;
 
-use App\ResponseObject\Label\Forms;
 use App\ResponseObject\Label\Labels;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -34,13 +33,7 @@ final class LabelsTest extends TestCase
 
     public function testConstructorWithAllEmpty(): void
     {
-        $object = new Labels(
-            [],
-            [],
-            new Forms([], [], [], []),
-            [],
-            [],
-        );
+        $object = new Labels([], [], [], [], [], [], [], []);
 
         $this->assertSame([], $object->getCatchStates());
         $this->assertSame([], $object->getTypes());

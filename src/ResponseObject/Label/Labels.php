@@ -9,18 +9,28 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 final class Labels
 {
     /**
-     * @param array<int, CatchState> $catchStates
-     * @param array<int, Type>       $types
-     * @param array<int, GameBundle> $gameBundles
-     * @param array<int, Collection> $collections
+     * @param array<int, CatchState>   $catchStates
+     * @param array<int, Type>         $types
+     * @param array<int, CategoryForm> $categoryForms
+     * @param array<int, RegionalForm> $regionalForms
+     * @param array<int, SpecialForm>  $specialForms
+     * @param array<int, VariantForm>  $variantForms
+     * @param array<int, GameBundle>   $gameBundles
+     * @param array<int, Collection>   $collections
      */
     public function __construct(
         #[SerializedName('catch_states')]
         private readonly array $catchStates,
         #[SerializedName('types')]
         private readonly array $types,
-        #[SerializedName('forms')]
-        private readonly Forms $forms,
+        #[SerializedName('category_forms')]
+        private readonly array $categoryForms,
+        #[SerializedName('regional_forms')]
+        private readonly array $regionalForms,
+        #[SerializedName('special_forms')]
+        private readonly array $specialForms,
+        #[SerializedName('variant_forms')]
+        private readonly array $variantForms,
         #[SerializedName('game_bundles')]
         private readonly array $gameBundles,
         #[SerializedName('collections')]
@@ -45,7 +55,12 @@ final class Labels
 
     public function getForms(): Forms
     {
-        return $this->forms;
+        return new Forms(
+            $this->categoryForms,
+            $this->regionalForms,
+            $this->specialForms,
+            $this->variantForms,
+        );
     }
 
     /**
