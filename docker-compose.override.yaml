@@ -5,6 +5,13 @@ networks:
 services:
   php:
     networks:
+      default:
+        aliases:
+          - www-php
+      pokenini-local: {}
+
+  web:
+    networks:
       default: {}
       pokenini-local:
         aliases:
