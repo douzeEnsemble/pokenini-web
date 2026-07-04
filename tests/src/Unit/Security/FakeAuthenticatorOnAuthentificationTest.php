@@ -6,7 +6,6 @@ namespace App\Tests\Unit\Security;
 
 use App\Security\FakeAuthenticator;
 use App\Security\User;
-use App\Service\Back\GetUserInfoService;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -142,8 +141,6 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
             ->willReturnOnConsecutiveCalls(...$routes)
         ;
 
-        $getUserInfoService = $this->createStub(GetUserInfoService::class);
-
-        return new FakeAuthenticator($router, $getUserInfoService);
+        return new FakeAuthenticator($router);
     }
 }

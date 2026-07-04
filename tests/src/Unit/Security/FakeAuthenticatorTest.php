@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Security;
 
 use App\Security\FakeAuthenticator;
-use App\Service\Back\GetUserInfoService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,13 +18,8 @@ final class FakeAuthenticatorTest extends TestCase
 {
     public function testSupports(): void
     {
-        $router = $this->createStub(RouterInterface::class);
-
-        $getUserInfoService = $this->createStub(GetUserInfoService::class);
-
         $authenticator = new FakeAuthenticator(
-            $router,
-            $getUserInfoService,
+            $this->createStub(RouterInterface::class),
         );
 
         $this->assertTrue(
