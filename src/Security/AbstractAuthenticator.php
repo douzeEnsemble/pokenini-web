@@ -7,6 +7,7 @@ namespace App\Security;
 use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
+use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
@@ -48,4 +49,27 @@ abstract class AbstractAuthenticator extends OAuth2Authenticator
     abstract protected function getProviderCode(): string;
 
     abstract protected function getProviderName(): string;
+
+    private function loadFromAccessToken(AccessToken $accessToken, string $providerName): User
+    {
+        $userInfo = $this->getUserInfoService->get($accessToken, $providerName);
+
+        $user = new User($userInfo->getId(), $providerName, $accessToken);
+
+        $roles = $userInfo->getRoles();
+
+        if (in_array('ROLE_TRAINER', $roles)) {
+            $user->addTrainerRole();
+        }
+
+        if (in_array('ROLE_COLLECTOR', $roles)) {
+            $user->addCollectorRole();
+        }
+
+        if (in_array('ROLE_ADMIN', $roles)) {
+            $user->addAdminRole();
+        }
+
+        return $user;
+    }
 }

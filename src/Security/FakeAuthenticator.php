@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use League\OAuth2\Client\Token\AccessToken;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +18,6 @@ final class FakeAuthenticator extends OAuth2Authenticator
 
     public function __construct(
         private readonly RouterInterface $router,
-        private readonly GetUserInfoService $getUserInfoService,
     ) {}
 
     /**
@@ -47,9 +45,27 @@ final class FakeAuthenticator extends OAuth2Authenticator
         ]);
 
         return new SelfValidatingPassport(
-            new UserBadge($identifier, function () use ($accessToken) {
-                return $this->loadFromAccessToken($accessToken, 'FaKe');
+            new UserBadge($identifier, function () use ($accessToken, $identifier): User {
+                return $this->buildUser($accessToken, $identifier);
             })
         );
+    }
+
+    private function buildUser(AccessToken $accessToken, string $identifier): User
+    {
+        $user = new User($identifier, 'fake', $accessToken);
+
+        if ('admin' === $identifier) {
+            $user->addAdminRole();
+            $user->addCollectorRole();
+            $user->addTrainerRole();
+        } elseif ('collector' === $identifier) {
+            $user->addCollectorRole();
+            $user->addTrainerRole();
+        } elseif ('trainer' === $identifier) {
+            $user->addTrainerRole();
+        }
+
+        return $user;
     }
 }
