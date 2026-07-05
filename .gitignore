@@ -48,3 +48,4 @@ tools/*/var
 tools/php-security-checker/local-php-security-checker
 
 /.deptrac.cache
+/docker-compose.override.yaml
