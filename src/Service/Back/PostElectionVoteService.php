@@ -15,10 +15,10 @@ class PostElectionVoteService extends AbstractBackService
             'POST',
             "/election/{$electionVote->dexSlug}".($electionVote->electionSlug ? "/{$electionVote->electionSlug}" : ''),
             [
-                'body' => json_encode([
+                'json' => [
                     'winners_slugs' => $electionVote->winnersSlugs,
                     'losers_slugs' => $electionVote->losersSlugs,
-                ]),
+                ],
             ]
         );
     }

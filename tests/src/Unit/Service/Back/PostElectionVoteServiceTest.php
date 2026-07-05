@@ -88,10 +88,10 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
             (new Filesystem())->readFile($filename),
             'election/demo/whatever',
             [
-                'body' => (string) json_encode([
+                'json' => [
                     'winners_slugs' => ['pichu'],
                     'losers_slugs' => ['pikachu', 'raichu'],
-                ]),
+                ],
             ]
         );
 
@@ -135,10 +135,10 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
             (new Filesystem())->readFile($filename),
             "election/{$dexSlug}/{$electionSlug}",
             [
-                'body' => (string) json_encode([
+                'json' => [
                     'winners_slugs' => $winnersSlugs,
                     'losers_slugs' => $losersSlugs,
-                ]),
+                ],
             ]
         );
     }

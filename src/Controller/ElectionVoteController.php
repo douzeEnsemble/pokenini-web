@@ -24,6 +24,7 @@ final class ElectionVoteController extends AbstractController
             'dexSlug' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*',
             'electionSlug' => '[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*',
         ],
+        defaults: ['electionSlug' => ''],
         methods: ['POST']
     )]
     public function vote(
