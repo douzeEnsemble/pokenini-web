@@ -30,9 +30,11 @@ security:
     - { path: ^/(en|fr)/outerroom, roles: ROLE_USER }
     - { path: ^/, roles: PUBLIC_ACCESS }
 
-when@dev:
-  security:            
+when@dev: &fake_authenticator
+  security:
     firewalls:
       web:
         custom_authenticators:
           - App\Security\FakeAuthenticator
+
+when@test: *fake_authenticator
