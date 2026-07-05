@@ -55,6 +55,7 @@ title:
 
 home:
   no_dex: "There are no albums to display. You can add them to your <a>trainer space</a>"
+  no_election_dex: "There are no albums to available for an election."
   alert:
     election:
       description: "Brand new ! You can choose your favorite Pokémon"

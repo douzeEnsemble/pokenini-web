@@ -55,6 +55,7 @@ title:
 
 home:
   no_dex: "Y'a pas d'album à afficher. Tu peux les rajouter sur ton <a>espace dresseur</a>."
+  no_election_dex: "Y'a pas d'album à afficher pour des élections."
   alert:
     not_connected:
       description: "Tu n'es pas connecté. Connecte-toi pour profiter pleinement de l'application"
