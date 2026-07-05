@@ -122,9 +122,13 @@
 </div>
 {% endmacro %}
 
-{% macro none() %}
+{% macro none(type) %}
 <div class="alert alert-secondary mt-5" role="alert">
+  {% if 'elections' === type %}
+    <p>{{ 'home.no_election_dex'|trans|raw }}</p>
+  {% else %}
     <p>{{ 'home.no_dex'|trans|replace({'<a>': '<a href="'~path('app_trainerindex_index')~'">'})|raw }}</p>
+  {% endif %}
 </div>
 {% endmacro %}
 
@@ -133,17 +137,17 @@
   {% for item in dex|filter(item => item.flags.isOnHome is same as(true)) %}
   {{ _self.item('album', item, locale, forcedTrainerId) }}
   {% else %}
-  {{ _self.none() }}
+  {{ _self.none('albums') }}
 {% endfor %}
 </div>
 {% endmacro %}
 
 {% macro listElections(dex, locale, forcedTrainerId = null) %}
 <div class="row g-lg-4 g-md-4 g-sm-3 g-2">
-  {% for item in dex|filter(item => item.flags.isOnHome is same as(true)) %}
+  {% for item in dex %}
   {{ _self.itemElection(item, locale, forcedTrainerId) }}
   {% else %}
-  {{ _self.none() }}
+  {{ _self.none('election') }}
 {% endfor %}
 </div>
 {% endmacro %}
