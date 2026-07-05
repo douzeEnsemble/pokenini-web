@@ -15,8 +15,8 @@
         "ext-xml": "*",
         "ext-xmlwriter": "*",
         "ext-zip": "*",
-        "phpstan/phpstan": "^2.2.3",
+        "phpstan/phpstan": "^2.2.5",
         "phpstan/phpstan-symfony": "^2.0.20",
-        "phpstan/phpstan-phpunit": "^2.0.17"
+        "phpstan/phpstan-phpunit": "^2.0.18"
     }
 }
