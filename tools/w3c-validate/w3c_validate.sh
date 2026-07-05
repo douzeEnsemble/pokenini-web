@@ -2,9 +2,10 @@
 
 set -euo pipefail
 
-BASE_URI="http://localhost/"
+BASE_URI="http://web:8081/"
 OUT_DIR="var/html"
 VNU_CMD="docker run --rm -v $(pwd):/app ghcr.io/validator/validator:latest vnu --format text"
+CURL_CMD="docker compose exec -T php curl"
 
 URLS=(
 	""
@@ -28,7 +29,7 @@ URLS=(
 authenticate() {
 	local url="${BASE_URI}fr/connect/f/c?t=trainer"
 	echo "🔐 Authenticating with $url ..."
-	if ! curl -fsSL "$url" >/dev/null; then
+	if ! $CURL_CMD -fsSL "$url" >/dev/null; then
 		echo "❌ Authentication failed"
 		exit 1
 	fi
@@ -51,7 +52,7 @@ fetch_and_clean() {
 	local outfile="${OUT_DIR}/${filename}.html"
 
 	echo "🌐 Fetching $url ... to $outfile"
-	if ! curl -fsSL "$url" | grep -v "Symfony Web Debug Toolbar" >"$outfile"; then
+	if ! $CURL_CMD -fsSL "$url" | grep -v "Symfony Web Debug Toolbar" >"$outfile"; then
 		echo "⚠️ Failed to fetch $url"
 		return
 	fi
