@@ -68,9 +68,9 @@ final class ConnectTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $client->request('GET', '/fr/connect/f/c');
+        $client->request('GET', '/fr/connect/f/c?t=test');
 
-        $this->assertResponseStatusCodeSame(404);
+        $this->assertResponseStatusCodeSame(302);
     }
 
     private function assertConnectLink(Crawler $crawler, string $label, string $shortName, int $index): void

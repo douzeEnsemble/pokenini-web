@@ -14,7 +14,7 @@ final class FakeController extends AbstractController
     #[Route(
         '/c',
         methods: ['GET'],
-        condition: "'dev' === env('APP_ENV')"
+        condition: "env('APP_ENV') in ['dev', 'test']"
     )]
     public function check(): void
     {

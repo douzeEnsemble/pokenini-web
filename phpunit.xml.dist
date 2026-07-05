@@ -11,6 +11,8 @@
         <server name="APP_ENV" value="test" force="true" />
         <server name="KERNEL_CLASS" value="App\Kernel" force="true" />
         <server name="PANTHER_APP_ENV" value="test" force="true" />
+        <server name="PANTHER_EXTERNAL_BASE_URI" value="http://web:8081" force="true" />
+        <env name="PANTHER_EXTERNAL_BASE_URI" value="http://web:8081" force="true" />
         <server name="SHELL_VERBOSITY" value="-1" />
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="13.1" />
