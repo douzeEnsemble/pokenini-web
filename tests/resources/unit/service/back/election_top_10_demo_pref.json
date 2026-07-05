@@ -20,8 +20,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "rattata-f"
+            }
         },
         "forms": {
             "category": null,
@@ -68,8 +67,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "rattata-alola"
+            }
         },
         "forms": {
             "category": null,
@@ -121,8 +119,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "raticate"
+            }
         },
         "forms": null,
         "types": {
@@ -160,8 +157,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "raticate-f"
+            }
         },
         "forms": {
             "category": null,
@@ -208,8 +204,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "raticate-alola"
+            }
         },
         "forms": {
             "category": null,
@@ -261,8 +256,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "raticate-alola-totem"
+            }
         },
         "forms": {
             "category": null,
@@ -318,8 +312,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "spearow"
+            }
         },
         "forms": null,
         "types": {
@@ -364,8 +357,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "fearow"
+            }
         },
         "forms": null,
         "types": {
@@ -408,8 +400,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "ekans"
+            }
         },
         "forms": null,
         "types": {
@@ -449,8 +440,7 @@
             "game_bundles": {
                 "normal": [],
                 "shiny": []
-            },
-            "pokemon_icon": "arbok"
+            }
         },
         "forms": null,
         "types": {
