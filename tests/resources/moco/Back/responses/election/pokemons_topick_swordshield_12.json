@@ -15,7 +15,6 @@
         "national_dex_number": 810,
         "regional_dex_number": null,
         "icon": "grookey",
-        "pokemon_icon": "grookey",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": null,
@@ -56,7 +55,6 @@
         "national_dex_number": 811,
         "regional_dex_number": null,
         "icon": "thwackey",
-        "pokemon_icon": "thwackey",
         "family_order": 1,
         "family_lead": {
           "slug": "grookey"
@@ -99,7 +97,6 @@
         "national_dex_number": 812,
         "regional_dex_number": null,
         "icon": "rillaboom",
-        "pokemon_icon": "rillaboom",
         "family_order": 2,
         "family_lead": {
           "slug": "grookey"
@@ -144,7 +141,6 @@
         "national_dex_number": 812,
         "regional_dex_number": null,
         "icon": "rillaboom-gmax",
-        "pokemon_icon": "rillaboom-gmax",
         "family_order": 3,
         "family_lead": {
           "slug": "grookey"
@@ -193,7 +189,6 @@
         "national_dex_number": 813,
         "regional_dex_number": null,
         "icon": "scorbunny",
-        "pokemon_icon": "scorbunny",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": {
@@ -236,7 +231,6 @@
         "national_dex_number": 814,
         "regional_dex_number": null,
         "icon": "raboot",
-        "pokemon_icon": "raboot",
         "family_order": 1,
         "family_lead": {
           "slug": "scorbunny"
@@ -281,7 +275,6 @@
         "national_dex_number": 815,
         "regional_dex_number": null,
         "icon": "cinderace",
-        "pokemon_icon": "cinderace",
         "family_order": 2,
         "family_lead": {
           "slug": "scorbunny"
@@ -326,7 +319,6 @@
         "national_dex_number": 815,
         "regional_dex_number": null,
         "icon": "cinderace-gmax",
-        "pokemon_icon": "cinderace-gmax",
         "family_order": 3,
         "family_lead": {
           "slug": "scorbunny"
@@ -375,7 +367,6 @@
         "national_dex_number": 816,
         "regional_dex_number": null,
         "icon": "sobble",
-        "pokemon_icon": "sobble",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": {
@@ -418,7 +409,6 @@
         "national_dex_number": 817,
         "regional_dex_number": null,
         "icon": "drizzile",
-        "pokemon_icon": "drizzile",
         "family_order": 1,
         "family_lead": {
           "slug": "sobble"
@@ -463,7 +453,6 @@
         "national_dex_number": 818,
         "regional_dex_number": null,
         "icon": "inteleon",
-        "pokemon_icon": "inteleon",
         "family_order": 2,
         "family_lead": {
           "slug": "sobble"
@@ -508,7 +497,6 @@
         "national_dex_number": 818,
         "regional_dex_number": null,
         "icon": "inteleon-gmax",
-        "pokemon_icon": "inteleon-gmax",
         "family_order": 3,
         "family_lead": {
           "slug": "sobble"

@@ -199,7 +199,6 @@ trait ResponseObjectTrait
                 1,
                 null,
                 'bulbasaur',
-                'bulbasaur',
                 1,
                 new TopPokemonSlugRef('bulbasaur'),
                 null,

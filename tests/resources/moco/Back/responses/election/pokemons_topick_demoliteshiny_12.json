@@ -15,7 +15,6 @@
         "national_dex_number": 1,
         "regional_dex_number": null,
         "icon": "bulbasaur",
-        "pokemon_icon": "bulbasaur",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": {
@@ -67,7 +66,6 @@
         "national_dex_number": 2,
         "regional_dex_number": null,
         "icon": "ivysaur",
-        "pokemon_icon": "ivysaur",
         "family_order": 1,
         "family_lead": {
           "slug": "bulbasaur"
@@ -122,7 +120,6 @@
         "national_dex_number": 3,
         "regional_dex_number": null,
         "icon": "venusaur",
-        "pokemon_icon": "venusaur",
         "family_order": 2,
         "family_lead": {
           "slug": "bulbasaur"
@@ -177,7 +174,6 @@
         "national_dex_number": 3,
         "regional_dex_number": null,
         "icon": "venusaur-mega",
-        "pokemon_icon": "venusaur-mega",
         "family_order": 4,
         "family_lead": {
           "slug": "bulbasaur"
@@ -236,7 +232,6 @@
         "national_dex_number": 3,
         "regional_dex_number": null,
         "icon": "venusaur-gmax",
-        "pokemon_icon": "venusaur-gmax",
         "family_order": 5,
         "family_lead": {
           "slug": "bulbasaur"
@@ -295,7 +290,6 @@
         "national_dex_number": 4,
         "regional_dex_number": null,
         "icon": "charmander",
-        "pokemon_icon": "charmander",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": {
@@ -347,7 +341,6 @@
         "national_dex_number": 5,
         "regional_dex_number": null,
         "icon": "charmeleon",
-        "pokemon_icon": "charmeleon",
         "family_order": 1,
         "family_lead": {
           "slug": "charmander"
@@ -397,7 +390,6 @@
         "national_dex_number": 6,
         "regional_dex_number": null,
         "icon": "charizard",
-        "pokemon_icon": "charizard",
         "family_order": 2,
         "family_lead": {
           "slug": "charmander"
@@ -447,7 +439,6 @@
         "national_dex_number": 6,
         "regional_dex_number": null,
         "icon": "charizard-mega-x",
-        "pokemon_icon": "charizard-mega-x",
         "family_order": 3,
         "family_lead": {
           "slug": "charmander"
@@ -501,7 +492,6 @@
         "national_dex_number": 6,
         "regional_dex_number": null,
         "icon": "charizard-mega-y",
-        "pokemon_icon": "charizard-mega-y",
         "family_order": 4,
         "family_lead": {
           "slug": "charmander"
@@ -555,7 +545,6 @@
         "national_dex_number": 7,
         "regional_dex_number": null,
         "icon": "squirtle",
-        "pokemon_icon": "squirtle",
         "family_order": 0,
         "family_lead": null,
         "original_game_bundle": {
@@ -602,7 +591,6 @@
         "national_dex_number": 8,
         "regional_dex_number": null,
         "icon": "wartortle",
-        "pokemon_icon": "wartortle",
         "family_order": 1,
         "family_lead": {
           "slug": "squirtle"

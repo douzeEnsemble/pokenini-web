@@ -3449,8 +3449,7 @@
               "slug": "redgreenblueyellow"
             }
           ]
-        },
-        "pokemon_icon": "venusaur-mega"
+        }
       },
       "forms": {
         "category": null,
@@ -3504,8 +3503,7 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
-        },
-        "pokemon_icon": "blastoise-mega"
+        }
       },
       "forms": {
         "category": null,
@@ -3549,8 +3547,7 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
-        },
-        "pokemon_icon": "beedrill-mega"
+        }
       },
       "forms": {
         "category": null,
@@ -3594,8 +3591,7 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
-        },
-        "pokemon_icon": "pidgeot-mega"
+        }
       },
       "forms": {
         "category": null,
@@ -3639,8 +3635,7 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
-        },
-        "pokemon_icon": "alakazam-mega"
+        }
       },
       "forms": {
         "category": null,

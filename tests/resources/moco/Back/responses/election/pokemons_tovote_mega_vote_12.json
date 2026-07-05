@@ -15,7 +15,6 @@
         "national_dex_number": 6,
         "regional_dex_number": null,
         "icon": "charizard-mega-y",
-        "pokemon_icon": "charizard-mega-y",
         "family_order": 4,
         "family_lead": {
           "slug": "charmander"
@@ -69,7 +68,6 @@
         "national_dex_number": 9,
         "regional_dex_number": null,
         "icon": "blastoise-mega",
-        "pokemon_icon": "blastoise-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "squirtle"
@@ -118,7 +116,6 @@
         "national_dex_number": 15,
         "regional_dex_number": null,
         "icon": "beedrill-mega",
-        "pokemon_icon": "beedrill-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "weedle"
@@ -172,7 +169,6 @@
         "national_dex_number": 18,
         "regional_dex_number": null,
         "icon": "pidgeot-mega",
-        "pokemon_icon": "pidgeot-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "pidgey"
@@ -226,7 +222,6 @@
         "national_dex_number": 150,
         "regional_dex_number": null,
         "icon": "mewtwo-mega-x",
-        "pokemon_icon": "mewtwo-mega-x",
         "family_order": 1,
         "family_lead": {
           "slug": "mewtwo"
@@ -284,7 +279,6 @@
         "national_dex_number": 181,
         "regional_dex_number": null,
         "icon": "ampharos-mega",
-        "pokemon_icon": "ampharos-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "mareep"
@@ -338,7 +332,6 @@
         "national_dex_number": 214,
         "regional_dex_number": null,
         "icon": "heracross-mega",
-        "pokemon_icon": "heracross-mega",
         "family_order": 5,
         "family_lead": {
           "slug": "heracross"
@@ -392,7 +385,6 @@
         "national_dex_number": 254,
         "regional_dex_number": null,
         "icon": "sceptile-mega",
-        "pokemon_icon": "sceptile-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "treecko"
@@ -446,7 +438,6 @@
         "national_dex_number": 354,
         "regional_dex_number": null,
         "icon": "banette-mega",
-        "pokemon_icon": "banette-mega",
         "family_order": 2,
         "family_lead": {
           "slug": "shuppet"
@@ -495,7 +486,6 @@
         "national_dex_number": 373,
         "regional_dex_number": null,
         "icon": "salamence-mega",
-        "pokemon_icon": "salamence-mega",
         "family_order": 3,
         "family_lead": {
           "slug": "bagon"
@@ -549,7 +539,6 @@
         "national_dex_number": 380,
         "regional_dex_number": null,
         "icon": "latias-mega",
-        "pokemon_icon": "latias-mega",
         "family_order": 1,
         "family_lead": {
           "slug": "latias"
@@ -607,7 +596,6 @@
         "national_dex_number": 531,
         "regional_dex_number": null,
         "icon": "audino-mega",
-        "pokemon_icon": "audino-mega",
         "family_order": 1,
         "family_lead": {
           "slug": "audino"
