@@ -38,6 +38,9 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
         $client->request('GET', '/fr/connect/f/c?t='.$user->getProfile());
 
         // JS with explicit path=/ : Panther's addCookie omits it, Firefox then defaults to the current URL path (/fr/connect/f/c) which doesn't match /fr/*
-        $client->executeScript("document.cookie = 'tarteaucitron=!matomocloud=true; path=/';");
+        // Consent is denied (not accepted): accepting it would make tarteaucitron load the real
+        // matomo.pokenini.fr script (hardcoded in _tracker.html.twig, unlike the mocked matomoUrl),
+        // causing net::ERR_NAME_NOT_RESOLVED in CI when that external host isn't reachable.
+        $client->executeScript("document.cookie = 'tarteaucitron=!matomocloud=false; path=/';");
     }
 }
