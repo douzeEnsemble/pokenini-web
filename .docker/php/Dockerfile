@@ -109,3 +109,18 @@ RUN rm .env \
 ## > Cleanup
 
 RUN chown -R www-data:www-data var/
+
+## < Sync /app/public into the volume shared with nginx on every start
+## (see docker-entrypoint-prod.sh for why this can't just rely on the
+## COPY above: /app/public is overlaid by a named Docker volume at runtime).
+# hadolint ignore=DL3018
+RUN apk add --no-cache rsync \
+	&& mv public public-src
+COPY --link .docker/php/docker-entrypoint-prod.sh /usr/local/bin/docker-entrypoint-prod.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint-prod.sh
+
+ENTRYPOINT ["docker-entrypoint-prod.sh"]
+## Note: setting ENTRYPOINT resets any CMD inherited from the base image, so
+## it must be redeclared explicitly to keep starting php-fpm by default.
+CMD ["php-fpm"]
+## > Sync /app/public into the volume shared with nginx on every start
