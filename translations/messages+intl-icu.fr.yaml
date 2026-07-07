@@ -145,6 +145,10 @@ album:
       title: Informations
     title: Filtres
     open_distinguish_types: Avancées
+  share:
+    toast:
+      success: "Lien copié dans le presse-papier !"
+      error: "Impossible de copier le lien automatiquement, merci de le copier manuellement."
 
 update:
   labels:

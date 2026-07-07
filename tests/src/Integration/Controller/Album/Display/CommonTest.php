@@ -130,7 +130,7 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.album-case .album-case-catch-state a.album-case-catch-state-label');
         $this->assertCountFilter($crawler, 41, '.album-case .album-case-catch-state span.album-case-catch-state-label');
 
-        $this->assertCountFilter($crawler, 0, '.toast');
+        $this->assertCountFilter($crawler, 2, '.toast');
 
         $this->assertCountFilter($crawler, 1, 'script[src="/js/album.js"]');
         $this->assertCountFilter($crawler, 0, 'script[src="/js/album-edit.js"]');
@@ -151,9 +151,10 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 41, '.album-case .album-case-catch-state a.album-case-catch-state-label');
         $this->assertCountFilter($crawler, 0, '.album-case .album-case-catch-state span.album-case-catch-state-label');
 
-        $this->assertCountFilter($crawler, 82, '.toast');
+        $this->assertCountFilter($crawler, 84, '.toast');
         $this->assertCountFilter($crawler, 41, '.toast.text-bg-success');
-        $this->assertCountFilter($crawler, 41, '.toast.text-bg-danger');
+        $this->assertCountFilter($crawler, 1, '.toast.text-bg-light');
+        $this->assertCountFilter($crawler, 42, '.toast.text-bg-danger');
 
         $this->assertCountFilter($crawler, 1, 'script[src="/js/album.js"]');
 

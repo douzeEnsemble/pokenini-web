@@ -140,6 +140,10 @@ album:
     filters:
       title: Filters
       open_distinguish_types: More
+  share:
+    toast:
+      success: "Link copied to the clipboard!"
+      error: "Could not copy the link automatically, please copy it manually."
 
 update:
   labels:

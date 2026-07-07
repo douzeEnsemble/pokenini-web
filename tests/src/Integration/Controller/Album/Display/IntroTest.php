@@ -66,6 +66,9 @@ final class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
 
+        $this->assertCountFilter($crawler, 0, '#shareToastSuccess');
+        $this->assertCountFilter($crawler, 0, '#shareToastError');
+
         $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
         $this->assertCountFilter($crawler, 0, '#intro .dex-type');
@@ -116,6 +119,9 @@ final class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
 
+        $this->assertCountFilter($crawler, 0, '#shareToastSuccess');
+        $this->assertCountFilter($crawler, 0, '#shareToastError');
+
         $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
         $this->assertCountFilter($crawler, 0, '#intro .dex-type');
@@ -163,6 +169,9 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 1, '#intro .share');
+
+        $this->assertCountFilter($crawler, 1, '#shareToastSuccess');
+        $this->assertCountFilter($crawler, 1, '#shareToastError');
         $this->assertEquals(
             '/fr/album/demoliteshiny?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('#intro .share')->attr('href')
@@ -222,6 +231,9 @@ final class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
 
+        $this->assertCountFilter($crawler, 0, '#shareToastSuccess');
+        $this->assertCountFilter($crawler, 0, '#shareToastError');
+
         $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
         $this->assertCountFilter($crawler, 0, '#intro .dex-type');
@@ -276,6 +288,9 @@ final class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
 
+        $this->assertCountFilter($crawler, 0, '#shareToastSuccess');
+        $this->assertCountFilter($crawler, 0, '#shareToastError');
+
         $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
         $this->assertCountFilter($crawler, 0, '#intro .dex-type');
@@ -325,6 +340,9 @@ final class IntroTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '#intro .share');
 
+        $this->assertCountFilter($crawler, 0, '#shareToastSuccess');
+        $this->assertCountFilter($crawler, 0, '#shareToastError');
+
         $this->assertCountFilter($crawler, 0, '#intro .album-private');
         $this->assertCountFilter($crawler, 0, '#intro .album-another-trainer');
         $this->assertCountFilter($crawler, 0, '#intro .dex-type');
@@ -368,6 +386,9 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .goto.goto-topofthelist');
 
         $this->assertCountFilter($crawler, 1, '#intro .share');
+
+        $this->assertCountFilter($crawler, 1, '#shareToastSuccess');
+        $this->assertCountFilter($crawler, 1, '#shareToastError');
         $this->assertEquals(
             '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554',
             $crawler->filter('#intro .share')->attr('href')

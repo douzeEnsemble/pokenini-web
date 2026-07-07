@@ -240,6 +240,22 @@
   </div>
 {% endmacro %}
 
+{% macro shareToasts() %}
+  <div id="shareToastSuccess" class="toast text-bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">{{ 'album.share.toast.success'|trans }}</div>
+      <button type="button" class="btn-close btn-close-dark me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+
+  <div id="shareToastError" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">{{ 'album.share.toast.error'|trans }}</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+{% endmacro %}
+
 {% macro boxTitle(boxNumber) %}
   <div class="box-title sticky-top">
     {% set title = ('title.box'|trans)~' '~boxNumber %}

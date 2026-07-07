@@ -133,3 +133,28 @@ function swapNode(firstNode, secondNode) {
   firstNode.replaceWith(secondNode);
   parent.insertBefore(firstNode, afterSecondNode);
 }
+
+function watchShareLink() {
+  document.querySelectorAll(".share").forEach(function (element) {
+    element.addEventListener("click", onShareLinkClick);
+  });
+}
+
+function onShareLinkClick(event) {
+  event.preventDefault();
+
+  const shareUrl = event.currentTarget.href;
+
+  if (!navigator.clipboard) {
+    new bootstrap.Toast(document.getElementById("shareToastError")).show();
+    return;
+  }
+
+  navigator.clipboard.writeText(shareUrl)
+    .then(function () {
+      new bootstrap.Toast(document.getElementById("shareToastSuccess")).show();
+    })
+    .catch(function () {
+      new bootstrap.Toast(document.getElementById("shareToastError")).show();
+    });
+}
