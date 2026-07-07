@@ -1,5 +1,3 @@
-{% set currentRouteParameters = app.request.attributes.get('_route_params') %}
-
 <div class="report-container">
     <h2 id="stats">
         {{ 'title.report'|trans }}
@@ -88,19 +86,15 @@
                     <a href="{{
                         path(
                             'app_albumindex_index',
-                            filters
-                                |filter((value, key) => key != 'cs')
-                                |merge({
-                                    'dexSlug': currentDexSlug,
-                                    't': ((requestedTrainerId is not empty) ? requestedTrainerId : null),
-                                }
-                                |merge(currentRouteParameters))
-                                |ksort
-                            )
+                            {
+                                'dexSlug': currentDexSlug,
+                                't': ((requestedTrainerId is not empty) ? requestedTrainerId : null),
+                            }
+                        )
                     }}"
                         data-bs-toggle="tooltip" data-bs-title="{{- 'dex.filters.catch_states.total'|trans -}}"
                     >
-                        <i class="bi bi-funnel{{ filters['cs'] is defined ? '-fill' : '' }}"></i>
+                        <i class="bi bi-funnel{{ filters is not empty ? '-fill' : '' }}"></i>
                     </a>
                 </span>
             </th>
