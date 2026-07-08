@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Controller;
 
-use App\Controller\AdminController;
+use App\Controller\AdminReportsController;
 use App\DTO\AdminAction;
-use App\Service\Back\GetActionLogsService;
+use App\Service\Back\GetReportsService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -14,43 +14,15 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\FlashBagAwareSessionInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
 /**
  * @internal
  */
-#[CoversClass(AdminController::class)]
-final class AdminControllerTest extends TestCase
+#[CoversClass(AdminReportsController::class)]
+final class AdminReportsControllerTest extends TestCase
 {
-    public function testIndexRedirectsToActions(): void
-    {
-        $router = $this->createMock(RouterInterface::class);
-        $router
-            ->expects($this->once())
-            ->method('generate')
-            ->with('app_admin_actions', [])
-            ->willReturn('/fr/istration/actions')
-        ;
-
-        $container = $this->createMock(ContainerInterface::class);
-        $container
-            ->expects($this->once())
-            ->method('get')
-            ->with('router')
-            ->willReturn($router)
-        ;
-
-        $controller = new AdminController($this->createStub(GetActionLogsService::class));
-        $controller->setContainer($container);
-
-        $response = $controller->index();
-
-        $this->assertSame('/fr/istration/actions', $response->getTargetUrl());
-        $this->assertSame(302, $response->getStatusCode());
-    }
-
-    public function testAdminAction(): void
+    public function testReports(): void
     {
         $adminAction = new AdminAction(
             'truc',
@@ -99,9 +71,9 @@ final class AdminControllerTest extends TestCase
             ->expects($this->once())
             ->method('render')
             ->with(
-                'Admin/actions.html.twig',
+                'Admin/reports.html.twig',
                 [
-                    'actionLogsData' => [],
+                    'reportsData' => [],
                 ]
             )
             ->willReturn('<html></html>')
@@ -128,7 +100,7 @@ final class AdminControllerTest extends TestCase
         $controller = $this->getController();
         $controller->setContainer($container);
 
-        $controller->actions($requestStack);
+        $controller->reports($requestStack);
 
         $this->assertEquals(
             [
@@ -140,7 +112,7 @@ final class AdminControllerTest extends TestCase
         );
     }
 
-    public function testAdminActionError(): void
+    public function testReportsActionError(): void
     {
         $adminAction = new AdminAction(
             'truc',
@@ -190,9 +162,9 @@ final class AdminControllerTest extends TestCase
             ->expects($this->once())
             ->method('render')
             ->with(
-                'Admin/actions.html.twig',
+                'Admin/reports.html.twig',
                 [
-                    'actionLogsData' => [],
+                    'reportsData' => [],
                 ]
             )
             ->willReturn('<html></html>')
@@ -220,7 +192,7 @@ final class AdminControllerTest extends TestCase
         $controller = $this->getController();
         $controller->setContainer($container);
 
-        $controller->actions($requestStack);
+        $controller->reports($requestStack);
 
         $this->assertEquals(
             [
@@ -233,15 +205,15 @@ final class AdminControllerTest extends TestCase
         );
     }
 
-    private function getController(): AdminController
+    private function getController(): AdminReportsController
     {
-        $getActionLogsService = $this->createMock(GetActionLogsService::class);
-        $getActionLogsService
+        $getReportsService = $this->createMock(GetReportsService::class);
+        $getReportsService
             ->expects($this->once())
             ->method('get')
             ->willReturn([])
         ;
 
-        return new AdminController($getActionLogsService);
+        return new AdminReportsController($getReportsService);
     }
 }

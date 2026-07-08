@@ -1,0 +1,47 @@
+{% set locale = app.request.locale %}
+
+{% import "Admin/_macros.html.twig" as admin %}
+
+{% set items = app.flashes('item') %}
+{% set actions = app.flashes('action') %}
+{% set states = app.flashes('state') %}
+
+{% set updatedItem = items[0] is defined ? items[0] : null %}
+{% set updatedAction = actions[0] is defined ? actions[0] : null %}
+{% set updatedState = states[0] is defined ? states[0] : null %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'title.admin'|trans }}{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock stylesheets %}
+
+{% block container %}
+<div id="admin" class="row">
+  <div class="col-12">
+    <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
+    {% include 'Admin/_tabs.html.twig' with {'active': 'actions'} %}
+    {% include 'Admin/_actions.html.twig' %}
+  </div>
+</div>
+{% endblock %}
+
+{% block head_javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('js/admin.js') }}"></script>
+{% endblock head_javascripts %}
+
+{% block foot_javascript %}
+  {{ parent() }}
+
+  <script>
+    (function () {
+      watchActionLogToggles();
+    })();
+  </script>
+{% endblock %}

@@ -5,28 +5,21 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\DTO\AdminAction;
-use App\Service\Back\GetActionLogsService;
+use App\Service\Back\GetReportsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/istration')]
-final class AdminController extends AbstractController
+final class AdminReportsController extends AbstractController
 {
     public function __construct(
-        private readonly GetActionLogsService $getActionLogsService,
+        private readonly GetReportsService $getReportsService,
     ) {}
 
-    #[Route('', methods: ['GET'], name: 'app_admin_index')]
-    public function index(): RedirectResponse
-    {
-        return $this->redirectToRoute('app_admin_actions');
-    }
-
-    #[Route('/actions', methods: ['GET'], name: 'app_admin_actions')]
-    public function actions(RequestStack $requestStack): Response
+    #[Route('/reports', methods: ['GET'], name: 'app_admin_reports')]
+    public function reports(RequestStack $requestStack): Response
     {
         $session = $requestStack->getSession();
 
@@ -44,12 +37,12 @@ final class AdminController extends AbstractController
             $this->addFlash('state', $adminAction->state);
         }
 
-        $actionLogsData = $this->getActionLogsService->get();
+        $reportsData = $this->getReportsService->get();
 
         return $this->render(
-            'Admin/actions.html.twig',
+            'Admin/reports.html.twig',
             [
-                'actionLogsData' => $actionLogsData,
+                'reportsData' => $reportsData,
             ]
         );
     }
