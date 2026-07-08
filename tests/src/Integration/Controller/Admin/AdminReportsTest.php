@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\Controller\Admin;
 
-use App\Controller\AlbumIndexController;
+use App\Controller\AdminReportsController;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /**
  * @internal
  */
-#[CoversClass(AlbumIndexController::class)]
+#[CoversClass(AdminReportsController::class)]
 #[Group('api-mocked-testing')]
 final class AdminReportsTest extends WebTestCase
 {
@@ -28,7 +28,7 @@ final class AdminReportsTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/reports');
 
         $this->assertResponseStatusCodeSame(200);
 

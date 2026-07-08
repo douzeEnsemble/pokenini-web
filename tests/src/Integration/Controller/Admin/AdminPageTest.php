@@ -55,6 +55,20 @@ final class AdminPageTest extends WebTestCase
         $this->assertResponseStatusCodeSame(403);
     }
 
+    public function testAdminIndexRedirectsToActions(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
+        $user->addAdminRole();
+        $client->loginUser($user, 'web');
+
+        $client->request('GET', '/fr/istration');
+
+        $this->assertResponseStatusCodeSame(302);
+        $this->assertResponseRedirects('/fr/istration/actions');
+    }
+
     public function testAdminHomeConnected(): void
     {
         $this->getAdminHomeConnected();
@@ -64,15 +78,13 @@ final class AdminPageTest extends WebTestCase
     {
         $crawler = $this->getAdminHomeConnected();
 
-        $this->assertCountFilter($crawler, 7, 'h2');
-        $this->assertCountFilter($crawler, 18, 'h3');
-        $this->assertCountFilter($crawler, 15, '.admin-item button.admin-item-cta');
+        $this->assertCountFilter($crawler, 5, 'h2');
+        $this->assertCountFilter($crawler, 14, 'h3');
+        $this->assertCountFilter($crawler, 14, '.admin-item button.admin-item-cta');
 
         $this->assertCountFilter($crawler, 7, '.admin-item-update button.admin-item-cta');
         $this->assertCountFilter($crawler, 4, '.admin-item-calculate button.admin-item-cta');
-        $this->assertCountFilter($crawler, 4, '.admin-item-invalidate button.admin-item-cta');
-        $this->assertCountFilter($crawler, 2, 'table.report-table');
-        $this->assertCountFilter($crawler, 1, '.admin-item-invalidate_reports button.admin-item-cta');
+        $this->assertCountFilter($crawler, 3, '.admin-item-invalidate button.admin-item-cta');
 
         $this->assertCountFilter($crawler, 3, '.admin-item-cta.disabled');
         $this->assertCountFilter($crawler, 1, '#update_games_collections_and_dex .admin-item-cta.disabled');
@@ -83,16 +95,16 @@ final class AdminPageTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 1, '#update_games_collections_and_dex .admin-item-refresh');
         $updateGamesCollectionsAndDexHref = $crawler->filter('#update_games_collections_and_dex .admin-item-refresh')->attr('href') ?? '';
-        $this->assertStringContainsString('/fr/istration?refresh=', $updateGamesCollectionsAndDexHref);
+        $this->assertStringContainsString('/fr/istration/actions?refresh=', $updateGamesCollectionsAndDexHref);
         $this->assertStringContainsString('#update_games_collections_and_dex', $updateGamesCollectionsAndDexHref);
 
         $this->assertCountFilter($crawler, 1, '#calculate_game_bundles_availabilities .admin-item-refresh');
         $calculateGameBundlesAvailabilitiesHref = $crawler->filter('#calculate_game_bundles_availabilities .admin-item-refresh')->attr('href') ?? '';
-        $this->assertStringContainsString('/fr/istration?refresh=', $calculateGameBundlesAvailabilitiesHref);
+        $this->assertStringContainsString('/fr/istration/actions?refresh=', $calculateGameBundlesAvailabilitiesHref);
 
         $this->assertCountFilter($crawler, 1, '#calculate_dex_availabilities .admin-item-refresh');
         $calculateGameBundlesAvailabilitiesHref = $crawler->filter('#calculate_game_bundles_availabilities .admin-item-refresh')->attr('href') ?? '';
-        $this->assertStringContainsString('/fr/istration?refresh=', $calculateGameBundlesAvailabilitiesHref);
+        $this->assertStringContainsString('/fr/istration/actions?refresh=', $calculateGameBundlesAvailabilitiesHref);
 
         $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
 
@@ -145,7 +157,7 @@ final class AdminPageTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
 
         $this->assertResponseStatusCodeSame(200);
 

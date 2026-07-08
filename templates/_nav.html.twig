@@ -73,9 +73,9 @@
                 {% if is_granted("ROLE_ADMIN") %}
                 <li class="nav-item admin-link">
                     <a
-                        class="nav-link {{ 'app_admin_index' == currentRoute ? ' active' : '' }}"
+                        class="nav-link {{ currentRoute in ['app_admin_actions', 'app_admin_reports'] ? ' active' : '' }}"
                         aria-current="page"
-                        href="{{ path('app_admin_index') }}"
+                        href="{{ path('app_admin_actions') }}"
                     >
                         <i class="bi bi-wrench-adjustable-circle"></i>
                         {{ 'nav.admin'|trans }}

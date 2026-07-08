@@ -70,7 +70,7 @@ final class AdminActionControllerTest extends TestCase
         $router
             ->expects($this->once())
             ->method('generate')
-            ->with('app_admin_index', ['_fragment' => 'invalidate_something'])
+            ->with('app_admin_actions', ['_fragment' => 'invalidate_something'])
             ->willReturn('/admin')
         ;
 
@@ -357,6 +357,82 @@ final class AdminActionControllerTest extends TestCase
         $controller->invalidate('labels', new Request([], ['_token' => 'bad_token']));
     }
 
+    public function testInvalidateReportsRedirectsToReportsPage(): void
+    {
+        $adminActionService = $this->createMock(AdminActionService::class);
+        $adminActionService
+            ->expects($this->once())
+            ->method('execute')
+            ->with('invalidate', 'reports')
+            ->willReturn(new AdminAction('invalidate', 'reports', 'ok', '', ''))
+        ;
+
+        $session = $this->createMock(SessionInterface::class);
+        $session
+            ->expects($this->once())
+            ->method('set')
+        ;
+
+        $requestStack = $this->createMock(RequestStack::class);
+        $requestStack
+            ->expects($this->once())
+            ->method('getSession')
+            ->willReturn($session)
+        ;
+
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->never())
+            ->method('critical')
+        ;
+
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher
+            ->expects($this->once())
+            ->method('dispatch')
+            ->with($this->isInstanceOf(AdminActionSucceededEvent::class))
+        ;
+
+        $router = $this->createMock(RouterInterface::class);
+        $router
+            ->expects($this->once())
+            ->method('generate')
+            ->with('app_admin_reports', ['_fragment' => 'invalidate_reports'])
+            ->willReturn('/admin')
+        ;
+
+        $csrfManager = $this->createStub(CsrfTokenManagerInterface::class);
+        $csrfManager->method('isTokenValid')->willReturn(true);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container
+            ->expects($this->once())
+            ->method('has')
+            ->with('security.csrf.token_manager')
+            ->willReturn(true)
+        ;
+        $container
+            ->expects($this->exactly(2))
+            ->method('get')
+            ->willReturnMap([
+                ['security.csrf.token_manager', $csrfManager],
+                ['router', $router],
+            ])
+        ;
+
+        $controller = new AdminActionController(
+            $adminActionService,
+            $requestStack,
+            $logger,
+            $eventDispatcher,
+        );
+        $controller->setContainer($container);
+
+        $response = $controller->invalidate('reports', new Request([], ['_token' => 'valid_token']));
+
+        $this->assertSame('/admin', $response->getTargetUrl());
+    }
+
     private function assertFailActionLogs(string $action): AdminActionController
     {
         $adminActionService = $this->createMock(AdminActionService::class);
@@ -402,7 +478,7 @@ final class AdminActionControllerTest extends TestCase
         $router
             ->expects($this->once())
             ->method('generate')
-            ->with('app_admin_index', ['_fragment' => $action.'_something'])
+            ->with('app_admin_actions', ['_fragment' => $action.'_something'])
             ->willReturn('/admin')
         ;
 
