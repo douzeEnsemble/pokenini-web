@@ -1,11 +1,12 @@
 .dex-item .card {
-    opacity: 50%;
     transition:
         border-color 0.4s ease,
-        opacity 0.9s ease
+        box-shadow 0.25s ease,
+        transform 0.25s ease
     ;
 }
 .dex-item .card:hover {
     border-color: var(--bs-secondary);
-    opacity: 100%;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+    transform: translateY(-2px);
 }
