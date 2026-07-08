@@ -132,7 +132,7 @@ final class AdminActionController extends AbstractController
         $this->requestStack->getSession()->set(self::SESSION_ACTION_DATA, $adminAction);
 
         return $this->redirectToRoute(
-            'app_admin_index',
+            'reports' === $name ? 'app_admin_reports' : 'app_admin_actions',
             [
                 '_fragment' => "{$action}_{$name}",
             ]

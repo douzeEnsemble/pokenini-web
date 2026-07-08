@@ -46,7 +46,7 @@ final class ActionCalculateTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         // For testing purpose, this case will fail in API side
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
         $form = $crawler->filter('#calculate_dex_availabilities form')->form();
         $client->submit($form);
 
@@ -72,7 +72,7 @@ final class ActionCalculateTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         // For testing purpose, this case will fail in API side
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
         $form = $crawler->filter('#calculate_dex_availabilities form')->form();
         $client->submit($form);
 
@@ -89,7 +89,7 @@ final class ActionCalculateTest extends WebTestCase
                 .' "http://moco.back/istration/action/calculate/dex_availabilities".'
         );
 
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
 
         $this->assertCountFilter($crawler, 0, '.icon-square.bg-success');
         $this->assertCountFilter($crawler, 1, '.icon-square.bg-danger');
@@ -133,7 +133,7 @@ final class ActionCalculateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
         $form = $crawler->filter("#calculate_{$name} form")->form();
         $client->submit($form);
 

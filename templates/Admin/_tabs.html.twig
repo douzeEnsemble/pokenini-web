@@ -1,0 +1,23 @@
+{% set adminTabs = {
+  'actions': {
+    'route': 'app_admin_actions',
+    'label': 'title.admin_actions',
+  },
+  'reports': {
+    'route': 'app_admin_reports',
+    'label': 'title.admin_reports',
+  },
+} %}
+
+<ul class="nav nav-tabs mb-4">
+  {% for key, tab in adminTabs %}
+    <li class="nav-item">
+      <a
+        class="nav-link{{ key == active ? ' active' : '' }}"
+        href="{{ path(tab.route) }}"
+      >
+        {{ tab.label|trans }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

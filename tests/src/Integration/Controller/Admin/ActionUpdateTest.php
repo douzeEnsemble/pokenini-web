@@ -57,7 +57,7 @@ final class ActionUpdateTest extends WebTestCase
 
         // We don't have to call 'action/update/games_shinies_availabilities' to see error
         // because it's the last action log we looking for
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
 
         $this->assertResponseStatusCodeSame(200);
 
@@ -118,7 +118,7 @@ final class ActionUpdateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
         $form = $crawler->filter('#update_labels form')->form();
         $client->submit($form);
 
@@ -128,7 +128,7 @@ final class ActionUpdateTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
         $this->assertCountFilter($crawler, 0, '.icon-square.bg-warning');
 
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
 
         $this->assertCountFilter($crawler, 0, '.icon-square.bg-success');
         $this->assertCountFilter($crawler, 0, '.icon-square.bg-warning');
@@ -142,13 +142,13 @@ final class ActionUpdateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration');
+        $crawler = $client->request('GET', '/fr/istration/actions');
         $form = $crawler->filter("#update_{$name} form")->form();
         $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
-        $this->assertSame('http://localhost/fr/istration', $client->getRequest()->getUri());
+        $this->assertSame('http://localhost/fr/istration/actions', $client->getRequest()->getUri());
 
         $this->assertSame(
             'Pokénini Administration',

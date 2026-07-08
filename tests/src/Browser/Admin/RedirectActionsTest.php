@@ -24,7 +24,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $user->addAdminRole();
         $this->loginUser($client, $user);
 
-        $client->request('GET', '/fr/istration');
+        $client->request('GET', '/fr/istration/actions');
 
         $form = $client->getCrawler()->filter("#{$action}_{$item} form")->form();
         $client->submit($form);
@@ -33,7 +33,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $baseUri = rtrim(false !== $rawUri ? $rawUri : 'http://127.0.0.1:9080', '/');
 
         $this->assertSame(
-            "{$baseUri}/fr/istration#{$action}_{$item}",
+            "{$baseUri}/fr/istration/actions#{$action}_{$item}",
             $client->getCurrentURL()
         );
     }
