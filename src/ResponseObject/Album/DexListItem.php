@@ -15,6 +15,8 @@ final class DexListItem
         private readonly DexListItemSettings $settings,
         #[SerializedName('flags')]
         private readonly DexFlags $flags,
+        #[SerializedName('report')]
+        private readonly ?Report $report = null,
     ) {}
 
     public function getDex(): DexListItemRef
@@ -30,5 +32,10 @@ final class DexListItem
     public function getFlags(): DexFlags
     {
         return $this->flags;
+    }
+
+    public function getReport(): ?Report
+    {
+        return $this->report;
     }
 }
