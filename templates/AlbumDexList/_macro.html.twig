@@ -49,6 +49,13 @@
       </h3>
       {% endif %}
 
+      {% if dex.report is not null %}
+      <span class="badge rounded-pill bg-primary mb-3">
+        {{ dex.report.totalCaught|number_format(0, '.', ' ') }} / {{ dex.report.total|number_format(0, '.', ' ') }}
+        {{ 'album_dex_list.dex.report_badge_suffixe'|trans }}
+      </span>
+      {% endif %}
+
     </div>
   </div>
 </div>

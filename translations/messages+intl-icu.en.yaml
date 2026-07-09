@@ -526,6 +526,10 @@ election:
   dex:
     details:
 
+album_dex_list:
+  dex:
+    report_badge_suffixe: “caught”
+
 dex:
   filters:
     submit:
@@ -544,27 +548,27 @@ dex:
       label: Secondary type
       value:
         empty: All
-        "null": None
+        “null”: None
     category_form:
       label: Category
       value:
         empty: All
-        "null": None
+        “null”: None
     regional_form:
       label: Regional form
       value:
         empty: All
-        "null": None
+        “null”: None
     special_form:
       label: Special form
       value:
         empty: All
-        "null": None
+        “null”: None
     variant_form:
       label: Variant
       value:
         empty: All
-        "null": None
+        “null”: None
     original_game_bundle:
       label: Original game bundle
       value:
@@ -573,21 +577,21 @@ dex:
       label: Available in
       value:
         empty: All
-        negative: "Not in "
+        negative: “Not in “
     game_bundle_shiny_availability:
       label: Available in
       value:
         empty: All
-        negative: "Not in "
+        negative: “Not in “
     catch_states:
-      total: "All the collection"
-      positive: "Filter all “{cs}”"
-      negative: "Filter all excepts “{cs}”"
+      total: “All the collection”
+      positive: “Filter all “{cs}””
+      negative: “Filter all excepts “{cs}””
     collections:
       label: Collection
       value:
         empty: Whatever
-        negative: "Not in "
+        negative: “Not in “
 
 election_dex:
   title: "Choose the dex you want to vote for"
