@@ -118,6 +118,13 @@
       </span>
       {% endif %}
 
+      {% if dex.report is not null %}
+      <span class="badge rounded-pill bg-primary mb-3">
+        {{ dex.report.metrics.completion.atMaxCount|number_format(0, '.', ' ') }} / {{ dex.report.metrics.dexTotalCount|number_format(0, '.', ' ') }}
+        {{ 'election_dex.dex.report_badge_suffixe'|trans }}
+      </span>
+      {% endif %}
+
       {% if dex.description is not null %}
       <p class="small text-start text-body-secondary">
         {{ (locale is same as('fr') ? dex.frenchDescription : dex.description) }}

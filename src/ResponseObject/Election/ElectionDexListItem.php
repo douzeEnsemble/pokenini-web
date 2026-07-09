@@ -28,6 +28,8 @@ final class ElectionDexListItem
         private readonly ?string $frenchDescription,
         #[SerializedName('dex_total_count')]
         private readonly ?int $dexTotalCount,
+        #[SerializedName('report')]
+        private readonly ?ElectionReport $report = null,
     ) {}
 
     public function getSlug(): string
@@ -73,5 +75,10 @@ final class ElectionDexListItem
     public function getDexTotalCount(): ?int
     {
         return $this->dexTotalCount;
+    }
+
+    public function getReport(): ?ElectionReport
+    {
+        return $this->report;
     }
 }

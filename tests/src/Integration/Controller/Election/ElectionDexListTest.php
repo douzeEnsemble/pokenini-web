@@ -48,11 +48,11 @@ final class ElectionDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 21, '.dex-item');
         $this->assertCountFilter($crawler, 21, '.dex-item .card-title');
         $this->assertCountFilter($crawler, 21, '.dex-item .card-title a');
-        $this->assertCountFilter($crawler, 24, '.dex-item .badge');
+        $this->assertCountFilter($crawler, 45, '.dex-item .badge');
         $this->assertCountFilter($crawler, 21, '.dex-item p.small');
 
         $this->assertSame('71 Pokémons', $crawler->filter('.dex-item .badge')->eq(0)->text());
-        $this->assertSame('1 Pokémons', $crawler->filter('.dex-item .badge')->eq(1)->text());
+        $this->assertSame('0 / 71 notées', $crawler->filter('.dex-item .badge')->eq(1)->text());
 
         $this->assertSame('/fr/election/redgreenblueyellow', $crawler->filter('.dex-item .card-title a')->eq(0)->attr('href'));
         $this->assertSame('/fr/election/rubysapphireemerald', $crawler->filter('.dex-item .card-title a')->eq(2)->attr('href'));
