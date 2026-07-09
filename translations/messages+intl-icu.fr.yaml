@@ -524,7 +524,7 @@ election:
             =1 { favori qui se détache}
             other { favoris qui se détachent}
         }
-      none: “Tu n'as pas de favoris qui se détache.”
+      none: "Tu n'as pas de favoris qui se détache."
     choose_per_turn: >
       {value, plural,
           =0 {exactly {value}}
@@ -536,7 +536,7 @@ election:
 
 album_dex_list:
   dex:
-    report_badge_suffixe: “capturés”
+    report_badge_suffixe: capturés
 
 dex:
   filters:
@@ -556,27 +556,27 @@ dex:
       label: Second type
       value:
         empty: Tous
-        “null”: Aucun
+        "null": Aucun
     category_form:
       label: Catégorie
       value:
         empty: Toutes
-        “null”: Aucune
+        "null": Aucune
     regional_form:
       label: Forme régional
       value:
         empty: Toutes
-        “null”: Aucune
+        "null": Aucune
     special_form:
       label: Forme spéciale
       value:
         empty: Toutes
-        “null”: Aucune
+        "null": Aucune
     variant_form:
       label: Variante
       value:
         empty: Toutes
-        “null”: Aucune
+        "null": Aucune
     original_game_bundle:
       label: Pack de jeu original
       value:
@@ -585,21 +585,21 @@ dex:
       label: Disponibilités dans
       value:
         empty: Tous
-        negative: “Pas dans “
+        negative: "Pas dans "
     game_bundle_shiny_availability:
       label: Disponibilités dans
       value:
         empty: Tous
-        negative: “Pas dans “
+        negative: "Pas dans "
     catch_states:
-      total: “Toute la collection”
-      positive: “Filtre les “{cs}””
-      negative: “Filtre tous sauf les “{cs}””
+      total: "Toute la collection"
+      positive: "Filtre les “{cs}”"
+      negative: "Filtre tous sauf les “{cs}”"
     collection:
       label: Collection
       value:
         empty: Peu importe
-        negative: “Pas dans “
+        negative: "Pas dans "
 
 election_dex:
   title: "Choisir le dex pour lequel tu veux voter"
