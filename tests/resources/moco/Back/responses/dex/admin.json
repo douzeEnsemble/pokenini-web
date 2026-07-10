@@ -2,106 +2,379 @@
   {
     "dex": { "slug": "redgreenblueyellow" },
     "settings": { "name": "Red, Green, Blue, Yellow", "french_name": "Rouge, Vert, Bleu, Jaune", "slug": "redgreenblueyellow", "display_template": "box" },
-    "flags": { "is_shiny": true, "is_private": true, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": true, "is_private": true, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 151,
+      "total_caught": 90,
+      "total_uncaught": 20,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 20 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 15 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 10 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 8 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 8 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 90 }
+      ]
+    }
   },
   {
     "dex": { "slug": "goldsilvercrystal" },
     "settings": { "name": "Gold, Silver, Crystal", "french_name": "Or, Argent, Cristal", "slug": "goldsilvercrystal", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": false, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": false, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 251,
+      "total_caught": 140,
+      "total_uncaught": 40,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 40 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 25 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 20 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 15 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 11 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 140 }
+      ]
+    }
   },
   {
     "dex": { "slug": "rubysapphireemerald" },
     "settings": { "name": "Ruby, Sapphire, Emerald", "french_name": "Rubis, Saphir, Émeraude", "slug": "rubysapphireemerald", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 386,
+      "total_caught": 140,
+      "total_uncaught": 100,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 100 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 50 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 40 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 30 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 26 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 140 }
+      ]
+    }
   },
   {
     "dex": { "slug": "fireredleafgreen" },
     "settings": { "name": "Red Fire, Leaf Green", "french_name": "Rouge Feu, Vert Feuille", "slug": "fireredleafgreen", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 151,
+      "total_caught": 126,
+      "total_uncaught": 5,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 5 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 5 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 5 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 5 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 5 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 126 }
+      ]
+    }
   },
   {
     "dex": { "slug": "diamondpearlplatinium" },
     "settings": { "name": "Diamond, Pearl, Platinium", "french_name": "Diamant, Perle, Platine", "slug": "diamondpearlplatinium", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 493,
+      "total_caught": 83,
+      "total_uncaught": 150,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 150 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 80 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 70 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 60 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 50 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 83 }
+      ]
+    }
   },
   {
     "dex": { "slug": "heartgoldsoulsilver" },
     "settings": { "name": "Heart Gold, Soul Silver", "french_name": "Or HeartGold, Argent SoulSilver", "slug": "heartgoldsoulsilver", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 251,
+      "total_caught": 251,
+      "total_uncaught": 0,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 0 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 0 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 0 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 0 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 0 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 251 }
+      ]
+    }
   },
   {
     "dex": { "slug": "blackwhite" },
     "settings": { "name": "Black, White", "french_name": "Noire, Blanche", "slug": "blackwhite", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 649,
+      "total_caught": 109,
+      "total_uncaught": 200,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 200 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 100 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 90 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 80 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 70 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 109 }
+      ]
+    }
   },
   {
     "dex": { "slug": "black2white2" },
     "settings": { "name": "Black 2, White 2", "french_name": "Noire 2, Blanche 2", "slug": "black2white2", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 649,
+      "total_caught": 0,
+      "total_uncaught": 649,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 649 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 0 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 0 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 0 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 0 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 0 }
+      ]
+    }
   },
   {
     "dex": { "slug": "xy" },
     "settings": { "name": "X, Y", "french_name": "X, Y", "slug": "xy", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 721,
+      "total_caught": 41,
+      "total_uncaught": 300,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 300 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 150 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 100 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 80 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 50 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 41 }
+      ]
+    }
   },
   {
     "dex": { "slug": "omegarubyalphasapphire" },
     "settings": { "name": "Omega Ruby, Alpha Sapphire", "french_name": "Rubis Oméga, Saphir Alpha", "slug": "omegarubyalphasapphire", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 386,
+      "total_caught": 23,
+      "total_uncaught": 193,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 193 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 50 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 50 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 40 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 30 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 23 }
+      ]
+    }
   },
   {
     "dex": { "slug": "sunmoon" },
     "settings": { "name": "Sun, Moon", "french_name": "Soleil, Lune", "slug": "sunmoon", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 802,
+      "total_caught": 30,
+      "total_uncaught": 400,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 400 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 150 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 100 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 80 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 42 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 30 }
+      ]
+    }
   },
   {
     "dex": { "slug": "ultrasunultramoon" },
     "settings": { "name": "Ultra Sun, Ultra Moon", "french_name": "Ultra Soleil, Ultra Lune", "slug": "ultrasunultramoon", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 802,
+      "total_caught": 550,
+      "total_uncaught": 50,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 50 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 50 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 50 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 50 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 52 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 550 }
+      ]
+    }
   },
   {
     "dex": { "slug": "letsgopikachuletsgoeevee" },
     "settings": { "name": "Let's Go Pikachu, Let's Go Eevee", "french_name": "Let's Go Pikachu, Let's Go Évoli", "slug": "letsgopikachuletsgoeevee", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 151,
+      "total_caught": 2,
+      "total_uncaught": 100,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 100 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 20 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 15 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 10 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 4 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 2 }
+      ]
+    }
   },
   {
     "dex": { "slug": "swordshield" },
     "settings": { "name": "Sword, Shield", "french_name": "Épée, Bouclier", "slug": "swordshield", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 400,
+      "total_caught": 120,
+      "total_uncaught": 100,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 100 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 60 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 50 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 40 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 30 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 120 }
+      ]
+    }
   },
   {
     "dex": { "slug": "brillantdiamondshiningpearl" },
     "settings": { "name": "Brillant Diamond, Shining Pearl", "french_name": "Diamant Étincelant, Perle Scintillante", "slug": "brillantdiamondshiningpearl", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 493,
+      "total_caught": 13,
+      "total_uncaught": 250,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 250 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 90 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 70 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 50 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 20 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 13 }
+      ]
+    }
   },
   {
     "dex": { "slug": "pokemonlegendsarceus" },
     "settings": { "name": "Pokémon Legends Arceus", "french_name": "Légendes Pokémon : Arceus", "slug": "pokemonlegendsarceus", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 242,
+      "total_caught": 60,
+      "total_uncaught": 50,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 50 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 40 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 35 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 30 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 27 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 60 }
+      ]
+    }
   },
   {
     "dex": { "slug": "home" },
     "settings": { "name": "Home", "french_name": "Home", "slug": "home", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 151,
+      "total_caught": 68,
+      "total_uncaught": 30,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 30 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 20 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 15 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 10 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 8 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 68 }
+      ]
+    }
   },
   {
     "dex": { "slug": "homeshiny" },
     "settings": { "name": "Home Shiny", "french_name": "Home Chromatique", "slug": "homeshiny", "display_template": "box" },
-    "flags": { "is_shiny": true, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false }
+    "flags": { "is_shiny": true, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false },
+    "report": {
+      "total": 151,
+      "total_caught": 0,
+      "total_uncaught": 140,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 140 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 5 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 3 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 2 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 1 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 0 }
+      ]
+    }
   },
   {
     "dex": { "slug": "homepokemongo" },
     "settings": { "name": "Home Pokemon Go", "french_name": "Home Pokemon Go", "slug": "homepokemongo", "display_template": "list-7" },
-    "flags": { "is_shiny": false, "is_private": false, "is_on_home": false, "is_display_form": false, "is_released": false, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": false, "is_display_form": false, "is_released": false, "is_premium": false, "is_custom": false },
+    "report": {
+      "total": 900,
+      "total_caught": 0,
+      "total_uncaught": 800,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 800 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 40 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 30 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 20 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 10 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 0 }
+      ]
+    }
   },
   {
     "dex": { "slug": "alpha" },
     "settings": { "name": "Alpha", "french_name": "Baron", "slug": "alpha", "display_template": "list-3" },
-    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false },
+    "report": {
+      "total": 50,
+      "total_caught": 15,
+      "total_uncaught": 10,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 10 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 8 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 7 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 5 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 5 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 15 }
+      ]
+    }
   },
   {
     "dex": { "slug": "mega" },
     "settings": { "name": "Mega", "french_name": "Méga", "slug": "mega", "display_template": "list-3" },
-    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false },
+    "report": {
+      "total": 46,
+      "total_caught": 21,
+      "total_uncaught": 5,
+      "detail": [
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 5 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 5 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 5 },
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 5 },
+        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 5 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 21 }
+      ]
+    }
   }
 ]

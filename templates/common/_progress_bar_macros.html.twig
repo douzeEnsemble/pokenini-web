@@ -1,0 +1,40 @@
+{% macro catchStateBar(report, locale) %}
+<div class="progress mb-2">
+    {% for line in report.detail %}
+        {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
+        {% set completion = report.total ? (100 * count / report.total)|round(2) : 0 %}
+        {% set label = (locale is same as('fr') ? line.frenchName : line.name) ~ ': ' ~ completion ~ '%' %}
+        <div class="progress-bar catch-state-{{ line.slug }}"
+            role="progressbar"
+            aria-label="{{ label }}"
+            style="width: {{ completion }}%;"
+            aria-valuenow="{{ completion }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            title="{{ label }}"
+            data-bs-toggle="tooltip"
+            data-bs-custom-class="tooltip-{{ line.slug }}"
+        >
+            {{ line.slug is same as('no') or line.slug is same as('yes') ? completion~'%' : '' }}
+        </div>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro twoToneBar(atMaxCount, dexTotalCount) %}
+{% set completionAtMax = dexTotalCount ? (100 * atMaxCount / dexTotalCount)|round(2) : 0 %}
+{% set completionUnderMax = dexTotalCount ? (100 - completionAtMax)|round(2) : 0 %}
+{% set tooltip = atMaxCount|number_format(0, '.', ' ') ~ ' / ' ~ dexTotalCount|number_format(0, '.', ' ') ~ ' ' ~ 'election_dex.dex.report_badge_suffixe'|trans %}
+<div class="progress mb-3"
+    role="progressbar"
+    aria-label="{{ tooltip }}"
+    aria-valuenow="{{ completionAtMax }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    data-bs-toggle="tooltip"
+    data-bs-title="{{ tooltip }}"
+>
+    <div class="progress-bar bg-success" style="width: {{ completionAtMax }}%;">{{ completionAtMax }}%</div>
+    <div class="progress-bar bg-danger" style="width: {{ completionUnderMax }}%;">{{ completionUnderMax }}%</div>
+</div>
+{% endmacro %}

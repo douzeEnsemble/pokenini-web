@@ -62,6 +62,13 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
         $this->assertEquals('https://icon.pokenini.fr/banner/homeshiny.png', $secondAlbum->filter('img')->attr('src'));
 
+        $this->assertCountFilter($crawler, 1, '.dex-item .progress');
+        $this->assertCountFilter($crawler, 2, '.dex-item .progress-bar');
+
+        $homeAlbum = $crawler->filter('.dex-item')->eq(1);
+        $this->assertEquals('41.72%', $homeAlbum->filter('.progress-bar.catch-state-no')->text());
+        $this->assertEquals('58.28%', $homeAlbum->filter('.progress-bar.catch-state-yes')->text());
+
         $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());

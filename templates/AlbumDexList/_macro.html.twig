@@ -1,5 +1,5 @@
-
 {% macro item(type, dex, locale, forcedTrainerId) %}
+{% import "common/_progress_bar_macros.html.twig" as progressBar %}
 {% set url = path('app_'~type~'index_index', {'dexSlug': dex.dex.slug, 't': forcedTrainerId ?: null}) %}
 <div class="col-lg-3 col-md-4 col-sm-6 col-12 dex-item position-relative">
   <div class="card">
@@ -50,10 +50,7 @@
       {% endif %}
 
       {% if dex.report is not null %}
-      <span class="badge rounded-pill bg-primary mb-3">
-        {{ dex.report.totalCaught|number_format(0, '.', ' ') }} / {{ dex.report.total|number_format(0, '.', ' ') }}
-        {{ 'album_dex_list.dex.report_badge_suffixe'|trans }}
-      </span>
+      {{ progressBar.catchStateBar(dex.report, locale) }}
       {% endif %}
 
     </div>
@@ -62,6 +59,7 @@
 {% endmacro %}
 
 {% macro itemElection(dex, locale, forcedTrainerId) %}
+{% import "common/_progress_bar_macros.html.twig" as progressBar %}
 {% set url = path('app_electionindex_index', {'dexSlug': dex.slug, 't': forcedTrainerId ?: null}) %}
 <div class="col-lg-3 col-md-4 col-sm-6 col-12 dex-item position-relative">
   <div class="card">
@@ -119,10 +117,7 @@
       {% endif %}
 
       {% if dex.report is not null %}
-      <span class="badge rounded-pill bg-primary mb-3">
-        {{ dex.report.metrics.completion.atMaxCount|number_format(0, '.', ' ') }} / {{ dex.report.metrics.dexTotalCount|number_format(0, '.', ' ') }}
-        {{ 'election_dex.dex.report_badge_suffixe'|trans }}
-      </span>
+      {{ progressBar.twoToneBar(dex.report.metrics.completion.atMaxCount, dex.report.metrics.dexTotalCount) }}
       {% endif %}
 
       {% if dex.description is not null %}
