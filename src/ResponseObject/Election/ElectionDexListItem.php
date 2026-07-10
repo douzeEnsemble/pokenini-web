@@ -7,6 +7,9 @@ namespace App\ResponseObject\Election;
 use App\ResponseObject\Album\DexFlags;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
+/**
+ * @SuppressWarnings("PHPMD.ExcessiveParameterList")
+ */
 final class ElectionDexListItem
 {
     public function __construct(
