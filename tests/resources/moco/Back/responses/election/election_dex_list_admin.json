@@ -29,8 +29,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 71,
-          "at_max_count": 0
+          "under_max_count": 50,
+          "at_max_count": 21
         },
         "dex_total_count": 71
       }
@@ -66,8 +66,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 1,
-          "at_max_count": 0
+          "under_max_count": 0,
+          "at_max_count": 1
         },
         "dex_total_count": 1
       }
@@ -103,8 +103,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 1515,
-          "at_max_count": 0
+          "under_max_count": 303,
+          "at_max_count": 1212
         },
         "dex_total_count": 1515
       }
@@ -140,8 +140,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 8615,
-          "at_max_count": 0
+          "under_max_count": 0,
+          "at_max_count": 8615
         },
         "dex_total_count": 8615
       }
@@ -177,8 +177,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 58,
-          "at_max_count": 0
+          "under_max_count": 49,
+          "at_max_count": 9
         },
         "dex_total_count": 58
       }
@@ -214,8 +214,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 201,
-          "at_max_count": 0
+          "under_max_count": 70,
+          "at_max_count": 131
         },
         "dex_total_count": 201
       }
@@ -288,8 +288,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 631,
-          "at_max_count": 0
+          "under_max_count": 379,
+          "at_max_count": 252
         },
         "dex_total_count": 631
       }
@@ -325,8 +325,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 351,
-          "at_max_count": 0
+          "under_max_count": 246,
+          "at_max_count": 105
         },
         "dex_total_count": 351
       }
@@ -362,8 +362,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 71,
-          "at_max_count": 0
+          "under_max_count": 32,
+          "at_max_count": 39
         },
         "dex_total_count": 71
       }
@@ -399,8 +399,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 781,
-          "at_max_count": 0
+          "under_max_count": 156,
+          "at_max_count": 625
         },
         "dex_total_count": 781
       }
@@ -436,8 +436,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 402,
-          "at_max_count": 0
+          "under_max_count": 0,
+          "at_max_count": 402
         },
         "dex_total_count": 402
       }
@@ -473,8 +473,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 122,
-          "at_max_count": 0
+          "under_max_count": 104,
+          "at_max_count": 18
         },
         "dex_total_count": 122
       }
@@ -510,8 +510,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 832,
-          "at_max_count": 0
+          "under_max_count": 291,
+          "at_max_count": 541
         },
         "dex_total_count": 832
       }
@@ -584,8 +584,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 272,
-          "at_max_count": 0
+          "under_max_count": 163,
+          "at_max_count": 109
         },
         "dex_total_count": 272
       }
@@ -621,8 +621,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 982,
-          "at_max_count": 0
+          "under_max_count": 687,
+          "at_max_count": 295
         },
         "dex_total_count": 982
       }
@@ -658,8 +658,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 603,
-          "at_max_count": 0
+          "under_max_count": 271,
+          "at_max_count": 332
         },
         "dex_total_count": 603
       }
@@ -695,8 +695,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 323,
-          "at_max_count": 0
+          "under_max_count": 65,
+          "at_max_count": 258
         },
         "dex_total_count": 323
       }
@@ -732,8 +732,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 34,
-          "at_max_count": 0
+          "under_max_count": 0,
+          "at_max_count": 34
         },
         "dex_total_count": 34
       }
@@ -769,8 +769,8 @@
           "max": 0
         },
         "completion": {
-          "under_max_count": 753,
-          "at_max_count": 0
+          "under_max_count": 640,
+          "at_max_count": 113
         },
         "dex_total_count": 753
       }

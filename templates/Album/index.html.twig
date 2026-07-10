@@ -22,13 +22,9 @@
     tr.catch-state-{{ catchState.slug }} th {
         background-color: {{ catchState.color }};
     }
-    .progress-bar.catch-state-{{ catchState.slug }} {
-        background-color: {{ catchState.color }};
-    }
-    .tooltip-{{ catchState.slug }} {
-        --bs-tooltip-bg: {{ catchState.color }};
-    }
     {% endfor %}
+
+    {% include 'common/_catch_state_progress_bar_styles.html.twig' %}
 
     {% for type in types %}
     .pokemon-type-{{ type.slug }} {

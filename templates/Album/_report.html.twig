@@ -1,29 +1,12 @@
+{% import "common/_progress_bar_macros.html.twig" as progressBar %}
+
 <div class="report-container">
     <h2 id="stats">
         {{ 'title.report'|trans }}
     </h2>
 
-    <div class="progress mb-2">
-        {% set progressBarReport = filteredReport.detail is not empty ? filteredReport : report %}
-        {% for line in progressBarReport.detail %}
-            {% set count = line.slug is same as('no') ? progressBarReport.totalUncaught : line.count %}
-            {% set completion = progressBarReport.total ? (100 * count / progressBarReport.total)|round(2) : 0 %}
-            {% set label = (locale is same as('fr') ? line.frenchName : line.name) ~ ': ' ~ completion ~ '%' %}
-            <div class="progress-bar catch-state-{{ line.slug }}"
-                role="progressbar"
-                aria-label="{{ label }}"
-                style="width: {{ completion }}%;"
-                aria-valuenow="{{ completion }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                title="{{ label }}"
-                data-bs-toggle="tooltip"
-                data-bs-custom-class="tooltip-{{ line.slug }}"
-            >
-                {{ line.slug is same as('no') or line.slug is same as('yes') ? completion~'%' : '' }}
-            </div>
-        {% endfor %}
-    </div>
+    {% set progressBarReport = filteredReport.detail is not empty ? filteredReport : report %}
+    {{ progressBar.catchStateBar(progressBarReport, locale) }}
     <table class="table table-hover table-bordered" id="report">
         <tbody>
         {% for line in report.detail %}
