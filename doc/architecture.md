@@ -181,7 +181,7 @@ Browser → /{locale}/connect/discord → DiscordController::goto → OAuth2 red
 
 | Service Docker    | Image                                               | Version | Rôle                                        |
 | ----------------- | --------------------------------------------------- | ------- | ------------------------------------------- |
-| `php`             | `.docker/php/Dockerfile` (php:8.5.5-fpm-alpine3.23) | 8.5.5   | PHP-FPM + Xdebug + Chromedriver (dev)       |
+| `php`             | `.docker/php/Dockerfile` (php:8.5.5-fpm-alpine3.24) | 8.5.5   | PHP-FPM + Xdebug + Chromedriver (dev)       |
 | `web`             | `nginx:1.28-alpine`                                 | 1.28    | Reverse proxy HTTP/443 → PHP-FPM            |
 | `redis`           | `redis:8.0-alpine`                                  | 8.0     | Cache session/app                           |
 | `moco.back`       | `.docker/moco/Dockerfile` (Moco 1.5.0)              | 1.5.0   | Mock HTTP pour pokenini-api                 |
