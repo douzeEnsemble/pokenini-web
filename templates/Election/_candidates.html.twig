@@ -1,6 +1,11 @@
 {% import "common/Pokemon/_image_macros.html.twig" as imageMacros %}
 
 <form action="" method="POST" id="election">
+  {% if not isTheLastOne %}
+    <p class="text-center text-body-secondary mb-2">
+      {{ 'election.candidates.instruction'|trans }}
+    </p>
+  {% endif %}
   <div class="row mt-xl-3 mt-1 ms-xl-5 me-xl-5 ms-md-3 me-md-3 ms-sm-1 me-sm-1">
     {% for item in pokemons %}
       <div class="col-xl-2 col-md-4 col-sm-6 col-6 mb-xl-3 mb-1 p-xl-3 p-lg-2 p-1 {{ isTheLastOne ? 'offset-xl-5 offset-md-4 offset-sm-3 offset-3' : '' }}">
