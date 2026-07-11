@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetAlbumDexListService;
+use App\Service\GetLabelsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ final class HomeController extends AbstractController
     public function index(
         UserTokenServiceInterface $userTokenService,
         GetAlbumDexListService $service,
+        GetLabelsService $getLabelsService,
         string $demoUserId,
     ): Response {
         try {
@@ -35,6 +37,7 @@ final class HomeController extends AbstractController
             [
                 'dex' => $album,
                 'demoUserId' => $demoUserId,
+                'catchStates' => $getLabelsService->getCatchStates(),
             ]
         );
     }
