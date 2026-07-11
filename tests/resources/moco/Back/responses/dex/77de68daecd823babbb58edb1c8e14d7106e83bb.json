@@ -1,0 +1,31 @@
+[
+  {
+    "dex": { "slug": "homeshiny" },
+    "settings": {
+      "name": "Home Shiny Custom",
+      "french_name": "Home Chromatique Perso",
+      "slug": "home-shiny-custom",
+      "display_template": "box"
+    },
+    "flags": {
+      "is_shiny": true,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": true
+    },
+    "report": {
+      "total": 4,
+      "total_caught": 1,
+      "total_uncaught": 3,
+      "detail": [
+        {
+          "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" },
+          "count": 1
+        }
+      ]
+    }
+  }
+]
