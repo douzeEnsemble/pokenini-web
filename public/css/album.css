@@ -93,6 +93,19 @@ a.album-case-catch-state-edit-action:hover {
     width: 100%;
 }
 
+/* A full living dex renders hundreds of cases: defer layout/paint for the
+   ones off-screen instead of paying for all of them up front. Scoped to
+   .album-case itself (not its .album-line/.box ancestor, and not the
+   sibling .modal) because content-visibility implies CSS containment, which
+   would otherwise clip each Pokémon's position:fixed detail modal to its
+   ancestor's box instead of letting it overlay the full viewport.
+   contain-intrinsic-size is only a placeholder used before the first real
+   render, so a rough estimate is enough. */
+.album-case {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 140px;
+}
+
 .d-flex[hidden] {
     display: none !important;
 }
