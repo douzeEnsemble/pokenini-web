@@ -42,8 +42,5 @@ abstract class AbstractConnectController extends AbstractController implements C
     /**
      * @return array<string, string>
      */
-    protected function getExtraOptions(): array
-    {
-        return [];
-    }
+    abstract protected function getExtraOptions(): array;
 }
