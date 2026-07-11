@@ -23,7 +23,8 @@ final class GoogleControllerTest extends TestCase
         $this->assertGoto(
             $controller,
             'openid',
-            'google'
+            'google',
+            ['prompt' => 'consent'],
         );
     }
 }

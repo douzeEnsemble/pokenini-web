@@ -21,7 +21,7 @@ abstract class AbstractConnectController extends AbstractController implements C
                 [
                     $this->getscope(),
                 ],
-                [],
+                $this->getExtraOptions(),
             )
         ;
     }
@@ -38,4 +38,12 @@ abstract class AbstractConnectController extends AbstractController implements C
     abstract protected function getProviderName(): string;
 
     abstract protected function getscope(): string;
+
+    /**
+     * @return array<string, string>
+     */
+    protected function getExtraOptions(): array
+    {
+        return [];
+    }
 }
