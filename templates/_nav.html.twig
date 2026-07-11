@@ -25,7 +25,11 @@
             <ul class="navbar-nav">
                 <li class="nav-item trainer-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    <a class="nav-link" href="{{ path('app_trainerindex_index') }}">
+                    <a
+                        class="nav-link {{ currentRoute == 'app_trainerindex_index' ? ' active' : '' }}"
+                        {{ currentRoute == 'app_trainerindex_index' ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_trainerindex_index') }}"
+                    >
                         <i class="bi bi-person-badge"></i>
                         {{ 'title.trainer'|trans }}
                     </a>
@@ -38,7 +42,12 @@
                 </li>
                 <li class="nav-item election-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    <a class="nav-link" href="{{ path('app_electiondexlist_index') }}">
+                    {% set onElection = currentRoute in ['app_electiondexlist_index', 'app_electionindex_index'] %}
+                    <a
+                        class="nav-link {{ onElection ? ' active' : '' }}"
+                        {{ onElection ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_electiondexlist_index') }}"
+                    >
                         <i class="bi bi-heart"></i>
                         {{ 'title.election.nav'|trans }}
                     </a>
@@ -71,10 +80,11 @@
                     </a>
                 </li>
                 {% if is_granted("ROLE_ADMIN") %}
+                {% set onAdmin = currentRoute in ['app_admin_actions', 'app_admin_reports'] %}
                 <li class="nav-item admin-link">
                     <a
-                        class="nav-link {{ currentRoute in ['app_admin_actions', 'app_admin_reports'] ? ' active' : '' }}"
-                        aria-current="page"
+                        class="nav-link {{ onAdmin ? ' active' : '' }}"
+                        {{ onAdmin ? 'aria-current="page"' : '' }}
                         href="{{ path('app_admin_actions') }}"
                     >
                         <i class="bi bi-wrench-adjustable-circle"></i>

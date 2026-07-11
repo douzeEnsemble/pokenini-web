@@ -27,6 +27,13 @@
 {% set progressColor = (0 == completionUnderMaxCount and completionAtMaxCount == scopeTotalCount) ? 'danger' : progressColor %}
 {% set progressColor = (0 == completionUnderMaxCount and completionAtMaxCount == scopeTotalCount and 1 == scopeTotalCount) ? 'success' : progressColor %}
 {% set progress = progressColor in ['danger', 'success'] ? 100 : progress %}
+{% set progressLabel =
+    ('election.stats.round.start'|trans({'n': roundCount})) ~
+    roundCount ~
+    ('election.stats.round.middle'|trans({'n': roundCount})) ~
+    totalRoundCount ~
+    ('election.stats.round.end'|trans({'n': roundCount}))
+%}
 {% set tooltipContent =
     ('election.stats.round.start'|trans({'n': roundCount})) ~
     '<strong>'~ roundCount ~'</strong>' ~
@@ -34,7 +41,7 @@
     '<strong>'~ totalRoundCount ~'</strong>' ~
     ('election.stats.round.end'|trans({'n': roundCount}))
 %}
-<div class="progress mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+<div class="progress mb-3" role="progressbar" aria-label="{{ progressLabel }}" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
     <div class="progress-bar progress-bar-striped bg-{{ progressColor }}" style="width: {{ progress }}%" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ tooltipContent }}">
         {{ progress }}%
     </div>
