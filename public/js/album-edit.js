@@ -1,5 +1,6 @@
 function watchCatchStates() {
   document.querySelectorAll(".album-container select").forEach(function (element) {
+    element.dataset.committedValue = element.value;
     element.addEventListener("change", onChangeCatchState);
   });
 }
@@ -30,9 +31,11 @@ function watchToggleEditMode() {
 
 function onChangeCatchState(event) {
   const target = event.target;
+  const previousValue = target.dataset.committedValue ?? target.value;
 
-  saveChange(target);
-  changeClass(target);
+  target.disabled = true;
+
+  saveChange(target, previousValue);
 }
 
 function onActivateEditMode(event) {
@@ -87,7 +90,7 @@ function onActivateAllReadMode(event) {
   readMode.setAttribute("hidden", true);
 }
 
-function saveChange(target) {
+function saveChange(target, previousValue) {
   const pokemon = target.closest(".album-case").getAttribute("id");
   const catchState = target.value;
 
@@ -102,12 +105,20 @@ function saveChange(target) {
         throw new Error("Something went wrong on api server!");
       }
 
+      target.dataset.committedValue = catchState;
+      changeClass(target);
+      target.disabled = false;
+
       new bootstrap.Toast(
         document.getElementById("successToast-" + pokemon)
       ).show();
     })
     .catch((error) => {
       console.error(error);
+
+      target.value = previousValue;
+      changeClass(target);
+      target.disabled = false;
 
       new bootstrap.Toast(
         document.getElementById("errorToast-" + pokemon)
