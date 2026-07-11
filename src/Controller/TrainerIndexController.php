@@ -8,6 +8,7 @@ use App\DTO\DexFilters;
 use App\DTO\DexFiltersRequest;
 use App\ResponseObject\Album\DexListItem;
 use App\Service\Back\GetTrainerDexListService;
+use App\Service\GetLabelsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,7 @@ final class TrainerIndexController extends AbstractController
 {
     public function __construct(
         private readonly GetTrainerDexListService $getDexService,
+        private readonly GetLabelsService $getLabelsService,
     ) {}
 
     #[Route('')]
@@ -36,6 +38,7 @@ final class TrainerIndexController extends AbstractController
             [
                 'trainerDex' => $filteredTrainerDex,
                 'filters' => $filters,
+                'catchStates' => $this->getLabelsService->getCatchStates(),
             ]
         );
     }

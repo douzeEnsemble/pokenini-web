@@ -1,3 +1,4 @@
+{% import "common/_progress_bar_macros.html.twig" as progressBar %}
 {% set attributes = [
     'is_private',
     'is_on_home',
@@ -43,13 +44,21 @@
           {% set bannerUrl = dexBannerUrl|format(dex.dex.slug) %}
           {% set defaultBannerUrl = dexBannerUrl|format('default') %}
           <img src="{{ bannerUrl }}" class="img-fluid" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';">
-          <a class="float-end btn btn-light btn-sm" href="{{ path('app_albumindex_index', {'dexSlug': dex.settings.slug}) }}" title="{{ 'trainer.dex.see'|trans }}">
-            <i class="bi bi-eye-fill"></i>
-            {{ 'trainer.dex.see'|trans }}
-          </a>
-          <h5>
-            {{ locale is same as('fr') ? dex.settings.frenchName : dex.settings.name }}
-          </h5>
+
+          <span class="d-block mt-3 mb-3">
+            <a class="float-end btn btn-light btn-sm" href="{{ path('app_albumindex_index', {'dexSlug': dex.settings.slug}) }}" title="{{ 'trainer.dex.see'|trans }}">
+              <i class="bi bi-eye-fill"></i>
+              {{ 'trainer.dex.see'|trans }}
+            </a>
+            <h5>
+              {{ locale is same as('fr') ? dex.settings.frenchName : dex.settings.name }}
+            </h5>
+          </span>
+
+          {% if dex.report is not null %}
+          {{ progressBar.catchStateBar(dex.report, locale) }}
+          {% endif %}
+
           <hr>
           <form data-dex="{{ dex.settings.slug }}">
             {% for attribute in attributes %}

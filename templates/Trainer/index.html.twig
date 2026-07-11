@@ -5,6 +5,14 @@
 
 {% block title %}Pokénini {{ 'title.trainer'|trans }}{% endblock title %}
 
+{% block stylesheets %}
+  {{ parent() }}
+
+  <style>
+  {% include 'common/_catch_state_progress_bar_styles.html.twig' %}
+  </style>
+{% endblock stylesheets %}
+
 {% block container %}
   <div class="row">
     <div class="col-md-10 mx-auto text-center row">
