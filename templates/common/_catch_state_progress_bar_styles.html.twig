@@ -1,8 +1,8 @@
 {% for catchState in catchStates %}
 .progress-bar.catch-state-{{ catchState.slug }} {
-    background-color: {{ catchState.color }};
+    background-color: var(--catch-state-{{ catchState.slug }});
 }
 .tooltip-{{ catchState.slug }} {
-    --bs-tooltip-bg: {{ catchState.color }};
+    --bs-tooltip-bg: var(--catch-state-{{ catchState.slug }});
 }
 {% endfor %}

@@ -3,27 +3,12 @@
     cursor: pointer;
 }
 
-.pokemon-icon {
-    max-width: 68px;
-    max-height: 56px;
-    font-size: .3rem;
-    color: rgba(0 0 0 / 0%);
-}
-
 a.election-card-catch-state-edit-action {
     color: inherit;
 }
 
 a.election-card-catch-state-edit-action:hover {
     color: black;
-}
-
-.album-modal-types {
-    color: white;
-}
-
-.list-group-item .icon-link {
-    align-items: inherit;
 }
 
 .election-top-item .card-img.img-fluid {

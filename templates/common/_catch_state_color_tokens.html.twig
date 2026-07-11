@@ -1,0 +1,8 @@
+{# Defines one CSS custom property per catch-state color so every page that
+   themes catch-states (progress bars, album cases, tables, ...) reads from a
+   single source instead of re-emitting the color literal in every rule. #}
+:root {
+    {% for catchState in catchStates %}
+    --catch-state-{{ catchState.slug }}: {{ catchState.color }};
+    {% endfor %}
+}

@@ -11,11 +11,11 @@
   <link rel="stylesheet" href="{{ asset('css/election.css') }}">
 
   <style>
+    {% include 'common/_pokemon_type_color_tokens.html.twig' %}
+    {% include 'common/_pokemon_type_color_classes.html.twig' %}
+
     {% for type in types %}
       {% set iconUrl = pokemonTypeIconUrl|format(type.slug) %}
-      .pokemon-type-{{type.slug}}{
-        background-color: {{type.color}}FF;
-      }
       .filters-types.pokemon-type-{{type.slug}}{
         background-image: url('{{ iconUrl }}');
       }

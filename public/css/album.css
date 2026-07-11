@@ -42,12 +42,6 @@
 .album-case-action select {
     width: 100%;
 }
-.pokemon-icon {
-    max-width: 68px;
-    max-height: 56px;
-    font-size: .3rem;
-    color: rgba(0 0 0 / 0%);
-}
 a.album-case-catch-state-edit-action {
     color: inherit;
 }
@@ -59,14 +53,6 @@ a.album-case-catch-state-edit-action:hover {
     max-width: 768px;
 }
 
-.album-modal-types {
-    color: white;
-}
-
-.list-group-item .icon-link {
-    align-items: inherit;
-}
-
 .modal-body .list-group {
     font-size: 0.85rem;
 }
@@ -75,20 +61,20 @@ a.album-case-catch-state-edit-action:hover {
 }
 .modal-body a.pokemon-icon {
     text-decoration: none;
-    color: #aab7b8;
+    color: var(--icon-link-color);
 }
 .modal-body a.pokemon-icon:hover {
-    color: #408b91;
+    color: var(--icon-link-hover-color);
 }
 .modal-body a.pokemon-icon:hover .img-thumbnail {
-    border-color: #408b91;
+    border-color: var(--icon-link-hover-color);
 }
 .modal-body a.pokemon-icon.active {
     text-decoration: underline;
-    color: #212529;
+    color: var(--bs-body-color);
 }
 .modal-body .active .img-thumbnail {
-    border-color: #212529;
+    border-color: var(--bs-body-color);
 }
 
 #report a {
