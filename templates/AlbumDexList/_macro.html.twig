@@ -17,17 +17,17 @@
     <div class="card-body">
       <div class="position-absolute top-0 end-0 me-2">
         {% if dex.flags.isPremium %}
-        <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}">
+        <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}" tabindex="0">
           <i class="bi bi-patch-plus"></i>
         </span>
         {% endif %}
         {% if not dex.flags.isReleased %}
-        <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}">
+        <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}" tabindex="0">
           <i class="bi bi-lock"></i>
         </span>
         {% endif %}
         {% if dex.flags.isCustom %}
-        <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}">
+        <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}" tabindex="0">
           <i class="bi bi-person"></i>
         </span>
         {% endif %}
@@ -77,17 +77,17 @@
     <div class="card-body">
       <div class="position-absolute top-0 end-0 me-2">
         {% if dex.flags.isPremium %}
-        <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}">
+        <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_premium.label')|trans }}" tabindex="0">
           <i class="bi bi-patch-plus"></i>
         </span>
         {% endif %}
         {% if not dex.flags.isReleased %}
-        <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}">
+        <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.not.is_released.label')|trans }}" tabindex="0">
           <i class="bi bi-lock"></i>
         </span>
         {% endif %}
         {% if dex.flags.isCustom %}
-        <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}">
+        <span class="dex_is_custom badge text-bg-info" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_custom.label')|trans }}" tabindex="0">
           <i class="bi bi-person"></i>
         </span>
         {% endif %}
