@@ -750,6 +750,23 @@
           "match": ".*"
         },
         "authorization": {
+          "match": "Bearer 77de68daecd823babbb58edb1c8e14d7106e83bb"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/dex/77de68daecd823babbb58edb1c8e14d7106e83bb.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/album/dex",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
           "match": "Bearer 6c33064427a5b419ca8eb3f7d11a0807f66cab22"
         }
       }

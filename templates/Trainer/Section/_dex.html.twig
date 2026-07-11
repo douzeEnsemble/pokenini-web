@@ -16,7 +16,7 @@
       {% for dex in trainerDex %}
         {% set canEdit = dex.flags.isPremium == false or is_granted('ROLE_COLLECTOR') %}
         {% set flagMap = {'is_private': dex.flags.isPrivate, 'is_on_home': dex.flags.isOnHome} %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 mb-sm-3 trainer-dex-item border rounded border-opacity-50 position-relative" id="trainer-dex-{{ dex.dex.slug }}">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 mb-sm-3 trainer-dex-item border rounded border-opacity-50 position-relative" id="trainer-dex-{{ dex.settings.slug }}">
           <div class="position-absolute top-0 end-0 me-2">
             {% if dex.flags.isShiny %}
               <span class="dex_is_shiny badge text-bg-warning" data-bs-toggle="tooltip" data-bs-title="{{ ('trainer.dex.attributes.is_shiny.label')|trans }}">
@@ -43,7 +43,7 @@
           {% set bannerUrl = dexBannerUrl|format(dex.dex.slug) %}
           {% set defaultBannerUrl = dexBannerUrl|format('default') %}
           <img src="{{ bannerUrl }}" class="img-fluid" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';">
-          <a class="float-end btn btn-light btn-sm" href="{{ path('app_albumindex_index', {'dexSlug': dex.dex.slug}) }}" title="{{ 'trainer.dex.see'|trans }}">
+          <a class="float-end btn btn-light btn-sm" href="{{ path('app_albumindex_index', {'dexSlug': dex.settings.slug}) }}" title="{{ 'trainer.dex.see'|trans }}">
             <i class="bi bi-eye-fill"></i>
             {{ 'trainer.dex.see'|trans }}
           </a>
@@ -51,11 +51,11 @@
             {{ locale is same as('fr') ? dex.settings.frenchName : dex.settings.name }}
           </h5>
           <hr>
-          <form data-dex="{{ dex.dex.slug }}">
+          <form data-dex="{{ dex.settings.slug }}">
             {% for attribute in attributes %}
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" name="{{ dex.dex.slug }}-{{ attribute }}" id="{{ dex.dex.slug }}-{{ attribute }}" {{ flagMap[attribute] ? 'checked' : '' }} {{ canEdit ? '' : 'disabled' }}>
-                <label class="form-check-label" for="{{ dex.dex.slug }}-{{ attribute }}">
+                <input class="form-check-input" type="checkbox" role="switch" name="{{ dex.settings.slug }}-{{ attribute }}" id="{{ dex.settings.slug }}-{{ attribute }}" {{ flagMap[attribute] ? 'checked' : '' }} {{ canEdit ? '' : 'disabled' }}>
+                <label class="form-check-label" for="{{ dex.settings.slug }}-{{ attribute }}">
                   <i class="bi bi-{{ attributesIcons[attribute] }}"></i>
                   {{ ('trainer.dex.attributes.'~attribute~'.label')|trans }}
                 </label>
@@ -71,7 +71,7 @@
       <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
         {% for dex in trainerDex %}
           {% set dexName = locale is same as('fr') ? dex.settings.frenchName : dex.settings.name %}
-          <div id="successToast-{{ dex.dex.slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+          <div id="successToast-{{ dex.settings.slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
               <div class="toast-body">
                 {{ 'trainer.dex.update.success.prefix'|trans }}
@@ -82,7 +82,7 @@
             </div>
           </div>
 
-          <div id="errorToast-{{ dex.dex.slug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+          <div id="errorToast-{{ dex.settings.slug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
               <div class="toast-body">
                 {{ 'trainer.dex.update.error.prefix'|trans }}

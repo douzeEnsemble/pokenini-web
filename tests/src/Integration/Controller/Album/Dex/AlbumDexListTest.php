@@ -265,4 +265,27 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#jumbotron a[href="/en/election/dex"]');
         $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
     }
+
+    public function testAlbumDexListCustomDexLinksToUniqueSettingsSlug(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('3', 'TestProvider');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/album/dex');
+
+        $this->assertResponseIsSuccessful();
+
+        $this->assertCountFilter($crawler, 1, '.dex-item');
+
+        $album = $crawler->filter('.dex-item')->first();
+
+        // The dex's base slug ("homeshiny") is shared with other customizations of the same
+        // base dex and is not unique per trainer; only settings.slug ("home-shiny-custom")
+        // uniquely identifies this trainer_dex row, so navigation must use it.
+        $this->assertEquals('/fr/album/home-shiny-custom', $album->filter('a')->attr('href'));
+        $this->assertEquals('https://icon.pokenini.fr/banner/homeshiny.png', $album->filter('img')->attr('src'));
+    }
 }

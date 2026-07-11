@@ -1,6 +1,6 @@
 {% macro item(type, dex, locale, forcedTrainerId) %}
 {% import "common/_progress_bar_macros.html.twig" as progressBar %}
-{% set url = path('app_'~type~'index_index', {'dexSlug': dex.dex.slug, 't': forcedTrainerId ?: null}) %}
+{% set url = path('app_'~type~'index_index', {'dexSlug': dex.settings.slug, 't': forcedTrainerId ?: null}) %}
 <div class="col-lg-3 col-md-4 col-sm-6 col-12 dex-item position-relative">
   <div class="card">
     <a href="{{ url }}">
