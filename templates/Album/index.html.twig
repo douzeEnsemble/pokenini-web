@@ -11,26 +11,24 @@
     <link rel="stylesheet" href="{{ asset('css/album.css') }}">
 
     <style>
+    {% include 'common/_catch_state_color_tokens.html.twig' %}
     {% for catchState in catchStates %}
     .album-case.catch-state-{{ catchState.slug }} .album-case-catch-state {
-        background-color: {{ catchState.color }};
+        background-color: var(--catch-state-{{ catchState.slug }});
     }
     .album-case.catch-state-{{ catchState.slug }} .album-case-action {
-        background-color: {{ catchState.color }};
+        background-color: var(--catch-state-{{ catchState.slug }});
     }
     tr.catch-state-{{ catchState.slug }} td,
     tr.catch-state-{{ catchState.slug }} th {
-        background-color: {{ catchState.color }};
+        background-color: var(--catch-state-{{ catchState.slug }});
     }
     {% endfor %}
 
     {% include 'common/_catch_state_progress_bar_styles.html.twig' %}
 
-    {% for type in types %}
-    .pokemon-type-{{ type.slug }} {
-        background-color: {{ type.color }};
-    }
-    {% endfor %}
+    {% include 'common/_pokemon_type_color_tokens.html.twig' %}
+    {% include 'common/_pokemon_type_color_classes.html.twig' %}
     </style>
 {% endblock stylesheets %}
 

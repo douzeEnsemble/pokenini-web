@@ -1,3 +1,8 @@
+:root {
+    --icon-link-color: #aab7b8;
+    --icon-link-hover-color: #408b91;
+}
+
 html {
     scroll-behavior: auto !important;
     scroll-padding-bottom: 80px;
@@ -5,4 +10,21 @@ html {
 
 .container {
     padding-bottom: 4rem;
+}
+
+/* Shared by Album and Election, which both render Pokémon icon links and
+   type badges - kept here once instead of duplicated per feature file. */
+.pokemon-icon {
+    max-width: 68px;
+    max-height: 56px;
+    font-size: .3rem;
+    color: rgba(0 0 0 / 0%);
+}
+
+.album-modal-types {
+    color: white;
+}
+
+.list-group-item .icon-link {
+    align-items: inherit;
 }
