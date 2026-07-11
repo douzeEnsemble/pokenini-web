@@ -21,6 +21,8 @@ final class ElectionReportTest extends TestCase
         $metrics = new ElectionReportMetrics(
             completion: new ElectionReportCompletion(atMaxCount: 5, underMaxCount: 1),
             dexTotalCount: 48,
+            roundCount: 7,
+            totalRoundCount: 8,
         );
         $report = new ElectionReport(metrics: $metrics);
 

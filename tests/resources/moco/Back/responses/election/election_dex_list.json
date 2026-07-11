@@ -32,7 +32,10 @@
           "under_max_count": 43,
           "at_max_count": 18
         },
-        "dex_total_count": 61
+        "dex_total_count": 61,
+        "round_count": 0,
+        "total_round_count": 10,
+        "winner_average": 4
       }
     }
   },
@@ -58,18 +61,21 @@
       "top": [],
       "metrics": {
         "view_count": {
-          "sum": 0,
+          "sum": 60,
           "max": 0
         },
         "win_count": {
-          "sum": 0,
+          "sum": 30,
           "max": 0
         },
         "completion": {
           "under_max_count": 15,
           "at_max_count": 18
         },
-        "dex_total_count": 33
+        "dex_total_count": 33,
+        "round_count": 5,
+        "total_round_count": 7,
+        "winner_average": 6
       }
     }
   },
@@ -95,18 +101,21 @@
       "top": [],
       "metrics": {
         "view_count": {
-          "sum": 0,
+          "sum": 24,
           "max": 0
         },
         "win_count": {
-          "sum": 0,
+          "sum": 12,
           "max": 0
         },
         "completion": {
-          "under_max_count": 1,
-          "at_max_count": 4
+          "under_max_count": 2,
+          "at_max_count": 3
         },
-        "dex_total_count": 5
+        "dex_total_count": 5,
+        "round_count": 2,
+        "total_round_count": 2,
+        "winner_average": 6
       }
     }
   },
@@ -132,18 +141,101 @@
       "top": [],
       "metrics": {
         "view_count": {
-          "sum": 0,
+          "sum": 63,
           "max": 0
         },
         "win_count": {
-          "sum": 0,
+          "sum": 16,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 20,
+          "at_max_count": 56
+        },
+        "dex_total_count": 76,
+        "round_count": 5,
+        "total_round_count": 7,
+        "winner_average": 3.2
+      }
+    }
+  },
+  {
+    "slug": "sunmoon",
+    "original_slug": "sunmoon",
+    "name": "Sun, Moon",
+    "french_name": "Soleil, Lune",
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "box",
+    "description": "All Pokémons that can be transferred to Pokémon Home.\r\n\r\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pokémons anyway, in case it changes)",
+    "french_description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "dex_total_count": 781,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 180,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 90,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 156,
+          "at_max_count": 181
+        },
+        "dex_total_count": 781,
+        "round_count": 15,
+        "total_round_count": 137,
+        "winner_average": 6
+      }
+    }
+  },
+  {
+    "slug": "goldsilvercrystal",
+    "original_slug": "goldsilvercrystal",
+    "name": "Gold, Silver, Crystal",
+    "french_name": "Or, Argent, Cristal",
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "box",
+    "description": "All Pokémons that can be transferred to Pokémon Home.\r\n\r\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pokémons anyway, in case it changes)",
+    "french_description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "dex_total_count": 1,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 12,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 6,
           "max": 0
         },
         "completion": {
           "under_max_count": 0,
-          "at_max_count": 76
+          "at_max_count": 1
         },
-        "dex_total_count": 76
+        "dex_total_count": 1,
+        "round_count": 1,
+        "total_round_count": 2,
+        "winner_average": 6
       }
     }
   }

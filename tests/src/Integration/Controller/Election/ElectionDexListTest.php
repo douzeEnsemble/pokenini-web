@@ -50,17 +50,28 @@ final class ElectionDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 21, '.dex-item .card-title a');
         $this->assertCountFilter($crawler, 24, '.dex-item .badge');
         $this->assertCountFilter($crawler, 21, '.dex-item .progress');
-        $this->assertCountFilter($crawler, 42, '.dex-item .progress-bar');
+        $this->assertCountFilter($crawler, 21, '.dex-item .progress-bar');
         $this->assertCountFilter($crawler, 21, '.dex-item p.small');
 
         $this->assertSame('71 Pokémons', $crawler->filter('.dex-item .badge')->eq(0)->text());
 
         $firstDex = $crawler->filter('.dex-item')->eq(0);
-        $this->assertStringContainsString('width: 29.58%', (string) $firstDex->filter('.progress-bar.bg-success')->attr('style'));
-        $this->assertStringContainsString('width: 70.42%', (string) $firstDex->filter('.progress-bar.bg-danger')->attr('style'));
-        $this->assertSame('29.58%', $firstDex->filter('.progress-bar.bg-success')->text());
-        $this->assertSame('70.42%', $firstDex->filter('.progress-bar.bg-danger')->text());
-        $this->assertSame('21 / 71 notées', (string) $firstDex->filter('.progress')->attr('data-bs-title'));
+        $this->assertStringContainsString('progress-bar-striped', (string) $firstDex->filter('.progress-bar')->attr('class'));
+        $this->assertStringContainsString('bg-info', (string) $firstDex->filter('.progress-bar')->attr('class'));
+        $this->assertStringContainsString('width: 31%', (string) $firstDex->filter('.progress-bar')->attr('style'));
+        $this->assertSame('31%', trim($firstDex->filter('.progress-bar')->text()));
+        $this->assertSame(
+            'Tu as fait <strong>4</strong> tours sur <strong>13</strong>*.',
+            (string) $firstDex->filter('.progress-bar')->attr('data-bs-title')
+        );
+
+        $successDex = $crawler->filter('.dex-item')->eq(1);
+        $this->assertStringContainsString('bg-success', (string) $successDex->filter('.progress-bar')->attr('class'));
+        $this->assertStringContainsString('width: 100%', (string) $successDex->filter('.progress-bar')->attr('style'));
+
+        $dangerDex = $crawler->filter('.dex-item')->eq(19);
+        $this->assertStringContainsString('bg-danger', (string) $dangerDex->filter('.progress-bar')->attr('class'));
+        $this->assertStringContainsString('width: 100%', (string) $dangerDex->filter('.progress-bar')->attr('style'));
 
         $this->assertSame('/fr/election/redgreenblueyellow', $crawler->filter('.dex-item .card-title a')->eq(0)->attr('href'));
         $this->assertSame('/fr/election/rubysapphireemerald', $crawler->filter('.dex-item .card-title a')->eq(2)->attr('href'));
