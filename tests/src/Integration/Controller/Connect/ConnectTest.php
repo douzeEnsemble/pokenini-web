@@ -59,7 +59,7 @@ final class ConnectTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         $this->assertStringStartsWith(
-            'https://accounts.google.com/o/oauth2/v2/auth?scope=openid%20email%20profile&access_type=offline&state=',
+            'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&scope=openid%20email%20profile&access_type=offline&state=',
             (string) $crawler->getUri()
         );
     }

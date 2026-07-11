@@ -20,4 +20,11 @@ final class GoogleController extends AbstractConnectController
     {
         return 'openid';
     }
+
+    #[\Override]
+    protected function getExtraOptions(): array
+    {
+        // Forces Google to always resend a refresh_token, not just on first consent.
+        return ['prompt' => 'consent'];
+    }
 }
