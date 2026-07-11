@@ -8,11 +8,14 @@ function watchAttributes()
 function onChangeAttributes(event)
 {
   const target = event.target;
+  const previousChecked = !target.checked;
 
-  saveChange(target);
+  target.disabled = true;
+
+  saveChange(target, previousChecked);
 }
 
-function saveChange(target)
+function saveChange(target, previousChecked)
 {
   const form = target.closest('form');
   const dexSlug = form.getAttribute('data-dex');
@@ -38,12 +41,17 @@ function saveChange(target)
         throw new Error('Something went wrong on api server!');
       }
 
+      target.disabled = false;
+
       new bootstrap.Toast(
         document.getElementById('successToast-'+dexSlug)
       ).show();
     })
     .catch(error => {
       console.error(error);
+
+      target.checked = previousChecked;
+      target.disabled = false;
 
       new bootstrap.Toast(
         document.getElementById('errorToast-'+dexSlug)

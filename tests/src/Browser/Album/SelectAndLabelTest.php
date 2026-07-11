@@ -353,7 +353,9 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#errorToast-squirtle');
         $this->assertSelectorWillNotBeVisible('#successToast-squirtle');
 
-        $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-no');
-        $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-tobreed');
+        // On a failed save, the case must revert to its last confirmed catch-state
+        // instead of silently keeping the unsaved value the user picked.
+        $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-no');
+        $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-tobreed');
     }
 }

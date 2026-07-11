@@ -5,7 +5,7 @@
 <div class="album-container album-box">
 {% if filters is not empty %}
     <h2 class="sticky-top">{{ 'title.empty'|trans }}</h2>
-    <div class="row row-cols-6 album-line">
+    <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 album-line">
         {% for item in list %}
             {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId, list, loop) }}
         {% endfor %}
@@ -13,7 +13,7 @@
 {% else %}
     <div id="box-1" class="box row">
         {{ macro.boxTitle(1) }}
-        <div class="row row-cols-6 album-line">
+        <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 album-line">
             {% for item in list %}
             {% set boxNumber = (loop.index0 / (6*5)) + 1 %}
 
@@ -23,7 +23,7 @@
     <hr>
     <div id="box-{{ boxNumber }}" class="box row">
         {{ macro.boxTitle(boxNumber) }}
-        <div class="row row-cols-6 album-line">
+        <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 album-line">
             {% endif %}
 
             {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId, list, loop) }}
