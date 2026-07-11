@@ -49,7 +49,7 @@ final class TrainerPageTest extends WebTestCase
         $this->assertEquals('Identifiant 789465465489', $crawler->filter('table tbody tr')->eq(0)->text());
         $this->assertEquals("Service d'identification TestProvider", $crawler->filter('table tbody tr')->eq(1)->text());
 
-        $this->assertCustomizeAlbumSection($crawler, false, false);
+        $this->assertCustomizeAlbumSection($crawler, false, false, 5);
 
         $this->assertStringContainsString(
             '/connect/logout',
@@ -93,7 +93,7 @@ final class TrainerPageTest extends WebTestCase
         $this->assertEquals('Identifiant 789465465489', $crawler->filter('table tbody tr')->eq(0)->text());
         $this->assertEquals("Service d'identification TestProvider", $crawler->filter('table tbody tr')->eq(1)->text());
 
-        $this->assertCustomizeAlbumSection($crawler, false, true);
+        $this->assertCustomizeAlbumSection($crawler, false, true, 5);
 
         $this->assertStringContainsString(
             '/connect/logout',
@@ -138,7 +138,7 @@ final class TrainerPageTest extends WebTestCase
         $this->assertEquals('Identifiant 8764532', $crawler->filter('table tbody tr')->eq(0)->text());
         $this->assertEquals("Service d'identification TestAdminProvider", $crawler->filter('table tbody tr')->eq(1)->text());
 
-        $this->assertCustomizeAlbumSection($crawler, true, true);
+        $this->assertCustomizeAlbumSection($crawler, true, true, 0);
 
         $this->assertStringContainsString(
             '/connect/logout',
@@ -165,7 +165,7 @@ final class TrainerPageTest extends WebTestCase
         $this->assertResponseStatusCodeSame(403);
     }
 
-    private function assertCustomizeAlbumSection(Crawler $crawler, bool $isAdmin, bool $isCollector): void
+    private function assertCustomizeAlbumSection(Crawler $crawler, bool $isAdmin, bool $isCollector, int $reportCount): void
     {
         $this->assertCountFilter($crawler, 1, 'form#dexFilters');
 
@@ -199,6 +199,7 @@ final class TrainerPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 21, '.trainer-dex-item h5');
         $this->assertCountFilter($crawler, 0, '.trainer-dex-item h6');
         $this->assertCountFilter($crawler, 42, '.trainer-dex-item input[type="checkbox"]');
+        $this->assertCountFilter($crawler, $reportCount, '.trainer-dex-item .progress');
 
         $this->assertEmpty($crawler->filter('#goldsilvercrystal-is_private')->attr('checked'));
         $this->assertEmpty($crawler->filter('#goldsilvercrystal-is_on_home')->attr('checked'));
