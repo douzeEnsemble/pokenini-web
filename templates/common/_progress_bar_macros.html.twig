@@ -21,20 +21,22 @@
 </div>
 {% endmacro %}
 
-{% macro twoToneBar(atMaxCount, dexTotalCount) %}
-{% set completionAtMax = dexTotalCount ? (100 * atMaxCount / dexTotalCount)|round(2) : 0 %}
-{% set completionUnderMax = dexTotalCount ? (100 - completionAtMax)|round(2) : 0 %}
-{% set tooltip = atMaxCount|number_format(0, '.', ' ') ~ ' / ' ~ dexTotalCount|number_format(0, '.', ' ') ~ ' ' ~ 'election_dex.dex.report_badge_suffixe'|trans %}
-<div class="progress mb-3"
-    role="progressbar"
-    aria-label="{{ tooltip }}"
-    aria-valuenow="{{ completionAtMax }}"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    data-bs-toggle="tooltip"
-    data-bs-title="{{ tooltip }}"
->
-    <div class="progress-bar bg-success" style="width: {{ completionAtMax }}%;">{{ completionAtMax }}%</div>
-    <div class="progress-bar bg-danger" style="width: {{ completionUnderMax }}%;">{{ completionUnderMax }}%</div>
+{% macro roundBar(roundCount, totalRoundCount, completionUnderMaxCount, completionAtMaxCount, scopeTotalCount, baseColor) %}
+{% set progress = totalRoundCount ? (100 * roundCount / totalRoundCount)|round(0) : 0 %}
+{% set progressColor = baseColor %}
+{% set progressColor = (0 == completionUnderMaxCount and completionAtMaxCount == scopeTotalCount) ? 'danger' : progressColor %}
+{% set progressColor = (0 == completionUnderMaxCount and completionAtMaxCount == scopeTotalCount and 1 == scopeTotalCount) ? 'success' : progressColor %}
+{% set progress = progressColor in ['danger', 'success'] ? 100 : progress %}
+{% set tooltipContent =
+    ('election.stats.round.start'|trans({'n': roundCount})) ~
+    '<strong>'~ roundCount ~'</strong>' ~
+    ('election.stats.round.middle'|trans({'n': roundCount})) ~
+    '<strong>'~ totalRoundCount ~'</strong>' ~
+    ('election.stats.round.end'|trans({'n': roundCount}))
+%}
+<div class="progress mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar progress-bar-striped bg-{{ progressColor }}" style="width: {{ progress }}%" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ tooltipContent }}">
+        {{ progress }}%
+    </div>
 </div>
 {% endmacro %}

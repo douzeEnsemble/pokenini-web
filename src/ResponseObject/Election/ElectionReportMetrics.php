@@ -13,6 +13,10 @@ final class ElectionReportMetrics
         private readonly ElectionReportCompletion $completion,
         #[SerializedName('dex_total_count')]
         private readonly int $dexTotalCount,
+        #[SerializedName('round_count')]
+        private readonly int $roundCount,
+        #[SerializedName('total_round_count')]
+        private readonly int $totalRoundCount,
     ) {}
 
     public function getCompletion(): ElectionReportCompletion
@@ -23,5 +27,15 @@ final class ElectionReportMetrics
     public function getDexTotalCount(): int
     {
         return $this->dexTotalCount;
+    }
+
+    public function getRoundCount(): int
+    {
+        return $this->roundCount;
+    }
+
+    public function getTotalRoundCount(): int
+    {
+        return $this->totalRoundCount;
     }
 }

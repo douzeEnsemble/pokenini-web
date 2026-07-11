@@ -117,7 +117,7 @@
       {% endif %}
 
       {% if dex.report is not null %}
-      {{ progressBar.twoToneBar(dex.report.metrics.completion.atMaxCount, dex.report.metrics.dexTotalCount) }}
+      {{ progressBar.roundBar(dex.report.metrics.roundCount, dex.report.metrics.totalRoundCount, dex.report.metrics.completion.underMaxCount, dex.report.metrics.completion.atMaxCount, dex.report.metrics.dexTotalCount, 'info') }}
       {% endif %}
 
       {% if dex.description is not null %}
