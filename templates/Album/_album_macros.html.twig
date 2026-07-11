@@ -3,18 +3,24 @@
 
   {% set locale = app.request.locale %}
   {% set currentCatchState = item.catchStateSlug ?? 'no' %}
+  {% set pokemonName = locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName %}
 
   <div class="album-case col catch-state-{{ currentCatchState }}" id="{{ item.pokemonSlug }}">
     {% set dexNumber = dex.regionName is not empty ? item.pokemonRegionalDexNumber : item.pokemonNationalDexNumber %}
     <div class="text-center text-truncate">
-      <label class="album-case-title" for="catch-state-{{ item.pokemonSlug }}" data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}">
+      {# This title opens the info modal - it is not a form label for the
+         catch-state select below, even though both share the same
+         Pokémon. Giving it a `for` here used to make the select's
+         accessible name "#150 Mewtwo" instead of describing the control,
+         so the select gets its own hidden label instead (see below). #}
+      <span class="album-case-title" data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}">
         <span class="album-case-dex-number">
           #{{ dexNumber }}
         </span>
         <span class="album-case-name">
-          {{ locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName }}
+          {{ pokemonName }}
         </span>
-      </label>
+      </span>
     </div>
     <div class="album-case-image text-center" title="#{{ dexNumber }} {{ locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName }}">
       <span data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}">
@@ -37,6 +43,9 @@
     <div class="album-case-catch-state-container">
       {% if canEdit %}
         <div class="album-case-action text-center" hidden>
+          <label class="visually-hidden" for="catch-state-{{ item.pokemonSlug }}">
+            {{ 'album.catch_state.select.label'|trans({'pokemonName': pokemonName}) }}
+          </label>
           <select class="catch-state-{{ currentCatchState }}" id="catch-state-{{ item.pokemonSlug }}" name="catch-state[{{ item.pokemonSlug }}]">
             {% for catchState in catchStates %}
               {% set isSelected = (catchState.slug is same as(currentCatchState)) %}

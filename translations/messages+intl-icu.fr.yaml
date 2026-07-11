@@ -92,6 +92,9 @@ album:
     alt:
       regular: "Image de"
       shiny: "Image chromatique de"
+  catch_state:
+    select:
+      label: "Statut de capture de {pokemonName}"
   update:
     title: "Maj"
     success:
@@ -463,6 +466,8 @@ admin:
         cta: "Invalider"
 
 election:
+  candidates:
+    instruction: "Choisis tous les Pokémon que tu préfères ici, tu peux en cocher plusieurs."
   choose:
     action: "Je choisi celui-là"
   the_end: "Bravo, tu as fini"

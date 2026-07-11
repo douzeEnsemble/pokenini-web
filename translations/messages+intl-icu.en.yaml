@@ -86,6 +86,9 @@ album:
     alt:
       regular: "Image if"
       shiny: "Shiny image of"
+  catch_state:
+    select:
+      label: "Catch status of {pokemonName}"
   update:
     title: "Update"
     success:
@@ -457,6 +460,8 @@ admin:
         cta: "Invalidate!"
 
 election:
+  candidates:
+    instruction: "Pick every Pokémon you like here — you can check more than one."
   choose:
     action: "I choose this one"
   the_end: "Well done, you're done!"
