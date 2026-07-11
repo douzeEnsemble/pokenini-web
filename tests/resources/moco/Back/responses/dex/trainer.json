@@ -73,12 +73,12 @@
       "total_caught": 50,
       "total_uncaught": 140,
       "detail": [
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 140 },
-        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 70 },
-        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 60 },
-        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 50 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 50 },
         { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 30 },
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 50 }
+        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 50 },
+        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 60 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 70 },
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 140 }
       ]
     }
   },
@@ -101,8 +101,8 @@
       "total_caught": 88,
       "total_uncaught": 63,
       "detail": [
-        { "catch_state": { "name": "Not caught", "french_name": "Pas attrapé", "slug": "no", "color": "#dc3545" }, "count": 63 },
-        { "catch_state": { "name": "Caught", "french_name": "Attrapé", "slug": "yes", "color": "#198754" }, "count": 88 }
+        { "catch_state": { "name": "Caught", "french_name": "Attrapé", "slug": "yes", "color": "#198754" }, "count": 88 },
+        { "catch_state": { "name": "Not caught", "french_name": "Pas attrapé", "slug": "no", "color": "#dc3545" }, "count": 63 }
       ]
     }
   },
@@ -115,8 +115,8 @@
       "total_caught": 1,
       "total_uncaught": 150,
       "detail": [
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 150 },
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 1 }
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 1 },
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 150 }
       ]
     }
   },
@@ -142,9 +142,9 @@
       "total_caught": 25,
       "total_uncaught": 10,
       "detail": [
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 10 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 25 },
         { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 15 },
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 25 }
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 10 }
       ]
     }
   },

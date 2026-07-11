@@ -25267,37 +25267,10 @@
       "detail": [
         {
           "catch_state": {
-            "name": "No",
-            "french_name": "Non",
-            "slug": "no",
-            "color": "#e57373"
-          },
-          "count": 0
-        },
-        {
-          "catch_state": {
-            "name": "To evolve",
-            "french_name": "af. évoluer",
-            "slug": "toevolve",
-            "color": "#9575cd"
-          },
-          "count": 0
-        },
-        {
-          "catch_state": {
-            "name": "To breed",
-            "french_name": "af. reproduire",
-            "slug": "tobreed",
-            "color": "#4fc3f7"
-          },
-          "count": 0
-        },
-        {
-          "catch_state": {
-            "name": "To transfer",
-            "french_name": "à transférer",
-            "slug": "totransfer",
-            "color": "#ffd54f"
+            "name": "Yes",
+            "french_name": "Oui",
+            "slug": "yes",
+            "color": "#66bb6a"
           },
           "count": 0
         },
@@ -25312,10 +25285,37 @@
         },
         {
           "catch_state": {
-            "name": "Yes",
-            "french_name": "Oui",
-            "slug": "yes",
-            "color": "#66bb6a"
+            "name": "To transfer",
+            "french_name": "à transférer",
+            "slug": "totransfer",
+            "color": "#ffd54f"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "To breed",
+            "french_name": "af. reproduire",
+            "slug": "tobreed",
+            "color": "#4fc3f7"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "To evolve",
+            "french_name": "af. évoluer",
+            "slug": "toevolve",
+            "color": "#9575cd"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "No",
+            "french_name": "Non",
+            "slug": "no",
+            "color": "#e57373"
           },
           "count": 0
         }

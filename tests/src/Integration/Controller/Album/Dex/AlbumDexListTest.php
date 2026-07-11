@@ -53,12 +53,12 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.dex_is_custom');
 
         $firstAlbum = $crawler->filter('.dex-item')->first();
-        $this->assertEquals('Épée, Bouclier 35% 12.5%', $firstAlbum->text());
+        $this->assertEquals('Épée, Bouclier 12.5% 35%', $firstAlbum->text());
         $this->assertEquals('/fr/album/swordshield', $firstAlbum->filter('a')->attr('href'));
         $this->assertEquals('https://icon.pokenini.fr/banner/swordshield.png', $firstAlbum->filter('img')->attr('src'));
 
         $secondAlbum = $crawler->filter('.dex-item')->eq(2);
-        $this->assertEquals('Home Chromatique 99.34% 0.66%', $secondAlbum->text());
+        $this->assertEquals('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
         $this->assertEquals('https://icon.pokenini.fr/banner/homeshiny.png', $secondAlbum->filter('img')->attr('src'));
 
@@ -199,11 +199,11 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.dex-item h3');
 
         $firstAlbum = $crawler->filter('.dex-item')->first();
-        $this->assertEquals('Épée, Bouclier 35% 12.5%', $firstAlbum->text());
+        $this->assertEquals('Épée, Bouclier 12.5% 35%', $firstAlbum->text());
         $this->assertEquals('/fr/album/swordshield', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $crawler->filter('.dex-item')->eq(2);
-        $this->assertEquals('Home Chromatique 99.34% 0.66%', $secondAlbum->text());
+        $this->assertEquals('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
         $this->assertSame(
@@ -247,11 +247,11 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.dex-item h3');
 
         $firstAlbum = $crawler->filter('.dex-item')->first();
-        $this->assertEquals('Sword, Shield 35% 12.5%', $firstAlbum->text());
+        $this->assertEquals('Sword, Shield 12.5% 35%', $firstAlbum->text());
         $this->assertEquals('/en/album/swordshield', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $crawler->filter('.dex-item')->eq(2);
-        $this->assertEquals('Home Shiny 99.34% 0.66%', $secondAlbum->text());
+        $this->assertEquals('Home Shiny 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/en/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
         $this->assertSame(
