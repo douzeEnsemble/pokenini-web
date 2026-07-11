@@ -7055,28 +7055,19 @@
       "detail": [
         {
           "catch_state": {
-            "name": "No",
-            "french_name": "Non",
-            "slug": "no",
-            "color": "#e57373"
+            "name": "Yes",
+            "french_name": "Oui",
+            "slug": "yes",
+            "color": "#66bb6a"
           },
-          "count": 1
+          "count": 2
         },
         {
           "catch_state": {
-            "name": "To evolve",
-            "french_name": "Af. évoluer",
-            "slug": "toevolve",
-            "color": "#9575cd"
-          },
-          "count": 1
-        },
-        {
-          "catch_state": {
-            "name": "To breed",
-            "french_name": "Af. reproduire",
-            "slug": "tobreed",
-            "color": "#4fc3f7"
+            "name": "To trade",
+            "french_name": "À échanger",
+            "slug": "totrade",
+            "color": "#ff9100"
           },
           "count": 1
         },
@@ -7091,21 +7082,30 @@
         },
         {
           "catch_state": {
-            "name": "To trade",
-            "french_name": "À échanger",
-            "slug": "totrade",
-            "color": "#ff9100"
+            "name": "To breed",
+            "french_name": "Af. reproduire",
+            "slug": "tobreed",
+            "color": "#4fc3f7"
           },
           "count": 1
         },
         {
           "catch_state": {
-            "name": "Yes",
-            "french_name": "Oui",
-            "slug": "yes",
-            "color": "#66bb6a"
+            "name": "To evolve",
+            "french_name": "Af. évoluer",
+            "slug": "toevolve",
+            "color": "#9575cd"
           },
-          "count": 2
+          "count": 1
+        },
+        {
+          "catch_state": {
+            "name": "No",
+            "french_name": "Non",
+            "slug": "no",
+            "color": "#e57373"
+          },
+          "count": 1
         }
       ]
     },

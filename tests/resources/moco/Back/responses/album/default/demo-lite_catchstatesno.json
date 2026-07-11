@@ -5990,19 +5990,28 @@
       "detail": [
         {
           "catch_state": {
-            "name": "No",
-            "french_name": "Non",
-            "slug": "no",
-            "color": "#e57373"
+            "name": "Yes",
+            "french_name": "Oui",
+            "slug": "yes",
+            "color": "#66bb6a"
           },
-          "count": 1
+          "count": 20
         },
         {
           "catch_state": {
-            "name": "To evolve",
-            "french_name": "Af. évoluer",
-            "slug": "toevolve",
-            "color": "#9575cd"
+            "name": "To trade",
+            "french_name": "À échanger",
+            "slug": "totrade",
+            "color": "#ff9100"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "To transfer",
+            "french_name": "À transférer",
+            "slug": "totransfer",
+            "color": "#ffd54f"
           },
           "count": 1
         },
@@ -6017,30 +6026,21 @@
         },
         {
           "catch_state": {
-            "name": "To transfer",
-            "french_name": "À transférer",
-            "slug": "totransfer",
-            "color": "#ffd54f"
+            "name": "To evolve",
+            "french_name": "Af. évoluer",
+            "slug": "toevolve",
+            "color": "#9575cd"
           },
           "count": 1
         },
         {
           "catch_state": {
-            "name": "To trade",
-            "french_name": "À échanger",
-            "slug": "totrade",
-            "color": "#ff9100"
+            "name": "No",
+            "french_name": "Non",
+            "slug": "no",
+            "color": "#e57373"
           },
-          "count": 0
-        },
-        {
-          "catch_state": {
-            "name": "Yes",
-            "french_name": "Oui",
-            "slug": "yes",
-            "color": "#66bb6a"
-          },
-          "count": 20
+          "count": 1
         }
       ]
     },
@@ -6051,37 +6051,10 @@
       "detail": [
         {
           "catch_state": {
-            "name": "No",
-            "french_name": "Non",
-            "slug": "no",
-            "color": "#e57373"
-          },
-          "count": 17
-        },
-        {
-          "catch_state": {
-            "name": "To evolve",
-            "french_name": "Af. évoluer",
-            "slug": "toevolve",
-            "color": "#9575cd"
-          },
-          "count": 0
-        },
-        {
-          "catch_state": {
-            "name": "To breed",
-            "french_name": "Af. reproduire",
-            "slug": "tobreed",
-            "color": "#4fc3f7"
-          },
-          "count": 0
-        },
-        {
-          "catch_state": {
-            "name": "To transfer",
-            "french_name": "À transférer",
-            "slug": "totransfer",
-            "color": "#ffd54f"
+            "name": "Yes",
+            "french_name": "Oui",
+            "slug": "yes",
+            "color": "#66bb6a"
           },
           "count": 0
         },
@@ -6096,12 +6069,39 @@
         },
         {
           "catch_state": {
-            "name": "Yes",
-            "french_name": "Oui",
-            "slug": "yes",
-            "color": "#66bb6a"
+            "name": "To transfer",
+            "french_name": "À transférer",
+            "slug": "totransfer",
+            "color": "#ffd54f"
           },
           "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "To breed",
+            "french_name": "Af. reproduire",
+            "slug": "tobreed",
+            "color": "#4fc3f7"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "To evolve",
+            "french_name": "Af. évoluer",
+            "slug": "toevolve",
+            "color": "#9575cd"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "No",
+            "french_name": "Non",
+            "slug": "no",
+            "color": "#e57373"
+          },
+          "count": 17
         }
       ]
     }
