@@ -20,4 +20,10 @@ final class DiscordController extends AbstractConnectController
     {
         return 'openid';
     }
+
+    #[\Override]
+    protected function getExtraOptions(): array
+    {
+        return [];
+    }
 }
