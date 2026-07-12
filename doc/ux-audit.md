@@ -12,11 +12,12 @@ Les valeurs numériques affichées dans les captures viennent d'un jeu de donné
 
 ## Haute priorité
 
-- [ ] [haute] La bannière "Prêt à choisir ton Pokémon préféré ?" ne se marque comme vue que si l'utilisateur la refuse, jamais s'il l'accepte
+- [x] [haute] La bannière "Prêt à choisir ton Pokémon préféré ?" ne se marque comme vue que si l'utilisateur la refuse, jamais s'il l'accepte
     Fichiers : `public/js/album-dex-list.js:1-19`, `templates/AlbumDexList/index.html.twig:35-44`
     Constat : `onCloseJumbotron()` (qui écrit `localStorage['app/album-dex-list/jumbotron/hidden'] = 'true'`) n'est attaché qu'aux éléments `.jumbotron-close` — le bouton "Nan merci" et le X de fermeture. Le lien "C'est parti !" qui mène au vote (`<a href="{{ path('app_electiondexlist_index') }}" ...>`, ligne 36) n'a pas cette classe et ne déclenche donc jamais l'écriture du flag. Un dresseur qui clique sur le CTA principal — l'action désirée — reverra donc la bannière à chaque retour sur cette page, alors qu'un dresseur qui la refuse ne la revoit plus jamais. C'est l'inverse de l'effet recherché.
     Suggestion : écrire aussi le flag `localStorage` au clic sur le lien de vote (ou déclencher `onCloseJumbotron` sur les deux types d'action).
     Capture : `admin__album-dex-list__desktop.png`, `admin__home__desktop.png`
+    **Traité** : le lien "C'est parti !" porte désormais la classe `jumbotron-accept` (`templates/AlbumDexList/index.html.twig:36`). `album-dex-list.js` lui attache un handler `rememberJumbotronSeen()` qui écrit le flag `localStorage` sans `preventDefault()` (la navigation vers l'élection continue normalement) ; `onCloseJumbotron` réutilise la même fonction. Vérifié en navigateur réel (Panther/Selenium) : clic sur "C'est parti !" → navigation vers `/fr/election/dex` + flag posé → retour sur `/fr/album/dex` → bannière non réaffichée. Chemin "Nan merci" revérifié, toujours fonctionnel.
 
 - [ ] [haute] Grille cassée à 768px pour les albums utilisant le gabarit `list-N` avec N non multiple de 4 (ex. « Méga », N=5)
     Fichier : `templates/Album/view/_list.html.twig:9-29`
