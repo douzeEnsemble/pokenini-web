@@ -248,27 +248,27 @@ trainer:
   filters:
     attributes:
       privacy:
-        label: "Filter private/public albums"
+        label: "Private/Public"
         all: "All"
         "on": "Private only"
         "off": "Public only"
       homepaged:
-        label: "Filter on home or not albums"
+        label: "On home"
         all: "All"
         "on": "On home"
         "off": "Not on home"
       released:
-        label: "Filter on released or not albums"
+        label: "Released"
         all: "All"
         "on": "Released"
         "off": "Not released"
       shiny:
-        label: "Filter on shiny or not albums"
+        label: "Shiny"
         all: "All"
         "on": "Shiny"
         "off": "Regular"
       premium:
-        label: "Filter on premium or free albums"
+        label: "Premium"
         all: "All"
         "on": "Premium"
         "off": "Free"

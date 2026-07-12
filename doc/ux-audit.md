@@ -26,11 +26,12 @@ Les valeurs numériques affichées dans les captures viennent d'un jeu de donné
     Capture : `admin__album-mega__tablet.png` vs `admin__album-home__tablet.png` (même viewport, comparaison directe)
     **Traité** : suppression du découpage manuel en blocs de `nbCaseByLine` — tous les éléments partagent désormais un seul `<div class="row {{ rowColsClasses }} album-line">`, comme la branche `filters is not empty` de `_box.html.twig`. Bootstrap gère le retour à la ligne nativement à chaque breakpoint, sans notion de "bloc". Vérifié en navigateur réel à 768px : un seul `.album-line` pour les 50 items de l'album Méga, grille continue à 4 colonnes sur toute la hauteur, plus aucune ligne orpheline.
 
-- [ ] [haute] Libellés des 5 filtres de l'espace dresseur tous tronqués sur mobile, + coquille "Filter" → "Filtrer"
+- [x] [haute] Libellés des 5 filtres de l'espace dresseur tous tronqués sur mobile, + coquille "Filter" → "Filtrer"
     Fichiers : `templates/Trainer/Section/_dex_filters.html.twig:32-49` (markup `form-floating`), `translations/messages+intl-icu.fr.yaml:255-279` (texte)
     Constat : à 375px, les 5 libellés `trainer.filters.attributes.*.label` débordent du `form-floating` et sont coupés par une ellipse : "Filtrer les albums privées/p…", "…sur l'accu…", "…disponibl…", "…chromatiq…", "…premiums …". Le libellé tronqué ne dit plus ce que le filtre fait. Par ailleurs les clés `shiny` (ligne 271) et `premium` (ligne 276) utilisent "Filter" au lieu de "Filtrer".
     Suggestion : raccourcir les 5 libellés (ex. "Privé/Public", "Sur l'accueil", "Disponible", "Chromatique", "Premium") pour qu'ils tiennent sur mobile, et corriger la coquille "Filter" → "Filtrer".
     Capture : `admin__trainer__mobile.png`
+    **Traité** : les 5 `label` de `translations/messages+intl-icu.fr.yaml:255-279` raccourcis en "Privé/Public", "Sur l'accueil", "Disponible", "Chromatique", "Premium" (coquille "Filter" éliminée avec le reste du texte). Mêmes libellés raccourcis en anglais (`messages+intl-icu.en.yaml:250-273` : "Private/Public", "On home", "Released", "Shiny", "Premium") pour ne pas laisser le même bug côté EN. Vérifié en navigateur réel à 375px : les 5 libellés s'affichent en entier, plus aucune ellipse.
 
 ---
 
