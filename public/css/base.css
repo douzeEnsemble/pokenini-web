@@ -13,7 +13,7 @@ html {
 }
 
 /* Shared by Album and Election, which both render Pokémon icon links and
-   type badges - kept here once instead of duplicated per feature file. */
+    type badges - kept here once instead of duplicated per feature file. */
 .pokemon-icon {
     max-width: 68px;
     max-height: 56px;

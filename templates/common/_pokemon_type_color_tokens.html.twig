@@ -1,6 +1,6 @@
 {# Defines one CSS custom property per Pokémon type color, consumed by
-   common/_pokemon_type_color_classes.html.twig and by page-specific rules
-   (e.g. the Election filter buttons) that need the raw color value. #}
+  common/_pokemon_type_color_classes.html.twig and by page-specific rules
+  (e.g. the Election filter buttons) that need the raw color value. #}
 :root {
     {% for type in types %}
     --pokemon-type-{{ type.slug }}: {{ type.color }};

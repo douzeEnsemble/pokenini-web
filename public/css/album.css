@@ -20,8 +20,8 @@
 }
 
 /* Below md, .album-box shows fewer columns (row-cols-3/row-cols-sm-4), so
-   cells are wider than at the 6-column desktop density: scale text up
-   accordingly instead of keeping the desktop-tuned sizes illegibly small. */
+    cells are wider than at the 6-column desktop density: scale text up
+    accordingly instead of keeping the desktop-tuned sizes illegibly small. */
 @media (max-width: 767.98px) {
     .album-case-dex-number {
         font-size: .65rem;
@@ -86,9 +86,9 @@ a.album-case-catch-state-edit-action:hover {
 }
 
 /* Bootstrap only ships row-cols-*-1 through -6; a list-7 dex needs a 7-column
-   tier of its own once it reaches the row-cols-md-7 breakpoint (see
-   Album/view/_list.html.twig) - below md it falls back to the real Bootstrap
-   row-cols-3/row-cols-sm-4 utilities, so no override is needed there. */
+    tier of its own once it reaches the row-cols-md-7 breakpoint (see
+    Album/view/_list.html.twig) - below md it falls back to the real Bootstrap
+    row-cols-3/row-cols-sm-4 utilities, so no override is needed there. */
 @media (min-width: 768px) {
     .album-line.row-cols-md-7 > * {
         flex: 0 0 auto;
@@ -100,13 +100,13 @@ a.album-case-catch-state-edit-action:hover {
 }
 
 /* A full living dex renders hundreds of cases: defer layout/paint for the
-   ones off-screen instead of paying for all of them up front. Scoped to
-   .album-case itself (not its .album-line/.box ancestor, and not the
-   sibling .modal) because content-visibility implies CSS containment, which
-   would otherwise clip each Pokémon's position:fixed detail modal to its
-   ancestor's box instead of letting it overlay the full viewport.
-   contain-intrinsic-size is only a placeholder used before the first real
-   render, so a rough estimate is enough. */
+    ones off-screen instead of paying for all of them up front. Scoped to
+    .album-case itself (not its .album-line/.box ancestor, and not the
+    sibling .modal) because content-visibility implies CSS containment, which
+    would otherwise clip each Pokémon's position:fixed detail modal to its
+    ancestor's box instead of letting it overlay the full viewport.
+    contain-intrinsic-size is only a placeholder used before the first real
+    render, so a rough estimate is enough. */
 .album-case {
     content-visibility: auto;
     contain-intrinsic-size: auto 140px;
