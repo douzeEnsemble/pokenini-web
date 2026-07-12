@@ -31,9 +31,9 @@ final class List3Test extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/demolist3?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 41, '.album-case.col');
-        $this->assertCountFilter($crawler, 3, 'div.row.album-line', 0, '.album-case.col');
-        $this->assertCountFilter($crawler, 3, 'div.row.album-line', 12, '.album-case.col');
-        $this->assertCountFilter($crawler, 14, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 41, 'div.row.album-line', 0, '.album-case.col');
+        $this->assertCountFilter($crawler, 0, 'div.row.album-line', 12, '.album-case.col');
+        $this->assertCountFilter($crawler, 1, 'div.row.album-line');
         $this->assertCountFilter($crawler, 0, '.box');
     }
 
@@ -48,9 +48,9 @@ final class List3Test extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/demolist3?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 35, '.album-case.col');
-        $this->assertCountFilter($crawler, 3, 'div.row.album-line', 0, '.album-case.col');
-        $this->assertCountFilter($crawler, 3, 'div.row.album-line', 2, '.album-case.col');
-        $this->assertCountFilter($crawler, 12, 'div.row.album-line');
+        $this->assertCountFilter($crawler, 35, 'div.row.album-line', 0, '.album-case.col');
+        $this->assertCountFilter($crawler, 0, 'div.row.album-line', 2, '.album-case.col');
+        $this->assertCountFilter($crawler, 1, 'div.row.album-line');
         $this->assertCountFilter($crawler, 0, '.box');
     }
 }

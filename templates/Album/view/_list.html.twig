@@ -5,7 +5,16 @@
    columns than desktop - mirrors the box template's row-cols-3/sm-4/md-6 pattern
    (Album/view/_box.html.twig) instead of a single fixed row-cols-N that stayed
    just as cramped on a phone as on desktop. A list-3 dex is already narrow
-   enough to need no change; list-5/list-7 pick up the same tiering. #}
+   enough to need no change; list-5/list-7 pick up the same tiering.
+
+   All items share a single .row: letting Bootstrap's flex-wrap break lines on
+   its own (like _box.html.twig's "filters is not empty" branch) means every
+   line but the very last is always full, at every breakpoint. Manually
+   chunking the list into fixed-size groups of nbCaseByLine first (the
+   previous approach) produced a sparse, orphaned line at every chunk boundary
+   whenever nbCaseByLine wasn't a multiple of the column count actually active
+   at that breakpoint - e.g. a list-5 dex still chunks 5-by-5 at the sm/md
+   768px breakpoint, which only displays 4 columns. #}
 {% set mobileCols = nbCaseByLine < 3 ? nbCaseByLine : 3 %}
 {% set smCols = nbCaseByLine < 4 ? nbCaseByLine : 4 %}
 {% set rowColsClasses = 'row-cols-' ~ mobileCols %}
@@ -20,10 +29,6 @@
     <h2>{{ 'title.empty'|trans }}</h2>
     <div class="row {{ rowColsClasses }} album-line" id="top-of-the-list">
         {% for item in list %}
-        {% if loop.index0 is not same as(0) and (loop.index0 % nbCaseByLine) is same as(0) %}
-    </div>
-    <div class="row {{ rowColsClasses }} album-line">
-        {% endif %}
         {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId, list, loop) }}
         {% endfor %}
     </div>
