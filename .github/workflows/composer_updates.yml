@@ -1,0 +1,58 @@
+name: Composer Updates
+
+on:
+  schedule:
+    - cron: '57 4 * * *'
+  workflow_dispatch: ~
+
+permissions:
+  contents: read
+
+concurrency:
+  group: composer-updates
+  cancel-in-progress: true
+
+jobs:
+  composer-updates:
+    name: Update Composer dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Prepare PHP
+        uses: ./.github/actions/local-php
+
+      - name: Update main app dependencies
+        run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=./
+
+      - name: Update deptrac dependencies
+        run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/deptrac
+
+      - name: Update infection dependencies
+        run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/infection
+
+      - name: Update jsonlint dependencies
+        run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/jsonlint
+
+      - name: Update php-cs-fixer dependencies
+        run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/php-cs-fixer
+
+      - name: Update phpmd dependencies
+        run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpmd
+
+      - name: Update phpstan dependencies
+        run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/phpstan
+
+      - name: Update psalm dependencies
+        run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/psalm
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          branch: chore/composer-updates
+          delete-branch: true
+          commit-message: "Composers updates"
+          title: "Composers updates"
+          labels: dependencies
