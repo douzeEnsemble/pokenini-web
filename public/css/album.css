@@ -85,11 +85,17 @@ a.album-case-catch-state-edit-action:hover {
     background-color: white;
 }
 
-.album-line.row-cols-7 > * {
-    flex: 0 0 auto;
-    width: 14.285714285714286%;
+/* Bootstrap only ships row-cols-*-1 through -6; a list-7 dex needs a 7-column
+   tier of its own once it reaches the row-cols-md-7 breakpoint (see
+   Album/view/_list.html.twig) - below md it falls back to the real Bootstrap
+   row-cols-3/row-cols-sm-4 utilities, so no override is needed there. */
+@media (min-width: 768px) {
+    .album-line.row-cols-md-7 > * {
+        flex: 0 0 auto;
+        width: 14.285714285714286%;
+    }
 }
-.album-line.row-cols-7 .modal {
+.album-line.row-cols-md-7 .modal {
     width: 100%;
 }
 
