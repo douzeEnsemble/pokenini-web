@@ -34,7 +34,28 @@
   ];
 
   const patternsPaired = pattern.generate(colorsPaired12);
-  const patternsClassic = pattern.generate(colorsClassicGreenOrange12);
+
+  function lightenColor(hex, amount) {
+    const num = parseInt(hex.replace('#', ''), 16);
+    const r = (num >> 16) & 0xff;
+    const g = (num >> 8) & 0xff;
+    const b = num & 0xff;
+    const mix = (channel) => Math.round(channel + (255 - channel) * amount);
+    return `rgb(${mix(r)}, ${mix(g)}, ${mix(b)})`;
+  }
+
+  // patternomaly leaves each shape's holes fully transparent, which reads as
+  // stark white cut into a solid color - busy on a pie slice. Keep the same
+  // shape-per-color assignment generate() picks (still a distinct texture per
+  // slice for colorblind users, not just a color), but fill the holes with a
+  // pale tint of that slice's own color instead of white, and use a bigger
+  // tile so fewer repetitions show on a small slice - softer without losing
+  // the texture distinction.
+  function softenPatterns(colors) {
+    return pattern.generate(colors).map((patt, index) => pattern.draw(patt.shapeType, colors[index], lightenColor(colors[index], 0.65), 32));
+  }
+
+  const patternsClassic = softenPatterns(colorsClassicGreenOrange12);
 </script>
 
 <script>
@@ -186,7 +207,7 @@
     {% set catchStateUsageData = reportsData.catch_state_usage|map(d => d.count) %}
     {% set catchStateUsageColors = reportsData.catch_state_usage|map(d => d.catch_state.color) %}
 
-    const catchStatePatterns = pattern.generate({{ catchStateUsageColors|json_encode()|raw }});
+    const catchStatePatterns = softenPatterns({{ catchStateUsageColors|json_encode()|raw }});
 
     const tableLegendPlugin = {
       id: 'tableLegend',
