@@ -1,8 +1,8 @@
 {# Shared ".pokemon-type-X { background-color }" badge rules, reused by both
-   Album (type badges) and Election (filter buttons) instead of each page
-   re-emitting its own copy of the same rule. Requires
-   common/_pokemon_type_color_tokens.html.twig to be included on the same
-   page for the --pokemon-type-X custom properties to resolve. #}
+  Album (type badges) and Election (filter buttons) instead of each page
+  re-emitting its own copy of the same rule. Requires
+  common/_pokemon_type_color_tokens.html.twig to be included on the same
+  page for the --pokemon-type-X custom properties to resolve. #}
 {% for type in types %}
 .pokemon-type-{{ type.slug }} {
     background-color: var(--pokemon-type-{{ type.slug }});

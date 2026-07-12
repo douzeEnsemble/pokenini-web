@@ -9,10 +9,10 @@
     {% set dexNumber = dex.regionName is not empty ? item.pokemonRegionalDexNumber : item.pokemonNationalDexNumber %}
     <div class="text-center text-truncate">
       {# This title opens the info modal - it is not a form label for the
-         catch-state select below, even though both share the same
-         Pokémon. Giving it a `for` here used to make the select's
-         accessible name "#150 Mewtwo" instead of describing the control,
-         so the select gets its own hidden label instead (see below). #}
+        catch-state select below, even though both share the same
+        Pokémon. Giving it a `for` here used to make the select's
+        accessible name "#150 Mewtwo" instead of describing the control,
+        so the select gets its own hidden label instead (see below). #}
       <span class="album-case-title" data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}">
         <span class="album-case-dex-number">
           #{{ dexNumber }}
