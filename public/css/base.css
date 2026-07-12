@@ -39,3 +39,21 @@ html {
     text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
     pointer-events: none;
 }
+
+/* common/_progress_bar_macros.html.twig's catchStateBar opens a legend
+    popover on click - nothing else about the bar signals it's interactive. */
+.progress[data-bs-toggle="popover"] {
+    cursor: pointer;
+}
+
+/* Color dot in that same legend popover. Only the shape/size lives here -
+    the per-state color itself comes from a .catch-state-{slug} class added
+    alongside (common/_catch_state_progress_bar_styles.html.twig), since
+    Bootstrap's popover sanitizer strips inline style="" attributes. */
+.catch-state-dot {
+    display: inline-block;
+    width: .65rem;
+    height: .65rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}

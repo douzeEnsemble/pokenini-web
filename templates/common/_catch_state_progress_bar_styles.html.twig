@@ -5,4 +5,11 @@
 .tooltip-{{ catchState.slug }} {
     --bs-tooltip-bg: var(--catch-state-{{ catchState.slug }});
 }
+{# Bootstrap's popover content is HTML-sanitized: inline style="" attributes
+  get stripped, only class/id/role/aria-* survive. The catchStateBar legend
+  popover needs its per-state color dot to survive that, hence a class here
+  instead of the inline custom property used everywhere else on this page. #}
+.catch-state-dot.catch-state-{{ catchState.slug }} {
+    background-color: var(--catch-state-{{ catchState.slug }});
+}
 {% endfor %}
