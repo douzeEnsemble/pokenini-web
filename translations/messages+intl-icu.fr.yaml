@@ -469,7 +469,7 @@ election:
   candidates:
     instruction: "Choisis tous les Pokémon que tu préfères ici, tu peux en cocher plusieurs."
   choose:
-    action: "Je choisi celui-là"
+    action: "Je choisis celui-là"
   the_end: "Bravo, tu as fini"
   slug:
     label: "Nom de l'élection"
