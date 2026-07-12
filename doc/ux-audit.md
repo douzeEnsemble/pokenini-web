@@ -61,11 +61,12 @@ Les valeurs numériques affichées dans les captures viennent d'un jeu de donné
     2. Légende complète sous la barre (tous les états) sur les cartes/Dresseur uniquement → jugée trop encombrante : chaque segment porte déjà un `title`/`data-bs-title` + `data-bs-toggle="tooltip"` avec le nom et le pourcentage, solution déjà en place précisément pour éviter d'alourdir l'affichage. Limite assumée : pas de survol sur tactile, mais considéré comme un compromis existant plutôt qu'un bug à corriger.
     Code entièrement revenu à l'état du dernier commit (`_progress_bar_macros.html.twig`, `AlbumDexList/_macro.html.twig`, `Trainer/Section/_dex.html.twig`, `CommonTest.php`, `AlbumDexListTest.php`).
 
-- [ ] [moyenne] Paragraphe entier en couleur "lien" sur la page Salle d'attente
+- [x] [moyenne] Paragraphe entier en couleur "lien" sur la page Salle d'attente
     Fichier : `templates/OuterRoom/index.html.twig` (`<p class="text-primary">{{ 'outer_room.message'|trans(...) }}</p>`)
     Constat : seul le bouton mailto juste en dessous est cliquable, mais tout le paragraphe explicatif hérite de la couleur lien Bootstrap (`text-primary`), au risque de faire croire que des phrases entières sont cliquables.
     Suggestion : retirer `text-primary` du paragraphe, ne garder la couleur d'accent que sur les éléments réellement interactifs (le bouton mailto, "Se déconnecter").
     Capture : `uninvited__outerroom__desktop.png`
+    **Traité** : classe `text-primary` retirée du `<p>` — repasse à la couleur de texte par défaut (`--bs-body-color`). Vérifié en navigateur réel : `getComputedStyle(...).color` = `rgb(33, 37, 41)` (encre normale, plus de bleu), bouton mailto et lien "Se déconnecter" restent les seuls éléments visuellement interactifs.
 
 ---
 
