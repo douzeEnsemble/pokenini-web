@@ -51,11 +51,15 @@ Les valeurs numériques affichées dans les captures viennent d'un jeu de donné
     Capture : `admin__album-home__desktop.png`
     **Traité** : `bi-filter-circle` → `bi-check-circle` ("filtre les X", ligne 33) et `bi-filter-circle-fill` → `bi-x-circle` ("filtre tous sauf X", ligne 50) — deux familles d'icônes bien distinctes (✓ / ✗) qui portent leur sens sans dépendre du survol, au lieu d'une paire contour/plein quasi identique. Ligne "Total" (`bi-funnel`/`bi-funnel-fill`, un simple bascule actif/inactif, pas une paire ambiguë) laissée telle quelle. Vérifié visuellement dans un navigateur réel.
 
-- [ ] [moyenne] Barre "100%" en rouge sur les pages d'album, sans indication de ce qu'elle mesure
+- [x] [moyenne] Barre "100%" en rouge sur les pages d'album, sans indication de ce qu'elle mesure
     Fichier : `templates/Album/_report.html.twig:9` (macro `progressBar.catchStateBar`)
     Constat : la barre affiche uniquement "100%" en toutes lettres ; il s'agit en réalité de "100% non capturés" (le rouge correspond à la ligne "Non" de la légende juste en dessous), lisible seulement en croisant avec le tableau.
     Suggestion : ajouter le libellé de l'état dans la barre elle-même (ex. "100% non capturés"), ou reprendre le style segmenté multicolore déjà utilisé sur les cartes de la page Album Dex List / accueil anonyme.
     Capture : `admin__album-home__desktop.png`
+    **Revu, aucun changement de code retenu** : deux pistes tentées puis annulées après retour utilisateur.
+    1. Texte "{nom}: {pourcentage}%" directement dans les segments "Oui"/"Non" partout → débordait et se faisait couper sur les cartes étroites (liste d'albums, Dresseur) ; c'est précisément pour ça que les autres états n'ont jamais eu de pourcentage affiché du tout (pas la place).
+    2. Légende complète sous la barre (tous les états) sur les cartes/Dresseur uniquement → jugée trop encombrante : chaque segment porte déjà un `title`/`data-bs-title` + `data-bs-toggle="tooltip"` avec le nom et le pourcentage, solution déjà en place précisément pour éviter d'alourdir l'affichage. Limite assumée : pas de survol sur tactile, mais considéré comme un compromis existant plutôt qu'un bug à corriger.
+    Code entièrement revenu à l'état du dernier commit (`_progress_bar_macros.html.twig`, `AlbumDexList/_macro.html.twig`, `Trainer/Section/_dex.html.twig`, `CommonTest.php`, `AlbumDexListTest.php`).
 
 - [ ] [moyenne] Paragraphe entier en couleur "lien" sur la page Salle d'attente
     Fichier : `templates/OuterRoom/index.html.twig` (`<p class="text-primary">{{ 'outer_room.message'|trans(...) }}</p>`)
