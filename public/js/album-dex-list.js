@@ -15,15 +15,25 @@ function watchJumbotronCloseButton() {
     element.addEventListener("click", onCloseJumbotron);
   });
 
+  // The accept link navigates to the election - only remember the choice,
+  // don't preventDefault or the navigation itself would be cancelled.
+  document
+  .querySelectorAll(".jumbotron-accept")
+  .forEach(function (element) {
+    element.addEventListener("click", rememberJumbotronSeen);
+  });
+
   jumbotron.removeAttribute('hidden');
 }
 
 function onCloseJumbotron(event) {
   event.preventDefault();
 
-  const jumbotron = document.getElementById('jumbotron');
+  document.getElementById('jumbotron').setAttribute('hidden', true);
 
-  jumbotron.setAttribute('hidden', true);
+  rememberJumbotronSeen();
+}
 
+function rememberJumbotronSeen() {
   localStorage.setItem(jumbotronKey, 'true');
 }
