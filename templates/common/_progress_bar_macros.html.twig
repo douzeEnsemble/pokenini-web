@@ -41,9 +41,15 @@
     '<strong>'~ totalRoundCount ~'</strong>' ~
     ('election.stats.round.end'|trans({'n': roundCount}))
 %}
-<div class="progress mb-3" role="progressbar" aria-label="{{ progressLabel }}" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
-    <div class="progress-bar progress-bar-striped bg-{{ progressColor }}" style="width: {{ progress }}%" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ tooltipContent }}">
-        {{ progress }}%
-    </div>
+{# The "{{ progress }}%" label used to live inside the colored .progress-bar
+  div itself - fine at most widths, but at 0% that div is 0px wide, so its own
+  text is trapped inside a zero-width box and never paints. A dex with no
+  rounds voted yet then shows a bare empty grey track with no label at all,
+  indistinguishable from "still loading" or broken. Moving the label to a
+  sibling overlay centered on the outer .progress track (not the inner,
+  width-constrained bar) keeps it visible at any completion, including 0%. #}
+<div class="progress mb-3 position-relative" role="progressbar" aria-label="{{ progressLabel }}" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar progress-bar-striped bg-{{ progressColor }}" style="width: {{ progress }}%" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ tooltipContent }}"></div>
+    <span class="round-bar-label position-absolute top-50 start-50 translate-middle small fw-semibold">{{ progress }}%</span>
 </div>
 {% endmacro %}

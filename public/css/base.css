@@ -28,3 +28,14 @@ html {
 .list-group-item .icon-link {
     align-items: inherit;
 }
+
+/* Overlay label on common/_progress_bar_macros.html.twig's roundBar - sits on
+    the empty grey track as readily as on the colored bar itself (0% through
+    100%), so it needs to stay legible against either. A white halo keeps dark
+    text readable over a saturated bg-info/bg-warning/bg-danger/bg-success
+    fill without needing a different color per state. */
+.round-bar-label {
+    color: #000;
+    text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+    pointer-events: none;
+}

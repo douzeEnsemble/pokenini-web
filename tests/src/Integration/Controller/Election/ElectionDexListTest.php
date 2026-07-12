@@ -59,7 +59,7 @@ final class ElectionDexListTest extends WebTestCase
         $this->assertStringContainsString('progress-bar-striped', (string) $firstDex->filter('.progress-bar')->attr('class'));
         $this->assertStringContainsString('bg-info', (string) $firstDex->filter('.progress-bar')->attr('class'));
         $this->assertStringContainsString('width: 31%', (string) $firstDex->filter('.progress-bar')->attr('style'));
-        $this->assertSame('31%', trim($firstDex->filter('.progress-bar')->text()));
+        $this->assertSame('31%', trim($firstDex->filter('.round-bar-label')->text()));
         $this->assertSame(
             'Tu as fait <strong>4</strong> tours sur <strong>13</strong>*.',
             (string) $firstDex->filter('.progress-bar')->attr('data-bs-title')
