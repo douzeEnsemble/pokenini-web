@@ -44,11 +44,12 @@ Les valeurs numériques affichées dans les captures viennent d'un jeu de donné
     Capture : `admin__album-home__desktop.png`
     **Traité** : correction du constat au passage — `public/css/album.css:73` (`.modal-body a.pokemon-icon.active`) n'a jamais été la source ; le soulignement venait du Reboot Bootstrap (`a { text-decoration: underline; }` par défaut), aucune règle dédiée n'existait pour `.album-case-catch-state-label`. Ajouté `.album-case-catch-state-label { text-decoration: none; }` dans `public/css/album.css` (juste après `.album-case-catch-state`). Vérifié en navigateur réel : `getComputedStyle(...).textDecorationLine` = `'none'`, fond coloré du badge inchangé.
 
-- [ ] [moyenne] Icônes filtre positif/négatif (`bi-filter-circle` / `bi-filter-circle-fill`) peu distinctes à ce format, dépendantes d'un tooltip absent au tactile
+- [x] [moyenne] Icônes filtre positif/négatif (`bi-filter-circle` / `bi-filter-circle-fill`) peu distinctes à ce format, dépendantes d'un tooltip absent au tactile
     Fichier : `templates/Album/_report.html.twig:33,50` (+ ligne "Total" : 80, `bi-funnel`/`bi-funnel-fill`)
     Constat : chaque ligne du tableau Stats porte une icône vide et une pleine, avec un intitulé explicite déjà présent via `data-bs-title` (tooltip Bootstrap) — mais un tooltip ne se déclenche qu'au survol souris, absent sur mobile/tablette (la majorité des viewports de cet audit). Au premier coup d'œil les deux variantes (contour vs plein) sont presque identiques à cette taille.
     Suggestion : renforcer le contraste visuel entre les deux états (couleur, taille, ou familles d'icônes différentes) plutôt que de compter uniquement sur le tooltip pour les distinguer sur tactile.
     Capture : `admin__album-home__desktop.png`
+    **Traité** : `bi-filter-circle` → `bi-check-circle` ("filtre les X", ligne 33) et `bi-filter-circle-fill` → `bi-x-circle` ("filtre tous sauf X", ligne 50) — deux familles d'icônes bien distinctes (✓ / ✗) qui portent leur sens sans dépendre du survol, au lieu d'une paire contour/plein quasi identique. Ligne "Total" (`bi-funnel`/`bi-funnel-fill`, un simple bascule actif/inactif, pas une paire ambiguë) laissée telle quelle. Vérifié visuellement dans un navigateur réel.
 
 - [ ] [moyenne] Barre "100%" en rouge sur les pages d'album, sans indication de ce qu'elle mesure
     Fichier : `templates/Album/_report.html.twig:9` (macro `progressBar.catchStateBar`)
