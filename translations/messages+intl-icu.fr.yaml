@@ -253,27 +253,27 @@ trainer:
   filters:
     attributes:
       privacy:
-        label: "Filtrer les albums privées/publics"
+        label: "Privé/Public"
         all: "Tous"
         "on": "Privés seulement"
         "off": "Publics seulement"
       homepaged:
-        label: "Filtrer les albums sur l'accueil ou non"
+        label: "Sur l'accueil"
         all: "Tous"
         "on": "Sur l'accueil"
         "off": "Pas sur l'accueil"
       released:
-        label: "Filtrer les albums disponibles, pour tout le monde"
+        label: "Disponible"
         all: "Tous"
         "on": "Disponible"
         "off": "Non disponible"
       shiny:
-        label: "Filter les albums chromatiques ou non"
+        label: "Chromatique"
         all: "Tous"
         "on": "Chromatiques"
         "off": "Normaux"
       premium:
-        label: "Filter les albums premiums ou gratuits"
+        label: "Premium"
         all: "Tous"
         "on": "Premiums"
         "off": "Gratuits"
