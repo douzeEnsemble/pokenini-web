@@ -1,5 +1,31 @@
+{# Per-segment hover tooltips (below) only ever reach mouse users, and only
+  one state at a time. This click-triggered popover on the whole bar - a
+  legend of every state's name, percentage and count - works the same on
+  touch, and needs only one interaction to see all of them instead of hunting
+  for each sliver by hand. Bootstrap's Popover already defaults to a click
+  trigger, so no extra data-bs-trigger is needed. #}
 {% macro catchStateBar(report, locale) %}
-<div class="progress mb-2">
+{% set legendContent %}
+<ul class="list-unstyled mb-0">
+    {% for line in report.detail %}
+        {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
+        {% set completion = report.total ? (100 * count / report.total)|round(2) : 0 %}
+        {% set stateName = locale is same as('fr') ? line.frenchName : line.name %}
+        <li class="d-flex align-items-center gap-2 mb-1">
+            <span class="catch-state-dot catch-state-{{ line.slug }}"></span>
+            <span>{{ stateName }} : {{ completion }}% ({{ count|number_format(0, '.', ' ') }})</span>
+        </li>
+    {% endfor %}
+</ul>
+{% endset %}
+<div class="progress mb-2"
+    role="button"
+    tabindex="0"
+    data-bs-toggle="popover"
+    data-bs-html="true"
+    data-bs-title="{{ 'title.report'|trans }}"
+    data-bs-content="{{ legendContent|escape('html_attr') }}"
+>
     {% for line in report.detail %}
         {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
         {% set completion = report.total ? (100 * count / report.total)|round(2) : 0 %}

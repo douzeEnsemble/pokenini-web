@@ -189,6 +189,23 @@ final class CommonTest extends WebTestCase
             $crawler->filter('.progress-bar.catch-state-yes')->text()
         );
 
+        $this->assertSame('popover', $crawler->filter('.progress')->attr('data-bs-toggle'));
+        $this->assertSame('Stats', $crawler->filter('.progress')->attr('data-bs-title'));
+
+        $popoverContent = (string) $crawler->filter('.progress')->attr('data-bs-content');
+        $this->assertStringContainsString('catch-state-dot catch-state-no', $popoverContent);
+        $this->assertStringContainsString('catch-state-dot catch-state-yes', $popoverContent);
+        $this->assertStringContainsString('catch-state-dot catch-state-toevolve', $popoverContent);
+        $this->assertStringContainsString('catch-state-dot catch-state-tobreed', $popoverContent);
+        $this->assertStringContainsString('catch-state-dot catch-state-totransfer', $popoverContent);
+        $this->assertStringContainsString('catch-state-dot catch-state-totrade', $popoverContent);
+        $this->assertStringContainsString('Non : 45.95% (17)', $popoverContent);
+        $this->assertStringContainsString('Oui : 54.05% (20)', $popoverContent);
+        $this->assertStringContainsString('Af. évoluer', $popoverContent);
+        $this->assertStringContainsString('Af. reproduire', $popoverContent);
+        $this->assertStringContainsString('À transférer', $popoverContent);
+        $this->assertStringContainsString('À échanger', $popoverContent);
+
         $this->assertCountFilter($crawler, 1, 'table#report');
         $this->assertCountFilter($crawler, 7, 'table#report tr');
 
@@ -269,6 +286,12 @@ final class CommonTest extends WebTestCase
             '0%',
             $crawler->filter('.progress-bar.catch-state-yes')->text()
         );
+
+        $popoverContent = (string) $crawler->filter('.progress')->attr('data-bs-content');
+        $this->assertStringContainsString('catch-state-dot catch-state-no', $popoverContent);
+        $this->assertStringContainsString('catch-state-dot catch-state-yes', $popoverContent);
+        $this->assertStringContainsString('Non : 0% (0)', $popoverContent);
+        $this->assertStringContainsString('Oui : 0% (0)', $popoverContent);
 
         $this->assertCountFilter($crawler, 1, 'table#report');
         $this->assertCountFilter($crawler, 7, 'table#report tr');
