@@ -14,3 +14,14 @@ services:
       pokenini-local:
         aliases:
           - www.pokenini.local
+
+  # chrome/firefox do NOT join pokenini-local: pokenini-api/-back/-web each
+  # name their nginx service "web", and Compose aliases every container on
+  # every network it joins with its own service name - so any container on
+  # pokenini-local sees "web" round-robin across all three sibling stacks'
+  # containers, most of which don't even listen on this project's port 8081.
+  # That broke the real Browser test suite (intermittent Firefox connection
+  # failures to web:8081) the one time this was tried. The image-hosting use
+  # case that originally motivated this (screenshot-audit.php on the dev
+  # vhost, port 8080) now serves images from the real icon.pokenini.fr CDN
+  # via .env.test instead, so there's no remaining need for it here.
