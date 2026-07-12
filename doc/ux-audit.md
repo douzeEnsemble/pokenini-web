@@ -79,9 +79,10 @@ Les valeurs numériques affichées dans les captures viennent d'un jeu de donné
     Capture : `admin__error-404__desktop.png`
     **Traité** : `error.html.twig` (partagé par 404/500/512, cf. `ErrorPageTest`) enveloppe désormais titre/texte/lien dans un bloc `d-flex flex-column align-items-center justify-content-center text-center` avec `min-height: 50vh`, et affiche la mascotte (`/img/logo/logo.png`, 96×96) au-dessus du titre. Toujours exactement 1 `h1`/`p`/`a` dans `#main-container` (l'`<img>` n'est pas compté par `ErrorPageTest`). Vérifié en navigateur réel sur desktop et mobile.
 
-- [ ] [basse] Coquille : "Je choisi celui-là" → "Je choisis celui-là"
+- [x] [basse] Coquille : "Je choisi celui-là" → "Je choisis celui-là"
     Fichier : `translations/messages+intl-icu.fr.yaml:472` (`election.choose.action`)
     Capture : `admin__election-mega__desktop.png`
+    **Traité** : "s" ajouté (1ʳᵉ personne du présent de "choisir"). Aucun test ne référence cette chaîne.
 
 - [ ] [basse] Camembert admin à hachures plutôt qu'aplats de couleur, peu lisible pour seulement 3 parts
     Constat : les remplissages texturés (rayures/pois) ajoutent du bruit visuel sans aider à distinguer 3 catégories déjà différenciées par teinte et par la légende en tableau à côté.
