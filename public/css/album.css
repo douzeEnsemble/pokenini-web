@@ -11,6 +11,13 @@
 .album-case-catch-state {
     font-size: .7rem;
 }
+/* This label toggles the catch-state select below it (or is plain text when
+    the trainer can't edit) - it isn't a navigation link, so it shouldn't
+    inherit Bootstrap Reboot's default underline on <a>, which made it read
+    as a regular hyperlink. */
+.album-case-catch-state-label {
+    text-decoration: none;
+}
 .album-case-forms {
     font-size: .6rem;
 }

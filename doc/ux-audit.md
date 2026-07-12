@@ -37,11 +37,12 @@ Les valeurs numériques affichées dans les captures viennent d'un jeu de donné
 
 ## Priorité moyenne
 
-- [ ] [moyenne] Badge de statut « Non » stylé comme un lien hypertexte classique
+- [x] [moyenne] Badge de statut « Non » stylé comme un lien hypertexte classique
     Fichiers : `templates/Album/_album_macros.html.twig:61-63`, `public/css/album.css:73`
     Constat : le badge est un vrai `<a href="#{{ item.pokemonSlug }}" class="link-dark album-case-catch-state-label">` avec `text-decoration: underline` toujours actif (pas seulement au survol) — visuellement indiscernable des vrais liens de navigation de la page, alors qu'il ouvre un contrôle d'édition inline plutôt que de naviguer.
     Suggestion : retirer le `text-decoration: underline` de ce composant et garder uniquement le style "badge" (fond coloré) déjà en place ; réserver le soulignement aux vrais liens.
     Capture : `admin__album-home__desktop.png`
+    **Traité** : correction du constat au passage — `public/css/album.css:73` (`.modal-body a.pokemon-icon.active`) n'a jamais été la source ; le soulignement venait du Reboot Bootstrap (`a { text-decoration: underline; }` par défaut), aucune règle dédiée n'existait pour `.album-case-catch-state-label`. Ajouté `.album-case-catch-state-label { text-decoration: none; }` dans `public/css/album.css` (juste après `.album-case-catch-state`). Vérifié en navigateur réel : `getComputedStyle(...).textDecorationLine` = `'none'`, fond coloré du badge inchangé.
 
 - [ ] [moyenne] Icônes filtre positif/négatif (`bi-filter-circle` / `bi-filter-circle-fill`) peu distinctes à ce format, dépendantes d'un tooltip absent au tactile
     Fichier : `templates/Album/_report.html.twig:33,50` (+ ligne "Total" : 80, `bi-funnel`/`bi-funnel-fill`)
