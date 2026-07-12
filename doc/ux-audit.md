@@ -84,10 +84,12 @@ Les valeurs numériques affichées dans les captures viennent d'un jeu de donné
     Capture : `admin__election-mega__desktop.png`
     **Traité** : "s" ajouté (1ʳᵉ personne du présent de "choisir"). Aucun test ne référence cette chaîne.
 
-- [ ] [basse] Camembert admin à hachures plutôt qu'aplats de couleur, peu lisible pour seulement 3 parts
+- [x] [basse] Camembert admin à hachures plutôt qu'aplats de couleur, peu lisible pour seulement 3 parts
     Constat : les remplissages texturés (rayures/pois) ajoutent du bruit visuel sans aider à distinguer 3 catégories déjà différenciées par teinte et par la légende en tableau à côté.
     Suggestion : passer à des aplats de couleur simples.
     Capture : `admin__admin-reports__desktop.png`
+    ⚠️ Constat corrigé avant de traiter : les hachures viennent de `patternomaly` (chargé dans `templates/Admin/reports.html.twig`), une librairie faite spécifiquement pour rendre les graphiques Chart.js distinguables par les daltoniens (motif, pas seulement teinte) — pas un oubli. Décision utilisateur : garder les motifs mais adoucir le contraste plutôt que les retirer.
+    **Traité** : `templates/Admin/_reports_scripts.html.twig` — `pattern.draw(shapeType, background, patternColor, size)` inspecté en direct dans un vrai navigateur (le code est minifié, aucune doc consultable) : `pattern.generate(colors)` n'appelle `draw()` qu'avec `(shapeType, couleur)`, laissant les "trous" du motif totalement transparents → contraste dur (couleur pleine vs blanc pur). Nouvelle fonction `softenPatterns(colors)` : reprend la même forme que `generate()` assigne par couleur (donc la même distinction par motif, inchangée pour l'accessibilité), mais redessine chaque motif via `pattern.draw()` avec les trous remplis d'une teinte pâle de la couleur elle-même (`lightenColor(hex, 0.65)`) plutôt que blanc, et une tuile plus grande (32 au lieu de la taille par défaut) pour moins de répétitions sur une petite part. Appliqué aux deux camemberts (`patternsClassic`, `catchStatePatterns`) ; le graphique en barres `patternsPaired` n'est pas concerné (pas un "camembert", hors périmètre). Vérifié visuellement dans un navigateur réel : motifs nettement plus doux (pois/rayures pâles au lieu de blanc pur), toujours distincts par forme.
 
 - [ ] [basse] Deux styles de barre de progression sans légende sur les cartes de dex (pleine segmentée vs hachurée)
     Constat : les cartes de dex de la page Album Dex List / accueil anonyme utilisent tantôt une barre pleine segmentée multicolore, tantôt une barre à hachures diagonales — la différence de sens (probablement "non démarré"/"verrouillé" vs "en cours") n'est expliquée nulle part sur la page.
