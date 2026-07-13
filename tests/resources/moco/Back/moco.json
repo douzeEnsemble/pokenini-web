@@ -760,6 +760,24 @@
   },
   {
     "request": {
+      "uri": {
+        "match": "/album/home-shiny-custom"
+      },
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 77de68daecd823babbb58edb1c8e14d7106e83bb"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/77de68daecd823babbb58edb1c8e14d7106e83bb/home-shiny-custom.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/album/dex",
       "headers": {
         "accept": "application/json",
@@ -1368,6 +1386,60 @@
     },
     "response": {
       "file": "/var/moco/responses/album/default/mega.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/homeshiny"
+      },
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/default/homeshiny.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/homepogo"
+      },
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/default/homepogo.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/alpha"
+      },
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/default/alpha.json"
     }
   },
   {

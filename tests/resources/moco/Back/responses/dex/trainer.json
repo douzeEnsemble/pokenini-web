@@ -69,16 +69,11 @@
     "settings": { "name": "Sword, Shield", "french_name": "Épée, Bouclier", "slug": "swordshield", "display_template": "box" },
     "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
     "report": {
-      "total": 400,
-      "total_caught": 50,
-      "total_uncaught": 140,
+      "total": 935,
+      "total_caught": 0,
+      "total_uncaught": 935,
       "detail": [
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 50 },
-        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 30 },
-        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 50 },
-        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 60 },
-        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 70 },
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 140 }
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 935 }
       ]
     }
   },
@@ -97,12 +92,11 @@
     "settings": { "name": "Home", "french_name": "Home", "slug": "home", "display_template": "box" },
     "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
     "report": {
-      "total": 151,
-      "total_caught": 88,
-      "total_uncaught": 63,
+      "total": 1477,
+      "total_caught": 0,
+      "total_uncaught": 1477,
       "detail": [
-        { "catch_state": { "name": "Caught", "french_name": "Attrapé", "slug": "yes", "color": "#198754" }, "count": 88 },
-        { "catch_state": { "name": "Not caught", "french_name": "Pas attrapé", "slug": "no", "color": "#dc3545" }, "count": 63 }
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 1477 }
       ]
     }
   },

@@ -5,15 +5,10 @@
     "flags": { "is_shiny": true, "is_private": true, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
     "report": {
       "total": 151,
-      "total_caught": 90,
-      "total_uncaught": 20,
+      "total_caught": 0,
+      "total_uncaught": 151,
       "detail": [
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 90 },
-        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 8 },
-        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 8 },
-        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 10 },
-        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 15 },
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 20 }
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 151 }
       ]
     }
   },
@@ -22,16 +17,11 @@
     "settings": { "name": "Gold, Silver, Crystal", "french_name": "Or, Argent, Cristal", "slug": "goldsilvercrystal", "display_template": "box" },
     "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": false, "is_premium": false, "is_custom": false },
     "report": {
-      "total": 251,
-      "total_caught": 140,
-      "total_uncaught": 40,
+      "total": 278,
+      "total_caught": 0,
+      "total_uncaught": 278,
       "detail": [
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 140 },
-        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 11 },
-        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 15 },
-        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 20 },
-        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 25 },
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 40 }
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 278 }
       ]
     }
   },
@@ -292,16 +282,11 @@
     "settings": { "name": "Home", "french_name": "Home", "slug": "home", "display_template": "box" },
     "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
     "report": {
-      "total": 151,
-      "total_caught": 68,
-      "total_uncaught": 30,
+      "total": 1477,
+      "total_caught": 0,
+      "total_uncaught": 1477,
       "detail": [
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 68 },
-        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 8 },
-        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 10 },
-        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 15 },
-        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 20 },
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 30 }
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 1477 }
       ]
     }
   },
@@ -311,15 +296,11 @@
     "flags": { "is_shiny": true, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false },
     "report": {
       "total": 151,
-      "total_caught": 0,
-      "total_uncaught": 140,
+      "total_caught": 1,
+      "total_uncaught": 150,
       "detail": [
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 0 },
-        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 1 },
-        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 2 },
-        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 3 },
-        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 5 },
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 140 }
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 1 },
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 150 }
       ]
     }
   },
@@ -347,14 +328,11 @@
     "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false },
     "report": {
       "total": 50,
-      "total_caught": 15,
+      "total_caught": 25,
       "total_uncaught": 10,
       "detail": [
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 15 },
-        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 5 },
-        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 5 },
-        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 7 },
-        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 8 },
+        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 25 },
+        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 15 },
         { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 10 }
       ]
     }
@@ -364,16 +342,11 @@
     "settings": { "name": "Mega", "french_name": "Méga", "slug": "mega", "display_template": "list-3" },
     "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false },
     "report": {
-      "total": 46,
-      "total_caught": 21,
-      "total_uncaught": 5,
+      "total": 50,
+      "total_caught": 0,
+      "total_uncaught": 50,
       "detail": [
-        { "catch_state": { "name": "Yes", "french_name": "Oui", "slug": "yes", "color": "#66bb6a" }, "count": 21 },
-        { "catch_state": { "name": "To trade", "french_name": "À échanger", "slug": "totrade", "color": "#ff9100" }, "count": 5 },
-        { "catch_state": { "name": "To transfer", "french_name": "à transférer", "slug": "totransfer", "color": "#ffd54f" }, "count": 5 },
-        { "catch_state": { "name": "To breed", "french_name": "af. reproduire", "slug": "tobreed", "color": "#4fc3f7" }, "count": 5 },
-        { "catch_state": { "name": "To evolve", "french_name": "af. évoluer", "slug": "toevolve", "color": "#9575cd" }, "count": 5 },
-        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 5 }
+        { "catch_state": { "name": "No", "french_name": "Non", "slug": "no", "color": "#e57373" }, "count": 50 }
       ]
     }
   }
