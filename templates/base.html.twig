@@ -43,8 +43,10 @@
 
             <script>
             (function() {
-              // Enable tooltips
-              [...document.querySelectorAll('[data-bs-toggle="tooltip"], [data-bs-title]')]
+              // Enable tooltips. Exclude popover triggers: they also carry
+              // data-bs-title (for their own title), and Bootstrap silently
+              // drops a second component instance bound to the same element.
+              [...document.querySelectorAll('[data-bs-toggle="tooltip"], [data-bs-title]:not([data-bs-toggle="popover"])')]
                 .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
               // Enable popovers
