@@ -32,22 +32,22 @@ New workflow file: `.github/workflows/composer_updates.yml`
 Single job `composer-updates` on `ubuntu-latest`.
 
 1. **Checkout** — plain `actions/checkout@v6` with the default `GITHUB_TOKEN` (no PAT).
-   Kept off this step so the PAT isn't exposed as a persisted git credential during the
-   8 `composer update` steps, each of which executes third-party package/plugin code.
+    Kept off this step so the PAT isn't exposed as a persisted git credential during the
+    8 `composer update` steps, each of which executes third-party package/plugin code.
 2. **PHP setup** — reuse `./.github/actions/local-php`. No Docker compose stack.
 3. **Composer updates** — one step per directory, same order as the `updates` Makefile
-   target, each `composer update --bump-after-update --with-all-dependencies
-   --optimize-autoloader`:
-   - main app (`--working-dir=./`)
-   - `tools/deptrac`, `tools/infection`, `tools/jsonlint`, `tools/php-cs-fixer`,
-     `tools/phpmd`, `tools/phpstan`, `tools/psalm`
+    target, each `composer update --bump-after-update --with-all-dependencies
+    --optimize-autoloader`:
+    - main app (`--working-dir=./`)
+    - `tools/deptrac`, `tools/infection`, `tools/jsonlint`, `tools/php-cs-fixer`,
+      `tools/phpmd`, `tools/phpstan`, `tools/psalm`
 4. **Open/update PR** — `peter-evans/create-pull-request@v7`:
-   - `token: ${{ secrets.PAT_TOKEN }}` (only step that needs it — authenticates the
-     push/PR, which is what makes the PR trigger the downstream `pull_request`-gated
-     workflows)
-   - `branch: chore/composer-updates`, `delete-branch: true`
-   - `commit-message` / `title`: `Composers updates`
-   - `labels: dependencies` (confirmed this label exists in `pokenini-web`)
+    - `token: ${{ secrets.PAT_TOKEN }}` (only step that needs it — authenticates the
+      push/PR, which is what makes the PR trigger the downstream `pull_request`-gated
+      workflows)
+    - `branch: chore/composer-updates`, `delete-branch: true`
+    - `commit-message` / `title`: `Composers updates`
+    - `labels: dependencies` (confirmed this label exists in `pokenini-web`)
 
 **Hardening:** top-level `permissions: contents: read` and a `concurrency` group
 (`composer-updates`, `cancel-in-progress: true`).
