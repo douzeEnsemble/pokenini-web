@@ -1,5 +1,11 @@
 .album-case {
     padding: 0 2px;
+    border-radius: .25rem;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.album-case:hover {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+    transform: translateY(-2px);
 }
 .album-case-dex-number {
     font-size: .5rem;
