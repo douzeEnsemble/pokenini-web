@@ -100,6 +100,25 @@ final class AdminActionController extends AbstractController
         return $this->execute($name, 'invalidate', 'DELETE');
     }
 
+    #[Route(
+        '/trigger/{name}',
+        methods: ['POST'],
+        condition: "params['name']
+            in [
+                'update_images',
+            ]"
+    )]
+    public function trigger(
+        string $name,
+        Request $request,
+    ): RedirectResponse {
+        if (!$this->isCsrfTokenValid('admin_trigger', $request->request->getString('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
+
+        return $this->execute($name, 'trigger', 'POST');
+    }
+
     private function execute(
         string $name,
         string $action,

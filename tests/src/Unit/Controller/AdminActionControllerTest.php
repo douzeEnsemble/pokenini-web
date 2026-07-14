@@ -433,7 +433,130 @@ final class AdminActionControllerTest extends TestCase
         $this->assertSame('/admin', $response->getTargetUrl());
     }
 
-    private function assertFailActionLogs(string $action): AdminActionController
+    public function testTriggerAction(): void
+    {
+        $adminActionService = $this->createMock(AdminActionService::class);
+        $adminActionService
+            ->expects($this->once())
+            ->method('execute')
+            ->with('trigger', 'update_images')
+            ->willReturn(new AdminAction('trigger', 'update_images', 'ok', '', ''))
+        ;
+
+        $session = $this->createMock(SessionInterface::class);
+        $session
+            ->expects($this->once())
+            ->method('set')
+        ;
+
+        $requestStack = $this->createMock(RequestStack::class);
+        $requestStack
+            ->expects($this->once())
+            ->method('getSession')
+            ->willReturn($session)
+        ;
+
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->never())
+            ->method('critical')
+        ;
+
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher
+            ->expects($this->once())
+            ->method('dispatch')
+            ->with($this->isInstanceOf(AdminActionSucceededEvent::class))
+        ;
+
+        $router = $this->createMock(RouterInterface::class);
+        $router
+            ->expects($this->once())
+            ->method('generate')
+            ->with('app_admin_actions', ['_fragment' => 'trigger_update_images'])
+            ->willReturn('/admin')
+        ;
+
+        $csrfManager = $this->createStub(CsrfTokenManagerInterface::class);
+        $csrfManager->method('isTokenValid')->willReturn(true);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container
+            ->expects($this->once())
+            ->method('has')
+            ->with('security.csrf.token_manager')
+            ->willReturn(true)
+        ;
+        $container
+            ->expects($this->exactly(2))
+            ->method('get')
+            ->willReturnMap([
+                ['security.csrf.token_manager', $csrfManager],
+                ['router', $router],
+            ])
+        ;
+
+        $controller = new AdminActionController(
+            $adminActionService,
+            $requestStack,
+            $logger,
+            $eventDispatcher,
+        );
+        $controller->setContainer($container);
+
+        $response = $controller->trigger('update_images', new Request([], ['_token' => 'valid_token']));
+
+        $this->assertSame('/admin', $response->getTargetUrl());
+    }
+
+    public function testFailTriggerLogs(): void
+    {
+        $controller = $this->assertFailActionLogs('trigger', 'update_images');
+
+        $controller->trigger('update_images', new Request([], ['_token' => 'valid_token']));
+    }
+
+    public function testTriggerInvalidCsrfToken(): void
+    {
+        $csrfManager = $this->createMock(CsrfTokenManagerInterface::class);
+        $csrfManager
+            ->expects($this->once())
+            ->method('isTokenValid')
+            ->willReturn(false)
+        ;
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container
+            ->expects($this->once())
+            ->method('has')
+            ->with('security.csrf.token_manager')
+            ->willReturn(true)
+        ;
+        $container
+            ->expects($this->once())
+            ->method('get')
+            ->willReturnMap([['security.csrf.token_manager', $csrfManager]])
+        ;
+
+        $adminActionService = $this->createMock(AdminActionService::class);
+        $adminActionService
+            ->expects($this->never())
+            ->method('execute')
+        ;
+
+        $controller = new AdminActionController(
+            $adminActionService,
+            $this->createStub(RequestStack::class),
+            $this->createStub(LoggerInterface::class),
+            $this->createStub(EventDispatcherInterface::class),
+        );
+        $controller->setContainer($container);
+
+        $this->expectException(AccessDeniedException::class);
+        $controller->trigger('update_images', new Request([], ['_token' => 'bad_token']));
+    }
+
+    private function assertFailActionLogs(string $action, string $name = 'something'): AdminActionController
     {
         $adminActionService = $this->createMock(AdminActionService::class);
         $adminActionService
@@ -462,7 +585,7 @@ final class AdminActionControllerTest extends TestCase
             ->with(
                 $this->isString(),
                 $this->equalTo([
-                    'name' => 'something',
+                    'name' => $name,
                     'action' => $action,
                 ])
             )
@@ -478,7 +601,7 @@ final class AdminActionControllerTest extends TestCase
         $router
             ->expects($this->once())
             ->method('generate')
-            ->with('app_admin_actions', ['_fragment' => $action.'_something'])
+            ->with('app_admin_actions', ['_fragment' => $action.'_'.$name])
             ->willReturn('/admin')
         ;
 
