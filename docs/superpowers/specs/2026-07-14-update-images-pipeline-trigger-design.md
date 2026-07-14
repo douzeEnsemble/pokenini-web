@@ -30,10 +30,16 @@ which proxies admin buttons in `pokenini-web` to endpoints on `pokenini-api`
 
 Add a button on the pokenini-web admin page that triggers the full
 `pokenini-icon` pipeline remotely (so it works from prod, not just a local
-dev machine) and lands the result as a **pull request** on
-`pokenini-resources` for review — it must not publish automatically, since
-the pipeline has known manual-correction cases (mis-detected sprite
-numbers, missing entries) that need a human look before going live.
+dev machine) and lands the result as **pull requests** for review — it
+must not publish automatically, since the pipeline has known
+manual-correction cases (mis-detected sprite numbers, missing entries)
+that need a human look before going live.
+
+Note there are two separate git-tracked destinations, not one:
+`pokenini-icon/images/` (committed in `pokenini-icon` itself — the actual
+output of the scripts) and its copy in `pokenini-resources` (what
+pokénin.fr serves). Both need review, and the second can only meaningfully
+happen once the first is merged (see "Two chained workflows" below).
 
 ## Non-goals (explicitly out of scope for this iteration)
 
@@ -55,40 +61,61 @@ numbers, missing entries) that need a human look before going live.
 pokenini-web (admin button)
   → pokenini-back (POST /istration/action/trigger/update_images)
       → GitHub API: POST /repos/{owner}/pokenini-icon/actions/workflows/update-images.yml/dispatches
-          → GitHub Actions runner, in pokenini-icon:
+          → Workflow A runs in pokenini-icon (workflow_dispatch):
               make pdb_dl pdb_convert pdb_copy
               make mbc_prepare mbc_cut mbc_copy
               make placeholders
               make check_size            (output captured, non-blocking)
+              commit changed files under images/ to a new branch,
+              open a PR against pokenini-icon's main
+              (PR body includes the check_size report)
+
+  [you review & merge that PR — this is the real risk checkpoint:
+   mis-detected sprite numbers, missing entries]
+
+          → Workflow B runs in pokenini-icon (push to main, paths: images/**):
               checkout pokenini-resources as a sibling checkout
-              make copy                  (existing Makefile target: cp -R ../pokenini-icon/images/* .)
+              make copy   (existing Makefile target: cp -R ../pokenini-icon/images/* .)
               commit changed files to a new branch, push with a
               resources-scoped token, open a PR against pokenini-resources
-              (PR body includes the check_size report)
 ```
 
-Merging that PR and cutting a release in `pokenini-resources` stays exactly
-as it is today (unchanged, manual).
+Merging the `pokenini-resources` PR and cutting a release there stays
+exactly as it is today (unchanged, manual).
 
 ### pokenini-icon
 
-- New `.github/workflows/update-images.yml`, triggered only by
-  `workflow_dispatch` (no push/schedule trigger — this is meant to be
-  explicitly button-triggered).
-- Steps: checkout `pokenini-icon`; checkout `pokenini-resources` into a
-  sibling directory in the same job (so the existing relative path in
-  `pokenini-resources`'s `make copy` — `../pokenini-icon/images/*` — keeps
-  working unmodified); install `imagemagick`/`webp` via `apt-get`; run the
-  Makefile targets above; capture `make check_size` output to a file; diff
-  `pokenini-resources`; if there are changes, commit to a new branch
-  (`update-images-<run-id>` or similar) and open a PR (e.g. via
-  `peter-evans/create-pull-request`), with the check_size report pasted
-  into the PR body; if there are no changes, the job ends without opening
-  a PR.
-- New repository secret `RESOURCES_PUSH_TOKEN`: a fine-grained PAT scoped
-  **only** to `pokenini-resources`, with `contents: write` +
-  `pull-requests: write`. The default `GITHUB_TOKEN` can't push to a
-  different repo, hence the dedicated token.
+**Workflow A — `.github/workflows/update-images.yml`**, triggered only by
+`workflow_dispatch` (no push/schedule trigger — this is the one the admin
+button fires).
+
+- Steps: checkout `pokenini-icon`; install `imagemagick`/`webp` via
+  `apt-get`; run `make pdb_dl pdb_convert pdb_copy`,
+  `make mbc_prepare mbc_cut mbc_copy`, `make placeholders`; run
+  `make check_size` and capture its output; if `git status --porcelain
+  images/` shows changes, commit them to a new branch
+  (`update-images-<run-id>` or similar), push, and open a PR against
+  `pokenini-icon`'s own `main` (e.g. via `peter-evans/create-pull-request`),
+  with the check_size report pasted into the PR body; if there are no
+  changes, the job ends without opening a PR.
+- Uses the default `GITHUB_TOKEN` (the job only needs write access to its
+  own repo) — no new secret required for this workflow.
+
+**Workflow B — `.github/workflows/publish-images-to-resources.yml`**,
+triggered by `push` to `main` with `paths: ['images/**']` — so it only
+fires once a Workflow-A PR (or any other images/ change) is actually
+merged, never on the unmerged branch.
+
+- Steps: checkout `pokenini-icon` (`main`, already has the merged images);
+  checkout `pokenini-resources` into a sibling directory (so its existing
+  `make copy` target — `cp -R ../pokenini-icon/images/* .` — keeps working
+  unmodified); run `make copy`; if there are changes, commit to a new
+  branch, push, and open a PR against `pokenini-resources`.
+- New repository secret `RESOURCES_PUSH_TOKEN` (set in `pokenini-icon`,
+  since that's where Workflow B runs): a fine-grained PAT scoped **only**
+  to `pokenini-resources`, with `contents: write` + `pull-requests: write`.
+  The default `GITHUB_TOKEN` can't push to a different repo, hence the
+  dedicated token.
 
 ### pokenini-back
 
@@ -172,14 +199,18 @@ hard-wired to pokenini-api's host/auth scheme — Basic auth, `apiUrl`,
 `workflow_dispatch` only confirms GitHub *accepted* the request — it
 doesn't return a run ID or block until the workflow finishes. So:
 
-- Success in the UI means "triggered", not "done". The button's
-  surrounding copy/flash message must say so explicitly (e.g. "Pipeline
-  déclenché — voir l'onglet Actions de pokenini-icon et la PR ouverte sur
-  pokenini-resources").
+- Success in the UI means "triggered", not "done" — and definitely not
+  "published". The button's surrounding copy/flash message must say so
+  explicitly (e.g. "Pipeline déclenché — voir l'onglet Actions de
+  pokenini-icon puis la PR qui y sera ouverte ; une fois cette PR mergée,
+  une seconde PR sera ouverte automatiquement sur pokenini-resources").
 - If the pipeline itself fails inside GitHub Actions (script error, Docker
   build failure), pokenini-web has no way to know — that's only visible in
   the GitHub Actions tab. No polling/webhook-back-channel is being built
   for this; if that gap turns out to matter in practice, it's a follow-up.
+- Workflow B (the `pokenini-resources` PR) is not triggered by
+  pokenini-web at all — it's a consequence of merging the Workflow-A PR.
+  There's no "second button."
 
 ### Error handling
 
@@ -187,11 +218,16 @@ doesn't return a run ID or block until the workflow finishes. So:
   outage) surface as `ko` through the existing `AdminAction`/flash-message
   machinery — no new error-handling UI needed.
 - `check_size.sh` never exits non-zero, so dimension mismatches never fail
-  the GitHub Actions job; its output is only informational text in the PR
-  body.
+  the GitHub Actions job; its output is only informational text in the
+  Workflow-A PR body.
 - If nothing changed since the last run (e.g. re-clicking the button with
-  no new Pokémon added), the workflow completes without opening a PR —
-  this is a normal, non-error outcome.
+  no new Pokémon added), Workflow A completes without opening a PR — this
+  is a normal, non-error outcome, and Workflow B never fires since nothing
+  was pushed to `images/**`.
+- If Workflow A's PR is merged with further manual edits (fixing a
+  mis-detected sprite) after the bot's commit, Workflow B still triggers
+  correctly off the merge commit to `main`, not off the bot's original
+  commit — it always builds from current `main`.
 
 ### Testing
 
@@ -206,6 +242,8 @@ doesn't return a run ID or block until the workflow finishes. So:
   way the existing `update()`/`calculate()`/`invalidate()` methods are
   tested (CSRF check, redirect target, session state).
 - `pokenini-icon`: no existing automated-test convention for the
-  Makefile/workflow layer. Validate the new workflow by actually running
-  it once (`gh workflow run update-images.yml`) and checking the resulting
-  PR, rather than writing CI-for-CI tests.
+  Makefile/workflow layer. Validate Workflow A by actually running it once
+  (`gh workflow run update-images.yml`) and checking the resulting PR;
+  validate Workflow B by merging that PR (or a trivial test PR touching
+  `images/`) and checking that it fires and opens the expected PR on
+  `pokenini-resources` — rather than writing CI-for-CI tests.
