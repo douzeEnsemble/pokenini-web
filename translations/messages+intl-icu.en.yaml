@@ -454,6 +454,11 @@ admin:
       actions:
         title: "Invalidate actions cache"
         cta: "Invalidate!"
+    trigger_pipeline:
+      title: "Trigger pipelines"
+      update_images:
+        title: "Update Pokémon images"
+        cta: "Trigger!"
     reports_data:
       reports:
         title: "Invalidate reports cache"

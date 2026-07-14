@@ -459,7 +459,11 @@ admin:
       actions:
         title: "Invalidation du cache des actions"
         cta: "Invalider"
-
+    trigger_pipeline:
+      title: "Déclenchement de pipelines"
+      update_images:
+        title: "Mettre à jour les images des Pokémon"
+        cta: "Déclencher"
     reports_data:
       reports:
         title: "Invalidation du cache des rapports"

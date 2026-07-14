@@ -53,3 +53,13 @@
     {{ admin.action('invalidate_data', 'invalidate', item, icon, updatedItem, updatedAction, updatedState, actionLogsData) }}
   {% endfor %}
 </div>
+
+<div class="row px-4 py-5">
+  <h2 class="mb-3 pb-2 border-bottom">{{ 'admin.actions.trigger_pipeline.title'|trans }}</h2>
+  {% set triggerPipelineItems = {
+    'update_images': 'images',
+  } %}
+  {% for item, icon in triggerPipelineItems %}
+    {{ admin.action('trigger_pipeline', 'trigger', item, icon, updatedItem, updatedAction, updatedState, actionLogsData) }}
+  {% endfor %}
+</div>
