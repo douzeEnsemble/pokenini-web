@@ -456,6 +456,7 @@ admin:
         cta: "Invalidate!"
     trigger_pipeline:
       title: "Trigger pipelines"
+      help: "This only starts the pipeline in GitHub Actions — it does not publish anything by itself. Once it finishes, review and merge the pull request it opens on pokenini-icon (and, after that, the follow-up one on pokenini-resources)."
       update_images:
         title: "Update Pokémon images"
         cta: "Trigger!"
