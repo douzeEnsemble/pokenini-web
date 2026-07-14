@@ -71,7 +71,7 @@ pokenini-web (admin button)
               (PR body includes the check_size report)
 
   [you review & merge that PR — this is the real risk checkpoint:
-   mis-detected sprite numbers, missing entries]
+  mis-detected sprite numbers, missing entries]
 
           → Workflow B runs in pokenini-icon (push to main, paths: images/**):
               checkout pokenini-resources as a sibling checkout
