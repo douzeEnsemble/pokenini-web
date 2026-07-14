@@ -110,22 +110,27 @@ hard-wired to pokenini-api's host/auth scheme — Basic auth, `apiUrl`,
 - `src/Service/TriggerImagesPipelineService.php` — thin `Service` layer
   wrapping `GithubActionsApiService`, satisfying the Deptrac rule that
   controllers must not call `Service\Api` directly.
-- `src/Controller/Admin/AdminActionTriggerController.php` — new sibling to
-  `AdminActionUpdateController`/`AdminActionCalculateController`/
-  `AdminActionInvalidateController`, route
+- `src/Controller/Admin/AdminActionTriggerController.php` — a **standalone**
+  controller, deliberately *not* extending `AbstractAdminActionController`.
+  That abstract class's constructor is hard-typed to the concrete
+  `AdminActionApiService` and its `doAction()` unconditionally ends with
+  `$this->cacheInvalidatorService->invalidate($name)` — there's no cache
+  invalidator registered for `update_images`, and
+  `CacheInvalidatorService::invalidate()` throws `InvalidArgumentException`
+  for unmatched types, which would incorrectly report the trigger as
+  failed even when the GitHub dispatch succeeded. Reusing/branching the
+  abstract class to accommodate this would mean adding a constructor
+  parameter that ripples into the three existing, unrelated
+  update/calculate/invalidate controllers and their tests. Instead, the
+  new controller re-implements the same small try/catch → `AdminAction`
+  DTO → `JsonResponse` shape on its own (it only needs `TriggerImagesPipelineService`
+  and a logger — no `CacheInvalidatorService`). Route
   `POST /istration/action/trigger/{name}`, condition
   `name in ['update_images']`, same CSRF/rate-limit conventions as the
-  others.
-- `AbstractAdminActionController::doAction()` gets a new `case 'trigger'`
-  that calls `TriggerImagesPipelineService::trigger($name)`. Unlike
-  `update`/`calculate`, this case must **not** fall through to
-  `$this->cacheInvalidatorService->invalidate($name)` — there's no cache
-  invalidator registered for `update_images`, and `CacheInvalidatorService::invalidate()`
-  throws `InvalidArgumentException` for unmatched types, which would
-  incorrectly report the trigger as failed even when the GitHub dispatch
-  succeeded. The invalidate call must be scoped to only the
-  `update`/`calculate` cases.
-- Response shape is unchanged: `AdminAction('trigger', 'update_images', 'ok'|'ko', '', $error)`.
+  others (`RateLimit` with the `write_api` limiter).
+- Response shape matches the existing `AdminAction` DTO:
+  `AdminAction('trigger', 'update_images', 'ok'|'ko', '', $error)`, same
+  202/500 status code convention as `AbstractAdminActionController::execute()`.
   `ok` means "GitHub accepted the dispatch", not "images are updated" —
   this must not be reworded to imply completion.
 
@@ -193,8 +198,9 @@ doesn't return a run ID or block until the workflow finishes. So:
 - `pokenini-back`: unit-test `GithubActionsApiService` (mocked
   `HttpClientInterface`, matching the existing pattern for
   `AdminActionApiService`) and `TriggerImagesPipelineService`; unit-test
-  the new controller and the modified `doAction()` branching (cover: the
-  `trigger` case does *not* call `CacheInvalidatorService::invalidate()`).
+  the new standalone controller the same way the other
+  `AdminAction*Controller` tests work (success → 202, exception → 500 +
+  `critical` log), with no `CacheInvalidatorService` involved at all.
   Must keep the project's 100% coverage / 100% MSI bar.
 - `pokenini-web`: unit-test the new `trigger()` controller method the same
   way the existing `update()`/`calculate()`/`invalidate()` methods are
