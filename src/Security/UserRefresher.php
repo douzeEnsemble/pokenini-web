@@ -53,7 +53,7 @@ class UserRefresher
                 ]
             );
 
-            throw new AuthenticationExpiredException('Access token refresh failed.', 0, $exception);
+            throw new AuthenticationExpiredException('Access token refresh failed.', previous: $exception);
         }
 
         // Providers (e.g. Google) don't always return a new refresh token on each refresh —
