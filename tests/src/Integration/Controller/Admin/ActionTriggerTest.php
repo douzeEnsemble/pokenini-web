@@ -29,6 +29,12 @@ final class ActionTriggerTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         $crawler = $client->request('GET', '/fr/istration/actions');
+
+        $this->assertStringContainsString(
+            'Ceci ne fait que lancer le pipeline sur GitHub Actions',
+            $crawler->outerHtml()
+        );
+
         $form = $crawler->filter('#trigger_update_images form')->form();
         $client->submit($form);
 

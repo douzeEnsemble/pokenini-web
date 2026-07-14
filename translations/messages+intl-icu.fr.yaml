@@ -462,6 +462,7 @@ admin:
 
     trigger_pipeline:
       title: "Déclenchement de pipelines"
+      help: "Ceci ne fait que lancer le pipeline sur GitHub Actions, sans rien publier directement. Une fois terminé, relis et merge la pull request qu'il ouvre sur pokenini-icon (puis celle qui suivra sur pokenini-resources)."
       update_images:
         title: "Mettre à jour les images des Pokémon"
         cta: "Déclencher"
