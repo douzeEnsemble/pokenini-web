@@ -6,12 +6,14 @@ namespace App\Security;
 
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use League\OAuth2\Client\Token\AccessToken;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationExpiredException;
 
 class UserRefresher
 {
     public function __construct(
         private readonly ClientRegistry $clientRegistry,
+        private readonly LoggerInterface $logger,
     ) {}
 
     public function refresh(User $user): User
@@ -28,18 +30,31 @@ class UserRefresher
             throw new AuthenticationExpiredException('Access token expired and no refresh token available.');
         }
 
-        $client = $this->clientRegistry->getClient($user->getProviderName());
-        $provider = $client->getOAuth2Provider();
+        try {
+            $client = $this->clientRegistry->getClient(strtolower($user->getProviderName()));
+            $provider = $client->getOAuth2Provider();
 
-        /**
-         * @var AccessToken
-         */
-        $newAccessToken = $provider->getAccessToken(
-            'refresh_token',
-            [
-                'refresh_token' => $refreshToken,
-            ]
-        );
+            /**
+             * @var AccessToken
+             */
+            $newAccessToken = $provider->getAccessToken(
+                'refresh_token',
+                [
+                    'refresh_token' => $refreshToken,
+                ]
+            );
+        } catch (\Throwable $exception) {
+            $this->logger->warning(
+                'Failed to refresh OAuth2 access token: {message}',
+                [
+                    'message' => $exception->getMessage(),
+                    'provider' => $user->getProviderName(),
+                    'exception' => $exception,
+                ]
+            );
+
+            throw new AuthenticationExpiredException('Access token refresh failed.', 0, $exception);
+        }
 
         // Providers (e.g. Google) don't always return a new refresh token on each refresh —
         // carry the old one forward so the next expiry can still be refreshed.

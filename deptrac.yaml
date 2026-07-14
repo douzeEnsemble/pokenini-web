@@ -186,6 +186,7 @@ parameters:
       - AppService
       - KnpUOAuth2ClientBundle
       - LeagueOAuth2
+      - Logger
       - SymfonyHttpFoundation
       - SymfonyRouting
       - SymfonySecurity
