@@ -620,6 +620,32 @@
   {
     "request": {
       "uri": {
+        "match": "/istration/action/trigger/update_images"
+      },
+      "method": "post",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "202",
+      "json": {
+        "action": "trigger",
+        "item": "update_images",
+        "state": "ok",
+        "content": "",
+        "error": ""
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/istration/reports"
       },
       "method": "get",
