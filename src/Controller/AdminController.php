@@ -6,8 +6,10 @@ namespace App\Controller;
 
 use App\DTO\AdminAction;
 use App\Service\Back\GetActionLogsService;
+use App\Service\Back\GetImagePipelineStatusService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,6 +19,7 @@ final class AdminController extends AbstractController
 {
     public function __construct(
         private readonly GetActionLogsService $getActionLogsService,
+        private readonly GetImagePipelineStatusService $getImagePipelineStatusService,
     ) {}
 
     #[Route('', methods: ['GET'], name: 'app_admin_index')]
@@ -26,7 +29,7 @@ final class AdminController extends AbstractController
     }
 
     #[Route('/actions', methods: ['GET'], name: 'app_admin_actions')]
-    public function actions(RequestStack $requestStack): Response
+    public function actions(RequestStack $requestStack, Request $request): Response
     {
         $session = $requestStack->getSession();
 
@@ -45,11 +48,13 @@ final class AdminController extends AbstractController
         }
 
         $actionLogsData = $this->getActionLogsService->get();
+        $imagePipelineStatus = $this->getImagePipelineStatusService->get($request->query->has('refresh'));
 
         return $this->render(
             'Admin/actions.html.twig',
             [
                 'actionLogsData' => $actionLogsData,
+                'imagePipelineStatus' => $imagePipelineStatus,
             ]
         );
     }

@@ -7,9 +7,11 @@ namespace App\Tests\Unit\Controller;
 use App\Controller\AdminController;
 use App\DTO\AdminAction;
 use App\Service\Back\GetActionLogsService;
+use App\Service\Back\GetImagePipelineStatusService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\FlashBagAwareSessionInterface;
@@ -41,7 +43,10 @@ final class AdminControllerTest extends TestCase
             ->willReturn($router)
         ;
 
-        $controller = new AdminController($this->createStub(GetActionLogsService::class));
+        $controller = new AdminController(
+            $this->createStub(GetActionLogsService::class),
+            $this->createStub(GetImagePipelineStatusService::class),
+        );
         $controller->setContainer($container);
 
         $response = $controller->index();
@@ -102,6 +107,7 @@ final class AdminControllerTest extends TestCase
                 'Admin/actions.html.twig',
                 [
                     'actionLogsData' => [],
+                    'imagePipelineStatus' => null,
                 ]
             )
             ->willReturn('<html></html>')
@@ -128,7 +134,7 @@ final class AdminControllerTest extends TestCase
         $controller = $this->getController();
         $controller->setContainer($container);
 
-        $controller->actions($requestStack);
+        $controller->actions($requestStack, new Request());
 
         $this->assertEquals(
             [
@@ -193,6 +199,7 @@ final class AdminControllerTest extends TestCase
                 'Admin/actions.html.twig',
                 [
                     'actionLogsData' => [],
+                    'imagePipelineStatus' => null,
                 ]
             )
             ->willReturn('<html></html>')
@@ -220,7 +227,7 @@ final class AdminControllerTest extends TestCase
         $controller = $this->getController();
         $controller->setContainer($container);
 
-        $controller->actions($requestStack);
+        $controller->actions($requestStack, new Request());
 
         $this->assertEquals(
             [
@@ -242,6 +249,14 @@ final class AdminControllerTest extends TestCase
             ->willReturn([])
         ;
 
-        return new AdminController($getActionLogsService);
+        $getImagePipelineStatusService = $this->createMock(GetImagePipelineStatusService::class);
+        $getImagePipelineStatusService
+            ->expects($this->once())
+            ->method('get')
+            ->with(false)
+            ->willReturn(null)
+        ;
+
+        return new AdminController($getActionLogsService, $getImagePipelineStatusService);
     }
 }
