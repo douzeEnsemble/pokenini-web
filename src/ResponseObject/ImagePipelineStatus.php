@@ -6,6 +6,13 @@ namespace App\ResponseObject;
 
 final class ImagePipelineStatus
 {
+    /**
+     * Same verified php-code-coverage artifact as
+     * ImagePipelineStageStatus::__construct() - see that constructor's
+     * docblock for how it was verified.
+     *
+     * @codeCoverageIgnore
+     */
     public function __construct(
         public readonly string $correlationId,
         public readonly ImagePipelineStageStatus $workflowA,
