@@ -361,6 +361,19 @@ admin:
   toggle:
     last: "Voir l'action précédente"
     current: "Voir la dernière action"
+  pipeline_status:
+    workflow_a: "Exécution du pipeline"
+    icon_pr: "PR à relire (pokenini-icon)"
+    workflow_b: "Exécution de la publication"
+    resources_pr: "PR à relire (pokenini-resources)"
+    refresh: "Rafraîchir le statut"
+    state:
+      idle: "Pas commencé"
+      running: "En cours"
+      open: "Ouverte"
+      done: "Terminé"
+      merged: "Mergée"
+      failed: "Échoué"
   actions:
     update_availabilities:
       title: "Mises à jour des données de disponibilités"
