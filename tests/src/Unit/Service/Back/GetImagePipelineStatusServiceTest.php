@@ -23,6 +23,8 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * @internal
+ *
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
  */
 #[CoversClass(GetImagePipelineStatusService::class)]
 final class GetImagePipelineStatusServiceTest extends TestCase
