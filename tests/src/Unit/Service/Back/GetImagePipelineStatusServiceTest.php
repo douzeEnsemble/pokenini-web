@@ -60,7 +60,13 @@ final class GetImagePipelineStatusServiceTest extends TestCase
         $this->assertNotNull($status);
         $this->assertSame('corr-1', $status->correlationId);
         $this->assertSame('done', $status->workflowA->state);
+        $this->assertSame('https://github.com/x/y/actions/runs/1', $status->workflowA->url);
         $this->assertSame('merged', $status->iconPr->state);
+        $this->assertSame('https://github.com/x/y/pull/2', $status->iconPr->url);
+        $this->assertSame('idle', $status->workflowB->state);
+        $this->assertNull($status->workflowB->url);
+        $this->assertSame('idle', $status->resourcesPr->state);
+        $this->assertNull($status->resourcesPr->url);
     }
 
     private function getService(string $responseBody, string $expectedUrl): GetImagePipelineStatusService
