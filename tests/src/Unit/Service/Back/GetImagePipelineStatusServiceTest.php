@@ -43,6 +43,16 @@ final class GetImagePipelineStatusServiceTest extends TestCase
         $this->assertNull($service->get(true));
     }
 
+    public function testGetReturnsNullWhenNoRunExistsWithSurroundingWhitespace(): void
+    {
+        // Proves the trim() call matters: pokenini-back's JsonResponse body
+        // could plausibly include trailing whitespace/newlines depending on
+        // how it's serialized, and this must still be treated as "no run".
+        $service = $this->getService(" {}\n", 'https://back.domain/istration/action/trigger/update_images/status');
+
+        $this->assertNull($service->get(false));
+    }
+
     public function testGetDeserializesStatus(): void
     {
         $json = <<<'JSON'
