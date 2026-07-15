@@ -64,3 +64,5 @@
     {{ admin.action('trigger_pipeline', 'trigger', item, icon, updatedItem, updatedAction, updatedState, actionLogsData) }}
   {% endfor %}
 </div>
+
+{% include 'Admin/_pipeline_status.html.twig' %}

@@ -356,6 +356,19 @@ admin:
   toggle:
     last: "Show last action"
     current: "Show current action"
+  pipeline_status:
+    workflow_a: "Pipeline run"
+    icon_pr: "Review PR (pokenini-icon)"
+    workflow_b: "Publish run"
+    resources_pr: "Review PR (pokenini-resources)"
+    refresh: "Refresh status"
+    state:
+      idle: "Not started"
+      running: "Running"
+      open: "Open"
+      done: "Done"
+      merged: "Merged"
+      failed: "Failed"
 
   actions:
     update_availabilities:
