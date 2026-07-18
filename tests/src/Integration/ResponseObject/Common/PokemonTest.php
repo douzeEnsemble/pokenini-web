@@ -44,7 +44,11 @@ final class PokemonTest extends KernelTestCase
                     "game_bundles": {
                         "normal": [{ "slug": "xy" }, { "slug": "omegarubyalphasapphire" }],
                         "shiny": [{ "slug": "xy" }]
-                    }
+                    },
+                    "small_regular_credit": { "name": "PokéSprite", "url": "https://github.com/msikma/pokesprite" },
+                    "small_shiny_credit": null,
+                    "big_regular_credit": null,
+                    "big_shiny_credit": { "name": "PokemonDB", "url": "https://pokemondb.net/sprites/charizard-mega-y-shiny" }
                 },
                 "catch_state": {
                     "slug": "yes",
@@ -98,6 +102,13 @@ final class PokemonTest extends KernelTestCase
         $this->assertSame('Flying', $object->getSecondaryTypeName());
         $this->assertSame('Vol', $object->getSecondaryTypeFrenchName());
         $this->assertSame('9999-0006-004', $object->getPokemonOrderNumber());
+        $this->assertNotNull($object->getPokemonSmallRegularCredit());
+        $this->assertSame('PokéSprite', $object->getPokemonSmallRegularCredit()->getName());
+        $this->assertSame('https://github.com/msikma/pokesprite', $object->getPokemonSmallRegularCredit()->getUrl());
+        $this->assertNull($object->getPokemonSmallShinyCredit());
+        $this->assertNull($object->getPokemonBigRegularCredit());
+        $this->assertNotNull($object->getPokemonBigShinyCredit());
+        $this->assertSame('PokemonDB', $object->getPokemonBigShinyCredit()->getName());
     }
 
     public function testDeserializeWithNullValues(): void
@@ -129,7 +140,11 @@ final class PokemonTest extends KernelTestCase
                     "game_bundles": {
                         "normal": [{ "slug": "xy" }],
                         "shiny": []
-                    }
+                    },
+                    "small_regular_credit": null,
+                    "small_shiny_credit": null,
+                    "big_regular_credit": null,
+                    "big_shiny_credit": null
                 },
                 "catch_state": null,
                 "forms": {
@@ -209,7 +224,11 @@ final class PokemonTest extends KernelTestCase
                     "game_bundles": {
                         "normal": [],
                         "shiny": []
-                    }
+                    },
+                    "small_regular_credit": null,
+                    "small_shiny_credit": null,
+                    "big_regular_credit": null,
+                    "big_shiny_credit": null
                 },
                 "catch_state": null,
                 "forms": null,

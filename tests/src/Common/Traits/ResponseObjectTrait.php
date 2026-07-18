@@ -175,6 +175,10 @@ trait ResponseObjectTrait
                 originalGameBundle: null,
                 orderNumber: '9999-0001-000',
                 gameBundles: new GameBundlesGroup(normal: [], shiny: []),
+                smallRegularCredit: null,
+                smallShinyCredit: null,
+                bigRegularCredit: null,
+                bigShinyCredit: null,
             ),
             new CatchState('starter', 'Starter', 'starter', '#00ff00'),
             new PokemonForms(
