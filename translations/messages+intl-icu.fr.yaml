@@ -27,6 +27,7 @@ nav:
 
 title:
   home: "Accueil"
+  credits: "Crédits"
   report: "Stats"
   admin: "Administration"
   admin_actions: "Données et caches"
@@ -306,6 +307,7 @@ footer:
   legals: "Mentions Légales"
   policy: "Politique de confidentialité"
   cookies: "Cookies"
+  credits: "Crédits"
   version: "Version"
 
 error:

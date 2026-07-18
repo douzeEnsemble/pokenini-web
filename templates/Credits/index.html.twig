@@ -1,0 +1,22 @@
+{% set locale = app.request.locale %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'title.credits'|trans }}{% endblock title %}
+
+{% block container %}
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h1>{{ 'title.credits'|trans }}</h1>
+
+      <ul class="list-group">
+        {% for credit in credits %}
+          <li class="list-group-item">
+            <a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock container %}
