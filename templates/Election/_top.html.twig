@@ -1,3 +1,5 @@
+{% import "common/Pokemon/_image_macros.html.twig" as imageMacros %}
+
 <div id="election-top" class="mt-xl-5 mt-lg-4 mt-3 ms-xl-5 ms-lg-3 ms-0 me-xl-5 me-lg-3 me-0">
   <h4>
     {% if isTheLastOne %}
@@ -8,17 +10,12 @@
   </h4>
   <div class="row">
     {% for item in electionTop.items %}
-      {% set topPokemonName = locale is same as('fr') ? item.pokemon.labels.frenchName : item.pokemon.labels.name %}
-      {% set dir = pokedex.dex.isShiny ? 'shiny' : 'regular' %}
-      {% set imageUrl = pokemonImageUrl|format(dir, item.pokemon.icon) %}
       <div class="election-top-item col text-center position-relative" data-attr-elo="{{ item.score.elo }}">
-        <img
-          alt="{{ ('album.image.alt.'~dir)|trans }} {{ topPokemonName }}"
-          class="album-modal-image card-img img-fluid"
-          src="{{ imageUrl }}"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='/img/pokemon/default_image.webp';"
-        >
+        {% if pokedex.dex.isShiny %}
+          {{ imageMacros.shinyPokemonImage(item, locale) }}
+        {% else %}
+          {{ imageMacros.regularPokemonImage(item, locale) }}
+        {% endif %}
         <br>
         {% if item.score.significance %}
           <i class="bi bi-star"></i>
