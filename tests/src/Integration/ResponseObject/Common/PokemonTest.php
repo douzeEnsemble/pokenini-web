@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Integration\ResponseObject\Common;
 
 use App\ResponseObject\Common\Pokemon;
+use App\ResponseObject\Common\PokemonCredit;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -102,13 +103,15 @@ final class PokemonTest extends KernelTestCase
         $this->assertSame('Flying', $object->getSecondaryTypeName());
         $this->assertSame('Vol', $object->getSecondaryTypeFrenchName());
         $this->assertSame('9999-0006-004', $object->getPokemonOrderNumber());
-        $this->assertNotNull($object->getPokemonSmallRegularCredit());
-        $this->assertSame('PokéSprite', $object->getPokemonSmallRegularCredit()->getName());
-        $this->assertSame('https://github.com/msikma/pokesprite', $object->getPokemonSmallRegularCredit()->getUrl());
+        $smallRegularCredit = $object->getPokemonSmallRegularCredit();
+        $this->assertInstanceOf(PokemonCredit::class, $smallRegularCredit);
+        $this->assertSame('PokéSprite', $smallRegularCredit->getName());
+        $this->assertSame('https://github.com/msikma/pokesprite', $smallRegularCredit->getUrl());
         $this->assertNull($object->getPokemonSmallShinyCredit());
         $this->assertNull($object->getPokemonBigRegularCredit());
-        $this->assertNotNull($object->getPokemonBigShinyCredit());
-        $this->assertSame('PokemonDB', $object->getPokemonBigShinyCredit()->getName());
+        $bigShinyCredit = $object->getPokemonBigShinyCredit();
+        $this->assertInstanceOf(PokemonCredit::class, $bigShinyCredit);
+        $this->assertSame('PokemonDB', $bigShinyCredit->getName());
     }
 
     public function testDeserializeWithNullValues(): void
