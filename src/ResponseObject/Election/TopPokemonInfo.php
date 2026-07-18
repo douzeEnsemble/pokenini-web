@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Election;
 
+use App\ResponseObject\Common\PokemonCredit;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 /**
@@ -32,6 +33,14 @@ final class TopPokemonInfo
         private readonly ?string $orderNumber,
         #[SerializedName('game_bundles')]
         private readonly TopPokemonGameBundles $gameBundles,
+        #[SerializedName('small_regular_credit')]
+        private readonly ?PokemonCredit $smallRegularCredit,
+        #[SerializedName('small_shiny_credit')]
+        private readonly ?PokemonCredit $smallShinyCredit,
+        #[SerializedName('big_regular_credit')]
+        private readonly ?PokemonCredit $bigRegularCredit,
+        #[SerializedName('big_shiny_credit')]
+        private readonly ?PokemonCredit $bigShinyCredit,
     ) {}
 
     public function getSlug(): string
@@ -82,5 +91,25 @@ final class TopPokemonInfo
     public function getGameBundles(): TopPokemonGameBundles
     {
         return $this->gameBundles;
+    }
+
+    public function getSmallRegularCredit(): ?PokemonCredit
+    {
+        return $this->smallRegularCredit;
+    }
+
+    public function getSmallShinyCredit(): ?PokemonCredit
+    {
+        return $this->smallShinyCredit;
+    }
+
+    public function getBigRegularCredit(): ?PokemonCredit
+    {
+        return $this->bigRegularCredit;
+    }
+
+    public function getBigShinyCredit(): ?PokemonCredit
+    {
+        return $this->bigShinyCredit;
     }
 }

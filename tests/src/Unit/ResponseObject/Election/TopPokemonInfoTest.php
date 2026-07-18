@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ResponseObject\Election;
 
+use App\ResponseObject\Common\PokemonCredit;
 use App\ResponseObject\Election\TopPokemonGameBundles;
 use App\ResponseObject\Election\TopPokemonInfo;
 use App\ResponseObject\Election\TopPokemonLabels;
@@ -35,6 +36,10 @@ final class TopPokemonInfoTest extends TestCase
             $origBundle,
             '9999-0003-004',
             $gameBundles,
+            null,
+            null,
+            null,
+            null,
         );
 
         $this->assertSame('venusaur-mega', $object->getSlug());
@@ -66,6 +71,10 @@ final class TopPokemonInfoTest extends TestCase
             null,
             null,
             $gameBundles,
+            null,
+            null,
+            null,
+            null,
         );
 
         $this->assertNull($object->getOriginalGameBundle());
@@ -89,6 +98,10 @@ final class TopPokemonInfoTest extends TestCase
             null,
             null,
             $gameBundles,
+            null,
+            null,
+            null,
+            null,
         );
 
         $this->assertNull($object->getFamilyLead());
@@ -111,8 +124,42 @@ final class TopPokemonInfoTest extends TestCase
             null,
             null,
             $gameBundles,
+            null,
+            null,
+            null,
+            null,
         );
 
         $this->assertSame(14, $object->getRegionalDexNumber());
+    }
+
+    public function testCredits(): void
+    {
+        $labels = new TopPokemonLabels('Bulbasaur', 'Bulbizarre', 'Bulbasaur', 'Bulbizarre', null, null);
+        $gameBundles = new TopPokemonGameBundles([], []);
+        $smallRegular = new PokemonCredit(name: 'PokéSprite', url: 'https://github.com/msikma/pokesprite');
+        $bigShiny = new PokemonCredit(name: 'PokemonDB', url: 'https://pokemondb.net/sprites/bulbasaur-shiny');
+
+        $object = new TopPokemonInfo(
+            'bulbasaur',
+            $labels,
+            1,
+            null,
+            'bulbasaur',
+            0,
+            null,
+            null,
+            null,
+            $gameBundles,
+            $smallRegular,
+            null,
+            null,
+            $bigShiny,
+        );
+
+        $this->assertSame($smallRegular, $object->getSmallRegularCredit());
+        $this->assertNull($object->getSmallShinyCredit());
+        $this->assertNull($object->getBigRegularCredit());
+        $this->assertSame($bigShiny, $object->getBigShinyCredit());
     }
 }
