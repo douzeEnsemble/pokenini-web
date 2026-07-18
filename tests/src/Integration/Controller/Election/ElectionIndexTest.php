@@ -431,6 +431,7 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertSame('modal', $crawler->filter('#election-modal-filters-advanced')->attr('class'));
 
         $this->assertElectionTop($crawler, 'Ton top 5');
+        $this->assertCount(1, $crawler->filter('#election-top .pokemon-image-credit'));
         $this->assertActions($crawler, 'Bravo, tu as fini', '');
         $this->assertStats(
             $crawler,
