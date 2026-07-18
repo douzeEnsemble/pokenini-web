@@ -208,6 +208,10 @@ trait ResponseObjectTrait
                 null,
                 null,
                 new TopPokemonGameBundles([], []),
+                null,
+                null,
+                null,
+                null,
             ),
             null,                          // forms: null is valid; TopPokemonForms not imported (unused)
             new TopPokemonTypes(null, null),

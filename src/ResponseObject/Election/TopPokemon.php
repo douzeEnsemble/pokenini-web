@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Election;
 
+use App\ResponseObject\Common\PokemonCredit;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final class TopPokemon
@@ -22,6 +23,41 @@ final class TopPokemon
     public function getPokemon(): TopPokemonInfo
     {
         return $this->pokemon;
+    }
+
+    public function getPokemonIcon(): string
+    {
+        return $this->pokemon->getIcon();
+    }
+
+    public function getPokemonName(): string
+    {
+        return $this->pokemon->getLabels()->getName();
+    }
+
+    public function getPokemonFrenchName(): string
+    {
+        return $this->pokemon->getLabels()->getFrenchName();
+    }
+
+    public function getPokemonSmallRegularCredit(): ?PokemonCredit
+    {
+        return $this->pokemon->getSmallRegularCredit();
+    }
+
+    public function getPokemonSmallShinyCredit(): ?PokemonCredit
+    {
+        return $this->pokemon->getSmallShinyCredit();
+    }
+
+    public function getPokemonBigRegularCredit(): ?PokemonCredit
+    {
+        return $this->pokemon->getBigRegularCredit();
+    }
+
+    public function getPokemonBigShinyCredit(): ?PokemonCredit
+    {
+        return $this->pokemon->getBigShinyCredit();
     }
 
     public function getForms(): ?TopPokemonForms
