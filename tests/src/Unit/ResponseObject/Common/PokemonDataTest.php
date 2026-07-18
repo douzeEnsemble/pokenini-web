@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\ResponseObject\Common;
 
 use App\ResponseObject\Common\GameBundlesGroup;
+use App\ResponseObject\Common\PokemonCredit;
 use App\ResponseObject\Common\PokemonData;
 use App\ResponseObject\Common\PokemonLabels;
 use App\ResponseObject\Common\PokemonSlugRef;
@@ -42,6 +43,10 @@ final class PokemonDataTest extends TestCase
             originalGameBundle: $originalGameBundle,
             orderNumber: '9999-0006-004',
             gameBundles: new GameBundlesGroup(normal: [$bundle1], shiny: [$bundle2]),
+            smallRegularCredit: null,
+            smallShinyCredit: null,
+            bigRegularCredit: null,
+            bigShinyCredit: null,
         );
 
         $this->assertSame('charizard-mega-y', $data->getSlug());
@@ -82,6 +87,10 @@ final class PokemonDataTest extends TestCase
             originalGameBundle: null,
             orderNumber: '0001-0001-000',
             gameBundles: new GameBundlesGroup(normal: [], shiny: []),
+            smallRegularCredit: null,
+            smallShinyCredit: null,
+            bigRegularCredit: null,
+            bigShinyCredit: null,
         );
 
         $this->assertNull($data->getFamilyLead());
@@ -109,11 +118,50 @@ final class PokemonDataTest extends TestCase
             originalGameBundle: null,
             orderNumber: '0001-0001-000',
             gameBundles: new GameBundlesGroup(normal: [], shiny: []),
+            smallRegularCredit: null,
+            smallShinyCredit: null,
+            bigRegularCredit: null,
+            bigShinyCredit: null,
         );
 
         $this->assertSame('', $data->getSimplifiedName());
         $this->assertSame('', $data->getSimplifiedFrenchName());
         $this->assertSame('', $data->getFormsLabel());
         $this->assertSame('', $data->getFormsFrenchLabel());
+    }
+
+    public function testCredits(): void
+    {
+        $smallRegular = new PokemonCredit(name: 'PokéSprite', url: 'https://github.com/msikma/pokesprite');
+        $bigShiny = new PokemonCredit(name: 'PokemonDB', url: 'https://pokemondb.net/sprites/bulbasaur-shiny');
+
+        $data = new PokemonData(
+            slug: 'bulbasaur',
+            labels: new PokemonLabels(
+                name: 'Bulbasaur',
+                frenchName: 'Bulbizarre',
+                simplifiedName: 'Bulbasaur',
+                simplifiedFrenchName: 'Bulbizarre',
+                formsLabel: '',
+                formsFrenchLabel: '',
+            ),
+            nationalDexNumber: 1,
+            regionalDexNumber: null,
+            icon: 'bulbasaur',
+            familyOrder: 0,
+            familyLead: null,
+            originalGameBundle: null,
+            orderNumber: '0001-0001-000',
+            gameBundles: new GameBundlesGroup(normal: [], shiny: []),
+            smallRegularCredit: $smallRegular,
+            smallShinyCredit: null,
+            bigRegularCredit: null,
+            bigShinyCredit: $bigShiny,
+        );
+
+        $this->assertSame($smallRegular, $data->getSmallRegularCredit());
+        $this->assertNull($data->getSmallShinyCredit());
+        $this->assertNull($data->getBigRegularCredit());
+        $this->assertSame($bigShiny, $data->getBigShinyCredit());
     }
 }

@@ -70,6 +70,26 @@ final class Pokemon
         return $this->pokemon->getIcon();
     }
 
+    public function getPokemonSmallRegularCredit(): ?PokemonCredit
+    {
+        return $this->pokemon->getSmallRegularCredit();
+    }
+
+    public function getPokemonSmallShinyCredit(): ?PokemonCredit
+    {
+        return $this->pokemon->getSmallShinyCredit();
+    }
+
+    public function getPokemonBigRegularCredit(): ?PokemonCredit
+    {
+        return $this->pokemon->getBigRegularCredit();
+    }
+
+    public function getPokemonBigShinyCredit(): ?PokemonCredit
+    {
+        return $this->pokemon->getBigShinyCredit();
+    }
+
     public function getPokemonFamilyOrder(): int
     {
         return $this->pokemon->getFamilyOrder();
