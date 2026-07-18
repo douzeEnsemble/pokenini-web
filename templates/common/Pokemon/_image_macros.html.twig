@@ -18,6 +18,7 @@
     {% set pokemonName = locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName %}
 
     {% set iconUrl = pokemonIconUrl|format(dir, item.pokemonIcon) %}
+    {% set credit = dir is same as('shiny') ? item.pokemonSmallShinyCredit : item.pokemonSmallRegularCredit %}
 
     <img
         alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"
@@ -26,6 +27,7 @@
         loading="lazy"
         onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
     >
+    {{ _self.creditBadge(credit) }}
 {% endmacro %}
 
 {% macro regularPokemonImage(item, locale, classMore) %}
@@ -48,6 +50,7 @@
     {% set pokemonName = locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName %}
 
     {% set imageUrl = pokemonImageUrl|format(dir, item.pokemonIcon) %}
+    {% set credit = dir is same as('shiny') ? item.pokemonBigShinyCredit : item.pokemonBigRegularCredit %}
 
     <img
         alt="{{ ('album.image.alt.'~dir)|trans }} {{ pokemonName }}"
@@ -56,4 +59,18 @@
         loading="lazy"
         onerror="this.onerror=null;this.src='/img/pokemon/default_image.webp';"
     >
+    {{ _self.creditBadge(credit) }}
+{% endmacro %}
+
+{% macro creditBadge(credit) %}
+    {% if credit is not null %}
+        <a
+            href="{{ credit.url }}"
+            target="_blank"
+            rel="noopener"
+            class="pokemon-image-credit"
+            data-bs-toggle="tooltip"
+            data-bs-title="{{ 'credit.tooltip'|trans }}: {{ credit.name }}"
+        ><i class="bi bi-info-circle"></i></a>
+    {% endif %}
 {% endmacro %}

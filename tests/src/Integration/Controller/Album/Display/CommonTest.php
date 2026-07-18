@@ -88,6 +88,21 @@ final class CommonTest extends WebTestCase
         $this->testListVirgin();
     }
 
+    public function testImageCreditBadgeIsShownWhenCreditExists(): void
+    {
+        $client = self::createClient();
+        $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $crawler = $client->getCrawler();
+
+        $bulbasaurCase = $crawler->filter('#bulbasaur');
+        $this->assertCount(1, $bulbasaurCase->filter('.pokemon-image-credit'));
+        $this->assertSame(
+            'https://github.com/msikma/pokesprite',
+            $bulbasaurCase->filter('.pokemon-image-credit')->first()->attr('href')
+        );
+    }
+
     private function assertAlbum(KernelBrowser $client): void
     {
         $this->assertResponseIsSuccessful();
