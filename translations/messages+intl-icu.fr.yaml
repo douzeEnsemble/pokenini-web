@@ -631,3 +631,6 @@ election_dex:
   subtitle: "Selon le dex, il y'a plus ou moins de pokémons, plus ou moins de formes. C'est à toi de voir"
   dex:
     total_count_suffixe: Pokémons
+
+credit:
+  tooltip: "Crédit image"

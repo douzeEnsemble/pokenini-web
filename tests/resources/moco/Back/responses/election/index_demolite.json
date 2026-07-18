@@ -24,7 +24,11 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
-        }
+        },
+        "small_regular_credit": {"name": "PokéSprite", "url": "https://github.com/msikma/pokesprite"},
+        "small_shiny_credit": null,
+        "big_regular_credit": {"name": "PokemonDB", "url": "https://pokemondb.net/sprites/bulbasaur"},
+        "big_shiny_credit": null
       },
       "catch_state": null,
       "forms": {

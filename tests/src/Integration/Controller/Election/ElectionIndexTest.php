@@ -481,6 +481,29 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertResponseStatusCodeSame(404);
     }
 
+    public function testImageCreditBadgeIsShownOnCandidateCard(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken();
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $client->request('GET', '/fr/election/demolite');
+
+        $crawler = $client->getCrawler();
+
+        $bulbasaurCard = $crawler->filter('#card-bulbasaur');
+        $this->assertCount(1, $bulbasaurCard->filter('.pokemon-image-credit'));
+        $this->assertSame(
+            // _candidates.html.twig only ever renders imageMacros.regularPokemonImage/shinyPokemonImage
+            // (the "big" image), never the icon macro, so the badge here reflects the big credit,
+            // not the small/icon credit used elsewhere (e.g. Album icons).
+            'https://pokemondb.net/sprites/bulbasaur',
+            $bulbasaurCard->filter('.pokemon-image-credit')->first()->attr('href')
+        );
+    }
+
     private function assertCardContentDemoLite(Crawler $crawler): void
     {
         $this->assertEquals(
