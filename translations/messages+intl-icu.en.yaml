@@ -27,6 +27,7 @@ nav:
 
 title:
   home: "Home"
+  credits: "Credits"
   report: "Report"
   admin: "Backoffice"
   admin_actions: "Data and caches"
@@ -301,6 +302,7 @@ footer:
   legals: "Legal Notice"
   policy: "Privacy Policy"
   cookies: "Cookies"
+  credits: "Credits"
   version: "Version"
 
 error:

@@ -12,6 +12,17 @@
   },
   {
     "request": {
+      "uri": "/credits",
+      "headers": {
+        "accept": "application/json"
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/credits.json"
+    }
+  },
+  {
+    "request": {
       "uri": "/labels/catch_states",
       "headers": {
         "accept": "application/json"

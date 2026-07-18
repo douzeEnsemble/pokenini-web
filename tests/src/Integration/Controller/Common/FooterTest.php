@@ -35,7 +35,7 @@ final class FooterTest extends WebTestCase
         $this->assertSame('Version 1.2.12', $crawler->filter('footer #copyright')->attr('title'));
 
         $this->assertCountFilter($crawler, 1, 'footer ul');
-        $this->assertCountFilter($crawler, 4, 'footer ul li');
+        $this->assertCountFilter($crawler, 5, 'footer ul li');
 
         $index = 0;
         $this->assertStringContainsString('Accueil', $crawler->filter('footer ul li')->eq($index)->text());
@@ -45,6 +45,8 @@ final class FooterTest extends WebTestCase
         $this->assertStringContainsString('Mentions Légales', $crawler->filter('footer ul li')->eq($index)->text());
         ++$index;
         $this->assertStringContainsString('Cookies', $crawler->filter('footer ul li')->eq($index)->text());
+        ++$index;
+        $this->assertStringContainsString('Crédits', $crawler->filter('footer ul li')->eq($index)->text());
 
         $this->assertSame(
             '/fr/album/dex',
@@ -65,7 +67,7 @@ final class FooterTest extends WebTestCase
         $this->assertSame('Version 1.2.12', $crawler->filter('footer #copyright')->attr('title'));
 
         $this->assertCountFilter($crawler, 1, 'footer ul');
-        $this->assertCountFilter($crawler, 4, 'footer ul li');
+        $this->assertCountFilter($crawler, 5, 'footer ul li');
 
         $index = 0;
         $this->assertStringContainsString('Accueil', $crawler->filter('footer ul li')->eq($index)->text());
@@ -75,6 +77,8 @@ final class FooterTest extends WebTestCase
         $this->assertStringContainsString('Mentions Légales', $crawler->filter('footer ul li')->eq($index)->text());
         ++$index;
         $this->assertStringContainsString('Cookies', $crawler->filter('footer ul li')->eq($index)->text());
+        ++$index;
+        $this->assertStringContainsString('Crédits', $crawler->filter('footer ul li')->eq($index)->text());
 
         $this->assertSame(
             '/fr',
