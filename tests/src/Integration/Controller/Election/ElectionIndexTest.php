@@ -495,13 +495,15 @@ final class ElectionIndexTest extends WebTestCase
         $crawler = $client->getCrawler();
 
         $bulbasaurCard = $crawler->filter('#card-bulbasaur');
-        $this->assertCount(1, $bulbasaurCard->filter('.pokemon-image-credit'));
-        $this->assertSame(
-            // _candidates.html.twig only ever renders imageMacros.regularPokemonImage/shinyPokemonImage
-            // (the "big" image), never the icon macro, so the badge here reflects the big credit,
-            // not the small/icon credit used elsewhere (e.g. Album icons).
+        $badge = $bulbasaurCard->filter('.pokemon-image-credit');
+        $this->assertCount(1, $badge);
+        // _candidates.html.twig only ever renders imageMacros.regularPokemonImage/shinyPokemonImage
+        // (the "big" image), never the icon macro, so the badge here reflects the big credit,
+        // not the small/icon credit used elsewhere (e.g. Album icons).
+        $this->assertStringContainsString('PokemonDB', $badge->filter('.visually-hidden')->text());
+        $this->assertStringContainsString(
             'https://pokemondb.net/sprites/bulbasaur',
-            $bulbasaurCard->filter('.pokemon-image-credit')->first()->attr('href')
+            (string) $badge->first()->attr('onclick')
         );
     }
 

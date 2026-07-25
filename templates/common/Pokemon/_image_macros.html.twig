@@ -63,14 +63,22 @@
 {% endmacro %}
 
 {% macro creditBadge(credit) %}
+    {# This macro is called from inside an existing <a> at several call
+        sites (e.g. Album's modal regular/shiny toggle links, prev/next
+        navigation). HTML forbids both nesting an <a> inside another <a>,
+        and nesting any *focusable* element inside one - so this can't be
+        a real link or carry a tabindex without breaking markup validity
+        at those call sites. It stays a non-focusable <span> with an
+        accessible name (for assistive tech that inspects it, e.g.
+        screen-reader browse mode) and a click handler (for mouse/touch);
+        it won't appear in sequential Tab order. Visible attribution is
+        also always available via the tooltip on hover. #}
     {% if credit is not null %}
-        <a
-            href="{{ credit.url }}"
-            target="_blank"
-            rel="noopener"
+        <span
             class="pokemon-image-credit"
             data-bs-toggle="tooltip"
             data-bs-title="{{ 'credit.tooltip'|trans }}: {{ credit.name }}"
-        ><i class="bi bi-info-circle"></i></a>
+            onclick="event.stopPropagation();window.open('{{ credit.url }}', '_blank', 'noopener');"
+        ><i class="bi bi-info-circle" aria-hidden="true"></i><span class="visually-hidden">{{ 'credit.tooltip'|trans }}: {{ credit.name }}</span></span>
     {% endif %}
 {% endmacro %}
