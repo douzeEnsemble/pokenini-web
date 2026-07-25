@@ -78,7 +78,7 @@
             class="pokemon-image-credit"
             data-bs-toggle="tooltip"
             data-bs-title="{{ 'credit.tooltip'|trans }}: {{ credit.name }}"
-            onclick="event.stopPropagation();window.open('{{ credit.url }}', '_blank', 'noopener');"
+            onclick="event.preventDefault();event.stopPropagation();window.open('{{ credit.url|e('js') }}', '_blank', 'noopener');"
         ><i class="bi bi-info-circle" aria-hidden="true"></i><span class="visually-hidden">{{ 'credit.tooltip'|trans }}: {{ credit.name }}</span></span>
     {% endif %}
 {% endmacro %}
