@@ -96,10 +96,12 @@ final class CommonTest extends WebTestCase
         $crawler = $client->getCrawler();
 
         $bulbasaurCase = $crawler->filter('#bulbasaur');
-        $this->assertCount(1, $bulbasaurCase->filter('.pokemon-image-credit'));
-        $this->assertSame(
+        $badge = $bulbasaurCase->filter('.pokemon-image-credit');
+        $this->assertCount(1, $badge);
+        $this->assertStringContainsString('PokéSprite', $badge->filter('.visually-hidden')->text());
+        $this->assertStringContainsString(
             'https://github.com/msikma/pokesprite',
-            $bulbasaurCase->filter('.pokemon-image-credit')->first()->attr('href')
+            (string) $badge->first()->attr('onclick')
         );
     }
 

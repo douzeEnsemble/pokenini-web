@@ -21,6 +21,32 @@ html {
     color: rgba(0 0 0 / 0%);
 }
 
+/* Image credit badge rendered by common/Pokemon/_image_macros.html.twig
+    next to every sprite that has attribution data. Not every caller's
+    wrapper is position-relative, so this stays inline rather than an
+    absolute overlay - it still reads as "attached to the image" thanks
+    to negative margin-top pulling it up against the sprite. */
+.pokemon-image-credit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: -0.5rem;
+    margin-left: -0.5rem;
+    border-radius: 50%;
+    background-color: rgb(255 255 255 / 85%);
+    color: var(--icon-link-color);
+    font-size: .75rem;
+    box-shadow: 0 0 2px rgb(0 0 0 / 40%);
+    cursor: pointer;
+}
+
+.pokemon-image-credit:hover,
+.pokemon-image-credit:focus-visible {
+    color: var(--icon-link-hover-color);
+}
+
 .album-modal-types {
     color: white;
 }
