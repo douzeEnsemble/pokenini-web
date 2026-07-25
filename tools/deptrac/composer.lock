@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0bc970c34dfabafcfbc42bfe194c68d7",
+    "content-hash": "ecfb3dc47926fc829a3a3fb141327b04",
     "packages": [
         {
             "name": "composer/pcre",
@@ -150,16 +150,16 @@
         },
         {
             "name": "deptrac/deptrac",
-            "version": "4.6.2",
+            "version": "4.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deptrac/deptrac.git",
-                "reference": "bc9c98102a3ed3acce5ad49f3da989dc9921c648"
+                "reference": "de3303ae1e280b1e58552fef496074b4ee5b143b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deptrac/deptrac/zipball/bc9c98102a3ed3acce5ad49f3da989dc9921c648",
-                "reference": "bc9c98102a3ed3acce5ad49f3da989dc9921c648",
+                "url": "https://api.github.com/repos/deptrac/deptrac/zipball/de3303ae1e280b1e58552fef496074b4ee5b143b",
+                "reference": "de3303ae1e280b1e58552fef496074b4ee5b143b",
                 "shasum": ""
             },
             "require": {
@@ -229,9 +229,9 @@
             ],
             "support": {
                 "issues": "https://github.com/deptrac/deptrac/issues",
-                "source": "https://github.com/deptrac/deptrac/tree/4.6.2"
+                "source": "https://github.com/deptrac/deptrac/tree/4.7.1"
             },
-            "time": "2026-07-01T10:43:37+00:00"
+            "time": "2026-07-23T20:41:37+00:00"
         },
         {
             "name": "doctrine/deprecations",
