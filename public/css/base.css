@@ -42,8 +42,7 @@ html {
     cursor: pointer;
 }
 
-.pokemon-image-credit:hover,
-.pokemon-image-credit:focus-visible {
+.pokemon-image-credit:hover {
     color: var(--icon-link-hover-color);
 }
 

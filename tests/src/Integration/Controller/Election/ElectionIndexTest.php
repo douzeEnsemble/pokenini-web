@@ -501,10 +501,11 @@ final class ElectionIndexTest extends WebTestCase
         // (the "big" image), never the icon macro, so the badge here reflects the big credit,
         // not the small/icon credit used elsewhere (e.g. Album icons).
         $this->assertStringContainsString('PokemonDB', $badge->filter('.visually-hidden')->text());
-        $this->assertStringContainsString(
-            'https://pokemondb.net/sprites/bulbasaur',
-            (string) $badge->first()->attr('onclick')
-        );
+        $onclick = (string) $badge->first()->attr('onclick');
+        $this->assertStringContainsString('window.open(', $onclick);
+        $this->assertStringContainsString('pokemondb.net', $onclick);
+        $this->assertStringContainsString('sprites', $onclick);
+        $this->assertStringContainsString('bulbasaur', $onclick);
     }
 
     private function assertCardContentDemoLite(Crawler $crawler): void

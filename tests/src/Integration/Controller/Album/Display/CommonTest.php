@@ -99,10 +99,11 @@ final class CommonTest extends WebTestCase
         $badge = $bulbasaurCase->filter('.pokemon-image-credit');
         $this->assertCount(1, $badge);
         $this->assertStringContainsString('PokéSprite', $badge->filter('.visually-hidden')->text());
-        $this->assertStringContainsString(
-            'https://github.com/msikma/pokesprite',
-            (string) $badge->first()->attr('onclick')
-        );
+        $onclick = (string) $badge->first()->attr('onclick');
+        $this->assertStringContainsString('window.open(', $onclick);
+        $this->assertStringContainsString('github.com', $onclick);
+        $this->assertStringContainsString('msikma', $onclick);
+        $this->assertStringContainsString('pokesprite', $onclick);
     }
 
     private function assertAlbum(KernelBrowser $client): void
