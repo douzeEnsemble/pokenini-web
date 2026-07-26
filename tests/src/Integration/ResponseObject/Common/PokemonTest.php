@@ -46,10 +46,10 @@ final class PokemonTest extends KernelTestCase
                         "normal": [{ "slug": "xy" }, { "slug": "omegarubyalphasapphire" }],
                         "shiny": [{ "slug": "xy" }]
                     },
-                    "small_regular_credit": { "name": "PokéSprite", "url": "https://github.com/msikma/pokesprite" },
+                    "small_regular_credit": { "credit": "PokéSprite - https://github.com/msikma/pokesprite" },
                     "small_shiny_credit": null,
                     "big_regular_credit": null,
-                    "big_shiny_credit": { "name": "PokemonDB", "url": "https://pokemondb.net/sprites/charizard-mega-y-shiny" }
+                    "big_shiny_credit": { "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y-shiny" }
                 },
                 "catch_state": {
                     "slug": "yes",

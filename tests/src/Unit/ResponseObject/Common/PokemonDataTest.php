@@ -132,8 +132,8 @@ final class PokemonDataTest extends TestCase
 
     public function testCredits(): void
     {
-        $smallRegular = new PokemonCredit(name: 'PokéSprite', url: 'https://github.com/msikma/pokesprite');
-        $bigShiny = new PokemonCredit(name: 'PokemonDB', url: 'https://pokemondb.net/sprites/bulbasaur-shiny');
+        $smallRegular = new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite');
+        $bigShiny = new PokemonCredit(credit: 'PokemonDB - https://pokemondb.net/sprites/bulbasaur-shiny');
 
         $data = new PokemonData(
             slug: 'bulbasaur',

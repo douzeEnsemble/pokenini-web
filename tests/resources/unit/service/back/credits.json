@@ -1,4 +1,4 @@
 [
-    {"name": "PokéSprite", "url": "https://github.com/msikma/pokesprite"},
-    {"name": "PokemonDB", "url": "https://pokemondb.net"}
+    {"credit": "PokéSprite - https://github.com/msikma/pokesprite"},
+    {"credit": "PokemonDB - https://pokemondb.net"}
 ]

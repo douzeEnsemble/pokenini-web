@@ -28,8 +28,8 @@ final class GetCreditsServiceTest extends AbstractTestBackService
         $json = (new Filesystem())->readFile(self::RESPONSE_CONTENT);
 
         $credits = [
-            new PokemonCredit(name: 'PokéSprite', url: 'https://github.com/msikma/pokesprite'),
-            new PokemonCredit(name: 'PokemonDB', url: 'https://pokemondb.net'),
+            new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite'),
+            new PokemonCredit(credit: 'PokemonDB - https://pokemondb.net'),
         ];
 
         $serializer = $this->createMock(SerializerInterface::class);

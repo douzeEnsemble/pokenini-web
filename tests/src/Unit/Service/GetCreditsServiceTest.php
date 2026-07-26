@@ -20,7 +20,7 @@ final class GetCreditsServiceTest extends TestCase
 {
     public function testGet(): void
     {
-        $credits = [new PokemonCredit(name: 'PokéSprite', url: 'https://github.com/msikma/pokesprite')];
+        $credits = [new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite')];
 
         $backService = $this->createMock(BackGetCreditsService::class);
         $backService
@@ -36,7 +36,7 @@ final class GetCreditsServiceTest extends TestCase
 
     public function testCacheIsInvalidatedByCreditsTag(): void
     {
-        $credits = [new PokemonCredit(name: 'PokéSprite', url: 'https://github.com/msikma/pokesprite')];
+        $credits = [new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite')];
 
         $backService = $this->createMock(BackGetCreditsService::class);
         $backService
