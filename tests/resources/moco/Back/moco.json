@@ -672,11 +672,11 @@
     "response": {
       "status": "200",
       "json": {
-        "correlationId": "corr-1",
-        "workflowA": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/1"},
-        "iconPr": {"state": "merged", "url": "https://github.com/douzeEnsemble/pokenini-icon/pull/2"},
-        "workflowB": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/3"},
-        "resourcesPr": {"state": "open", "url": "https://github.com/douzeEnsemble/pokenini-resources/pull/4"}
+        "correlation_id": "corr-1",
+        "workflow_a": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/1"},
+        "icon_pr": {"state": "merged", "url": "https://github.com/douzeEnsemble/pokenini-icon/pull/2"},
+        "workflow_b": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/3"},
+        "resources_pr": {"state": "open", "url": "https://github.com/douzeEnsemble/pokenini-resources/pull/4"}
       }
     }
   },
