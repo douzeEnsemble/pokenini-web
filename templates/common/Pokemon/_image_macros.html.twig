@@ -1,20 +1,22 @@
-{% macro regularPokemonIcon(item, locale, classMore) %}
+{% macro regularPokemonIcon(item, locale, classMore, showCredit = true) %}
     {{ _self.pokemonIcon(
         item,
         'regular',
         locale,
         classMore,
+        showCredit,
     ) }}
 {% endmacro %}
-{% macro shinyPokemonIcon(item, locale, classMore) %}
+{% macro shinyPokemonIcon(item, locale, classMore, showCredit = true) %}
     {{ _self.pokemonIcon(
         item,
         'shiny',
         locale,
         classMore,
+        showCredit,
     ) }}
 {% endmacro %}
-{% macro pokemonIcon(item, dir, locale, classMore) %}
+{% macro pokemonIcon(item, dir, locale, classMore, showCredit = true) %}
     {% set pokemonName = locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName %}
 
     {% set iconUrl = pokemonIconUrl|format(dir, item.pokemonIcon) %}
@@ -27,7 +29,9 @@
         loading="lazy"
         onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
     >
-    {{ _self.creditBadge(credit) }}
+    {% if showCredit %}
+        {{ _self.creditBadge(credit) }}
+    {% endif %}
 {% endmacro %}
 
 {% macro regularPokemonImage(item, locale, classMore) %}
@@ -79,6 +83,6 @@
             data-bs-toggle="tooltip"
             data-bs-title="{{ 'credit.tooltip'|trans }}: {{ credit.name }}"
             {% if credit.url is not null %}onclick="event.preventDefault();event.stopPropagation();window.open('{{ credit.url|e('js') }}', '_blank', 'noopener');"{% endif %}
-        ><i class="bi bi-info-circle" aria-hidden="true"></i><span class="visually-hidden">{{ 'credit.tooltip'|trans }}: {{ credit.name }}</span></span>
+        ><i class="bi bi-info-lg" aria-hidden="true"></i><span class="visually-hidden">{{ 'credit.tooltip'|trans }}: {{ credit.name }}</span></span>
     {% endif %}
 {% endmacro %}

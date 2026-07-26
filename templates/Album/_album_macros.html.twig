@@ -24,7 +24,7 @@
     </div>
     <div class="album-case-image text-center" title="#{{ dexNumber }} {{ locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName }}">
       <span data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}">
-        {{ dex.isShiny ? imageMacros.shinyPokemonIcon(item, locale) : imageMacros.regularPokemonIcon(item, locale) }}
+        {{ dex.isShiny ? imageMacros.shinyPokemonIcon(item, locale, showCredit=false) : imageMacros.regularPokemonIcon(item, locale, showCredit=false) }}
       </span>
     </div>
     <div class="album-case-forms text-truncate text-end">
@@ -168,9 +168,9 @@
                   {% set previous = loop.first ? item : list[loop.index0 - 1] %}
                   <a href="#modal-{{ previous.pokemonSlug }}" data-bs-target="#modal-{{ previous.pokemonSlug }}" data-bs-toggle="modal" class="album-modal-icon album-modal-icon-previous {{ loop.first ? 'invisible': 'visible' }}">
                     {% if dex.isShiny %}
-                      {{ imageMacros.shinyPokemonIcon(previous, locale, 'img-thumbnaild') }}
+                      {{ imageMacros.shinyPokemonIcon(previous, locale, 'img-thumbnaild', showCredit=false) }}
                     {% else %}
-                      {{ imageMacros.regularPokemonIcon(previous, locale, 'img-thumbnaild') }}
+                      {{ imageMacros.regularPokemonIcon(previous, locale, 'img-thumbnaild', showCredit=false) }}
                     {% endif %}
 
                     <span class="text-truncate">
@@ -183,9 +183,9 @@
                   {% set next = loop.last ? item : list[loop.index0 + 1] %}
                   <a href="#modal-{{ next.pokemonSlug }}" data-bs-target="#modal-{{ next.pokemonSlug }}" data-bs-toggle="modal" class="album-modal-icon album-modal-icon-next {{ loop.last ? 'invisible': 'visible' }}">
                     {% if dex.isShiny %}
-                      {{ imageMacros.shinyPokemonIcon(next, locale, 'img-thumbnaild') }}
+                      {{ imageMacros.shinyPokemonIcon(next, locale, 'img-thumbnaild', showCredit=false) }}
                     {% else %}
-                      {{ imageMacros.regularPokemonIcon(next, locale, 'img-thumbnaild') }}
+                      {{ imageMacros.regularPokemonIcon(next, locale, 'img-thumbnaild', showCredit=false) }}
                     {% endif %}
 
                     <span class="text-truncate">

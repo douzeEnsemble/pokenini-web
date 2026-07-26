@@ -95,8 +95,11 @@ final class CommonTest extends WebTestCase
 
         $crawler = $client->getCrawler();
 
-        $bulbasaurCase = $crawler->filter('#bulbasaur');
-        $badge = $bulbasaurCase->filter('.pokemon-image-credit');
+        // The Pokedex grid never renders the credit badge - too much visual
+        // noise at grid scale - only the modal detail view does.
+        $this->assertCount(0, $crawler->filter('#bulbasaur .pokemon-image-credit'));
+
+        $badge = $crawler->filter('#modal-bulbasaur a.album-modal-icon-regular .pokemon-image-credit');
         $this->assertCount(1, $badge);
         $this->assertStringContainsString('PokéSprite', $badge->filter('.visually-hidden')->text());
         $onclick = (string) $badge->first()->attr('onclick');
