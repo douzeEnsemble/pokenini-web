@@ -15,6 +15,23 @@ a.election-card-catch-state-edit-action:hover {
     max-width: 100px;
 }
 
+/* The vote page shows many candidate/top cards at once - a credit badge on
+    every card at rest is too much visual noise, so it's revealed only on
+    hover/focus of the card, rather than removed outright (see Album grid,
+    which drops the badge entirely instead). */
+.election-card .pokemon-image-credit,
+.election-top-item .pokemon-image-credit {
+    opacity: 0;
+    transition: opacity .15s ease-in-out;
+}
+
+.election-card:hover .pokemon-image-credit,
+.election-card:focus-within .pokemon-image-credit,
+.election-top-item:hover .pokemon-image-credit,
+.election-top-item:focus-within .pokemon-image-credit {
+    opacity: 1;
+}
+
 .election-actions {
     background-color: white;
 }
