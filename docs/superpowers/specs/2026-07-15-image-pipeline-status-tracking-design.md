@@ -67,16 +67,16 @@ pokenini-web (admin page, "Refresh status" link)
   → pokenini-back GET /istration/action/trigger/update_images/status?refresh=1
       → GET pokenini-api: latest ImagePipelineRun (or none)
       → for whichever stage isn't yet in a final state, poll GitHub:
-          1. Workflow A run — matched by a correlation id embedded in
-             the run's display title (see "Workflow A change" below)
-          2. PR on pokenini-icon — branch name is deterministic once the
-             run id is known (`update-images-<run id>`, from the
-             existing Workflow A)
-          3. Workflow B run — matched by `head_sha` equal to the icon
-             PR's `merge_commit_sha`
-          4. PR on pokenini-resources — branch name is deterministic
-             once the Workflow B run's `head_sha` is known
-             (`sync-images-<head_sha>`, from the existing Workflow B)
+          1.  Workflow A run — matched by a correlation id embedded in
+              the run's display title (see "Workflow A change" below)
+          2.  PR on pokenini-icon — branch name is deterministic once the
+              run id is known (`update-images-<run id>`, from the
+              existing Workflow A)
+          3.  Workflow B run — matched by `head_sha` equal to the icon
+              PR's `merge_commit_sha`
+          4.  PR on pokenini-resources — branch name is deterministic
+              once the Workflow B run's `head_sha` is known
+              (`sync-images-<head_sha>`, from the existing Workflow B)
       → PATCH pokenini-api with whatever new information was found
       → return the merged snapshot to pokenini-web
   → pokenini-web GET .../status (no `refresh` param) just reads the last
