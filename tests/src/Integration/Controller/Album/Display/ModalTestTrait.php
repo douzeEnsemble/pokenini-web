@@ -460,22 +460,24 @@ trait ModalTestTrait
         );
         $this->assertCountFilter($crawler, 4, "#modal-{$pokemonSlug} img.pokemon-icon");
 
-        $this->assertEquals(
+        // assertStringEndsWith rather than assertEquals: when the icon has a credit,
+        // the (hidden) credit-badge accessible text precedes the label in the DOM text.
+        $this->assertStringEndsWith(
             'fr' === $lang ? 'Normal' : 'Regular',
-            $crawler->filter("#modal-{$pokemonSlug} .album-modal-icon-regular")
-                ->text()
+            trim($crawler->filter("#modal-{$pokemonSlug} .album-modal-icon-regular")
+                ->text())
         );
-        $this->assertEquals(
+        $this->assertStringEndsWith(
             'fr' === $lang ? 'Chromatique' : 'Shiny',
-            $crawler->filter("#modal-{$pokemonSlug} .album-modal-icon-shiny")
-                ->text()
+            trim($crawler->filter("#modal-{$pokemonSlug} .album-modal-icon-shiny")
+                ->text())
         );
-        $this->assertEquals(
+        $this->assertStringEndsWith(
             'fr' === $lang ? 'Précédent' : 'Previous',
-            $crawler->filter("#modal-{$pokemonSlug} .album-modal-icon-previous")
-                ->text()
+            trim($crawler->filter("#modal-{$pokemonSlug} .album-modal-icon-previous")
+                ->text())
         );
-        $this->assertEquals(
+        $this->assertStringEndsWith(
             'fr' === $lang ? 'Suivant' : 'Next',
             trim($crawler->filter("#modal-{$pokemonSlug} .album-modal-icon-next")
                 ->text())

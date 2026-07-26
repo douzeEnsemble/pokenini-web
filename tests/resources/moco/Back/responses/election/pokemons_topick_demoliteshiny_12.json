@@ -24,6 +24,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur"
         }
       },
       "catch_state": null,
@@ -77,6 +89,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/ivysaur"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/ivysaur"
         }
       },
       "catch_state": {
@@ -131,6 +155,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur"
         }
       },
       "catch_state": {
@@ -185,6 +221,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
         }
       },
       "catch_state": {
@@ -243,6 +291,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-gmax"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-gmax"
         }
       },
       "catch_state": {
@@ -299,6 +359,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charmander"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charmander"
         }
       },
       "catch_state": {
@@ -352,6 +424,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charmeleon"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charmeleon"
         }
       },
       "catch_state": {
@@ -401,6 +485,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charizard"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charizard"
         }
       },
       "catch_state": null,
@@ -450,6 +546,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-x"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-x"
         }
       },
       "catch_state": null,
@@ -503,6 +611,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
         }
       },
       "catch_state": null,
@@ -554,6 +674,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/squirtle"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/squirtle"
         }
       },
       "catch_state": null,
@@ -602,6 +734,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/wartortle"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/wartortle"
         }
       },
       "catch_state": null,

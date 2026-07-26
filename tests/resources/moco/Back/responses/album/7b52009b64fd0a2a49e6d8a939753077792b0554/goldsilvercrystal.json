@@ -170,6 +170,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/chikorita"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/chikorita"
           }
         },
         "catch_state": null,
@@ -336,6 +348,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/bayleef"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/bayleef"
           }
         },
         "catch_state": null,
@@ -502,6 +526,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/meganium"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/meganium"
           }
         },
         "catch_state": null,

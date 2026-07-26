@@ -169,6 +169,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sudowoodo-f"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sudowoodo-f"
           }
         },
         "catch_state": {
@@ -344,6 +356,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/politoed"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/politoed"
           }
         },
         "catch_state": null,
@@ -510,6 +534,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/politoed-f"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/politoed-f"
           }
         },
         "catch_state": null,
@@ -680,6 +716,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/hoppip"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/hoppip"
           }
         },
         "catch_state": null,
