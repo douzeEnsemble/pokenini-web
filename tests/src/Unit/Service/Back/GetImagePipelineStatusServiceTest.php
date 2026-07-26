@@ -57,11 +57,11 @@ final class GetImagePipelineStatusServiceTest extends TestCase
     {
         $json = <<<'JSON'
             {
-                "correlationId": "corr-1",
-                "workflowA": {"state": "done", "url": "https://github.com/x/y/actions/runs/1"},
-                "iconPr": {"state": "merged", "url": "https://github.com/x/y/pull/2"},
-                "workflowB": {"state": "idle", "url": null},
-                "resourcesPr": {"state": "idle", "url": null}
+                "correlation_id": "corr-1",
+                "workflow_a": {"state": "done", "url": "https://github.com/x/y/actions/runs/1"},
+                "icon_pr": {"state": "merged", "url": "https://github.com/x/y/pull/2"},
+                "workflow_b": {"state": "idle", "url": null},
+                "resources_pr": {"state": "idle", "url": null}
             }
             JSON;
 
