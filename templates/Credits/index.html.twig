@@ -13,7 +13,11 @@
       <ul class="list-group">
         {% for credit in credits %}
           <li class="list-group-item">
-            <a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}</a>
+            {% if credit.url is not null %}
+              <a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}</a>
+            {% else %}
+              {{ credit.name }}
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
