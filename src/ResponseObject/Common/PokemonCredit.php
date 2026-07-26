@@ -25,8 +25,8 @@ final class PokemonCredit
 
     private static function extractUrl(string $credit): ?string
     {
-        if (1 === preg_match('/(https?:\/\/\S+)/', $credit, $matches)) {
-            return $matches[1];
+        if (1 === preg_match('/https?:\/\/\S+/', $credit, $matches)) {
+            return $matches[0];
         }
 
         return null;
