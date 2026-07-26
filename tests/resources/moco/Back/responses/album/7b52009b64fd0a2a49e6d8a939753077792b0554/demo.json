@@ -146,6 +146,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur"
           }
         },
         "catch_state": null,
@@ -300,6 +312,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/ivysaur"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/ivysaur"
           }
         },
         "catch_state": {
@@ -455,6 +479,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur"
           }
         },
         "catch_state": {
@@ -607,6 +643,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-f"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-f"
           }
         },
         "catch_state": {
@@ -703,6 +751,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
           }
         },
         "catch_state": {
@@ -769,6 +829,18 @@
                 "slug": "swordshield"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-gmax"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-gmax"
           }
         },
         "catch_state": {
@@ -926,6 +998,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charmander"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charmander"
           }
         },
         "catch_state": {
@@ -1080,6 +1164,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charmeleon"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charmeleon"
           }
         },
         "catch_state": {
@@ -1230,6 +1326,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard"
           }
         },
         "catch_state": null,
@@ -1317,6 +1425,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-x"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-x"
           }
         },
         "catch_state": null,
@@ -1408,6 +1528,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
           }
         },
         "catch_state": null,
@@ -1469,6 +1601,18 @@
                 "slug": "swordshield"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-gmax"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-gmax"
           }
         },
         "catch_state": null,
@@ -1621,6 +1765,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/squirtle"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/squirtle"
           }
         },
         "catch_state": null,
@@ -1770,6 +1926,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/wartortle"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/wartortle"
           }
         },
         "catch_state": null,
@@ -1915,6 +2083,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise"
           }
         },
         "catch_state": null,
@@ -1997,6 +2177,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
           }
         },
         "catch_state": null,
@@ -2053,6 +2245,18 @@
                 "slug": "swordshield"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-gmax"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-gmax"
           }
         },
         "catch_state": null,
@@ -2202,6 +2406,18 @@
                 "slug": "pokemonlegendsarceus"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mr-mime"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mr-mime"
           }
         },
         "catch_state": {
@@ -2270,6 +2486,18 @@
                 "slug": "swordshield"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mr-mime-galar"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mr-mime-galar"
           }
         },
         "catch_state": null,
@@ -2395,6 +2623,18 @@
                 "slug": "pokemonlegendsarceus"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mime-jr"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mime-jr"
           }
         },
         "catch_state": {
@@ -2467,6 +2707,18 @@
                 "slug": "swordshield"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mr-rime"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mr-rime"
           }
         },
         "catch_state": {
@@ -2623,6 +2875,18 @@
                 "slug": "scarletvioletthehiddentreasureofareazero"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tauros"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tauros"
           }
         },
         "catch_state": null,
@@ -2675,6 +2939,18 @@
                 "slug": "scarletviolet"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tauros-paldea"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tauros-paldea"
           }
         },
         "catch_state": null,
@@ -2731,6 +3007,18 @@
                 "slug": "scarletviolet"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tauros-paldea-blaze"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tauros-paldea-blaze"
           }
         },
         "catch_state": null,
@@ -2796,6 +3084,18 @@
                 "slug": "scarletviolet"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tauros-paldea-aqua"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tauros-paldea-aqua"
           }
         },
         "catch_state": null,

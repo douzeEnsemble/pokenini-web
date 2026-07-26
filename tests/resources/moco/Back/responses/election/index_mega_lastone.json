@@ -26,6 +26,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/audino-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/audino-mega"
         }
       },
       "catch_state": null,
@@ -141,6 +153,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
           }
         },
         "catch_state": null,
@@ -232,6 +256,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-x"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-x"
           }
         },
         "catch_state": null,
@@ -323,6 +359,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
           }
         },
         "catch_state": null,
@@ -414,6 +462,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
           }
         },
         "catch_state": null,
@@ -500,6 +560,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
           }
         },
         "catch_state": null,
@@ -591,6 +663,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
           }
         },
         "catch_state": null,
@@ -682,6 +766,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/alakazam-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/alakazam-mega"
           }
         },
         "catch_state": null,
@@ -768,6 +864,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/slowbro-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/slowbro-mega"
           }
         },
         "catch_state": null,
@@ -859,6 +967,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gengar-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gengar-mega"
           }
         },
         "catch_state": null,
@@ -950,6 +1070,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/kangaskhan-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/kangaskhan-mega"
           }
         },
         "catch_state": null,
@@ -1036,6 +1168,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/pinsir-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/pinsir-mega"
           }
         },
         "catch_state": null,
@@ -1127,6 +1271,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gyarados-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gyarados-mega"
           }
         },
         "catch_state": null,
@@ -1218,6 +1374,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/aerodactyl-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/aerodactyl-mega"
           }
         },
         "catch_state": null,
@@ -1303,6 +1471,18 @@
                 "slug": "letsgopikachuletsgoeevee"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-x"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-x"
           }
         },
         "catch_state": null,
@@ -1392,6 +1572,18 @@
                 "slug": "letsgopikachuletsgoeevee"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-y"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-y"
           }
         },
         "catch_state": null,
@@ -1476,6 +1668,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/ampharos-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/ampharos-mega"
           }
         },
         "catch_state": null,
@@ -1561,6 +1765,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/steelix-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/steelix-mega"
           }
         },
         "catch_state": null,
@@ -1646,6 +1862,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/scizor-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/scizor-mega"
           }
         },
         "catch_state": null,
@@ -1725,6 +1953,18 @@
                 "slug": "ultrasunultramoon"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/heracross-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/heracross-mega"
           }
         },
         "catch_state": null,
@@ -1810,6 +2050,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/houndoom-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/houndoom-mega"
           }
         },
         "catch_state": null,
@@ -1895,6 +2147,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tyranitar-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tyranitar-mega"
           }
         },
         "catch_state": null,
@@ -1980,6 +2244,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sceptile-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sceptile-mega"
           }
         },
         "catch_state": null,
@@ -2065,6 +2341,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blaziken-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blaziken-mega"
           }
         },
         "catch_state": null,
@@ -2150,6 +2438,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/swampert-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/swampert-mega"
           }
         },
         "catch_state": null,
@@ -2235,6 +2535,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gardevoir-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gardevoir-mega"
           }
         },
         "catch_state": null,
@@ -2320,6 +2632,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sableye-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sableye-mega"
           }
         },
         "catch_state": null,
@@ -2399,6 +2723,18 @@
                 "slug": "ultrasunultramoon"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mawile-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mawile-mega"
           }
         },
         "catch_state": null,
@@ -2484,6 +2820,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/aggron-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/aggron-mega"
           }
         },
         "catch_state": null,
@@ -2564,6 +2912,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/medicham-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/medicham-mega"
           }
         },
         "catch_state": null,
@@ -2649,6 +3009,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/manectric-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/manectric-mega"
           }
         },
         "catch_state": null,
@@ -2723,6 +3095,18 @@
                 "slug": "ultrasunultramoon"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sharpedo-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sharpedo-mega"
           }
         },
         "catch_state": null,
@@ -2805,6 +3189,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/camerupt-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/camerupt-mega"
           }
         },
         "catch_state": null,
@@ -2890,6 +3286,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/altaria-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/altaria-mega"
           }
         },
         "catch_state": null,
@@ -2975,6 +3383,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/banette-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/banette-mega"
           }
         },
         "catch_state": null,
@@ -3055,6 +3475,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/absol-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/absol-mega"
           }
         },
         "catch_state": null,
@@ -3135,6 +3567,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/glalie-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/glalie-mega"
           }
         },
         "catch_state": null,
@@ -3215,6 +3659,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/salamence-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/salamence-mega"
           }
         },
         "catch_state": null,
@@ -3294,6 +3750,18 @@
                 "slug": "ultrasunultramoon"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/metagross-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/metagross-mega"
           }
         },
         "catch_state": null,
@@ -3379,6 +3847,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/latias-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/latias-mega"
           }
         },
         "catch_state": null,
@@ -3468,6 +3948,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/latios-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/latios-mega"
           }
         },
         "catch_state": null,
@@ -3605,6 +4097,18 @@
                 "slug": "brilliantdiamondshiningpearl"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/kyogre-primal"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/kyogre-primal"
           }
         },
         "catch_state": null,
@@ -3737,6 +4241,18 @@
                 "slug": "brilliantdiamondshiningpearl"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/groudon-primal"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/groudon-primal"
           }
         },
         "catch_state": null,
@@ -3826,6 +4342,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/rayquaza-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/rayquaza-mega"
           }
         },
         "catch_state": null,
@@ -3915,6 +4443,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/lopunny-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/lopunny-mega"
           }
         },
         "catch_state": null,
@@ -4000,6 +4540,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/garchomp-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/garchomp-mega"
           }
         },
         "catch_state": null,
@@ -4085,6 +4637,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/lucario-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/lucario-mega"
           }
         },
         "catch_state": null,
@@ -4170,6 +4734,18 @@
                 "slug": "pokemongo"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/abomasnow-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/abomasnow-mega"
           }
         },
         "catch_state": null,
@@ -4249,6 +4825,18 @@
                 "slug": "ultrasunultramoon"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gallade-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gallade-mega"
           }
         },
         "catch_state": null,
@@ -4328,6 +4916,18 @@
                 "slug": "ultrasunultramoon"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/audino-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/audino-mega"
           }
         },
         "catch_state": null,
@@ -4410,6 +5010,18 @@
                 "slug": "ultrasunultramoon"
               }
             ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/diancie-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/diancie-mega"
           }
         },
         "catch_state": null,
@@ -4601,10 +5213,18 @@
             }
           ]
         },
-        "small_regular_credit": null,
-        "small_shiny_credit": null,
-        "big_regular_credit": {"credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"},
-        "big_shiny_credit": null
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+        }
       },
       "forms": {
         "category": null,
@@ -4658,6 +5278,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
         }
       },
       "forms": {
@@ -4702,6 +5334,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
         }
       },
       "forms": {
@@ -4746,6 +5390,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
         }
       },
       "forms": {
@@ -4790,6 +5446,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/alakazam-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/alakazam-mega"
         }
       },
       "forms": {

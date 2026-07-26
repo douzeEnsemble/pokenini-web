@@ -22,6 +22,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/grookey"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/grookey"
         }
       },
       "catch_state": null,
@@ -64,6 +76,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/thwackey"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/thwackey"
         }
       },
       "catch_state": null,
@@ -108,6 +132,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/rillaboom"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/rillaboom"
         }
       },
       "catch_state": null,
@@ -152,6 +188,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/rillaboom-gmax"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/rillaboom-gmax"
         }
       },
       "catch_state": null,
@@ -198,6 +246,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/scorbunny"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/scorbunny"
         }
       },
       "catch_state": null,
@@ -242,6 +302,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/raboot"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/raboot"
         }
       },
       "catch_state": null,
@@ -286,6 +358,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/cinderace"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/cinderace"
         }
       },
       "catch_state": null,
@@ -330,6 +414,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/cinderace-gmax"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/cinderace-gmax"
         }
       },
       "catch_state": null,
@@ -376,6 +472,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/sobble"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/sobble"
         }
       },
       "catch_state": null,
@@ -420,6 +528,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/drizzile"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/drizzile"
         }
       },
       "catch_state": null,
@@ -464,6 +584,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/inteleon"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/inteleon"
         }
       },
       "catch_state": null,
@@ -508,6 +640,18 @@
         "game_bundles": {
           "normal": [],
           "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/inteleon-gmax"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/inteleon-gmax"
         }
       },
       "catch_state": null,
