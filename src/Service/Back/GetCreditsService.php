@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
-use App\ResponseObject\Common\PokemonCredit;
+use App\ResponseObject\Common\CreditGroup;
 
 class GetCreditsService extends AbstractBackService
 {
     /**
-     * @return PokemonCredit[]
+     * @return CreditGroup[]
      */
     public function get(): array
     {
@@ -18,7 +18,7 @@ class GetCreditsService extends AbstractBackService
             '/credits'
         );
 
-        /** @var PokemonCredit[] */
-        return $this->serializer->deserialize($json, PokemonCredit::class.'[]', 'json');
+        /** @var CreditGroup[] */
+        return $this->serializer->deserialize($json, CreditGroup::class.'[]', 'json');
     }
 }

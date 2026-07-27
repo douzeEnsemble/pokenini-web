@@ -23,7 +23,7 @@ final class PokemonCredit
         return self::extractUrl($this->credit);
     }
 
-    private static function extractUrl(string $credit): ?string
+    public static function extractUrl(string $credit): ?string
     {
         if (1 === preg_match('/https?:\/\/\S+/', $credit, $matches)) {
             return $matches[0];
@@ -32,7 +32,7 @@ final class PokemonCredit
         return null;
     }
 
-    private static function extractName(string $credit, ?string $url): string
+    public static function extractName(string $credit, ?string $url): string
     {
         if (null === $url) {
             return $credit;

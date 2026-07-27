@@ -11,13 +11,40 @@
       <h1>{{ 'title.credits'|trans }}</h1>
 
       <ul class="list-group">
-        {% for credit in credits %}
+        {% for group in credits %}
           <li class="list-group-item">
-            {% if credit.url is not null %}
-              <a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}</a>
+            {% if group.url is not null %}
+              <a class="credit-source-link" href="{{ group.url }}" target="_blank" rel="noopener">{{ group.name }}</a>
             {% else %}
-              {{ credit.name }}
+              <span class="credit-source-link">{{ group.name }}</span>
             {% endif %}
+
+            <button
+              class="btn btn-link p-0 credit-detail-toggle"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#credit-detail-{{ loop.index0 }}"
+              aria-expanded="false"
+              aria-controls="credit-detail-{{ loop.index0 }}"
+            >
+              {{ 'credit.detail.count'|trans({count: group.images|length}) }}
+            </button>
+
+            <ul class="collapse credit-detail-list list-unstyled" id="credit-detail-{{ loop.index0 }}">
+              {% for image in group.images %}
+                {% set pokemonName = locale is same as('fr') ? image.pokemonFrenchName : image.pokemonName %}
+                {% set dir = image.shiny ? 'shiny' : 'regular' %}
+                {% set thumbnailUrl = image.size is same as('big') ? pokemonImageUrl|format(dir, image.pokemonIcon) : pokemonIconUrl|format(dir, image.pokemonIcon) %}
+
+                <li
+                  data-bs-toggle="tooltip"
+                  data-bs-html="true"
+                  data-bs-title="{{ '<img src="%s" alt="" class="credit-detail-thumbnail">'|format(thumbnailUrl) }}"
+                >
+                  {{ pokemonName }} — {{ ('credit.detail.size.'~image.size)|trans }}, {{ ('album.icon.title.'~dir)|trans }}
+                </li>
+              {% endfor %}
+            </ul>
           </li>
         {% endfor %}
       </ul>

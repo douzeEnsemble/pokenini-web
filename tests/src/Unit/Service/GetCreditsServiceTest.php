@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
-use App\ResponseObject\Common\PokemonCredit;
+use App\ResponseObject\Common\CreditGroup;
 use App\Service\Back\GetCreditsService as BackGetCreditsService;
 use App\Service\GetCreditsService;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -20,7 +20,7 @@ final class GetCreditsServiceTest extends TestCase
 {
     public function testGet(): void
     {
-        $credits = [new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite')];
+        $credits = [new CreditGroup(credit: 'PokéSprite - https://github.com/msikma/pokesprite', images: [])];
 
         $backService = $this->createMock(BackGetCreditsService::class);
         $backService
@@ -36,7 +36,7 @@ final class GetCreditsServiceTest extends TestCase
 
     public function testCacheIsInvalidatedByCreditsTag(): void
     {
-        $credits = [new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite')];
+        $credits = [new CreditGroup(credit: 'PokéSprite - https://github.com/msikma/pokesprite', images: [])];
 
         $backService = $this->createMock(BackGetCreditsService::class);
         $backService
@@ -49,7 +49,7 @@ final class GetCreditsServiceTest extends TestCase
         $service = new GetCreditsService($backService, $cache);
 
         $service->get();
-        $cache->invalidateTags(['credits']);
+        $cache->invalidateTags(['credits_v2']);
         $service->get();
     }
 }

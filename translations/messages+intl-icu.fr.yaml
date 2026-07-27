@@ -636,3 +636,8 @@ election_dex:
 
 credit:
   tooltip: "Crédit image"
+  detail:
+    count: "{count, plural, one {# image} other {# images}}"
+    size:
+      small: "petit sprite"
+      big: "grand sprite"

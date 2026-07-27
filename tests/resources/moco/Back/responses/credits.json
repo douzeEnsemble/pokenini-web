@@ -1,5 +1,62 @@
 [
-    {"credit": "PokéSprite - https://github.com/msikma/pokesprite"},
-    {"credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur"},
-    {"credit": "Bulbapedia - https://bulbapedia.bulbagarden.net"}
+    {
+        "credit": "PokéSprite - https://github.com/msikma/pokesprite",
+        "images": [
+            {
+                "pokemon_slug": "bulbasaur",
+                "pokemon_name": "Bulbasaur",
+                "pokemon_french_name": "Bulbizarre",
+                "pokemon_icon": "bulbasaur",
+                "size": "small",
+                "is_shiny": false
+            },
+            {
+                "pokemon_slug": "ivysaur",
+                "pokemon_name": "Ivysaur",
+                "pokemon_french_name": "Herbizarre",
+                "pokemon_icon": "ivysaur",
+                "size": "big",
+                "is_shiny": true
+            }
+        ]
+    },
+    {
+        "credit": "Bulbapedia - https://bulbapedia.bulbagarden.net",
+        "images": [
+            {
+                "pokemon_slug": "ivysaur",
+                "pokemon_name": "Ivysaur",
+                "pokemon_french_name": "Herbizarre",
+                "pokemon_icon": "ivysaur",
+                "size": "small",
+                "is_shiny": false
+            }
+        ]
+    },
+    {
+        "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur",
+        "images": [
+            {
+                "pokemon_slug": "bulbasaur",
+                "pokemon_name": "Bulbasaur",
+                "pokemon_french_name": "Bulbizarre",
+                "pokemon_icon": "bulbasaur",
+                "size": "big",
+                "is_shiny": false
+            }
+        ]
+    },
+    {
+        "credit": "Serebii - https://serebii.net",
+        "images": [
+            {
+                "pokemon_slug": "venusaur",
+                "pokemon_name": "Venusaur",
+                "pokemon_french_name": "Florizarre",
+                "pokemon_icon": "venusaur",
+                "size": "small",
+                "is_shiny": false
+            }
+        ]
+    }
 ]
