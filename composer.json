@@ -8,7 +8,7 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-zip": "*",
-        "guzzlehttp/guzzle": "^7.15.1",
+        "guzzlehttp/guzzle": "^7.15.2",
         "knpuniversity/oauth2-client-bundle": "^2.20.2",
         "league/oauth2-google": "^5.0.0",
         "phpdocumentor/reflection-docblock": "^6.0.3",
