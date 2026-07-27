@@ -31,8 +31,26 @@ final class CreditsTest extends WebTestCase
         $this->assertSame('Crédits', $crawler->filter('h1')->text());
 
         $items = $crawler->filter('.list-group-item');
-        $this->assertCount(3, $items);
-        $this->assertSame('PokéSprite', $items->eq(0)->filter('a')->text());
-        $this->assertSame('https://github.com/msikma/pokesprite', $items->eq(0)->filter('a')->attr('href'));
+        $this->assertCount(4, $items);
+
+        // Sorted by image count descending: PokéSprite (2 images) comes first,
+        // see tests/resources/moco/Back/responses/credits.json.
+        $first = $items->eq(0);
+        $this->assertSame('PokéSprite', $first->filter('.credit-source-link')->text());
+        $this->assertSame('https://github.com/msikma/pokesprite', $first->filter('.credit-source-link')->attr('href'));
+        $this->assertStringContainsString('2', $first->filter('.credit-detail-toggle')->text());
+
+        $detailItems = $first->filter('.credit-detail-list li');
+        $this->assertCount(2, $detailItems);
+        $this->assertStringContainsString('Bulbizarre', $detailItems->eq(0)->text());
+
+        // The second image (Herbizarre, size "big") is shiny, see
+        // tests/resources/moco/Back/responses/credits.json.
+        $second = $detailItems->eq(1);
+        $this->assertStringContainsString('Chromatique', $second->text());
+        $this->assertStringContainsString(
+            'https://icon.pokenini.fr/big/shiny/ivysaur.png',
+            (string) $second->attr('data-bs-title'),
+        );
     }
 }

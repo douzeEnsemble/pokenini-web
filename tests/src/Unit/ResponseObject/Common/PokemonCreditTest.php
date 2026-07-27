@@ -37,4 +37,20 @@ final class PokemonCreditTest extends TestCase
         $this->assertSame('https://serebii.net', $credit->getName());
         $this->assertSame('https://serebii.net', $credit->getUrl());
     }
+
+    public function testExtractUrlIsPubliclyCallable(): void
+    {
+        $this->assertSame(
+            'https://github.com/msikma/pokesprite',
+            PokemonCredit::extractUrl('PokéSprite - https://github.com/msikma/pokesprite'),
+        );
+    }
+
+    public function testExtractNameIsPubliclyCallable(): void
+    {
+        $this->assertSame(
+            'PokéSprite',
+            PokemonCredit::extractName('PokéSprite - https://github.com/msikma/pokesprite', 'https://github.com/msikma/pokesprite'),
+        );
+    }
 }

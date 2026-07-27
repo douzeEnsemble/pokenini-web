@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
-use App\ResponseObject\Common\PokemonCredit;
+use App\ResponseObject\Common\CreditGroup;
+use App\ResponseObject\Common\CreditImage;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetCreditsService;
@@ -28,8 +29,20 @@ final class GetCreditsServiceTest extends AbstractTestBackService
         $json = (new Filesystem())->readFile(self::RESPONSE_CONTENT);
 
         $credits = [
-            new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite'),
-            new PokemonCredit(credit: 'PokemonDB - https://pokemondb.net'),
+            new CreditGroup(
+                credit: 'PokéSprite - https://github.com/msikma/pokesprite',
+                images: [
+                    new CreditImage(
+                        pokemonSlug: 'bulbasaur',
+                        pokemonName: 'Bulbasaur',
+                        pokemonFrenchName: 'Bulbizarre',
+                        pokemonIcon: 'bulbasaur',
+                        size: 'small',
+                        isShiny: false,
+                    ),
+                ],
+            ),
+            new CreditGroup(credit: 'PokemonDB - https://pokemondb.net', images: []),
         ];
 
         $serializer = $this->createMock(SerializerInterface::class);
@@ -38,7 +51,7 @@ final class GetCreditsServiceTest extends AbstractTestBackService
             ->method('deserialize')
             ->with(
                 $json,
-                PokemonCredit::class.'[]',
+                CreditGroup::class.'[]',
                 'json',
             )
             ->willReturn($credits)

@@ -1,4 +1,19 @@
 [
-    {"credit": "PokéSprite - https://github.com/msikma/pokesprite"},
-    {"credit": "PokemonDB - https://pokemondb.net"}
+    {
+        "credit": "PokéSprite - https://github.com/msikma/pokesprite",
+        "images": [
+            {
+                "pokemon_slug": "bulbasaur",
+                "pokemon_name": "Bulbasaur",
+                "pokemon_french_name": "Bulbizarre",
+                "pokemon_icon": "bulbasaur",
+                "size": "small",
+                "is_shiny": false
+            }
+        ]
+    },
+    {
+        "credit": "PokemonDB - https://pokemondb.net",
+        "images": []
+    }
 ]
