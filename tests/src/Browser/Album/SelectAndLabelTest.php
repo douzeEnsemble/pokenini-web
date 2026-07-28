@@ -428,4 +428,40 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $this->assertFalse($blocksUnload);
     }
+
+    public function testActionCatchStateFailedChangeAllowsUnload(): void
+    {
+        $client = $this->getNewClient();
+
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demo');
+
+        $client->executeScript("document.getElementById('squirtle').scrollIntoView();");
+
+        $client->click(
+            $client
+                ->getCrawler()
+                ->filter('#squirtle-catch-state-edit-action')
+                ->link()
+        );
+
+        $form = $client->getCrawler()->filter('#album-form')->form();
+
+        /** @var ChoiceFormField $field */
+        $field = $form->get('catch-state[squirtle]');
+        $field->setValue('tobreed');
+
+        $this->assertSelectorWillBeVisible('#errorToast-squirtle');
+
+        $blocksUnload = $client->executeScript(<<<'JS'
+                const event = new Event('beforeunload', {cancelable: true});
+                window.dispatchEvent(event);
+                return event.defaultPrevented;
+            JS);
+
+        $this->assertFalse($blocksUnload);
+    }
 }
