@@ -358,4 +358,74 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-no');
         $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-tobreed');
     }
+
+    public function testActionCatchStatePendingChangeBlocksUnload(): void
+    {
+        $client = $this->getNewClient();
+
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demo');
+
+        $client->executeScript("document.getElementById('ivysaur').scrollIntoView();");
+
+        $client->click(
+            $client
+                ->getCrawler()
+                ->filter('#ivysaur-catch-state-edit-action')
+                ->link()
+        );
+
+        $form = $client->getCrawler()->filter('#album-form')->form();
+
+        /** @var ChoiceFormField $field */
+        $field = $form->get('catch-state[ivysaur]');
+        $field->setValue('toevolve');
+
+        $blocksUnload = $client->executeScript(<<<'JS'
+                const event = new Event('beforeunload', {cancelable: true});
+                window.dispatchEvent(event);
+                return event.defaultPrevented;
+            JS);
+
+        $this->assertTrue($blocksUnload);
+    }
+
+    public function testActionCatchStateResolvedChangeAllowsUnload(): void
+    {
+        $client = $this->getNewClient();
+
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demo');
+
+        $client->executeScript("document.getElementById('ivysaur').scrollIntoView();");
+
+        $client->click(
+            $client
+                ->getCrawler()
+                ->filter('#ivysaur-catch-state-edit-action')
+                ->link()
+        );
+
+        $form = $client->getCrawler()->filter('#album-form')->form();
+
+        /** @var ChoiceFormField $field */
+        $field = $form->get('catch-state[ivysaur]');
+        $field->setValue('toevolve');
+
+        $this->assertSelectorWillBeVisible('#successToast-ivysaur');
+
+        $blocksUnload = $client->executeScript(<<<'JS'
+                const event = new Event('beforeunload', {cancelable: true});
+                window.dispatchEvent(event);
+                return event.defaultPrevented;
+            JS);
+
+        $this->assertFalse($blocksUnload);
+    }
 }
