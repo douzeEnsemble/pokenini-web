@@ -20,6 +20,9 @@ final class AdminReportsTest extends WebTestCase
 {
     use TestNavTrait;
 
+    /**
+     * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
+     */
     public function testAdminHome(): void
     {
         $client = self::createClient();
@@ -44,6 +47,10 @@ final class AdminReportsTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 2, 'table.report-table');
         $this->assertCountFilter($crawler, 1, '.admin-item-invalidate_reports button.admin-item-cta');
+        $this->assertSame(
+            'Vide le cache des rapports admin pour recharger des chiffres à jour au prochain accès.',
+            $crawler->filter('#invalidate_reports .admin-item-description')->text()
+        );
 
         $this->assertCountFilter($crawler, 1, 'canvas#catch_state_counts_defined_by_trainer');
         $this->assertCountFilter($crawler, 1, 'table#report-table-catch_state_counts_defined_by_trainer');

@@ -93,6 +93,7 @@
     icon,
 ) %}
   <h3 class="text-body-emphasis">{{ ('admin.actions.'~action~'.'~item~'.title')|trans }}</h3>
+  <p class="admin-item-description text-body-secondary small">{{ ('admin.actions.'~action~'.'~item~'.description')|trans }}</p>
 {% endmacro %}
 
 {% macro actionIcon (

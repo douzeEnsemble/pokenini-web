@@ -379,30 +379,37 @@ admin:
         title: "Update games' availabilities"
         item: "Games' availabilities"
         cta: "Update!"
+        description: "Recomputes which Pokémon are available in each game."
       games_shinies_availabilities:
         title: "Update games' shinies' availabilities"
         item: "Games' shinies' availabilities"
         cta: "Update!"
+        description: "Recomputes which shiny Pokémon are available in each game."
       collections_availabilities:
         title: "Update collections"
         item: "Collections' availabilities"
         cta: "Update!"
+        description: "Recomputes which Pokémon are available in each collection."
     update_data:
       title: "Update data"
       labels:
         title: "Update labels"
         cta: "Update!"
+        description: "Resyncs labels (translations, categories, tags) from the Google Sheets source."
       games_collections_and_dex:
         title: "Update games, collections and dex"
         cta: "Update!"
+        description: "Resyncs games, collections and dex definitions from the Google Sheets source."
       pokemons:
         title: "Update pokémons"
         item: "Pokémons"
         cta: "Update!"
+        description: "Resyncs Pokémon data (species, forms, stats) from the Google Sheets source."
       regional_dex_numbers:
         title: "Update regional dex numbers"
         item: "Regional Dex numbers"
         cta: "Update!"
+        description: "Resyncs each Pokémon's regional dex numbers from the Google Sheets source."
       game_generations:
         item: "Game's generations"
       game_bundles:
@@ -434,17 +441,21 @@ admin:
         title: "Calculate game bundles' availabilities"
         item: "Bundles' availabilities"
         cta: "Calculate!"
+        description: "Aggregates game availabilities into game bundle availabilities."
       game_bundles_shinies_availabilities:
         title: "Calculate game bundles' shinies' availabilities"
         item: "Bundles' shinies' availabilities"
         cta: "Calculate!"
+        description: "Aggregates shiny game availabilities into game bundle shiny availabilities."
       dex_availabilities:
         title: "Calculate dex availabilities"
         item: "Dex' availabilities"
         cta: "Calculate!"
+        description: "Aggregates game and collection availabilities into dex-level availabilities."
       pokemon_availabilities:
         title: "Calculate pokemons availabilities"
         cta: "Calculate!"
+        description: "Aggregates all availability data into a per-Pokémon summary used across the app."
       pokemon_availabilities_game_bundle:
         item: "Pokemons' availabilities for Game bundles"
       pokemon_availabilities_game_bundle_shiny:
@@ -460,12 +471,15 @@ admin:
       labels:
         title: "Invalidate labels cache"
         cta: "Invalidate!"
+        description: "Clears the cached labels so the next request reloads them fresh."
       dex:
         title: "Invalidate dex cache"
         cta: "Invalidate!"
+        description: "Clears the cached dex pages so the next request reloads them fresh."
       albums:
         title: "Invalidate album cache"
         cta: "Invalidate!"
+        description: "Clears the cached album pages so the next request reloads them fresh."
       actions:
         title: "Invalidate actions cache"
         cta: "Invalidate!"
@@ -475,10 +489,12 @@ admin:
       update_images:
         title: "Update Pokémon images"
         cta: "Trigger!"
+        description: "Regenerates the Pokémon image set from the latest data."
     reports_data:
       reports:
         title: "Invalidate reports cache"
         cta: "Invalidate!"
+        description: "Clears the cached admin reports so the next visit reloads up-to-date figures."
 
 election:
   candidates:
