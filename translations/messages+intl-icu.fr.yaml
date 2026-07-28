@@ -147,6 +147,8 @@ album:
   offcanvas:
     informations:
       title: Informations
+    parameters:
+      title: Paramètres
     title: Filtres
     open_distinguish_types: Avancées
   share:

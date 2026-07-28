@@ -356,6 +356,68 @@ final class OffcanvasTest extends WebTestCase
         $this->assertResetLink($crawler, '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
     }
 
+    public function testSwitchesForOwner(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/album/goldsilvercrystal');
+
+        $this->assertCountFilter($crawler, 1, '#offcanvas form[data-dex="goldsilvercrystal"]');
+
+        $isPrivate = $crawler->filter('#offcanvas form[data-dex="goldsilvercrystal"] input[name="goldsilvercrystal-is_private"]');
+        $this->assertCount(1, $isPrivate);
+        $this->assertNotNull($isPrivate->attr('checked'));
+
+        $isOnHome = $crawler->filter('#offcanvas form[data-dex="goldsilvercrystal"] input[name="goldsilvercrystal-is_on_home"]');
+        $this->assertCount(1, $isOnHome);
+        $this->assertNull($isOnHome->attr('checked'));
+    }
+
+    public function testSwitchesAbsentForAnotherTrainer(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('13', 'TestProvider');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertCountFilter($crawler, 0, '#offcanvas form[data-dex]');
+    }
+
+    public function testFlagToastsForOwner(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/album/goldsilvercrystal');
+
+        $this->assertCountFilter($crawler, 1, '#successToast-goldsilvercrystal');
+        $this->assertCountFilter($crawler, 1, '#errorToast-goldsilvercrystal');
+    }
+
+    public function testFlagToastsAbsentForAnotherTrainer(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('13', 'TestProvider');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertCountFilter($crawler, 0, '#successToast-demo');
+        $this->assertCountFilter($crawler, 0, '#errorToast-demo');
+    }
+
     private function assertFiltersPrimaryType(Crawler $crawler, string $lang): void
     {
         $this->assertCount(1, $crawler->filter('select#primary_type'));

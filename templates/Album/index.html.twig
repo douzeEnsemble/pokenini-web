@@ -79,6 +79,7 @@
 
     {% if allowedToEdit %}
     <script src="{{ asset('js/album-edit.js') }}"></script>
+    <script src="{{ asset('js/trainer_dex.js') }}"></script>
 
     <script>
     const catchStates = JSON.parse('{{ catchStates | map(cs => {name: cs.name, frenchName: cs.frenchName, slug: cs.slug, color: cs.color}) | json_encode | raw }}');
@@ -92,6 +93,7 @@
         watchCatchStates();
         watchToggleShinyMode();
         watchToAdjustSelectSizes();
+        watchAttributes();
     })();
     </script>
     {% endif %}
