@@ -1570,6 +1570,28 @@
           "match": ".*"
         },
         "authorization": {
+          "match": "Bearer admin"
+        }
+      },
+      "text": {
+        "match": "\\{(\"is_private\": ?(?:true|false),? ?)?(\"is_on_home\": ?(?:true|false))?\\}"
+      }
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/trainer/dex/redgreenblueyellow"
+      },
+      "method": "put",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
           "match": "Bearer 6c33064427a5b419ca8eb3f7d11a0807f66cab22"
         }
       },
