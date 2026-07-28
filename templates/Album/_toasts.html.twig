@@ -6,6 +6,29 @@
             {% for item in list %}
                 {{ macro.toasts(item) }}
             {% endfor %}
+
+            {% set dexName = locale is same as('fr') ? dex.frenchName : dex.name %}
+            <div id="successToast-{{ currentDexSlug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body">
+                  {{ 'trainer.dex.update.success.prefix'|trans }}
+                  <strong>{{ 'trainer.dex.update.success.radical'|trans({'dexName': dexName}) }}</strong>
+                  {{ 'trainer.dex.update.success.suffix'|trans }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+            </div>
+
+            <div id="errorToast-{{ currentDexSlug }}" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body">
+                  {{ 'trainer.dex.update.error.prefix'|trans }}
+                  <strong>{{ 'trainer.dex.update.error.radical'|trans({'dexName': dexName}) }}</strong>
+                  {{ 'trainer.dex.update.error.suffix'|trans }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+            </div>
         {% endif %}
 
         {% if not dex.isPrivate %}

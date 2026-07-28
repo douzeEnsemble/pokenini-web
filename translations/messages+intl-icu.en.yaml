@@ -141,6 +141,8 @@ album:
   offcanvas:
     informations:
       title: Informations
+    parameters:
+      title: Parameters
     filters:
       title: Filters
       open_distinguish_types: More
