@@ -1,8 +1,19 @@
+let pendingChangesCount = 0;
+
 function watchCatchStates() {
   document.querySelectorAll(".album-container select").forEach(function (element) {
     element.dataset.committedValue = element.value;
     element.addEventListener("change", onChangeCatchState);
   });
+
+  window.addEventListener("beforeunload", onBeforeUnload);
+}
+
+function onBeforeUnload(event) {
+  if (pendingChangesCount > 0) {
+    event.preventDefault();
+    event.returnValue = "";
+  }
 }
 
 function watchToggleEditMode() {
@@ -34,6 +45,7 @@ function onChangeCatchState(event) {
   const previousValue = target.dataset.committedValue ?? target.value;
 
   target.disabled = true;
+  pendingChangesCount++;
 
   saveChange(target, previousValue);
 }
@@ -123,6 +135,9 @@ function saveChange(target, previousValue) {
       new bootstrap.Toast(
         document.getElementById("errorToast-" + pokemon)
       ).show();
+    })
+    .finally(() => {
+      pendingChangesCount--;
     });
 }
 
