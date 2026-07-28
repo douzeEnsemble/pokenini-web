@@ -2242,6 +2242,29 @@
   {
     "request": {
       "uri": {
+        "match": "/album/[\\w-]*/ivysaur"
+      },
+      "method": "patch",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      },
+      "text": {
+        "match": "no|toevolve|tobreed|totransfer|totrade|yes"
+      }
+    },
+    "response": {
+      "status": "200",
+      "latency": 3000
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/album/[\\w-]*/[\\w-]*"
       },
       "method": "patch",
