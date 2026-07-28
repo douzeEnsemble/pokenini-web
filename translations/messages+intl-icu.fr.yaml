@@ -383,30 +383,37 @@ admin:
         title: "Mise à jour des disponibilités des jeux"
         item: "Disponibilités des jeux"
         cta: "Mettre à jour"
+        description: "Recalcule quels Pokémon sont disponibles dans chaque jeu."
       games_shinies_availabilities:
         title: "Mise à jour des disponibilités des jeux des chromatiques"
         item: "Disponibilités des jeux des chromatiques"
         cta: "Mettre à jour"
+        description: "Recalcule quels Pokémon chromatiques sont disponibles dans chaque jeu."
       collections_availabilities:
         title: "Mise à jour des disponibilités des collections"
         item: "Disponibilités des collections"
         cta: "Mettre à jour"
+        description: "Recalcule quels Pokémon sont disponibles dans chaque collection."
     update_data:
       title: "Mises à jour des données"
       labels:
         title: "Mise à jour des labels"
         cta: "Mettre à jour"
+        description: "Recharge les labels (traductions, catégories, tags) depuis la source Google Sheets."
       games_collections_and_dex:
         title: "Mise à jour des jeux, des collections et des dex"
         cta: "Mettre à jour"
+        description: "Recharge les jeux, les collections et les dex depuis la source Google Sheets."
       pokemons:
         title: "Mise à jour des pokémons"
         item: "Pokémons"
         cta: "Mettre à jour"
+        description: "Recharge les données des Pokémon (espèces, formes, statistiques) depuis la source Google Sheets."
       regional_dex_numbers:
         title: "Mise à jour des numéro des dex régionaux"
         item: "Numéros de dex régionaux"
         cta: "Mettre à jour"
+        description: "Recharge les numéros de dex régionaux de chaque Pokémon depuis la source Google Sheets."
       game_generations:
         item: "Générations"
       game_bundles:
@@ -438,17 +445,21 @@ admin:
         title: "Calculs des disponibilités des bundles de jeux"
         item: "Disponibilités des bundles"
         cta: "Calculer"
+        description: "Agrège les disponibilités des jeux au niveau des bundles de jeux."
       game_bundles_shinies_availabilities:
         title: "Calculs des disponibilités des bundles de jeux des chromatiques"
         item: "Disponibilités des bundles des chromatiques"
         cta: "Calculer"
+        description: "Agrège les disponibilités chromatiques des jeux au niveau des bundles de jeux."
       dex_availabilities:
         title: "Calculs des disponibilités des dex"
         item: "Disponibilités des dex"
         cta: "Calculer"
+        description: "Agrège les disponibilités des jeux et des collections au niveau des dex."
       pokemon_availabilities:
         title: "Calculs des disponibilités par pokemons"
         cta: "Calculer"
+        description: "Agrège toutes les disponibilités en un résumé par Pokémon, utilisé dans toute l'application."
       pokemon_availabilities_game_bundle:
         item: "Disponibilités des packs de jeux par pokémons"
       pokemon_availabilities_game_bundle_shiny:
@@ -465,12 +476,15 @@ admin:
       labels:
         title: "Invalidation du cache des labels"
         cta: "Invalider"
+        description: "Vide le cache des labels pour qu'ils soient rechargés au prochain accès."
       dex:
         title: "Invalidation du cache des dex"
         cta: "Invalider"
+        description: "Vide le cache des pages de dex pour qu'elles soient rechargées au prochain accès."
       albums:
         title: "Invalidation du cache des albums"
         cta: "Invalider"
+        description: "Vide le cache des pages d'album pour qu'elles soient rechargées au prochain accès."
       actions:
         title: "Invalidation du cache des actions"
         cta: "Invalider"
@@ -481,11 +495,13 @@ admin:
       update_images:
         title: "Mettre à jour les images des Pokémon"
         cta: "Déclencher"
+        description: "Régénère le jeu d'images des Pokémon à partir des dernières données."
 
     reports_data:
       reports:
         title: "Invalidation du cache des rapports"
         cta: "Invalider"
+        description: "Vide le cache des rapports admin pour recharger des chiffres à jour au prochain accès."
 
 election:
   candidates:

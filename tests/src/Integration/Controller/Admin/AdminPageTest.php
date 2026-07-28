@@ -80,7 +80,15 @@ final class AdminPageTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 6, 'h2');
         $this->assertCountFilter($crawler, 15, 'h3');
+        $this->assertCountFilter($crawler, 15, '.admin-item-description');
         $this->assertCountFilter($crawler, 15, '.admin-item button.admin-item-cta');
+
+        foreach ($this->getExpectedDescriptions() as $itemId => $description) {
+            $this->assertSame(
+                $description,
+                $crawler->filter("#{$itemId} .admin-item-description")->text()
+            );
+        }
 
         $this->assertCountFilter($crawler, 7, '.admin-item-update button.admin-item-cta');
         $this->assertCountFilter($crawler, 4, '.admin-item-calculate button.admin-item-cta');
@@ -149,6 +157,30 @@ final class AdminPageTest extends WebTestCase
                 );
             }
         }
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function getExpectedDescriptions(): array
+    {
+        return [
+            'update_labels' => 'Recharge les labels (traductions, catégories, tags) depuis la source Google Sheets.',
+            'update_games_collections_and_dex' => 'Recharge les jeux, les collections et les dex depuis la source Google Sheets.',
+            'update_pokemons' => 'Recharge les données des Pokémon (espèces, formes, statistiques) depuis la source Google Sheets.',
+            'update_regional_dex_numbers' => 'Recharge les numéros de dex régionaux de chaque Pokémon depuis la source Google Sheets.',
+            'update_games_availabilities' => 'Recalcule quels Pokémon sont disponibles dans chaque jeu.',
+            'update_games_shinies_availabilities' => 'Recalcule quels Pokémon chromatiques sont disponibles dans chaque jeu.',
+            'update_collections_availabilities' => 'Recalcule quels Pokémon sont disponibles dans chaque collection.',
+            'calculate_game_bundles_availabilities' => 'Agrège les disponibilités des jeux au niveau des bundles de jeux.',
+            'calculate_game_bundles_shinies_availabilities' => 'Agrège les disponibilités chromatiques des jeux au niveau des bundles de jeux.',
+            'calculate_dex_availabilities' => 'Agrège les disponibilités des jeux et des collections au niveau des dex.',
+            'calculate_pokemon_availabilities' => "Agrège toutes les disponibilités en un résumé par Pokémon, utilisé dans toute l'application.",
+            'invalidate_labels' => "Vide le cache des labels pour qu'ils soient rechargés au prochain accès.",
+            'invalidate_dex' => "Vide le cache des pages de dex pour qu'elles soient rechargées au prochain accès.",
+            'invalidate_albums' => "Vide le cache des pages d'album pour qu'elles soient rechargées au prochain accès.",
+            'trigger_update_images' => "Régénère le jeu d'images des Pokémon à partir des dernières données.",
+        ];
     }
 
     private function getAdminHomeConnected(): Crawler
