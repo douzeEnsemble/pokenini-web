@@ -45,9 +45,8 @@ function onChangeCatchState(event) {
   const previousValue = target.dataset.committedValue ?? target.value;
 
   target.disabled = true;
-  pendingChangesCount++;
 
-  saveChange(target, previousValue);
+  saveCatchStateChange(target, previousValue);
 }
 
 function onActivateEditMode(event) {
@@ -102,7 +101,7 @@ function onActivateAllReadMode(event) {
   readMode.setAttribute("hidden", true);
 }
 
-function saveChange(target, previousValue) {
+function saveCatchStateChange(target, previousValue) {
   const pokemon = target.closest(".album-case").getAttribute("id");
   const catchState = target.value;
 
@@ -110,6 +109,8 @@ function saveChange(target, previousValue) {
     method: "PATCH",
     body: catchState,
   });
+
+  pendingChangesCount++;
 
   fetch(request)
     .then((response) => {
