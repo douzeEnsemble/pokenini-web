@@ -362,6 +362,10 @@ admin:
     created_at: "Démarré le"
     done_at: "Terminé le"
     execution_time: "Terminé en"
+    force_confirm: "Une exécution est en cours depuis {duration}. Voulez-vous quand même relancer cette action ?"
+    unit_day: "j"
+    unit_hour: "h"
+    unit_minute: "min"
   toggle:
     last: "Voir l'action précédente"
     current: "Voir la dernière action"

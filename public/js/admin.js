@@ -69,3 +69,17 @@ function onToggleLast(event) {
     );
   });
 }
+
+function watchForceConfirm() {
+    document.querySelectorAll(".admin-item-cta[data-confirm-message]").forEach(function (button) {
+      const form = button.closest('form');
+      if (!form) {
+        return;
+      }
+      form.addEventListener('submit', function (event) {
+        if (!window.confirm(button.getAttribute('data-confirm-message'))) {
+          event.preventDefault();
+        }
+      });
+    });
+}

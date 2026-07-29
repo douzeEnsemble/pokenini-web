@@ -357,6 +357,10 @@ admin:
     created_at: "Start at"
     done_at: "End at"
     execution_time: "Execution time"
+    force_confirm: "An execution has been running for {duration}. Do you still want to trigger this action?"
+    unit_day: "d"
+    unit_hour: "h"
+    unit_minute: "min"
   toggle:
     last: "Show last action"
     current: "Show current action"
