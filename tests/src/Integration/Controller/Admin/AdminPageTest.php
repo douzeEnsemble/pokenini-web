@@ -96,10 +96,17 @@ final class AdminPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.admin-item-trigger button.admin-item-cta');
         $this->assertCountFilter($crawler, 1, '#trigger_update_images button.admin-item-cta');
 
-        $this->assertCountFilter($crawler, 3, '.admin-item-cta.disabled');
-        $this->assertCountFilter($crawler, 1, '#update_games_collections_and_dex .admin-item-cta.disabled');
-        $this->assertCountFilter($crawler, 1, '#calculate_game_bundles_availabilities .admin-item-cta.disabled');
-        $this->assertCountFilter($crawler, 1, '#calculate_dex_availabilities .admin-item-cta.disabled');
+        $this->assertCountFilter($crawler, 0, '.admin-item-cta.disabled');
+
+        $this->assertCountFilter($crawler, 3, '.admin-item-cta[data-confirm-message]');
+        $this->assertCountFilter($crawler, 1, '#update_games_collections_and_dex .admin-item-cta[data-confirm-message]');
+        $this->assertCountFilter($crawler, 1, '#calculate_game_bundles_availabilities .admin-item-cta[data-confirm-message]');
+        $this->assertCountFilter($crawler, 1, '#calculate_dex_availabilities .admin-item-cta[data-confirm-message]');
+
+        $confirmMessage = $crawler->filter('#update_games_collections_and_dex .admin-item-cta')->attr('data-confirm-message') ?? '';
+        $this->assertStringContainsString('Une exécution est en cours depuis', $confirmMessage);
+        $this->assertStringContainsString('j ', $confirmMessage);
+        $this->assertStringContainsString('Voulez-vous quand même relancer cette action', $confirmMessage);
 
         $this->assertCountFilter($crawler, 3, '.admin-item-refresh');
 

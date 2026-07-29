@@ -81,7 +81,7 @@
         {{ _self.actionTitle(action, item, icon) }}
         {{ _self.actionFlashError(actionPrefix, item, updatedItem, updatedAction, updatedState) }}
         {{ _self.actionContainer(action, item, currentActionLog, lastActionLog) }}
-        {{ _self.actionButton(action, actionPrefix, item, currentState, currentBgStyle) }}
+        {{ _self.actionButton(action, actionPrefix, item, currentState, currentBgStyle, currentActionLog) }}
       </div>
     </div>
   </div>
@@ -113,16 +113,22 @@
     actionPrefix,
     item,
     currentState,
-    bgStyle
+    bgStyle,
+    currentActionLog
 ) %}
   {% set csrfId = 'admin_' ~ actionPrefix %}
+  {% set confirmMessage = null %}
+  {% if currentState == 'pending' %}
+    {% set timeDiff = currentActionLog.createdAt.diff(date('now')) %}
+    {% set confirmMessage = ('admin.action.force_confirm')|trans({'duration': _self.formatElapsed(timeDiff)}) %}
+  {% endif %}
   <div class="text-end border-top border-{{ bgStyle }} pt-3">
     <form method="post" action="{{ path('app_adminaction_'~actionPrefix, {'name': item}) }}">
       <input type="hidden" name="_token" value="{{ csrf_token(csrfId) }}">
       <button
         type="submit"
-        class="btn btn-outline-primary admin-item-cta{{ currentState == 'pending' ? ' disabled' : '' }}"
-        {% if currentState == 'pending' %}disabled{% endif %}
+        class="btn btn-outline-primary admin-item-cta"
+        {% if confirmMessage is not null %}data-confirm-message="{{ confirmMessage }}"{% endif %}
       >
         {{ ('admin.actions.'~action~'.'~item~'.cta')|trans }}
       </button>
@@ -139,6 +145,16 @@
     {% endif %}
     </form>
   </div>
+{% endmacro %}
+
+{% macro formatElapsed(timeDiff) %}
+  {%- if timeDiff.days > 0 -%}
+    {{ timeDiff.days }}{{ ('admin.action.unit_day')|trans }} {{ timeDiff.h }}{{ ('admin.action.unit_hour')|trans }}
+  {%- elseif timeDiff.h > 0 -%}
+    {{ timeDiff.h }}{{ ('admin.action.unit_hour')|trans }} {{ timeDiff.i }}{{ ('admin.action.unit_minute')|trans }}
+  {%- else -%}
+    {{ timeDiff.i > 0 ? timeDiff.i : 1 }} {{ ('admin.action.unit_minute')|trans }}
+  {%- endif -%}
 {% endmacro %}
 
 {% macro actionFlashError(
