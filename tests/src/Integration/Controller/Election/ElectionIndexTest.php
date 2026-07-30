@@ -501,11 +501,14 @@ final class ElectionIndexTest extends WebTestCase
         // (the "big" image), never the icon macro, so the badge here reflects the big credit,
         // not the small/icon credit used elsewhere (e.g. Album icons).
         $this->assertStringContainsString('PokemonDB', $badge->filter('.visually-hidden')->text());
-        $onclick = (string) $badge->first()->attr('onclick');
-        $this->assertStringContainsString('window.open(', $onclick);
-        $this->assertStringContainsString('pokemondb.net', $onclick);
-        $this->assertStringContainsString('sprites', $onclick);
-        $this->assertStringContainsString('bulbasaur', $onclick);
+        // The credit link lives inside the tooltip content, not on the badge's own click:
+        // touch devices have no hover, so a tap must always reveal the attribution first.
+        $tooltipTitle = (string) $badge->first()->attr('data-bs-title');
+        $this->assertStringContainsString('<a href="', $tooltipTitle);
+        $this->assertStringContainsString('pokemondb.net', $tooltipTitle);
+        $this->assertStringContainsString('sprites', $tooltipTitle);
+        $this->assertStringContainsString('bulbasaur', $tooltipTitle);
+        $this->assertSame('event.stopPropagation();', (string) $badge->first()->attr('onclick'));
     }
 
     private function assertCardContentDemoLite(Crawler $crawler): void

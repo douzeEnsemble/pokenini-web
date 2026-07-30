@@ -102,11 +102,14 @@ final class CommonTest extends WebTestCase
         $badge = $crawler->filter('#modal-bulbasaur a.album-modal-icon-regular .pokemon-image-credit');
         $this->assertCount(1, $badge);
         $this->assertStringContainsString('PokéSprite', $badge->filter('.visually-hidden')->text());
-        $onclick = (string) $badge->first()->attr('onclick');
-        $this->assertStringContainsString('window.open(', $onclick);
-        $this->assertStringContainsString('github.com', $onclick);
-        $this->assertStringContainsString('msikma', $onclick);
-        $this->assertStringContainsString('pokesprite', $onclick);
+        // The credit link lives inside the tooltip content, not on the badge's own click:
+        // touch devices have no hover, so a tap must always reveal the attribution first.
+        $tooltipTitle = (string) $badge->first()->attr('data-bs-title');
+        $this->assertStringContainsString('<a href="', $tooltipTitle);
+        $this->assertStringContainsString('github.com', $tooltipTitle);
+        $this->assertStringContainsString('msikma', $tooltipTitle);
+        $this->assertStringContainsString('pokesprite', $tooltipTitle);
+        $this->assertSame('event.stopPropagation();', (string) $badge->first()->attr('onclick'));
     }
 
     private function assertAlbum(KernelBrowser $client): void
