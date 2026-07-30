@@ -60,6 +60,8 @@ final class ActionInvalidateTest extends WebTestCase
     {
         return [
             ['labels'],
+            ['catch_states'],
+            ['types'],
             ['dex'],
             ['albums'],
             ['reports'],
@@ -88,8 +90,6 @@ final class ActionInvalidateTest extends WebTestCase
     public static function providerInvalidateNotExists(): array
     {
         return [
-            ['catch_states'],
-            ['types'],
             ['games_collections_and_dex'],
             ['pokemons'],
             ['regional_dex_numbers'],

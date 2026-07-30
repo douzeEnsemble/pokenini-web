@@ -79,9 +79,9 @@ final class AdminPageTest extends WebTestCase
         $crawler = $this->getAdminHomeConnected();
 
         $this->assertCountFilter($crawler, 6, 'h2');
-        $this->assertCountFilter($crawler, 15, 'h3');
-        $this->assertCountFilter($crawler, 15, '.admin-item-description');
-        $this->assertCountFilter($crawler, 15, '.admin-item button.admin-item-cta');
+        $this->assertCountFilter($crawler, 17, 'h3');
+        $this->assertCountFilter($crawler, 17, '.admin-item-description');
+        $this->assertCountFilter($crawler, 17, '.admin-item button.admin-item-cta');
 
         foreach ($this->getExpectedDescriptions() as $itemId => $description) {
             $this->assertSame(
@@ -92,7 +92,7 @@ final class AdminPageTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, '.admin-item-update button.admin-item-cta');
         $this->assertCountFilter($crawler, 4, '.admin-item-calculate button.admin-item-cta');
-        $this->assertCountFilter($crawler, 3, '.admin-item-invalidate button.admin-item-cta');
+        $this->assertCountFilter($crawler, 5, '.admin-item-invalidate button.admin-item-cta');
         $this->assertCountFilter($crawler, 1, '.admin-item-trigger button.admin-item-cta');
         $this->assertCountFilter($crawler, 1, '#trigger_update_images button.admin-item-cta');
 
@@ -184,6 +184,8 @@ final class AdminPageTest extends WebTestCase
             'calculate_dex_availabilities' => 'Agrège les disponibilités des jeux et des collections au niveau des dex.',
             'calculate_pokemon_availabilities' => "Agrège toutes les disponibilités en un résumé par Pokémon, utilisé dans toute l'application.",
             'invalidate_labels' => "Vide le cache des labels pour qu'ils soient rechargés au prochain accès.",
+            'invalidate_catch_states' => "Vide le cache des statuts pour qu'ils soient rechargés au prochain accès.",
+            'invalidate_types' => "Vide le cache des types pour qu'ils soient rechargés au prochain accès.",
             'invalidate_dex' => "Vide le cache des pages de dex pour qu'elles soient rechargées au prochain accès.",
             'invalidate_albums' => "Vide le cache des pages d'album pour qu'elles soient rechargées au prochain accès.",
             'trigger_update_images' => "Régénère le jeu d'images des Pokémon à partir des dernières données.",

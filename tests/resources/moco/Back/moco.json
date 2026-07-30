@@ -553,6 +553,58 @@
   {
     "request": {
       "uri": {
+        "match": "/istration/action/invalidate/catch_states"
+      },
+      "method": "delete",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "202",
+      "json": {
+        "action": "invalidate",
+        "item": "catch_states",
+        "state": "ok",
+        "content": "",
+        "error": ""
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/istration/action/invalidate/types"
+      },
+      "method": "delete",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "202",
+      "json": {
+        "action": "invalidate",
+        "item": "types",
+        "state": "ok",
+        "content": "",
+        "error": ""
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/istration/action/invalidate/dex"
       },
       "method": "delete",

@@ -476,9 +476,11 @@ admin:
       catch_states:
         title: "Invalidation du cache des statuts"
         cta: "Invalider"
+        description: "Vide le cache des statuts pour qu'ils soient rechargés au prochain accès."
       types:
         title: "Invalidation du cache des types"
         cta: "Invalider"
+        description: "Vide le cache des types pour qu'ils soient rechargés au prochain accès."
       labels:
         title: "Invalidation du cache des labels"
         cta: "Invalider"
