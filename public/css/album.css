@@ -32,26 +32,6 @@
     padding-bottom: .125rem;
 }
 
-/* Below md, .album-box shows fewer columns (row-cols-3/row-cols-sm-4), so
-    cells are wider than at the 6-column desktop density: scale text up
-    accordingly instead of keeping the desktop-tuned sizes illegibly small. */
-@media (max-width: 767.98px) {
-    .album-case-dex-number {
-        font-size: .65rem;
-    }
-    .album-case-name {
-        font-size: .75rem;
-    }
-    .album-case-catch-state {
-        font-size: .8rem;
-    }
-    .album-case-forms {
-        font-size: .7rem;
-    }
-    .album-case-action {
-        font-size: .7rem;
-    }
-}
 .album-case-action select {
     width: 100%;
 }
@@ -98,17 +78,13 @@ a.album-case-catch-state-edit-action:hover {
     background-color: white;
 }
 
-/* Bootstrap only ships row-cols-*-1 through -6; a list-7 dex needs a 7-column
-    tier of its own once it reaches the row-cols-md-7 breakpoint (see
-    Album/view/_list.html.twig) - below md it falls back to the real Bootstrap
-    row-cols-3/row-cols-sm-4 utilities, so no override is needed there. */
-@media (min-width: 768px) {
-    .album-line.row-cols-md-7 > * {
-        flex: 0 0 auto;
-        width: 14.285714285714286%;
-    }
+/* Bootstrap only ships row-cols-1 through -6; a list-7 dex needs a 7-column
+    class of its own, fixed at every viewport (see Album/view/_list.html.twig). */
+.album-line.row-cols-7 > * {
+    flex: 0 0 auto;
+    width: 14.285714285714286%;
 }
-.album-line.row-cols-md-7 .modal {
+.album-line.row-cols-7 .modal {
     width: 100%;
 }
 
