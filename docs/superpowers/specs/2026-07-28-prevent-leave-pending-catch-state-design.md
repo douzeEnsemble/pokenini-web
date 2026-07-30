@@ -21,9 +21,9 @@ No debouncing, no request queue, no "unsaved changes" concept beyond in-flight r
 2. `onChangeCatchState` increments `pendingChangesCount` before calling `saveChange`.
 3. `saveChange`'s `fetch(...)` chain gets a `.finally()` that decrements `pendingChangesCount` exactly once per request. (Decrementing in both `.then` and `.catch` would double-count: on a non-200 response, the existing code `throw`s *inside* `.then`, which then also falls through to `.catch` — so a single `.finally()` is required, not one decrement per branch.)
 4. `watchCatchStates()` (already only invoked when `allowedToEdit` is true, `templates/Album/index.html.twig:93`) additionally registers:
-   ```js
-   window.addEventListener("beforeunload", onBeforeUnload);
-   ```
+  ```js
+  window.addEventListener("beforeunload", onBeforeUnload);
+  ```
 5. `onBeforeUnload(event)`: if `pendingChangesCount > 0`, calls `event.preventDefault()` and sets `event.returnValue = ""` to trigger the browser's native confirmation dialog. Modern browsers ignore any custom message text and show their own generic wording — this is expected and not worked around.
 
 No Twig changes needed: the listener piggybacks on the existing `watchCatchStates()` call, which is already gated correctly.
