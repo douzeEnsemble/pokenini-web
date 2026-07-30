@@ -385,23 +385,23 @@ admin:
         title: "Update games' availabilities"
         item: "Games' availabilities"
         cta: "Update!"
-        description: "Recomputes which Pokémon are available in each game."
+        description: "Resyncs which Pokémon are available in each game from the Google Sheets source."
       games_shinies_availabilities:
         title: "Update games' shinies' availabilities"
         item: "Games' shinies' availabilities"
         cta: "Update!"
-        description: "Recomputes which shiny Pokémon are available in each game."
+        description: "Resyncs which shiny Pokémon are available in each game from the Google Sheets source."
       collections_availabilities:
         title: "Update collections"
         item: "Collections' availabilities"
         cta: "Update!"
-        description: "Recomputes which Pokémon are available in each collection."
+        description: "Resyncs which Pokémon are available in each collection from the Google Sheets source."
     update_data:
       title: "Update data"
       labels:
         title: "Update labels"
         cta: "Update!"
-        description: "Resyncs labels (translations, categories, tags) from the Google Sheets source."
+        description: "Resyncs labels (catch states, types, regions, category forms, regional forms, special forms, variant forms) from the Google Sheets source."
       games_collections_and_dex:
         title: "Update games, collections and dex"
         cta: "Update!"
@@ -410,12 +410,12 @@ admin:
         title: "Update pokémons"
         item: "Pokémons"
         cta: "Update!"
-        description: "Resyncs Pokémon data (species, forms, stats) from the Google Sheets source."
+        description: "Resyncs Pokémon data from the Google Sheets source."
       regional_dex_numbers:
         title: "Update regional dex numbers"
         item: "Regional Dex numbers"
         cta: "Update!"
-        description: "Resyncs each Pokémon's regional dex numbers from the Google Sheets source."
+        description: "Resyncs regional dex numbers from the Google Sheets source."
       game_generations:
         item: "Game's generations"
       game_bundles:
