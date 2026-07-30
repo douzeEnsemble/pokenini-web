@@ -74,15 +74,31 @@
         a real link or carry a tabindex without breaking markup validity
         at those call sites. It stays a non-focusable <span> with an
         accessible name (for assistive tech that inspects it, e.g.
-        screen-reader browse mode) and a click handler (for mouse/touch);
-        it won't appear in sequential Tab order. Visible attribution is
-        also always available via the tooltip on hover. #}
+        screen-reader browse mode); it won't appear in sequential Tab order.
+
+        The credit link itself lives inside the tooltip content (rendered
+        into data-bs-container="body", so the <a> below never ends up
+        nested inside the ancestor <a>), instead of on the badge's own
+        click. Touch devices have no hover, so a tap is the only signal
+        they can give - it used to fire a direct window.open() on the
+        badge, which meant mobile users were sent to the credit link
+        without ever seeing who it was for. Making the tap always open the
+        tooltip first (data-bs-trigger includes "click") guarantees the
+        attribution is seen before anyone follows the link, on every input
+        type. #}
     {% if credit is not null %}
+        {% set creditLabel = ('credit.tooltip'|trans) ~ ': ' ~ credit.name %}
+        {% set tooltipContent = credit.url is not null
+            ? '<a href="%s" target="_blank" rel="noopener">%s</a>'|format(credit.url|e('html_attr'), creditLabel|e('html'))
+            : creditLabel|e('html') %}
         <span
             class="pokemon-image-credit"
             data-bs-toggle="tooltip"
-            data-bs-title="{{ 'credit.tooltip'|trans }}: {{ credit.name }}"
-            {% if credit.url is not null %}onclick="event.preventDefault();event.stopPropagation();window.open('{{ credit.url|e('js') }}', '_blank', 'noopener');"{% endif %}
-        ><i class="bi bi-info-lg" aria-hidden="true"></i><span class="visually-hidden">{{ 'credit.tooltip'|trans }}: {{ credit.name }}</span></span>
+            data-bs-trigger="hover focus click"
+            data-bs-html="true"
+            data-bs-container="body"
+            data-bs-title="{{ tooltipContent }}"
+            onclick="event.stopPropagation();"
+        ><i class="bi bi-info-lg" aria-hidden="true"></i><span class="visually-hidden">{{ creditLabel }}</span></span>
     {% endif %}
 {% endmacro %}
