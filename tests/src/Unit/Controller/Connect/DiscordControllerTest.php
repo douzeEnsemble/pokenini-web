@@ -16,14 +16,16 @@ final class DiscordControllerTest extends TestCase
 {
     use ConnectControllerTestTrait;
 
-    public function testGoto(): void
+    public function testGotoIgnoresSessionState(): void
     {
         $controller = new DiscordController();
 
         $this->assertGoto(
             $controller,
             'openid',
-            'discord'
+            'discord',
+            [],
+            $this->createRequestWithSession(true),
         );
     }
 }

@@ -7,7 +7,10 @@ namespace App\Tests\Unit\Controller\Connect;
 use App\Controller\Connect\ConnectControllerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 trait ConnectControllerTestTrait
 {
@@ -18,7 +21,8 @@ trait ConnectControllerTestTrait
         ConnectControllerInterface $controller,
         string $scope,
         string $clientName,
-        array $options = [],
+        array $options,
+        Request $request,
     ): void {
         $client = $this->createMock(OAuth2ClientInterface::class);
         $client
@@ -41,6 +45,20 @@ trait ConnectControllerTestTrait
             ->willReturn($client)
         ;
 
-        $controller->goto($clientRegistry);
+        $controller->goto($clientRegistry, $request);
+    }
+
+    private function createRequestWithSession(bool $withSilentReauthTargetPath): Request
+    {
+        $session = new Session(new MockArraySessionStorage());
+
+        if ($withSilentReauthTargetPath) {
+            $session->set('_security_target_path', '/fr/some/protected/page');
+        }
+
+        $request = new Request();
+        $request->setSession($session);
+
+        return $request;
     }
 }

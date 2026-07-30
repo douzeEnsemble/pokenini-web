@@ -53,13 +53,16 @@ final class ConnectTest extends WebTestCase
     {
         $client = self::createClient();
 
+        // A plain, user-initiated visit to /fr/connect/g has no '_security_target_path' in
+        // session (that key is only set by AuthenticationEntryPoint during silent re-auth), so
+        // Google must not be asked to force the heavy 'prompt=consent' re-consent screen.
         $client->request('GET', '/fr/connect/g');
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
         $this->assertStringStartsWith(
-            'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&scope=openid%20email%20profile&access_type=offline&state=',
+            'https://accounts.google.com/o/oauth2/v2/auth?scope=openid%20email%20profile&access_type=offline&state=',
             (string) $crawler->getUri()
         );
     }

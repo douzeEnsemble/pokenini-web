@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Connect;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/connect/dd')]
@@ -21,8 +22,11 @@ final class DiscordController extends AbstractConnectController
         return 'openid';
     }
 
+    /**
+     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+     */
     #[\Override]
-    protected function getExtraOptions(): array
+    protected function getExtraOptions(Request $request): array
     {
         return [];
     }
