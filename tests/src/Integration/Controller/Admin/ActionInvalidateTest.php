@@ -12,6 +12,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @internal
@@ -113,8 +114,8 @@ final class ActionInvalidateTest extends WebTestCase
 
         $client->catchExceptions(false);
 
-        $this->expectException(NotFoundHttpException::class);
+        $this->expectException(AccessDeniedException::class);
 
-        $client->request('GET', '/fr/istration/action/invalidate/catch_states');
+        $client->request('POST', '/fr/istration/action/invalidate/labels');
     }
 }
