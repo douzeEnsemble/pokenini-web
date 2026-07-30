@@ -172,13 +172,13 @@ final class AdminPageTest extends WebTestCase
     private function getExpectedDescriptions(): array
     {
         return [
-            'update_labels' => 'Recharge les labels (traductions, catégories, tags) depuis la source Google Sheets.',
-            'update_games_collections_and_dex' => 'Recharge les jeux, les collections et les dex depuis la source Google Sheets.',
-            'update_pokemons' => 'Recharge les données des Pokémon (espèces, formes, statistiques) depuis la source Google Sheets.',
-            'update_regional_dex_numbers' => 'Recharge les numéros de dex régionaux de chaque Pokémon depuis la source Google Sheets.',
-            'update_games_availabilities' => 'Recalcule quels Pokémon sont disponibles dans chaque jeu.',
-            'update_games_shinies_availabilities' => 'Recalcule quels Pokémon chromatiques sont disponibles dans chaque jeu.',
-            'update_collections_availabilities' => 'Recalcule quels Pokémon sont disponibles dans chaque collection.',
+            'update_labels' => 'Resynchronise les labels (statuts, types, régions, catégories, formes régionales, formes spéciales, variantes) depuis la source Google Sheets.',
+            'update_games_collections_and_dex' => 'Resynchronise les jeux, les collections et les dex depuis la source Google Sheets.',
+            'update_pokemons' => 'Resynchronise les données des Pokémon depuis la source Google Sheets.',
+            'update_regional_dex_numbers' => 'Resynchronise les numéros de dex régionaux depuis la source Google Sheets.',
+            'update_games_availabilities' => 'Resynchronise depuis Google Sheets quels Pokémon sont disponibles dans chaque jeu.',
+            'update_games_shinies_availabilities' => 'Resynchronise depuis Google Sheets quels Pokémon chromatiques sont disponibles dans chaque jeu.',
+            'update_collections_availabilities' => 'Resynchronise depuis Google Sheets quels Pokémon sont disponibles dans chaque collection.',
             'calculate_game_bundles_availabilities' => 'Agrège les disponibilités des jeux au niveau des bundles de jeux.',
             'calculate_game_bundles_shinies_availabilities' => 'Agrège les disponibilités chromatiques des jeux au niveau des bundles de jeux.',
             'calculate_dex_availabilities' => 'Agrège les disponibilités des jeux et des collections au niveau des dex.',

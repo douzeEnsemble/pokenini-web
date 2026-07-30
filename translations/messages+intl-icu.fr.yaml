@@ -389,37 +389,37 @@ admin:
         title: "Mise à jour des disponibilités des jeux"
         item: "Disponibilités des jeux"
         cta: "Mettre à jour"
-        description: "Recalcule quels Pokémon sont disponibles dans chaque jeu."
+        description: "Resynchronise depuis Google Sheets quels Pokémon sont disponibles dans chaque jeu."
       games_shinies_availabilities:
         title: "Mise à jour des disponibilités des jeux des chromatiques"
         item: "Disponibilités des jeux des chromatiques"
         cta: "Mettre à jour"
-        description: "Recalcule quels Pokémon chromatiques sont disponibles dans chaque jeu."
+        description: "Resynchronise depuis Google Sheets quels Pokémon chromatiques sont disponibles dans chaque jeu."
       collections_availabilities:
         title: "Mise à jour des disponibilités des collections"
         item: "Disponibilités des collections"
         cta: "Mettre à jour"
-        description: "Recalcule quels Pokémon sont disponibles dans chaque collection."
+        description: "Resynchronise depuis Google Sheets quels Pokémon sont disponibles dans chaque collection."
     update_data:
       title: "Mises à jour des données"
       labels:
         title: "Mise à jour des labels"
         cta: "Mettre à jour"
-        description: "Recharge les labels (traductions, catégories, tags) depuis la source Google Sheets."
+        description: "Resynchronise les labels (statuts, types, régions, catégories, formes régionales, formes spéciales, variantes) depuis la source Google Sheets."
       games_collections_and_dex:
         title: "Mise à jour des jeux, des collections et des dex"
         cta: "Mettre à jour"
-        description: "Recharge les jeux, les collections et les dex depuis la source Google Sheets."
+        description: "Resynchronise les jeux, les collections et les dex depuis la source Google Sheets."
       pokemons:
         title: "Mise à jour des pokémons"
         item: "Pokémons"
         cta: "Mettre à jour"
-        description: "Recharge les données des Pokémon (espèces, formes, statistiques) depuis la source Google Sheets."
+        description: "Resynchronise les données des Pokémon depuis la source Google Sheets."
       regional_dex_numbers:
         title: "Mise à jour des numéro des dex régionaux"
         item: "Numéros de dex régionaux"
         cta: "Mettre à jour"
-        description: "Recharge les numéros de dex régionaux de chaque Pokémon depuis la source Google Sheets."
+        description: "Resynchronise les numéros de dex régionaux depuis la source Google Sheets."
       game_generations:
         item: "Générations"
       game_bundles:
