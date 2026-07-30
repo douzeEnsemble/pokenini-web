@@ -6,6 +6,7 @@ namespace App\Controller\Connect;
 
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -13,7 +14,7 @@ abstract class AbstractConnectController extends AbstractController implements C
 {
     #[Route('', methods: ['GET'])]
     #[\Override]
-    public function goto(ClientRegistry $clientRegistry): Response
+    public function goto(ClientRegistry $clientRegistry, Request $request): Response
     {
         return $clientRegistry
             ->getClient($this->getProviderName())
@@ -21,7 +22,7 @@ abstract class AbstractConnectController extends AbstractController implements C
                 [
                     $this->getscope(),
                 ],
-                $this->getExtraOptions(),
+                $this->getExtraOptions($request),
             )
         ;
     }
@@ -42,5 +43,5 @@ abstract class AbstractConnectController extends AbstractController implements C
     /**
      * @return array<string, string>
      */
-    abstract protected function getExtraOptions(): array;
+    abstract protected function getExtraOptions(Request $request): array;
 }

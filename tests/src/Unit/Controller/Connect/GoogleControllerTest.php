@@ -16,7 +16,7 @@ final class GoogleControllerTest extends TestCase
 {
     use ConnectControllerTestTrait;
 
-    public function testGoto(): void
+    public function testGotoDuringSilentReauthForcesConsent(): void
     {
         $controller = new GoogleController();
 
@@ -25,6 +25,20 @@ final class GoogleControllerTest extends TestCase
             'openid',
             'google',
             ['prompt' => 'consent'],
+            $this->createRequestWithSession(true),
+        );
+    }
+
+    public function testGotoOnNormalLoginDoesNotForceConsent(): void
+    {
+        $controller = new GoogleController();
+
+        $this->assertGoto(
+            $controller,
+            'openid',
+            'google',
+            [],
+            $this->createRequestWithSession(false),
         );
     }
 }
