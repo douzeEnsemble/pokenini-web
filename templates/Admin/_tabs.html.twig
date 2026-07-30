@@ -1,23 +1,37 @@
-{% set adminTabs = {
-  'actions': {
-    'route': 'app_admin_actions',
-    'label': 'title.admin_actions',
-  },
-  'reports': {
-    'route': 'app_admin_reports',
-    'label': 'title.admin_reports',
-  },
-} %}
+{% set adminActionSections = [
+  {'key': 'update_data', 'label': 'admin.actions.update_data.title'},
+  {'key': 'update_availabilities', 'label': 'admin.actions.update_availabilities.title'},
+  {'key': 'calculate_data', 'label': 'admin.actions.calculate_data.title'},
+  {'key': 'invalidate_data', 'label': 'admin.actions.invalidate_data.title'},
+  {'key': 'trigger_pipeline', 'label': 'admin.actions.trigger_pipeline.title'},
+] %}
 
-<ul class="nav nav-tabs mb-4">
-  {% for key, tab in adminTabs %}
-    <li class="nav-item">
-      <a
-        class="nav-link{{ key == active ? ' active' : '' }}"
-        href="{{ path(tab.route) }}"
-      >
-        {{ tab.label|trans }}
-      </a>
+<ul class="nav nav-tabs mb-4" id="admin-actions-tab" role="tablist">
+  {% for section in adminActionSections %}
+    <li class="nav-item" role="presentation">
+      {% if 'actions' == page %}
+        <button
+          class="nav-link{{ section.key == active ? ' active' : '' }}"
+          id="tab-{{ section.key }}-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#tab-pane-{{ section.key }}"
+          type="button"
+          role="tab"
+          aria-controls="tab-pane-{{ section.key }}"
+          aria-selected="{{ section.key == active ? 'true' : 'false' }}"
+        >
+          {{ section.label|trans }}
+        </button>
+      {% else %}
+        <a class="nav-link" href="{{ path('app_admin_actions', {'_fragment': 'tab-pane-'~section.key}) }}">
+          {{ section.label|trans }}
+        </a>
+      {% endif %}
     </li>
   {% endfor %}
+  <li class="nav-item" role="presentation">
+    <a class="nav-link{{ 'reports' == active ? ' active' : '' }}" href="{{ path('app_admin_reports') }}">
+      {{ 'title.admin_reports'|trans }}
+    </a>
+  </li>
 </ul>
