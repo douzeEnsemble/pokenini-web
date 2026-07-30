@@ -1,33 +1,20 @@
 {% import "Album/_album_macros.html.twig" as macro %}
 {% set sharedTrainerId = app.request.attributes.get('t') %}
 
-{# Responsive column tiers capped at nbCaseByLine, so mobile never shows *more*
-  columns than desktop - mirrors the box template's row-cols-3/sm-4/md-6 pattern
-  (Album/view/_box.html.twig) instead of a single fixed row-cols-N that stayed
-  just as cramped on a phone as on desktop. A list-3 dex is already narrow
-  enough to need no change; list-5/list-7 pick up the same tiering.
+{# Fixed at nbCaseByLine columns on every viewport (a list-N dex must always
+  show exactly N columns, mirroring the box template's fixed row-cols-6 -
+  see Album/view/_box.html.twig).
 
   All items share a single .row: letting Bootstrap's flex-wrap break lines on
   its own (like _box.html.twig's "filters is not empty" branch) means every
-  line but the very last is always full, at every breakpoint. Manually
-  chunking the list into fixed-size groups of nbCaseByLine first (the
-  previous approach) produced a sparse, orphaned line at every chunk boundary
-  whenever nbCaseByLine wasn't a multiple of the column count actually active
-  at that breakpoint - e.g. a list-5 dex still chunks 5-by-5 at the sm/md
-  768px breakpoint, which only displays 4 columns. #}
-{% set mobileCols = nbCaseByLine < 3 ? nbCaseByLine : 3 %}
-{% set smCols = nbCaseByLine < 4 ? nbCaseByLine : 4 %}
-{% set rowColsClasses = 'row-cols-' ~ mobileCols %}
-{% if smCols != mobileCols %}
-    {% set rowColsClasses = rowColsClasses ~ ' row-cols-sm-' ~ smCols %}
-{% endif %}
-{% if nbCaseByLine != smCols %}
-    {% set rowColsClasses = rowColsClasses ~ ' row-cols-md-' ~ nbCaseByLine %}
-{% endif %}
+  line but the very last is always full. Manually chunking the list into
+  fixed-size groups of nbCaseByLine first (an earlier approach) produced a
+  sparse, orphaned line at every chunk boundary whenever the last chunk
+  wasn't a full group. #}
 
 <div class="album-container album-list-{{ nbCaseByLine }}">
     <h2>{{ 'title.empty'|trans }}</h2>
-    <div class="row {{ rowColsClasses }} album-line" id="top-of-the-list">
+    <div class="row row-cols-{{ nbCaseByLine }} album-line" id="top-of-the-list">
         {% for item in list %}
         {{ macro.albumCase(item, dex, allowedToEdit, catchStates, sharedTrainerId, list, loop) }}
         {% endfor %}
