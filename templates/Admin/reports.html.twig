@@ -25,7 +25,7 @@
 <div id="admin" class="row">
   <div class="col-12">
     <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
-    {% include 'Admin/_tabs.html.twig' with {'active': 'reports'} %}
+    {% include 'Admin/_tabs.html.twig' with {'page': 'reports', 'active': 'reports'} %}
     {% include 'Admin/_reports.html.twig' %}
   </div>
 </div>

@@ -34,7 +34,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
     ];
 
     #[DataProvider('providerActionItems')]
-    public function testActionItems(string $action, string $item): void
+    public function testActionItems(string $action, string $item, string $section): void
     {
         $client = $this->getNewClient();
 
@@ -43,6 +43,8 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $this->loginUser($client, $user);
 
         $client->request('GET', '/fr/istration/actions');
+
+        $this->activateTab($client, $section);
 
         match (\in_array("{$action}_{$item}", self::PENDING_ACTION_ITEMS, true)) {
             true => $this->clickPendingActionAndAcceptConfirm($client, $action, $item),
@@ -59,6 +61,11 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
             $expectedUrl,
             $client->getCurrentURL()
         );
+
+        // The redirect landed back on the default-active tab; the item lives in a
+        // different pane until admin.js's activateTabForHash() reads the URL hash
+        // and activates the right one — this is what this assertion proves.
+        $this->assertSelectorWillBeVisible("#{$action}_{$item}");
     }
 
     /**
@@ -70,66 +77,82 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
             'update_labels' => [
                 'action' => 'update',
                 'item' => 'labels',
+                'section' => 'update_data',
             ],
             'update_games_collections_and_dex' => [
                 'action' => 'update',
                 'item' => 'games_collections_and_dex',
+                'section' => 'update_data',
             ],
             'update_pokemons' => [
                 'action' => 'update',
                 'item' => 'pokemons',
+                'section' => 'update_data',
             ],
             'update_regional_dex_numbers' => [
                 'action' => 'update',
                 'item' => 'regional_dex_numbers',
+                'section' => 'update_data',
             ],
             'update_games_availabilities' => [
                 'action' => 'update',
                 'item' => 'games_availabilities',
+                'section' => 'update_availabilities',
             ],
             'update_games_shinies_availabilities' => [
                 'action' => 'update',
                 'item' => 'games_shinies_availabilities',
+                'section' => 'update_availabilities',
             ],
             'update_collections_availabilities' => [
                 'action' => 'update',
                 'item' => 'collections_availabilities',
+                'section' => 'update_availabilities',
             ],
             'calculate_game_bundles_availabilities' => [
                 'action' => 'calculate',
                 'item' => 'game_bundles_availabilities',
+                'section' => 'calculate_data',
             ],
             'calculate_game_bundles_shinies_availabilities' => [
                 'action' => 'calculate',
                 'item' => 'game_bundles_shinies_availabilities',
+                'section' => 'calculate_data',
             ],
             'calculate_dex_availabilities' => [
                 'action' => 'calculate',
                 'item' => 'dex_availabilities',
+                'section' => 'calculate_data',
             ],
             'calculate_pokemon_availabilities' => [
                 'action' => 'calculate',
                 'item' => 'pokemon_availabilities',
+                'section' => 'calculate_data',
             ],
             'invalidate_labels' => [
                 'action' => 'invalidate',
                 'item' => 'labels',
+                'section' => 'invalidate_data',
             ],
             'invalidate_catch_states' => [
                 'action' => 'invalidate',
                 'item' => 'catch_states',
+                'section' => 'invalidate_data',
             ],
             'invalidate_types' => [
                 'action' => 'invalidate',
                 'item' => 'types',
+                'section' => 'invalidate_data',
             ],
             'invalidate_dex' => [
                 'action' => 'invalidate',
                 'item' => 'dex',
+                'section' => 'invalidate_data',
             ],
             'invalidate_albums' => [
                 'action' => 'invalidate',
                 'item' => 'albums',
+                'section' => 'invalidate_data',
             ],
         ];
     }
@@ -158,5 +181,17 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
     {
         $form = $client->getCrawler()->filter("#{$action}_{$item} form")->form();
         $client->submit($form);
+    }
+
+    /**
+     * Opens the nav-pill tab for the given section (templates/Admin/_actions.html.twig) so its
+     * items become visible/interactable — items outside the default-active `update_data` tab
+     * start hidden (`display: none`) on a fresh page load.
+     */
+    private function activateTab(Client $client, string $section): void
+    {
+        $tab = $client->findElement(WebDriverBy::cssSelector("#tab-{$section}-tab"));
+        $client->executeScript('arguments[0].scrollIntoView({block: "center", inline: "nearest"});', [$tab]);
+        $tab->click();
     }
 }

@@ -25,7 +25,6 @@
 <div id="admin" class="row">
   <div class="col-12">
     <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
-    {% include 'Admin/_tabs.html.twig' with {'active': 'actions'} %}
     {% include 'Admin/_actions.html.twig' %}
   </div>
 </div>
@@ -43,6 +42,7 @@
     (function () {
       watchActionLogToggles();
       watchForceConfirm();
+      activateTabForHash();
     })();
   </script>
 {% endblock %}

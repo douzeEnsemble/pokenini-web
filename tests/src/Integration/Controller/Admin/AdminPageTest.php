@@ -74,12 +74,39 @@ final class AdminPageTest extends WebTestCase
         $this->getAdminHomeConnected();
     }
 
+    /**
+     * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
+     */
     public function testAdminHome(): void
     {
         $crawler = $this->getAdminHomeConnected();
 
-        $this->assertCountFilter($crawler, 6, 'h2');
+        $this->assertCountFilter($crawler, 0, 'h2');
         $this->assertCountFilter($crawler, 17, 'h3');
+
+        $this->assertCountFilter($crawler, 6, '#admin-actions-tab > .nav-item > .nav-link');
+        $this->assertCountFilter($crawler, 1, '#admin-actions-tab .nav-link.active');
+        $this->assertCountFilter($crawler, 5, '.tab-content > .tab-pane');
+        $this->assertCountFilter($crawler, 1, '.tab-content > .tab-pane.show.active');
+
+        $reportsTabHref = $crawler->filter('#admin-actions-tab a.nav-link')->attr('href') ?? '';
+        $this->assertStringContainsString('/fr/istration/reports', $reportsTabHref);
+
+        foreach ([
+            'update_data',
+            'update_availabilities',
+            'calculate_data',
+            'invalidate_data',
+            'trigger_pipeline',
+        ] as $section) {
+            $this->assertCountFilter($crawler, 1, "#tab-{$section}-tab[data-bs-target=\"#tab-pane-{$section}\"]");
+            $this->assertCountFilter($crawler, 1, "#tab-pane-{$section}");
+        }
+
+        $this->assertCountFilter($crawler, 1, '#tab-pane-update_data.show.active');
+        $this->assertCountFilter($crawler, 1, '#tab-pane-update_data #update_labels');
+        $this->assertCountFilter($crawler, 1, '#tab-pane-invalidate_data #invalidate_labels');
+        $this->assertCountFilter($crawler, 1, '#tab-pane-trigger_pipeline .admin-pipeline-status');
         $this->assertCountFilter($crawler, 17, '.admin-item-description');
         $this->assertCountFilter($crawler, 17, '.admin-item button.admin-item-cta');
 
