@@ -471,9 +471,11 @@ admin:
       catch_states:
         title: "Invalidate status cache"
         cta: "Invalidate!"
+        description: "Clears the cached catch states so the next request reloads them fresh."
       types:
         title: "Invalidate types cache"
         cta: "Invalidate!"
+        description: "Clears the cached types so the next request reloads them fresh."
       labels:
         title: "Invalidate labels cache"
         cta: "Invalidate!"

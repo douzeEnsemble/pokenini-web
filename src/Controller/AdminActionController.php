@@ -83,6 +83,8 @@ final class AdminActionController extends AbstractController
         condition: "params['name']
             in [
                 'labels',
+                'catch_states',
+                'types',
                 'dex',
                 'albums',
                 'reports',

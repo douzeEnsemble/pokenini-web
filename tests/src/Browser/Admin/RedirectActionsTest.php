@@ -115,6 +115,14 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
                 'action' => 'invalidate',
                 'item' => 'labels',
             ],
+            'invalidate_catch_states' => [
+                'action' => 'invalidate',
+                'item' => 'catch_states',
+            ],
+            'invalidate_types' => [
+                'action' => 'invalidate',
+                'item' => 'types',
+            ],
             'invalidate_dex' => [
                 'action' => 'invalidate',
                 'item' => 'dex',
