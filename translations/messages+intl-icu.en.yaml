@@ -653,6 +653,7 @@ credit:
   tooltip: "Image credit"
   detail:
     count: "{count, plural, one {# image} other {# images}}"
+    none: "No credit"
     size:
       small: "small sprite"
       big: "big sprite"
