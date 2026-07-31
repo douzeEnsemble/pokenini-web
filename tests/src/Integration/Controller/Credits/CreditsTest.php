@@ -32,46 +32,99 @@ final class CreditsTest extends WebTestCase
 
         // Order and content come from tests/resources/moco/Back/responses/credits.json:
         // bulbasaur (4/4 slots credited), ivysaur (1/4), venusaur (0/4).
-        $items = $crawler->filter('.list-group-item');
-        $this->assertCount(3, $items);
+        // One tile per credited image, plus one "no credit" tile for venusaur: 4 + 1 + 1 = 6.
+        $tiles = $crawler->filter('.credit-tile');
+        $this->assertCount(6, $tiles);
 
-        $bulbasaur = $items->eq(0);
-        $this->assertStringContainsString('Bulbizarre', $bulbasaur->text());
+        $bulbaSmallRegular = $tiles->eq(0);
+        $this->assertStringContainsString('Bulbizarre', $bulbaSmallRegular->text());
         $this->assertStringContainsString(
-            '/regular/bulbasaur.png',
-            $bulbasaur->filter('img.pokemon-icon')->attr('src') ?? ''
-        );
-        $this->assertStringContainsString('4', $bulbasaur->filter('.credit-detail-toggle')->text());
-        $detailItems = $bulbasaur->filter('.credit-detail-list li');
-        $this->assertCount(4, $detailItems);
-
-        // Each detail <li> must carry the credit for its own slot, not a
-        // neighbour's - guards against the badge being fed the wrong credit.
-        $this->assertStringContainsString(
-            'PokéSprite',
-            (string) $detailItems->eq(0)->filter('.pokemon-image-credit')->attr('data-bs-title')
+            'petit sprite, Normal',
+            $bulbaSmallRegular->filter('.credit-tile-type')->text(),
         );
         $this->assertStringContainsString(
             'PokéSprite',
-            (string) $detailItems->eq(1)->filter('.pokemon-image-credit')->attr('data-bs-title')
+            $bulbaSmallRegular->filter('.credit-tile-credit')->text(),
         );
+        $this->assertStringContainsString(
+            '/small/regular/bulbasaur.png',
+            (string) $bulbaSmallRegular->filter('img.credit-tile-image')->attr('src'),
+        );
+
+        $bulbaSmallShiny = $tiles->eq(1);
+        $this->assertStringContainsString(
+            'petit sprite, Chromatique',
+            $bulbaSmallShiny->filter('.credit-tile-type')->text(),
+        );
+        $this->assertStringContainsString(
+            'PokéSprite',
+            $bulbaSmallShiny->filter('.credit-tile-credit')->text(),
+        );
+        $this->assertStringContainsString(
+            '/small/shiny/bulbasaur.png',
+            (string) $bulbaSmallShiny->filter('img.credit-tile-image')->attr('src'),
+        );
+
+        $bulbaBigRegular = $tiles->eq(2);
+        $this->assertStringContainsString(
+            'grand sprite, Normal',
+            $bulbaBigRegular->filter('.credit-tile-type')->text(),
+        );
+        // Distinct source from the small-slot tiles above - guards against
+        // a slot mix-up (e.g. the big-regular tile silently reusing the
+        // small-regular credit).
         $this->assertStringContainsString(
             'PokemonDB',
-            (string) $detailItems->eq(2)->filter('.pokemon-image-credit')->attr('data-bs-title')
+            $bulbaBigRegular->filter('.credit-tile-credit')->text(),
+        );
+        $this->assertStringContainsString(
+            '/big/regular/bulbasaur.png',
+            (string) $bulbaBigRegular->filter('img.credit-tile-image')->attr('src'),
+        );
+
+        $bulbaBigShiny = $tiles->eq(3);
+        $this->assertStringContainsString(
+            'grand sprite, Chromatique',
+            $bulbaBigShiny->filter('.credit-tile-type')->text(),
         );
         $this->assertStringContainsString(
             'Bulbapedia',
-            (string) $detailItems->eq(3)->filter('.pokemon-image-credit')->attr('data-bs-title')
+            $bulbaBigShiny->filter('.credit-tile-credit')->text(),
+        );
+        $this->assertStringContainsString(
+            '/big/shiny/bulbasaur.png',
+            (string) $bulbaBigShiny->filter('img.credit-tile-image')->attr('src'),
         );
 
-        $ivysaur = $items->eq(1);
-        $this->assertStringContainsString('Herbizarre', $ivysaur->text());
-        $this->assertStringContainsString('1', $ivysaur->filter('.credit-detail-toggle')->text());
-        $this->assertCount(1, $ivysaur->filter('.credit-detail-list li'));
+        $ivysaurTile = $tiles->eq(4);
+        $this->assertStringContainsString('Herbizarre', $ivysaurTile->text());
+        $this->assertStringContainsString(
+            'petit sprite, Normal',
+            $ivysaurTile->filter('.credit-tile-type')->text(),
+        );
+        $this->assertStringContainsString(
+            'Serebii',
+            $ivysaurTile->filter('.credit-tile-credit')->text(),
+        );
 
-        $venusaur = $items->eq(2);
-        $this->assertStringContainsString('Florizarre', $venusaur->text());
-        $this->assertCount(0, $venusaur->filter('.credit-detail-toggle'));
-        $this->assertStringContainsString('Aucun crédit', $venusaur->text());
+        $venusaurTile = $tiles->eq(5);
+        $this->assertStringContainsString('Florizarre', $venusaurTile->text());
+        $this->assertCount(0, $venusaurTile->filter('.credit-tile-type'));
+        $this->assertStringContainsString(
+            'Aucun crédit',
+            $venusaurTile->filter('.credit-tile-credit')->text(),
+        );
+    }
+
+    public function testCreditLinkPointsToTheSourceUrl(): void
+    {
+        $client = self::createClient();
+
+        $crawler = $client->request('GET', '/fr/credits');
+
+        $link = $crawler->filter('.credit-tile')->eq(0)->filter('.credit-tile-credit a');
+
+        $this->assertSame('https://github.com/msikma/pokesprite', $link->attr('href'));
+        $this->assertSame('_blank', $link->attr('target'));
     }
 }
