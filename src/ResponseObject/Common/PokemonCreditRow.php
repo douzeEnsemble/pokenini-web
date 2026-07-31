@@ -74,14 +74,4 @@ final class PokemonCreditRow
             || null !== $this->bigRegularCredit
             || null !== $this->bigShinyCredit;
     }
-
-    public function getCreditCount(): int
-    {
-        return count(array_filter([
-            $this->smallRegularCredit,
-            $this->smallShinyCredit,
-            $this->bigRegularCredit,
-            $this->bigShinyCredit,
-        ]));
-    }
 }

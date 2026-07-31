@@ -61,7 +61,6 @@ final class PokemonCreditRowTest extends TestCase
         );
 
         $this->assertTrue($row->hasAnyCredit());
-        $this->assertSame(1, $row->getCreditCount());
     }
 
     /**
@@ -93,24 +92,5 @@ final class PokemonCreditRowTest extends TestCase
         );
 
         $this->assertFalse($row->hasAnyCredit());
-        $this->assertSame(0, $row->getCreditCount());
-    }
-
-    public function testGetCreditCountCountsAllFourSlotsWhenFullyCredited(): void
-    {
-        $credit = new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite');
-
-        $row = new PokemonCreditRow(
-            pokemonSlug: 'bulbasaur',
-            pokemonName: 'Bulbasaur',
-            pokemonFrenchName: 'Bulbizarre',
-            pokemonIcon: 'bulbasaur',
-            smallRegularCredit: $credit,
-            smallShinyCredit: $credit,
-            bigRegularCredit: $credit,
-            bigShinyCredit: $credit,
-        );
-
-        $this->assertSame(4, $row->getCreditCount());
     }
 }
