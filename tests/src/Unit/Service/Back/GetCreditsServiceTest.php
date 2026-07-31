@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
-use App\ResponseObject\Common\CreditGroup;
-use App\ResponseObject\Common\CreditImage;
+use App\ResponseObject\Common\PokemonCreditRow;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetCreditsService;
@@ -28,21 +27,27 @@ final class GetCreditsServiceTest extends AbstractTestBackService
     {
         $json = (new Filesystem())->readFile(self::RESPONSE_CONTENT);
 
-        $credits = [
-            new CreditGroup(
-                credit: 'PokéSprite - https://github.com/msikma/pokesprite',
-                images: [
-                    new CreditImage(
-                        pokemonSlug: 'bulbasaur',
-                        pokemonName: 'Bulbasaur',
-                        pokemonFrenchName: 'Bulbizarre',
-                        pokemonIcon: 'bulbasaur',
-                        size: 'small',
-                        isShiny: false,
-                    ),
-                ],
+        $rows = [
+            new PokemonCreditRow(
+                pokemonSlug: 'bulbasaur',
+                pokemonName: 'Bulbasaur',
+                pokemonFrenchName: 'Bulbizarre',
+                pokemonIcon: 'bulbasaur',
+                smallRegularCredit: null,
+                smallShinyCredit: null,
+                bigRegularCredit: null,
+                bigShinyCredit: null,
             ),
-            new CreditGroup(credit: 'PokemonDB - https://pokemondb.net', images: []),
+            new PokemonCreditRow(
+                pokemonSlug: 'venusaur',
+                pokemonName: 'Venusaur',
+                pokemonFrenchName: 'Florizarre',
+                pokemonIcon: 'venusaur',
+                smallRegularCredit: null,
+                smallShinyCredit: null,
+                bigRegularCredit: null,
+                bigShinyCredit: null,
+            ),
         ];
 
         $serializer = $this->createMock(SerializerInterface::class);
@@ -51,10 +56,10 @@ final class GetCreditsServiceTest extends AbstractTestBackService
             ->method('deserialize')
             ->with(
                 $json,
-                CreditGroup::class.'[]',
+                PokemonCreditRow::class.'[]',
                 'json',
             )
-            ->willReturn($credits)
+            ->willReturn($rows)
         ;
 
         /** @var GetCreditsService $service */
@@ -69,7 +74,7 @@ final class GetCreditsServiceTest extends AbstractTestBackService
         $object = $service->get();
 
         $this->assertCount(2, $object);
-        $this->assertSame('PokéSprite', $object[0]->getName());
+        $this->assertSame('bulbasaur', $object[0]->getPokemonSlug());
     }
 
     #[\Override]
