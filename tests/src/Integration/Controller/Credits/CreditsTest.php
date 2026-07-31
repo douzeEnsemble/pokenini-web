@@ -37,8 +37,32 @@ final class CreditsTest extends WebTestCase
 
         $bulbasaur = $items->eq(0);
         $this->assertStringContainsString('Bulbizarre', $bulbasaur->text());
+        $this->assertStringContainsString(
+            '/regular/bulbasaur.png',
+            $bulbasaur->filter('img.pokemon-icon')->attr('src') ?? ''
+        );
         $this->assertStringContainsString('4', $bulbasaur->filter('.credit-detail-toggle')->text());
-        $this->assertCount(4, $bulbasaur->filter('.credit-detail-list li'));
+        $detailItems = $bulbasaur->filter('.credit-detail-list li');
+        $this->assertCount(4, $detailItems);
+
+        // Each detail <li> must carry the credit for its own slot, not a
+        // neighbour's - guards against the badge being fed the wrong credit.
+        $this->assertStringContainsString(
+            'PokéSprite',
+            (string) $detailItems->eq(0)->filter('.pokemon-image-credit')->attr('data-bs-title')
+        );
+        $this->assertStringContainsString(
+            'PokéSprite',
+            (string) $detailItems->eq(1)->filter('.pokemon-image-credit')->attr('data-bs-title')
+        );
+        $this->assertStringContainsString(
+            'PokemonDB',
+            (string) $detailItems->eq(2)->filter('.pokemon-image-credit')->attr('data-bs-title')
+        );
+        $this->assertStringContainsString(
+            'Bulbapedia',
+            (string) $detailItems->eq(3)->filter('.pokemon-image-credit')->attr('data-bs-title')
+        );
 
         $ivysaur = $items->eq(1);
         $this->assertStringContainsString('Herbizarre', $ivysaur->text());
