@@ -7,6 +7,7 @@ namespace App\Tests\Unit\ResponseObject\Common;
 use App\ResponseObject\Common\PokemonCredit;
 use App\ResponseObject\Common\PokemonCreditRow;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,21 +42,41 @@ final class PokemonCreditRowTest extends TestCase
         $this->assertNull($row->getBigShinyCredit());
     }
 
-    public function testHasAnyCreditIsTrueWhenAtLeastOneSlotIsSet(): void
-    {
+    #[DataProvider('providerExactlyOneSlotSet')]
+    public function testHasAnyCreditIsTrueWhenExactlyOneSlotIsSet(
+        ?PokemonCredit $smallRegularCredit,
+        ?PokemonCredit $smallShinyCredit,
+        ?PokemonCredit $bigRegularCredit,
+        ?PokemonCredit $bigShinyCredit,
+    ): void {
         $row = new PokemonCreditRow(
             pokemonSlug: 'ivysaur',
             pokemonName: 'Ivysaur',
             pokemonFrenchName: 'Herbizarre',
             pokemonIcon: 'ivysaur',
-            smallRegularCredit: new PokemonCredit(credit: 'Serebii - https://serebii.net'),
-            smallShinyCredit: null,
-            bigRegularCredit: null,
-            bigShinyCredit: null,
+            smallRegularCredit: $smallRegularCredit,
+            smallShinyCredit: $smallShinyCredit,
+            bigRegularCredit: $bigRegularCredit,
+            bigShinyCredit: $bigShinyCredit,
         );
 
         $this->assertTrue($row->hasAnyCredit());
         $this->assertSame(1, $row->getCreditCount());
+    }
+
+    /**
+     * @return array<string, array{?PokemonCredit, ?PokemonCredit, ?PokemonCredit, ?PokemonCredit}>
+     */
+    public static function providerExactlyOneSlotSet(): array
+    {
+        $credit = new PokemonCredit(credit: 'Serebii - https://serebii.net');
+
+        return [
+            'smallRegularCredit only' => [$credit, null, null, null],
+            'smallShinyCredit only' => [null, $credit, null, null],
+            'bigRegularCredit only' => [null, null, $credit, null],
+            'bigShinyCredit only' => [null, null, null, $credit],
+        ];
     }
 
     public function testHasAnyCreditIsFalseWhenAllFourSlotsAreNull(): void
