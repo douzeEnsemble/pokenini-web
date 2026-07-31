@@ -2,73 +2,62 @@
 
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
-{% import 'common/Pokemon/_image_macros.html.twig' as imageMacros %}
+
+{% macro tile(imageUrl, pokemonName, typeLabel, credit) %}
+  <div class="credit-tile">
+    <img
+      class="credit-tile-image img-fluid"
+      src="{{ imageUrl }}"
+      alt=""
+      loading="lazy"
+      onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
+    >
+    <div class="credit-tile-name">{{ pokemonName }}</div>
+    {% if typeLabel is not null %}
+      <div class="credit-tile-type">{{ typeLabel }}</div>
+    {% endif %}
+    <div class="credit-tile-credit">
+      {% if credit is null %}
+        {{ 'credit.detail.none'|trans }}
+      {% elseif credit.url is not null %}
+        <a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}</a>
+      {% else %}
+        {{ credit.name }}
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
 
 {% block title %}Pokénini {{ 'title.credits'|trans }}{% endblock title %}
 
 {% block container %}
   <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-12">
       <h1>{{ 'title.credits'|trans }}</h1>
 
-      <ul class="list-group">
+      <div class="credit-grid">
         {% for row in credits %}
           {% set pokemonName = locale is same as('fr') ? row.pokemonFrenchName : row.pokemonName %}
+          {% set regularIconUrl = pokemonIconUrl|format('regular', row.pokemonIcon) %}
 
-          <li class="list-group-item">
-            <img
-              class="pokemon-icon img-fluid me-2"
-              src="{{ pokemonIconUrl|format('regular', row.pokemonIcon) }}"
-              alt=""
-              loading="lazy"
-              onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
-            >
-            <span class="credit-pokemon-name">{{ pokemonName }}</span>
-
-            {% if row.hasAnyCredit %}
-              <button
-                class="btn btn-link p-0 credit-detail-toggle"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#credit-detail-{{ loop.index0 }}"
-                aria-expanded="false"
-                aria-controls="credit-detail-{{ loop.index0 }}"
-              >
-                {{ 'credit.detail.count'|trans({count: row.creditCount}) }}
-              </button>
-
-              <ul class="collapse credit-detail-list list-unstyled" id="credit-detail-{{ loop.index0 }}">
-                {% if row.smallRegularCredit is not null %}
-                  <li>
-                    {{ 'credit.detail.size.small'|trans }}, {{ 'album.icon.title.regular'|trans }}
-                    {{ imageMacros.creditBadge(row.smallRegularCredit) }}
-                  </li>
-                {% endif %}
-                {% if row.smallShinyCredit is not null %}
-                  <li>
-                    {{ 'credit.detail.size.small'|trans }}, {{ 'album.icon.title.shiny'|trans }}
-                    {{ imageMacros.creditBadge(row.smallShinyCredit) }}
-                  </li>
-                {% endif %}
-                {% if row.bigRegularCredit is not null %}
-                  <li>
-                    {{ 'credit.detail.size.big'|trans }}, {{ 'album.icon.title.regular'|trans }}
-                    {{ imageMacros.creditBadge(row.bigRegularCredit) }}
-                  </li>
-                {% endif %}
-                {% if row.bigShinyCredit is not null %}
-                  <li>
-                    {{ 'credit.detail.size.big'|trans }}, {{ 'album.icon.title.shiny'|trans }}
-                    {{ imageMacros.creditBadge(row.bigShinyCredit) }}
-                  </li>
-                {% endif %}
-              </ul>
-            {% else %}
-              <span class="text-muted">{{ 'credit.detail.none'|trans }}</span>
+          {% if row.hasAnyCredit %}
+            {% if row.smallRegularCredit is not null %}
+              {{ _self.tile(regularIconUrl, pokemonName, 'credit.detail.size.small'|trans ~ ', ' ~ 'album.icon.title.regular'|trans, row.smallRegularCredit) }}
             {% endif %}
-          </li>
+            {% if row.smallShinyCredit is not null %}
+              {{ _self.tile(pokemonIconUrl|format('shiny', row.pokemonIcon), pokemonName, 'credit.detail.size.small'|trans ~ ', ' ~ 'album.icon.title.shiny'|trans, row.smallShinyCredit) }}
+            {% endif %}
+            {% if row.bigRegularCredit is not null %}
+              {{ _self.tile(pokemonImageUrl|format('regular', row.pokemonIcon), pokemonName, 'credit.detail.size.big'|trans ~ ', ' ~ 'album.icon.title.regular'|trans, row.bigRegularCredit) }}
+            {% endif %}
+            {% if row.bigShinyCredit is not null %}
+              {{ _self.tile(pokemonImageUrl|format('shiny', row.pokemonIcon), pokemonName, 'credit.detail.size.big'|trans ~ ', ' ~ 'album.icon.title.shiny'|trans, row.bigShinyCredit) }}
+            {% endif %}
+          {% else %}
+            {{ _self.tile(regularIconUrl, pokemonName, null, null) }}
+          {% endif %}
         {% endfor %}
-      </ul>
+      </div>
     </div>
   </div>
 {% endblock container %}
