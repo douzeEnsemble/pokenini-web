@@ -1,62 +1,32 @@
 [
     {
-        "credit": "PokéSprite - https://github.com/msikma/pokesprite",
-        "images": [
-            {
-                "pokemon_slug": "bulbasaur",
-                "pokemon_name": "Bulbasaur",
-                "pokemon_french_name": "Bulbizarre",
-                "pokemon_icon": "bulbasaur",
-                "size": "small",
-                "is_shiny": false
-            },
-            {
-                "pokemon_slug": "ivysaur",
-                "pokemon_name": "Ivysaur",
-                "pokemon_french_name": "Herbizarre",
-                "pokemon_icon": "ivysaur",
-                "size": "big",
-                "is_shiny": true
-            }
-        ]
+        "pokemon_slug": "bulbasaur",
+        "pokemon_name": "Bulbasaur",
+        "pokemon_french_name": "Bulbizarre",
+        "pokemon_icon": "bulbasaur",
+        "small_regular_credit": { "credit": "PokéSprite - https://github.com/msikma/pokesprite" },
+        "small_shiny_credit": { "credit": "PokéSprite - https://github.com/msikma/pokesprite" },
+        "big_regular_credit": { "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur" },
+        "big_shiny_credit": { "credit": "Bulbapedia - https://bulbapedia.bulbagarden.net" }
     },
     {
-        "credit": "Bulbapedia - https://bulbapedia.bulbagarden.net",
-        "images": [
-            {
-                "pokemon_slug": "ivysaur",
-                "pokemon_name": "Ivysaur",
-                "pokemon_french_name": "Herbizarre",
-                "pokemon_icon": "ivysaur",
-                "size": "small",
-                "is_shiny": false
-            }
-        ]
+        "pokemon_slug": "ivysaur",
+        "pokemon_name": "Ivysaur",
+        "pokemon_french_name": "Herbizarre",
+        "pokemon_icon": "ivysaur",
+        "small_regular_credit": { "credit": "Serebii - https://serebii.net" },
+        "small_shiny_credit": null,
+        "big_regular_credit": null,
+        "big_shiny_credit": null
     },
     {
-        "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur",
-        "images": [
-            {
-                "pokemon_slug": "bulbasaur",
-                "pokemon_name": "Bulbasaur",
-                "pokemon_french_name": "Bulbizarre",
-                "pokemon_icon": "bulbasaur",
-                "size": "big",
-                "is_shiny": false
-            }
-        ]
-    },
-    {
-        "credit": "Serebii - https://serebii.net",
-        "images": [
-            {
-                "pokemon_slug": "venusaur",
-                "pokemon_name": "Venusaur",
-                "pokemon_french_name": "Florizarre",
-                "pokemon_icon": "venusaur",
-                "size": "small",
-                "is_shiny": false
-            }
-        ]
+        "pokemon_slug": "venusaur",
+        "pokemon_name": "Venusaur",
+        "pokemon_french_name": "Florizarre",
+        "pokemon_icon": "venusaur",
+        "small_regular_credit": null,
+        "small_shiny_credit": null,
+        "big_regular_credit": null,
+        "big_shiny_credit": null
     }
 ]
