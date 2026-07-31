@@ -83,10 +83,19 @@ html {
     flex-shrink: 0;
 }
 
-.credit-detail-toggle {
-    font-size: .875rem;
+.credit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
 }
-.credit-detail-list {
-    margin-top: .5rem;
-    margin-bottom: 0;
+.credit-tile {
+    text-align: center;
+}
+.credit-tile-image {
+    max-height: 96px;
+    object-fit: contain;
+}
+.credit-tile-type {
+    font-size: .8rem;
+    color: var(--bs-secondary-color);
 }
