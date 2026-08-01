@@ -32,6 +32,8 @@ final class PipelineStatusTest extends WebTestCase
         $this->assertStringContainsString('Mergée', $crawler->outerHtml());
 
         $refreshLink = $crawler->filter('.admin-pipeline-status')->siblings()->filter('a.btn-outline-info')->first();
-        $this->assertStringContainsString('refresh=1', (string) $refreshLink->attr('href'));
+        $href = (string) $refreshLink->attr('href');
+        $this->assertStringContainsString('refresh=1', $href);
+        $this->assertStringContainsString('#trigger_update_images', $href);
     }
 }
