@@ -728,7 +728,7 @@
         "workflow_a": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/1"},
         "icon_pr": {"state": "merged", "url": "https://github.com/douzeEnsemble/pokenini-icon/pull/2"},
         "workflow_b": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/3"},
-        "resources_pr": {"state": "open", "url": "https://github.com/douzeEnsemble/pokenini-resources/pull/4"}
+        "resources_pr": {"state": "closed", "url": "https://github.com/douzeEnsemble/pokenini-resources/pull/4"}
       }
     }
   },
