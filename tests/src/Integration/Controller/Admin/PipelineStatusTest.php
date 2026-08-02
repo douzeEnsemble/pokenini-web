@@ -29,7 +29,10 @@ final class PipelineStatusTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertStringContainsString('Mergée', $crawler->outerHtml());
+        $html = $crawler->outerHtml();
+        $this->assertStringContainsString('Mergée', $html);
+        $this->assertStringContainsString('Fermée', $html);
+        $this->assertStringNotContainsString('admin.pipeline_status.state.closed', $html);
 
         $refreshLink = $crawler->filter('.admin-pipeline-status')->siblings()->filter('a.btn-outline-info')->first();
         $href = (string) $refreshLink->attr('href');

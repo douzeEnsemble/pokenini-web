@@ -381,6 +381,7 @@ admin:
       open: "Ouverte"
       done: "Terminé"
       merged: "Mergée"
+      closed: "Fermée"
       failed: "Échoué"
   actions:
     update_availabilities:

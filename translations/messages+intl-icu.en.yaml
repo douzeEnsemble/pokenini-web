@@ -376,6 +376,7 @@ admin:
       open: "Open"
       done: "Done"
       merged: "Merged"
+      closed: "Closed"
       failed: "Failed"
 
   actions:
