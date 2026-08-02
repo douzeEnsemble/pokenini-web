@@ -33,7 +33,7 @@
           </dd>
         {% endfor %}
       </dl>
-      <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'refresh': 1, '_fragment': 'trigger_update_images'})) }}" class="btn btn-outline-info btn-sm">
+      <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'refresh': 'now'|date('U'), '_fragment': 'trigger_update_images'})) }}" class="btn btn-outline-info btn-sm">
         {{ 'admin.pipeline_status.refresh'|trans }}
       </a>
     </div>

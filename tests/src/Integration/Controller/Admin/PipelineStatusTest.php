@@ -36,7 +36,7 @@ final class PipelineStatusTest extends WebTestCase
 
         $refreshLink = $crawler->filter('.admin-pipeline-status')->siblings()->filter('a.btn-outline-info')->first();
         $href = (string) $refreshLink->attr('href');
-        $this->assertStringContainsString('refresh=1', $href);
+        $this->assertMatchesRegularExpression('/refresh=\d+/', $href);
         $this->assertStringContainsString('#trigger_update_images', $href);
     }
 }
