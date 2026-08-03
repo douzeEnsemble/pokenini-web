@@ -25,6 +25,7 @@
             <span class="badge text-bg-{{ stageColor[item.stage.state]|default('light') }}">
               {{ ('admin.pipeline_status.state.'~item.stage.state)|trans }}
             </span>
+            &nbsp;
             {% if item.stage.url is not empty %}
               <a href="{{ item.stage.url }}" target="_blank" rel="noopener">
                 <i class="bi bi-box-arrow-up-right"></i>
