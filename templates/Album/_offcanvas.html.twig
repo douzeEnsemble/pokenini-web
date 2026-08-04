@@ -102,6 +102,47 @@
       {% endif %}
     </div>
 
+    {% if allowedToEdit %}
+    <div id="album-links-section" data-dex-slug="{{ currentDexSlug }}">
+      <h2 class="h5">
+        <i class="bi bi-link-45deg"></i>
+        {{ 'album.offcanvas.links.title'|trans }}
+        <span class="badge text-bg-info" id="album-links-count" hidden>0</span>
+      </h2>
+      <p class="form-text">
+        {{ 'album.offcanvas.links.description'|trans }}
+      </p>
+
+      <div class="list-group mb-3" id="active-links"></div>
+
+      <p class="form-text mb-1">{{ 'album.offcanvas.links.add.label'|trans }}</p>
+      <div class="dex-picker-grid mb-2" id="dex-picker-grid">
+        {% for item in trainerDexList %}
+          {% set bannerUrl = dexBannerUrl|format(item.dex.slug) %}
+          <button type="button" class="dex-pick-card" data-dex-slug="{{ item.settings.slug }}">
+            <img src="{{ bannerUrl }}" alt="" loading="lazy">
+            <small>{{ locale is same as('fr') ? item.settings.frenchName : item.settings.name }}</small>
+          </button>
+        {% endfor %}
+      </div>
+
+      <div class="btn-group w-100 mb-2" role="group" aria-label="{{ 'album.offcanvas.links.title'|trans }}">
+        <input type="radio" class="btn-check" name="link-direction" id="link-direction-to" value="to" autocomplete="off" checked>
+        <label class="btn btn-outline-secondary btn-sm" for="link-direction-to"><i class="bi bi-arrow-right"></i> {{ 'album.offcanvas.links.direction.to'|trans }}</label>
+
+        <input type="radio" class="btn-check" name="link-direction" id="link-direction-from" value="from" autocomplete="off">
+        <label class="btn btn-outline-secondary btn-sm" for="link-direction-from"><i class="bi bi-arrow-left"></i> {{ 'album.offcanvas.links.direction.from'|trans }}</label>
+
+        <input type="radio" class="btn-check" name="link-direction" id="link-direction-both" value="both" autocomplete="off">
+        <label class="btn btn-outline-secondary btn-sm" for="link-direction-both"><i class="bi bi-arrow-left-right"></i> {{ 'album.offcanvas.links.direction.both'|trans }}</label>
+      </div>
+
+      <button type="button" class="btn btn-primary w-100 mb-3" id="create-link" disabled>
+        <i class="bi bi-plus-lg"></i> {{ 'album.offcanvas.links.create'|trans }}
+      </button>
+    </div>
+    {% endif %}
+
     <div>
       <h2>
         {{ 'album.offcanvas.informations.title'|trans }}
