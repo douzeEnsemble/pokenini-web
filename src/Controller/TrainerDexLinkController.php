@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 
 #[Route('/album_link')]
@@ -18,6 +19,7 @@ final class TrainerDexLinkController extends AbstractController
 {
     public function __construct(
         private readonly TrainerDexLinkService $service,
+        private readonly SerializerInterface $serializer,
     ) {}
 
     #[Route('/{dexSlug}', methods: ['GET'])]
@@ -30,7 +32,9 @@ final class TrainerDexLinkController extends AbstractController
             return new JsonResponse([], $e->getResponse()->getStatusCode());
         }
 
-        return $this->json($links);
+        $json = $this->serializer->serialize($links, 'json');
+
+        return new JsonResponse($json, Response::HTTP_OK, [], true);
     }
 
     #[Route('/{dexSlug}', methods: ['POST'])]
