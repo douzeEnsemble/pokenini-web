@@ -2475,5 +2475,63 @@
     "response": {
       "file": "/var/moco/responses/dex/trainer.json"
     }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album_link/[\\w-]*"
+      },
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": []
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album_link/[\\w-]*"
+      },
+      "method": "post",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "201"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album_link/[\\w-]*"
+      },
+      "method": "delete",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200"
+    }
   }
 ]
