@@ -37,6 +37,29 @@ final class TrainerDexLinkServiceTest extends AbstractTestBackService
         $this->assertSame($links, $service->list('national'));
     }
 
+    public function testListAsJson(): void
+    {
+        $json = '[{"id":"link-1"}]';
+        $links = [new TrainerDexLink('link-1', 'to', 'shiny', 'Shiny Living', 'Vivarium Chromatique')];
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer->expects($this->once())
+            ->method('deserialize')
+            ->with($json, TrainerDexLink::class.'[]', 'json')
+            ->willReturn($links)
+        ;
+        $serializer->expects($this->once())
+            ->method('serialize')
+            ->with($links, 'json')
+            ->willReturn($json)
+        ;
+
+        /** @var TrainerDexLinkService $service */
+        $service = $this->getServiceWithLoggedUser('GET', $json, 'album_link/national', [], $serializer);
+
+        $this->assertSame($json, $service->listAsJson('national'));
+    }
+
     public function testCreate(): void
     {
         /** @var TrainerDexLinkService $service */
