@@ -7,8 +7,10 @@ namespace App\Controller;
 use App\AlbumFilters\FromRequest;
 use App\Exception\NoLoggedUserException;
 use App\ResponseObject\Album\Dex;
+use App\ResponseObject\Album\DexListItem;
 use App\Security\User;
 use App\Security\UserTokenServiceInterface;
+use App\Service\Back\GetTrainerDexListService;
 use App\Service\GetLabelsService;
 use App\Service\GetTrainerPokedexService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +24,7 @@ final class AlbumIndexController extends AbstractController
     public function __construct(
         private readonly GetTrainerPokedexService $getTrainerPokedexService,
         private readonly GetLabelsService $getLabelsService,
+        private readonly GetTrainerDexListService $getTrainerDexListService,
         private readonly UserTokenServiceInterface $userTokenService,
     ) {}
 
@@ -66,6 +69,12 @@ final class AlbumIndexController extends AbstractController
             $loggedTrainerId = null;
         }
 
+        /** @var DexListItem[] $trainerDexList */
+        $trainerDexList = array_values(array_filter(
+            $this->getTrainerDexListService->get(),
+            static fn (DexListItem $item): bool => $item->getSettings()->getSlug() !== $dexSlug,
+        ));
+
         return $this->render('Album/index.html.twig', [
             'currentDexSlug' => $dexSlug,
             'dex' => $dex,
@@ -83,6 +92,7 @@ final class AlbumIndexController extends AbstractController
             'loggedTrainerId' => $loggedTrainerId,
             'requestedTrainerId' => $requestedTrainerId,
             'allowedToEdit' => $this->editDexIsGranted($dex, $requestedTrainerId),
+            'trainerDexList' => $trainerDexList,
         ]);
     }
 

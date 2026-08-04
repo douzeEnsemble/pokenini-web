@@ -149,6 +149,20 @@ album:
       title: Informations
     parameters:
       title: Paramètres
+    links:
+      title: Liens
+      description: Un lien synchronise le statut de capture entre ce dex et un autre de tes dex.
+      add:
+        label: "Ajouter un lien — choisis un de tes autres dex :"
+      direction:
+        to: Vers lui
+        from: Depuis lui
+        both: Les deux
+      create: Créer le lien
+      delete_title: Supprimer ce lien
+      toast:
+        success: "Lien mis à jour avec succès."
+        error: "Une erreur est survenue lors de la mise à jour du lien."
     title: Filtres
     open_distinguish_types: Avancées
   share:

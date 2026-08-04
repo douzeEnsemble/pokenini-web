@@ -143,6 +143,20 @@ album:
       title: Informations
     parameters:
       title: Parameters
+    links:
+      title: Links
+      description: A link synchronizes the catch state between this dex and another of your dexes.
+      add:
+        label: "Add a link — pick one of your other dexes:"
+      direction:
+        to: To it
+        from: From it
+        both: Both
+      create: Create the link
+      delete_title: Delete this link
+      toast:
+        success: Link updated successfully.
+        error: Something went wrong while updating the link.
     filters:
       title: Filters
       open_distinguish_types: More
