@@ -69,11 +69,15 @@ final class AlbumIndexController extends AbstractController
             $loggedTrainerId = null;
         }
 
+        $allowedToEdit = $this->editDexIsGranted($dex, $requestedTrainerId);
+
         /** @var DexListItem[] $trainerDexList */
-        $trainerDexList = array_values(array_filter(
-            $this->getTrainerDexListService->get(),
-            static fn (DexListItem $item): bool => $item->getSettings()->getSlug() !== $dexSlug,
-        ));
+        $trainerDexList = $allowedToEdit
+            ? array_values(array_filter(
+                $this->getTrainerDexListService->get(),
+                static fn (DexListItem $item): bool => $item->getSettings()->getSlug() !== $dexSlug,
+            ))
+            : [];
 
         return $this->render('Album/index.html.twig', [
             'currentDexSlug' => $dexSlug,
@@ -91,7 +95,7 @@ final class AlbumIndexController extends AbstractController
             'trainerId' => !empty($requestedTrainerId) ? $requestedTrainerId : $loggedTrainerId,
             'loggedTrainerId' => $loggedTrainerId,
             'requestedTrainerId' => $requestedTrainerId,
-            'allowedToEdit' => $this->editDexIsGranted($dex, $requestedTrainerId),
+            'allowedToEdit' => $allowedToEdit,
             'trainerDexList' => $trainerDexList,
         ]);
     }
