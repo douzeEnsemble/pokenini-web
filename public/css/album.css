@@ -110,3 +110,54 @@ a.album-case-catch-state-edit-action:hover {
     border-top-left-radius: inherit;
     border-left-width: var(--bs-list-group-border-width);
 }
+
+/* Album offcanvas "Liens" section: wider panel to fit the dex banner picker
+    grid, plus the banner-thumbnail treatment from the design mockup
+    (docs/superpowers/specs/mockups/2026-08-03-pokedex-link/offcanvas-links-section.html). */
+#offcanvas {
+    width: 480px;
+    max-width: 100%;
+}
+.dex-link-row img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: .3rem;
+    background: var(--bs-secondary-bg);
+}
+.dex-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+}
+.dex-pick-card {
+    border: 1px solid var(--bs-border-color);
+    border-radius: .5rem;
+    padding: .35rem;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+}
+.dex-pick-card:hover {
+    border-color: var(--bs-primary);
+}
+.dex-pick-card img {
+    width: 100%;
+    height: 40px;
+    object-fit: cover;
+    border-radius: .3rem;
+    background: var(--bs-secondary-bg);
+}
+.dex-pick-card small {
+    display: block;
+    margin-top: .2rem;
+    font-size: .68rem;
+}
+.dex-pick-card.selected {
+    border-width: 2px;
+    border-color: var(--bs-primary);
+    background: var(--bs-primary-bg-subtle);
+}
+.dex-pick-card[hidden] {
+    display: none;
+}
