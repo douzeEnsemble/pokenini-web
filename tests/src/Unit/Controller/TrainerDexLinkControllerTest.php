@@ -48,14 +48,18 @@ final class TrainerDexLinkControllerTest extends TestCase
 
     public function testListForwardsApiFailureStatusCode(): void
     {
-        $apiResponse = $this->createMock(ResponseInterface::class);
+        $apiResponse = $this->createStub(ResponseInterface::class);
         $apiResponse->method('getStatusCode')->willReturn(404);
 
-        $exception = $this->createMock(HttpExceptionInterface::class);
+        $exception = $this->createStub(HttpExceptionInterface::class);
         $exception->method('getResponse')->willReturn($apiResponse);
 
         $service = $this->createMock(TrainerDexLinkService::class);
-        $service->method('list')->willThrowException($exception);
+        $service->expects($this->once())
+            ->method('list')
+            ->with('national')
+            ->willThrowException($exception)
+        ;
 
         $serializer = $this->createMock(SerializerInterface::class);
         $serializer->expects($this->never())->method('serialize');
@@ -102,14 +106,18 @@ final class TrainerDexLinkControllerTest extends TestCase
 
     public function testCreateForwardsApiFailureStatusCode(): void
     {
-        $apiResponse = $this->createMock(ResponseInterface::class);
+        $apiResponse = $this->createStub(ResponseInterface::class);
         $apiResponse->method('getStatusCode')->willReturn(409);
 
-        $exception = $this->createMock(HttpExceptionInterface::class);
+        $exception = $this->createStub(HttpExceptionInterface::class);
         $exception->method('getResponse')->willReturn($apiResponse);
 
         $service = $this->createMock(TrainerDexLinkService::class);
-        $service->method('create')->willThrowException($exception);
+        $service->expects($this->once())
+            ->method('create')
+            ->with('national', '{"targetDexSlug":"shiny"}')
+            ->willThrowException($exception)
+        ;
 
         $serializer = $this->createMock(SerializerInterface::class);
         $serializer->expects($this->never())->method('serialize');
@@ -138,14 +146,18 @@ final class TrainerDexLinkControllerTest extends TestCase
 
     public function testDeleteForwardsApiFailureStatusCode(): void
     {
-        $apiResponse = $this->createMock(ResponseInterface::class);
+        $apiResponse = $this->createStub(ResponseInterface::class);
         $apiResponse->method('getStatusCode')->willReturn(404);
 
-        $exception = $this->createMock(HttpExceptionInterface::class);
+        $exception = $this->createStub(HttpExceptionInterface::class);
         $exception->method('getResponse')->willReturn($apiResponse);
 
         $service = $this->createMock(TrainerDexLinkService::class);
-        $service->method('delete')->willThrowException($exception);
+        $service->expects($this->once())
+            ->method('delete')
+            ->with('link-1')
+            ->willThrowException($exception)
+        ;
 
         $serializer = $this->createMock(SerializerInterface::class);
         $serializer->expects($this->never())->method('serialize');
