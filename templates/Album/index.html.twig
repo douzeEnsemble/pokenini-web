@@ -80,11 +80,19 @@
     {% if allowedToEdit %}
     <script src="{{ asset('js/album-edit.js') }}"></script>
     <script src="{{ asset('js/trainer_dex.js') }}"></script>
+    <script src="{{ asset('js/album-links.js') }}"></script>
 
     <script>
     const catchStates = JSON.parse('{{ catchStates | map(cs => {name: cs.name, frenchName: cs.frenchName, slug: cs.slug, color: cs.color}) | json_encode | raw }}');
     const locale = '{{ locale }}';
     const dex = '{{ currentDexSlug }}';
+    const dexBannerUrlTemplate = '{{ dexBannerUrl }}';
+    const linksLabels = {
+        directionTo: '{{ 'album.offcanvas.links.direction.to'|trans }}',
+        directionFrom: '{{ 'album.offcanvas.links.direction.from'|trans }}',
+        directionBoth: '{{ 'album.offcanvas.links.direction.both'|trans }}',
+        deleteTitle: '{{ 'album.offcanvas.links.delete_title'|trans }}',
+    };
     </script>
 
     <script>
@@ -94,6 +102,7 @@
         watchToggleShinyMode();
         watchToAdjustSelectSizes();
         watchAttributes();
+        watchAlbumLinks();
     })();
     </script>
     {% endif %}
