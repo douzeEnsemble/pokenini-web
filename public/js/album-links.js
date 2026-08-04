@@ -91,6 +91,15 @@ function renderLinks(dexSlug, links) {
   badge.textContent = links.length;
   badge.hidden = links.length === 0;
 
+  if (links.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "form-text";
+    empty.textContent = linksLabels.empty;
+    container.appendChild(empty);
+
+    return;
+  }
+
   const directionIcons = {
     to: "bi-arrow-right",
     from: "bi-arrow-left",
