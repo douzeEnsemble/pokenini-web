@@ -19,6 +19,11 @@ class TrainerDexLinkService extends AbstractBackService
         return $this->serializer->deserialize($json, TrainerDexLink::class.'[]', 'json');
     }
 
+    public function listAsJson(string $dexSlug): string
+    {
+        return $this->serializer->serialize($this->list($dexSlug), 'json');
+    }
+
     public function create(string $dexSlug, string $body): void
     {
         $this->request('POST', "/album_link/{$dexSlug}", ['body' => $body]);
