@@ -10,6 +10,7 @@ use App\Service\Back\TrainerDexLinkService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -30,11 +31,19 @@ final class TrainerDexLinkControllerTest extends TestCase
             ->willReturn([$link])
         ;
 
-        $controller = new TrainerDexLinkController($service);
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer->expects($this->once())
+            ->method('serialize')
+            ->with([$link], 'json')
+            ->willReturn('[{"id":"link-1"}]')
+        ;
+
+        $controller = new TrainerDexLinkController($service, $serializer);
 
         $response = $controller->list('national');
 
         $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame('[{"id":"link-1"}]', $response->getContent());
     }
 
     public function testListForwardsApiFailureStatusCode(): void
@@ -48,7 +57,10 @@ final class TrainerDexLinkControllerTest extends TestCase
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->method('list')->willThrowException($exception);
 
-        $controller = new TrainerDexLinkController($service);
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer->expects($this->never())->method('serialize');
+
+        $controller = new TrainerDexLinkController($service, $serializer);
 
         $response = $controller->list('national');
 
@@ -60,7 +72,10 @@ final class TrainerDexLinkControllerTest extends TestCase
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->expects($this->never())->method('create');
 
-        $controller = new TrainerDexLinkController($service);
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer->expects($this->never())->method('serialize');
+
+        $controller = new TrainerDexLinkController($service, $serializer);
 
         $response = $controller->create('national', Request::create('test.local', 'POST', content: ''));
 
@@ -75,7 +90,10 @@ final class TrainerDexLinkControllerTest extends TestCase
             ->with('national', '{"targetDexSlug":"shiny"}')
         ;
 
-        $controller = new TrainerDexLinkController($service);
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer->expects($this->never())->method('serialize');
+
+        $controller = new TrainerDexLinkController($service, $serializer);
 
         $response = $controller->create('national', Request::create('test.local', 'POST', content: '{"targetDexSlug":"shiny"}'));
 
@@ -93,7 +111,10 @@ final class TrainerDexLinkControllerTest extends TestCase
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->method('create')->willThrowException($exception);
 
-        $controller = new TrainerDexLinkController($service);
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer->expects($this->never())->method('serialize');
+
+        $controller = new TrainerDexLinkController($service, $serializer);
 
         $response = $controller->create('national', Request::create('test.local', 'POST', content: '{"targetDexSlug":"shiny"}'));
 
@@ -105,7 +126,10 @@ final class TrainerDexLinkControllerTest extends TestCase
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->expects($this->once())->method('delete')->with('link-1');
 
-        $controller = new TrainerDexLinkController($service);
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer->expects($this->never())->method('serialize');
+
+        $controller = new TrainerDexLinkController($service, $serializer);
 
         $response = $controller->delete('link-1');
 
@@ -123,7 +147,10 @@ final class TrainerDexLinkControllerTest extends TestCase
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->method('delete')->willThrowException($exception);
 
-        $controller = new TrainerDexLinkController($service);
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer->expects($this->never())->method('serialize');
+
+        $controller = new TrainerDexLinkController($service, $serializer);
 
         $response = $controller->delete('link-1');
 
