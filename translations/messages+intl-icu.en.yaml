@@ -374,7 +374,7 @@ admin:
     unavailable: "Unavailable"
     web: "Web"
     back: "Back"
-    api: "Api"
+    api: "API"
     resources: "Resources"
   action:
     created_at: "Start at"

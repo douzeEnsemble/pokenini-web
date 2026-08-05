@@ -7,18 +7,11 @@ namespace App\Tests\Unit\Service\Back;
 use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetVersionsService;
+use App\Tests\Utils\RealSerializerFactory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\TransportException;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
-use Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -57,7 +50,14 @@ final class GetVersionsServiceTest extends TestCase
         $this->assertNull($versions->api);
     }
 
-    public function testGetReturnsNullFieldsOnTypeError(): void
+    /**
+     * Reproduces the real production failure mode: the container-wired serializer (with a
+     * PropertyInfo type extractor, as configured in config/packages/serializer.yaml) throws
+     * Symfony\Component\Serializer\Exception\NotNormalizableValueException — not \TypeError —
+     * when a field's JSON type doesn't match the declared PHP type. This was verified by
+     * booting the real test kernel and deserializing the same malformed body.
+     */
+    public function testGetReturnsNullFieldsOnNotNormalizableValue(): void
     {
         $versions = $this->getServiceWithResponseBody('{"back":{"x":1},"api":"1.0"}')->get();
 
@@ -90,21 +90,7 @@ final class GetVersionsServiceTest extends TestCase
             'https://back.domain',
             './resources/certificates/cacert.pem',
             $userTokenService,
-            $this->buildSerializer(),
-        );
-    }
-
-    private function buildSerializer(): SerializerInterface
-    {
-        $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader());
-        $nameConverter = new MetadataAwareNameConverter($classMetadataFactory);
-
-        return new Serializer(
-            [
-                new DateTimeNormalizer(),
-                new ObjectNormalizer($classMetadataFactory, $nameConverter),
-            ],
-            [new JsonEncoder()]
+            RealSerializerFactory::create(),
         );
     }
 }

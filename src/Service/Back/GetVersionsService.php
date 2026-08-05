@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Service\Back;
 
 use App\ResponseObject\Versions;
-use Symfony\Component\Serializer\Exception\NotEncodableValueException;
-use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
+use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface as HttpExceptionInterface;
 
 class GetVersionsService extends AbstractBackService
 {
@@ -17,7 +17,7 @@ class GetVersionsService extends AbstractBackService
 
             /** @var Versions */
             return $this->serializer->deserialize($content, Versions::class, 'json');
-        } catch (ExceptionInterface|NotEncodableValueException|\TypeError) {
+        } catch (HttpExceptionInterface|SerializerExceptionInterface|\TypeError) {
             return new Versions(null, null);
         }
     }
