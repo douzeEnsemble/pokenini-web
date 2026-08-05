@@ -39,12 +39,19 @@ final class GetResourcesVersionServiceTest extends TestCase
 
     public function testGetReturnsNullOnTransportError(): void
     {
-        $client = $this->createStub(HttpClientInterface::class);
-        $client->method('request')->willThrowException(
-            $this->createStub(TransportException::class)
-        );
+        $exception = $this->createStub(TransportException::class);
 
-        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
+        $client = $this->createStub(HttpClientInterface::class);
+        $client->method('request')->willThrowException($exception);
+
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->once())
+            ->method('warning')
+            ->with('Failed to fetch resources version', ['exception' => $exception])
+        ;
+
+        $service = new GetResourcesVersionService($logger, $client, 'https://resources.domain/resources/metadata/version');
 
         $this->assertNull($service->get());
     }
