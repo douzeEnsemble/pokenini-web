@@ -123,7 +123,7 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, $expectedPokemonCount, '.album-case');
 
         $this->assertEquals(
-            'https://icon.pokenini.fr/small/regular/bulbasaur.png',
+            'https://icon.pokenini.fr/pokemon/small/regular/bulbasaur.png',
             $crawler->filter('#bulbasaur .album-case-image img')->attr('src')
         );
 
