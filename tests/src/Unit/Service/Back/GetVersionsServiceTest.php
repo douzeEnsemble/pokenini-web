@@ -46,12 +46,20 @@ final class GetVersionsServiceTest extends TestCase
 
     public function testGetReturnsNullFieldsOnTransportError(): void
     {
-        $client = $this->createMock(HttpClientInterface::class);
+        $client = $this->createStub(HttpClientInterface::class);
         $client->method('request')->willThrowException(
-            $this->createMock(TransportException::class)
+            $this->createStub(TransportException::class)
         );
 
         $versions = $this->buildService($client)->get();
+
+        $this->assertNull($versions->back);
+        $this->assertNull($versions->api);
+    }
+
+    public function testGetReturnsNullFieldsOnTypeError(): void
+    {
+        $versions = $this->getServiceWithResponseBody('{"back":{"x":1},"api":"1.0"}')->get();
 
         $this->assertNull($versions->back);
         $this->assertNull($versions->api);
@@ -62,7 +70,7 @@ final class GetVersionsServiceTest extends TestCase
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getContent')->willReturn($responseBody);
 
-        $client = $this->createMock(HttpClientInterface::class);
+        $client = $this->createStub(HttpClientInterface::class);
         $client->method('request')->willReturn($response);
 
         return $this->buildService($client);
