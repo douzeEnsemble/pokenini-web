@@ -152,9 +152,8 @@ album:
     links:
       title: Liens
       description: Un lien synchronise le statut de capture entre ce dex et un autre de tes dex.
-      empty: Aucun lien pour l'instant.
       add:
-        label: "Ajouter un lien — choisis un de tes autres dex :"
+        label: "Tes autres dex — choisis-en un pour créer ou gérer un lien :"
       direction:
         to: Vers lui
         from: Depuis lui

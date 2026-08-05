@@ -146,9 +146,8 @@ album:
     links:
       title: Links
       description: A link synchronizes the catch state between this dex and another of your dexes.
-      empty: No links yet.
       add:
-        label: "Add a link — pick one of your other dexes:"
+        label: "Your other dexes — pick one to create or manage a link:"
       direction:
         to: To it
         from: From it

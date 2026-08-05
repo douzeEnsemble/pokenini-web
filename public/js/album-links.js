@@ -14,14 +14,28 @@ function watchAlbumLinks() {
       loadLinks(dexSlug);
     });
 
+  function selectCard(card) {
+    if (card.classList.contains("linked")) {
+      return;
+    }
+
+    document.querySelectorAll(".dex-pick-card").forEach(function (c) {
+      c.classList.remove("selected");
+    });
+    card.classList.add("selected");
+    selectedTargetDexSlug = card.dataset.dexSlug;
+    document.getElementById("create-link").disabled = false;
+  }
+
   document.querySelectorAll(".dex-pick-card").forEach(function (card) {
     card.addEventListener("click", function () {
-      document.querySelectorAll(".dex-pick-card").forEach(function (c) {
-        c.classList.remove("selected");
-      });
-      card.classList.add("selected");
-      selectedTargetDexSlug = card.dataset.dexSlug;
-      document.getElementById("create-link").disabled = false;
+      selectCard(card);
+    });
+    card.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectCard(card);
+      }
     });
   });
 
@@ -74,8 +88,7 @@ function loadLinks(dexSlug) {
       return response.json();
     })
     .then(function (links) {
-      renderLinks(dexSlug, links);
-      filterPickerGrid(links);
+      renderPickerGrid(dexSlug, links);
     })
     .catch(function (error) {
       console.error(error);
@@ -83,22 +96,15 @@ function loadLinks(dexSlug) {
     });
 }
 
-function renderLinks(dexSlug, links) {
-  const container = document.getElementById("active-links");
-  container.innerHTML = "";
-
+function renderPickerGrid(dexSlug, links) {
   const badge = document.getElementById("album-links-count");
   badge.textContent = links.length;
   badge.hidden = links.length === 0;
 
-  if (links.length === 0) {
-    const empty = document.createElement("p");
-    empty.className = "form-text";
-    empty.textContent = linksLabels.empty;
-    container.appendChild(empty);
-
-    return;
-  }
+  const linkedBySlug = {};
+  links.forEach(function (link) {
+    linkedBySlug[link.target_dex_slug] = link;
+  });
 
   const directionIcons = {
     to: "bi-arrow-right",
@@ -111,58 +117,50 @@ function renderLinks(dexSlug, links) {
     both: linksLabels.directionBoth,
   };
 
-  links.forEach(function (link) {
-    container.appendChild(
-      buildLinkRow(dexSlug, link, directionIcons, directionLabels)
-    );
-  });
-}
-
-function buildLinkRow(dexSlug, link, directionIcons, directionLabels) {
-  const row = document.createElement("div");
-  row.className = "list-group-item d-flex align-items-center gap-2 dex-link-row";
-
-  const img = document.createElement("img");
-  img.src = dexBannerUrlTemplate.replace("%s", link.target_dex_slug);
-  img.alt = "";
-  row.appendChild(img);
-
-  const info = document.createElement("div");
-  info.className = "flex-fill";
-
-  const name = document.createElement("div");
-  name.className = "fw-bold small";
-  name.textContent = locale === "fr" ? link.target_french_name : link.target_name;
-  info.appendChild(name);
-
-  const direction = document.createElement("div");
-  direction.className = "form-text";
-  direction.innerHTML = '<i class="bi ' + directionIcons[link.direction] + '"></i> ';
-  direction.append(directionLabels[link.direction]);
-  info.appendChild(direction);
-
-  row.appendChild(info);
-
-  const deleteButton = document.createElement("button");
-  deleteButton.type = "button";
-  deleteButton.className = "btn btn-sm btn-outline-danger";
-  deleteButton.title = linksLabels.deleteTitle;
-  deleteButton.innerHTML = '<i class="bi bi-trash"></i>';
-  deleteButton.addEventListener("click", function () {
-    deleteLink(dexSlug, link.id);
-  });
-  row.appendChild(deleteButton);
-
-  return row;
-}
-
-function filterPickerGrid(links) {
-  const linkedSlugs = links.map(function (link) {
-    return link.target_dex_slug;
-  });
-
   document.querySelectorAll(".dex-pick-card").forEach(function (card) {
-    card.hidden = linkedSlugs.indexOf(card.dataset.dexSlug) !== -1;
+    card.classList.remove("selected");
+
+    const previousUnlinkButton = card.querySelector(".unlink-btn");
+    if (previousUnlinkButton) {
+      previousUnlinkButton.remove();
+    }
+
+    const previousChip = card.querySelector(".chip-under");
+    if (previousChip) {
+      previousChip.remove();
+    }
+
+    const link = linkedBySlug[card.dataset.dexSlug];
+
+    if (!link) {
+      card.classList.remove("linked");
+      delete card.dataset.linkId;
+
+      return;
+    }
+
+    card.classList.add("linked");
+    card.dataset.linkId = link.id;
+
+    const unlinkButton = document.createElement("button");
+    unlinkButton.type = "button";
+    unlinkButton.className = "unlink-btn";
+    unlinkButton.title = linksLabels.deleteTitle;
+    unlinkButton.innerHTML = '<i class="bi bi-x-lg"></i>';
+    unlinkButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+      deleteLink(dexSlug, link.id);
+    });
+    card.appendChild(unlinkButton);
+
+    const chip = document.createElement("span");
+    chip.className = "chip-under";
+    chip.innerHTML =
+      '<i class="bi ' +
+      directionIcons[link.direction] +
+      '"></i> ' +
+      directionLabels[link.direction];
+    card.querySelector("small").appendChild(chip);
   });
 }
 

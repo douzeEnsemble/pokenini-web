@@ -113,16 +113,14 @@
         {{ 'album.offcanvas.links.description'|trans }}
       </p>
 
-      <div class="list-group mb-3" id="active-links"></div>
-
       <p class="form-text mb-1">{{ 'album.offcanvas.links.add.label'|trans }}</p>
       <div class="dex-picker-grid mb-2" id="dex-picker-grid">
         {% for item in trainerDexList %}
           {% set bannerUrl = dexBannerUrl|format(item.dex.slug) %}
-          <button type="button" class="dex-pick-card" data-dex-slug="{{ item.settings.slug }}">
+          <div class="dex-pick-card" data-dex-slug="{{ item.settings.slug }}" role="button" tabindex="0">
             <img src="{{ bannerUrl }}" alt="" loading="lazy">
-            <small>{{ locale is same as('fr') ? item.settings.frenchName : item.settings.name }}</small>
-          </button>
+            <small><span class="pick-name">{{ locale is same as('fr') ? item.settings.frenchName : item.settings.name }}</span></small>
+          </div>
         {% endfor %}
       </div>
 
