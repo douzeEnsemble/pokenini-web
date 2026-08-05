@@ -1,6 +1,14 @@
 [
   {
     "request": {
+      "uri": "/resources/metadata/version"
+    },
+    "response": {
+      "text": "1.9.7"
+    }
+  },
+  {
+    "request": {
       "uri": "/labels",
       "headers": {
         "accept": "application/json"
