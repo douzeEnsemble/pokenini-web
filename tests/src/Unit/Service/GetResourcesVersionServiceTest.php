@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Service;
 use App\Service\GetResourcesVersionService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\TransportException;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -31,19 +32,19 @@ final class GetResourcesVersionServiceTest extends TestCase
             ->willReturn($response)
         ;
 
-        $service = new GetResourcesVersionService($client, 'https://resources.domain/resources/metadata/version');
+        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
 
         $this->assertSame('1.9.7', $service->get());
     }
 
     public function testGetReturnsNullOnTransportError(): void
     {
-        $client = $this->createMock(HttpClientInterface::class);
+        $client = $this->createStub(HttpClientInterface::class);
         $client->method('request')->willThrowException(
-            $this->createMock(TransportException::class)
+            $this->createStub(TransportException::class)
         );
 
-        $service = new GetResourcesVersionService($client, 'https://resources.domain/resources/metadata/version');
+        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
 
         $this->assertNull($service->get());
     }
@@ -57,10 +58,10 @@ final class GetResourcesVersionServiceTest extends TestCase
             ->willThrowException($this->createStub(ClientExceptionInterface::class))
         ;
 
-        $client = $this->createMock(HttpClientInterface::class);
+        $client = $this->createStub(HttpClientInterface::class);
         $client->method('request')->willReturn($response);
 
-        $service = new GetResourcesVersionService($client, 'https://resources.domain/resources/metadata/version');
+        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
 
         $this->assertNull($service->get());
     }
