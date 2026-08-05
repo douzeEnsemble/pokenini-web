@@ -47,7 +47,7 @@ final class CreditsTest extends WebTestCase
             $bulbaSmallRegular->filter('.credit-tile-credit')->text(),
         );
         $this->assertStringContainsString(
-            '/small/regular/bulbasaur.png',
+            '/pokemon/small/regular/bulbasaur.png',
             (string) $bulbaSmallRegular->filter('img.credit-tile-image')->attr('src'),
         );
 
@@ -61,7 +61,7 @@ final class CreditsTest extends WebTestCase
             $bulbaSmallShiny->filter('.credit-tile-credit')->text(),
         );
         $this->assertStringContainsString(
-            '/small/shiny/bulbasaur.png',
+            '/pokemon/small/shiny/bulbasaur.png',
             (string) $bulbaSmallShiny->filter('img.credit-tile-image')->attr('src'),
         );
 
@@ -78,7 +78,7 @@ final class CreditsTest extends WebTestCase
             $bulbaBigRegular->filter('.credit-tile-credit')->text(),
         );
         $this->assertStringContainsString(
-            '/big/regular/bulbasaur.png',
+            '/pokemon/big/regular/bulbasaur.png',
             (string) $bulbaBigRegular->filter('img.credit-tile-image')->attr('src'),
         );
 
@@ -92,7 +92,7 @@ final class CreditsTest extends WebTestCase
             $bulbaBigShiny->filter('.credit-tile-credit')->text(),
         );
         $this->assertStringContainsString(
-            '/big/shiny/bulbasaur.png',
+            '/pokemon/big/shiny/bulbasaur.png',
             (string) $bulbaBigShiny->filter('img.credit-tile-image')->attr('src'),
         );
 
