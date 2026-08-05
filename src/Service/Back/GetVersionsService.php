@@ -17,7 +17,7 @@ class GetVersionsService extends AbstractBackService
 
             /** @var Versions */
             return $this->serializer->deserialize($content, Versions::class, 'json');
-        } catch (HttpExceptionInterface|SerializerExceptionInterface|\TypeError) {
+        } catch (HttpExceptionInterface|SerializerExceptionInterface) {
             return new Versions(null, null);
         }
     }
