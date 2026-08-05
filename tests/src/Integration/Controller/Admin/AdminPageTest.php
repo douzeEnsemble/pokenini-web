@@ -84,7 +84,7 @@ final class AdminPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, 'h2');
         $this->assertCountFilter($crawler, 17, 'h3');
 
-        $this->assertCountFilter($crawler, 6, '#admin-actions-tab > .nav-item > .nav-link');
+        $this->assertCountFilter($crawler, 7, '#admin-actions-tab > .nav-item > .nav-link');
         $this->assertCountFilter($crawler, 1, '#admin-actions-tab .nav-link.active');
         $this->assertCountFilter($crawler, 5, '.tab-content > .tab-pane');
         $this->assertCountFilter($crawler, 1, '.tab-content > .tab-pane.show.active');

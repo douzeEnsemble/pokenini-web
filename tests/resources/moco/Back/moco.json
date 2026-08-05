@@ -743,6 +743,29 @@
   {
     "request": {
       "uri": {
+        "match": "/istration/version"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "back": "1.9.9",
+        "api": "1.9.8"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/istration/reports"
       },
       "method": "get",
