@@ -116,9 +116,9 @@
       <p class="form-text mb-1">{{ 'album.offcanvas.links.add.label'|trans }}</p>
       <div class="dex-picker-grid mb-2" id="dex-picker-grid">
         {% for item in trainerDexList %}
-          {% set bannerUrl = dexBannerUrl|format(item.dex.slug) %}
+          {% set thumbUrl = dexThumbUrl|format(item.dex.slug) %}
           <div class="dex-pick-card" data-dex-slug="{{ item.settings.slug }}" role="button" tabindex="0">
-            <img src="{{ bannerUrl }}" alt="" loading="lazy">
+            <img src="{{ thumbUrl }}" alt="" loading="lazy">
             <small><span class="pick-name">{{ locale is same as('fr') ? item.settings.frenchName : item.settings.name }}</span></small>
           </div>
         {% endfor %}

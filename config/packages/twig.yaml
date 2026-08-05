@@ -6,6 +6,7 @@ twig:
         pokemonImageUrl: '%env(POKEMON_IMAGE_URL)%'
         pokemonTypeIconUrl: '%env(POKEMON_TYPE_ICON_URL)%'
         dexBannerUrl: '%env(DEX_BANNER_URL)%'
+        dexThumbUrl: '%env(DEX_THUMB_URL)%'
         matomoUrl: '%env(MATOMO_URL)%'
         matomoSiteId: '%env(MATOMO_SITE_ID)%'
 
