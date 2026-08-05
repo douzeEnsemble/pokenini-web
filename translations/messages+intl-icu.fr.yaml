@@ -32,6 +32,7 @@ title:
   admin: "Administration"
   admin_actions: "Données et caches"
   admin_reports: "Rapports"
+  admin_versions: "Versions"
   box: "Boite"
   empty: " "
   connect: "Connexion"
@@ -372,6 +373,14 @@ admin:
       color: "Couleur"
       part: "%"
       toggle: ""
+  versions:
+    brick: "Brique"
+    version: "Version"
+    unavailable: "Indisponible"
+    web: "Web"
+    back: "Back"
+    api: "Api"
+    resources: "Resources"
   action:
     created_at: "Démarré le"
     done_at: "Terminé le"

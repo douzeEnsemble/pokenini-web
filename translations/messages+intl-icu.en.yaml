@@ -32,6 +32,7 @@ title:
   admin: "Backoffice"
   admin_actions: "Data and caches"
   admin_reports: "Reporting"
+  admin_versions: "Versions"
   box: "Box"
   empty: " "
   connect: "Connection"
@@ -367,6 +368,14 @@ admin:
       color: "Color"
       part: "%"
       toggle: ""
+  versions:
+    brick: "Brick"
+    version: "Version"
+    unavailable: "Unavailable"
+    web: "Web"
+    back: "Back"
+    api: "Api"
+    resources: "Resources"
   action:
     created_at: "Start at"
     done_at: "End at"

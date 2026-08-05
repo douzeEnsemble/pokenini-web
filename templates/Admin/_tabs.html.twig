@@ -34,4 +34,9 @@
       {{ 'title.admin_reports'|trans }}
     </a>
   </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link{{ 'versions' == active ? ' active' : '' }}" href="{{ path('app_admin_versions') }}">
+      {{ 'title.admin_versions'|trans }}
+    </a>
+  </li>
 </ul>

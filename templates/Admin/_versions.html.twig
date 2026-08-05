@@ -1,0 +1,28 @@
+{% set bricks = [
+  {'key': 'web', 'label': 'admin.versions.web', 'version': versionsOverview.web},
+  {'key': 'back', 'label': 'admin.versions.back', 'version': versionsOverview.back},
+  {'key': 'api', 'label': 'admin.versions.api', 'version': versionsOverview.api},
+  {'key': 'resources', 'label': 'admin.versions.resources', 'version': versionsOverview.resources},
+] %}
+<table class="table" id="versions-table">
+  <thead>
+    <tr>
+      <th>{{ 'admin.versions.brick'|trans }}</th>
+      <th>{{ 'admin.versions.version'|trans }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for brick in bricks %}
+      <tr id="versions-row-{{ brick.key }}">
+        <td>{{ brick.label|trans }}</td>
+        <td>
+          {% if brick.version is not null %}
+            {{ brick.version }}
+          {% else %}
+            <span class="badge text-bg-secondary">{{ 'admin.versions.unavailable'|trans }}</span>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
