@@ -144,10 +144,16 @@ POKEMON_ICON_URL='http://localhost:8082/pokemon/small/%1$s/%2$s.webp'
 POKEMON_IMAGE_URL='http://localhost:8082/pokemon/big/%1$s/%2$s.webp'
 ```
 
-- [ ] **Step 9: Commit**
+- [ ] **Step 9: Commit only the git-tracked env files**
+
+`.env`, `.env.dev.local`, and `.env.test.local` are gitignored local-override
+files (see `.gitignore:16-19`) — they should be edited on disk (done in
+Steps 1 and 3 above) so local dev keeps working, but never force-added to
+git. Only `.env.dev`, `.env.test`, `.env.int`, `.env.prod`, `.env.ci` are
+tracked and get committed:
 
 ```bash
-git add .env .env.dev .env.dev.local .env.test .env.test.local .env.int .env.prod .env.ci
+git add .env.dev .env.test .env.int .env.prod .env.ci
 git commit -m "$(cat <<'EOF'
 Update image URL env vars for pokenini-icon's images/ reorg
 
