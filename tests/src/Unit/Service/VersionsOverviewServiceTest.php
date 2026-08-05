@@ -20,13 +20,13 @@ final class VersionsOverviewServiceTest extends TestCase
 {
     public function testGetCombinesAllFourVersions(): void
     {
-        $appVersionService = $this->createMock(AppVersionService::class);
+        $appVersionService = $this->createStub(AppVersionService::class);
         $appVersionService->method('getVersion')->willReturn('1.2.12');
 
-        $getVersionsService = $this->createMock(GetVersionsService::class);
+        $getVersionsService = $this->createStub(GetVersionsService::class);
         $getVersionsService->method('get')->willReturn(new Versions('1.9.9', '1.9.8'));
 
-        $getResourcesVersionService = $this->createMock(GetResourcesVersionService::class);
+        $getResourcesVersionService = $this->createStub(GetResourcesVersionService::class);
         $getResourcesVersionService->method('get')->willReturn('1.9.7');
 
         $service = new VersionsOverviewService($appVersionService, $getVersionsService, $getResourcesVersionService);
@@ -41,13 +41,13 @@ final class VersionsOverviewServiceTest extends TestCase
 
     public function testGetHandlesUnavailableBricks(): void
     {
-        $appVersionService = $this->createMock(AppVersionService::class);
+        $appVersionService = $this->createStub(AppVersionService::class);
         $appVersionService->method('getVersion')->willReturn('1.2.12');
 
-        $getVersionsService = $this->createMock(GetVersionsService::class);
+        $getVersionsService = $this->createStub(GetVersionsService::class);
         $getVersionsService->method('get')->willReturn(new Versions(null, null));
 
-        $getResourcesVersionService = $this->createMock(GetResourcesVersionService::class);
+        $getResourcesVersionService = $this->createStub(GetResourcesVersionService::class);
         $getResourcesVersionService->method('get')->willReturn(null);
 
         $service = new VersionsOverviewService($appVersionService, $getVersionsService, $getResourcesVersionService);
