@@ -56,12 +56,12 @@ final class AlbumDexListTest extends WebTestCase
         $firstAlbum = $crawler->filter('.dex-item')->first();
         $this->assertEquals('Épée, Bouclier 100%', $firstAlbum->text());
         $this->assertEquals('/fr/album/swordshield', $firstAlbum->filter('a')->attr('href'));
-        $this->assertEquals('https://icon.pokenini.fr/banner/swordshield.png', $firstAlbum->filter('img')->attr('src'));
+        $this->assertEquals('https://icon.pokenini.fr/dex/large/swordshield.png', $firstAlbum->filter('img')->attr('src'));
 
         $secondAlbum = $crawler->filter('.dex-item')->eq(2);
         $this->assertEquals('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
-        $this->assertEquals('https://icon.pokenini.fr/banner/homeshiny.png', $secondAlbum->filter('img')->attr('src'));
+        $this->assertEquals('https://icon.pokenini.fr/dex/large/homeshiny.png', $secondAlbum->filter('img')->attr('src'));
 
         $this->assertCountFilter($crawler, 5, '.dex-item .progress');
         $this->assertCountFilter($crawler, 8, '.dex-item .progress-bar');
@@ -313,7 +313,7 @@ final class AlbumDexListTest extends WebTestCase
         // base dex and is not unique per trainer; only settings.slug ("home-shiny-custom")
         // uniquely identifies this trainer_dex row, so navigation must use it.
         $this->assertEquals('/fr/album/home-shiny-custom', $album->filter('a')->attr('href'));
-        $this->assertEquals('https://icon.pokenini.fr/banner/homeshiny.png', $album->filter('img')->attr('src'));
+        $this->assertEquals('https://icon.pokenini.fr/dex/large/homeshiny.png', $album->filter('img')->attr('src'));
 
         $client->request('GET', '/fr/album/home-shiny-custom');
         self::assertTrue($client->getResponse()->isSuccessful());
