@@ -37,19 +37,19 @@ final class AdminVersionsTest extends WebTestCase
         $expectedWebUpdatedAt = (new \DateTimeImmutable())
             ->setTimestamp((int) filemtime($versionFilePath))
             ->setTimezone(new \DateTimeZone('Europe/Paris'))
-            ->format('d/m/Y \\à H:i')
+            ->format('d/m/Y \à H:i')
         ;
         $expectedBackUpdatedAt = (new \DateTimeImmutable('2026-08-04T21:47:00+00:00'))
             ->setTimezone(new \DateTimeZone('Europe/Paris'))
-            ->format('d/m/Y \\à H:i')
+            ->format('d/m/Y \à H:i')
         ;
         $expectedApiUpdatedAt = (new \DateTimeImmutable('2026-01-01T00:00:00+00:00'))
             ->setTimezone(new \DateTimeZone('Europe/Paris'))
-            ->format('d/m/Y \\à H:i')
+            ->format('d/m/Y \à H:i')
         ;
         $expectedResourcesUpdatedAt = (new \DateTimeImmutable('Wed, 05 Aug 2026 09:12:00 GMT'))
             ->setTimezone(new \DateTimeZone('Europe/Paris'))
-            ->format('d/m/Y \\à H:i')
+            ->format('d/m/Y \à H:i')
         ;
 
         $this->assertSame($expectedWebVersion, trim($crawler->filter('#versions-row-web .versions-version')->text()));

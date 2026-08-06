@@ -20,14 +20,24 @@ final class AppVersionServiceTest extends TestCase
 {
     public function testGetVersionReturnsFileContent(): void
     {
-        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
+        file_put_contents(self::getDir().'/resources/metadata/version', '1.2.12');
+
+        $service = new AppVersionService(
+            self::getDir(),
+            new ArrayAdapter(),
+            new Filesystem(),
+        );
 
         $this->assertSame('1.2.12', $service->getVersion());
     }
 
     public function testGetVersionReturnsFallbackForMissingFile(): void
     {
-        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
+        $service = new AppVersionService(
+            self::getDir(),
+            new ArrayAdapter(),
+            new Filesystem(),
+        );
 
         $this->assertSame('0.0.toto', $service->getVersion('non_existent_file'));
     }
@@ -155,25 +165,35 @@ final class AppVersionServiceTest extends TestCase
             })
         ;
 
-        $service = new AppVersionService(dirname(__DIR__, 4), $cache, new Filesystem());
+        $service = new AppVersionService(self::getDir(), $cache, new Filesystem());
 
         $this->assertSame('1.2.12', $service->getVersion());
     }
 
     public function testGetUpdatedAtReturnsFileMtime(): void
     {
-        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
+        file_put_contents(self::getDir().'/resources/metadata/version', '1.2.12');
+        $expectedMtime = filemtime(self::getDir().'/resources/metadata/version');
 
-        $versionFilePath = dirname(__DIR__, 4).'/resources/metadata/version';
-        $expectedMtime = filemtime($versionFilePath);
+        $service = new AppVersionService(
+            self::getDir(),
+            new ArrayAdapter(),
+            new Filesystem(),
+        );
 
+        $this->assertSame('1.2.12', $service->getVersion());
         $this->assertSame($expectedMtime, $service->getUpdatedAt()?->getTimestamp());
     }
 
     public function testGetUpdatedAtReturnsNullForMissingFile(): void
     {
-        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
+        $service = new AppVersionService(self::getDir(), new ArrayAdapter(), new Filesystem());
 
         $this->assertNull($service->getUpdatedAt('non_existent_file'));
+    }
+
+    private static function getDir(): string
+    {
+        return dirname(__DIR__, 4);
     }
 }
