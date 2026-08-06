@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
+use App\ResponseObject\BrickVersion;
+
 final class VersionsOverview
 {
     public function __construct(
-        public readonly ?string $web,
-        public readonly ?string $back,
-        public readonly ?string $api,
-        public readonly ?string $resources,
+        public readonly BrickVersion $web,
+        public readonly BrickVersion $back,
+        public readonly BrickVersion $api,
+        public readonly BrickVersion $resources,
     ) {}
 }

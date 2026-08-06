@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\DTO\VersionsOverview;
+use App\ResponseObject\BrickVersion;
 use App\Service\Back\GetVersionsService;
 
 class VersionsOverviewService
@@ -20,7 +21,7 @@ class VersionsOverviewService
         $versions = $this->getVersionsService->get();
 
         return new VersionsOverview(
-            web: $this->appVersionService->getVersion(),
+            web: new BrickVersion($this->appVersionService->getVersion(), $this->appVersionService->getUpdatedAt()),
             back: $versions->back,
             api: $versions->api,
             resources: $this->getResourcesVersionService->get(),

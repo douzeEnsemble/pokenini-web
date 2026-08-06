@@ -19,10 +19,11 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(GetResourcesVersionService::class)]
 final class GetResourcesVersionServiceTest extends TestCase
 {
-    public function testGetReturnsTrimmedVersion(): void
+    public function testGetReturnsVersionAndUpdatedAtFromLastModifiedHeader(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getContent')->willReturn("1.9.7\n");
+        $response->method('getHeaders')->willReturn(['last-modified' => ['Wed, 05 Aug 2026 09:12:00 GMT']]);
 
         $client = $this->createMock(HttpClientInterface::class);
         $client
@@ -34,10 +35,30 @@ final class GetResourcesVersionServiceTest extends TestCase
 
         $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
 
-        $this->assertSame('1.9.7', $service->get());
+        $brickVersion = $service->get();
+
+        $this->assertSame('1.9.7', $brickVersion->version);
+        $this->assertSame('2026-08-05T09:12:00+00:00', $brickVersion->updatedAt?->format(\DateTimeInterface::ATOM));
     }
 
-    public function testGetReturnsNullOnTransportError(): void
+    public function testGetReturnsNullUpdatedAtWhenLastModifiedHeaderAbsent(): void
+    {
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getContent')->willReturn('1.9.7');
+        $response->method('getHeaders')->willReturn([]);
+
+        $client = $this->createMock(HttpClientInterface::class);
+        $client->method('request')->willReturn($response);
+
+        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
+
+        $brickVersion = $service->get();
+
+        $this->assertSame('1.9.7', $brickVersion->version);
+        $this->assertNull($brickVersion->updatedAt);
+    }
+
+    public function testGetReturnsNullBrickVersionOnTransportError(): void
     {
         $exception = $this->createStub(TransportException::class);
 
@@ -53,10 +74,13 @@ final class GetResourcesVersionServiceTest extends TestCase
 
         $service = new GetResourcesVersionService($logger, $client, 'https://resources.domain/resources/metadata/version');
 
-        $this->assertNull($service->get());
+        $brickVersion = $service->get();
+
+        $this->assertNull($brickVersion->version);
+        $this->assertNull($brickVersion->updatedAt);
     }
 
-    public function testGetReturnsNullOnHttpError(): void
+    public function testGetReturnsNullBrickVersionOnHttpError(): void
     {
         $response = $this->createMock(ResponseInterface::class);
         $response
@@ -70,6 +94,9 @@ final class GetResourcesVersionServiceTest extends TestCase
 
         $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
 
-        $this->assertNull($service->get());
+        $brickVersion = $service->get();
+
+        $this->assertNull($brickVersion->version);
+        $this->assertNull($brickVersion->updatedAt);
     }
 }

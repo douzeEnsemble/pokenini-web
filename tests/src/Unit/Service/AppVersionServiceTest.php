@@ -159,4 +159,21 @@ final class AppVersionServiceTest extends TestCase
 
         $this->assertSame('1.2.12', $service->getVersion());
     }
+
+    public function testGetUpdatedAtReturnsFileMtime(): void
+    {
+        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
+
+        $versionFilePath = dirname(__DIR__, 4).'/resources/metadata/version';
+        $expectedMtime = filemtime($versionFilePath);
+
+        $this->assertSame($expectedMtime, $service->getUpdatedAt()?->getTimestamp());
+    }
+
+    public function testGetUpdatedAtReturnsNullForMissingFile(): void
+    {
+        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
+
+        $this->assertNull($service->getUpdatedAt('non_existent_file'));
+    }
 }

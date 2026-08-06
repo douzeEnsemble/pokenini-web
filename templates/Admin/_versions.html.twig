@@ -1,28 +1,26 @@
 {% set bricks = [
-  {'key': 'web', 'label': 'admin.versions.web', 'version': versionsOverview.web},
-  {'key': 'back', 'label': 'admin.versions.back', 'version': versionsOverview.back},
-  {'key': 'api', 'label': 'admin.versions.api', 'version': versionsOverview.api},
-  {'key': 'resources', 'label': 'admin.versions.resources', 'version': versionsOverview.resources},
+  {'key': 'web', 'label': 'admin.versions.web', 'color': 'primary', 'brickVersion': versionsOverview.web},
+  {'key': 'back', 'label': 'admin.versions.back', 'color': 'info', 'brickVersion': versionsOverview.back},
+  {'key': 'api', 'label': 'admin.versions.api', 'color': 'warning', 'brickVersion': versionsOverview.api},
+  {'key': 'resources', 'label': 'admin.versions.resources', 'color': 'success', 'brickVersion': versionsOverview.resources},
 ] %}
-<table class="table" id="versions-table">
-  <thead>
-    <tr>
-      <th>{{ 'admin.versions.brick'|trans }}</th>
-      <th>{{ 'admin.versions.version'|trans }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for brick in bricks %}
-      <tr id="versions-row-{{ brick.key }}">
-        <td>{{ brick.label|trans }}</td>
-        <td>
-          {% if brick.version is not null %}
-            {{ brick.version }}
-          {% else %}
-            <span class="badge text-bg-secondary">{{ 'admin.versions.unavailable'|trans }}</span>
-          {% endif %}
-        </td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="list-group" id="versions-list">
+  {% for brick in bricks %}
+    <div class="list-group-item d-flex align-items-center gap-3" id="versions-row-{{ brick.key }}">
+      <span class="badge rounded-pill text-bg-{{ brick.color }}">{{ brick.label|trans|slice(0, 1)|upper }}</span>
+      <span class="fw-semibold">{{ brick.label|trans }}</span>
+      <span class="versions-version fw-bold ms-auto">
+        {% if brick.brickVersion.version is not null %}
+          {{ brick.brickVersion.version }}
+        {% else %}
+          <span class="badge text-bg-secondary">{{ 'admin.versions.unavailable'|trans }}</span>
+        {% endif %}
+      </span>
+      <span class="versions-date text-body-secondary small">
+        {% if brick.brickVersion.updatedAt is not null %}
+          {{ brick.brickVersion.updatedAt|date('d/m/Y \\à H:i', 'Europe/Paris') }}
+        {% endif %}
+      </span>
+    </div>
+  {% endfor %}
+</div>
