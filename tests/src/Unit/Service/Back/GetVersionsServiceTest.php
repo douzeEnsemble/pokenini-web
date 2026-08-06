@@ -23,18 +23,25 @@ final class GetVersionsServiceTest extends TestCase
 {
     public function testGetDeserializesVersions(): void
     {
-        $versions = $this->getServiceWithResponseBody('{"back":"1.2.12","api":"1.2.13"}')->get();
+        $versions = $this->getServiceWithResponseBody(
+            '{"back":{"version":"1.2.12","updated_at":"2026-08-05T09:12:00+00:00"},"api":{"version":"1.2.13","updated_at":"2026-08-04T21:47:00+00:00"}}'
+        )->get();
 
-        $this->assertSame('1.2.12', $versions->back);
-        $this->assertSame('1.2.13', $versions->api);
+        $this->assertSame('1.2.12', $versions->back->version);
+        $this->assertSame('2026-08-05T09:12:00+00:00', $versions->back->updatedAt?->format(\DateTimeInterface::ATOM));
+        $this->assertSame('1.2.13', $versions->api->version);
+        $this->assertSame('2026-08-04T21:47:00+00:00', $versions->api->updatedAt?->format(\DateTimeInterface::ATOM));
     }
 
     public function testGetHandlesNullApiField(): void
     {
-        $versions = $this->getServiceWithResponseBody('{"back":"1.2.12","api":null}')->get();
+        $versions = $this->getServiceWithResponseBody(
+            '{"back":{"version":"1.2.12","updated_at":"2026-08-05T09:12:00+00:00"},"api":{"version":null,"updated_at":null}}'
+        )->get();
 
-        $this->assertSame('1.2.12', $versions->back);
-        $this->assertNull($versions->api);
+        $this->assertSame('1.2.12', $versions->back->version);
+        $this->assertNull($versions->api->version);
+        $this->assertNull($versions->api->updatedAt);
     }
 
     public function testGetReturnsNullFieldsOnTransportError(): void
@@ -46,23 +53,24 @@ final class GetVersionsServiceTest extends TestCase
 
         $versions = $this->buildService($client)->get();
 
-        $this->assertNull($versions->back);
-        $this->assertNull($versions->api);
+        $this->assertNull($versions->back->version);
+        $this->assertNull($versions->back->updatedAt);
+        $this->assertNull($versions->api->version);
+        $this->assertNull($versions->api->updatedAt);
     }
 
     /**
      * Reproduces the real production failure mode: the container-wired serializer (with a
      * PropertyInfo type extractor, as configured in config/packages/serializer.yaml) throws
      * Symfony\Component\Serializer\Exception\NotNormalizableValueException — not \TypeError —
-     * when a field's JSON type doesn't match the declared PHP type. This was verified by
-     * booting the real test kernel and deserializing the same malformed body.
+     * when a field's JSON type doesn't match the declared PHP type.
      */
     public function testGetReturnsNullFieldsOnNotNormalizableValue(): void
     {
-        $versions = $this->getServiceWithResponseBody('{"back":{"x":1},"api":"1.0"}')->get();
+        $versions = $this->getServiceWithResponseBody('{"back":{"x":1},"api":{"version":"1.0","updated_at":null}}')->get();
 
-        $this->assertNull($versions->back);
-        $this->assertNull($versions->api);
+        $this->assertNull($versions->back->version);
+        $this->assertNull($versions->api->version);
     }
 
     private function getServiceWithResponseBody(string $responseBody): GetVersionsService

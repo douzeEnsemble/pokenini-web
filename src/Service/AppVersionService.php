@@ -35,4 +35,21 @@ class AppVersionService
             return $this->filesystem->readFile($filePath);
         });
     }
+
+    public function getUpdatedAt(string $filename = 'version'): ?\DateTimeImmutable
+    {
+        $filePath = $this->projectDir.'/resources/metadata/'.$filename;
+
+        if (!$this->filesystem->exists($filePath)) {
+            return null;
+        }
+
+        $mtime = filemtime($filePath);
+
+        if (false === $mtime) {
+            return null;
+        }
+
+        return (new \DateTimeImmutable())->setTimestamp($mtime);
+    }
 }

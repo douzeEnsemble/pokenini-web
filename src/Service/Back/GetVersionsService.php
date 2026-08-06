@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
+use App\ResponseObject\BrickVersion;
 use App\ResponseObject\Versions;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface as HttpExceptionInterface;
@@ -18,7 +19,7 @@ class GetVersionsService extends AbstractBackService
             /** @var Versions */
             return $this->serializer->deserialize($content, Versions::class, 'json');
         } catch (HttpExceptionInterface|SerializerExceptionInterface) {
-            return new Versions(null, null);
+            return new Versions(new BrickVersion(null, null), new BrickVersion(null, null));
         }
     }
 }

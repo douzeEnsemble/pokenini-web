@@ -7,7 +7,7 @@ namespace App\ResponseObject;
 final class Versions
 {
     public function __construct(
-        public readonly ?string $back,
-        public readonly ?string $api,
+        public readonly BrickVersion $back,
+        public readonly BrickVersion $api,
     ) {}
 }

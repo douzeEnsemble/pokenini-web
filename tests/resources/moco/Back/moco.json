@@ -4,7 +4,10 @@
       "uri": "/resources/metadata/version"
     },
     "response": {
-      "text": "1.9.7"
+      "text": "1.9.7",
+      "headers": {
+        "Last-Modified": "Wed, 05 Aug 2026 09:12:00 GMT"
+      }
     }
   },
   {
@@ -758,8 +761,14 @@
     "response": {
       "status": "200",
       "json": {
-        "back": "1.9.9",
-        "api": "1.9.8"
+        "back": {
+          "version": "1.9.9",
+          "updated_at": "2026-08-04T21:47:00+00:00"
+        },
+        "api": {
+          "version": "1.9.8",
+          "updated_at": "2026-01-01T00:00:00+00:00"
+        }
       }
     }
   },
