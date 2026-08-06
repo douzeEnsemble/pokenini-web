@@ -1,214 +1,111 @@
-# Admin "Versions" Tab Implementation Plan
+# Admin "Versions" Tab — Enriched Display + Timestamps Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add a "Versions" tab to the pokenini-web admin page showing the current version of all four Pokénini bricks (Web, Back, Api, Resources), degrading gracefully to "unavailable" per-brick when one can't be reached.
+**Goal:** Replace the admin "Versions" tab's plain `<table>` (Web / Back / Api / Resources, version string only) with a Bootstrap `list-group`-based enriched display, and add the date-time each brick's version file was last modified.
 
-**Architecture:** `pokenini-api` gets a new `GET /version` endpoint reading its local `resources/metadata/version` file. `pokenini-back` gets a new `GET /istration/version` endpoint that reads its own local version file and calls the api's new endpoint, returning both in one JSON response (never failing itself — a failing api call just yields `api: null`). `pokenini-web` gets a new admin controller/template that combines its own local version (existing `AppVersionService`, unchanged), one call to back's new endpoint, and one direct HTTP call to the `pokenini-resources` static host (same pattern already used for images) into a single overview.
+**Architecture:** The base "Versions" tab (plain table, version string only, no dates) is **already merged and live on `main`** in all three repos (`pokenini-web` PR #398, `pokenini-back` PR #146, `pokenini-api` PR #338). This plan is a follow-up layered on top of that merged code — not a from-scratch build. Every brick's version now travels alongside a nullable `updatedAt` timestamp, sourced from each repo's own `filemtime()` on its local `resources/metadata/version` file (api, back, web) or from the `Last-Modified` HTTP header on the existing GET request to the `pokenini-resources` static host (resources — that repo has no application code, so nothing changes there). `pokenini-web` gets a single reusable `App\ResponseObject\BrickVersion{version, updatedAt}` value object (following this repo's own precedent set by `ResponseObject\ImagePipelineStatus`, which is deserialized from JSON and passed straight through to Twig with no separate DTO twin) used both for JSON deserialization and as the field type on `DTO\VersionsOverview`.
 
 **Tech Stack:** Symfony 8 / PHP ≥ 8.5 across all three repos, PHPUnit, Moco (HTTP mock server) for pokenini-back's and pokenini-web's integration tests.
 
 ## Global Constraints
 
 - This plan spans three independent git repositories, each with its own history, Docker stack, and Makefile:
-  - `pokenini-api` — tasks 1-2
-  - `pokenini-back` — tasks 3-5
-  - `pokenini-web` — tasks 6-9 (this repo)
+  - `pokenini-api` — task 1
+  - `pokenini-back` — tasks 2-4
+  - `pokenini-web` — tasks 5-9 (this repo)
 - Every command in every task runs inside that repo's `php` Docker container (`docker compose exec php ...`), from that repo's own directory. `cd` into the right repo before running any command for a given task.
-- **Do not create any git commits at any point in this plan** — this is a standing user preference across every project. Leave all changes staged/unstaged for the user to review and commit themselves. Steps that would normally say "commit" are omitted from this plan for that reason.
-- Every repo requires 100% test coverage and 100% Mutation Score Index (`make measures`) before the work in that repo is considered done, plus a clean `make quality` (or `make code-quality`) run. Run these at the end of each repo's task group, not necessarily after every single task, to avoid redundant slow runs — but never skip them before moving to the next repo.
-- `declare(strict_types=1)` at the top of every new PHP file. Every new test class is `final`, carries `/** @internal */`, and uses `#[CoversClass(...)]`.
-- Response DTOs / ResponseObjects across all three repos are `final class`es with `public readonly` constructor-promoted properties — never mutable, never with setters.
-- Do not hardcode the *current* value of any `resources/metadata/version` file in a test assertion (it changes on every release). Where a test needs to assert against a repo's own local version file, read that file's content at test time instead.
+- **Local `main` is stale in all three repos** — `origin/main` already has the merged base feature (squash-merged), but local `main` doesn't. Before starting, in each repo: create a **new** branch off `origin/main` (e.g. `git fetch origin main && git switch -c feature/admin-versions-tab-polish origin/main`) using the `superpowers:using-git-worktrees` skill if isolation is wanted. **Do not** build on top of `pokenini-web`'s currently-checked-out `images-reorg` branch (unrelated work), and **do not** reuse the stale `.worktrees-avt/admin-versions-tab` (`pokenini-web`) or `.worktrees/admin-versions-tab` (`pokenini-back`) worktree directories — both correspond to the already-merged, now-obsolete base-feature branch.
+- **Do not create any git commits at any point in this plan** — standing user preference across every project. Leave all changes staged/unstaged for review. Steps that would normally say "commit" are omitted for that reason.
+- Every repo requires 100% test coverage and 100% Mutation Score Index (`make measures`) before the work in that repo is considered done, plus a clean `make quality` (or `make code-quality`) run. Run these at the end of each repo's task group.
+- `declare(strict_types=1)` at the top of every new/modified PHP file (already present in all files touched here). Every test class is `final`, carries `/** @internal */`, and uses `#[CoversClass(...)]`.
+- Response DTOs / ResponseObjects are `final class`es with `public readonly` constructor-promoted properties — never mutable, never with setters.
+- Do not hardcode the *current* value of any `resources/metadata/version` file (or its mtime) in a test assertion — it changes on every release. Where a test needs to assert against a repo's own local version file, read that file's content/`filemtime()` at test time instead, exactly as the already-merged tests already do. Moco-fixture values (e.g. `"1.9.9"`, fixed ISO dates) are mock data, not real files, and may be hardcoded freely — this is also the existing convention.
+- Symfony's `DateTimeNormalizer` (used both by `#[Serialize]`/`$this->json()` on the way out, and by `$serializer->deserialize()` on the way in) defaults to `\DateTimeInterface::ATOM` (`Y-m-d\TH:i:sP`) — every ISO-8601 string in this plan uses that format.
 
 ---
 
-## Task 1: `pokenini-api` — local version-reading service
+## Task 1: `pokenini-api` — add `updated_at` to the `/version` endpoint
 
 **Repo:** `/home/renaud/projects/pokenini-api`
 
 **Files:**
-- Create: `src/Service/VersionService.php`
-- Test: `tests/src/Unit/Service/VersionServiceTest.php`
-- Modify: `config/services.yaml` (add `$metadataDir` bind)
+- Modify: `src/Service/VersionService.php`
+- Modify: `src/DTO/Response/VersionResponse.php`
+- Modify: `src/Controller/VersionController.php`
+- Modify: `tests/src/Unit/Service/VersionServiceTest.php`
+- Modify: `tests/src/Integration/Controller/VersionControllerTest.php`
 
 **Interfaces:**
-- Produces: `App\Service\VersionService::getVersion(): string` — reads `<metadataDir>/version`, returns the trimmed content, or the literal string `'unknown'` if the file doesn't exist. Constructor: `__construct(private readonly string $metadataDir)`.
+- Produces: `App\Service\VersionService::getUpdatedAt(): ?\DateTimeImmutable` — mirrors the existing `getVersion(): string`'s `is_readable()` guard; returns a `\DateTimeImmutable` built from `filemtime()`, or `null` if the file is missing/unreadable.
+- Produces: `GET /version` → `200 application/json` `{"version": "<string>", "updated_at": "<ISO-8601 string>"|null}`.
 
-- [ ] **Step 1: Add the `$metadataDir` bind to `config/services.yaml`**
+- [ ] **Step 1: Write the failing unit test**
 
-In `config/services.yaml`, add one line to the existing `_defaults.bind` block (mirrors the existing `$sqlDir` bind right above it):
-
-```yaml
-services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        bind:
-            string $spreadsheetId: '%env(SPREADSHEET_ID)%'
-            string $googleApiSheetsUrl: '%env(GOOGLE_API_SHEETS_URL)%'
-            int $eloKFactor: '%env(ELO_K_FACTOR)%'
-            int $eloDDifference: '%env(ELO_D_DIFFERENCE)%'
-            int $eloDefault: '%env(ELO_DEFAULT)%'
-            string $sqlDir: '%kernel.project_dir%/resources/sql'
-            string $metadataDir: '%kernel.project_dir%/resources/metadata'
-```
-
-- [ ] **Step 2: Write the failing unit test**
-
-Create `tests/src/Unit/Service/VersionServiceTest.php`:
+Add these two test methods to `tests/src/Unit/Service/VersionServiceTest.php` (inside the existing `final class VersionServiceTest`, alongside the existing two tests — don't remove them):
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Tests\Unit\Service;
-
-use App\Service\VersionService;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
-
-/**
- * @internal
- */
-#[CoversClass(VersionService::class)]
-final class VersionServiceTest extends TestCase
-{
-    private string $tempDir;
-
-    #[\Override]
-    protected function setUp(): void
-    {
-        $this->tempDir = sys_get_temp_dir().'/version_service_test_'.uniqid();
-        mkdir($this->tempDir);
-    }
-
-    #[\Override]
-    protected function tearDown(): void
-    {
-        $files = glob($this->tempDir.'/*');
-        if (false !== $files) {
-            foreach ($files as $file) {
-                unlink($file);
-            }
-        }
-        rmdir($this->tempDir);
-    }
-
-    public function testGetVersionReturnsTrimmedFileContent(): void
+    public function testGetUpdatedAtReturnsFileMtime(): void
     {
         file_put_contents($this->tempDir.'/version', "1.2.12\n");
+        $expectedMtime = filemtime($this->tempDir.'/version');
         $service = new VersionService($this->tempDir);
 
-        $this->assertSame('1.2.12', $service->getVersion());
+        $this->assertSame($expectedMtime, $service->getUpdatedAt()?->getTimestamp());
     }
 
-    public function testGetVersionReturnsFallbackWhenFileMissing(): void
+    public function testGetUpdatedAtReturnsNullWhenFileMissing(): void
     {
         $service = new VersionService($this->tempDir);
 
-        $this->assertSame('unknown', $service->getVersion());
+        $this->assertNull($service->getUpdatedAt());
     }
-}
 ```
 
-- [ ] **Step 3: Run the test to verify it fails**
+- [ ] **Step 2: Run the test to verify it fails**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/VersionServiceTest.php
 ```
 
-Expected: FAIL — `App\Service\VersionService` not found.
+Expected: FAIL — `VersionService::getUpdatedAt()` doesn't exist.
 
-- [ ] **Step 4: Implement `VersionService`**
+- [ ] **Step 3: Implement `VersionService::getUpdatedAt()`**
 
-Create `src/Service/VersionService.php`:
+Add this method to `src/Service/VersionService.php` (keep `getVersion()` and `FALLBACK_VERSION` unchanged):
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Service;
-
-class VersionService
-{
-    private const string FALLBACK_VERSION = 'unknown';
-
-    public function __construct(private readonly string $metadataDir) {}
-
-    public function getVersion(): string
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         $path = $this->metadataDir.'/version';
 
-        if (!is_file($path)) {
-            return self::FALLBACK_VERSION;
+        if (!is_readable($path)) {
+            return null;
         }
 
-        return trim((string) file_get_contents($path));
+        $mtime = filemtime($path);
+
+        if (false === $mtime) {
+            return null;
+        }
+
+        return (new \DateTimeImmutable())->setTimestamp($mtime);
     }
-}
 ```
 
-- [ ] **Step 5: Run the test to verify it passes**
+- [ ] **Step 4: Run the test to verify it passes**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/VersionServiceTest.php
 ```
 
-Expected: PASS (2 tests).
+Expected: PASS (4 tests).
 
----
+- [ ] **Step 5: Write the failing integration test**
 
-## Task 2: `pokenini-api` — `GET /version` endpoint
-
-**Repo:** `/home/renaud/projects/pokenini-api`
-
-**Files:**
-- Create: `src/DTO/Response/VersionResponse.php`
-- Create: `src/Controller/VersionController.php`
-- Test: `tests/src/Integration/Controller/VersionControllerTest.php`
-
-**Interfaces:**
-- Consumes: `App\Service\VersionService::getVersion(): string` (Task 1).
-- Produces: `GET /version` → `200 application/json` `{"version": "<string>"}`, gated by the existing global `access_control` (`roles: ROLE_API`, HTTP Basic `web`/`douze`) — no security config change needed.
-
-- [ ] **Step 1: Write the failing integration test**
-
-Create `tests/src/Integration/Controller/VersionControllerTest.php`:
+In `tests/src/Integration/Controller/VersionControllerTest.php`, replace `getReturnsVersionFromMetadataFile()` with:
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Tests\Integration\Controller;
-
-use App\Controller\VersionController;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Test;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-/**
- * @internal
- */
-#[CoversClass(VersionController::class)]
-final class VersionControllerTest extends WebTestCase
-{
-    #[Test]
-    public function getReturnsSuccessfulJsonResponse(): void
-    {
-        $client = self::createClient();
-        $client->request('GET', '/version', [], [], [
-            'PHP_AUTH_USER' => 'web',
-            'PHP_AUTH_PW' => 'douze',
-        ]);
-
-        self::assertResponseIsSuccessful();
-        self::assertResponseHeaderSame('content-type', 'application/json');
-    }
-
     #[Test]
     public function getReturnsVersionFromMetadataFile(): void
     {
@@ -221,36 +118,31 @@ final class VersionControllerTest extends WebTestCase
         $content = $client->getResponse()->getContent();
         self::assertIsString($content);
 
-        $expectedVersion = trim((string) file_get_contents(dirname(__DIR__, 4).'/resources/metadata/version'));
+        $versionFilePath = dirname(__DIR__, 4).'/resources/metadata/version';
+        $expectedVersion = trim((string) file_get_contents($versionFilePath));
+        $expectedUpdatedAt = (new \DateTimeImmutable())->setTimestamp((int) filemtime($versionFilePath));
 
         self::assertJsonStringEqualsJsonString(
-            (string) json_encode(['version' => $expectedVersion], JSON_THROW_ON_ERROR),
+            (string) json_encode([
+                'version' => $expectedVersion,
+                'updated_at' => $expectedUpdatedAt->format(\DateTimeInterface::ATOM),
+            ], JSON_THROW_ON_ERROR),
             $content,
         );
     }
-
-    #[Test]
-    public function getNonAuthenticatedReturns401(): void
-    {
-        $client = self::createClient();
-        $client->request('GET', '/version');
-
-        self::assertResponseStatusCodeSame(401);
-    }
-}
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [ ] **Step 6: Run the test to verify it fails**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Integration/Controller/VersionControllerTest.php
 ```
 
-Expected: FAIL — route `/version` doesn't exist (404), or class not found.
+Expected: FAIL — response JSON has no `updated_at` key, `VersionResponse` has no such property.
 
-- [ ] **Step 3: Implement the DTO and controller**
+- [ ] **Step 7: Implement `VersionResponse` and `VersionController` changes**
 
-Create `src/DTO/Response/VersionResponse.php`:
+Replace `src/DTO/Response/VersionResponse.php`:
 
 ```php
 <?php
@@ -259,42 +151,28 @@ declare(strict_types=1);
 
 namespace App\DTO\Response;
 
+use Symfony\Component\Serializer\Attribute\SerializedName;
+
 final class VersionResponse
 {
     public function __construct(
         public readonly string $version,
+        #[SerializedName('updated_at')]
+        public readonly ?\DateTimeImmutable $updatedAt,
     ) {}
 }
 ```
 
-Create `src/Controller/VersionController.php`:
+In `src/Controller/VersionController.php`, change the `get()` method body:
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Controller;
-
-use App\DTO\Response\VersionResponse;
-use App\Service\VersionService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Attribute\Serialize;
-use Symfony\Component\Routing\Attribute\Route;
-
-#[Route('/version')]
-final class VersionController extends AbstractController
-{
-    #[Route(path: '', methods: ['GET'])]
-    #[Serialize]
     public function get(VersionService $service): VersionResponse
     {
-        return new VersionResponse($service->getVersion());
+        return new VersionResponse($service->getVersion(), $service->getUpdatedAt());
     }
-}
 ```
 
-- [ ] **Step 4: Run the test to verify it passes**
+- [ ] **Step 8: Run the test to verify it passes**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Integration/Controller/VersionControllerTest.php
@@ -302,7 +180,7 @@ docker compose exec php php vendor/bin/phpunit tests/src/Integration/Controller/
 
 Expected: PASS (3 tests).
 
-- [ ] **Step 5: Run full quality and measures gates for `pokenini-api`**
+- [ ] **Step 9: Run full quality and measures gates for `pokenini-api`**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit tests/src/Integration
@@ -310,167 +188,100 @@ make code-quality
 make measures
 ```
 
-Expected: all green, coverage and MSI both 100%. If PHPStan/Psalm/PHPMD baselines need updating because of the new files, follow this repo's `CLAUDE.md` baseline-update commands.
+Expected: all green, coverage and MSI both 100%. Update PHPStan/Psalm/PHPMD baselines per this repo's `CLAUDE.md` if needed.
 
 ---
 
-## Task 3: `pokenini-back` — local version-reading service
+## Task 2: `pokenini-back` — add `getUpdatedAt()` to `LocalVersionService`
 
 **Repo:** `/home/renaud/projects/pokenini-back`
 
 **Files:**
-- Create: `src/Service/LocalVersionService.php`
-- Test: `tests/src/Unit/Service/LocalVersionServiceTest.php`
-- Modify: `config/services.yaml` (add `$metadataDir` bind)
+- Modify: `src/Service/LocalVersionService.php`
+- Modify: `tests/src/Unit/Service/LocalVersionServiceTest.php`
 
 **Interfaces:**
-- Produces: `App\Service\LocalVersionService::getVersion(): string` — reads `<metadataDir>/version`, returns trimmed content or `'unknown'` fallback. Constructor: `__construct(private readonly string $metadataDir)`.
+- Produces: `App\Service\LocalVersionService::getUpdatedAt(): ?\DateTimeImmutable` — same shape as Task 1's `VersionService::getUpdatedAt()`, using this class's existing `is_file()` guard instead of `is_readable()`.
 
-- [ ] **Step 1: Add the `$metadataDir` bind to `config/services.yaml`**
+- [ ] **Step 1: Write the failing unit test**
 
-In `config/services.yaml`, add to the existing `_defaults.bind` block:
-
-```yaml
-services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        bind:
-            string $apiUrl: '%env(API_URL)%'
-            string $apiCafilePath: '%env(API_CAFILE_PATH)%'
-            string $listAdmin: '%env(LIST_ADMIN)%'
-            string $listTrainer: '%env(LIST_TRAINER)%'
-            string $listCollector: '%env(LIST_COLLECTOR)%'
-            bool $isInvitationRequired: '%env(bool:REQUIRE_INVITATION)%'
-            string $apiLogin: '%env(API_LOGIN)%'
-            string $apiPassword: '%env(API_PASSWORD)%'
-            string $env: '%kernel.environment%'
-            string $metadataDir: '%kernel.project_dir%/resources/metadata'
-```
-
-(Keep every other existing line in that block untouched — only add the new `$metadataDir` entry.)
-
-- [ ] **Step 2: Write the failing unit test**
-
-Create `tests/src/Unit/Service/LocalVersionServiceTest.php`:
+Add to `tests/src/Unit/Service/LocalVersionServiceTest.php` (alongside the existing two tests):
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Tests\Unit\Service;
-
-use App\Service\LocalVersionService;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
-
-/**
- * @internal
- */
-#[CoversClass(LocalVersionService::class)]
-final class LocalVersionServiceTest extends TestCase
-{
-    private string $tempDir;
-
-    protected function setUp(): void
-    {
-        $this->tempDir = sys_get_temp_dir().'/local_version_service_test_'.uniqid();
-        mkdir($this->tempDir);
-    }
-
-    protected function tearDown(): void
-    {
-        $files = glob($this->tempDir.'/*');
-        if (false !== $files) {
-            foreach ($files as $file) {
-                unlink($file);
-            }
-        }
-        rmdir($this->tempDir);
-    }
-
-    public function testGetVersionReturnsTrimmedFileContent(): void
+    public function testGetUpdatedAtReturnsFileMtime(): void
     {
         file_put_contents($this->tempDir.'/version', "1.2.12\n");
+        $expectedMtime = filemtime($this->tempDir.'/version');
         $service = new LocalVersionService($this->tempDir);
 
-        $this->assertSame('1.2.12', $service->getVersion());
+        $this->assertSame($expectedMtime, $service->getUpdatedAt()?->getTimestamp());
     }
 
-    public function testGetVersionReturnsFallbackWhenFileMissing(): void
+    public function testGetUpdatedAtReturnsNullWhenFileMissing(): void
     {
         $service = new LocalVersionService($this->tempDir);
 
-        $this->assertSame('unknown', $service->getVersion());
+        $this->assertNull($service->getUpdatedAt());
     }
-}
 ```
 
-- [ ] **Step 3: Run the test to verify it fails**
+- [ ] **Step 2: Run the test to verify it fails**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/LocalVersionServiceTest.php
 ```
 
-Expected: FAIL — class not found.
+Expected: FAIL — `LocalVersionService::getUpdatedAt()` doesn't exist.
 
-- [ ] **Step 4: Implement `LocalVersionService`**
+- [ ] **Step 3: Implement `LocalVersionService::getUpdatedAt()`**
 
-Create `src/Service/LocalVersionService.php`:
+Add this method to `src/Service/LocalVersionService.php` (keep `getVersion()` and `FALLBACK_VERSION` unchanged):
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Service;
-
-class LocalVersionService
-{
-    private const string FALLBACK_VERSION = 'unknown';
-
-    public function __construct(private readonly string $metadataDir) {}
-
-    public function getVersion(): string
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         $path = $this->metadataDir.'/version';
 
         if (!is_file($path)) {
-            return self::FALLBACK_VERSION;
+            return null;
         }
 
-        return trim((string) file_get_contents($path));
+        $mtime = filemtime($path);
+
+        if (false === $mtime) {
+            return null;
+        }
+
+        return (new \DateTimeImmutable())->setTimestamp($mtime);
     }
-}
 ```
 
-- [ ] **Step 5: Run the test to verify it passes**
+- [ ] **Step 4: Run the test to verify it passes**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/LocalVersionServiceTest.php
 ```
 
-Expected: PASS (2 tests).
+Expected: PASS (4 tests).
 
 ---
 
-## Task 4: `pokenini-back` — `GetVersionApiService` (calls the api's new `/version`)
+## Task 3: `pokenini-back` — `GetVersionApiService` returns `updated_at` too
 
 **Repo:** `/home/renaud/projects/pokenini-back`
 
 **Files:**
-- Create: `src/Service/Api/GetVersionApiService.php`
-- Test: `tests/src/Unit/Service/Api/GetVersionApiServiceTest.php`
-- Modify: `tests/resources/moco/Api/moco.json` (add a `/version` mock rule)
+- Modify: `src/Service/Api/GetVersionApiService.php`
+- Modify: `tests/src/Unit/Service/Api/GetVersionApiServiceTest.php`
+- Modify: `tests/resources/moco/Api/moco.json`
 
 **Interfaces:**
-- Consumes: `AbstractApiService::requestContent(string $method, string $endpointUrl, array $options = []): string` (existing, `src/Service/Api/AbstractApiService.php`), `App\Utils\JsonDecoder::decode(string $json): mixed` (existing).
-- Produces: `App\Service\Api\GetVersionApiService::get(): ?string` — calls `GET /version` on the api, returns the decoded `version` field, or `null` on any transport/HTTP/JSON-decode failure. Never throws.
+- Consumes: `App\Service\LocalVersionService::getUpdatedAt()` (Task 2) — not directly, but the api's `/version` response (Task 1) now includes `updated_at`.
+- Produces: `App\Service\Api\GetVersionApiService::get(): array{version: ?string, updated_at: ?\DateTimeImmutable}` (was `?string`) — decodes both fields from the api's JSON response; on any transport/HTTP/JSON-decode failure, returns `['version' => null, 'updated_at' => null]` instead of throwing (unchanged failure behaviour, changed shape).
 
 - [ ] **Step 1: Write the failing unit test**
 
-Create `tests/src/Unit/Service/Api/GetVersionApiServiceTest.php`:
+Replace the contents of `tests/src/Unit/Service/Api/GetVersionApiServiceTest.php`:
 
 ```php
 <?php
@@ -496,10 +307,10 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(GetVersionApiService::class)]
 final class GetVersionApiServiceTest extends TestCase
 {
-    public function testGetReturnsVersionFromDecodedBody(): void
+    public function testGetReturnsVersionAndUpdatedAtFromDecodedBody(): void
     {
         $response = $this->createStub(ResponseInterface::class);
-        $response->method('getContent')->willReturn('{"version":"1.2.12"}');
+        $response->method('getContent')->willReturn('{"version":"1.2.12","updated_at":"2026-08-05T09:12:00+00:00"}');
 
         $client = $this->createMock(HttpClientInterface::class);
         $client
@@ -522,20 +333,40 @@ final class GetVersionApiServiceTest extends TestCase
             ->willReturn($response)
         ;
 
-        $this->assertSame('1.2.12', $this->getService($client)->get());
+        $result = $this->getService($client)->get();
+
+        $this->assertSame('1.2.12', $result['version']);
+        $this->assertSame('2026-08-05T09:12:00+00:00', $result['updated_at']?->format(\DateTimeInterface::ATOM));
     }
 
-    public function testGetReturnsNullOnTransportError(): void
+    public function testGetHandlesNullUpdatedAtField(): void
+    {
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getContent')->willReturn('{"version":"1.2.12","updated_at":null}');
+
+        $client = $this->createMock(HttpClientInterface::class);
+        $client->method('request')->willReturn($response);
+
+        $result = $this->getService($client)->get();
+
+        $this->assertSame('1.2.12', $result['version']);
+        $this->assertNull($result['updated_at']);
+    }
+
+    public function testGetReturnsNullFieldsOnTransportError(): void
     {
         $client = $this->createMock(HttpClientInterface::class);
         $client->method('request')->willThrowException(
             $this->createMock(TransportException::class)
         );
 
-        $this->assertNull($this->getService($client)->get());
+        $result = $this->getService($client)->get();
+
+        $this->assertNull($result['version']);
+        $this->assertNull($result['updated_at']);
     }
 
-    public function testGetReturnsNullOnHttpError(): void
+    public function testGetReturnsNullFieldsOnHttpError(): void
     {
         $errorResponse = $this->createMock(ResponseInterface::class);
         $errorResponse->method('getStatusCode')->willReturn(500);
@@ -553,10 +384,13 @@ final class GetVersionApiServiceTest extends TestCase
         $client = $this->createMock(HttpClientInterface::class);
         $client->method('request')->willReturn($response);
 
-        $this->assertNull($this->getService($client)->get());
+        $result = $this->getService($client)->get();
+
+        $this->assertNull($result['version']);
+        $this->assertNull($result['updated_at']);
     }
 
-    public function testGetReturnsNullOnMalformedJson(): void
+    public function testGetReturnsNullFieldsOnMalformedJson(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getContent')->willReturn('not json');
@@ -564,7 +398,10 @@ final class GetVersionApiServiceTest extends TestCase
         $client = $this->createMock(HttpClientInterface::class);
         $client->method('request')->willReturn($response);
 
-        $this->assertNull($this->getService($client)->get());
+        $result = $this->getService($client)->get();
+
+        $this->assertNull($result['version']);
+        $this->assertNull($result['updated_at']);
     }
 
     private function getService(HttpClientInterface $client): GetVersionApiService
@@ -590,11 +427,11 @@ final class GetVersionApiServiceTest extends TestCase
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/Api/GetVersionApiServiceTest.php
 ```
 
-Expected: FAIL — class not found.
+Expected: FAIL — `get()` still returns `?string`, `$result['version']` is a type error / the old code returns the bare string.
 
-- [ ] **Step 3: Implement `GetVersionApiService`**
+- [ ] **Step 3: Implement the new `GetVersionApiService::get()`**
 
-Create `src/Service/Api/GetVersionApiService.php`:
+Replace `src/Service/Api/GetVersionApiService.php`:
 
 ```php
 <?php
@@ -608,17 +445,26 @@ use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 class GetVersionApiService extends AbstractApiService
 {
-    public function get(): ?string
+    /**
+     * @return array{version: ?string, updated_at: ?\DateTimeImmutable}
+     */
+    public function get(): array
     {
         try {
             $content = $this->requestContent('GET', '/version');
 
-            /** @var array{version: string} $decoded */
+            /** @var array{version: string, updated_at: ?string} $decoded */
             $decoded = JsonDecoder::decode($content);
 
-            return $decoded['version'];
+            return [
+                'version' => $decoded['version'],
+                'updated_at' => null !== $decoded['updated_at'] ? new \DateTimeImmutable($decoded['updated_at']) : null,
+            ];
         } catch (ExceptionInterface|\JsonException) {
-            return null;
+            return [
+                'version' => null,
+                'updated_at' => null,
+            ];
         }
     }
 }
@@ -630,71 +476,41 @@ class GetVersionApiService extends AbstractApiService
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/Api/GetVersionApiServiceTest.php
 ```
 
-Expected: PASS (4 tests).
+Expected: PASS (5 tests).
 
-- [ ] **Step 5: Add the Moco mock rule for the api's `/version` endpoint**
+- [ ] **Step 5: Update the Moco mock rule for the api's `/version` endpoint**
 
-In `tests/resources/moco/Api/moco.json`, add a new rule to the top-level JSON array (mirror the existing `/types` rule's shape, right next to it):
+In `tests/resources/moco/Api/moco.json`, find the existing rule for `"uri": "/version"` (response `{"version": "1.9.8"}`) and replace its `response.json` value:
 
 ```json
-{
-  "request": {
-    "uri": "/version",
-    "headers": {
-      "accept": "application/json",
-      "authorization": "Basic d2ViOmRvdXpl"
+    "response": {
+      "json": "{\"version\": \"1.9.8\", \"updated_at\": \"2026-01-01T00:00:00+00:00\"}"
     }
-  },
-  "response": {
-    "json": {
-      "version": "1.9.8"
-    }
-  }
-}
 ```
 
-This fixture value (`1.9.8`) is deliberately different from the real committed `resources/metadata/version` files, so Task 5's integration test can distinguish "api version from the mock" from "back's own local version" unambiguously.
+(Keep the `request` block — `uri`, `headers` — exactly as-is; only the `response.json` string changes.)
 
 ---
 
-## Task 5: `pokenini-back` — `GET /istration/version` endpoint
+## Task 4: `pokenini-back` — `AdminVersionController` returns nested `{version, updated_at}` per brick
 
 **Repo:** `/home/renaud/projects/pokenini-back`
 
 **Files:**
-- Create: `src/Controller/Admin/AdminVersionController.php`
-- Test: `tests/src/Integration/Admin/VersionsTest.php`
+- Modify: `src/Controller/Admin/AdminVersionController.php`
+- Modify: `tests/src/Integration/Admin/VersionsTest.php`
 
 **Interfaces:**
-- Consumes: `App\Service\LocalVersionService::getVersion(): string` (Task 3), `App\Service\Api\GetVersionApiService::get(): ?string` (Task 4).
-- Produces: `GET /istration/version` → `200 application/json` `{"back": "<string>", "api": "<string>"|null}`. Already gated by the existing `{ path: ^/istration, roles: ROLE_ADMIN }` access-control rule — no security config change needed. Never returns a non-2xx status itself (a failing api call degrades to `api: null`, not an error).
+- Consumes: `App\Service\LocalVersionService::getUpdatedAt()` (Task 2), `App\Service\Api\GetVersionApiService::get(): array{version: ?string, updated_at: ?\DateTimeImmutable}` (Task 3).
+- Produces: `GET /istration/version` → `200 application/json`
+  `{"back": {"version": "<string>", "updated_at": "<ISO-8601>"|null}, "api": {"version": "<string>"|null, "updated_at": "<ISO-8601>"|null}}`.
+  Still never returns a non-2xx status itself.
 
 - [ ] **Step 1: Write the failing integration test**
 
-Create `tests/src/Integration/Admin/VersionsTest.php`:
+Replace `testGetVersion()` in `tests/src/Integration/Admin/VersionsTest.php` (keep `testGetVersionNonAuthenticated()` unchanged):
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Tests\Integration\Admin;
-
-use App\Controller\Admin\AdminVersionController;
-use App\Tests\Integration\Trait\ClientRequestTrait;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-/**
- * @internal
- */
-#[Group('api-mocked-testing')]
-#[CoversClass(AdminVersionController::class)]
-final class VersionsTest extends WebTestCase
-{
-    use ClientRequestTrait;
-
     public function testGetVersion(): void
     {
         $client = self::createClient();
@@ -711,26 +527,24 @@ final class VersionsTest extends WebTestCase
         $content = $client->getResponse()->getContent();
         self::assertIsString($content);
 
-        $expectedBackVersion = trim((string) file_get_contents(dirname(__DIR__, 4).'/resources/metadata/version'));
+        $versionFilePath = dirname(__DIR__, 4).'/resources/metadata/version';
+        $expectedBackVersion = trim((string) file_get_contents($versionFilePath));
+        $expectedBackUpdatedAt = (new \DateTimeImmutable())->setTimestamp((int) filemtime($versionFilePath));
 
         self::assertJsonStringEqualsJsonString(
-            (string) json_encode(['back' => $expectedBackVersion, 'api' => '1.9.8'], JSON_THROW_ON_ERROR),
+            (string) json_encode([
+                'back' => [
+                    'version' => $expectedBackVersion,
+                    'updated_at' => $expectedBackUpdatedAt->format(\DateTimeInterface::ATOM),
+                ],
+                'api' => [
+                    'version' => '1.9.8',
+                    'updated_at' => '2026-01-01T00:00:00+00:00',
+                ],
+            ], JSON_THROW_ON_ERROR),
             $content,
         );
     }
-
-    public function testGetVersionNonAuthenticated(): void
-    {
-        $client = self::createClient();
-
-        $client->request(
-            'GET',
-            '/istration/version',
-        );
-
-        $this->assertResponseStatusCodeSame(401);
-    }
-}
 ```
 
 - [ ] **Step 2: Run the test to verify it fails**
@@ -739,42 +553,24 @@ final class VersionsTest extends WebTestCase
 docker compose exec php php vendor/bin/phpunit tests/src/Integration/Admin/VersionsTest.php
 ```
 
-Expected: FAIL — route `/istration/version` doesn't exist (404), or class not found.
+Expected: FAIL — response is still `{"back": "<string>", "api": "<string>"}` (flat), not nested.
 
-- [ ] **Step 3: Implement `AdminVersionController`**
+- [ ] **Step 3: Implement the new `AdminVersionController::version()`**
 
-Create `src/Controller/Admin/AdminVersionController.php`:
+Replace the `version()` method body in `src/Controller/Admin/AdminVersionController.php` (constructor and route attribute unchanged):
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Controller\Admin;
-
-use App\Service\Api\GetVersionApiService;
-use App\Service\LocalVersionService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Attribute\Route;
-
-#[Route('/istration')]
-final class AdminVersionController extends AbstractController
-{
-    public function __construct(
-        private readonly LocalVersionService $localVersionService,
-        private readonly GetVersionApiService $getVersionApiService,
-    ) {}
-
     #[Route('/version', methods: ['GET'])]
     public function version(): JsonResponse
     {
         return $this->json([
-            'back' => $this->localVersionService->getVersion(),
+            'back' => [
+                'version' => $this->localVersionService->getVersion(),
+                'updated_at' => $this->localVersionService->getUpdatedAt(),
+            ],
             'api' => $this->getVersionApiService->get(),
         ]);
     }
-}
 ```
 
 - [ ] **Step 4: Run the test to verify it passes**
@@ -794,248 +590,103 @@ make code-quality
 make measures
 ```
 
-Expected: all green, coverage and MSI both 100%. Also run `make check-moco-refs` (or the equivalent `infra-quality` target covering it) so the new Moco fixture doesn't get flagged as stale/unused. Update PHPStan/Psalm/PHPMD baselines per this repo's `CLAUDE.md` if needed.
+Expected: all green, coverage and MSI both 100%. Also run `make check-moco-refs` (or the equivalent `infra-quality` target) so the modified Moco fixture doesn't get flagged as stale. Update PHPStan/Psalm/PHPMD baselines per this repo's `CLAUDE.md` if needed.
 
 ---
 
-## Task 6: `pokenini-web` — `RESOURCES_VERSION_URL` env var and `GetResourcesVersionService`
+## Task 5: `pokenini-web` — add `getUpdatedAt()` to `AppVersionService`
 
 **Repo:** `/home/renaud/projects/pokenini-web`
 
 **Files:**
-- Modify: `.env`, `.env.dev`, `.env.dev.local`, `.env.prod`, `.env.int`, `.env.ci`, `.env.test`, `.env.test.local` (add `RESOURCES_VERSION_URL`)
-- Modify: `config/services.yaml` (add `$resourcesVersionUrl` bind)
-- Modify: `tests/resources/moco/Back/moco.json` (add a `/resources/metadata/version` mock rule — see note below on why this reuses the `moco.back` container)
-- Create: `src/Service/GetResourcesVersionService.php`
-- Test: `tests/src/Unit/Service/GetResourcesVersionServiceTest.php`
+- Modify: `src/Service/AppVersionService.php`
+- Modify: `tests/src/Unit/Service/AppVersionServiceTest.php`
 
 **Interfaces:**
-- Produces: `App\Service\GetResourcesVersionService::get(): ?string` — GETs `$resourcesVersionUrl`, returns the trimmed body, or `null` on any transport/HTTP failure. Constructor: `__construct(private readonly HttpClientInterface $client, private readonly string $resourcesVersionUrl)`.
-
-**Note on the test-environment URL:** `pokenini-resources` is a genuinely different host from `pokenini-back` in every real environment, but in tests there is no dedicated Moco container for it. Rather than provisioning a third Docker service for one plain-text fixture, `.env.test`/`.env.test.local` point `RESOURCES_VERSION_URL` at the existing `moco.back` container (`http://moco.back/resources/metadata/version`) — Moco just matches URIs, it doesn't care what real host a path "belongs to" conceptually.
-
-- [ ] **Step 1: Add `RESOURCES_VERSION_URL` to every env file**
-
-Add one line to each file, right after the existing `POKEMON_IMAGE_URL` line, using the same host/port as that file's `POKEMON_IMAGE_URL` but with the path replaced by `/resources/metadata/version`:
-
-`.env` (after line 30):
-```
-RESOURCES_VERSION_URL='http://localhost:8083/resources/metadata/version'
-```
-
-`.env.dev` (after its `POKEMON_IMAGE_URL` line):
-```
-RESOURCES_VERSION_URL='http://localhost:8083/resources/metadata/version'
-```
-
-`.env.dev.local` (after its `POKEMON_IMAGE_URL` line):
-```
-RESOURCES_VERSION_URL='http://resources.pokenini.local:8083/resources/metadata/version'
-```
-
-`.env.prod` (after its `POKEMON_IMAGE_URL` line):
-```
-RESOURCES_VERSION_URL='http://localhost:8082/resources/metadata/version'
-```
-
-`.env.int` (after its `POKEMON_IMAGE_URL` line):
-```
-RESOURCES_VERSION_URL='https://icon.pokenini.fr/resources/metadata/version'
-```
-
-`.env.ci` (after its `POKEMON_IMAGE_URL` line):
-```
-RESOURCES_VERSION_URL='http://localhost:8082/resources/metadata/version'
-```
-
-`.env.test` (after its `POKEMON_IMAGE_URL` line) — **deliberately points at Moco, not the real prod-like value**:
-```
-RESOURCES_VERSION_URL='http://moco.back/resources/metadata/version'
-```
-
-`.env.test.local` (same as `.env.test`):
-```
-RESOURCES_VERSION_URL='http://moco.back/resources/metadata/version'
-```
-
-- [ ] **Step 2: Add the `$resourcesVersionUrl` bind to `config/services.yaml`**
-
-In `config/services.yaml`, add to the existing `_defaults.bind` block:
-
-```yaml
-services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    bind:
-      string $projectDir: "%kernel.project_dir%"
-      string $backUrl: "%env(BACK_URL)%"
-      string $backCafilePath: "%env(BACK_CAFILE_PATH)%"
-      string $demoUserId: "%env(DEMO_USER_ID)%"
-      string $resourcesVersionUrl: "%env(RESOURCES_VERSION_URL)%"
-```
-
-- [ ] **Step 3: Write the failing unit test**
-
-Create `tests/src/Unit/Service/GetResourcesVersionServiceTest.php`:
-
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Tests\Unit\Service;
-
-use App\Service\GetResourcesVersionService;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\Exception\TransportException;
-use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
-
-/**
- * @internal
- */
-#[CoversClass(GetResourcesVersionService::class)]
-final class GetResourcesVersionServiceTest extends TestCase
-{
-    public function testGetReturnsTrimmedVersion(): void
-    {
-        $response = $this->createStub(ResponseInterface::class);
-        $response->method('getContent')->willReturn("1.9.7\n");
-
-        $client = $this->createMock(HttpClientInterface::class);
-        $client
-            ->expects($this->once())
-            ->method('request')
-            ->with('GET', 'https://resources.domain/resources/metadata/version')
-            ->willReturn($response)
-        ;
-
-        $service = new GetResourcesVersionService($client, 'https://resources.domain/resources/metadata/version');
-
-        $this->assertSame('1.9.7', $service->get());
-    }
-
-    public function testGetReturnsNullOnTransportError(): void
-    {
-        $client = $this->createMock(HttpClientInterface::class);
-        $client->method('request')->willThrowException(
-            $this->createMock(TransportException::class)
-        );
-
-        $service = new GetResourcesVersionService($client, 'https://resources.domain/resources/metadata/version');
-
-        $this->assertNull($service->get());
-    }
-
-    public function testGetReturnsNullOnHttpError(): void
-    {
-        $response = $this->createMock(ResponseInterface::class);
-        $response
-            ->expects($this->once())
-            ->method('getContent')
-            ->willThrowException($this->createStub(ClientExceptionInterface::class))
-        ;
-
-        $client = $this->createMock(HttpClientInterface::class);
-        $client->method('request')->willReturn($response);
-
-        $service = new GetResourcesVersionService($client, 'https://resources.domain/resources/metadata/version');
-
-        $this->assertNull($service->get());
-    }
-}
-```
-
-- [ ] **Step 4: Run the test to verify it fails**
-
-```bash
-docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/GetResourcesVersionServiceTest.php
-```
-
-Expected: FAIL — class not found.
-
-- [ ] **Step 5: Implement `GetResourcesVersionService`**
-
-Create `src/Service/GetResourcesVersionService.php`:
-
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Service;
-
-use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-
-class GetResourcesVersionService
-{
-    public function __construct(
-        private readonly HttpClientInterface $client,
-        private readonly string $resourcesVersionUrl,
-    ) {}
-
-    public function get(): ?string
-    {
-        try {
-            $content = $this->client->request('GET', $this->resourcesVersionUrl)->getContent();
-        } catch (ExceptionInterface) {
-            return null;
-        }
-
-        return trim($content);
-    }
-}
-```
-
-- [ ] **Step 6: Run the test to verify it passes**
-
-```bash
-docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/GetResourcesVersionServiceTest.php
-```
-
-Expected: PASS (3 tests).
-
-- [ ] **Step 7: Add the Moco rule reusing `moco.back` for the resources fixture**
-
-In `tests/resources/moco/Back/moco.json`, add a new rule to the top-level JSON array:
-
-```json
-{
-  "request": {
-    "uri": "/resources/metadata/version"
-  },
-  "response": {
-    "text": "1.9.7"
-  }
-}
-```
-
-(No auth headers required in the request matcher — `pokenini-resources` is a public static host with no authentication, and `GetResourcesVersionService` doesn't send any.)
-
----
-
-## Task 7: `pokenini-web` — `GetVersionsService` (calls back's `/istration/version`)
-
-**Repo:** `/home/renaud/projects/pokenini-web`
-
-**Files:**
-- Create: `src/ResponseObject/Versions.php`
-- Create: `src/Service/Back/GetVersionsService.php`
-- Test: `tests/src/Unit/Service/Back/GetVersionsServiceTest.php`
-
-**Interfaces:**
-- Consumes: `AbstractBackService::requestContent(...)` (existing, `src/Service/Back/AbstractBackService.php`).
-- Produces:
-  - `App\ResponseObject\Versions` — `final class` with `public readonly ?string $back` and `public readonly ?string $api`.
-  - `App\Service\Back\GetVersionsService::get(): Versions` — calls `GET /istration/version` on the back, deserializes into `Versions`; on any transport/HTTP/deserialization failure, returns `new Versions(null, null)` instead of throwing.
+- Produces: `App\Service\AppVersionService::getUpdatedAt(string $filename = 'version'): ?\DateTimeImmutable` — same `filemtime()` this class already computes for its cache key, exposed directly; `null` if the file doesn't exist. `getVersion()` itself is completely unchanged.
 
 - [ ] **Step 1: Write the failing unit test**
 
-Create `tests/src/Unit/Service/Back/GetVersionsServiceTest.php`:
+Add to `tests/src/Unit/Service/AppVersionServiceTest.php` (alongside the existing tests, same file/class):
+
+```php
+    public function testGetUpdatedAtReturnsFileMtime(): void
+    {
+        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
+
+        $versionFilePath = dirname(__DIR__, 4).'/resources/metadata/version';
+        $expectedMtime = filemtime($versionFilePath);
+
+        $this->assertSame($expectedMtime, $service->getUpdatedAt()?->getTimestamp());
+    }
+
+    public function testGetUpdatedAtReturnsNullForMissingFile(): void
+    {
+        $service = new AppVersionService(dirname(__DIR__, 4), new ArrayAdapter(), new Filesystem());
+
+        $this->assertNull($service->getUpdatedAt('non_existent_file'));
+    }
+```
+
+- [ ] **Step 2: Run the test to verify it fails**
+
+```bash
+docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/AppVersionServiceTest.php
+```
+
+Expected: FAIL — `AppVersionService::getUpdatedAt()` doesn't exist.
+
+- [ ] **Step 3: Implement `AppVersionService::getUpdatedAt()`**
+
+Add this method to `src/Service/AppVersionService.php` (keep `getVersion()` byte-for-byte unchanged):
+
+```php
+    public function getUpdatedAt(string $filename = 'version'): ?\DateTimeImmutable
+    {
+        $filePath = $this->projectDir.'/resources/metadata/'.$filename;
+
+        if (!$this->filesystem->exists($filePath)) {
+            return null;
+        }
+
+        $mtime = filemtime($filePath);
+
+        if (false === $mtime) {
+            return null;
+        }
+
+        return (new \DateTimeImmutable())->setTimestamp($mtime);
+    }
+```
+
+- [ ] **Step 4: Run the test to verify it passes**
+
+```bash
+docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/AppVersionServiceTest.php
+```
+
+Expected: PASS (10 tests) — the 8 already-merged tests plus these 2 new ones.
+
+---
+
+## Task 6: `pokenini-web` — `ResponseObject\BrickVersion` and updated `Versions`/`GetVersionsService`
+
+**Repo:** `/home/renaud/projects/pokenini-web`
+
+**Files:**
+- Create: `src/ResponseObject/BrickVersion.php`
+- Modify: `src/ResponseObject/Versions.php`
+- Modify: `src/Service/Back/GetVersionsService.php`
+- Modify: `tests/src/Unit/Service/Back/GetVersionsServiceTest.php`
+
+**Interfaces:**
+- Produces: `App\ResponseObject\BrickVersion` — `final class` with `public readonly ?string $version` and `#[SerializedName('updated_at')] public readonly ?\DateTimeImmutable $updatedAt`. This is the **single** shared shape used both for JSON deserialization (here) and, in Task 8, as the field type on `DTO\VersionsOverview` — following this repo's existing `ResponseObject\ImagePipelineStatus` precedent (deserialized once, then passed straight through Controller → Twig, no separate DTO twin).
+- Produces: `App\ResponseObject\Versions` — `back: BrickVersion`, `api: BrickVersion` (was `?string`, `?string`).
+- Produces: `App\Service\Back\GetVersionsService::get(): Versions` — unchanged control flow; failure branch now returns `new Versions(new BrickVersion(null, null), new BrickVersion(null, null))`.
+
+- [ ] **Step 1: Write the failing unit test**
+
+Replace `tests/src/Unit/Service/Back/GetVersionsServiceTest.php`:
 
 ```php
 <?php
@@ -1047,18 +698,11 @@ namespace App\Tests\Unit\Service\Back;
 use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetVersionsService;
+use App\Tests\Utils\RealSerializerFactory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\TransportException;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
-use Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -1070,31 +714,54 @@ final class GetVersionsServiceTest extends TestCase
 {
     public function testGetDeserializesVersions(): void
     {
-        $versions = $this->getServiceWithResponseBody('{"back":"1.2.12","api":"1.2.13"}')->get();
+        $versions = $this->getServiceWithResponseBody(
+            '{"back":{"version":"1.2.12","updated_at":"2026-08-05T09:12:00+00:00"},"api":{"version":"1.2.13","updated_at":"2026-08-04T21:47:00+00:00"}}'
+        )->get();
 
-        $this->assertSame('1.2.12', $versions->back);
-        $this->assertSame('1.2.13', $versions->api);
+        $this->assertSame('1.2.12', $versions->back->version);
+        $this->assertSame('2026-08-05T09:12:00+00:00', $versions->back->updatedAt?->format(\DateTimeInterface::ATOM));
+        $this->assertSame('1.2.13', $versions->api->version);
+        $this->assertSame('2026-08-04T21:47:00+00:00', $versions->api->updatedAt?->format(\DateTimeInterface::ATOM));
     }
 
     public function testGetHandlesNullApiField(): void
     {
-        $versions = $this->getServiceWithResponseBody('{"back":"1.2.12","api":null}')->get();
+        $versions = $this->getServiceWithResponseBody(
+            '{"back":{"version":"1.2.12","updated_at":"2026-08-05T09:12:00+00:00"},"api":{"version":null,"updated_at":null}}'
+        )->get();
 
-        $this->assertSame('1.2.12', $versions->back);
-        $this->assertNull($versions->api);
+        $this->assertSame('1.2.12', $versions->back->version);
+        $this->assertNull($versions->api->version);
+        $this->assertNull($versions->api->updatedAt);
     }
 
     public function testGetReturnsNullFieldsOnTransportError(): void
     {
-        $client = $this->createMock(HttpClientInterface::class);
+        $client = $this->createStub(HttpClientInterface::class);
         $client->method('request')->willThrowException(
-            $this->createMock(TransportException::class)
+            $this->createStub(TransportException::class)
         );
 
         $versions = $this->buildService($client)->get();
 
-        $this->assertNull($versions->back);
-        $this->assertNull($versions->api);
+        $this->assertNull($versions->back->version);
+        $this->assertNull($versions->back->updatedAt);
+        $this->assertNull($versions->api->version);
+        $this->assertNull($versions->api->updatedAt);
+    }
+
+    /**
+     * Reproduces the real production failure mode: the container-wired serializer (with a
+     * PropertyInfo type extractor, as configured in config/packages/serializer.yaml) throws
+     * Symfony\Component\Serializer\Exception\NotNormalizableValueException — not \TypeError —
+     * when a field's JSON type doesn't match the declared PHP type.
+     */
+    public function testGetReturnsNullFieldsOnNotNormalizableValue(): void
+    {
+        $versions = $this->getServiceWithResponseBody('{"back":{"x":1},"api":{"version":"1.0","updated_at":null}}')->get();
+
+        $this->assertNull($versions->back->version);
+        $this->assertNull($versions->api->version);
     }
 
     private function getServiceWithResponseBody(string $responseBody): GetVersionsService
@@ -1102,7 +769,7 @@ final class GetVersionsServiceTest extends TestCase
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getContent')->willReturn($responseBody);
 
-        $client = $this->createMock(HttpClientInterface::class);
+        $client = $this->createStub(HttpClientInterface::class);
         $client->method('request')->willReturn($response);
 
         return $this->buildService($client);
@@ -1122,21 +789,7 @@ final class GetVersionsServiceTest extends TestCase
             'https://back.domain',
             './resources/certificates/cacert.pem',
             $userTokenService,
-            $this->buildSerializer(),
-        );
-    }
-
-    private function buildSerializer(): SerializerInterface
-    {
-        $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader());
-        $nameConverter = new MetadataAwareNameConverter($classMetadataFactory);
-
-        return new Serializer(
-            [
-                new DateTimeNormalizer(),
-                new ObjectNormalizer($classMetadataFactory, $nameConverter),
-            ],
-            [new JsonEncoder()]
+            RealSerializerFactory::create(),
         );
     }
 }
@@ -1148,11 +801,32 @@ final class GetVersionsServiceTest extends TestCase
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/Back/GetVersionsServiceTest.php
 ```
 
-Expected: FAIL — classes not found.
+Expected: FAIL — `App\ResponseObject\BrickVersion` doesn't exist, `Versions::$back`/`$api` are still `?string`.
 
-- [ ] **Step 3: Implement `Versions` and `GetVersionsService`**
+- [ ] **Step 3: Implement `BrickVersion`, update `Versions` and `GetVersionsService`**
 
-Create `src/ResponseObject/Versions.php`:
+Create `src/ResponseObject/BrickVersion.php`:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\ResponseObject;
+
+use Symfony\Component\Serializer\Attribute\SerializedName;
+
+final class BrickVersion
+{
+    public function __construct(
+        public readonly ?string $version,
+        #[SerializedName('updated_at')]
+        public readonly ?\DateTimeImmutable $updatedAt,
+    ) {}
+}
+```
+
+Replace `src/ResponseObject/Versions.php`:
 
 ```php
 <?php
@@ -1164,13 +838,13 @@ namespace App\ResponseObject;
 final class Versions
 {
     public function __construct(
-        public readonly ?string $back,
-        public readonly ?string $api,
+        public readonly BrickVersion $back,
+        public readonly BrickVersion $api,
     ) {}
 }
 ```
 
-Create `src/Service/Back/GetVersionsService.php`:
+Replace `src/Service/Back/GetVersionsService.php`:
 
 ```php
 <?php
@@ -1179,9 +853,10 @@ declare(strict_types=1);
 
 namespace App\Service\Back;
 
+use App\ResponseObject\BrickVersion;
 use App\ResponseObject\Versions;
-use Symfony\Component\Serializer\Exception\NotEncodableValueException;
-use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
+use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface as HttpExceptionInterface;
 
 class GetVersionsService extends AbstractBackService
 {
@@ -1192,8 +867,8 @@ class GetVersionsService extends AbstractBackService
 
             /** @var Versions */
             return $this->serializer->deserialize($content, Versions::class, 'json');
-        } catch (ExceptionInterface|NotEncodableValueException) {
-            return new Versions(null, null);
+        } catch (HttpExceptionInterface|SerializerExceptionInterface) {
+            return new Versions(new BrickVersion(null, null), new BrickVersion(null, null));
         }
     }
 }
@@ -1205,28 +880,25 @@ class GetVersionsService extends AbstractBackService
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/Back/GetVersionsServiceTest.php
 ```
 
-Expected: PASS (3 tests).
+Expected: PASS (4 tests).
 
 ---
 
-## Task 8: `pokenini-web` — `VersionsOverviewService` (combines all four bricks)
+## Task 7: `pokenini-web` — `GetResourcesVersionService` reads the `Last-Modified` header
 
 **Repo:** `/home/renaud/projects/pokenini-web`
 
 **Files:**
-- Create: `src/DTO/VersionsOverview.php`
-- Create: `src/Service/VersionsOverviewService.php`
-- Test: `tests/src/Unit/Service/VersionsOverviewServiceTest.php`
+- Modify: `src/Service/GetResourcesVersionService.php`
+- Modify: `tests/src/Unit/Service/GetResourcesVersionServiceTest.php`
 
 **Interfaces:**
-- Consumes: `App\Service\AppVersionService::getVersion(string $filename = 'version'): string` (existing, unchanged), `App\Service\Back\GetVersionsService::get(): Versions` (Task 7), `App\Service\GetResourcesVersionService::get(): ?string` (Task 6).
-- Produces:
-  - `App\DTO\VersionsOverview` — `final class` with `public readonly ?string $web`, `?string $back`, `?string $api`, `?string $resources`.
-  - `App\Service\VersionsOverviewService::get(): VersionsOverview`.
+- Consumes: `App\ResponseObject\BrickVersion` (Task 6).
+- Produces: `App\Service\GetResourcesVersionService::get(): BrickVersion` (was `?string`) — the body (trimmed) becomes `version`; the `Last-Modified` response header (if present) becomes `updatedAt`, parsed via `new \DateTimeImmutable($headerValue)` (PHP's `DateTimeImmutable` constructor parses RFC 7231 dates like `"Wed, 05 Aug 2026 09:12:00 GMT"` natively). On any transport/HTTP failure: `BrickVersion(null, null)`, logging exactly as today.
 
 - [ ] **Step 1: Write the failing unit test**
 
-Create `tests/src/Unit/Service/VersionsOverviewServiceTest.php`:
+Replace `tests/src/Unit/Service/GetResourcesVersionServiceTest.php`:
 
 ```php
 <?php
@@ -1235,6 +907,192 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service;
 
+use App\Service\GetResourcesVersionService;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpClient\Exception\TransportException;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
+
+/**
+ * @internal
+ */
+#[CoversClass(GetResourcesVersionService::class)]
+final class GetResourcesVersionServiceTest extends TestCase
+{
+    public function testGetReturnsVersionAndUpdatedAtFromLastModifiedHeader(): void
+    {
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getContent')->willReturn("1.9.7\n");
+        $response->method('getHeaders')->willReturn(['last-modified' => ['Wed, 05 Aug 2026 09:12:00 GMT']]);
+
+        $client = $this->createMock(HttpClientInterface::class);
+        $client
+            ->expects($this->once())
+            ->method('request')
+            ->with('GET', 'https://resources.domain/resources/metadata/version')
+            ->willReturn($response)
+        ;
+
+        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
+
+        $brickVersion = $service->get();
+
+        $this->assertSame('1.9.7', $brickVersion->version);
+        $this->assertSame('2026-08-05T09:12:00+00:00', $brickVersion->updatedAt?->format(\DateTimeInterface::ATOM));
+    }
+
+    public function testGetReturnsNullUpdatedAtWhenLastModifiedHeaderAbsent(): void
+    {
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getContent')->willReturn('1.9.7');
+        $response->method('getHeaders')->willReturn([]);
+
+        $client = $this->createMock(HttpClientInterface::class);
+        $client->method('request')->willReturn($response);
+
+        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
+
+        $brickVersion = $service->get();
+
+        $this->assertSame('1.9.7', $brickVersion->version);
+        $this->assertNull($brickVersion->updatedAt);
+    }
+
+    public function testGetReturnsNullBrickVersionOnTransportError(): void
+    {
+        $exception = $this->createStub(TransportException::class);
+
+        $client = $this->createStub(HttpClientInterface::class);
+        $client->method('request')->willThrowException($exception);
+
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->once())
+            ->method('warning')
+            ->with('Failed to fetch resources version', ['exception' => $exception])
+        ;
+
+        $service = new GetResourcesVersionService($logger, $client, 'https://resources.domain/resources/metadata/version');
+
+        $brickVersion = $service->get();
+
+        $this->assertNull($brickVersion->version);
+        $this->assertNull($brickVersion->updatedAt);
+    }
+
+    public function testGetReturnsNullBrickVersionOnHttpError(): void
+    {
+        $response = $this->createMock(ResponseInterface::class);
+        $response
+            ->expects($this->once())
+            ->method('getContent')
+            ->willThrowException($this->createStub(ClientExceptionInterface::class))
+        ;
+
+        $client = $this->createStub(HttpClientInterface::class);
+        $client->method('request')->willReturn($response);
+
+        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
+
+        $brickVersion = $service->get();
+
+        $this->assertNull($brickVersion->version);
+        $this->assertNull($brickVersion->updatedAt);
+    }
+}
+```
+
+- [ ] **Step 2: Run the test to verify it fails**
+
+```bash
+docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/GetResourcesVersionServiceTest.php
+```
+
+Expected: FAIL — `get()` still returns `?string`, no `->version`/`->updatedAt` properties.
+
+- [ ] **Step 3: Implement the new `GetResourcesVersionService::get()`**
+
+Replace `src/Service/GetResourcesVersionService.php`:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Service;
+
+use App\ResponseObject\BrickVersion;
+use Psr\Log\LoggerInterface;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+
+class GetResourcesVersionService
+{
+    public function __construct(
+        private readonly LoggerInterface $logger,
+        private readonly HttpClientInterface $client,
+        private readonly string $resourcesVersionUrl,
+    ) {}
+
+    public function get(): BrickVersion
+    {
+        try {
+            $response = $this->client->request('GET', $this->resourcesVersionUrl);
+            $content = $response->getContent();
+            $lastModified = $response->getHeaders()['last-modified'][0] ?? null;
+        } catch (ExceptionInterface $exception) {
+            $this->logger->warning('Failed to fetch resources version', ['exception' => $exception]);
+
+            return new BrickVersion(null, null);
+        }
+
+        return new BrickVersion(
+            trim($content),
+            null !== $lastModified ? new \DateTimeImmutable($lastModified) : null,
+        );
+    }
+}
+```
+
+- [ ] **Step 4: Run the test to verify it passes**
+
+```bash
+docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/GetResourcesVersionServiceTest.php
+```
+
+Expected: PASS (4 tests).
+
+---
+
+## Task 8: `pokenini-web` — `VersionsOverview` and `VersionsOverviewService` use `BrickVersion`
+
+**Repo:** `/home/renaud/projects/pokenini-web`
+
+**Files:**
+- Modify: `src/DTO/VersionsOverview.php`
+- Modify: `src/Service/VersionsOverviewService.php`
+- Modify: `tests/src/Unit/Service/VersionsOverviewServiceTest.php`
+
+**Interfaces:**
+- Consumes: `App\Service\AppVersionService::getVersion()`/`getUpdatedAt()` (Task 5), `App\Service\Back\GetVersionsService::get(): Versions` (Task 6), `App\Service\GetResourcesVersionService::get(): BrickVersion` (Task 7).
+- Produces: `App\DTO\VersionsOverview` — four `App\ResponseObject\BrickVersion` fields: `web`, `back`, `api`, `resources` (was four `?string` fields).
+- Produces: `App\Service\VersionsOverviewService::get(): VersionsOverview` — same orchestration role, same single entry point for the controller.
+
+- [ ] **Step 1: Write the failing unit test**
+
+Replace `tests/src/Unit/Service/VersionsOverviewServiceTest.php`:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Tests\Unit\Service;
+
+use App\ResponseObject\BrickVersion;
 use App\ResponseObject\Versions;
 use App\Service\AppVersionService;
 use App\Service\Back\GetVersionsService;
@@ -1251,44 +1109,62 @@ final class VersionsOverviewServiceTest extends TestCase
 {
     public function testGetCombinesAllFourVersions(): void
     {
-        $appVersionService = $this->createMock(AppVersionService::class);
+        $webUpdatedAt = new \DateTimeImmutable('2026-08-05T09:12:00+00:00');
+        $backUpdatedAt = new \DateTimeImmutable('2026-08-04T21:47:00+00:00');
+        $apiUpdatedAt = new \DateTimeImmutable('2026-08-03T15:03:00+00:00');
+        $resourcesUpdatedAt = new \DateTimeImmutable('2026-08-02T10:00:00+00:00');
+
+        $appVersionService = $this->createStub(AppVersionService::class);
         $appVersionService->method('getVersion')->willReturn('1.2.12');
+        $appVersionService->method('getUpdatedAt')->willReturn($webUpdatedAt);
 
-        $getVersionsService = $this->createMock(GetVersionsService::class);
-        $getVersionsService->method('get')->willReturn(new Versions('1.9.9', '1.9.8'));
+        $getVersionsService = $this->createStub(GetVersionsService::class);
+        $getVersionsService->method('get')->willReturn(new Versions(
+            new BrickVersion('1.9.9', $backUpdatedAt),
+            new BrickVersion('1.9.8', $apiUpdatedAt),
+        ));
 
-        $getResourcesVersionService = $this->createMock(GetResourcesVersionService::class);
-        $getResourcesVersionService->method('get')->willReturn('1.9.7');
+        $getResourcesVersionService = $this->createStub(GetResourcesVersionService::class);
+        $getResourcesVersionService->method('get')->willReturn(new BrickVersion('1.9.7', $resourcesUpdatedAt));
 
         $service = new VersionsOverviewService($appVersionService, $getVersionsService, $getResourcesVersionService);
 
         $overview = $service->get();
 
-        $this->assertSame('1.2.12', $overview->web);
-        $this->assertSame('1.9.9', $overview->back);
-        $this->assertSame('1.9.8', $overview->api);
-        $this->assertSame('1.9.7', $overview->resources);
+        $this->assertSame('1.2.12', $overview->web->version);
+        $this->assertSame($webUpdatedAt, $overview->web->updatedAt);
+        $this->assertSame('1.9.9', $overview->back->version);
+        $this->assertSame($backUpdatedAt, $overview->back->updatedAt);
+        $this->assertSame('1.9.8', $overview->api->version);
+        $this->assertSame($apiUpdatedAt, $overview->api->updatedAt);
+        $this->assertSame('1.9.7', $overview->resources->version);
+        $this->assertSame($resourcesUpdatedAt, $overview->resources->updatedAt);
     }
 
     public function testGetHandlesUnavailableBricks(): void
     {
-        $appVersionService = $this->createMock(AppVersionService::class);
+        $appVersionService = $this->createStub(AppVersionService::class);
         $appVersionService->method('getVersion')->willReturn('1.2.12');
+        $appVersionService->method('getUpdatedAt')->willReturn(null);
 
-        $getVersionsService = $this->createMock(GetVersionsService::class);
-        $getVersionsService->method('get')->willReturn(new Versions(null, null));
+        $getVersionsService = $this->createStub(GetVersionsService::class);
+        $getVersionsService->method('get')->willReturn(new Versions(
+            new BrickVersion(null, null),
+            new BrickVersion(null, null),
+        ));
 
-        $getResourcesVersionService = $this->createMock(GetResourcesVersionService::class);
-        $getResourcesVersionService->method('get')->willReturn(null);
+        $getResourcesVersionService = $this->createStub(GetResourcesVersionService::class);
+        $getResourcesVersionService->method('get')->willReturn(new BrickVersion(null, null));
 
         $service = new VersionsOverviewService($appVersionService, $getVersionsService, $getResourcesVersionService);
 
         $overview = $service->get();
 
-        $this->assertSame('1.2.12', $overview->web);
-        $this->assertNull($overview->back);
-        $this->assertNull($overview->api);
-        $this->assertNull($overview->resources);
+        $this->assertSame('1.2.12', $overview->web->version);
+        $this->assertNull($overview->web->updatedAt);
+        $this->assertNull($overview->back->version);
+        $this->assertNull($overview->api->version);
+        $this->assertNull($overview->resources->version);
     }
 }
 ```
@@ -1299,11 +1175,11 @@ final class VersionsOverviewServiceTest extends TestCase
 docker compose exec php php vendor/bin/phpunit tests/src/Unit/Service/VersionsOverviewServiceTest.php
 ```
 
-Expected: FAIL — classes not found.
+Expected: FAIL — `VersionsOverview::$web` etc. are still `?string`, `$overview->web->version` errors.
 
-- [ ] **Step 3: Implement `VersionsOverview` and `VersionsOverviewService`**
+- [ ] **Step 3: Implement the new `VersionsOverview` and `VersionsOverviewService`**
 
-Create `src/DTO/VersionsOverview.php`:
+Replace `src/DTO/VersionsOverview.php`:
 
 ```php
 <?php
@@ -1312,18 +1188,20 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
+use App\ResponseObject\BrickVersion;
+
 final class VersionsOverview
 {
     public function __construct(
-        public readonly ?string $web,
-        public readonly ?string $back,
-        public readonly ?string $api,
-        public readonly ?string $resources,
+        public readonly BrickVersion $web,
+        public readonly BrickVersion $back,
+        public readonly BrickVersion $api,
+        public readonly BrickVersion $resources,
     ) {}
 }
 ```
 
-Create `src/Service/VersionsOverviewService.php`:
+Replace `src/Service/VersionsOverviewService.php`:
 
 ```php
 <?php
@@ -1333,6 +1211,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\DTO\VersionsOverview;
+use App\ResponseObject\BrickVersion;
 use App\Service\Back\GetVersionsService;
 
 class VersionsOverviewService
@@ -1348,7 +1227,7 @@ class VersionsOverviewService
         $versions = $this->getVersionsService->get();
 
         return new VersionsOverview(
-            web: $this->appVersionService->getVersion(),
+            web: new BrickVersion($this->appVersionService->getVersion(), $this->appVersionService->getUpdatedAt()),
             back: $versions->back,
             api: $versions->api,
             resources: $this->getResourcesVersionService->get(),
@@ -1367,25 +1246,21 @@ Expected: PASS (2 tests).
 
 ---
 
-## Task 9: `pokenini-web` — admin "Versions" tab (controller, templates, tab link, translations)
+## Task 9: `pokenini-web` — enriched-list template, Moco fixtures, integration test
 
 **Repo:** `/home/renaud/projects/pokenini-web`
 
 **Files:**
-- Create: `src/Controller/AdminVersionsController.php`
-- Create: `templates/Admin/versions.html.twig`
-- Create: `templates/Admin/_versions.html.twig`
-- Modify: `templates/Admin/_tabs.html.twig` (add the "Versions" tab link)
-- Modify: `translations/messages+intl-icu.en.yaml`, `translations/messages+intl-icu.fr.yaml`
-- Test: `tests/src/Integration/Controller/Admin/AdminVersionsTest.php`
+- Modify: `templates/Admin/_versions.html.twig`
+- Modify: `tests/resources/moco/Back/moco.json`
+- Modify: `tests/src/Integration/Controller/Admin/AdminVersionsTest.php`
 
 **Interfaces:**
-- Consumes: `App\Service\VersionsOverviewService::get(): VersionsOverview` (Task 8).
-- Produces: `GET /{_locale}/istration/versions` (route `app_admin_versions`), gated by the same `ROLE_ADMIN` mechanism as every other `/istration/*` route in this repo (no security config change needed — verified by the existing `AdminPageTest`-style 307/403 behavior).
+- Consumes: `App\DTO\VersionsOverview` (Task 8), exposed to the template as the `versionsOverview` variable (unchanged — `AdminVersionsController` and `versions.html.twig` need no changes at all).
 
 - [ ] **Step 1: Write the failing integration test**
 
-Create `tests/src/Integration/Controller/Admin/AdminVersionsTest.php`:
+Replace `tests/src/Integration/Controller/Admin/AdminVersionsTest.php`:
 
 ```php
 <?php
@@ -1395,6 +1270,9 @@ declare(strict_types=1);
 namespace App\Tests\Integration\Controller\Admin;
 
 use App\Controller\AdminVersionsController;
+use App\DTO\VersionsOverview;
+use App\ResponseObject\BrickVersion;
+use App\Service\VersionsOverviewService;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
@@ -1419,12 +1297,73 @@ final class AdminVersionsTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(200);
 
-        $expectedWebVersion = trim((string) file_get_contents(dirname(__DIR__, 5).'/resources/metadata/version'));
+        $versionFilePath = dirname(__DIR__, 5).'/resources/metadata/version';
+        $expectedWebVersion = trim((string) file_get_contents($versionFilePath));
+        $expectedWebUpdatedAt = (new \DateTimeImmutable())
+            ->setTimestamp((int) filemtime($versionFilePath))
+            ->setTimezone(new \DateTimeZone('Europe/Paris'))
+            ->format('d/m/Y \\à H:i')
+        ;
+        $expectedBackUpdatedAt = (new \DateTimeImmutable('2026-08-04T21:47:00+00:00'))
+            ->setTimezone(new \DateTimeZone('Europe/Paris'))
+            ->format('d/m/Y \\à H:i')
+        ;
+        $expectedApiUpdatedAt = (new \DateTimeImmutable('2026-01-01T00:00:00+00:00'))
+            ->setTimezone(new \DateTimeZone('Europe/Paris'))
+            ->format('d/m/Y \\à H:i')
+        ;
+        $expectedResourcesUpdatedAt = (new \DateTimeImmutable('Wed, 05 Aug 2026 09:12:00 GMT'))
+            ->setTimezone(new \DateTimeZone('Europe/Paris'))
+            ->format('d/m/Y \\à H:i')
+        ;
 
-        $this->assertSame($expectedWebVersion, trim($crawler->filter('#versions-row-web td')->eq(1)->text()));
-        $this->assertSame('1.9.9', trim($crawler->filter('#versions-row-back td')->eq(1)->text()));
-        $this->assertSame('1.9.8', trim($crawler->filter('#versions-row-api td')->eq(1)->text()));
-        $this->assertSame('1.9.7', trim($crawler->filter('#versions-row-resources td')->eq(1)->text()));
+        $this->assertSame($expectedWebVersion, trim($crawler->filter('#versions-row-web .versions-version')->text()));
+        $this->assertSame($expectedWebUpdatedAt, trim($crawler->filter('#versions-row-web .versions-date')->text()));
+
+        $this->assertSame('1.9.9', trim($crawler->filter('#versions-row-back .versions-version')->text()));
+        $this->assertSame($expectedBackUpdatedAt, trim($crawler->filter('#versions-row-back .versions-date')->text()));
+
+        $this->assertSame('1.9.8', trim($crawler->filter('#versions-row-api .versions-version')->text()));
+        $this->assertSame($expectedApiUpdatedAt, trim($crawler->filter('#versions-row-api .versions-date')->text()));
+
+        $this->assertSame('1.9.7', trim($crawler->filter('#versions-row-resources .versions-version')->text()));
+        $this->assertSame($expectedResourcesUpdatedAt, trim($crawler->filter('#versions-row-resources .versions-date')->text()));
+    }
+
+    public function testVersionsTabShowsUnavailableBadgeWhenBricksCannotBeFetched(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
+        $user->addAdminRole();
+        $client->loginUser($user, 'web');
+
+        $versionFilePath = dirname(__DIR__, 5).'/resources/metadata/version';
+        $expectedWebVersion = trim((string) file_get_contents($versionFilePath));
+        $expectedWebUpdatedAt = (new \DateTimeImmutable())->setTimestamp((int) filemtime($versionFilePath));
+
+        $versionsOverviewService = $this->createStub(VersionsOverviewService::class);
+        $versionsOverviewService->method('get')->willReturn(
+            new VersionsOverview(
+                web: new BrickVersion($expectedWebVersion, $expectedWebUpdatedAt),
+                back: new BrickVersion(null, null),
+                api: new BrickVersion(null, null),
+                resources: new BrickVersion(null, null),
+            )
+        );
+        self::getContainer()->set(VersionsOverviewService::class, $versionsOverviewService);
+
+        $crawler = $client->request('GET', '/fr/istration/versions');
+
+        $this->assertResponseStatusCodeSame(200);
+
+        $this->assertSame($expectedWebVersion, trim($crawler->filter('#versions-row-web .versions-version')->text()));
+        $this->assertSame('Indisponible', trim($crawler->filter('#versions-row-back .versions-version')->text()));
+        $this->assertSame('', trim($crawler->filter('#versions-row-back .versions-date')->text()));
+        $this->assertSame('Indisponible', trim($crawler->filter('#versions-row-api .versions-version')->text()));
+        $this->assertSame('', trim($crawler->filter('#versions-row-api .versions-date')->text()));
+        $this->assertSame('Indisponible', trim($crawler->filter('#versions-row-resources .versions-version')->text()));
+        $this->assertSame('', trim($crawler->filter('#versions-row-resources .versions-date')->text()));
     }
 
     public function testVersionsNotConnected(): void
@@ -1450,212 +1389,96 @@ final class AdminVersionsTest extends WebTestCase
 }
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [ ] **Step 2: Update the Moco fixtures**
 
-```bash
-docker compose exec php php vendor/bin/phpunit tests/src/Integration/Controller/Admin/AdminVersionsTest.php
+In `tests/resources/moco/Back/moco.json`, find the rule matching `"uri": {"match": "/istration/version"}` and replace its `response.json`:
+
+```json
+    "response": {
+      "status": "200",
+      "json": {
+        "back": {
+          "version": "1.9.9",
+          "updated_at": "2026-08-04T21:47:00+00:00"
+        },
+        "api": {
+          "version": "1.9.8",
+          "updated_at": "2026-01-01T00:00:00+00:00"
+        }
+      }
+    }
 ```
 
-Expected: FAIL — route/class not found.
+Find the rule matching `"uri": "/resources/metadata/version"` and add a `headers` block to its response:
 
-- [ ] **Step 3: Implement the controller**
-
-Create `src/Controller/AdminVersionsController.php`:
-
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Controller;
-
-use App\Service\VersionsOverviewService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-
-#[Route('/istration')]
-final class AdminVersionsController extends AbstractController
+```json
 {
-    public function __construct(
-        private readonly VersionsOverviewService $versionsOverviewService,
-    ) {}
-
-    #[Route('/versions', methods: ['GET'], name: 'app_admin_versions')]
-    public function versions(): Response
-    {
-        return $this->render(
-            'Admin/versions.html.twig',
-            [
-                'versionsOverview' => $this->versionsOverviewService->get(),
-            ]
-        );
+  "request": {
+    "uri": "/resources/metadata/version"
+  },
+  "response": {
+    "text": "1.9.7",
+    "headers": {
+      "Last-Modified": "Wed, 05 Aug 2026 09:12:00 GMT"
     }
+  }
 }
 ```
 
-- [ ] **Step 4: Create the page shell template**
+If Moco rejects a bare string for a response header value (some Moco versions expect an array), the test run in Step 4 will surface this as an assertion failure with the actual body/headers Moco returned — switch to whatever array form Moco's error message implies and re-run.
 
-Create `templates/Admin/versions.html.twig`:
-
-```twig
-{% extends 'base.html.twig' %}
-{% use '_nav.html.twig' %}
-
-{% block title %}Pokénini {{ 'title.admin'|trans }}{% endblock %}
-
-{% block stylesheets %}
-  {{ parent() }}
-
-  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-{% endblock stylesheets %}
-
-{% block container %}
-<div id="admin" class="row">
-  <div class="col-12">
-    <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
-    {% include 'Admin/_tabs.html.twig' with {'page': 'versions', 'active': 'versions'} %}
-    {% include 'Admin/_versions.html.twig' %}
-  </div>
-</div>
-{% endblock %}
-```
-
-- [ ] **Step 5: Create the versions table partial**
-
-Create `templates/Admin/_versions.html.twig`:
-
-```twig
-{% set bricks = [
-  {'key': 'web', 'label': 'admin.versions.web', 'version': versionsOverview.web},
-  {'key': 'back', 'label': 'admin.versions.back', 'version': versionsOverview.back},
-  {'key': 'api', 'label': 'admin.versions.api', 'version': versionsOverview.api},
-  {'key': 'resources', 'label': 'admin.versions.resources', 'version': versionsOverview.resources},
-] %}
-<table class="table" id="versions-table">
-  <thead>
-    <tr>
-      <th>{{ 'admin.versions.brick'|trans }}</th>
-      <th>{{ 'admin.versions.version'|trans }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for brick in bricks %}
-      <tr id="versions-row-{{ brick.key }}">
-        <td>{{ brick.label|trans }}</td>
-        <td>
-          {% if brick.version is not null %}
-            {{ brick.version }}
-          {% else %}
-            <span class="badge text-bg-secondary">{{ 'admin.versions.unavailable'|trans }}</span>
-          {% endif %}
-        </td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
-```
-
-- [ ] **Step 6: Add the "Versions" tab link**
-
-In `templates/Admin/_tabs.html.twig`, add a new `<li>` right after the existing Reports `<li>`, before the closing `</ul>`:
-
-```twig
-  <li class="nav-item" role="presentation">
-    <a class="nav-link{{ 'reports' == active ? ' active' : '' }}" href="{{ path('app_admin_reports') }}">
-      {{ 'title.admin_reports'|trans }}
-    </a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link{{ 'versions' == active ? ' active' : '' }}" href="{{ path('app_admin_versions') }}">
-      {{ 'title.admin_versions'|trans }}
-    </a>
-  </li>
-</ul>
-```
-
-(Only the new `<li>` block and the closing `</ul>` are new — the Reports `<li>` above it is shown for placement context, don't duplicate it.)
-
-- [ ] **Step 7: Add translations**
-
-In `translations/messages+intl-icu.en.yaml`, add `admin_versions: "Versions"` right after the existing `admin_reports: "Reporting"` line in the `title:` block:
-
-```yaml
-title:
-  home: "Home"
-  credits: "Credits"
-  report: "Report"
-  admin: "Backoffice"
-  admin_actions: "Data and caches"
-  admin_reports: "Reporting"
-  admin_versions: "Versions"
-```
-
-And add a new `versions:` block as a sibling of the existing `reports:` block, under the top-level `admin:` key:
-
-```yaml
-admin:
-  reports:
-    cache:
-      title: "Cache"
-    table:
-      hide: "Hide data"
-      show: "Show data"
-    catch_state_counts_defined_by_trainer:
-      # ... existing content unchanged ...
-  versions:
-    brick: "Brick"
-    version: "Version"
-    unavailable: "Unavailable"
-    web: "Web"
-    back: "Back"
-    api: "Api"
-    resources: "Resources"
-```
-
-In `translations/messages+intl-icu.fr.yaml`, add `admin_versions: "Versions"` after `admin_reports: "Rapports"`:
-
-```yaml
-title:
-  home: "Accueil"
-  credits: "Crédits"
-  report: "Stats"
-  admin: "Administration"
-  admin_actions: "Données et caches"
-  admin_reports: "Rapports"
-  admin_versions: "Versions"
-```
-
-And the matching `versions:` block under `admin:`:
-
-```yaml
-admin:
-  reports:
-    cache:
-      title: "Cache"
-    table:
-      hide: "Cacher la donnée"
-      show: "Afficher la donnée"
-      # ... existing content unchanged ...
-  versions:
-    brick: "Brique"
-    version: "Version"
-    unavailable: "Indisponible"
-    web: "Web"
-    back: "Back"
-    api: "Api"
-    resources: "Resources"
-```
-
-- [ ] **Step 8: Run the test to verify it passes**
+- [ ] **Step 3: Run the test to verify it fails**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Integration/Controller/Admin/AdminVersionsTest.php
 ```
 
-Expected: PASS (3 tests). If the Moco text-response fixture from Task 6 Step 7 doesn't work as expected (unlikely, but Moco's plain-text response support is less exercised in this codebase than its JSON/file responses), the test failure will show the actual body Moco returned — adjust the fixture's response type accordingly and re-run.
+Expected: FAIL — `templates/Admin/_versions.html.twig` still renders a `<table>` with plain `<td>` cells; `.versions-version`/`.versions-date` selectors match nothing.
 
-- [ ] **Step 9: Run full quality and measures gates for `pokenini-web`**
+- [ ] **Step 4: Rewrite the template**
+
+Replace `templates/Admin/_versions.html.twig`:
+
+```twig
+{% set bricks = [
+  {'key': 'web', 'label': 'admin.versions.web', 'color': 'primary', 'brickVersion': versionsOverview.web},
+  {'key': 'back', 'label': 'admin.versions.back', 'color': 'info', 'brickVersion': versionsOverview.back},
+  {'key': 'api', 'label': 'admin.versions.api', 'color': 'warning', 'brickVersion': versionsOverview.api},
+  {'key': 'resources', 'label': 'admin.versions.resources', 'color': 'success', 'brickVersion': versionsOverview.resources},
+] %}
+<div class="list-group" id="versions-list">
+  {% for brick in bricks %}
+    <div class="list-group-item d-flex align-items-center gap-3" id="versions-row-{{ brick.key }}">
+      <span class="badge rounded-pill text-bg-{{ brick.color }}">{{ brick.label|trans|slice(0, 1)|upper }}</span>
+      <span class="fw-semibold">{{ brick.label|trans }}</span>
+      <span class="versions-version fw-bold ms-auto">
+        {% if brick.brickVersion.version is not null %}
+          {{ brick.brickVersion.version }}
+        {% else %}
+          <span class="badge text-bg-secondary">{{ 'admin.versions.unavailable'|trans }}</span>
+        {% endif %}
+      </span>
+      <span class="versions-date text-body-secondary small">
+        {% if brick.brickVersion.updatedAt is not null %}
+          {{ brick.brickVersion.updatedAt|date('d/m/Y \\à H:i', 'Europe/Paris') }}
+        {% endif %}
+      </span>
+    </div>
+  {% endfor %}
+</div>
+```
+
+Note: `templates/Admin/versions.html.twig` (the page shell) and `templates/Admin/_tabs.html.twig` need **no changes** — the shell already includes `_versions.html.twig` and passes no extra variables it doesn't already have.
+
+- [ ] **Step 5: Run the test to verify it passes**
+
+```bash
+docker compose exec php php vendor/bin/phpunit tests/src/Integration/Controller/Admin/AdminVersionsTest.php
+```
+
+Expected: PASS (4 tests). If date assertions fail, re-check Step 2's Moco fixture dates were saved exactly as written (a typo'd ISO string is the most likely cause) and that the template's `date` filter format string matches `'d/m/Y \\à H:i'` exactly (the `\\à` escapes the literal "à" so Twig doesn't try to parse it as a format character).
+
+- [ ] **Step 6: Run full quality and measures gates for `pokenini-web`**
 
 ```bash
 docker compose exec php php vendor/bin/phpunit tests/src/Unit
@@ -1664,12 +1487,12 @@ make code-quality
 make measures
 ```
 
-Expected: all green, coverage and MSI both 100%. Update PHPStan/Psalm/PHPMD baselines per this repo's `CLAUDE.md` if needed. A browser test is not required (static admin table, no interactive JS), per the design doc's testing section.
+Expected: all green, coverage and MSI both 100%. Update PHPStan/Psalm/PHPMD baselines per this repo's `CLAUDE.md` if needed. A browser test is not required (static admin content, no interactive JS) — same as the already-merged base feature.
 
-- [ ] **Step 10: Manual smoke check**
+- [ ] **Step 7: Manual smoke check**
 
 ```bash
 make start
 ```
 
-Then visit `http://localhost/fr/connect/f/c?t=admin` to get an admin session, then `http://localhost/fr/istration/versions` and confirm the four rows render with real values (or "Indisponible" badges if a brick is genuinely unreachable in the local dev stack).
+Visit `http://localhost/fr/connect/f/c?t=admin` to get an admin session, then `http://localhost/fr/istration/versions` and confirm all four rows render as a Bootstrap list group with coloured initial badges, bold version numbers, and a right-aligned date per row (or "Indisponible" badges with no date, for any brick genuinely unreachable in the local dev stack).
