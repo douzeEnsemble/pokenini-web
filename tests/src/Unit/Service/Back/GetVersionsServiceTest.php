@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Service\Back;
 
-use App\Exception\NoLoggedUserException;
+use App\Security\User;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetVersionsService;
 use App\Tests\Utils\RealSerializerFactory;
+use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\TransportException;
+use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerExceptionInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -46,12 +49,61 @@ final class GetVersionsServiceTest extends TestCase
 
     public function testGetReturnsNullFieldsOnTransportError(): void
     {
-        $client = $this->createStub(HttpClientInterface::class);
-        $client->method('request')->willThrowException(
-            $this->createStub(TransportException::class)
-        );
+        $client = $this->createMock(HttpClientInterface::class);
+        $client
+            ->expects($this->once())
+            ->method('request')
+            ->willThrowException(
+                $this->createStub(TransportException::class)
+            )
+        ;
 
         $versions = $this->buildService($client)->get();
+
+        $this->assertNull($versions->back->version);
+        $this->assertNull($versions->back->updatedAt);
+        $this->assertNull($versions->api->version);
+        $this->assertNull($versions->api->updatedAt);
+    }
+
+    public function testGetReturnsNullFieldsOnSerializeError(): void
+    {
+        $userTokenService = $this->buildUserTokenService();
+
+        $response = $this->createMock(ResponseInterface::class);
+        $response
+            ->expects($this->exactly(2))
+            ->method('getContent')
+            ->willReturn('whatever')
+        ;
+
+        $client = $this->createMock(HttpClientInterface::class);
+        $client
+            ->expects($this->once())
+            ->method('request')
+            ->willReturn($response)
+        ;
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with('whatever', 'App\ResponseObject\Versions', 'json')
+            ->willThrowException(
+                $this->createStub(SerializerExceptionInterface::class)
+            )
+        ;
+
+        $service = new GetVersionsService(
+            $this->createStub(LoggerInterface::class),
+            $client,
+            'https://back.domain',
+            './resources/certificates/cacert.pem',
+            $userTokenService,
+            $serializer,
+        );
+
+        $versions = $service->get();
 
         $this->assertNull($versions->back->version);
         $this->assertNull($versions->back->updatedAt);
@@ -67,7 +119,11 @@ final class GetVersionsServiceTest extends TestCase
      */
     public function testGetReturnsNullFieldsOnNotNormalizableValue(): void
     {
-        $versions = $this->getServiceWithResponseBody('{"back":{"x":1},"api":{"version":"1.0","updated_at":null}}')->get();
+        $versions = $this->getServiceWithResponseBody(
+            '{"back":{"x":1},"api":{"version":null,"updated_at":null}}'
+        )
+            ->get()
+        ;
 
         $this->assertNull($versions->back->version);
         $this->assertNull($versions->api->version);
@@ -75,22 +131,26 @@ final class GetVersionsServiceTest extends TestCase
 
     private function getServiceWithResponseBody(string $responseBody): GetVersionsService
     {
-        $response = $this->createStub(ResponseInterface::class);
-        $response->method('getContent')->willReturn($responseBody);
+        $response = $this->createMock(ResponseInterface::class);
+        $response
+            ->expects($this->exactly(2))
+            ->method('getContent')
+            ->willReturn($responseBody)
+        ;
 
-        $client = $this->createStub(HttpClientInterface::class);
-        $client->method('request')->willReturn($response);
+        $client = $this->createMock(HttpClientInterface::class);
+        $client
+            ->expects($this->once())
+            ->method('request')
+            ->willReturn($response)
+        ;
 
         return $this->buildService($client);
     }
 
     private function buildService(HttpClientInterface $client): GetVersionsService
     {
-        $userTokenService = $this->createStub(UserTokenServiceInterface::class);
-        $userTokenService
-            ->method('getLoggedUser')
-            ->willThrowException(new NoLoggedUserException('No user logged'))
-        ;
+        $userTokenService = $this->buildUserTokenService();
 
         return new GetVersionsService(
             $this->createStub(LoggerInterface::class),
@@ -100,5 +160,23 @@ final class GetVersionsServiceTest extends TestCase
             $userTokenService,
             RealSerializerFactory::create(),
         );
+    }
+
+    private function buildUserTokenService(): UserTokenServiceInterface
+    {
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'dzdz-access-token-dzdz']),
+        );
+
+        $userTokenService = $this->createMock(UserTokenServiceInterface::class);
+        $userTokenService
+            ->expects($this->once())
+            ->method('getLoggedUser')
+            ->willReturn($user)
+        ;
+
+        return $userTokenService;
     }
 }

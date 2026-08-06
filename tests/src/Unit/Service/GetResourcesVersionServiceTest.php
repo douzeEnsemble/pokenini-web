@@ -43,14 +43,30 @@ final class GetResourcesVersionServiceTest extends TestCase
 
     public function testGetReturnsNullUpdatedAtWhenLastModifiedHeaderAbsent(): void
     {
-        $response = $this->createStub(ResponseInterface::class);
-        $response->method('getContent')->willReturn('1.9.7');
-        $response->method('getHeaders')->willReturn([]);
+        $response = $this->createMock(ResponseInterface::class);
+        $response
+            ->expects($this->once())
+            ->method('getContent')
+            ->willReturn('1.9.7')
+        ;
+        $response
+            ->expects($this->once())
+            ->method('getHeaders')
+            ->willReturn([])
+        ;
 
         $client = $this->createMock(HttpClientInterface::class);
-        $client->method('request')->willReturn($response);
+        $client
+            ->expects($this->once())
+            ->method('request')
+            ->willReturn($response)
+        ;
 
-        $service = new GetResourcesVersionService($this->createStub(LoggerInterface::class), $client, 'https://resources.domain/resources/metadata/version');
+        $service = new GetResourcesVersionService(
+            $this->createStub(LoggerInterface::class),
+            $client,
+            'https://resources.domain/resources/metadata/version',
+        );
 
         $brickVersion = $service->get();
 

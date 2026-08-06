@@ -8,15 +8,15 @@ another, each a `<div class="row px-4 py-5">` with its own `<h2>` and a set
 of action items rendered via the `admin.action()` macro:
 
 1. `update_data` — Mise à jour des données (labels, games_collections_and_dex,
-   pokemons, regional_dex_numbers)
+  pokemons, regional_dex_numbers)
 2. `update_availabilities` — Disponibilités (games_availabilities,
-   games_shinies_availabilities, collections_availabilities)
+  games_shinies_availabilities, collections_availabilities)
 3. `calculate_data` — Calculs (game_bundles_availabilities,
-   game_bundles_shinies_availabilities, dex_availabilities,
-   pokemon_availabilities)
+  game_bundles_shinies_availabilities, dex_availabilities,
+  pokemon_availabilities)
 4. `invalidate_data` — Invalidation (labels, catch_states, types, dex, albums)
 5. `trigger_pipeline` — Déclenchement pipeline (update_images), followed by
-   `Admin/_pipeline_status.html.twig` (image pipeline stage tracker)
+  `Admin/_pipeline_status.html.twig` (image pipeline stage tracker)
 
 The page is already the single-purpose Actions page (Reports lives on its
 own route, `app_admin_reports`, with its own top-level tab bar rendered by
