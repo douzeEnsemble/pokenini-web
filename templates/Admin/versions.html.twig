@@ -11,7 +11,7 @@
 
 {% block container %}
 <div id="admin" class="row">
-  <div class="col-12">
+  <div class="col-12 row justify-content-center">
     <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
     {% include 'Admin/_tabs.html.twig' with {'page': 'versions', 'active': 'versions'} %}
     {% include 'Admin/_versions.html.twig' %}
