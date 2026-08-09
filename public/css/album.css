@@ -131,11 +131,26 @@ a.album-case-catch-state-edit-action:hover {
     text-align: center;
     background: none;
 }
-.dex-pick-card:not(.linked) {
+.dex-pick-card:not(.linked):not(.dex-pick-card-current) {
     cursor: pointer;
 }
-.dex-pick-card:not(.linked):hover {
+.dex-pick-card:not(.linked):not(.dex-pick-card-current):hover {
     border-color: var(--bs-primary);
+}
+/* The dex currently displayed in the album: always shown, in the same
+    position as on any other dex's picker, but disabled since linking a
+    dex to itself makes no sense. */
+.dex-pick-card.dex-pick-card-current {
+    opacity: .45;
+    cursor: not-allowed;
+}
+.dex-pick-card .chip-current {
+    background: var(--bs-secondary-bg);
+    color: var(--bs-secondary-color);
+}
+/* Client-side filtering (search + flags) on the picker grid. */
+.dex-pick-card.dex-pick-hidden {
+    display: none;
 }
 .dex-pick-card img {
     max-width: 100%;
@@ -192,6 +207,32 @@ a.album-case-catch-state-edit-action:hover {
     transition: opacity .12s ease, transform .12s ease;
     box-shadow: 0 0 0 2px var(--bs-body-bg);
     cursor: pointer;
+}
+/* Small "view this dex" shortcut, symmetric to the unlink control, always
+    present except on the current dex's own (disabled) card. */
+.dex-pick-card .dex-pick-view {
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 50%;
+    border: none;
+    background: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .55rem;
+    opacity: 0;
+    transform: scale(.85);
+    transition: opacity .12s ease, transform .12s ease;
+    box-shadow: 0 0 0 2px var(--bs-body-bg);
+}
+.dex-pick-card:hover .dex-pick-view,
+.dex-pick-card:focus-within .dex-pick-view {
+    opacity: 1;
+    transform: scale(1);
 }
 .dex-pick-card.linked:hover .unlink-btn,
 .dex-pick-card.linked:focus-within .unlink-btn {

@@ -72,12 +72,7 @@ final class AlbumIndexController extends AbstractController
         $allowedToEdit = $this->editDexIsGranted($dex, $requestedTrainerId);
 
         /** @var DexListItem[] $trainerDexList */
-        $trainerDexList = $allowedToEdit
-            ? array_values(array_filter(
-                $this->getTrainerDexListService->get(),
-                static fn (DexListItem $item): bool => $item->getSettings()->getSlug() !== $dexSlug,
-            ))
-            : [];
+        $trainerDexList = $allowedToEdit ? $this->getTrainerDexListService->get() : [];
 
         return $this->render('Album/index.html.twig', [
             'currentDexSlug' => $dexSlug,
