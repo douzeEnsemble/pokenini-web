@@ -263,6 +263,10 @@ trainer:
         prefix: ""
         radical: "{dexName}"
         suffix: "setting have not been saved"
+  links:
+    title: "Dex links"
+    intro: "Here are all the links you have created between your dexes."
+    empty: "You haven't created any link between your dexes yet."
   filters:
     attributes:
       privacy:

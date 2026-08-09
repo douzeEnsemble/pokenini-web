@@ -1,20 +1,38 @@
-<div class="accordion" id="trainerSection">
-  {% set sections = [
+{% set sections = [
     'personnal_data',
+    'links',
     'logout',
 ] %}
+
+<ul class="nav nav-tabs nav-fill mb-4" id="trainer-section-tab" role="tablist">
   {% for section in sections %}
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="heading_{{ section }}">
-        <button class="accordion-button" type="button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse_{{ section }}" aria-expanded="true" aria-controls="collapse_{{ section }}">
-          {{ ('trainer.'~section~'.title')|trans }}
-        </button>
-      </h2>
-      <div id="collapse_{{ section }}" class="accordion-collapse collapse" aria-labelledby="heading_{{ section }}">
-        <div class="accordion-body">
-          {{ include('Trainer/Section/_'~section~'.html.twig') }}
-        </div>
-      </div>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link{{ loop.first ? ' active' : '' }}"
+        id="tab-{{ section }}-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#section-{{ section }}"
+        type="button"
+        role="tab"
+        aria-controls="section-{{ section }}"
+        aria-selected="{{ loop.first ? 'true' : 'false' }}"
+      >
+        {{ ('trainer.'~section~'.title')|trans }}
+      </button>
+    </li>
+  {% endfor %}
+</ul>
+
+<div class="tab-content" id="trainer-section-tab-content">
+  {% for section in sections %}
+    <div
+      class="tab-pane fade{{ loop.first ? ' show active' : '' }}"
+      id="section-{{ section }}"
+      role="tabpanel"
+      aria-labelledby="tab-{{ section }}-tab"
+      tabindex="0"
+    >
+      {{ include('Trainer/Section/_'~section~'.html.twig') }}
     </div>
   {% endfor %}
 </div>
