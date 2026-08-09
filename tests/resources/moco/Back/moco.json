@@ -143,7 +143,8 @@
           "ROLE_TRAINER",
           "ROLE_COLLECTOR",
           "ROLE_ADMIN"
-        ]
+        ],
+        "session_token": "moco-session-token-admin"
       }
     }
   },
@@ -169,7 +170,8 @@
         "roles" : [
           "ROLE_TRAINER",
           "ROLE_COLLECTOR"
-        ]
+        ],
+        "session_token": "moco-session-token-collector"
       }
     }
   },
@@ -194,7 +196,8 @@
         "profile": "trainer",
         "roles" : [
           "ROLE_TRAINER"
-        ]
+        ],
+        "session_token": "moco-session-token-trainer"
       }
     }
   },
@@ -219,7 +222,8 @@
         "profile": "uninvited",
         "roles" : [
           "ROLE_TRAINER"
-        ]
+        ],
+        "session_token": "moco-session-token-uninvited"
       }
     }
   },

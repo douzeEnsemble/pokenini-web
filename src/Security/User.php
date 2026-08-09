@@ -16,6 +16,7 @@ final class User implements UserInterface
         private readonly string $identifier,
         private readonly string $providerName,
         private readonly AccessToken $accessToken,
+        private readonly string $sessionToken,
     ) {}
 
     #[\Override]
@@ -75,6 +76,11 @@ final class User implements UserInterface
     public function getAccessToken(): AccessToken
     {
         return $this->accessToken;
+    }
+
+    public function getSessionToken(): string
+    {
+        return $this->sessionToken;
     }
 
     public function isATrainer(): bool

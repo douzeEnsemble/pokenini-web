@@ -31,7 +31,8 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $user = new User(
             '1',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzad6a4d'])
+            new AccessToken(['access_token' => 'dzad6a4d']),
+            'test-session-token',
         );
 
         $token = $this->createMock(TokenInterface::class);
@@ -60,7 +61,8 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $user = new User(
             '1',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzad6a4d'])
+            new AccessToken(['access_token' => 'dzad6a4d']),
+            'test-session-token',
         );
         $user->addTrainerRole();
 
@@ -93,7 +95,8 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $user = new User(
             '1',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzad6a4d'])
+            new AccessToken(['access_token' => 'dzad6a4d']),
+            'test-session-token',
         );
 
         $token = $this->createMock(TokenInterface::class);

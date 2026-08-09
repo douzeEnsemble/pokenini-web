@@ -174,6 +174,7 @@ final class GetVersionsServiceTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'dzdz-access-token-dzdz']),
+            'test-session-token',
         );
 
         $userTokenService = $this->createMock(UserTokenServiceInterface::class);

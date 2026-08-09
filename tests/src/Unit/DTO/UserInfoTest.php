@@ -26,6 +26,7 @@ final class UserInfoTest extends TestCase
                 'ROLE_TRAINER',
                 'ROLE_COLLECTOR',
             ],
+            'session-jwt-from-back',
         );
 
         $this->assertSame(
@@ -46,6 +47,10 @@ final class UserInfoTest extends TestCase
                 'ROLE_COLLECTOR',
             ],
             $userInfo->getRoles(),
+        );
+        $this->assertSame(
+            'session-jwt-from-back',
+            $userInfo->getSessionToken(),
         );
     }
 }

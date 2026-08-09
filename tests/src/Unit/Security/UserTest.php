@@ -23,6 +23,7 @@ final class UserTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
 
         $this->assertEquals('12', $user->getUserIdentifier());
@@ -38,8 +39,21 @@ final class UserTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
 
         $this->assertSame('zdazdazd564', $user->getAccessToken()->getToken());
+    }
+
+    public function testGetSessionToken(): void
+    {
+        $user = new User(
+            '12',
+            'TestProvider',
+            new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
+        );
+
+        $this->assertSame('test-session-token', $user->getSessionToken());
     }
 }

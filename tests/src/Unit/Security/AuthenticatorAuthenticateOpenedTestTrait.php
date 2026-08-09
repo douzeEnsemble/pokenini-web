@@ -40,6 +40,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
     }
 
     #[Test]
@@ -61,6 +62,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
     }
 
     #[Test]
@@ -82,6 +84,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
     }
 
     #[Test]
@@ -103,6 +106,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
     }
 
     #[Test]
@@ -124,6 +128,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals('1212121212000000000000012', $user->getId());
         $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
     }
 
     /**
@@ -167,6 +172,7 @@ trait AuthenticatorAuthenticateOpenedTestTrait
                     'mock',
                     'trainer',
                     $roles,
+                    'session-jwt-from-back',
                 )
             )
         ;

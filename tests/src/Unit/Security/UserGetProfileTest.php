@@ -22,7 +22,8 @@ final class UserGetProfileTest extends TestCase
         $user = new User(
             '12',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzzad'])
+            new AccessToken(['access_token' => 'dzzad']),
+            'test-session-token',
         );
 
         $this->assertEquals('user', $user->getProfile());
@@ -34,7 +35,8 @@ final class UserGetProfileTest extends TestCase
         $user = new User(
             '12',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzzad'])
+            new AccessToken(['access_token' => 'dzzad']),
+            'test-session-token',
         );
         $user->addTrainerRole();
 
@@ -47,7 +49,8 @@ final class UserGetProfileTest extends TestCase
         $user = new User(
             '12',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzzad'])
+            new AccessToken(['access_token' => 'dzzad']),
+            'test-session-token',
         );
         $user->addCollectorRole();
 
@@ -60,7 +63,8 @@ final class UserGetProfileTest extends TestCase
         $user = new User(
             '12',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzzad'])
+            new AccessToken(['access_token' => 'dzzad']),
+            'test-session-token',
         );
         $user->addAdminRole();
 
@@ -73,7 +77,8 @@ final class UserGetProfileTest extends TestCase
         $user = new User(
             '12',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzzad'])
+            new AccessToken(['access_token' => 'dzzad']),
+            'test-session-token',
         );
         $user->addTrainerRole();
         $user->addAdminRole();
@@ -87,7 +92,8 @@ final class UserGetProfileTest extends TestCase
         $user = new User(
             '12',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzzad'])
+            new AccessToken(['access_token' => 'dzzad']),
+            'test-session-token',
         );
         $user->addCollectorRole();
         $user->addAdminRole();
@@ -101,7 +107,8 @@ final class UserGetProfileTest extends TestCase
         $user = new User(
             '12',
             'TestProvider',
-            new AccessToken(['access_token' => 'dzzad'])
+            new AccessToken(['access_token' => 'dzzad']),
+            'test-session-token',
         );
         $user->addTrainerRole();
         $user->addCollectorRole();

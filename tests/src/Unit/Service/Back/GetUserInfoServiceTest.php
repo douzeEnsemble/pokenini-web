@@ -57,7 +57,7 @@ final class GetUserInfoServiceTest extends TestCase
                 [
                     'headers' => [
                         'accept' => 'application/json',
-                        'Authorization' => 'Bearer abcde-access-token-abcde',
+                        'Authorization' => 'Bearer test-session-token',
                         'X-Provider' => 'testprovider',
                     ],
                     'cafile' => './resources/certificates/cacert.pem',
@@ -70,6 +70,7 @@ final class GetUserInfoServiceTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'abcde-access-token-abcde']),
+            'test-session-token',
         );
 
         $userTokenService = $this->createMock(UserTokenServiceInterface::class);
@@ -84,6 +85,7 @@ final class GetUserInfoServiceTest extends TestCase
             'mock',
             'collector',
             ['ROLE_TRAINER', 'ROLE_COLLECTOR'],
+            'session-jwt-from-back',
         );
 
         $serializer = $this->createMock(SerializerInterface::class);
@@ -111,6 +113,7 @@ final class GetUserInfoServiceTest extends TestCase
         $this->assertSame('mock', $userInfo->getProvider());
         $this->assertSame('collector', $userInfo->getProfile());
         $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->getRoles());
+        $this->assertSame('session-jwt-from-back', $userInfo->getSessionToken());
     }
 
     #[Test]
@@ -163,6 +166,7 @@ final class GetUserInfoServiceTest extends TestCase
             'mock',
             'collector',
             ['ROLE_TRAINER', 'ROLE_COLLECTOR'],
+            'session-jwt-from-back',
         );
 
         $serializer = $this->createMock(SerializerInterface::class);
@@ -190,5 +194,6 @@ final class GetUserInfoServiceTest extends TestCase
         $this->assertSame('mock', $userInfo->getProvider());
         $this->assertSame('collector', $userInfo->getProfile());
         $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->getRoles());
+        $this->assertSame('session-jwt-from-back', $userInfo->getSessionToken());
     }
 }

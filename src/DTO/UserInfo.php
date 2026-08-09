@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
+use Symfony\Component\Serializer\Attribute\SerializedName;
+
 final class UserInfo
 {
     /**
@@ -14,6 +16,8 @@ final class UserInfo
         private readonly string $provider,
         private readonly string $profile,
         private readonly array $roles,
+        #[SerializedName('session_token')]
+        private readonly string $sessionToken,
     ) {}
 
     public function getId(): string
@@ -37,5 +41,10 @@ final class UserInfo
     public function getRoles(): array
     {
         return $this->roles;
+    }
+
+    public function getSessionToken(): string
+    {
+        return $this->sessionToken;
     }
 }

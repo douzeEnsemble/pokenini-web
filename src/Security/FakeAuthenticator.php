@@ -53,7 +53,11 @@ final class FakeAuthenticator extends OAuth2Authenticator
 
     private function buildUser(AccessToken $accessToken, string $identifier): User
     {
-        $user = new User($identifier, 'fake', $accessToken);
+        // Dev-only shortcut: no call to pokenini-back's /user exchange endpoint here, so the
+        // session token is simply the identifier itself — pokenini-back's AccessTokenHandler
+        // falls back to its own "fake" provider handling for any bearer token that isn't a
+        // valid internal JWT, exactly like it does for the raw provider token today.
+        $user = new User($identifier, 'fake', $accessToken, $identifier);
 
         if ('admin' === $identifier) {
             $user->addAdminRole();

@@ -74,7 +74,7 @@ final class AdminActionServiceTest extends TestCase
                 [
                     'headers' => [
                         'accept' => 'application/json',
-                        'Authorization' => 'Bearer dzdz-access-token-dzdz',
+                        'Authorization' => 'Bearer test-session-token',
                         'X-Provider' => 'testprovider',
                     ],
                     'cafile' => '/some/where/cafile.pem',
@@ -87,6 +87,7 @@ final class AdminActionServiceTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'dzdz-access-token-dzdz']),
+            'test-session-token',
         );
 
         $userTokenService = $this->createMock(UserTokenServiceInterface::class);
@@ -166,7 +167,7 @@ final class AdminActionServiceTest extends TestCase
                 [
                     'headers' => [
                         'accept' => 'application/json',
-                        'Authorization' => 'Bearer dzdz-access-token-dzdz',
+                        'Authorization' => 'Bearer test-session-token',
                         'X-Provider' => 'testprovider',
                     ],
                     'cafile' => '/some/where/cafile.pem',
@@ -179,6 +180,7 @@ final class AdminActionServiceTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'dzdz-access-token-dzdz']),
+            'test-session-token',
         );
 
         $userTokenService = $this->createMock(UserTokenServiceInterface::class);

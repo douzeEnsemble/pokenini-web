@@ -39,7 +39,7 @@ abstract class AbstractBackService
 
         try {
             $user = $this->userTokenService->getLoggedUser();
-            $token = $user->getAccessToken()->getToken();
+            $token = $user->getSessionToken();
             $provider = $user->getProviderName();
         } catch (NoLoggedUserException) {
             $token = $accessToken?->getToken() ?? null;
