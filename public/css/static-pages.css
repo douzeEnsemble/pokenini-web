@@ -6,9 +6,9 @@
 
     Colors are derived from identity already present in the app rather than
     invented from scratch:
-      - the Poké Ball red comes from the app logo (public/img/logo/logo.png,
+        - the Poké Ball red comes from the app logo (public/img/logo/logo.png,
         dominant opaque color ~#ff4249);
-      - the teal comes from --icon-link-hover-color already defined in
+        - the teal comes from --icon-link-hover-color already defined in
         base.css (#408b91), used site-wide as the hover accent on Pokémon
         image-credit badges.
     Everything else (borders, card background, shadows) is expressed through
