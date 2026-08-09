@@ -72,7 +72,7 @@ final class AdminActionControllerTest extends TestCase
         $router
             ->expects($this->once())
             ->method('generate')
-            ->with('app_admin_actions', ['_fragment' => 'invalidate_something'])
+            ->with('app_admin_invalidate_data', ['_fragment' => 'invalidate_something'])
             ->willReturn('/admin')
         ;
 
@@ -104,6 +104,83 @@ final class AdminActionControllerTest extends TestCase
         $controller->setContainer($container);
 
         $response = $controller->invalidate('something', new Request([], ['_token' => 'valid_token']));
+
+        $this->assertSame('/admin', $response->getTargetUrl());
+    }
+
+    #[Test]
+    public function updateAvailabilitiesItemRedirectsToUpdateAvailabilitiesPage(): void
+    {
+        $adminActionService = $this->createMock(AdminActionService::class);
+        $adminActionService
+            ->expects($this->once())
+            ->method('execute')
+            ->with('update', 'games_availabilities')
+            ->willReturn(new AdminAction('update', 'games_availabilities', 'ok', '', ''))
+        ;
+
+        $session = $this->createMock(SessionInterface::class);
+        $session
+            ->expects($this->once())
+            ->method('set')
+        ;
+
+        $requestStack = $this->createMock(RequestStack::class);
+        $requestStack
+            ->expects($this->once())
+            ->method('getSession')
+            ->willReturn($session)
+        ;
+
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->never())
+            ->method('critical')
+        ;
+
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $eventDispatcher
+            ->expects($this->once())
+            ->method('dispatch')
+            ->with($this->isInstanceOf(AdminActionSucceededEvent::class))
+        ;
+
+        $router = $this->createMock(RouterInterface::class);
+        $router
+            ->expects($this->once())
+            ->method('generate')
+            ->with('app_admin_update_availabilities', ['_fragment' => 'update_games_availabilities'])
+            ->willReturn('/admin')
+        ;
+
+        $csrfManager = $this->createStub(CsrfTokenManagerInterface::class);
+        $csrfManager->method('isTokenValid')->willReturn(true);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container
+            ->expects($this->once())
+            ->method('has')
+            ->with('security.csrf.token_manager')
+            ->willReturn(true)
+        ;
+        $container
+            ->expects($this->exactly(2))
+            ->method('get')
+            ->willReturnMap([
+                ['security.csrf.token_manager', $csrfManager],
+                ['router', $router],
+            ])
+        ;
+
+        $controller = new AdminActionController(
+            $adminActionService,
+            $requestStack,
+            $logger,
+            $eventDispatcher,
+        );
+        $controller->setContainer($container);
+
+        $response = $controller->update('games_availabilities', new Request([], ['_token' => 'valid_token']));
 
         $this->assertSame('/admin', $response->getTargetUrl());
     }
@@ -484,7 +561,7 @@ final class AdminActionControllerTest extends TestCase
         $router
             ->expects($this->once())
             ->method('generate')
-            ->with('app_admin_actions', ['_fragment' => 'trigger_update_images'])
+            ->with('app_admin_trigger_pipeline', ['_fragment' => 'trigger_update_images'])
             ->willReturn('/admin')
         ;
 
@@ -614,7 +691,7 @@ final class AdminActionControllerTest extends TestCase
         $router
             ->expects($this->once())
             ->method('generate')
-            ->with('app_admin_actions', ['_fragment' => $action.'_'.$name])
+            ->with($this->expectedRouteFor($action, $name), ['_fragment' => $action.'_'.$name])
             ->willReturn('/admin')
         ;
 
@@ -646,5 +723,25 @@ final class AdminActionControllerTest extends TestCase
         $controller->setContainer($container);
 
         return $controller;
+    }
+
+    /**
+     * Mirrors AdminActionController::resolveRedirectRoute()'s own mapping so this test doesn't
+     * need to hardcode which of the five dedicated pages each action/name pair now lands on.
+     */
+    private function expectedRouteFor(string $action, string $name): string
+    {
+        if ('reports' === $name) {
+            return 'app_admin_reports';
+        }
+
+        return match ($action) {
+            'update' => \in_array($name, ['games_availabilities', 'games_shinies_availabilities', 'collections_availabilities'], true)
+                ? 'app_admin_update_availabilities'
+                : 'app_admin_update_data',
+            'calculate' => 'app_admin_calculate_data',
+            'trigger' => 'app_admin_trigger_pipeline',
+            default => 'app_admin_invalidate_data',
+        };
     }
 }
