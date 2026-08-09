@@ -24,6 +24,7 @@ final class AppVersionServiceTest extends TestCase
     public static bool $forceFilemtimeFailure = false;
     public static int $filemtimeCallCount = 0;
 
+    #[\Override]
     protected function tearDown(): void
     {
         self::$forceFilemtimeFailure = false;
