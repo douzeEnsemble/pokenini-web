@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
 /**
@@ -20,7 +21,8 @@ final class PrivacyHomeToggleTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testSuccessTickIsOnHome(): void
+    #[Test]
+    public function successTickIsOnHome(): void
     {
         $client = $this->getNewClient();
 
@@ -49,7 +51,8 @@ final class PrivacyHomeToggleTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#errorToast-goldsilvercrystal');
     }
 
-    public function testSuccessUntickIsPrivate(): void
+    #[Test]
+    public function successUntickIsPrivate(): void
     {
         $client = $this->getNewClient();
 
@@ -76,7 +79,8 @@ final class PrivacyHomeToggleTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#errorToast-goldsilvercrystal');
     }
 
-    public function testErrorTickIsOnHome(): void
+    #[Test]
+    public function errorTickIsOnHome(): void
     {
         $client = $this->getNewClient();
 
@@ -104,7 +108,8 @@ final class PrivacyHomeToggleTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#successToast-redgreenblueyellow');
     }
 
-    public function testErrorUntickIsPrivate(): void
+    #[Test]
+    public function errorUntickIsPrivate(): void
     {
         $client = $this->getNewClient();
 

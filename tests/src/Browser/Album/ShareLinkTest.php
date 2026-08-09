@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -19,7 +20,8 @@ final class ShareLinkTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testClickingShareLinkWithWorkingClipboardShowsSuccessToastAndDoesNotNavigate(): void
+    #[Test]
+    public function clickingShareLinkWithWorkingClipboardShowsSuccessToastAndDoesNotNavigate(): void
     {
         $client = $this->getNewClient();
 
@@ -47,7 +49,8 @@ final class ShareLinkTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#shareToastError');
     }
 
-    public function testClickingShareLinkWithFailingClipboardShowsErrorToastAndDoesNotNavigate(): void
+    #[Test]
+    public function clickingShareLinkWithFailingClipboardShowsErrorToastAndDoesNotNavigate(): void
     {
         $client = $this->getNewClient();
 

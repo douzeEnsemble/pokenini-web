@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
 /**
@@ -20,7 +21,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testActionCatchStateGoldSilverCrystal(): void
+    #[Test]
+    public function actionCatchStateGoldSilverCrystal(): void
     {
         $client = $this->getNewClient();
 
@@ -51,7 +53,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         );
     }
 
-    public function testActionCatchStateDemo(): void
+    #[Test]
+    public function actionCatchStateDemo(): void
     {
         $client = $this->getNewClient();
 
@@ -82,7 +85,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         );
     }
 
-    public function testActionCatchStateDemoList3(): void
+    #[Test]
+    public function actionCatchStateDemoList3(): void
     {
         $client = $this->getNewClient();
 
@@ -113,7 +117,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         );
     }
 
-    public function testActionCatchStateToggle(): void
+    #[Test]
+    public function actionCatchStateToggle(): void
     {
         $client = $this->getNewClient();
 
@@ -137,7 +142,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorIsVisible('#bulbasaur .album-case-action');
     }
 
-    public function testActionCatchStateToggleWithLabel(): void
+    #[Test]
+    public function actionCatchStateToggleWithLabel(): void
     {
         $client = $this->getNewClient();
 
@@ -161,7 +167,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorIsVisible('#bulbasaur .album-case-action');
     }
 
-    public function testActionCatchStateToggleAllEdit(): void
+    #[Test]
+    public function actionCatchStateToggleAllEdit(): void
     {
         $client = $this->getNewClient();
 
@@ -189,7 +196,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
     }
 
-    public function testActionCatchStateToggleAllEditThenRead(): void
+    #[Test]
+    public function actionCatchStateToggleAllEditThenRead(): void
     {
         $client = $this->getNewClient();
 
@@ -229,7 +237,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
     }
 
-    public function testActionCatchStateToggleAllEditWithAlreadyInEditMode(): void
+    #[Test]
+    public function actionCatchStateToggleAllEditWithAlreadyInEditMode(): void
     {
         $client = $this->getNewClient();
 
@@ -281,7 +290,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
     }
 
-    public function testActionCatchStateChangeSuccess(): void
+    #[Test]
+    public function actionCatchStateChangeSuccess(): void
     {
         $client = $this->getNewClient();
 
@@ -319,7 +329,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorAttributeNotContains('#bulbasaur', 'class', 'catch-state-no');
     }
 
-    public function testActionCatchStateChangeError(): void
+    #[Test]
+    public function actionCatchStateChangeError(): void
     {
         $client = $this->getNewClient();
 
@@ -359,7 +370,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-tobreed');
     }
 
-    public function testActionCatchStatePendingChangeBlocksUnload(): void
+    #[Test]
+    public function actionCatchStatePendingChangeBlocksUnload(): void
     {
         $client = $this->getNewClient();
 
@@ -393,7 +405,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertTrue($blocksUnload);
     }
 
-    public function testActionCatchStateResolvedChangeAllowsUnload(): void
+    #[Test]
+    public function actionCatchStateResolvedChangeAllowsUnload(): void
     {
         $client = $this->getNewClient();
 
@@ -429,7 +442,8 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertFalse($blocksUnload);
     }
 
-    public function testActionCatchStateFailedChangeAllowsUnload(): void
+    #[Test]
+    public function actionCatchStateFailedChangeAllowsUnload(): void
     {
         $client = $this->getNewClient();
 

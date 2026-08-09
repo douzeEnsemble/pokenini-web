@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -19,7 +20,8 @@ final class OffcanvasTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testOffcanvas(): void
+    #[Test]
+    public function offcanvas(): void
     {
         $client = $this->getNewClient();
 
