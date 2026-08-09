@@ -20,6 +20,15 @@ env:
   PHP_CS_FIXER_IGNORE_ENV: 1
 
 jobs:
+  editorconfig:
+    name: EditorConfig
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Run
+        run: docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker:v3.6.0 editorconfig-checker --exclude=".phar"
+
   phpcsfixer:
     name: PHP-CS-Fixer
     runs-on: ubuntu-latest
