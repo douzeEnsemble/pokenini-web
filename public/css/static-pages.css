@@ -1,0 +1,94 @@
+/* Shared visual treatment for the "static" informational pages (Policy,
+    Legals, Cookies) - templates/Static/*. Those pages are plain translated
+    text with no dynamic logic, and used to render as an unstyled black-on-
+    white wall of text. This file only adds chrome around that text (hero
+    band + tinted card) - it never touches the translated content itself.
+
+    Colors are derived from identity already present in the app rather than
+    invented from scratch:
+      - the Poké Ball red comes from the app logo (public/img/logo/logo.png,
+        dominant opaque color ~#ff4249);
+      - the teal comes from --icon-link-hover-color already defined in
+        base.css (#408b91), used site-wide as the hover accent on Pokémon
+        image-credit badges.
+    Everything else (borders, card background, shadows) is expressed through
+    Bootstrap's own CSS variables (--bs-border-color, --bs-body-bg, ...) so it
+    keeps following the Bootstrap theme instead of hardcoding light-mode-only
+    colors. Note: this app does not implement a dark mode (no data-bs-theme
+    toggle anywhere), so no prefers-color-scheme handling was added here. */
+
+:root {
+    --pk-brand-red: #ff4249;
+    --pk-brand-red-deep: #b5222a;
+    --pk-brand-teal: var(--icon-link-hover-color, #408b91);
+    --pk-brand-teal-deep: #235459;
+}
+
+.static-page-hero {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.75rem 2rem;
+    border-radius: var(--bs-border-radius-lg, .5rem);
+    background: linear-gradient(
+        135deg,
+        var(--pk-brand-red-deep) 0%,
+        var(--pk-brand-red) 40%,
+        var(--pk-brand-teal) 75%,
+        var(--pk-brand-teal-deep) 100%
+    );
+    color: #fff;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .18);
+}
+
+.static-page-hero .bi {
+    font-size: 2rem;
+    line-height: 1;
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .25));
+}
+
+.static-page-hero h1 {
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+}
+
+.static-page-card {
+    padding: 2rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-lg, .5rem);
+    background:
+        linear-gradient(180deg, rgba(255, 66, 73, .05) 0%, rgba(64, 139, 145, .05) 100%),
+        var(--bs-body-bg);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .06);
+}
+
+.static-page-card h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: .4rem;
+    border-bottom: 2px solid var(--pk-brand-teal);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--pk-brand-teal-deep);
+}
+
+.static-page-card h2:first-child {
+    margin-top: 0;
+}
+
+.static-page-card p:first-of-type {
+    font-size: 1.05rem;
+    color: var(--bs-body-color);
+}
+
+.static-page-card ul li::marker {
+    color: var(--pk-brand-red);
+}
+
+.static-page-card strong {
+    color: var(--pk-brand-teal-deep);
+}

@@ -5,12 +5,23 @@
 
 {% block title %}Pokénini {{ 'title.legals'|trans }}{% endblock title %}
 
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/static-pages.css') }}">
+{% endblock stylesheets %}
+
 {% block container %}
   <div class="row justify-content-center">
     <div class="col-6">
-      <h1>{{ 'title.legals'|trans }}</h1>
+      <div class="static-page-hero">
+        <i class="bi bi-file-earmark-text"></i>
+        <h1>{{ 'title.legals'|trans }}</h1>
+      </div>
 
-      {% include('Static/Legals/'~locale~'.html.twig') %}
+      <div class="static-page-card">
+        {% include('Static/Legals/'~locale~'.html.twig') %}
+      </div>
     </div>
   </div>
 {% endblock container %}
