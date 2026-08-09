@@ -176,6 +176,7 @@ parameters:
       - AppResponseObject
       - SymfonyHttpFoundation
       - SymfonyOptionsResolver
+      - SymfonySerializer
     AppException:
     AppHelper:
     AppResponseObject:

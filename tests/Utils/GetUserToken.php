@@ -14,6 +14,10 @@ final class GetUserToken
         string $providerName = 'TestProvider',
     ): User {
         // Fake tokens derived from the identifier — not real OAuth credentials.
+        // The session token must stay derived from the identifier (not a fixed
+        // value): AbstractBackService::request() sends it as bearer, and the Moco
+        // fixtures under tests/resources/moco/Back/ select per-user responses by
+        // matching this exact bearer value.
         return new User(
             $identifier,
             $providerName,
@@ -24,7 +28,7 @@ final class GetUserToken
                     'refresh_token' => md5($identifier),
                 ]
             ),
-            'test-session-token',
+            sha1($identifier),
         );
     }
 }
