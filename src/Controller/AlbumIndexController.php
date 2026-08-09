@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\AlbumFilters\FromRequest;
 use App\Exception\NoLoggedUserException;
 use App\ResponseObject\Album\Dex;
-use App\ResponseObject\Album\DexListItem;
 use App\Security\User;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetTrainerDexListService;
@@ -71,7 +70,6 @@ final class AlbumIndexController extends AbstractController
 
         $allowedToEdit = $this->editDexIsGranted($dex, $requestedTrainerId);
 
-        /** @var DexListItem[] $trainerDexList */
         $trainerDexList = $allowedToEdit ? $this->getTrainerDexListService->get() : [];
 
         return $this->render('Album/index.html.twig', [
