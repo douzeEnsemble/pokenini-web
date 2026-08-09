@@ -37,6 +37,7 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertFalse($user->isACollector());
         $this->assertEquals('uninvited', $user->getId());
         $this->assertEquals('uninvited', $user->getUserIdentifier());
+        $this->assertEquals('uninvited', $user->getSessionToken());
     }
 
     #[Test]

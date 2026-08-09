@@ -194,7 +194,9 @@ abstract class AbstractTestBackService extends TestCase
         ];
 
         if (null !== $token) {
-            $headers['Authorization'] = 'Bearer '.$token;
+            // The logged-in path now sends the internal session token as bearer, not the raw
+            // provider access token — see AbstractBackService::request() and User::getSessionToken().
+            $headers['Authorization'] = 'Bearer test-session-token';
             $headers['X-Provider'] = 'testprovider';
         }
 
@@ -236,6 +238,7 @@ abstract class AbstractTestBackService extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => $token]),
+            'test-session-token',
         );
 
         $userTokenService

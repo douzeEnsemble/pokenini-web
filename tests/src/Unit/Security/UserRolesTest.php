@@ -23,6 +23,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -38,6 +39,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -53,6 +55,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -68,6 +71,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -84,6 +88,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -100,6 +105,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -116,6 +122,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -132,6 +139,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
@@ -148,6 +156,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
 
         $this->assertFalse($user->isATrainer());
@@ -164,6 +173,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
 
         $this->assertFalse($user->isACollector());
@@ -180,6 +190,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
 
         $this->assertFalse($user->isAnAdmin());
@@ -196,6 +207,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
 
         $this->assertFalse($user->isATrainer());
@@ -217,6 +229,7 @@ final class UserRolesTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'zdazdazd564']),
+            'test-session-token',
         );
 
         $this->assertFalse($user->isATrainer());

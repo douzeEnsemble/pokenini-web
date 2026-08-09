@@ -23,7 +23,8 @@ final class GetUserToken
                     'expires_in' => 999999,
                     'refresh_token' => md5($identifier),
                 ]
-            )
+            ),
+            'test-session-token',
         );
     }
 }

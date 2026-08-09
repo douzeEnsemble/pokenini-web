@@ -62,7 +62,8 @@ final class UserRefresherTest extends TestCase
                 'access_token' => 'dzadzz',
                 'refresh_token' => 'ipoadnaz',
                 'expires_in' => -1,
-            ])
+            ]),
+            'test-session-token',
         );
         $user->addAdminRole();
         $user->addCollectorRole();
@@ -76,6 +77,7 @@ final class UserRefresherTest extends TestCase
         $this->assertSame('yoiup', $newUser->getAccessToken()->getToken());
         $this->assertSame('ipoadnaz', $newUser->getAccessToken()->getRefreshToken());
         $this->assertSame($expectedExpiry, $newUser->getAccessToken()->getExpires());
+        $this->assertSame('test-session-token', $newUser->getSessionToken());
     }
 
     #[Test]
@@ -104,7 +106,8 @@ final class UserRefresherTest extends TestCase
                 'access_token' => 'old-access',
                 'refresh_token' => 'old-refresh',
                 'expires_in' => -1,
-            ])
+            ]),
+            'test-session-token',
         );
 
         $newUser = $refresher->refresh($user);
@@ -130,7 +133,8 @@ final class UserRefresherTest extends TestCase
             new AccessToken([
                 'access_token' => 'dzadzz',
                 'expires_in' => -1,
-            ])
+            ]),
+            'test-session-token',
         );
 
         $this->expectException(AuthenticationExpiredException::class);
@@ -181,7 +185,8 @@ final class UserRefresherTest extends TestCase
                 'access_token' => 'old-access',
                 'refresh_token' => 'old-refresh',
                 'expires_in' => -1,
-            ])
+            ]),
+            'test-session-token',
         );
 
         $this->expectException(AuthenticationExpiredException::class);
@@ -228,7 +233,8 @@ final class UserRefresherTest extends TestCase
                 'access_token' => 'old-access',
                 'refresh_token' => 'old-refresh',
                 'expires_in' => -1,
-            ])
+            ]),
+            'test-session-token',
         );
 
         $this->expectException(AuthenticationExpiredException::class);
@@ -254,7 +260,8 @@ final class UserRefresherTest extends TestCase
             new AccessToken([
                 'access_token' => 'dzadzz',
                 'expires_in' => 1000000000000000000,
-            ])
+            ]),
+            'test-session-token',
         );
 
         $freshUser = $provider->refresh($user);

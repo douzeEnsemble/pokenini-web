@@ -66,10 +66,13 @@ class UserRefresher
             ]);
         }
 
+        // The session token has its own SESSION_TTL-based expiry, independent from the raw
+        // provider access token's lifetime, so it carries over unchanged here.
         $newUser = new User(
             $user->getUserIdentifier(),
             $user->getProviderName(),
             $newAccessToken,
+            $user->getSessionToken(),
         );
 
         foreach ($user->getRoles() as $role) {

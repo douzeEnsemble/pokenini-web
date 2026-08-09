@@ -31,6 +31,7 @@ final class UserTokenServiceTest extends TestCase
                     '12',
                     'TestProvider',
                     new AccessToken(['access_token' => 'd546354']),
+                    'test-session-token',
                 ),
             )
         ;
@@ -71,6 +72,7 @@ final class UserTokenServiceTest extends TestCase
                     '12',
                     'TestProvider',
                     new AccessToken(['access_token' => 'd546354']),
+                    'test-session-token',
                 ),
             )
         ;
@@ -100,6 +102,7 @@ final class UserTokenServiceTest extends TestCase
             '12',
             'TestProvider',
             new AccessToken(['access_token' => 'd546354']),
+            'test-session-token',
         );
 
         $security = $this->createMock(Security::class);

@@ -54,7 +54,7 @@ abstract class AbstractAuthenticator extends OAuth2Authenticator
     {
         $userInfo = $this->getUserInfoService->get($accessToken, $providerName);
 
-        $user = new User($userInfo->getId(), $providerName, $accessToken);
+        $user = new User($userInfo->getId(), $providerName, $accessToken, $userInfo->getSessionToken());
 
         $roles = $userInfo->getRoles();
 

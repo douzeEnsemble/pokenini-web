@@ -47,7 +47,8 @@ final class UserProviderTest extends TestCase
             new AccessToken([
                 'access_token' => 'dzadzz',
                 'expires_in' => -1,
-            ])
+            ]),
+            'test-session-token',
         );
 
         $refresher = $this->createMock(UserRefresher::class);

@@ -30,7 +30,8 @@ trait AuthenticatorOnAuthentificationTestTrait
         $user = new User(
             '1',
             'TestProvider',
-            new AccessToken(['access_token' => 'zdazdzad-token-dazga'])
+            new AccessToken(['access_token' => 'zdazdzad-token-dazga']),
+            'test-session-token',
         );
 
         $token = $this->createMock(TokenInterface::class);
@@ -61,7 +62,8 @@ trait AuthenticatorOnAuthentificationTestTrait
         $user = new User(
             '1',
             'TestProvider',
-            new AccessToken(['access_token' => 'zdazdzad-token-dazga'])
+            new AccessToken(['access_token' => 'zdazdzad-token-dazga']),
+            'test-session-token',
         );
         $user->addTrainerRole();
 
@@ -94,7 +96,8 @@ trait AuthenticatorOnAuthentificationTestTrait
         $user = new User(
             '1',
             'TestProvider',
-            new AccessToken(['access_token' => 'zdazdzad-token-dazga'])
+            new AccessToken(['access_token' => 'zdazdzad-token-dazga']),
+            'test-session-token',
         );
 
         $token = $this->createMock(TokenInterface::class);
