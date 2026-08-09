@@ -7,6 +7,7 @@ namespace App\Tests\Unit\AlbumFilters;
 use App\AlbumFilters\AlbumFilterBag;
 use App\AlbumFilters\FromRequest;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -16,7 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
 #[CoversClass(FromRequest::class)]
 final class FromRequestTest extends TestCase
 {
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $request = new Request([
             'cs' => 'no',
@@ -58,7 +60,8 @@ final class FromRequestTest extends TestCase
         );
     }
 
-    public function testGetWithNegatives(): void
+    #[Test]
+    public function getWithNegatives(): void
     {
         $request = new Request([
             'cs' => '!no',
@@ -83,7 +86,8 @@ final class FromRequestTest extends TestCase
         );
     }
 
-    public function testGetEmptyRequest(): void
+    #[Test]
+    public function getEmptyRequest(): void
     {
         $bag = FromRequest::get(new Request());
 

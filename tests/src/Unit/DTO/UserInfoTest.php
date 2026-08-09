@@ -6,6 +6,7 @@ namespace App\Tests\Unit\DTO;
 
 use App\DTO\UserInfo;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(UserInfo::class)]
 final class UserInfoTest extends TestCase
 {
-    public function testConstrutorAndGetters(): void
+    #[Test]
+    public function construtorAndGetters(): void
     {
         $userInfo = new UserInfo(
             '20230321T0834470000',

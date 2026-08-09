@@ -10,6 +10,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetElectionDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -20,7 +21,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(GetElectionDexListService::class)]
 final class GetElectionDexListServiceTest extends AbstractTestBackService
 {
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $json = '{"doesnt": "matter"}';
 
@@ -43,7 +45,8 @@ final class GetElectionDexListServiceTest extends AbstractTestBackService
         );
     }
 
-    public function testWithoutLoggedUser(): void
+    #[Test]
+    public function withoutLoggedUser(): void
     {
         $json = '{"doesnt": "matter"}';
 

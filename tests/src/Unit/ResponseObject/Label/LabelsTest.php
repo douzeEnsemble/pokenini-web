@@ -7,6 +7,7 @@ namespace App\Tests\Unit\ResponseObject\Label;
 use App\ResponseObject\Label\Labels;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -17,7 +18,8 @@ final class LabelsTest extends TestCase
 {
     use ResponseObjectTrait;
 
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $object = $this->getStubLabels();
 
@@ -31,7 +33,8 @@ final class LabelsTest extends TestCase
         $this->assertCount(8, $object->getCollections());
     }
 
-    public function testConstructorWithAllEmpty(): void
+    #[Test]
+    public function constructorWithAllEmpty(): void
     {
         $object = new Labels([], [], [], [], [], [], [], []);
 

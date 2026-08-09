@@ -8,6 +8,7 @@ use App\DTO\ElectionIndexData;
 use App\DTO\ElectionMetrics;
 use App\DTO\ElectionTop;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +17,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ElectionIndexData::class)]
 final class ElectionIndexDataTest extends TestCase
 {
-    public function testOk(): void
+    #[Test]
+    public function ok(): void
     {
         $object = new ElectionIndexData(
             'list_type',

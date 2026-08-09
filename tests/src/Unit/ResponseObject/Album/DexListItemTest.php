@@ -10,6 +10,7 @@ use App\ResponseObject\Album\DexListItemRef;
 use App\ResponseObject\Album\DexListItemSettings;
 use App\ResponseObject\Album\Report;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DexListItem::class)]
 final class DexListItemTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $ref = new DexListItemRef(slug: 'swordshield');
         $settings = new DexListItemSettings(
@@ -45,7 +47,8 @@ final class DexListItemTest extends TestCase
         $this->assertNull($item->getReport());
     }
 
-    public function testGettersWithReport(): void
+    #[Test]
+    public function gettersWithReport(): void
     {
         $ref = new DexListItemRef(slug: 'swordshield');
         $settings = new DexListItemSettings(

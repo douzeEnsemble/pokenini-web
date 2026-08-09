@@ -8,6 +8,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\ModifyAlbumService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -18,7 +19,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(ModifyAlbumService::class)]
 final class ModifyAlbumServiceTest extends AbstractTestBackService
 {
-    public function testModifyPatch(): void
+    #[Test]
+    public function modifyPatch(): void
     {
         $this
             ->getService(
@@ -35,7 +37,8 @@ final class ModifyAlbumServiceTest extends AbstractTestBackService
         ;
     }
 
-    public function testModifyPut(): void
+    #[Test]
+    public function modifyPut(): void
     {
         $this
             ->getService(
@@ -52,7 +55,8 @@ final class ModifyAlbumServiceTest extends AbstractTestBackService
         ;
     }
 
-    public function testModifyPost(): void
+    #[Test]
+    public function modifyPost(): void
     {
         $logger = $this->createStub(LoggerInterface::class);
 
@@ -81,7 +85,8 @@ final class ModifyAlbumServiceTest extends AbstractTestBackService
         );
     }
 
-    public function testModifyPatchWithoutLoggedUser(): void
+    #[Test]
+    public function modifyPatchWithoutLoggedUser(): void
     {
         /** @var ModifyAlbumService $service */
         $service = $this->getServiceWithoutLoggedUser(

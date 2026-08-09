@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Election;
 
 use App\ResponseObject\Election\TopPokemonLabels;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(TopPokemonLabels::class)]
 final class TopPokemonLabelsTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $object = new TopPokemonLabels('Mega Venusaur', 'Mega Florizarre', 'Venusaur', 'Florizarre', 'Mega', 'Mega');
 
@@ -26,7 +28,8 @@ final class TopPokemonLabelsTest extends TestCase
         $this->assertSame('Mega', $object->getFormsFrenchLabel());
     }
 
-    public function testNullForms(): void
+    #[Test]
+    public function nullForms(): void
     {
         $object = new TopPokemonLabels('Bulbasaur', 'Bulbizarre', 'Bulbasaur', 'Bulbizarre', null, null);
 

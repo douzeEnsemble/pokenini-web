@@ -9,6 +9,7 @@ use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use League\OAuth2\Client\Token\AccessToken;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +24,8 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  */
 trait AuthenticatorOnAuthentificationTestTrait
 {
-    public function testOnAuthenticationSuccessNotATrainer(): void
+    #[Test]
+    public function onAuthenticationSuccessNotATrainer(): void
     {
         $user = new User(
             '1',
@@ -53,7 +55,8 @@ trait AuthenticatorOnAuthentificationTestTrait
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
-    public function testOnAuthenticationSuccessTrainer(): void
+    #[Test]
+    public function onAuthenticationSuccessTrainer(): void
     {
         $user = new User(
             '1',
@@ -85,7 +88,8 @@ trait AuthenticatorOnAuthentificationTestTrait
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
-    public function testOnAuthenticationSuccessWithTargetPath(): void
+    #[Test]
+    public function onAuthenticationSuccessWithTargetPath(): void
     {
         $user = new User(
             '1',
@@ -115,7 +119,8 @@ trait AuthenticatorOnAuthentificationTestTrait
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
-    public function testOnAuthenticationFailure(): void
+    #[Test]
+    public function onAuthenticationFailure(): void
     {
         $authenticator = $this->getOnAuthenticationAuthenticator([]);
 

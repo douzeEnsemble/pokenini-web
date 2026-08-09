@@ -8,6 +8,7 @@ use App\ResponseObject\Common\PokemonCreditRow;
 use App\Service\Back\GetCreditsService as BackGetCreditsService;
 use App\Service\GetCreditsService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\TagAwareAdapter;
@@ -18,7 +19,8 @@ use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 #[CoversClass(GetCreditsService::class)]
 final class GetCreditsServiceTest extends TestCase
 {
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $rows = [new PokemonCreditRow(
             pokemonSlug: 'bulbasaur',
@@ -43,7 +45,8 @@ final class GetCreditsServiceTest extends TestCase
         $this->assertSame($rows, $service->get());
     }
 
-    public function testCacheIsInvalidatedByCreditsTag(): void
+    #[Test]
+    public function cacheIsInvalidatedByCreditsTag(): void
     {
         $rows = [new PokemonCreditRow(
             pokemonSlug: 'bulbasaur',

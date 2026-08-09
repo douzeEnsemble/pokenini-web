@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Security;
 
 use App\Security\AuthenticationEntryPoint;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,8 @@ use Symfony\Component\Routing\RouterInterface;
 #[CoversClass(AuthenticationEntryPoint::class)]
 final class AuthenticationEntryPointTest extends TestCase
 {
-    public function testStartWithNoProvider(): void
+    #[Test]
+    public function startWithNoProvider(): void
     {
         $router = $this->createMock(RouterInterface::class);
         $router
@@ -35,7 +37,8 @@ final class AuthenticationEntryPointTest extends TestCase
         $this->assertSame('/home', $response->getTargetUrl());
     }
 
-    public function testStartWithGoogleProviderRedirectsToGoogleAndSavesTargetPath(): void
+    #[Test]
+    public function startWithGoogleProviderRedirectsToGoogleAndSavesTargetPath(): void
     {
         $router = $this->createMock(RouterInterface::class);
         $router
@@ -53,7 +56,8 @@ final class AuthenticationEntryPointTest extends TestCase
         $this->assertSame('http://localhost/fr/some-page', $request->getSession()->get('_security_target_path'));
     }
 
-    public function testStartWithDiscordProviderRedirectsToDiscordAndSavesTargetPath(): void
+    #[Test]
+    public function startWithDiscordProviderRedirectsToDiscordAndSavesTargetPath(): void
     {
         $router = $this->createMock(RouterInterface::class);
         $router
@@ -71,7 +75,8 @@ final class AuthenticationEntryPointTest extends TestCase
         $this->assertSame('http://localhost/fr/some-page', $request->getSession()->get('_security_target_path'));
     }
 
-    public function testStartWithUnknownProviderFallsBackToHome(): void
+    #[Test]
+    public function startWithUnknownProviderFallsBackToHome(): void
     {
         $router = $this->createMock(RouterInterface::class);
         $router

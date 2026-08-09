@@ -8,6 +8,7 @@ use App\Exception\ModifyFailedException;
 use App\Service\Back\ModifyAlbumService;
 use App\Service\ModifyTrainerAlbumService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -20,7 +21,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[CoversClass(ModifyTrainerAlbumService::class)]
 final class ModifyTrainerAlbumServiceTest extends TestCase
 {
-    public function testModifyAlbum(): void
+    #[Test]
+    public function modifyAlbum(): void
     {
         $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
         $modifyAlbumService
@@ -48,7 +50,8 @@ final class ModifyTrainerAlbumServiceTest extends TestCase
         $service->modifyAlbum('douze', 'treize', '{"ceci": "est-du-contenu"}');
     }
 
-    public function testModifyDexWithHttpException(): void
+    #[Test]
+    public function modifyDexWithHttpException(): void
     {
         $exception = $this->createStub(HttpExceptionInterface::class);
 
@@ -82,7 +85,8 @@ final class ModifyTrainerAlbumServiceTest extends TestCase
         $service->modifyAlbum('douze', 'treize', '{"ceci": "est-du-contenu"}');
     }
 
-    public function testModifyDexWithNoRequest(): void
+    #[Test]
+    public function modifyDexWithNoRequest(): void
     {
         $modifyAlbumService = $this->createMock(ModifyAlbumService::class);
         $modifyAlbumService
@@ -102,7 +106,8 @@ final class ModifyTrainerAlbumServiceTest extends TestCase
         $service->modifyAlbum('douze', 'treize', '{"ceci": "est-du-contenu"}');
     }
 
-    public function testModifyDexWithTransportException(): void
+    #[Test]
+    public function modifyDexWithTransportException(): void
     {
         $exception = $this->createStub(TransportExceptionInterface::class);
 

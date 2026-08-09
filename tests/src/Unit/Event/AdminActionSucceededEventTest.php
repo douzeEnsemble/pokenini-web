@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Event;
 
 use App\Event\AdminActionSucceededEvent;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(AdminActionSucceededEvent::class)]
 final class AdminActionSucceededEventTest extends TestCase
 {
-    public function testProperties(): void
+    #[Test]
+    public function properties(): void
     {
         $event = new AdminActionSucceededEvent('labels');
 

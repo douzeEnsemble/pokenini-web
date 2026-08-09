@@ -10,6 +10,7 @@ use App\Service\Back\GetVersionsService;
 use App\Tests\Utils\RealSerializerFactory;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\TransportException;
@@ -24,7 +25,8 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(GetVersionsService::class)]
 final class GetVersionsServiceTest extends TestCase
 {
-    public function testGetDeserializesVersions(): void
+    #[Test]
+    public function getDeserializesVersions(): void
     {
         $versions = $this->getServiceWithResponseBody(
             '{"back":{"version":"1.2.12","updated_at":"2026-08-05T09:12:00+00:00"},"api":{"version":"1.2.13","updated_at":"2026-08-04T21:47:00+00:00"}}'
@@ -36,7 +38,8 @@ final class GetVersionsServiceTest extends TestCase
         $this->assertSame('2026-08-04T21:47:00+00:00', $versions->api->updatedAt?->format(\DateTimeInterface::ATOM));
     }
 
-    public function testGetHandlesNullApiField(): void
+    #[Test]
+    public function getHandlesNullApiField(): void
     {
         $versions = $this->getServiceWithResponseBody(
             '{"back":{"version":"1.2.12","updated_at":"2026-08-05T09:12:00+00:00"},"api":{"version":null,"updated_at":null}}'
@@ -47,7 +50,8 @@ final class GetVersionsServiceTest extends TestCase
         $this->assertNull($versions->api->updatedAt);
     }
 
-    public function testGetReturnsNullFieldsOnTransportError(): void
+    #[Test]
+    public function getReturnsNullFieldsOnTransportError(): void
     {
         $client = $this->createMock(HttpClientInterface::class);
         $client
@@ -66,7 +70,8 @@ final class GetVersionsServiceTest extends TestCase
         $this->assertNull($versions->api->updatedAt);
     }
 
-    public function testGetReturnsNullFieldsOnSerializeError(): void
+    #[Test]
+    public function getReturnsNullFieldsOnSerializeError(): void
     {
         $userTokenService = $this->buildUserTokenService();
 
@@ -117,7 +122,8 @@ final class GetVersionsServiceTest extends TestCase
      * Symfony\Component\Serializer\Exception\NotNormalizableValueException — not \TypeError —
      * when a field's JSON type doesn't match the declared PHP type.
      */
-    public function testGetReturnsNullFieldsOnNotNormalizableValue(): void
+    #[Test]
+    public function getReturnsNullFieldsOnNotNormalizableValue(): void
     {
         $versions = $this->getServiceWithResponseBody(
             '{"back":{"x":1},"api":{"version":null,"updated_at":null}}'

@@ -6,6 +6,7 @@ namespace App\Tests\Unit\DTO;
 
 use App\DTO\ElectionVote;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
@@ -17,7 +18,8 @@ use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
 #[CoversClass(ElectionVote::class)]
 final class ElectionVoteTest extends TestCase
 {
-    public function testPropertiesAreReadonly(): void
+    #[Test]
+    public function propertiesAreReadonly(): void
     {
         $this->assertTrue((new \ReflectionProperty(ElectionVote::class, 'dexSlug'))->isReadOnly());
         $this->assertTrue((new \ReflectionProperty(ElectionVote::class, 'electionSlug'))->isReadOnly());
@@ -25,7 +27,8 @@ final class ElectionVoteTest extends TestCase
         $this->assertTrue((new \ReflectionProperty(ElectionVote::class, 'losersSlugs'))->isReadOnly());
     }
 
-    public function testOk(): void
+    #[Test]
+    public function ok(): void
     {
         $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
@@ -40,7 +43,8 @@ final class ElectionVoteTest extends TestCase
         $this->assertSame(['pichu', 'raichu'], $object->losersSlugs);
     }
 
-    public function testWinnerAsLoser(): void
+    #[Test]
+    public function winnerAsLoser(): void
     {
         $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
@@ -55,7 +59,8 @@ final class ElectionVoteTest extends TestCase
         $this->assertSame(['pichu', 'raichu'], $object->losersSlugs);
     }
 
-    public function testWinnersAsLosers(): void
+    #[Test]
+    public function winnersAsLosers(): void
     {
         $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
@@ -70,7 +75,8 @@ final class ElectionVoteTest extends TestCase
         $this->assertSame(['raichu'], $object->losersSlugs);
     }
 
-    public function testWithEmptyWinners(): void
+    #[Test]
+    public function withEmptyWinners(): void
     {
         $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
@@ -85,7 +91,8 @@ final class ElectionVoteTest extends TestCase
         $this->assertSame(['pikachu', 'raichu'], $object->losersSlugs);
     }
 
-    public function testWithEmptyLosers(): void
+    #[Test]
+    public function withEmptyLosers(): void
     {
         $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
@@ -100,7 +107,8 @@ final class ElectionVoteTest extends TestCase
         $this->assertSame(['pikachu', 'raichu'], $object->losersSlugs);
     }
 
-    public function testMissingDexSlug(): void
+    #[Test]
+    public function missingDexSlug(): void
     {
         $this->expectException(MissingOptionsException::class);
 
@@ -111,7 +119,8 @@ final class ElectionVoteTest extends TestCase
         ]);
     }
 
-    public function testWrongDexSlug(): void
+    #[Test]
+    public function wrongDexSlug(): void
     {
         $this->expectException(InvalidOptionsException::class);
 
@@ -127,7 +136,8 @@ final class ElectionVoteTest extends TestCase
         ]);
     }
 
-    public function testMissingElectionSlug(): void
+    #[Test]
+    public function missingElectionSlug(): void
     {
         $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
@@ -141,7 +151,8 @@ final class ElectionVoteTest extends TestCase
         $this->assertSame(['pichu', 'raichu'], $object->losersSlugs);
     }
 
-    public function testWrongValueForElectionSlug(): void
+    #[Test]
+    public function wrongValueForElectionSlug(): void
     {
         $this->expectException(InvalidOptionsException::class);
 
@@ -158,7 +169,8 @@ final class ElectionVoteTest extends TestCase
         ]);
     }
 
-    public function testWrongValueForWinnerSlug(): void
+    #[Test]
+    public function wrongValueForWinnerSlug(): void
     {
         $this->expectException(InvalidOptionsException::class);
 
@@ -174,7 +186,8 @@ final class ElectionVoteTest extends TestCase
         ]);
     }
 
-    public function testWrongValueForLosersSlugs(): void
+    #[Test]
+    public function wrongValueForLosersSlugs(): void
     {
         $this->expectException(InvalidOptionsException::class);
 
@@ -190,7 +203,8 @@ final class ElectionVoteTest extends TestCase
         ]);
     }
 
-    public function testAnotherValue(): void
+    #[Test]
+    public function anotherValue(): void
     {
         $this->expectException(UndefinedOptionsException::class);
 

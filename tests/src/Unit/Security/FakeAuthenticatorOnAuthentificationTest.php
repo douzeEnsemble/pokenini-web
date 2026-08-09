@@ -8,6 +8,7 @@ use App\Security\FakeAuthenticator;
 use App\Security\User;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,8 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 #[CoversClass(FakeAuthenticator::class)]
 final class FakeAuthenticatorOnAuthentificationTest extends TestCase
 {
-    public function testOnAuthenticationSuccessNotATrainer(): void
+    #[Test]
+    public function onAuthenticationSuccessNotATrainer(): void
     {
         $user = new User(
             '1',
@@ -52,7 +54,8 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
-    public function testOnAuthenticationSuccessTrainer(): void
+    #[Test]
+    public function onAuthenticationSuccessTrainer(): void
     {
         $user = new User(
             '1',
@@ -84,7 +87,8 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
-    public function testOnAuthenticationSuccessWithTargetPath(): void
+    #[Test]
+    public function onAuthenticationSuccessWithTargetPath(): void
     {
         $user = new User(
             '1',
@@ -114,7 +118,8 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
-    public function testOnAuthenticationFailure(): void
+    #[Test]
+    public function onAuthenticationFailure(): void
     {
         $fakeAuthenticator = $this->getFakeAuthenticator([]);
 

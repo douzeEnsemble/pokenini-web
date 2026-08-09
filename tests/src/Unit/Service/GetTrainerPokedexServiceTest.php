@@ -8,6 +8,7 @@ use App\Service\Back\GetPokedexService;
 use App\Service\GetTrainerPokedexService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -21,7 +22,8 @@ final class GetTrainerPokedexServiceTest extends TestCase
 {
     use ResponseObjectTrait;
 
-    public function testGetPokedexData(): void
+    #[Test]
+    public function getPokedexData(): void
     {
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
@@ -48,7 +50,8 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
-    public function testGetPokedexDataWithFilters(): void
+    #[Test]
+    public function getPokedexDataWithFilters(): void
     {
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
@@ -84,7 +87,8 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
-    public function testGetPokedexDataWithTrainerId(): void
+    #[Test]
+    public function getPokedexDataWithTrainerId(): void
     {
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
@@ -112,7 +116,8 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
-    public function testGetPokedexDataWithNullTrainerId(): void
+    #[Test]
+    public function getPokedexDataWithNullTrainerId(): void
     {
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
@@ -139,7 +144,8 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
-    public function testGetPokedexDataWithEmptyTrainerId(): void
+    #[Test]
+    public function getPokedexDataWithEmptyTrainerId(): void
     {
         $getPokedexService = $this->createMock(GetPokedexService::class);
         $getPokedexService
@@ -166,7 +172,8 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $this->assertSame(0, $pokedexData->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
-    public function testGetPokedexDataHttpException(): void
+    #[Test]
+    public function getPokedexDataHttpException(): void
     {
         $exception = $this->createStub(HttpExceptionInterface::class);
 
@@ -191,7 +198,8 @@ final class GetTrainerPokedexServiceTest extends TestCase
         $this->assertNull($dexData);
     }
 
-    public function testGetPokedexDataTransportException(): void
+    #[Test]
+    public function getPokedexDataTransportException(): void
     {
         $exception = $this->createStub(TransportExceptionInterface::class);
 

@@ -12,6 +12,7 @@ use App\ResponseObject\Election\TopPokemonLabels;
 use App\ResponseObject\Election\TopPokemonScore;
 use App\ResponseObject\Election\TopPokemonTypes;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,7 +21,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(TopPokemon::class)]
 final class TopPokemonTest extends TestCase
 {
-    public function testFlattenedGettersAndCredits(): void
+    #[Test]
+    public function flattenedGettersAndCredits(): void
     {
         $smallRegular = new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite');
         $bigShiny = new PokemonCredit(credit: 'PokemonDB - https://pokemondb.net/sprites/bulbasaur-shiny');

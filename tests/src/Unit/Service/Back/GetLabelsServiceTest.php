@@ -10,6 +10,7 @@ use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -26,7 +27,8 @@ final class GetLabelsServiceTest extends AbstractTestBackService
     public const ENDPOINT = 'labels';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/labels.json';
 
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $json = (new Filesystem())->readFile(self::RESPONSE_CONTENT);
 
@@ -65,7 +67,8 @@ final class GetLabelsServiceTest extends AbstractTestBackService
         $this->assertCount(8, $object->getCollections());
     }
 
-    public function testWithoutLoggedUser(): void
+    #[Test]
+    public function withoutLoggedUser(): void
     {
         $json = (new Filesystem())->readFile(self::RESPONSE_CONTENT);
 

@@ -9,6 +9,7 @@ use App\DTO\ElectionMetricsCompletion;
 use App\DTO\ElectionMetricsCounts;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
@@ -21,7 +22,8 @@ use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 #[CoversClass(ElectionMetricsCompletion::class)]
 final class ElectionMetricsTest extends TestCase
 {
-    public function testPropertiesAreReadonly(): void
+    #[Test]
+    public function propertiesAreReadonly(): void
     {
         $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'viewCount'))->isReadOnly());
         $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'winCount'))->isReadOnly());
@@ -32,7 +34,8 @@ final class ElectionMetricsTest extends TestCase
         $this->assertTrue((new \ReflectionProperty(ElectionMetrics::class, 'totalRoundCount'))->isReadOnly());
     }
 
-    public function testOk(): void
+    #[Test]
+    public function ok(): void
     {
         $object = ElectionMetrics::createFromArray(
             [
@@ -58,7 +61,8 @@ final class ElectionMetricsTest extends TestCase
         $this->assertSame(13, $object->getTotalRoundCount());
     }
 
-    public function testWinnerAverageAcceptsInt(): void
+    #[Test]
+    public function winnerAverageAcceptsInt(): void
     {
         $object = ElectionMetrics::createFromArray(
             [
@@ -79,7 +83,8 @@ final class ElectionMetricsTest extends TestCase
      * @param array<string, mixed> $values
      */
     #[DataProvider('providerMissingTopLevelProperty')]
-    public function testMissingTopLevelProperty(array $values): void
+    #[Test]
+    public function missingTopLevelProperty(array $values): void
     {
         $this->expectException(MissingOptionsException::class);
 
@@ -120,7 +125,8 @@ final class ElectionMetricsTest extends TestCase
      * @param array<string, mixed> $values
      */
     #[DataProvider('providerBadTopLevelType')]
-    public function testBadTopLevelType(array $values): void
+    #[Test]
+    public function badTopLevelType(array $values): void
     {
         $this->expectException(InvalidOptionsException::class);
 
@@ -161,7 +167,8 @@ final class ElectionMetricsTest extends TestCase
      * @param array<string, mixed> $values
      */
     #[DataProvider('providerMissingSubKey')]
-    public function testMissingSubKey(array $values): void
+    #[Test]
+    public function missingSubKey(array $values): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -205,7 +212,8 @@ final class ElectionMetricsTest extends TestCase
      * @param array<string, mixed> $values
      */
     #[DataProvider('providerBadSubKeyType')]
-    public function testBadSubKeyType(array $values): void
+    #[Test]
+    public function badSubKeyType(array $values): void
     {
         $this->expectException(\InvalidArgumentException::class);
 

@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Security;
 use App\Security\User;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(User::class)]
 final class UserGetProfileTest extends TestCase
 {
-    public function testGetProfileAsDefault(): void
+    #[Test]
+    public function getProfileAsDefault(): void
     {
         $user = new User(
             '12',
@@ -26,7 +28,8 @@ final class UserGetProfileTest extends TestCase
         $this->assertEquals('user', $user->getProfile());
     }
 
-    public function testGetProfileAsTrainer(): void
+    #[Test]
+    public function getProfileAsTrainer(): void
     {
         $user = new User(
             '12',
@@ -38,7 +41,8 @@ final class UserGetProfileTest extends TestCase
         $this->assertEquals('trainer', $user->getProfile());
     }
 
-    public function testGetProfileAsCollector(): void
+    #[Test]
+    public function getProfileAsCollector(): void
     {
         $user = new User(
             '12',
@@ -50,7 +54,8 @@ final class UserGetProfileTest extends TestCase
         $this->assertEquals('collector', $user->getProfile());
     }
 
-    public function testGetProfileAsAdmin(): void
+    #[Test]
+    public function getProfileAsAdmin(): void
     {
         $user = new User(
             '12',
@@ -62,7 +67,8 @@ final class UserGetProfileTest extends TestCase
         $this->assertEquals('admin', $user->getProfile());
     }
 
-    public function testGetProfileAsTrainerAndAdmin(): void
+    #[Test]
+    public function getProfileAsTrainerAndAdmin(): void
     {
         $user = new User(
             '12',
@@ -75,7 +81,8 @@ final class UserGetProfileTest extends TestCase
         $this->assertEquals('admin', $user->getProfile());
     }
 
-    public function testGetProfileAsCollectorAndAdmin(): void
+    #[Test]
+    public function getProfileAsCollectorAndAdmin(): void
     {
         $user = new User(
             '12',
@@ -88,7 +95,8 @@ final class UserGetProfileTest extends TestCase
         $this->assertEquals('admin', $user->getProfile());
     }
 
-    public function testGetProfileAsTrainerAndCollector(): void
+    #[Test]
+    public function getProfileAsTrainerAndCollector(): void
     {
         $user = new User(
             '12',

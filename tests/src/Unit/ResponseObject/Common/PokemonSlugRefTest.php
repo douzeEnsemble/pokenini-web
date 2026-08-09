@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Common;
 
 use App\ResponseObject\Common\PokemonSlugRef;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(PokemonSlugRef::class)]
 final class PokemonSlugRefTest extends TestCase
 {
-    public function testGetSlug(): void
+    #[Test]
+    public function getSlug(): void
     {
         $ref = new PokemonSlugRef('bulbasaur');
 

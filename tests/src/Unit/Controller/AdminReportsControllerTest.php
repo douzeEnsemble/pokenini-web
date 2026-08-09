@@ -8,6 +8,7 @@ use App\Controller\AdminReportsController;
 use App\DTO\AdminAction;
 use App\Service\Back\GetReportsService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -22,7 +23,8 @@ use Twig\Environment;
 #[CoversClass(AdminReportsController::class)]
 final class AdminReportsControllerTest extends TestCase
 {
-    public function testReports(): void
+    #[Test]
+    public function reports(): void
     {
         $adminAction = new AdminAction(
             'truc',
@@ -112,7 +114,8 @@ final class AdminReportsControllerTest extends TestCase
         );
     }
 
-    public function testReportsActionError(): void
+    #[Test]
+    public function reportsActionError(): void
     {
         $adminAction = new AdminAction(
             'truc',

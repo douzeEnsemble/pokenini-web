@@ -8,6 +8,7 @@ use App\ResponseObject\Common\PokemonCredit;
 use App\ResponseObject\Common\PokemonCreditRow;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +17,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(PokemonCreditRow::class)]
 final class PokemonCreditRowTest extends TestCase
 {
-    public function testGettersExposeConstructorValues(): void
+    #[Test]
+    public function gettersExposeConstructorValues(): void
     {
         $smallRegular = new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite');
         $bigRegular = new PokemonCredit(credit: 'PokemonDB - https://pokemondb.net/sprites/bulbasaur');
@@ -43,7 +45,8 @@ final class PokemonCreditRowTest extends TestCase
     }
 
     #[DataProvider('providerExactlyOneSlotSet')]
-    public function testHasAnyCreditIsTrueWhenExactlyOneSlotIsSet(
+    #[Test]
+    public function hasAnyCreditIsTrueWhenExactlyOneSlotIsSet(
         ?PokemonCredit $smallRegularCredit,
         ?PokemonCredit $smallShinyCredit,
         ?PokemonCredit $bigRegularCredit,
@@ -78,7 +81,8 @@ final class PokemonCreditRowTest extends TestCase
         ];
     }
 
-    public function testHasAnyCreditIsFalseWhenAllFourSlotsAreNull(): void
+    #[Test]
+    public function hasAnyCreditIsFalseWhenAllFourSlotsAreNull(): void
     {
         $row = new PokemonCreditRow(
             pokemonSlug: 'venusaur',

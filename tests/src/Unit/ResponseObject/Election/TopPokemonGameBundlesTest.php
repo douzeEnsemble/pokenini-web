@@ -7,6 +7,7 @@ namespace App\Tests\Unit\ResponseObject\Election;
 use App\ResponseObject\Election\TopPokemonGameBundles;
 use App\ResponseObject\Election\TopPokemonSlugRef;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(TopPokemonGameBundles::class)]
 final class TopPokemonGameBundlesTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $ref1 = new TopPokemonSlugRef('redgreenblueyellow');
         $ref2 = new TopPokemonSlugRef('goldsilvercrystal');
@@ -25,7 +27,8 @@ final class TopPokemonGameBundlesTest extends TestCase
         $this->assertSame([$ref2], $object->getShiny());
     }
 
-    public function testEmpty(): void
+    #[Test]
+    public function empty(): void
     {
         $object = new TopPokemonGameBundles([], []);
 

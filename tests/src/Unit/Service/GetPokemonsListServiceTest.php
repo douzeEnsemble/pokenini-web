@@ -9,6 +9,7 @@ use App\Service\Back\GetPokemonsService;
 use App\Service\GetPokemonsListService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +20,8 @@ final class GetPokemonsListServiceTest extends TestCase
 {
     use ResponseObjectTrait;
 
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $getPokemonsService = $this->createMock(GetPokemonsService::class);
         $getPokemonsService
@@ -48,7 +50,8 @@ final class GetPokemonsListServiceTest extends TestCase
         $this->assertCount(2, $list->getItems());
     }
 
-    public function testGetWithFilters(): void
+    #[Test]
+    public function getWithFilters(): void
     {
         $getPokemonsService = $this->createMock(GetPokemonsService::class);
         $getPokemonsService

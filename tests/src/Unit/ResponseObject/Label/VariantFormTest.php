@@ -7,6 +7,7 @@ namespace App\Tests\Unit\ResponseObject\Label;
 use App\ResponseObject\Label\AbstractForm;
 use App\ResponseObject\Label\VariantForm;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +17,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(VariantForm::class)]
 final class VariantFormTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $object = new VariantForm(
             'Toto',

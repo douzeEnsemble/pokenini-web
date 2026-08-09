@@ -10,6 +10,7 @@ use App\ResponseObject\Common\PokemonData;
 use App\ResponseObject\Common\PokemonLabels;
 use App\ResponseObject\Common\PokemonSlugRef;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(PokemonData::class)]
 final class PokemonDataTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $familyLead = new PokemonSlugRef('charmander');
         $originalGameBundle = new PokemonSlugRef('xy');
@@ -67,7 +69,8 @@ final class PokemonDataTest extends TestCase
         $this->assertSame([$bundle2], $data->getGameBundlesShiny());
     }
 
-    public function testNullableFamilyLead(): void
+    #[Test]
+    public function nullableFamilyLead(): void
     {
         $data = new PokemonData(
             slug: 'bulbasaur',
@@ -98,7 +101,8 @@ final class PokemonDataTest extends TestCase
         $this->assertSame(1, $data->getRegionalDexNumber());
     }
 
-    public function testNullableLabels(): void
+    #[Test]
+    public function nullableLabels(): void
     {
         $data = new PokemonData(
             slug: 'bulbasaur',
@@ -130,7 +134,8 @@ final class PokemonDataTest extends TestCase
         $this->assertSame('', $data->getFormsFrenchLabel());
     }
 
-    public function testCredits(): void
+    #[Test]
+    public function credits(): void
     {
         $smallRegular = new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite');
         $bigShiny = new PokemonCredit(credit: 'PokemonDB - https://pokemondb.net/sprites/bulbasaur-shiny');

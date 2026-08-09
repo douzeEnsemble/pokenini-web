@@ -10,6 +10,7 @@ use App\ResponseObject\Election\ElectionReport;
 use App\ResponseObject\Election\ElectionReportCompletion;
 use App\ResponseObject\Election\ElectionReportMetrics;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ElectionDexListItem::class)]
 final class ElectionDexListItemTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $flags = new DexFlags(
             isShiny: false,
@@ -54,7 +56,8 @@ final class ElectionDexListItemTest extends TestCase
         $this->assertNull($item->getReport());
     }
 
-    public function testNullableGetters(): void
+    #[Test]
+    public function nullableGetters(): void
     {
         $item = new ElectionDexListItem(
             slug: 'test',
@@ -83,7 +86,8 @@ final class ElectionDexListItemTest extends TestCase
         $this->assertNull($item->getReport());
     }
 
-    public function testGettersWithReport(): void
+    #[Test]
+    public function gettersWithReport(): void
     {
         $flags = new DexFlags(
             isShiny: false,

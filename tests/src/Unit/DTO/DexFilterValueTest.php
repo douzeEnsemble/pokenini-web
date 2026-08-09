@@ -6,6 +6,7 @@ namespace App\Tests\Unit\DTO;
 
 use App\DTO\DexFilterValue;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DexFilterValue::class)]
 final class DexFilterValueTest extends TestCase
 {
-    public function testConstruct(): void
+    #[Test]
+    public function construct(): void
     {
         $dexFilterValue = new DexFilterValue(true);
 

@@ -8,6 +8,7 @@ use App\Controller\ElectionVoteController;
 use App\Exception\ModifyFailedException;
 use App\Service\ElectionVoteService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -22,7 +23,8 @@ use Symfony\Component\Routing\RouterInterface;
 #[CoversClass(ElectionVoteController::class)]
 final class ElectionVoteControllerTest extends TestCase
 {
-    public function testVote(): void
+    #[Test]
+    public function vote(): void
     {
         $request = new Request([], ['winners_slugs' => ['pichu'], 'losers_slugs' => ['pikachu']]);
 
@@ -68,7 +70,8 @@ final class ElectionVoteControllerTest extends TestCase
         $this->assertSame('/fr/election/demo', $response->getTargetUrl());
     }
 
-    public function testVoteEmpty(): void
+    #[Test]
+    public function voteEmpty(): void
     {
         $request = new Request();
 
@@ -97,7 +100,8 @@ final class ElectionVoteControllerTest extends TestCase
         );
     }
 
-    public function testVoteWithModifyFailed(): void
+    #[Test]
+    public function voteWithModifyFailed(): void
     {
         $request = new Request([], ['winners_slugs' => ['pichu'], 'losers_slugs' => ['pikachu']]);
 
@@ -150,7 +154,8 @@ final class ElectionVoteControllerTest extends TestCase
         $this->assertSame('/fr/election/demo', $response->getTargetUrl());
     }
 
-    public function testVoteNonvalid(): void
+    #[Test]
+    public function voteNonvalid(): void
     {
         $request = new Request([], ['winners_slugs' => ['pichu']]);
 

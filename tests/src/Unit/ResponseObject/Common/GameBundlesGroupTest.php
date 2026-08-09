@@ -7,6 +7,7 @@ namespace App\Tests\Unit\ResponseObject\Common;
 use App\ResponseObject\Common\GameBundlesGroup;
 use App\ResponseObject\Common\PokemonSlugRef;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(GameBundlesGroup::class)]
 final class GameBundlesGroupTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $normal1 = new PokemonSlugRef('xy');
         $shiny1 = new PokemonSlugRef('omegarubyalphasapphire');
@@ -26,7 +28,8 @@ final class GameBundlesGroupTest extends TestCase
         $this->assertSame([$shiny1], $group->getShiny());
     }
 
-    public function testEmptyArrays(): void
+    #[Test]
+    public function emptyArrays(): void
     {
         $group = new GameBundlesGroup(normal: [], shiny: []);
 

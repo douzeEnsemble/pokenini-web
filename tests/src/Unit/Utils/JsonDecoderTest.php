@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Utils;
 use App\Utils\JsonDecoder;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(JsonDecoder::class)]
 final class JsonDecoderTest extends TestCase
 {
-    public function testDecodeOneColor(): void
+    #[Test]
+    public function decodeOneColor(): void
     {
         $this->assertEquals(
             [
@@ -30,17 +32,20 @@ final class JsonDecoderTest extends TestCase
         );
     }
 
-    public function testDecodeEmptyObject(): void
+    #[Test]
+    public function decodeEmptyObject(): void
     {
         $this->assertEquals([], JsonDecoder::decode('{}'));
     }
 
-    public function testDecodeEmptyArray(): void
+    #[Test]
+    public function decodeEmptyArray(): void
     {
         $this->assertEquals([], JsonDecoder::decode('[]'));
     }
 
-    public function testDecodeManyColors(): void
+    #[Test]
+    public function decodeManyColors(): void
     {
         $this->assertEquals(
             [
@@ -87,7 +92,8 @@ final class JsonDecoderTest extends TestCase
         );
     }
 
-    public function testDecodeMaxDepth(): void
+    #[Test]
+    public function decodeMaxDepth(): void
     {
         $this->assertEquals(
             [
@@ -106,7 +112,8 @@ final class JsonDecoderTest extends TestCase
     }
 
     #[DataProvider('providerDecodeException')]
-    public function testDecodeException(string $json): void
+    #[Test]
+    public function decodeException(string $json): void
     {
         $this->expectException(\JsonException::class);
 

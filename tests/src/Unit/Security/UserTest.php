@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Security;
 use App\Security\User;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(User::class)]
 final class UserTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $user = new User(
             '12',
@@ -29,7 +31,8 @@ final class UserTest extends TestCase
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
     }
 
-    public function testGetAccessToken(): void
+    #[Test]
+    public function getAccessToken(): void
     {
         $user = new User(
             '12',

@@ -8,6 +8,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetReportsService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -22,7 +23,8 @@ final class GetReportsServiceTest extends AbstractTestBackService
     public const ENDPOINT = 'istration/reports';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/reports.json';
 
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         /** @var GetReportsService $service */
         $service = $this->getServiceWithLoggedUser(
@@ -41,7 +43,8 @@ final class GetReportsServiceTest extends AbstractTestBackService
         $this->assertCount(6, $reports['catch_state_usage']);
     }
 
-    public function testGetWithoutLoggedUser(): void
+    #[Test]
+    public function getWithoutLoggedUser(): void
     {
         /** @var GetReportsService $service */
         $service = $this->getServiceWithoutLoggedUser(

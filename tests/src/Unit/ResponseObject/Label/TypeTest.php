@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Label;
 
 use App\ResponseObject\Label\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Type::class)]
 final class TypeTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $object = new Type(
             'Toto',

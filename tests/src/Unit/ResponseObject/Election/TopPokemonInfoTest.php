@@ -10,6 +10,7 @@ use App\ResponseObject\Election\TopPokemonInfo;
 use App\ResponseObject\Election\TopPokemonLabels;
 use App\ResponseObject\Election\TopPokemonSlugRef;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(TopPokemonInfo::class)]
 final class TopPokemonInfoTest extends TestCase
 {
-    public function testConstructorAllFields(): void
+    #[Test]
+    public function constructorAllFields(): void
     {
         $labels = new TopPokemonLabels('Mega Venusaur', 'Mega Florizarre', 'Venusaur', 'Florizarre', 'Mega', 'Mega');
         $familyLead = new TopPokemonSlugRef('bulbasaur');
@@ -54,7 +56,8 @@ final class TopPokemonInfoTest extends TestCase
         $this->assertSame($gameBundles, $object->getGameBundles());
     }
 
-    public function testNullableFields(): void
+    #[Test]
+    public function nullableFields(): void
     {
         $labels = new TopPokemonLabels('Blastoise', 'Tortank', 'Blastoise', 'Tortank', null, null);
         $familyLead = new TopPokemonSlugRef('squirtle');
@@ -82,7 +85,8 @@ final class TopPokemonInfoTest extends TestCase
         $this->assertNull($object->getRegionalDexNumber());
     }
 
-    public function testNullFamilyLead(): void
+    #[Test]
+    public function nullFamilyLead(): void
     {
         $labels = new TopPokemonLabels('Bulbasaur', 'Bulbizarre', 'Bulbasaur', 'Bulbizarre', null, null);
         $gameBundles = new TopPokemonGameBundles([], []);
@@ -107,7 +111,8 @@ final class TopPokemonInfoTest extends TestCase
         $this->assertNull($object->getFamilyLead());
     }
 
-    public function testRegionalDexNumber(): void
+    #[Test]
+    public function regionalDexNumber(): void
     {
         $labels = new TopPokemonLabels('Raichu', 'Raichu', 'Raichu', 'Raichu', null, null);
         $familyLead = new TopPokemonSlugRef('pichu');
@@ -133,7 +138,8 @@ final class TopPokemonInfoTest extends TestCase
         $this->assertSame(14, $object->getRegionalDexNumber());
     }
 
-    public function testCredits(): void
+    #[Test]
+    public function credits(): void
     {
         $labels = new TopPokemonLabels('Bulbasaur', 'Bulbizarre', 'Bulbasaur', 'Bulbizarre', null, null);
         $gameBundles = new TopPokemonGameBundles([], []);

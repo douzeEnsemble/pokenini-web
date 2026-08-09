@@ -10,6 +10,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetElectionIndexService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
@@ -23,7 +24,8 @@ final class GetElectionIndexServiceTest extends AbstractTestBackService
 {
     public const RESPONSE_CONTENT = '{"type":"pick"}';
 
-    public function testGetWithElectionSlug(): void
+    #[Test]
+    public function getWithElectionSlug(): void
     {
         $serializer = $this->createMock(SerializerInterface::class);
         $electionIndex = $this->getElectionIndex();
@@ -48,7 +50,8 @@ final class GetElectionIndexServiceTest extends AbstractTestBackService
         $this->assertSame($electionIndex, $result);
     }
 
-    public function testGetWithoutElectionSlug(): void
+    #[Test]
+    public function getWithoutElectionSlug(): void
     {
         $serializer = $this->createMock(SerializerInterface::class);
         $electionIndex = $this->getElectionIndex();
@@ -73,7 +76,8 @@ final class GetElectionIndexServiceTest extends AbstractTestBackService
         $this->assertSame($electionIndex, $result);
     }
 
-    public function testClientException(): void
+    #[Test]
+    public function clientException(): void
     {
         $serializer = $this->createStub(SerializerInterface::class);
 

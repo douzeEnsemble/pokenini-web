@@ -10,6 +10,7 @@ use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetPokedexService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -22,7 +23,8 @@ final class GetPokedexServiceTest extends AbstractTestBackService
 {
     use ResponseObjectTrait;
 
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $json = '{"doesnt": "matter"}';
 
@@ -66,7 +68,8 @@ final class GetPokedexServiceTest extends AbstractTestBackService
         $this->assertSame(0, $album->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
-    public function testGetWithTrainerId(): void
+    #[Test]
+    public function getWithTrainerId(): void
     {
         $json = '{"doesnt": "matter"}';
 

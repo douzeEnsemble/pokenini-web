@@ -8,6 +8,7 @@ use App\Exception\NoLoggedUserException;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetImagePipelineStatusService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -29,21 +30,24 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(GetImagePipelineStatusService::class)]
 final class GetImagePipelineStatusServiceTest extends TestCase
 {
-    public function testGetReturnsNullWhenNoRunExists(): void
+    #[Test]
+    public function getReturnsNullWhenNoRunExists(): void
     {
         $service = $this->getService('{}', 'https://back.domain/istration/action/trigger/update_images/status');
 
         $this->assertNull($service->get(false));
     }
 
-    public function testGetWithRefreshAppendsQueryParam(): void
+    #[Test]
+    public function getWithRefreshAppendsQueryParam(): void
     {
         $service = $this->getService('{}', 'https://back.domain/istration/action/trigger/update_images/status?refresh=1');
 
         $this->assertNull($service->get(true));
     }
 
-    public function testGetReturnsNullWhenNoRunExistsWithSurroundingWhitespace(): void
+    #[Test]
+    public function getReturnsNullWhenNoRunExistsWithSurroundingWhitespace(): void
     {
         // Proves the trim() call matters: pokenini-back's JsonResponse body
         // could plausibly include trailing whitespace/newlines depending on
@@ -53,7 +57,8 @@ final class GetImagePipelineStatusServiceTest extends TestCase
         $this->assertNull($service->get(false));
     }
 
-    public function testGetDeserializesStatus(): void
+    #[Test]
+    public function getDeserializesStatus(): void
     {
         $json = <<<'JSON'
             {

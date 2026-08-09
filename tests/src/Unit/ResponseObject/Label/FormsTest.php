@@ -10,6 +10,7 @@ use App\ResponseObject\Label\RegionalForm;
 use App\ResponseObject\Label\SpecialForm;
 use App\ResponseObject\Label\VariantForm;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Forms::class)]
 final class FormsTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $category = [new CategoryForm('Starter', 'de Départ', 'starter')];
         $regional = [
@@ -45,7 +47,8 @@ final class FormsTest extends TestCase
         $this->assertSame($variant, $object->getVariant());
     }
 
-    public function testConstructorWithAllEmpty(): void
+    #[Test]
+    public function constructorWithAllEmpty(): void
     {
         $object = new Forms([], [], [], []);
 

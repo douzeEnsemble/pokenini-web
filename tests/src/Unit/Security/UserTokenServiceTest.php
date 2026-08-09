@@ -9,6 +9,7 @@ use App\Security\User;
 use App\Security\UserTokenService;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\SecurityBundle\Security;
 
@@ -18,7 +19,8 @@ use Symfony\Bundle\SecurityBundle\Security;
 #[CoversClass(UserTokenService::class)]
 final class UserTokenServiceTest extends TestCase
 {
-    public function testGetLoggedUserId(): void
+    #[Test]
+    public function getLoggedUserId(): void
     {
         $security = $this->createMock(Security::class);
         $security
@@ -40,7 +42,8 @@ final class UserTokenServiceTest extends TestCase
         );
     }
 
-    public function testFailGetLoggedUserId(): void
+    #[Test]
+    public function failGetLoggedUserId(): void
     {
         $security = $this->createMock(Security::class);
         $security
@@ -56,7 +59,8 @@ final class UserTokenServiceTest extends TestCase
         $service->getLoggedUserId();
     }
 
-    public function testCompare(): void
+    #[Test]
+    public function compare(): void
     {
         $security = $this->createMock(Security::class);
         $security
@@ -75,7 +79,8 @@ final class UserTokenServiceTest extends TestCase
         $this->assertTrue($service->compare('7b52009b64fd0a2a49e6d8a939753077792b0554'));
     }
 
-    public function testCompareWithNoLoggedUser(): void
+    #[Test]
+    public function compareWithNoLoggedUser(): void
     {
         $security = $this->createMock(Security::class);
         $security
@@ -88,7 +93,8 @@ final class UserTokenServiceTest extends TestCase
         $this->assertFalse($service->compare('7b52009b64fd0a2a49e6d8a939753077792b0554'));
     }
 
-    public function testGetLoggedUser(): void
+    #[Test]
+    public function getLoggedUser(): void
     {
         $user = new User(
             '12',
@@ -111,7 +117,8 @@ final class UserTokenServiceTest extends TestCase
         );
     }
 
-    public function testGetLoggedUserTokenWithoutUser(): void
+    #[Test]
+    public function getLoggedUserTokenWithoutUser(): void
     {
         $security = $this->createMock(Security::class);
         $security

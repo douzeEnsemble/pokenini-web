@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Common;
 
 use App\ResponseObject\Common\PokemonCredit;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(PokemonCredit::class)]
 final class PokemonCreditTest extends TestCase
 {
-    public function testGettersExtractNameAndUrlFromMergedCredit(): void
+    #[Test]
+    public function gettersExtractNameAndUrlFromMergedCredit(): void
     {
         $credit = new PokemonCredit(credit: 'PokéSprite - https://github.com/msikma/pokesprite');
 
@@ -22,7 +24,8 @@ final class PokemonCreditTest extends TestCase
         $this->assertSame('https://github.com/msikma/pokesprite', $credit->getUrl());
     }
 
-    public function testGettersFallBackToFullCreditWhenNoUrlPresent(): void
+    #[Test]
+    public function gettersFallBackToFullCreditWhenNoUrlPresent(): void
     {
         $credit = new PokemonCredit(credit: 'PokéSprite');
 
@@ -30,7 +33,8 @@ final class PokemonCreditTest extends TestCase
         $this->assertNull($credit->getUrl());
     }
 
-    public function testGettersFallBackToRawCreditWhenOnlyUrlPresent(): void
+    #[Test]
+    public function gettersFallBackToRawCreditWhenOnlyUrlPresent(): void
     {
         $credit = new PokemonCredit(credit: 'https://serebii.net');
 
@@ -38,7 +42,8 @@ final class PokemonCreditTest extends TestCase
         $this->assertSame('https://serebii.net', $credit->getUrl());
     }
 
-    public function testExtractUrlIsPubliclyCallable(): void
+    #[Test]
+    public function extractUrlIsPubliclyCallable(): void
     {
         $this->assertSame(
             'https://github.com/msikma/pokesprite',
@@ -46,7 +51,8 @@ final class PokemonCreditTest extends TestCase
         );
     }
 
-    public function testExtractNameIsPubliclyCallable(): void
+    #[Test]
+    public function extractNameIsPubliclyCallable(): void
     {
         $this->assertSame(
             'PokéSprite',

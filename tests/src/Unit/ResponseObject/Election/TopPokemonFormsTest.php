@@ -10,6 +10,7 @@ use App\ResponseObject\Label\RegionalForm;
 use App\ResponseObject\Label\SpecialForm;
 use App\ResponseObject\Label\VariantForm;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(TopPokemonForms::class)]
 final class TopPokemonFormsTest extends TestCase
 {
-    public function testAllNull(): void
+    #[Test]
+    public function allNull(): void
     {
         $object = new TopPokemonForms(null, null, null, null);
 
@@ -28,7 +30,8 @@ final class TopPokemonFormsTest extends TestCase
         $this->assertNull($object->getVariant());
     }
 
-    public function testAllSet(): void
+    #[Test]
+    public function allSet(): void
     {
         $category = new CategoryForm('Legendary', 'Légendaire', 'legendary');
         $regional = new RegionalForm('Alolan', "d'Alola", 'alolan');

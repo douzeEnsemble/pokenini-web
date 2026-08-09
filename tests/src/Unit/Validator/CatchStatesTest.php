@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Validator;
 
 use App\Validator\CatchStates;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(CatchStates::class)]
 final class CatchStatesTest extends TestCase
 {
-    public function testValidatedBy(): void
+    #[Test]
+    public function validatedBy(): void
     {
         $constraint = new CatchStates();
 
