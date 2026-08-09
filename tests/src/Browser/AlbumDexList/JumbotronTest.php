@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -19,7 +20,8 @@ final class JumbotronTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testJumbotronClosing(): void
+    #[Test]
+    public function jumbotronClosing(): void
     {
         $client = $this->getNewClient();
 
@@ -36,7 +38,8 @@ final class JumbotronTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#jumbotron');
     }
 
-    public function testJumbotronHiddenSaved(): void
+    #[Test]
+    public function jumbotronHiddenSaved(): void
     {
         $client = $this->getNewClient();
 

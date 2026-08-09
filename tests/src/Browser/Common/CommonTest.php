@@ -8,6 +8,7 @@ use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -17,7 +18,8 @@ final class CommonTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testOpenCookieManager(): void
+    #[Test]
+    public function openCookieManager(): void
     {
         $client = $this->getNewClient();
 

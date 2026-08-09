@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Regression guard: on touch devices there is no hover, so a tap on the
@@ -25,7 +26,8 @@ final class CreditBadgeTooltipTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testTappingCreditBadgeShowsTooltipInsteadOfNavigating(): void
+    #[Test]
+    public function tappingCreditBadgeShowsTooltipInsteadOfNavigating(): void
     {
         $client = $this->getNewClient();
 

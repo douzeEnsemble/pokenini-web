@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use Facebook\WebDriver\WebDriverBy;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -18,7 +19,8 @@ final class ForceActionTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testDismissingConfirmationKeepsActionPending(): void
+    #[Test]
+    public function dismissingConfirmationKeepsActionPending(): void
     {
         $client = $this->getNewClient();
 
@@ -45,7 +47,8 @@ final class ForceActionTest extends AbstractBrowserTestCase
         $this->assertTrue((bool) $client->executeScript('return window.__noNav === true;'));
     }
 
-    public function testAcceptingConfirmationSubmitsTheForm(): void
+    #[Test]
+    public function acceptingConfirmationSubmitsTheForm(): void
     {
         $client = $this->getNewClient();
 

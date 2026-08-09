@@ -8,6 +8,7 @@ use App\Tests\Browser\AbstractBrowserTestCase;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
 /**
@@ -18,7 +19,8 @@ final class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testSuccessTick(): void
+    #[Test]
+    public function successTick(): void
     {
         $client = $this->getNewClient();
 
@@ -43,7 +45,8 @@ final class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#errorToast-goldsilvercrystal');
     }
 
-    public function testSuccessUntick(): void
+    #[Test]
+    public function successUntick(): void
     {
         $client = $this->getNewClient();
 
@@ -68,7 +71,8 @@ final class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#errorToast-goldsilvercrystal');
     }
 
-    public function testErrorTick(): void
+    #[Test]
+    public function errorTick(): void
     {
         $client = $this->getNewClient();
 
@@ -93,7 +97,8 @@ final class CustomAlbumTrainerTest extends AbstractBrowserTestCase
         $this->assertSelectorWillNotBeVisible('#successToast-redgreenblueyellow');
     }
 
-    public function testErrorUntick(): void
+    #[Test]
+    public function errorUntick(): void
     {
         $client = $this->getNewClient();
 

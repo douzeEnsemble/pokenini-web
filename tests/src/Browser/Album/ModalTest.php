@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -19,7 +20,8 @@ final class ModalTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testModalOpenning(): void
+    #[Test]
+    public function modalOpenning(): void
     {
         $client = $this->getNewClient();
 
@@ -36,7 +38,8 @@ final class ModalTest extends AbstractBrowserTestCase
         $this->assertSelectorWillBeVisible('#modal-blastoise-mega');
     }
 
-    public function testModalImageSwitch(): void
+    #[Test]
+    public function modalImageSwitch(): void
     {
         $client = $this->getNewClient();
 

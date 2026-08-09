@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -19,7 +20,8 @@ final class ScreenshotModeTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testScreenshotMode(): void
+    #[Test]
+    public function screenshotMode(): void
     {
         $client = $this->getNewClient();
 

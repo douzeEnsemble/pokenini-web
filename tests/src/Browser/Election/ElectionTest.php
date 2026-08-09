@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -19,7 +20,8 @@ final class ElectionTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testChecked(): void
+    #[Test]
+    public function checked(): void
     {
         $client = $this->getNewClient();
 
@@ -59,7 +61,8 @@ final class ElectionTest extends AbstractBrowserTestCase
         $this->assertSelectorTextContains('#election-counter-bottom', '1');
     }
 
-    public function testWelcomeModalVisible(): void
+    #[Test]
+    public function welcomeModalVisible(): void
     {
         $client = $this->getNewClient();
 
@@ -74,7 +77,8 @@ final class ElectionTest extends AbstractBrowserTestCase
         $this->assertSelectorIsNotVisible('#election-modal-filters-advanced');
     }
 
-    public function testWelcomeModalHidden(): void
+    #[Test]
+    public function welcomeModalHidden(): void
     {
         $client = $this->getNewClient();
 
@@ -89,7 +93,8 @@ final class ElectionTest extends AbstractBrowserTestCase
         $this->assertSelectorIsNotVisible('#election-modal-filters-advanced');
     }
 
-    public function testWelcomeModalHiddenBis(): void
+    #[Test]
+    public function welcomeModalHiddenBis(): void
     {
         $client = $this->getNewClient();
 

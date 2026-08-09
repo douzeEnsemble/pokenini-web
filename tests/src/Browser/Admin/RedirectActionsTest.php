@@ -9,6 +9,7 @@ use App\Tests\Utils\GetUserToken;
 use Facebook\WebDriver\WebDriverBy;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Panther\Client;
 
 /**
@@ -34,7 +35,8 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
     ];
 
     #[DataProvider('providerActionItems')]
-    public function testActionItems(string $action, string $item, string $section): void
+    #[Test]
+    public function actionItems(string $action, string $item, string $section): void
     {
         $client = $this->getNewClient();
 

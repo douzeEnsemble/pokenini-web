@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * @internal
@@ -19,7 +20,8 @@ final class ProgressBarPopoverTest extends AbstractBrowserTestCase
 {
     use TestNavTrait;
 
-    public function testPopoverOpensOnClick(): void
+    #[Test]
+    public function popoverOpensOnClick(): void
     {
         $client = $this->getNewClient();
 
@@ -44,7 +46,8 @@ final class ProgressBarPopoverTest extends AbstractBrowserTestCase
      * and color must come from CSS classes, not inline style, to survive
      * that sanitization and actually render.
      */
-    public function testPopoverColorDotSurvivesSanitization(): void
+    #[Test]
+    public function popoverColorDotSurvivesSanitization(): void
     {
         $client = $this->getNewClient();
 
@@ -74,7 +77,8 @@ final class ProgressBarPopoverTest extends AbstractBrowserTestCase
         $this->assertNotSame('rgba(0, 0, 0, 0)', $dotBackgroundColor);
     }
 
-    public function testPopoverTogglesClosedOnSecondClick(): void
+    #[Test]
+    public function popoverTogglesClosedOnSecondClick(): void
     {
         $client = $this->getNewClient();
 
