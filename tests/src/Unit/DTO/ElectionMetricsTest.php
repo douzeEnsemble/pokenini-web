@@ -35,7 +35,7 @@ final class ElectionMetricsTest extends TestCase
     }
 
     #[Test]
-    public function ok(): void
+    public function everythingOK(): void
     {
         $object = ElectionMetrics::createFromArray(
             [

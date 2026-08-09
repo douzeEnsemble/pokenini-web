@@ -20,7 +20,7 @@ final class ElectionTopTest extends TestCase
     use ResponseObjectTrait;
 
     #[Test]
-    public function ok(): void
+    public function everythingOK(): void
     {
         $object = new ElectionTop([
             $this->getStubTopPokemon(),

@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 final class ElectionIndexDataTest extends TestCase
 {
     #[Test]
-    public function ok(): void
+    public function everythingOK(): void
     {
         $object = new ElectionIndexData(
             'list_type',

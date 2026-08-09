@@ -28,7 +28,7 @@ final class ElectionVoteTest extends TestCase
     }
 
     #[Test]
-    public function ok(): void
+    public function everythingOK(): void
     {
         $object = ElectionVote::createFromArray([
             'dex_slug' => 'pokedex',
