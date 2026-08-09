@@ -92,13 +92,13 @@ class GetTrainerDexLinksTreeService
         };
 
         $from = $dexBySlug[$fromSlug] ?? null;
-        $to = $dexBySlug[$toSlug] ?? null;
+        $toDex = $dexBySlug[$toSlug] ?? null;
 
-        if (null === $from || null === $to) {
+        if (null === $from || null === $toDex) {
             return null;
         }
 
-        return new TrainerDexLinkEdge($link->getId(), $mode, $from, $to);
+        return new TrainerDexLinkEdge($link->getId(), $mode, $from, $toDex);
     }
 
     private function pairKey(string $slugA, string $slugB): string

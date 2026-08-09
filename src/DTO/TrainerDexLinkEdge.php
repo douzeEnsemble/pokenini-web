@@ -12,7 +12,7 @@ final class TrainerDexLinkEdge
         private readonly string $id,
         private readonly string $mode,
         private readonly DexListItem $from,
-        private readonly DexListItem $to,
+        private readonly DexListItem $toDex,
     ) {}
 
     public function getId(): string
@@ -35,6 +35,6 @@ final class TrainerDexLinkEdge
 
     public function getTo(): DexListItem
     {
-        return $this->to;
+        return $this->toDex;
     }
 }
