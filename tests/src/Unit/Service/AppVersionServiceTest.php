@@ -13,12 +13,23 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
+require_once __DIR__.'/AppVersionServiceFilemtimeStub.php';
+
 /**
  * @internal
  */
 #[CoversClass(AppVersionService::class)]
 final class AppVersionServiceTest extends TestCase
 {
+    public static bool $forceFilemtimeFailure = false;
+    public static int $filemtimeCallCount = 0;
+
+    protected function tearDown(): void
+    {
+        self::$forceFilemtimeFailure = false;
+        self::$filemtimeCallCount = 0;
+    }
+
     #[Test]
     public function getVersionReturnsFileContent(): void
     {
@@ -201,6 +212,19 @@ final class AppVersionServiceTest extends TestCase
         $service = new AppVersionService(self::getDir(), new ArrayAdapter(), new Filesystem());
 
         $this->assertNull($service->getUpdatedAt('non_existent_file'));
+        $this->assertSame(0, self::$filemtimeCallCount, 'getUpdatedAt() must return early on a missing file, without calling filemtime().');
+    }
+
+    #[Test]
+    public function getUpdatedAtReturnsNullWhenFilemtimeFails(): void
+    {
+        file_put_contents(self::getDir().'/resources/metadata/version', '1.2.12');
+
+        self::$forceFilemtimeFailure = true;
+
+        $service = new AppVersionService(self::getDir(), new ArrayAdapter(), new Filesystem());
+
+        $this->assertNull($service->getUpdatedAt());
     }
 
     private static function getDir(): string
