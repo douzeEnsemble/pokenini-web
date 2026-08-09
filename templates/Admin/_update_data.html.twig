@@ -1,0 +1,13 @@
+{% import "Admin/_macros.html.twig" as admin %}
+
+<div class="row px-4 py-5">
+  {% set updateDataItems = {
+    'labels': 'tags-fill',
+    'games_collections_and_dex': 'joystick',
+    'pokemons': 'bug-fill',
+    'regional_dex_numbers': 'globe-asia-australia',
+  } %}
+  {% for item, icon in updateDataItems %}
+    {{ admin.action('update_data', 'update', item, icon, updatedItem, updatedAction, updatedState, actionLogsData) }}
+  {% endfor %}
+</div>

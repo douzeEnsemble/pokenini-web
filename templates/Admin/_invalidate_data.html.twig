@@ -1,0 +1,14 @@
+{% import "Admin/_macros.html.twig" as admin %}
+
+<div class="row px-4 py-5">
+  {% set invalidateDataItems = {
+    'labels': 'tags-fill',
+    'catch_states': 'check2-square',
+    'types': 'shapes',
+    'dex': 'journals',
+    'albums': 'journal-album',
+  } %}
+  {% for item, icon in invalidateDataItems %}
+    {{ admin.action('invalidate_data', 'invalidate', item, icon, updatedItem, updatedAction, updatedState, actionLogsData) }}
+  {% endfor %}
+</div>

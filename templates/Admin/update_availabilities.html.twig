@@ -1,7 +1,5 @@
 {% set locale = app.request.locale %}
 
-{% import "Admin/_macros.html.twig" as admin %}
-
 {% set items = app.flashes('item') %}
 {% set actions = app.flashes('action') %}
 {% set states = app.flashes('state') %}
@@ -25,7 +23,8 @@
 <div id="admin" class="row">
   <div class="col-12">
     <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
-    {% include 'Admin/_actions.html.twig' %}
+    {% include 'Admin/_tabs.html.twig' with {'active': 'update_availabilities'} %}
+    {% include 'Admin/_update_availabilities.html.twig' %}
   </div>
 </div>
 {% endblock %}
@@ -42,7 +41,6 @@
     (function () {
       watchActionLogToggles();
       watchForceConfirm();
-      activateTabForHash();
     })();
   </script>
 {% endblock %}

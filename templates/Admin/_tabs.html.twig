@@ -1,42 +1,23 @@
-{% set adminActionSections = [
-  {'key': 'update_data', 'label': 'admin.actions.update_data.title'},
-  {'key': 'update_availabilities', 'label': 'admin.actions.update_availabilities.title'},
-  {'key': 'calculate_data', 'label': 'admin.actions.calculate_data.title'},
-  {'key': 'invalidate_data', 'label': 'admin.actions.invalidate_data.title'},
-  {'key': 'trigger_pipeline', 'label': 'admin.actions.trigger_pipeline.title'},
+{% set adminPages = [
+  {'key': 'update_data', 'label': 'admin.actions.update_data.title', 'route': 'app_admin_update_data'},
+  {'key': 'update_availabilities', 'label': 'admin.actions.update_availabilities.title', 'route': 'app_admin_update_availabilities'},
+  {'key': 'calculate_data', 'label': 'admin.actions.calculate_data.title', 'route': 'app_admin_calculate_data'},
+  {'key': 'invalidate_data', 'label': 'admin.actions.invalidate_data.title', 'route': 'app_admin_invalidate_data'},
+  {'key': 'trigger_pipeline', 'label': 'admin.actions.trigger_pipeline.title', 'route': 'app_admin_trigger_pipeline'},
+  {'key': 'reports', 'label': 'title.admin_reports', 'route': 'app_admin_reports'},
+  {'key': 'versions', 'label': 'title.admin_versions', 'route': 'app_admin_versions'},
 ] %}
 
 <ul class="nav nav-tabs nav-fill mb-4" id="admin-actions-tab" role="tablist">
-  {% for section in adminActionSections %}
+  {% for page in adminPages %}
     <li class="nav-item" role="presentation">
-      {% if 'actions' == page %}
-        <button
-          class="nav-link{{ section.key == active ? ' active' : '' }}"
-          id="tab-{{ section.key }}-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#tab-pane-{{ section.key }}"
-          type="button"
-          role="tab"
-          aria-controls="tab-pane-{{ section.key }}"
-          aria-selected="{{ section.key == active ? 'true' : 'false' }}"
-        >
-          {{ section.label|trans }}
-        </button>
-      {% else %}
-        <a class="nav-link" href="{{ path('app_admin_actions', {'_fragment': 'tab-pane-'~section.key}) }}">
-          {{ section.label|trans }}
-        </a>
-      {% endif %}
+      <a
+        class="nav-link{{ page.key == active ? ' active' : '' }}"
+        {{ page.key == active ? 'aria-current="page"' : '' }}
+        href="{{ path(page.route) }}"
+      >
+        {{ page.label|trans }}
+      </a>
     </li>
   {% endfor %}
-  <li class="nav-item" role="presentation">
-    <a class="nav-link{{ 'reports' == active ? ' active' : '' }}" href="{{ path('app_admin_reports') }}">
-      {{ 'title.admin_reports'|trans }}
-    </a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link{{ 'versions' == active ? ' active' : '' }}" href="{{ path('app_admin_versions') }}">
-      {{ 'title.admin_versions'|trans }}
-    </a>
-  </li>
 </ul>
