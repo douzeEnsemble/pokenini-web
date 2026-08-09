@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Controller\Connect;
 
 use App\Controller\Connect\GoogleController;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +17,8 @@ final class GoogleControllerTest extends TestCase
 {
     use ConnectControllerTestTrait;
 
-    public function testGotoDuringSilentReauthForcesConsent(): void
+    #[Test]
+    public function gotoDuringSilentReauthForcesConsent(): void
     {
         $controller = new GoogleController();
 
@@ -29,7 +31,8 @@ final class GoogleControllerTest extends TestCase
         );
     }
 
-    public function testGotoOnNormalLoginDoesNotForceConsent(): void
+    #[Test]
+    public function gotoOnNormalLoginDoesNotForceConsent(): void
     {
         $controller = new GoogleController();
 

@@ -18,6 +18,7 @@ use App\Service\ModifyTrainerDexService;
 use App\Service\RequestedContentService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -33,7 +34,8 @@ final class TrainerUpsertControllerTest extends TestCase
 {
     use ResponseObjectTrait;
 
-    public function testUpsert(): void
+    #[Test]
+    public function upsert(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
         $getTrainerPokedexService
@@ -86,7 +88,8 @@ final class TrainerUpsertControllerTest extends TestCase
         $this->assertEmpty($response->getContent());
     }
 
-    public function testUpsertEmptyContentException(): void
+    #[Test]
+    public function upsertEmptyContentException(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
         $getTrainerPokedexService
@@ -132,7 +135,8 @@ final class TrainerUpsertControllerTest extends TestCase
         $this->assertSame('{"error":"Content cannot be empty"}', $response->getContent());
     }
 
-    public function testUpsertInvalidJsonException(): void
+    #[Test]
+    public function upsertInvalidJsonException(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
         $getTrainerPokedexService
@@ -178,7 +182,8 @@ final class TrainerUpsertControllerTest extends TestCase
         $this->assertSame('{"error":"Json is invalid"}', $response->getContent());
     }
 
-    public function testUpsertDexNotDefined(): void
+    #[Test]
+    public function upsertDexNotDefined(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
         $getTrainerPokedexService
@@ -227,7 +232,8 @@ final class TrainerUpsertControllerTest extends TestCase
         $this->assertSame('[]', $response->getContent());
     }
 
-    public function testUpsertNonPremiumDex(): void
+    #[Test]
+    public function upsertNonPremiumDex(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
         $getTrainerPokedexService
@@ -308,7 +314,8 @@ final class TrainerUpsertControllerTest extends TestCase
         $this->assertEmpty($response->getContent());
     }
 
-    public function testUpsertPremiumDexNotCollector(): void
+    #[Test]
+    public function upsertPremiumDexNotCollector(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
         $getTrainerPokedexService
@@ -395,7 +402,8 @@ final class TrainerUpsertControllerTest extends TestCase
         $this->assertSame('[]', $response->getContent());
     }
 
-    public function testUpsertModifyFail(): void
+    #[Test]
+    public function upsertModifyFail(): void
     {
         $getTrainerPokedexService = $this->createMock(GetTrainerPokedexService::class);
         $getTrainerPokedexService

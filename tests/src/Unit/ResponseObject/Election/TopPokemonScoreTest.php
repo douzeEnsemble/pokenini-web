@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Election;
 
 use App\ResponseObject\Election\TopPokemonScore;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(TopPokemonScore::class)]
 final class TopPokemonScoreTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $object = new TopPokemonScore(1250.5, true);
 

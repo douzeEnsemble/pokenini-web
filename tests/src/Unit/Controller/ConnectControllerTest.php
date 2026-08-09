@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Controller;
 
 use App\Controller\ConnectController;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ConnectController::class)]
 final class ConnectControllerTest extends TestCase
 {
-    public function testLogout(): void
+    #[Test]
+    public function logout(): void
     {
         $controller = new ConnectController();
 

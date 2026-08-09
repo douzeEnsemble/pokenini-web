@@ -6,6 +6,7 @@ namespace App\Tests\Unit\DTO;
 
 use App\DTO\DexFilters;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DexFilters::class)]
 final class DexFiltersTest extends TestCase
 {
-    public function testCreateFromArrayEmpty(): void
+    #[Test]
+    public function createFromArrayEmpty(): void
     {
         $filters = DexFilters::createFromArray([]);
 
@@ -25,7 +27,8 @@ final class DexFiltersTest extends TestCase
         $this->assertNull($filters->premium->value);
     }
 
-    public function testCreateFromArray(): void
+    #[Test]
+    public function createFromArray(): void
     {
         $filters = DexFilters::createFromArray([
             'privacy' => '1',
@@ -42,20 +45,23 @@ final class DexFiltersTest extends TestCase
         $this->assertFalse($filters->premium->value);
     }
 
-    public function testNormalizerTrue(): void
+    #[Test]
+    public function normalizerTrue(): void
     {
         $filterValue = DexFilters::normalizer('1');
         $this->assertTrue($filterValue->value);
     }
 
-    public function testNormalizerFalse(): void
+    #[Test]
+    public function normalizerFalse(): void
     {
         $filterValue = DexFilters::normalizer('0');
 
         $this->assertFalse($filterValue->value);
     }
 
-    public function testNormalizerWithEmptyValue(): void
+    #[Test]
+    public function normalizerWithEmptyValue(): void
     {
         $filterValue = DexFilters::normalizer('');
 

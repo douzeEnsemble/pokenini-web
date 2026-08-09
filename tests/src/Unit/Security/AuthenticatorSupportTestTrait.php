@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Security;
 
 use App\Service\Back\GetUserInfoService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -14,7 +15,8 @@ use Symfony\Component\Routing\RouterInterface;
  */
 trait AuthenticatorSupportTestTrait
 {
-    public function testSupports(): void
+    #[Test]
+    public function supports(): void
     {
         $clientRegistry = $this->createStub(ClientRegistry::class);
 

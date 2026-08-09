@@ -11,6 +11,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetUserInfoService;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -27,7 +28,8 @@ final class GetUserInfoServiceTest extends TestCase
     public const ENDPOINT = 'user';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/user.json';
 
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $logger = $this->createMock(LoggerInterface::class);
         $logger
@@ -111,7 +113,8 @@ final class GetUserInfoServiceTest extends TestCase
         $this->assertSame(['ROLE_TRAINER', 'ROLE_COLLECTOR'], $userInfo->getRoles());
     }
 
-    public function testGetWithoutLoggedUser(): void
+    #[Test]
+    public function getWithoutLoggedUser(): void
     {
         $logger = $this->createMock(LoggerInterface::class);
         $logger

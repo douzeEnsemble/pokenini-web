@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Security;
 use App\Security\FakeAuthenticator;
 use App\Security\User;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -18,7 +19,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
 #[CoversClass(FakeAuthenticator::class)]
 final class FakeAuthenticatorAuthenticateTest extends TestCase
 {
-    public function testAuthenticateUser(): void
+    #[Test]
+    public function authenticateUser(): void
     {
         $fakeAuthenticator = $this->getFakeAuthenticator();
 
@@ -37,7 +39,8 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertEquals('uninvited', $user->getUserIdentifier());
     }
 
-    public function testAuthenticateTrainer(): void
+    #[Test]
+    public function authenticateTrainer(): void
     {
         $fakeAuthenticator = $this->getFakeAuthenticator();
 
@@ -56,7 +59,8 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertEquals('trainer', $user->getUserIdentifier());
     }
 
-    public function testAuthenticateCollector(): void
+    #[Test]
+    public function authenticateCollector(): void
     {
         $fakeAuthenticator = $this->getFakeAuthenticator();
 
@@ -75,7 +79,8 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertEquals('collector', $user->getUserIdentifier());
     }
 
-    public function testAuthenticateAdmin(): void
+    #[Test]
+    public function authenticateAdmin(): void
     {
         $fakeAuthenticator = $this->getFakeAuthenticator();
 
@@ -94,7 +99,8 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertEquals('admin', $user->getUserIdentifier());
     }
 
-    public function testAuthenticateTokenNeverExpires(): void
+    #[Test]
+    public function authenticateTokenNeverExpires(): void
     {
         $fakeAuthenticator = $this->getFakeAuthenticator();
 

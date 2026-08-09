@@ -7,6 +7,7 @@ namespace App\Tests\Unit\DTO;
 use App\DTO\ActionLogData;
 use App\ResponseObject\ActionLog;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ActionLogData::class)]
 final class ActionLogDataTest extends TestCase
 {
-    public function testConstructorWithoutLast(): void
+    #[Test]
+    public function constructorWithoutLast(): void
     {
         $actionLog = new ActionLog(
             new \DateTimeImmutable('2023-03-21 08:34:47+00'),
@@ -36,7 +38,8 @@ final class ActionLogDataTest extends TestCase
         $this->assertNull($actionLogData->getLast());
     }
 
-    public function testConstructorWithLast(): void
+    #[Test]
+    public function constructorWithLast(): void
     {
         $actionLogCurrent = new ActionLog(
             new \DateTimeImmutable('2023-03-21 08:34:47+00'),
@@ -65,7 +68,8 @@ final class ActionLogDataTest extends TestCase
         $this->assertSame($actionLogLast, $actionLogData->getLast());
     }
 
-    public function testConstructorWithoutCurrent(): void
+    #[Test]
+    public function constructorWithoutCurrent(): void
     {
         $actionLogData = new ActionLogData('truc');
 

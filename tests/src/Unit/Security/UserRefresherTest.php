@@ -13,6 +13,7 @@ use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationExpiredException;
@@ -23,7 +24,8 @@ use Symfony\Component\Security\Core\Exception\AuthenticationExpiredException;
 #[CoversClass(UserRefresher::class)]
 final class UserRefresherTest extends TestCase
 {
-    public function testRefreshExpiredTokenPreservesOldRefreshTokenWhenProviderOmitsIt(): void
+    #[Test]
+    public function refreshExpiredTokenPreservesOldRefreshTokenWhenProviderOmitsIt(): void
     {
         $oauthProvider = $this->createMock(AbstractProvider::class);
         $expectedExpiry = time() + 3600;
@@ -76,7 +78,8 @@ final class UserRefresherTest extends TestCase
         $this->assertSame($expectedExpiry, $newUser->getAccessToken()->getExpires());
     }
 
-    public function testRefreshExpiredTokenUsesNewRefreshTokenWhenProviderReturnsOne(): void
+    #[Test]
+    public function refreshExpiredTokenUsesNewRefreshTokenWhenProviderReturnsOne(): void
     {
         $oauthProvider = $this->createMock(AbstractProvider::class);
         $oauthProvider
@@ -110,7 +113,8 @@ final class UserRefresherTest extends TestCase
         $this->assertSame('new-refresh', $newUser->getAccessToken()->getRefreshToken());
     }
 
-    public function testRefreshExpiredTokenWithoutRefreshToken(): void
+    #[Test]
+    public function refreshExpiredTokenWithoutRefreshToken(): void
     {
         $clientRegistry = $this->createMock(ClientRegistry::class);
         $clientRegistry
@@ -135,7 +139,8 @@ final class UserRefresherTest extends TestCase
         $provider->refresh($user);
     }
 
-    public function testRefreshExpiredTokenWhenProviderRejectsRefreshToken(): void
+    #[Test]
+    public function refreshExpiredTokenWhenProviderRejectsRefreshToken(): void
     {
         $oauthProvider = $this->createMock(AbstractProvider::class);
         $identityProviderException = new IdentityProviderException('invalid_grant', 400, 'invalid_grant');
@@ -185,7 +190,8 @@ final class UserRefresherTest extends TestCase
         $refresher->refresh($user);
     }
 
-    public function testRefreshExpiredTokenLooksUpClientWithLowercasedProviderName(): void
+    #[Test]
+    public function refreshExpiredTokenLooksUpClientWithLowercasedProviderName(): void
     {
         $invalidClientException = new InvalidOAuth2ClientException(
             'There is no OAuth2 client called "Google". Available are: google, discord'
@@ -231,7 +237,8 @@ final class UserRefresherTest extends TestCase
         $refresher->refresh($user);
     }
 
-    public function testRefreshNotExpiredToken(): void
+    #[Test]
+    public function refreshNotExpiredToken(): void
     {
         $clientRegistry = $this->createMock(ClientRegistry::class);
         $clientRegistry

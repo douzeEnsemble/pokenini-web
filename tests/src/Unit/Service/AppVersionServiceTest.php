@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Service;
 
 use App\Service\AppVersionService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Filesystem\Filesystem;
@@ -18,7 +19,8 @@ use Symfony\Contracts\Cache\ItemInterface;
 #[CoversClass(AppVersionService::class)]
 final class AppVersionServiceTest extends TestCase
 {
-    public function testGetVersionReturnsFileContent(): void
+    #[Test]
+    public function getVersionReturnsFileContent(): void
     {
         file_put_contents(self::getDir().'/resources/metadata/version', '1.2.12');
 
@@ -31,7 +33,8 @@ final class AppVersionServiceTest extends TestCase
         $this->assertSame('1.2.12', $service->getVersion());
     }
 
-    public function testGetVersionReturnsFallbackForMissingFile(): void
+    #[Test]
+    public function getVersionReturnsFallbackForMissingFile(): void
     {
         $service = new AppVersionService(
             self::getDir(),
@@ -42,7 +45,8 @@ final class AppVersionServiceTest extends TestCase
         $this->assertSame('0.0.toto', $service->getVersion('non_existent_file'));
     }
 
-    public function testGetVersionIsCached(): void
+    #[Test]
+    public function getVersionIsCached(): void
     {
         $tmpDir = sys_get_temp_dir().'/pokenini_version_test_'.uniqid();
         mkdir($tmpDir.'/resources/metadata', 0o755, true);
@@ -59,7 +63,8 @@ final class AppVersionServiceTest extends TestCase
         rmdir($tmpDir);
     }
 
-    public function testGetVersionInvalidatedOnFileChange(): void
+    #[Test]
+    public function getVersionInvalidatedOnFileChange(): void
     {
         $tmpDir = sys_get_temp_dir().'/pokenini_version_test_'.uniqid();
         mkdir($tmpDir.'/resources/metadata', 0o755, true);
@@ -81,7 +86,8 @@ final class AppVersionServiceTest extends TestCase
         rmdir($tmpDir);
     }
 
-    public function testGetVersionCachesPerFilename(): void
+    #[Test]
+    public function getVersionCachesPerFilename(): void
     {
         $tmpDir = sys_get_temp_dir().'/pokenini_version_test_'.uniqid();
         mkdir($tmpDir.'/resources/metadata', 0o755, true);
@@ -100,7 +106,8 @@ final class AppVersionServiceTest extends TestCase
         rmdir($tmpDir);
     }
 
-    public function testGetVersionUsesCorrectCacheKey(): void
+    #[Test]
+    public function getVersionUsesCorrectCacheKey(): void
     {
         $tmpDir = sys_get_temp_dir().'/pokenini_version_test_'.uniqid();
         mkdir($tmpDir.'/resources/metadata', 0o755, true);
@@ -125,7 +132,8 @@ final class AppVersionServiceTest extends TestCase
         rmdir($tmpDir);
     }
 
-    public function testGetVersionIncludesFilenameInCacheKey(): void
+    #[Test]
+    public function getVersionIncludesFilenameInCacheKey(): void
     {
         $tmpDir = sys_get_temp_dir().'/pokenini_version_test_'.uniqid();
         mkdir($tmpDir.'/resources/metadata', 0o755, true);
@@ -150,7 +158,8 @@ final class AppVersionServiceTest extends TestCase
         rmdir($tmpDir);
     }
 
-    public function testGetVersionCallbackReadsFile(): void
+    #[Test]
+    public function getVersionCallbackReadsFile(): void
     {
         $item = $this->createStub(ItemInterface::class);
 
@@ -170,7 +179,8 @@ final class AppVersionServiceTest extends TestCase
         $this->assertSame('1.2.12', $service->getVersion());
     }
 
-    public function testGetUpdatedAtReturnsFileMtime(): void
+    #[Test]
+    public function getUpdatedAtReturnsFileMtime(): void
     {
         file_put_contents(self::getDir().'/resources/metadata/version', '1.2.12');
         $expectedMtime = filemtime(self::getDir().'/resources/metadata/version');
@@ -185,7 +195,8 @@ final class AppVersionServiceTest extends TestCase
         $this->assertSame($expectedMtime, $service->getUpdatedAt()?->getTimestamp());
     }
 
-    public function testGetUpdatedAtReturnsNullForMissingFile(): void
+    #[Test]
+    public function getUpdatedAtReturnsNullForMissingFile(): void
     {
         $service = new AppVersionService(self::getDir(), new ArrayAdapter(), new Filesystem());
 

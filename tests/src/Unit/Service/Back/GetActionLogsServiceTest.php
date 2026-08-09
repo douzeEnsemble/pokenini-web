@@ -9,6 +9,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetActionLogsService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -33,7 +34,8 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
     public const ENDPOINT = 'istration/action-logs';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/action-logs.json';
 
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         /** @var GetActionLogsService $service */
         $service = $this->getServiceWithLoggedUser(
@@ -47,7 +49,8 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
         $this->assertServiceGet($service);
     }
 
-    public function testWithoutLoggedUser(): void
+    #[Test]
+    public function withoutLoggedUser(): void
     {
         /** @var GetActionLogsService $service */
         $service = $this->getServiceWithoutLoggedUser(

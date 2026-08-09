@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Album;
 
 use App\ResponseObject\Album\DexFlags;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DexFlags::class)]
 final class DexFlagsTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $flags = new DexFlags(
             isShiny: true,

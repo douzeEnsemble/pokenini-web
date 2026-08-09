@@ -8,6 +8,7 @@ use App\Service\Back\GetLabelsService as BackGetLabelsService;
 use App\Service\GetLabelsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\TagAwareAdapter;
@@ -20,12 +21,14 @@ final class GetLabelsServiceTest extends TestCase
 {
     use ResponseObjectTrait;
 
-    public function testGetCatchStates(): void
+    #[Test]
+    public function getCatchStates(): void
     {
         $this->getService()->getCatchStates();
     }
 
-    public function testGetAllLabels(): void
+    #[Test]
+    public function getAllLabels(): void
     {
         $backService = $this->createMock(BackGetLabelsService::class);
         $backService
@@ -41,7 +44,8 @@ final class GetLabelsServiceTest extends TestCase
         $this->assertNotEmpty($labels->getTypes());
     }
 
-    public function testCacheIsInvalidatedByLabelsTag(): void
+    #[Test]
+    public function cacheIsInvalidatedByLabelsTag(): void
     {
         $backService = $this->createMock(BackGetLabelsService::class);
         $backService

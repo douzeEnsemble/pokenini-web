@@ -7,6 +7,7 @@ namespace App\Tests\Unit\ResponseObject\Election;
 use App\ResponseObject\Election\ElectionReportCompletion;
 use App\ResponseObject\Election\ElectionReportMetrics;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ElectionReportMetrics::class)]
 final class ElectionReportMetricsTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $completion = new ElectionReportCompletion(atMaxCount: 5, underMaxCount: 1);
         $metrics = new ElectionReportMetrics(completion: $completion, dexTotalCount: 48, roundCount: 7, totalRoundCount: 8);

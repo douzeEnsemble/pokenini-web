@@ -9,6 +9,7 @@ use App\DTO\AdminAction;
 use App\Service\Back\GetActionLogsService;
 use App\Service\Back\GetImagePipelineStatusService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,8 @@ use Twig\Environment;
 #[CoversClass(AdminController::class)]
 final class AdminControllerTest extends TestCase
 {
-    public function testIndexRedirectsToActions(): void
+    #[Test]
+    public function indexRedirectsToActions(): void
     {
         $router = $this->createMock(RouterInterface::class);
         $router
@@ -55,7 +57,8 @@ final class AdminControllerTest extends TestCase
         $this->assertSame(302, $response->getStatusCode());
     }
 
-    public function testAdminAction(): void
+    #[Test]
+    public function adminAction(): void
     {
         $adminAction = new AdminAction(
             'truc',
@@ -146,7 +149,8 @@ final class AdminControllerTest extends TestCase
         );
     }
 
-    public function testAdminActionError(): void
+    #[Test]
+    public function adminActionError(): void
     {
         $adminAction = new AdminAction(
             'truc',

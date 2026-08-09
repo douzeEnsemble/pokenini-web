@@ -11,6 +11,7 @@ use App\Validator\CatchStatesValidator;
 use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -27,7 +28,8 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 #[UsesClass(CatchStates::class)]
 final class CatchStatesValidatorTest extends ConstraintValidatorTestCase
 {
-    public function testNullIsValid(): void
+    #[Test]
+    public function nullIsValid(): void
     {
         $this->validator->validate(null, new CatchStates());
 
@@ -35,7 +37,8 @@ final class CatchStatesValidatorTest extends ConstraintValidatorTestCase
     }
 
     #[DataProvider('providerInvalidConstraints')]
-    public function testTrueIsInvalid(CatchStates $constraint): void
+    #[Test]
+    public function trueIsInvalid(CatchStates $constraint): void
     {
         $this->validator->validate('douze', $constraint);
 
@@ -56,7 +59,8 @@ final class CatchStatesValidatorTest extends ConstraintValidatorTestCase
     }
 
     #[DataProvider('providerValidConstraints')]
-    public function testTrueIsValid(CatchStates $constraint): void
+    #[Test]
+    public function trueIsValid(CatchStates $constraint): void
     {
         $this->validator->validate('maybenot', $constraint);
 
@@ -73,14 +77,16 @@ final class CatchStatesValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
-    public function testUnexpectedType(): void
+    #[Test]
+    public function unexpectedType(): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
         $this->validator->validate('maybenot', new NotNull());
     }
 
-    public function testUnexpectedValue(): void
+    #[Test]
+    public function unexpectedValue(): void
     {
         $this->expectException(UnexpectedValueException::class);
 

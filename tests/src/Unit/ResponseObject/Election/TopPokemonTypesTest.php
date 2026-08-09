@@ -7,6 +7,7 @@ namespace App\Tests\Unit\ResponseObject\Election;
 use App\ResponseObject\Election\TopPokemonTypes;
 use App\ResponseObject\Label\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(TopPokemonTypes::class)]
 final class TopPokemonTypesTest extends TestCase
 {
-    public function testBothNull(): void
+    #[Test]
+    public function bothNull(): void
     {
         $object = new TopPokemonTypes(null, null);
 
@@ -23,7 +25,8 @@ final class TopPokemonTypesTest extends TestCase
         $this->assertNull($object->getSecondary());
     }
 
-    public function testBothSet(): void
+    #[Test]
+    public function bothSet(): void
     {
         $primary = new Type('Grass', 'Plante', 'grass', '#78C850');
         $secondary = new Type('Poison', 'Poison', 'poison', '#A040A0');
@@ -34,7 +37,8 @@ final class TopPokemonTypesTest extends TestCase
         $this->assertSame($secondary, $object->getSecondary());
     }
 
-    public function testOnlyPrimary(): void
+    #[Test]
+    public function onlyPrimary(): void
     {
         $primary = new Type('Normal', 'Normal', 'normal', '#A8A878');
         $object = new TopPokemonTypes($primary, null);

@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Label;
 
 use App\ResponseObject\Label\Collection;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Collection::class)]
 final class CollectionTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $object = new Collection(
             'Toto',

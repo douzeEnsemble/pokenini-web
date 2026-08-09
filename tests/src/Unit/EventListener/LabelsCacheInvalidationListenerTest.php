@@ -7,6 +7,7 @@ namespace App\Tests\Unit\EventListener;
 use App\Event\AdminActionSucceededEvent;
 use App\EventListener\LabelsCacheInvalidationListener;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
@@ -16,7 +17,8 @@ use Symfony\Contracts\Cache\TagAwareCacheInterface;
 #[CoversClass(LabelsCacheInvalidationListener::class)]
 final class LabelsCacheInvalidationListenerTest extends TestCase
 {
-    public function testInvalidatesLabelsCacheOnLabelsEvent(): void
+    #[Test]
+    public function invalidatesLabelsCacheOnLabelsEvent(): void
     {
         $cache = $this->createMock(TagAwareCacheInterface::class);
         $cache
@@ -29,7 +31,8 @@ final class LabelsCacheInvalidationListenerTest extends TestCase
         $listener(new AdminActionSucceededEvent('labels'));
     }
 
-    public function testDoesNotInvalidateForOtherNames(): void
+    #[Test]
+    public function doesNotInvalidateForOtherNames(): void
     {
         $cache = $this->createMock(TagAwareCacheInterface::class);
         $cache

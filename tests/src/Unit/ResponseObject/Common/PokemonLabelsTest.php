@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Common;
 
 use App\ResponseObject\Common\PokemonLabels;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(PokemonLabels::class)]
 final class PokemonLabelsTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $labels = new PokemonLabels(
             name: 'Mega Charizard Y',
@@ -33,7 +35,8 @@ final class PokemonLabelsTest extends TestCase
         $this->assertSame('Méga Y', $labels->getFormsFrenchLabel());
     }
 
-    public function testNullableFields(): void
+    #[Test]
+    public function nullableFields(): void
     {
         $labels = new PokemonLabels(
             name: 'Bulbasaur',

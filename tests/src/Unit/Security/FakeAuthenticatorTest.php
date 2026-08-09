@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Security;
 
 use App\Security\FakeAuthenticator;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -16,7 +17,8 @@ use Symfony\Component\Routing\RouterInterface;
 #[CoversClass(FakeAuthenticator::class)]
 final class FakeAuthenticatorTest extends TestCase
 {
-    public function testSupports(): void
+    #[Test]
+    public function supports(): void
     {
         $authenticator = new FakeAuthenticator(
             $this->createStub(RouterInterface::class),

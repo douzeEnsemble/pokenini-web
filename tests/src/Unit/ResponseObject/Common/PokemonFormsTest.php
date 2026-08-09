@@ -10,6 +10,7 @@ use App\ResponseObject\Label\RegionalForm;
 use App\ResponseObject\Label\SpecialForm;
 use App\ResponseObject\Label\VariantForm;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(PokemonForms::class)]
 final class PokemonFormsTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $category = new CategoryForm('Starter', 'de Départ', 'starter');
         $regional = new RegionalForm('Alolan', "d'Alola", 'alolan');
@@ -33,7 +35,8 @@ final class PokemonFormsTest extends TestCase
         $this->assertSame($variant, $forms->getVariant());
     }
 
-    public function testNullable(): void
+    #[Test]
+    public function nullable(): void
     {
         $forms = new PokemonForms(null, null, null, null);
 

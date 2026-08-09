@@ -9,6 +9,7 @@ use App\ResponseObject\Election\ElectionIndex;
 use App\Service\Back\GetElectionIndexService;
 use App\Service\ElectionIndexService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -19,7 +20,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[CoversClass(ElectionIndexService::class)]
 final class ElectionIndexServiceTest extends TestCase
 {
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $dexSlug = 'test-dex';
         $electionSlug = 'test-election';
@@ -66,7 +68,8 @@ final class ElectionIndexServiceTest extends TestCase
         $this->assertFalse($result->isTheLastPage);
     }
 
-    public function testGetHttpException(): void
+    #[Test]
+    public function getHttpException(): void
     {
         $dexSlug = 'test-dex';
         $electionSlug = 'test-election';
@@ -89,7 +92,8 @@ final class ElectionIndexServiceTest extends TestCase
         $this->assertNull($result);
     }
 
-    public function testGetTransportException(): void
+    #[Test]
+    public function getTransportException(): void
     {
         $dexSlug = 'test-dex';
         $electionSlug = 'test-election';

@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Controller\Connect;
 
 use App\Controller\Connect\DiscordController;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +17,8 @@ final class DiscordControllerTest extends TestCase
 {
     use ConnectControllerTestTrait;
 
-    public function testGotoIgnoresSessionState(): void
+    #[Test]
+    public function gotoIgnoresSessionState(): void
     {
         $controller = new DiscordController();
 

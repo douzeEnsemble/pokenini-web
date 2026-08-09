@@ -6,6 +6,7 @@ namespace App\Tests\Unit\AlbumFilters;
 
 use App\AlbumFilters\AlbumFilterBag;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(AlbumFilterBag::class)]
 final class AlbumFilterBagTest extends TestCase
 {
-    public function testToApiParams(): void
+    #[Test]
+    public function toApiParams(): void
     {
         $bag = new AlbumFilterBag(
             stringFilters: [
@@ -56,7 +58,8 @@ final class AlbumFilterBagTest extends TestCase
         );
     }
 
-    public function testToRouteParams(): void
+    #[Test]
+    public function toRouteParams(): void
     {
         $bag = new AlbumFilterBag(
             stringFilters: ['cs' => 'no', 'f' => 'pichu'],
@@ -74,7 +77,8 @@ final class AlbumFilterBagTest extends TestCase
         );
     }
 
-    public function testEmptyBag(): void
+    #[Test]
+    public function emptyBag(): void
     {
         $bag = new AlbumFilterBag();
 

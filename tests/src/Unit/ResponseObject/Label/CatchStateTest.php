@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Label;
 
 use App\ResponseObject\Label\CatchState;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(CatchState::class)]
 final class CatchStateTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $object = new CatchState(
             'Toto',

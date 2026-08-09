@@ -9,6 +9,7 @@ use App\DTO\AdminAction;
 use App\Event\AdminActionSucceededEvent;
 use App\Service\Back\AdminActionService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
@@ -30,7 +31,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[CoversClass(AdminActionController::class)]
 final class AdminActionControllerTest extends TestCase
 {
-    public function testAction(): void
+    #[Test]
+    public function action(): void
     {
         $adminActionService = $this->createMock(AdminActionService::class);
         $adminActionService
@@ -106,21 +108,24 @@ final class AdminActionControllerTest extends TestCase
         $this->assertSame('/admin', $response->getTargetUrl());
     }
 
-    public function testFailUpdateLogs(): void
+    #[Test]
+    public function failUpdateLogs(): void
     {
         $controller = $this->assertFailActionLogs('update');
 
         $controller->update('something', new Request([], ['_token' => 'valid_token']));
     }
 
-    public function testFailCalculateLogs(): void
+    #[Test]
+    public function failCalculateLogs(): void
     {
         $controller = $this->assertFailActionLogs('calculate');
 
         $controller->calculate('something', new Request([], ['_token' => 'valid_token']));
     }
 
-    public function testTransportExceptionIsLogged(): void
+    #[Test]
+    public function transportExceptionIsLogged(): void
     {
         $adminActionService = $this->createMock(AdminActionService::class);
         $adminActionService
@@ -191,7 +196,8 @@ final class AdminActionControllerTest extends TestCase
         $controller->update('something', new Request([], ['_token' => 'valid_token']));
     }
 
-    public function testLogicExceptionPropagates(): void
+    #[Test]
+    public function logicExceptionPropagates(): void
     {
         $adminActionService = $this->createMock(AdminActionService::class);
         $adminActionService
@@ -237,7 +243,8 @@ final class AdminActionControllerTest extends TestCase
         $controller->invalidate('something', new Request([], ['_token' => 'valid_token']));
     }
 
-    public function testUpdateInvalidCsrfToken(): void
+    #[Test]
+    public function updateInvalidCsrfToken(): void
     {
         $csrfManager = $this->createMock(CsrfTokenManagerInterface::class);
         $csrfManager
@@ -277,7 +284,8 @@ final class AdminActionControllerTest extends TestCase
         $controller->update('labels', new Request([], ['_token' => 'bad_token']));
     }
 
-    public function testCalculateInvalidCsrfToken(): void
+    #[Test]
+    public function calculateInvalidCsrfToken(): void
     {
         $csrfManager = $this->createMock(CsrfTokenManagerInterface::class);
         $csrfManager
@@ -317,7 +325,8 @@ final class AdminActionControllerTest extends TestCase
         $controller->calculate('game_bundles_availabilities', new Request([], ['_token' => 'bad_token']));
     }
 
-    public function testInvalidateInvalidCsrfToken(): void
+    #[Test]
+    public function invalidateInvalidCsrfToken(): void
     {
         $csrfManager = $this->createMock(CsrfTokenManagerInterface::class);
         $csrfManager
@@ -357,7 +366,8 @@ final class AdminActionControllerTest extends TestCase
         $controller->invalidate('labels', new Request([], ['_token' => 'bad_token']));
     }
 
-    public function testInvalidateReportsRedirectsToReportsPage(): void
+    #[Test]
+    public function invalidateReportsRedirectsToReportsPage(): void
     {
         $adminActionService = $this->createMock(AdminActionService::class);
         $adminActionService
@@ -433,7 +443,8 @@ final class AdminActionControllerTest extends TestCase
         $this->assertSame('/admin', $response->getTargetUrl());
     }
 
-    public function testTriggerAction(): void
+    #[Test]
+    public function triggerAction(): void
     {
         $adminActionService = $this->createMock(AdminActionService::class);
         $adminActionService
@@ -509,14 +520,16 @@ final class AdminActionControllerTest extends TestCase
         $this->assertSame('/admin', $response->getTargetUrl());
     }
 
-    public function testFailTriggerLogs(): void
+    #[Test]
+    public function failTriggerLogs(): void
     {
         $controller = $this->assertFailActionLogs('trigger', 'update_images');
 
         $controller->trigger('update_images', new Request([], ['_token' => 'valid_token']));
     }
 
-    public function testTriggerInvalidCsrfToken(): void
+    #[Test]
+    public function triggerInvalidCsrfToken(): void
     {
         $csrfManager = $this->createMock(CsrfTokenManagerInterface::class);
         $csrfManager

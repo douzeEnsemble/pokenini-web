@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Service;
 
 use App\Service\GetResourcesVersionService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\TransportException;
@@ -19,7 +20,8 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(GetResourcesVersionService::class)]
 final class GetResourcesVersionServiceTest extends TestCase
 {
-    public function testGetReturnsVersionAndUpdatedAtFromLastModifiedHeader(): void
+    #[Test]
+    public function getReturnsVersionAndUpdatedAtFromLastModifiedHeader(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getContent')->willReturn("1.9.7\n");
@@ -41,7 +43,8 @@ final class GetResourcesVersionServiceTest extends TestCase
         $this->assertSame('2026-08-05T09:12:00+00:00', $brickVersion->updatedAt?->format(\DateTimeInterface::ATOM));
     }
 
-    public function testGetReturnsNullUpdatedAtWhenLastModifiedHeaderAbsent(): void
+    #[Test]
+    public function getReturnsNullUpdatedAtWhenLastModifiedHeaderAbsent(): void
     {
         $response = $this->createMock(ResponseInterface::class);
         $response
@@ -74,7 +77,8 @@ final class GetResourcesVersionServiceTest extends TestCase
         $this->assertNull($brickVersion->updatedAt);
     }
 
-    public function testGetReturnsNullBrickVersionOnTransportError(): void
+    #[Test]
+    public function getReturnsNullBrickVersionOnTransportError(): void
     {
         $exception = $this->createStub(TransportException::class);
 
@@ -96,7 +100,8 @@ final class GetResourcesVersionServiceTest extends TestCase
         $this->assertNull($brickVersion->updatedAt);
     }
 
-    public function testGetReturnsNullBrickVersionOnHttpError(): void
+    #[Test]
+    public function getReturnsNullBrickVersionOnHttpError(): void
     {
         $response = $this->createMock(ResponseInterface::class);
         $response

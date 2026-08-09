@@ -10,6 +10,7 @@ use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetPokemonsService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,7 +24,8 @@ final class GetPokemonsServiceTest extends AbstractTestBackService
 {
     use ResponseObjectTrait;
 
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $electionList = $this
             ->getService(
@@ -42,7 +44,8 @@ final class GetPokemonsServiceTest extends AbstractTestBackService
         $this->assertCount(3, $electionList->getItems());
     }
 
-    public function testGetWithFilters(): void
+    #[Test]
+    public function getWithFilters(): void
     {
         $electionList = $this
             ->getService(
@@ -69,7 +72,8 @@ final class GetPokemonsServiceTest extends AbstractTestBackService
         $this->assertCount(3, $electionList->getItems());
     }
 
-    public function testGetWithoutLoggedUser(): void
+    #[Test]
+    public function getWithoutLoggedUser(): void
     {
         $dir = '/app/tests/resources/unit/service/back';
         $filename = "{$dir}/pokemons_123__3.json";

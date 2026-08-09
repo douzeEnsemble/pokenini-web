@@ -9,6 +9,7 @@ use App\Exception\ModifyFailedException;
 use App\Service\Back\PostElectionVoteService;
 use App\Service\ElectionVoteService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -19,7 +20,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[CoversClass(ElectionVoteService::class)]
 final class ElectionVoteServiceTest extends TestCase
 {
-    public function testVote(): void
+    #[Test]
+    public function vote(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
@@ -41,7 +43,8 @@ final class ElectionVoteServiceTest extends TestCase
         $service->vote($electionVote);
     }
 
-    public function testVoteWinnerAsLoser(): void
+    #[Test]
+    public function voteWinnerAsLoser(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
@@ -63,7 +66,8 @@ final class ElectionVoteServiceTest extends TestCase
         $service->vote($electionVote);
     }
 
-    public function testVoteAllLosers(): void
+    #[Test]
+    public function voteAllLosers(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
@@ -85,7 +89,8 @@ final class ElectionVoteServiceTest extends TestCase
         $service->vote($electionVote);
     }
 
-    public function testVoteAllWinners(): void
+    #[Test]
+    public function voteAllWinners(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
@@ -107,7 +112,8 @@ final class ElectionVoteServiceTest extends TestCase
         $service->vote($electionVote);
     }
 
-    public function testVoteWithHttpException(): void
+    #[Test]
+    public function voteWithHttpException(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
@@ -129,7 +135,8 @@ final class ElectionVoteServiceTest extends TestCase
         $service->vote($electionVote);
     }
 
-    public function testVoteWithTransportException(): void
+    #[Test]
+    public function voteWithTransportException(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',

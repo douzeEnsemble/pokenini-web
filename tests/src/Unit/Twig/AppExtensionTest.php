@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Twig;
 use App\Service\AppVersionService;
 use App\Twig\AppExtension;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Twig\Node\Node;
 use Twig\TwigFilter;
@@ -18,7 +19,8 @@ use Twig\TwigFunction;
 #[CoversClass(AppExtension::class)]
 final class AppExtensionTest extends TestCase
 {
-    public function testGetFilters(): void
+    #[Test]
+    public function getFilters(): void
     {
         $extension = new AppExtension($this->createStub(AppVersionService::class));
 
@@ -63,7 +65,8 @@ final class AppExtensionTest extends TestCase
         $this->assertEquals('htmlNl2br', $htmlNl2brCallable[1]);
     }
 
-    public function testGetFunctions(): void
+    #[Test]
+    public function getFunctions(): void
     {
         $extension = new AppExtension($this->createStub(AppVersionService::class));
 
@@ -83,7 +86,8 @@ final class AppExtensionTest extends TestCase
         $this->assertEquals('getVersion', $versionFunctionCallable[1]);
     }
 
-    public function testKsort(): void
+    #[Test]
+    public function ksort(): void
     {
         $extension = new AppExtension($this->createStub(AppVersionService::class));
 
@@ -103,7 +107,8 @@ final class AppExtensionTest extends TestCase
         );
     }
 
-    public function testSha1(): void
+    #[Test]
+    public function sha1(): void
     {
         $extension = new AppExtension($this->createStub(AppVersionService::class));
 
@@ -111,14 +116,16 @@ final class AppExtensionTest extends TestCase
         $this->assertSame('f7e79ca8eb0b31ee4d5d6c181416667ffee528ed', $extension->sha1('titi'));
     }
 
-    public function testHtmlNl2br(): void
+    #[Test]
+    public function htmlNl2br(): void
     {
         $extension = new AppExtension($this->createStub(AppVersionService::class));
 
         $this->assertSame("a<br>\nb", $extension->htmlNl2br("a\nb"));
     }
 
-    public function testVersion(): void
+    #[Test]
+    public function version(): void
     {
         $versionService = $this->createMock(AppVersionService::class);
         $versionService
@@ -133,7 +140,8 @@ final class AppExtensionTest extends TestCase
         $this->assertSame('1.2.12', $extension->getVersion());
     }
 
-    public function testVersionDelegatesToService(): void
+    #[Test]
+    public function versionDelegatesToService(): void
     {
         $versionService = $this->createMock(AppVersionService::class);
         $versionService

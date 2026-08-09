@@ -6,6 +6,7 @@ namespace App\Tests\Unit\ResponseObject\Album;
 
 use App\ResponseObject\Album\TrainerDexLink;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +15,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(TrainerDexLink::class)]
 final class TrainerDexLinkTest extends TestCase
 {
-    public function testGetters(): void
+    #[Test]
+    public function getters(): void
     {
         $link = new TrainerDexLink(
             id: 'link-1',

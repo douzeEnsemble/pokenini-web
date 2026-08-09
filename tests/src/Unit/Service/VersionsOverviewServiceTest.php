@@ -11,6 +11,7 @@ use App\Service\Back\GetVersionsService;
 use App\Service\GetResourcesVersionService;
 use App\Service\VersionsOverviewService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +20,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(VersionsOverviewService::class)]
 final class VersionsOverviewServiceTest extends TestCase
 {
-    public function testGetCombinesAllFourVersions(): void
+    #[Test]
+    public function getCombinesAllFourVersions(): void
     {
         $webUpdatedAt = new \DateTimeImmutable('2026-08-05T09:12:00+00:00');
         $backUpdatedAt = new \DateTimeImmutable('2026-08-04T21:47:00+00:00');
@@ -53,7 +55,8 @@ final class VersionsOverviewServiceTest extends TestCase
         $this->assertSame($resourcesUpdatedAt, $overview->resources->updatedAt);
     }
 
-    public function testGetHandlesUnavailableBricks(): void
+    #[Test]
+    public function getHandlesUnavailableBricks(): void
     {
         $appVersionService = $this->createStub(AppVersionService::class);
         $appVersionService->method('getVersion')->willReturn('1.2.12');

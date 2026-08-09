@@ -11,6 +11,7 @@ use App\Service\Back\AdminActionService;
 use App\Tests\Utils\WithConsecutive;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,7 +24,8 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(AdminActionService::class)]
 final class AdminActionServiceTest extends TestCase
 {
-    public function testExecute(): void
+    #[Test]
+    public function execute(): void
     {
         $logger = $this->createMock(LoggerInterface::class);
         $logger
@@ -114,7 +116,8 @@ final class AdminActionServiceTest extends TestCase
         $this->assertSame('', $adminAction->error);
     }
 
-    public function testExecuteWithContentAndError(): void
+    #[Test]
+    public function executeWithContentAndError(): void
     {
         $logger = $this->createMock(LoggerInterface::class);
         $logger
@@ -205,7 +208,8 @@ final class AdminActionServiceTest extends TestCase
         $this->assertSame('oops', $adminAction->error);
     }
 
-    public function testExecuteWithoutLoggedUser(): void
+    #[Test]
+    public function executeWithoutLoggedUser(): void
     {
         $logger = $this->createMock(LoggerInterface::class);
         $logger

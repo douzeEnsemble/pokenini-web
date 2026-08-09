@@ -6,6 +6,7 @@ namespace App\Tests\Unit\DTO;
 
 use App\DTO\DexFiltersRequest;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -15,7 +16,8 @@ use Symfony\Component\HttpFoundation\Request;
 #[CoversClass(DexFiltersRequest::class)]
 final class DexFiltersRequestTest extends TestCase
 {
-    public function testDexFiltersFromRequestEmpty(): void
+    #[Test]
+    public function dexFiltersFromRequestEmpty(): void
     {
         $request = new Request([]);
 
@@ -28,7 +30,8 @@ final class DexFiltersRequestTest extends TestCase
         $this->assertNull($filters->premium->value);
     }
 
-    public function testDexFiltersFromRequest(): void
+    #[Test]
+    public function dexFiltersFromRequest(): void
     {
         $request = new Request([
             'p' => '1',
@@ -47,7 +50,8 @@ final class DexFiltersRequestTest extends TestCase
         $this->assertFalse($filters->premium->value);
     }
 
-    public function testDexFiltersFromRequestIgnoresUnknownParams(): void
+    #[Test]
+    public function dexFiltersFromRequestIgnoresUnknownParams(): void
     {
         $request = new Request([
             'p' => '1',

@@ -9,6 +9,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\PostElectionVoteService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -20,7 +21,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(PostElectionVoteService::class)]
 final class PostElectionVoteServiceTest extends AbstractTestBackService
 {
-    public function testVote(): void
+    #[Test]
+    public function vote(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
@@ -37,7 +39,8 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
         ;
     }
 
-    public function testVoteAllLosers(): void
+    #[Test]
+    public function voteAllLosers(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
@@ -54,7 +57,8 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
         ;
     }
 
-    public function testVoteAllWinners(): void
+    #[Test]
+    public function voteAllWinners(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',
@@ -71,7 +75,8 @@ final class PostElectionVoteServiceTest extends AbstractTestBackService
         ;
     }
 
-    public function testVoteWithoutLoggedUser(): void
+    #[Test]
+    public function voteWithoutLoggedUser(): void
     {
         $electionVote = ElectionVote::createFromArray([
             'dex_slug' => 'demo',

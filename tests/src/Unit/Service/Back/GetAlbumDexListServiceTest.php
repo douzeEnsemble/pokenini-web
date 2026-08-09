@@ -12,6 +12,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetAlbumDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -22,7 +23,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(GetAlbumDexListService::class)]
 final class GetAlbumDexListServiceTest extends AbstractTestBackService
 {
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $json = '{"doesnt": "matter"}';
 
@@ -45,7 +47,8 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
         );
     }
 
-    public function testGetWithEmptyTrainerId(): void
+    #[Test]
+    public function getWithEmptyTrainerId(): void
     {
         $json = '{"doesnt": "matter"}';
 
@@ -68,7 +71,8 @@ final class GetAlbumDexListServiceTest extends AbstractTestBackService
         );
     }
 
-    public function testGetWithTrainerId(): void
+    #[Test]
+    public function getWithTrainerId(): void
     {
         $json = '{"doesnt": "matter"}';
 

@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Twig;
 use App\Twig\AppRequestExtension;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -17,7 +18,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 #[CoversClass(AppRequestExtension::class)]
 final class AppRequestExtensionTest extends TestCase
 {
-    public function testGetArrayFromRequestWithoutRequest(): void
+    #[Test]
+    public function getArrayFromRequestWithoutRequest(): void
     {
         $requestStack = $this->createMock(RequestStack::class);
         $requestStack
@@ -37,7 +39,8 @@ final class AppRequestExtensionTest extends TestCase
      * @param array<int, string>                       $expected
      */
     #[DataProvider('providerGetArrayFromRequestWithRequest')]
-    public function testGetArrayFromRequestWithRequest(array $query, string $name, array $expected): void
+    #[Test]
+    public function getArrayFromRequestWithRequest(array $query, string $name, array $expected): void
     {
         $request = new Request($query);
 

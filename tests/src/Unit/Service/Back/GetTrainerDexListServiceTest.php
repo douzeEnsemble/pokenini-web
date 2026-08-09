@@ -12,6 +12,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetTrainerDexListService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -22,7 +23,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(GetTrainerDexListService::class)]
 final class GetTrainerDexListServiceTest extends AbstractTestBackService
 {
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $json = '{"doesnt": "matter"}';
 

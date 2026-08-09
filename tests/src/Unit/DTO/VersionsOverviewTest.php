@@ -7,6 +7,7 @@ namespace App\Tests\Unit\DTO;
 use App\DTO\VersionsOverview;
 use App\ResponseObject\BrickVersion;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(VersionsOverview::class)]
 final class VersionsOverviewTest extends TestCase
 {
-    public function testConstrutorAndGetters(): void
+    #[Test]
+    public function construtorAndGetters(): void
     {
         $webVersion = new BrickVersion(
             '1.0',

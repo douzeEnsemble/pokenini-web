@@ -8,6 +8,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\ModifyDexService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -18,7 +19,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(ModifyDexService::class)]
 final class ModifyDexServiceTest extends AbstractTestBackService
 {
-    public function testModify(): void
+    #[Test]
+    public function modify(): void
     {
         $this
             ->getService(
@@ -32,7 +34,8 @@ final class ModifyDexServiceTest extends AbstractTestBackService
         ;
     }
 
-    public function testModifyWithoutLoggedUser(): void
+    #[Test]
+    public function modifyWithoutLoggedUser(): void
     {
         /** @var ModifyDexService $service */
         $service = $this->getServiceWithoutLoggedUser(

@@ -8,6 +8,7 @@ use App\DTO\ElectionTop;
 use App\ResponseObject\Election\TopPokemon;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,8 @@ final class ElectionTopTest extends TestCase
 {
     use ResponseObjectTrait;
 
-    public function testOk(): void
+    #[Test]
+    public function ok(): void
     {
         $object = new ElectionTop([
             $this->getStubTopPokemon(),

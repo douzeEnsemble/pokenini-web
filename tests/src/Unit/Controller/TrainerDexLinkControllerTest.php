@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Controller;
 use App\Controller\TrainerDexLinkController;
 use App\Service\Back\TrainerDexLinkService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
@@ -18,7 +19,8 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 #[CoversClass(TrainerDexLinkController::class)]
 final class TrainerDexLinkControllerTest extends TestCase
 {
-    public function testList(): void
+    #[Test]
+    public function list(): void
     {
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->expects($this->once())
@@ -35,7 +37,8 @@ final class TrainerDexLinkControllerTest extends TestCase
         $this->assertSame('[{"id":"link-1"}]', $response->getContent());
     }
 
-    public function testListForwardsApiFailureStatusCode(): void
+    #[Test]
+    public function listForwardsApiFailureStatusCode(): void
     {
         $apiResponse = $this->createStub(ResponseInterface::class);
         $apiResponse->method('getStatusCode')->willReturn(404);
@@ -57,7 +60,8 @@ final class TrainerDexLinkControllerTest extends TestCase
         $this->assertSame(404, $response->getStatusCode());
     }
 
-    public function testCreateRejectsEmptyBody(): void
+    #[Test]
+    public function createRejectsEmptyBody(): void
     {
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->expects($this->never())->method('create');
@@ -69,7 +73,8 @@ final class TrainerDexLinkControllerTest extends TestCase
         $this->assertSame(400, $response->getStatusCode());
     }
 
-    public function testCreateSucceeds(): void
+    #[Test]
+    public function createSucceeds(): void
     {
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->expects($this->once())
@@ -84,7 +89,8 @@ final class TrainerDexLinkControllerTest extends TestCase
         $this->assertSame(201, $response->getStatusCode());
     }
 
-    public function testCreateForwardsApiFailureStatusCode(): void
+    #[Test]
+    public function createForwardsApiFailureStatusCode(): void
     {
         $apiResponse = $this->createStub(ResponseInterface::class);
         $apiResponse->method('getStatusCode')->willReturn(409);
@@ -106,7 +112,8 @@ final class TrainerDexLinkControllerTest extends TestCase
         $this->assertSame(409, $response->getStatusCode());
     }
 
-    public function testDelete(): void
+    #[Test]
+    public function delete(): void
     {
         $service = $this->createMock(TrainerDexLinkService::class);
         $service->expects($this->once())->method('delete')->with('link-1');
@@ -118,7 +125,8 @@ final class TrainerDexLinkControllerTest extends TestCase
         $this->assertSame(200, $response->getStatusCode());
     }
 
-    public function testDeleteForwardsApiFailureStatusCode(): void
+    #[Test]
+    public function deleteForwardsApiFailureStatusCode(): void
     {
         $apiResponse = $this->createStub(ResponseInterface::class);
         $apiResponse->method('getStatusCode')->willReturn(404);

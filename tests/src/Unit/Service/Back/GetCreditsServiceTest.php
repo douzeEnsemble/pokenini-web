@@ -9,6 +9,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\GetCreditsService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,7 +24,8 @@ final class GetCreditsServiceTest extends AbstractTestBackService
     public const ENDPOINT = 'credits';
     public const RESPONSE_CONTENT = '/app/tests/resources/unit/service/back/credits.json';
 
-    public function testGet(): void
+    #[Test]
+    public function get(): void
     {
         $json = (new Filesystem())->readFile(self::RESPONSE_CONTENT);
 

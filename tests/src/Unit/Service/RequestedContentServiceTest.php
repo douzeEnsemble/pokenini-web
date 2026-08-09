@@ -8,6 +8,7 @@ use App\Exception\EmptyContentException;
 use App\Exception\InvalidJsonException;
 use App\Service\RequestedContentService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -22,7 +23,8 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 #[CoversClass(RequestedContentService::class)]
 final class RequestedContentServiceTest extends TestCase
 {
-    public function testGetContent(): void
+    #[Test]
+    public function getContent(): void
     {
         $validator = $this->createMock(ValidatorInterface::class);
         $validator
@@ -53,7 +55,8 @@ final class RequestedContentServiceTest extends TestCase
         );
     }
 
-    public function testGetContentNoRequest(): void
+    #[Test]
+    public function getContentNoRequest(): void
     {
         $validator = $this->createMock(ValidatorInterface::class);
         $validator
@@ -73,7 +76,8 @@ final class RequestedContentServiceTest extends TestCase
         );
     }
 
-    public function testGetContentBadRequest(): void
+    #[Test]
+    public function getContentBadRequest(): void
     {
         $validator = $this->createMock(ValidatorInterface::class);
         $validator
@@ -100,7 +104,8 @@ final class RequestedContentServiceTest extends TestCase
         $service->getContent(new Json());
     }
 
-    public function testGetContentBadJson(): void
+    #[Test]
+    public function getContentBadJson(): void
     {
         $validator = $this->createMock(ValidatorInterface::class);
         $validator

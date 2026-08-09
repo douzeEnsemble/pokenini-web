@@ -9,6 +9,7 @@ use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
 use App\Service\Back\TrainerDexLinkService;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -19,7 +20,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[CoversClass(TrainerDexLinkService::class)]
 final class TrainerDexLinkServiceTest extends AbstractTestBackService
 {
-    public function testList(): void
+    #[Test]
+    public function list(): void
     {
         $json = '[{"id":"link-1"}]';
         $links = [new TrainerDexLink('link-1', 'to', 'shiny', 'Shiny Living', 'Vivarium Chromatique')];
@@ -37,7 +39,8 @@ final class TrainerDexLinkServiceTest extends AbstractTestBackService
         $this->assertSame($links, $service->list('national'));
     }
 
-    public function testListAsJson(): void
+    #[Test]
+    public function listAsJson(): void
     {
         $json = '[{"id":"link-1"}]';
         $links = [new TrainerDexLink('link-1', 'to', 'shiny', 'Shiny Living', 'Vivarium Chromatique')];
@@ -60,7 +63,8 @@ final class TrainerDexLinkServiceTest extends AbstractTestBackService
         $this->assertSame($json, $service->listAsJson('national'));
     }
 
-    public function testCreate(): void
+    #[Test]
+    public function create(): void
     {
         /** @var TrainerDexLinkService $service */
         $service = $this->getServiceWithLoggedUser(
@@ -73,7 +77,8 @@ final class TrainerDexLinkServiceTest extends AbstractTestBackService
         $service->create('national', '{"targetDexSlug":"shiny","bidirectional":true}');
     }
 
-    public function testDelete(): void
+    #[Test]
+    public function delete(): void
     {
         /** @var TrainerDexLinkService $service */
         $service = $this->getServiceWithLoggedUser('DELETE', '', 'album_link/link-1');

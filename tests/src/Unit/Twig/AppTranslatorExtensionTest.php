@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Twig;
 use App\Twig\AppTranslatorExtension;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\TwigFilter;
@@ -17,7 +18,8 @@ use Twig\TwigFilter;
 #[CoversClass(AppTranslatorExtension::class)]
 final class AppTranslatorExtensionTest extends TestCase
 {
-    public function testGetFilters(): void
+    #[Test]
+    public function getFilters(): void
     {
         $translator = $this->createStub(TranslatorInterface::class);
         $extension = new AppTranslatorExtension($translator);
@@ -42,7 +44,8 @@ final class AppTranslatorExtensionTest extends TestCase
      * @param array<string, int> $params
      */
     #[DataProvider('providerAlmostExactly')]
-    public function testAlmostExactly(
+    #[Test]
+    public function almostExactly(
         string $text,
         array $params,
         string $return,

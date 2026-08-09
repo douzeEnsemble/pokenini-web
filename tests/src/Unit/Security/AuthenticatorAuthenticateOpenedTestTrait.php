@@ -11,6 +11,7 @@ use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use League\OAuth2\Client\Token\AccessToken;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
@@ -20,7 +21,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
  */
 trait AuthenticatorAuthenticateOpenedTestTrait
 {
-    public function testOpenedAuthenticateUser(): void
+    #[Test]
+    public function openedAuthenticateUser(): void
     {
         $authenticator = $this->getOpenedAuthenticator([]);
 
@@ -40,7 +42,8 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
     }
 
-    public function testOpenedAuthenticateTrainer(): void
+    #[Test]
+    public function openedAuthenticateTrainer(): void
     {
         $authenticator = $this->getOpenedAuthenticator(['ROLE_TRAINER']);
 
@@ -60,7 +63,8 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
     }
 
-    public function testOpenedAuthenticateCollector(): void
+    #[Test]
+    public function openedAuthenticateCollector(): void
     {
         $authenticator = $this->getOpenedAuthenticator(['ROLE_COLLECTOR']);
 
@@ -80,7 +84,8 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
     }
 
-    public function testOpenedAuthenticateAdmin(): void
+    #[Test]
+    public function openedAuthenticateAdmin(): void
     {
         $authenticator = $this->getOpenedAuthenticator(['ROLE_ADMIN']);
 
@@ -100,7 +105,8 @@ trait AuthenticatorAuthenticateOpenedTestTrait
         $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
     }
 
-    public function testOpenedAuthenticateAdminTrainer(): void
+    #[Test]
+    public function openedAuthenticateAdminTrainer(): void
     {
         $authenticator = $this->getOpenedAuthenticator(['ROLE_TRAINER', 'ROLE_ADMIN']);
 

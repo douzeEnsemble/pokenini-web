@@ -7,6 +7,7 @@ namespace App\Tests\Unit\ResponseObject\Label;
 use App\ResponseObject\Label\AbstractForm;
 use App\ResponseObject\Label\SpecialForm;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +17,8 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(SpecialForm::class)]
 final class SpecialFormTest extends TestCase
 {
-    public function testConstructor(): void
+    #[Test]
+    public function constructor(): void
     {
         $object = new SpecialForm(
             'Toto',
