@@ -36,6 +36,17 @@
         <PossiblyUnusedMethod>
             <errorLevel type="suppress">
                 <directory name="src/Controller" />
+                <!--
+                    psalm/plugin-phpunit 0.19.7 resolves #[Test] attributes on trait-declared
+                    methods using the *consuming* class's import aliases instead of the trait's
+                    own, so it never recognizes these as PHPUnit test methods. Fixed upstream in
+                    0.20.x, but that requires Psalm 7 (still beta; psalm/plugin-symfony has no
+                    stable support for it yet). Remove these once both are upgraded.
+                -->
+                <file name="tests/src/Unit/Security/AuthenticatorAuthenticateClosedTestTrait.php" />
+                <file name="tests/src/Unit/Security/AuthenticatorAuthenticateOpenedTestTrait.php" />
+                <file name="tests/src/Unit/Security/AuthenticatorOnAuthentificationTestTrait.php" />
+                <file name="tests/src/Unit/Security/AuthenticatorSupportTestTrait.php" />
             </errorLevel>
         </PossiblyUnusedMethod>
 
