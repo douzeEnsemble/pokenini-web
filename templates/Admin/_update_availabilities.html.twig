@@ -1,0 +1,12 @@
+{% import "Admin/_macros.html.twig" as admin %}
+
+<div class="row px-4 py-5">
+  {% set updateAvailabilitiesItems = {
+    'games_availabilities': 'box2',
+    'games_shinies_availabilities': 'box2-fill',
+    'collections_availabilities': 'collection-fill',
+  } %}
+  {% for item, icon in updateAvailabilitiesItems %}
+    {{ admin.action('update_availabilities', 'update', item, icon, updatedItem, updatedAction, updatedState, actionLogsData) }}
+  {% endfor %}
+</div>

@@ -80,12 +80,20 @@
                     </a>
                 </li>
                 {% if is_granted("ROLE_ADMIN") %}
-                {% set onAdmin = currentRoute in ['app_admin_actions', 'app_admin_reports'] %}
+                {% set onAdmin = currentRoute in [
+                    'app_admin_update_data',
+                    'app_admin_update_availabilities',
+                    'app_admin_calculate_data',
+                    'app_admin_invalidate_data',
+                    'app_admin_trigger_pipeline',
+                    'app_admin_reports',
+                    'app_admin_versions',
+                ] %}
                 <li class="nav-item admin-link">
                     <a
                         class="nav-link {{ onAdmin ? ' active' : '' }}"
                         {{ onAdmin ? 'aria-current="page"' : '' }}
-                        href="{{ path('app_admin_actions') }}"
+                        href="{{ path('app_admin_update_data') }}"
                     >
                         <i class="bi bi-wrench-adjustable-circle"></i>
                         {{ 'nav.admin'|trans }}

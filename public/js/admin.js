@@ -70,27 +70,6 @@ function onToggleLast(event) {
   });
 }
 
-function activateTabForHash() {
-  const hash = window.location.hash;
-  if (!hash) {
-    return;
-  }
-  const target = document.querySelector(hash);
-  if (!target) {
-    return;
-  }
-  const pane = target.closest('.tab-pane');
-  if (!pane || pane.classList.contains('active')) {
-    return;
-  }
-  const trigger = document.querySelector(`[data-bs-target="#${pane.id}"]`);
-  if (!trigger) {
-    return;
-  }
-  new bootstrap.Tab(trigger).show();
-  target.scrollIntoView();
-}
-
 function watchForceConfirm() {
     document.querySelectorAll(".admin-item-cta[data-confirm-message]").forEach(function (button) {
       const form = button.closest('form');

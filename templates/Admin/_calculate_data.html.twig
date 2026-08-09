@@ -1,0 +1,13 @@
+{% import "Admin/_macros.html.twig" as admin %}
+
+<div class="row px-4 py-5">
+  {% set calculateDataItems = {
+    'game_bundles_availabilities': 'box-seam',
+    'game_bundles_shinies_availabilities': 'box-seam-fill',
+    'dex_availabilities': 'list-check',
+    'pokemon_availabilities': 'calculator',
+  } %}
+  {% for item, icon in calculateDataItems %}
+    {{ admin.action('calculate_data', 'calculate', item, icon, updatedItem, updatedAction, updatedState, actionLogsData) }}
+  {% endfor %}
+</div>
