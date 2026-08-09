@@ -28,10 +28,20 @@ function watchAlbumLinks() {
   }
 
   document.querySelectorAll(".dex-pick-card").forEach(function (card) {
-    card.addEventListener("click", function () {
+    if (card.classList.contains("dex-pick-card-current")) {
+      return;
+    }
+
+    card.addEventListener("click", function (event) {
+      if (event.target.closest(".dex-pick-view")) {
+        return;
+      }
       selectCard(card);
     });
     card.addEventListener("keydown", function (event) {
+      if (event.target.closest(".dex-pick-view")) {
+        return;
+      }
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         selectCard(card);
@@ -44,6 +54,49 @@ function watchAlbumLinks() {
     .addEventListener("click", function () {
       createLink(dexSlug, selectedTargetDexSlug);
     });
+
+  watchDexPickerFilters();
+}
+
+function watchDexPickerFilters() {
+  const search = document.getElementById("dex-picker-search");
+  const filters = document.querySelectorAll('[id^="dex-picker-filter-"]');
+
+  if (!search) {
+    return;
+  }
+
+  search.addEventListener("input", applyDexPickerFilters);
+  filters.forEach(function (filter) {
+    filter.addEventListener("change", applyDexPickerFilters);
+  });
+}
+
+function applyDexPickerFilters() {
+  const searchInput = document.getElementById("dex-picker-search");
+  const search = searchInput ? searchInput.value.trim().toLowerCase() : "";
+  const flagFilters = {
+    isShiny: document.getElementById("dex-picker-filter-shiny"),
+    isPremium: document.getElementById("dex-picker-filter-premium"),
+    isCustom: document.getElementById("dex-picker-filter-custom"),
+  };
+
+  document.querySelectorAll(".dex-pick-card").forEach(function (card) {
+    let visible = true;
+
+    if (search && card.dataset.name.indexOf(search) === -1) {
+      visible = false;
+    }
+
+    Object.keys(flagFilters).forEach(function (flag) {
+      const select = flagFilters[flag];
+      if (visible && select && select.value && card.dataset[flag] !== select.value) {
+        visible = false;
+      }
+    });
+
+    card.classList.toggle("dex-pick-hidden", !visible);
+  });
 }
 
 function createLink(dexSlug, selectedTargetDexSlug) {
@@ -120,6 +173,12 @@ function renderPickerGrid(dexSlug, links) {
   document.querySelectorAll(".dex-pick-card").forEach(function (card) {
     card.classList.remove("selected");
 
+    if (card.classList.contains("dex-pick-card-current")) {
+      // The current dex's own card is never selectable and never carries a
+      // link (linking a dex to itself makes no sense) — leave it untouched.
+      return;
+    }
+
     const previousUnlinkButton = card.querySelector(".unlink-btn");
     if (previousUnlinkButton) {
       previousUnlinkButton.remove();
@@ -162,6 +221,8 @@ function renderPickerGrid(dexSlug, links) {
       directionLabels[link.direction];
     card.querySelector("small").appendChild(chip);
   });
+
+  applyDexPickerFilters();
 }
 
 function deleteLink(dexSlug, linkId) {

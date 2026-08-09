@@ -112,17 +112,11 @@
       <p class="form-text">
         {{ 'album.offcanvas.links.description'|trans }}
       </p>
-
-      <p class="form-text mb-1">{{ 'album.offcanvas.links.add.label'|trans }}</p>
-      <div class="dex-picker-grid mb-2" id="dex-picker-grid">
-        {% for item in trainerDexList %}
-          {% set thumbUrl = dexThumbUrl|format(item.dex.slug) %}
-          <div class="dex-pick-card" data-dex-slug="{{ item.settings.slug }}" role="button" tabindex="0">
-            <img src="{{ thumbUrl }}" alt="" loading="lazy">
-            <small><span class="pick-name">{{ locale is same as('fr') ? item.settings.frenchName : item.settings.name }}</span></small>
-          </div>
-        {% endfor %}
-      </div>
+      <p class="form-text mb-3">
+        <a href="{{ path('app_trainerindex_index', { '_fragment': 'section-links' }) }}">
+          <i class="bi bi-diagram-3"></i> {{ 'album.offcanvas.links.see_tree'|trans }}
+        </a>
+      </p>
 
       <div class="btn-group w-100 mb-2" role="group" aria-label="{{ 'album.offcanvas.links.title'|trans }}">
         <input type="radio" class="btn-check" name="link-direction" id="link-direction-to" value="to" autocomplete="off" checked>
@@ -138,6 +132,56 @@
       <button type="button" class="btn btn-primary w-100 mb-3" id="create-link" disabled>
         <i class="bi bi-plus-lg"></i> {{ 'album.offcanvas.links.create'|trans }}
       </button>
+
+      <div class="dex-picker-filters row g-2 mb-2">
+        <div class="col-12">
+          <label for="dex-picker-search" class="visually-hidden">{{ 'album.offcanvas.links.filters.search.label'|trans }}</label>
+          <div class="input-group input-group-sm">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="search" class="form-control" id="dex-picker-search" placeholder="{{ 'album.offcanvas.links.filters.search.label'|trans }}">
+          </div>
+        </div>
+        {% for attribute in ['shiny', 'premium', 'custom'] %}
+          <div class="col-4">
+            <label for="dex-picker-filter-{{ attribute }}" class="visually-hidden">{{ ('album.offcanvas.links.filters.attributes.'~attribute~'.label')|trans }}</label>
+            <select class="form-select form-select-sm" id="dex-picker-filter-{{ attribute }}">
+              <option value="">{{ ('album.offcanvas.links.filters.attributes.'~attribute~'.all')|trans }}</option>
+              <option value="1">{{ ('album.offcanvas.links.filters.attributes.'~attribute~'.on')|trans }}</option>
+              <option value="0">{{ ('album.offcanvas.links.filters.attributes.'~attribute~'.off')|trans }}</option>
+            </select>
+          </div>
+        {% endfor %}
+      </div>
+
+      <p class="form-text mb-1">{{ 'album.offcanvas.links.add.label'|trans }}</p>
+      <div class="dex-picker-grid mb-2" id="dex-picker-grid">
+        {% for item in trainerDexList %}
+          {% set isCurrent = item.settings.slug == currentDexSlug %}
+          {% set thumbUrl = dexThumbUrl|format(item.dex.slug) %}
+          <div
+            class="dex-pick-card{{ isCurrent ? ' dex-pick-card-current' : '' }}"
+            data-dex-slug="{{ item.settings.slug }}"
+            data-name="{{ (item.settings.name~' '~item.settings.frenchName)|lower }}"
+            data-is-shiny="{{ item.flags.isShiny ? '1' : '0' }}"
+            data-is-premium="{{ item.flags.isPremium ? '1' : '0' }}"
+            data-is-custom="{{ item.flags.isCustom ? '1' : '0' }}"
+            {% if not isCurrent %}role="button" tabindex="0"{% endif %}
+          >
+            {% if not isCurrent %}
+              <a class="dex-pick-view" href="{{ path('app_albumindex_index', { 'dexSlug': item.settings.slug }) }}" title="{{ 'album.offcanvas.links.view'|trans }}" aria-label="{{ 'album.offcanvas.links.view'|trans }}">
+                <i class="bi bi-eye"></i>
+              </a>
+            {% endif %}
+            <img src="{{ thumbUrl }}" alt="" loading="lazy">
+            <small>
+              <span class="pick-name">{{ locale is same as('fr') ? item.settings.frenchName : item.settings.name }}</span>
+              {% if isCurrent %}
+                <span class="chip-under chip-current">{{ 'album.offcanvas.links.current'|trans }}</span>
+              {% endif %}
+            </small>
+          </div>
+        {% endfor %}
+      </div>
     </div>
     {% endif %}
 

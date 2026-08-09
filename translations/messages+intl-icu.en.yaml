@@ -147,6 +147,9 @@ album:
     links:
       title: Links
       description: A link synchronizes the catch state between this dex and another of your dexes.
+      see_tree: See the tree of all my links
+      view: View this dex
+      current: Current dex
       add:
         label: "Your other dexes — pick one to create or manage a link:"
       direction:
@@ -155,6 +158,25 @@ album:
         both: Both
       create: Create the link
       delete_title: Delete this link
+      filters:
+        search:
+          label: Search a dex
+        attributes:
+          shiny:
+            label: Shiny
+            all: All
+            "on": Shiny
+            "off": Regular
+          premium:
+            label: Premium
+            all: All
+            "on": Premium
+            "off": Free
+          custom:
+            label: Custom
+            all: All
+            "on": Custom
+            "off": Official
       toast:
         success: Link updated successfully.
         error: Something went wrong while updating the link.
