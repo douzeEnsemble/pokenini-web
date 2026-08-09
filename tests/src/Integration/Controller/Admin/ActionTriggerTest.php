@@ -30,7 +30,7 @@ final class ActionTriggerTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration/actions');
+        $crawler = $client->request('GET', '/fr/istration/trigger_pipeline');
 
         $this->assertStringContainsString(
             'Ceci ne fait que lancer le pipeline sur GitHub Actions',
@@ -42,9 +42,9 @@ final class ActionTriggerTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
-        $this->assertSame('http://localhost/fr/istration/actions', $client->getRequest()->getUri());
+        $this->assertSame('http://localhost/fr/istration/trigger_pipeline', $client->getRequest()->getUri());
 
-        $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
+        $this->assertCountFilter($crawler, 1, '#trigger_update_images .icon-square.bg-success');
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);

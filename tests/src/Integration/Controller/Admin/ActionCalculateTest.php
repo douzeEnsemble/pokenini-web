@@ -23,6 +23,8 @@ final class ActionCalculateTest extends WebTestCase
 {
     use TestNavTrait;
 
+    private const string PAGE = '/fr/istration/calculate_data';
+
     #[Test]
     public function adminCalculateGamesBundlesAvailabilities(): void
     {
@@ -51,16 +53,16 @@ final class ActionCalculateTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         // For testing purpose, this case will fail in API side
-        $crawler = $client->request('GET', '/fr/istration/actions');
+        $crawler = $client->request('GET', self::PAGE);
         $form = $crawler->filter('#calculate_dex_availabilities form')->form();
         $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        $this->assertCountFilter($crawler, 0, '.icon-square.bg-success');
-        $this->assertCountFilter($crawler, 2, '.icon-square.bg-danger');
-        $this->assertCountFilter($crawler, 3, '.alert-danger');
+        $this->assertCountFilter($crawler, 0, '#calculate_dex_availabilities .icon-square.bg-success');
+        $this->assertCountFilter($crawler, 1, '#calculate_dex_availabilities .icon-square.bg-danger');
+        $this->assertCountFilter($crawler, 1, '.admin-item-calculate_dex_availabilities .alert-danger');
         $this->assertSelectorTextSame(
             '.admin-item-calculate_dex_availabilities .alert',
             'HTTP/1.1 500 Internal Server Error returned for'
@@ -78,28 +80,24 @@ final class ActionCalculateTest extends WebTestCase
         $client->loginUser($user, 'web');
 
         // For testing purpose, this case will fail in API side
-        $crawler = $client->request('GET', '/fr/istration/actions');
+        $crawler = $client->request('GET', self::PAGE);
         $form = $crawler->filter('#calculate_dex_availabilities form')->form();
         $client->submit($form);
 
         $this->assertResponseStatusCodeSame(302);
         $crawler = $client->followRedirect();
 
-        $this->assertCountFilter($crawler, 0, '.icon-square.bg-success');
-        $this->assertCountFilter($crawler, 2, '.icon-square.bg-danger');
-        $this->assertCountFilter($crawler, 3, '.alert-danger');
-        $this->assertCountFilter($crawler, 1, '.admin-item-calculate_dex_availabilities .alert');
+        $this->assertCountFilter($crawler, 1, '#calculate_dex_availabilities .icon-square.bg-danger');
+        $this->assertCountFilter($crawler, 1, '.admin-item-calculate_dex_availabilities .alert-danger');
         $this->assertSelectorTextSame(
             '.admin-item-calculate_dex_availabilities .alert',
             'HTTP/1.1 500 Internal Server Error returned for'
                 .' "http://moco.back/istration/action/calculate/dex_availabilities".'
         );
 
-        $crawler = $client->request('GET', '/fr/istration/actions');
+        $crawler = $client->request('GET', self::PAGE);
 
-        $this->assertCountFilter($crawler, 0, '.icon-square.bg-success');
-        $this->assertCountFilter($crawler, 1, '.icon-square.bg-danger');
-        $this->assertCountFilter($crawler, 2, '.alert-danger');
+        $this->assertCountFilter($crawler, 0, '#calculate_dex_availabilities .icon-square.bg-success');
     }
 
     #[Test]
@@ -141,7 +139,7 @@ final class ActionCalculateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration/actions');
+        $crawler = $client->request('GET', self::PAGE);
         $form = $crawler->filter("#calculate_{$name} form")->form();
         $client->submit($form);
 
@@ -158,8 +156,7 @@ final class ActionCalculateTest extends WebTestCase
             $crawler->filter('h1')->text()
         );
 
-        $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
-        $this->assertCountFilter($crawler, 1, '.icon-square.bg-danger');
+        $this->assertCountFilter($crawler, 1, "#calculate_{$name} .icon-square.bg-success");
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);

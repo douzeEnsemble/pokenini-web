@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\Controller\Admin;
 
-use App\Controller\AdminController;
+use App\Controller\AdminTriggerPipelineController;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /**
  * @internal
  */
-#[CoversClass(AdminController::class)]
+#[CoversClass(AdminTriggerPipelineController::class)]
 #[Group('api-mocked-testing')]
 final class PipelineStatusTest extends WebTestCase
 {
@@ -27,7 +27,7 @@ final class PipelineStatusTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration/actions');
+        $crawler = $client->request('GET', '/fr/istration/trigger_pipeline');
 
         $this->assertResponseIsSuccessful();
 

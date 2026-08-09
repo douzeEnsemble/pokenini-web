@@ -34,6 +34,19 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         'calculate_dex_availabilities',
     ];
 
+    /**
+     * Each action section now lives on its own dedicated page (see AdminUpdateDataController and
+     * friends) instead of a shared tab-based "actions" page.
+     *
+     * @var array<string, string>
+     */
+    private const array SECTION_PAGES = [
+        'update_data' => '/fr/istration/update_data',
+        'update_availabilities' => '/fr/istration/update_availabilities',
+        'calculate_data' => '/fr/istration/calculate_data',
+        'invalidate_data' => '/fr/istration/invalidate_data',
+    ];
+
     #[DataProvider('providerActionItems')]
     #[Test]
     public function actionItems(string $action, string $item, string $section): void
@@ -44,9 +57,9 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $user->addAdminRole();
         $this->loginUser($client, $user);
 
-        $client->request('GET', '/fr/istration/actions');
+        $page = self::SECTION_PAGES[$section];
 
-        $this->activateTab($client, $section);
+        $client->request('GET', $page);
 
         match (\in_array("{$action}_{$item}", self::PENDING_ACTION_ITEMS, true)) {
             true => $this->clickPendingActionAndAcceptConfirm($client, $action, $item),
@@ -55,7 +68,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
 
         $rawUri = getenv('PANTHER_EXTERNAL_BASE_URI');
         $baseUri = rtrim(false !== $rawUri ? $rawUri : 'http://127.0.0.1:9080', '/');
-        $expectedUrl = "{$baseUri}/fr/istration/actions#{$action}_{$item}";
+        $expectedUrl = "{$baseUri}{$page}#{$action}_{$item}";
 
         $client->wait()->until(static fn (): bool => $expectedUrl === $client->getCurrentURL());
 
@@ -64,10 +77,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
             $client->getCurrentURL()
         );
 
-        // The redirect landed back on the default-active tab; the item lives in a
-        // different pane until admin.js's activateTabForHash() reads the URL hash
-        // and activates the right one — this is what this assertion proves.
-        $this->assertSelectorWillBeVisible("#{$action}_{$item}");
+        $this->assertSelectorIsVisible("#{$action}_{$item}");
     }
 
     /**
@@ -183,17 +193,5 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
     {
         $form = $client->getCrawler()->filter("#{$action}_{$item} form")->form();
         $client->submit($form);
-    }
-
-    /**
-     * Opens the nav-pill tab for the given section (templates/Admin/_actions.html.twig) so its
-     * items become visible/interactable — items outside the default-active `update_data` tab
-     * start hidden (`display: none`) on a fresh page load.
-     */
-    private function activateTab(Client $client, string $section): void
-    {
-        $tab = $client->findElement(WebDriverBy::cssSelector("#tab-{$section}-tab"));
-        $client->executeScript('arguments[0].scrollIntoView({block: "center", inline: "nearest"});', [$tab]);
-        $tab->click();
     }
 }

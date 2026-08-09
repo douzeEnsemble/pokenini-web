@@ -52,7 +52,7 @@ final class CommonItemsTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $this->assertCommonItems($client, '/fr/istration/actions');
+        $this->assertCommonItems($client, '/fr/istration/update_data');
     }
 
     private function assertCommonItems(KernelBrowser $client, string $url): void

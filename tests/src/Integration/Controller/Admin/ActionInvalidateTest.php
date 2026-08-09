@@ -34,7 +34,7 @@ final class ActionInvalidateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $page = 'reports' === $name ? '/fr/istration/reports' : '/fr/istration/actions';
+        $page = 'reports' === $name ? '/fr/istration/reports' : '/fr/istration/invalidate_data';
 
         $crawler = $client->request('GET', $page);
         $form = $crawler->filter("#invalidate_{$name} form")->form();
@@ -53,7 +53,7 @@ final class ActionInvalidateTest extends WebTestCase
             $crawler->filter('h1')->text()
         );
 
-        $this->assertCountFilter($crawler, 1, '.icon-square.bg-success');
+        $this->assertCountFilter($crawler, 1, "#invalidate_{$name} .icon-square.bg-success");
     }
 
     /**
