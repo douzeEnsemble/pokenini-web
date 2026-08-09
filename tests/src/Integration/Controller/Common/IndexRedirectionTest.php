@@ -6,6 +6,7 @@ namespace App\Tests\Integration\Controller\Common;
 
 use App\Controller\HomeController;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -14,7 +15,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 #[CoversClass(HomeController::class)]
 final class IndexRedirectionTest extends WebTestCase
 {
-    public function testRedirection(): void
+    #[Test]
+    public function redirection(): void
     {
         $client = self::createClient();
 

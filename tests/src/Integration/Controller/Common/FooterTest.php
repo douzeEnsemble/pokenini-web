@@ -7,6 +7,7 @@ namespace App\Tests\Integration\Controller\Common;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -17,7 +18,8 @@ final class FooterTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testFooter(): void
+    #[Test]
+    public function footer(): void
     {
         $client = self::createClient();
 
@@ -54,7 +56,8 @@ final class FooterTest extends WebTestCase
         );
     }
 
-    public function testFooterAsGuest(): void
+    #[Test]
+    public function footerAsGuest(): void
     {
         $client = self::createClient();
 

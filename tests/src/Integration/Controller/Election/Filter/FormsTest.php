@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class FormsTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testFilterCategoryStart(): void
+    #[Test]
+    public function filterCategoryStart(): void
     {
         $client = self::createClient();
 
@@ -43,7 +45,8 @@ final class FormsTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSpecialMega(): void
+    #[Test]
+    public function filterSpecialMega(): void
     {
         $client = self::createClient();
 
@@ -66,7 +69,8 @@ final class FormsTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSpecialMegaAndGigantamax(): void
+    #[Test]
+    public function filterSpecialMegaAndGigantamax(): void
     {
         $client = self::createClient();
 
@@ -92,7 +96,8 @@ final class FormsTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterRegionalPaldeanAndVariantAlternate(): void
+    #[Test]
+    public function filterRegionalPaldeanAndVariantAlternate(): void
     {
         $client = self::createClient();
 
@@ -116,7 +121,8 @@ final class FormsTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSpecialNull(): void
+    #[Test]
+    public function filterSpecialNull(): void
     {
         $client = self::createClient();
 
@@ -139,7 +145,8 @@ final class FormsTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSpecialNullAndMega(): void
+    #[Test]
+    public function filterSpecialNullAndMega(): void
     {
         $client = self::createClient();
 
@@ -163,7 +170,8 @@ final class FormsTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSpecialAllAndMega(): void
+    #[Test]
+    public function filterSpecialAllAndMega(): void
     {
         $client = self::createClient();
 
@@ -186,7 +194,8 @@ final class FormsTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSpecialUnknown(): void
+    #[Test]
+    public function filterSpecialUnknown(): void
     {
         $client = self::createClient();
 

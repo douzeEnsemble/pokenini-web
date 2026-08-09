@@ -6,6 +6,7 @@ namespace App\Tests\Integration\ResponseObject\Album;
 
 use App\ResponseObject\Album\ReportDetail;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -15,7 +16,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(ReportDetail::class)]
 final class ReportDetailTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 

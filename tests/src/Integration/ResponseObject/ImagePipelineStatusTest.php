@@ -6,6 +6,7 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\ImagePipelineStatus;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -15,7 +16,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(ImagePipelineStatus::class)]
 final class ImagePipelineStatusTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 

@@ -6,6 +6,7 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\ImagePipelineStageStatus;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -15,7 +16,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(ImagePipelineStageStatus::class)]
 final class ImagePipelineStageStatusTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 
@@ -36,7 +38,8 @@ final class ImagePipelineStageStatusTest extends KernelTestCase
         $this->assertSame('https://github.com/x/y/actions/runs/1', $object->url);
     }
 
-    public function testDeserializeWithNullUrl(): void
+    #[Test]
+    public function deserializeWithNullUrl(): void
     {
         self::bootKernel();
 

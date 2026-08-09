@@ -6,6 +6,7 @@ namespace App\Tests\Integration\ResponseObject\Label;
 
 use App\ResponseObject\Label\SpecialForm;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -15,7 +16,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(SpecialForm::class)]
 final class SpecialFormTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 

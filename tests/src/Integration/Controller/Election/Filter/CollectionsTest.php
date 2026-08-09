@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class CollectionsTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testFilterPogoShadowCollection(): void
+    #[Test]
+    public function filterPogoShadowCollection(): void
     {
         $client = self::createClient();
 
@@ -46,7 +48,8 @@ final class CollectionsTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['pogoshadow']);
     }
 
-    public function testFilterNegativePogoShadowCollection(): void
+    #[Test]
+    public function filterNegativePogoShadowCollection(): void
     {
         $client = self::createClient();
 

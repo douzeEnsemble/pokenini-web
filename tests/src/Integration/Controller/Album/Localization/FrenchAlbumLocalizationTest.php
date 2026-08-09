@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -21,7 +22,8 @@ final class FrenchAlbumLocalizationTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testListEdit(): void
+    #[Test]
+    public function listEdit(): void
     {
         $client = self::createClient();
 
@@ -38,7 +40,8 @@ final class FrenchAlbumLocalizationTest extends WebTestCase
         $this->assertNavigationBarFrench($client);
     }
 
-    public function testListRead(): void
+    #[Test]
+    public function listRead(): void
     {
         $client = self::createClient();
 
@@ -51,7 +54,8 @@ final class FrenchAlbumLocalizationTest extends WebTestCase
         $this->assertNavigationBarFrench($client);
     }
 
-    public function testListLanguage(): void
+    #[Test]
+    public function listLanguage(): void
     {
         $client = self::createClient();
 
@@ -64,7 +68,8 @@ final class FrenchAlbumLocalizationTest extends WebTestCase
         $this->assertNavigationBarFrench($client);
     }
 
-    public function testListShiny(): void
+    #[Test]
+    public function listShiny(): void
     {
         $client = self::createClient();
 

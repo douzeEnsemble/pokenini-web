@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -22,32 +23,38 @@ final class ActionUpdateTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAdminUpdateLabels(): void
+    #[Test]
+    public function adminUpdateLabels(): void
     {
         $this->testAdminUpdate('labels');
     }
 
-    public function testAdminUpdateGamesCollectionsAndDex(): void
+    #[Test]
+    public function adminUpdateGamesCollectionsAndDex(): void
     {
         $this->testAdminUpdate('games_collections_and_dex');
     }
 
-    public function testAdminUpdatePokemons(): void
+    #[Test]
+    public function adminUpdatePokemons(): void
     {
         $this->testAdminUpdate('pokemons');
     }
 
-    public function testAdminUpdateRegionalDexNumbers(): void
+    #[Test]
+    public function adminUpdateRegionalDexNumbers(): void
     {
         $this->testAdminUpdate('regional_dex_numbers');
     }
 
-    public function testAdminUpdateGamesAvailabilities(): void
+    #[Test]
+    public function adminUpdateGamesAvailabilities(): void
     {
         $this->testAdminUpdate('games_availabilities');
     }
 
-    public function testAdminUpdateGamesShiniesAvailabilities(): void
+    #[Test]
+    public function adminUpdateGamesShiniesAvailabilities(): void
     {
         $client = self::createClient();
 
@@ -76,12 +83,14 @@ final class ActionUpdateTest extends WebTestCase
         $this->assertStringNotContainsString('const types = JSON.parse', $crawler->outerHtml());
     }
 
-    public function testAdminUpdateCollections(): void
+    #[Test]
+    public function adminUpdateCollections(): void
     {
         $this->testAdminUpdate('collections_availabilities');
     }
 
-    public function testAdminUpdateUnknown(): void
+    #[Test]
+    public function adminUpdateUnknown(): void
     {
         $client = self::createClient();
 
@@ -96,7 +105,8 @@ final class ActionUpdateTest extends WebTestCase
         $client->request('GET', '/fr/istration/action/update/truc');
     }
 
-    public function testAdminNonAdmin(): void
+    #[Test]
+    public function adminNonAdmin(): void
     {
         $client = self::createClient();
 
@@ -110,7 +120,8 @@ final class ActionUpdateTest extends WebTestCase
         $client->request('POST', '/fr/istration/action/update/labels');
     }
 
-    public function testAdminUpdateThenGoToIndex(): void
+    #[Test]
+    public function adminUpdateThenGoToIndex(): void
     {
         $client = self::createClient();
 

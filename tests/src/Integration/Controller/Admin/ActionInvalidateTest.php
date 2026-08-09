@@ -10,6 +10,7 @@ use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -24,7 +25,8 @@ final class ActionInvalidateTest extends WebTestCase
     use TestNavTrait;
 
     #[DataProvider('providerInvalidateSuccess')]
-    public function testInvalidateSuccess(string $name): void
+    #[Test]
+    public function invalidateSuccess(string $name): void
     {
         $client = self::createClient();
 
@@ -70,7 +72,8 @@ final class ActionInvalidateTest extends WebTestCase
     }
 
     #[DataProvider('providerInvalidateNotExists')]
-    public function testInvalidateNotExists(string $name): void
+    #[Test]
+    public function invalidateNotExists(string $name): void
     {
         $client = self::createClient();
 
@@ -105,7 +108,8 @@ final class ActionInvalidateTest extends WebTestCase
         ];
     }
 
-    public function testAdminNonAdmin(): void
+    #[Test]
+    public function adminNonAdmin(): void
     {
         $client = self::createClient();
 

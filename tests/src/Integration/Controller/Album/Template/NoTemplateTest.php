@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class NoTemplateTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testDexNoDefinedTemplate(): void
+    #[Test]
+    public function dexNoDefinedTemplate(): void
     {
         $client = self::createClient();
 
@@ -37,7 +39,8 @@ final class NoTemplateTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '.box h2');
     }
 
-    public function testFilterDexNoDefinedTemplate(): void
+    #[Test]
+    public function filterDexNoDefinedTemplate(): void
     {
         $client = self::createClient();
 

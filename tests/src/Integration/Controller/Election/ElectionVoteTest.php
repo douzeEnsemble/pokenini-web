@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -21,7 +22,8 @@ final class ElectionVoteTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testVote(): void
+    #[Test]
+    public function vote(): void
     {
         $client = self::createClient();
 
@@ -36,7 +38,8 @@ final class ElectionVoteTest extends WebTestCase
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
     }
 
-    public function testVoteBis(): void
+    #[Test]
+    public function voteBis(): void
     {
         $client = self::createClient();
 
@@ -61,7 +64,8 @@ final class ElectionVoteTest extends WebTestCase
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
     }
 
-    public function testVoteWithElectionSlug(): void
+    #[Test]
+    public function voteWithElectionSlug(): void
     {
         $client = self::createClient();
 
@@ -86,7 +90,8 @@ final class ElectionVoteTest extends WebTestCase
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
     }
 
-    public function testVoteWithFilters(): void
+    #[Test]
+    public function voteWithFilters(): void
     {
         $client = self::createClient();
 
@@ -111,7 +116,8 @@ final class ElectionVoteTest extends WebTestCase
         $this->assertSame("C'est quoi ton préféré ?", $crawler->filter('h1')->text());
     }
 
-    public function testEmptyVote(): void
+    #[Test]
+    public function emptyVote(): void
     {
         $client = self::createClient();
 
@@ -135,7 +141,8 @@ final class ElectionVoteTest extends WebTestCase
         $this->assertStringContainsString('Data cannot be empty', $content);
     }
 
-    public function testBadVote(): void
+    #[Test]
+    public function badVote(): void
     {
         $client = self::createClient();
 
@@ -160,7 +167,8 @@ final class ElectionVoteTest extends WebTestCase
         $this->assertResponseStatusCodeSame(400);
     }
 
-    public function testVoteNonTrainer(): void
+    #[Test]
+    public function voteNonTrainer(): void
     {
         $client = self::createClient();
 

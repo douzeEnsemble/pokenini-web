@@ -7,6 +7,7 @@ namespace App\Tests\Integration\Controller\Common;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -18,7 +19,8 @@ final class TrackerTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testTrackerAsGuest(): void
+    #[Test]
+    public function trackerAsGuest(): void
     {
         $client = self::createClient();
 
@@ -37,7 +39,8 @@ final class TrackerTest extends WebTestCase
         );
     }
 
-    public function testTrackerAsAdmin(): void
+    #[Test]
+    public function trackerAsAdmin(): void
     {
         $client = self::createClient();
 
@@ -61,7 +64,8 @@ final class TrackerTest extends WebTestCase
         );
     }
 
-    public function testTrackerAsCollector(): void
+    #[Test]
+    public function trackerAsCollector(): void
     {
         $client = self::createClient();
 
@@ -85,7 +89,8 @@ final class TrackerTest extends WebTestCase
         );
     }
 
-    public function testTrackerAsTrainer(): void
+    #[Test]
+    public function trackerAsTrainer(): void
     {
         $client = self::createClient();
 

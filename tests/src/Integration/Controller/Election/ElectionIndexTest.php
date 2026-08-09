@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -22,7 +23,8 @@ final class ElectionIndexTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testIndex(): void
+    #[Test]
+    public function index(): void
     {
         $client = self::createClient();
 
@@ -77,7 +79,8 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#election-lastpage-toast');
     }
 
-    public function testIndexShinyDex(): void
+    #[Test]
+    public function indexShinyDex(): void
     {
         $client = self::createClient();
 
@@ -136,7 +139,8 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#election-lastpage-toast');
     }
 
-    public function testIndexWithoutDisplayForm(): void
+    #[Test]
+    public function indexWithoutDisplayForm(): void
     {
         $client = self::createClient();
 
@@ -199,7 +203,8 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#election-lastpage-toast');
     }
 
-    public function testIndexDetachedCount(): void
+    #[Test]
+    public function indexDetachedCount(): void
     {
         $client = self::createClient();
 
@@ -262,7 +267,8 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#election-lastpage-toast');
     }
 
-    public function testProgressVoteStep(): void
+    #[Test]
+    public function progressVoteStep(): void
     {
         $client = self::createClient();
 
@@ -325,7 +331,8 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#election-lastpage-toast');
     }
 
-    public function testProgressLastPageStep(): void
+    #[Test]
+    public function progressLastPageStep(): void
     {
         $client = self::createClient();
 
@@ -391,7 +398,8 @@ final class ElectionIndexTest extends WebTestCase
         );
     }
 
-    public function testProgressLastOneStep(): void
+    #[Test]
+    public function progressLastOneStep(): void
     {
         $client = self::createClient();
 
@@ -455,7 +463,8 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#election-lastpage-toast');
     }
 
-    public function testIndexNonTrainer(): void
+    #[Test]
+    public function indexNonTrainer(): void
     {
         $client = self::createClient();
 
@@ -469,7 +478,8 @@ final class ElectionIndexTest extends WebTestCase
         $client->request('GET', '/fr/election/demolite');
     }
 
-    public function testIndexNotFound(): void
+    #[Test]
+    public function indexNotFound(): void
     {
         $client = self::createClient();
 
@@ -482,7 +492,8 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertResponseStatusCodeSame(404);
     }
 
-    public function testImageCreditBadgeIsShownOnCandidateCard(): void
+    #[Test]
+    public function imageCreditBadgeIsShownOnCandidateCard(): void
     {
         $client = self::createClient();
 

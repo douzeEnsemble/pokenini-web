@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class AccessPremiumTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAccessPremiumAlbum(): void
+    #[Test]
+    public function accessPremiumAlbum(): void
     {
         $client = self::createClient();
 
@@ -45,7 +47,8 @@ final class AccessPremiumTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
     }
 
-    public function testTrainerAccessPremiumAlbum(): void
+    #[Test]
+    public function trainerAccessPremiumAlbum(): void
     {
         $client = self::createClient();
 
@@ -69,7 +72,8 @@ final class AccessPremiumTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
     }
 
-    public function testAdminAccessPremiumAlbum(): void
+    #[Test]
+    public function adminAccessPremiumAlbum(): void
     {
         $client = self::createClient();
 
@@ -93,7 +97,8 @@ final class AccessPremiumTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
     }
 
-    public function testAccessAnotherPremiumAlbum(): void
+    #[Test]
+    public function accessAnotherPremiumAlbum(): void
     {
         $client = self::createClient();
 

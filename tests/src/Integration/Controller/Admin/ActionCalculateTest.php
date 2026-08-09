@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -22,22 +23,26 @@ final class ActionCalculateTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAdminCalculateGamesBundlesAvailabilities(): void
+    #[Test]
+    public function adminCalculateGamesBundlesAvailabilities(): void
     {
         $this->testAdminCalculate('game_bundles_availabilities');
     }
 
-    public function testAdminCalculateGamesBundlesShiniesAvailabilities(): void
+    #[Test]
+    public function adminCalculateGamesBundlesShiniesAvailabilities(): void
     {
         $this->testAdminCalculate('game_bundles_shinies_availabilities');
     }
 
-    public function testAdminCalculatePokemonAvailabilities(): void
+    #[Test]
+    public function adminCalculatePokemonAvailabilities(): void
     {
         $this->testAdminCalculate('pokemon_availabilities');
     }
 
-    public function testAdminCalculateDexAvailabilities(): void
+    #[Test]
+    public function adminCalculateDexAvailabilities(): void
     {
         $client = self::createClient();
 
@@ -63,7 +68,8 @@ final class ActionCalculateTest extends WebTestCase
         );
     }
 
-    public function testAdminCalculateWithErrorsThenGoToIndex(): void
+    #[Test]
+    public function adminCalculateWithErrorsThenGoToIndex(): void
     {
         $client = self::createClient();
 
@@ -96,7 +102,8 @@ final class ActionCalculateTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '.alert-danger');
     }
 
-    public function testAdminCalculateUnknown(): void
+    #[Test]
+    public function adminCalculateUnknown(): void
     {
         $client = self::createClient();
 
@@ -111,7 +118,8 @@ final class ActionCalculateTest extends WebTestCase
         $client->request('GET', '/fr/istration/action/calculate/truc');
     }
 
-    public function testAdminNonAdmin(): void
+    #[Test]
+    public function adminNonAdmin(): void
     {
         $client = self::createClient();
 

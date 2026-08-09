@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class IntroTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testIntroHome(): void
+    #[Test]
+    public function introHome(): void
     {
         $client = self::createClient();
 
@@ -77,7 +79,8 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
-    public function testIntroDemoList3(): void
+    #[Test]
+    public function introDemoList3(): void
     {
         $client = self::createClient();
 
@@ -130,7 +133,8 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
-    public function testIntroDemoLiteShiny(): void
+    #[Test]
+    public function introDemoLiteShiny(): void
     {
         $client = self::createClient();
 
@@ -185,7 +189,8 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
-    public function testIntroGoldSilverCrystal(): void
+    #[Test]
+    public function introGoldSilverCrystal(): void
     {
         $client = self::createClient();
 
@@ -242,7 +247,8 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
-    public function testIntroBlackWhiteFrench(): void
+    #[Test]
+    public function introBlackWhiteFrench(): void
     {
         $client = self::createClient();
 
@@ -299,7 +305,8 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
-    public function testIntroBlackWhiteEnglish(): void
+    #[Test]
+    public function introBlackWhiteEnglish(): void
     {
         $client = self::createClient();
 
@@ -351,7 +358,8 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#intro .dex-version');
     }
 
-    public function testIntroDemoAnotherTrainer(): void
+    #[Test]
+    public function introDemoAnotherTrainer(): void
     {
         $client = self::createClient();
 

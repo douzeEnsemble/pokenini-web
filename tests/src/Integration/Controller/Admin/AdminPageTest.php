@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -21,7 +22,8 @@ final class AdminPageTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAdminHomeNotConnected(): void
+    #[Test]
+    public function adminHomeNotConnected(): void
     {
         $client = self::createClient();
 
@@ -30,7 +32,8 @@ final class AdminPageTest extends WebTestCase
         $this->assertResponseStatusCodeSame(307);
     }
 
-    public function testAdminHomeBadCredentials(): void
+    #[Test]
+    public function adminHomeBadCredentials(): void
     {
         $client = self::createClient();
 
@@ -43,7 +46,8 @@ final class AdminPageTest extends WebTestCase
         $this->assertResponseStatusCodeSame(403);
     }
 
-    public function testAdminHomeNotAllowed(): void
+    #[Test]
+    public function adminHomeNotAllowed(): void
     {
         $client = self::createClient();
 
@@ -55,7 +59,8 @@ final class AdminPageTest extends WebTestCase
         $this->assertResponseStatusCodeSame(403);
     }
 
-    public function testAdminIndexRedirectsToActions(): void
+    #[Test]
+    public function adminIndexRedirectsToActions(): void
     {
         $client = self::createClient();
 
@@ -69,7 +74,8 @@ final class AdminPageTest extends WebTestCase
         $this->assertResponseRedirects('/fr/istration/actions');
     }
 
-    public function testAdminHomeConnected(): void
+    #[Test]
+    public function adminHomeConnected(): void
     {
         $this->getAdminHomeConnected();
     }
@@ -77,7 +83,8 @@ final class AdminPageTest extends WebTestCase
     /**
      * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
      */
-    public function testAdminHome(): void
+    #[Test]
+    public function adminHome(): void
     {
         $crawler = $this->getAdminHomeConnected();
 

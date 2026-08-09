@@ -6,6 +6,7 @@ namespace App\Tests\Integration\Controller\StaticPage;
 
 use App\Controller\StaticPageController;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -14,7 +15,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 #[CoversClass(StaticPageController::class)]
 final class StaticPageTest extends WebTestCase
 {
-    public function testFrenchLegals(): void
+    #[Test]
+    public function frenchLegals(): void
     {
         $client = self::createClient();
 
@@ -35,7 +37,8 @@ final class StaticPageTest extends WebTestCase
         $this->assertStringContainsString('Mentions Légales', $crawler->filter('#main-container')->text());
     }
 
-    public function testEnglishLegals(): void
+    #[Test]
+    public function englishLegals(): void
     {
         $client = self::createClient();
 
@@ -56,7 +59,8 @@ final class StaticPageTest extends WebTestCase
         $this->assertStringContainsString('Legal Notice', $crawler->filter('#main-container')->text());
     }
 
-    public function testFrenchPolicy(): void
+    #[Test]
+    public function frenchPolicy(): void
     {
         $client = self::createClient();
 
@@ -77,7 +81,8 @@ final class StaticPageTest extends WebTestCase
         $this->assertStringContainsString('Politique de confidentialité', $crawler->filter('#main-container')->text());
     }
 
-    public function testEnglishPolicy(): void
+    #[Test]
+    public function englishPolicy(): void
     {
         $client = self::createClient();
 
@@ -98,7 +103,8 @@ final class StaticPageTest extends WebTestCase
         $this->assertStringContainsString('Privacy Policy', $crawler->filter('#main-container')->text());
     }
 
-    public function testFrenchCookies(): void
+    #[Test]
+    public function frenchCookies(): void
     {
         $client = self::createClient();
 
@@ -119,7 +125,8 @@ final class StaticPageTest extends WebTestCase
         $this->assertStringContainsString('Cookies', $crawler->filter('#main-container')->text());
     }
 
-    public function testEnglishCookies(): void
+    #[Test]
+    public function englishCookies(): void
     {
         $client = self::createClient();
 

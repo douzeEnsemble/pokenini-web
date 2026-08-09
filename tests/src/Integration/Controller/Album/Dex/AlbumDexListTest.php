@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -21,7 +22,8 @@ final class AlbumDexListTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAlbumDexList(): void
+    #[Test]
+    public function albumDexList(): void
     {
         $client = self::createClient();
 
@@ -78,7 +80,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
     }
 
-    public function testAlbumDexListTilesAreAllClickable(): void
+    #[Test]
+    public function albumDexListTilesAreAllClickable(): void
     {
         $client = self::createClient();
 
@@ -105,7 +108,8 @@ final class AlbumDexListTest extends WebTestCase
         }
     }
 
-    public function testNonConnectedHome(): void
+    #[Test]
+    public function nonConnectedHome(): void
     {
         $client = self::createClient();
 
@@ -120,7 +124,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertEquals('http://localhost/fr', $crawler->getBaseHref());
     }
 
-    public function testConnectedHomeNoDex(): void
+    #[Test]
+    public function connectedHomeNoDex(): void
     {
         $client = self::createClient();
 
@@ -145,7 +150,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.dex-item');
     }
 
-    public function testConnectedHomeDexNoOnHome(): void
+    #[Test]
+    public function connectedHomeDexNoOnHome(): void
     {
         $client = self::createClient();
 
@@ -170,7 +176,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.dex-item');
     }
 
-    public function testConnectedHomeSomeDex(): void
+    #[Test]
+    public function connectedHomeSomeDex(): void
     {
         $client = self::createClient();
 
@@ -197,7 +204,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.dex-item h3');
     }
 
-    public function testAlbumDexListFrench(): void
+    #[Test]
+    public function albumDexListFrench(): void
     {
         $client = self::createClient();
 
@@ -245,7 +253,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
     }
 
-    public function testAlbumDexListEnglish(): void
+    #[Test]
+    public function albumDexListEnglish(): void
     {
         $client = self::createClient();
 
@@ -293,7 +302,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
     }
 
-    public function testAlbumDexListCustomDexLinksToUniqueSettingsSlug(): void
+    #[Test]
+    public function albumDexListCustomDexLinksToUniqueSettingsSlug(): void
     {
         $client = self::createClient();
 

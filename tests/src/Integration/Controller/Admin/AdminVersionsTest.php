@@ -11,6 +11,7 @@ use App\Service\VersionsOverviewService;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 #[Group('api-mocked-testing')]
 final class AdminVersionsTest extends WebTestCase
 {
-    public function testVersionsTabShowsAllFourBricks(): void
+    #[Test]
+    public function versionsTabShowsAllFourBricks(): void
     {
         $client = self::createClient();
 
@@ -65,7 +67,8 @@ final class AdminVersionsTest extends WebTestCase
         $this->assertSame($expectedResourcesUpdatedAt, trim($crawler->filter('#versions-row-resources .versions-date')->text()));
     }
 
-    public function testVersionsTabShowsUnavailableBadgeWhenBricksCannotBeFetched(): void
+    #[Test]
+    public function versionsTabShowsUnavailableBadgeWhenBricksCannotBeFetched(): void
     {
         $client = self::createClient();
 
@@ -101,7 +104,8 @@ final class AdminVersionsTest extends WebTestCase
         $this->assertSame('', trim($crawler->filter('#versions-row-resources .versions-date')->text()));
     }
 
-    public function testVersionsNotConnected(): void
+    #[Test]
+    public function versionsNotConnected(): void
     {
         $client = self::createClient();
 
@@ -110,7 +114,8 @@ final class AdminVersionsTest extends WebTestCase
         $this->assertResponseStatusCodeSame(307);
     }
 
-    public function testVersionsNotAllowed(): void
+    #[Test]
+    public function versionsNotAllowed(): void
     {
         $client = self::createClient();
 

@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -23,7 +24,8 @@ final class AdminReportsTest extends WebTestCase
     /**
      * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
      */
-    public function testAdminHome(): void
+    #[Test]
+    public function adminHome(): void
     {
         $client = self::createClient();
 

@@ -6,6 +6,7 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\BrickVersion;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -15,7 +16,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(BrickVersion::class)]
 final class BrickVersionTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 
@@ -36,7 +38,8 @@ final class BrickVersionTest extends KernelTestCase
         $this->assertSame('2026-08-05T09:12:00+00:00', $object->updatedAt?->format(\DateTimeInterface::ATOM));
     }
 
-    public function testDeserializeWithNullValues(): void
+    #[Test]
+    public function deserializeWithNullValues(): void
     {
         self::bootKernel();
 

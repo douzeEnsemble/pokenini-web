@@ -8,6 +8,7 @@ use App\Controller\HomeController;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -18,7 +19,8 @@ final class HomeTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testHome(): void
+    #[Test]
+    public function home(): void
     {
         $client = self::createClient();
 
@@ -51,7 +53,8 @@ final class HomeTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.home-menu-item');
     }
 
-    public function testHomeAsConnectedUser(): void
+    #[Test]
+    public function homeAsConnectedUser(): void
     {
         $client = self::createClient();
 

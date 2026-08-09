@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class TrainerTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAlbumTrainerLogged(): void
+    #[Test]
+    public function albumTrainerLogged(): void
     {
         $client = self::createClient();
 
@@ -39,7 +41,8 @@ final class TrainerTest extends WebTestCase
         $this->assertSame('', $crawler->filter('input[name="t"]')->attr('value'));
     }
 
-    public function testAlbumTrainerGiven(): void
+    #[Test]
+    public function albumTrainerGiven(): void
     {
         $client = self::createClient();
 
@@ -54,7 +57,8 @@ final class TrainerTest extends WebTestCase
         $this->assertSame('7b52009b64fd0a2a49e6d8a939753077792b0554', $crawler->filter('input[name="t"]')->attr('value'));
     }
 
-    public function testAlbumTrainerLoggedAndGiven(): void
+    #[Test]
+    public function albumTrainerLoggedAndGiven(): void
     {
         $client = self::createClient();
 

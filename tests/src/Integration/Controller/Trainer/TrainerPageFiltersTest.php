@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class TrainerPageFiltersTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testPrivacyFilterOn(): void
+    #[Test]
+    public function privacyFilterOn(): void
     {
         $client = self::createClient();
 
@@ -43,7 +45,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 15, '.trainer-dex-item');
     }
 
-    public function testPrivacyFilterOff(): void
+    #[Test]
+    public function privacyFilterOff(): void
     {
         $client = self::createClient();
 
@@ -66,7 +69,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 6, '.trainer-dex-item');
     }
 
-    public function testHomepagedFilterOn(): void
+    #[Test]
+    public function homepagedFilterOn(): void
     {
         $client = self::createClient();
 
@@ -89,7 +93,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 6, '.trainer-dex-item');
     }
 
-    public function testHomepagedFilterOff(): void
+    #[Test]
+    public function homepagedFilterOff(): void
     {
         $client = self::createClient();
 
@@ -112,7 +117,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 15, '.trainer-dex-item');
     }
 
-    public function testReleasedFilterOn(): void
+    #[Test]
+    public function releasedFilterOn(): void
     {
         $client = self::createClient();
 
@@ -135,7 +141,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 19, '.trainer-dex-item');
     }
 
-    public function testReleasedFilterOff(): void
+    #[Test]
+    public function releasedFilterOff(): void
     {
         $client = self::createClient();
 
@@ -158,7 +165,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '.trainer-dex-item');
     }
 
-    public function testShinyFilterOn(): void
+    #[Test]
+    public function shinyFilterOn(): void
     {
         $client = self::createClient();
 
@@ -181,7 +189,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '.trainer-dex-item');
     }
 
-    public function testShinyFilterOff(): void
+    #[Test]
+    public function shinyFilterOff(): void
     {
         $client = self::createClient();
 
@@ -204,7 +213,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 19, '.trainer-dex-item');
     }
 
-    public function testPremiumFilterOn(): void
+    #[Test]
+    public function premiumFilterOn(): void
     {
         $client = self::createClient();
 
@@ -227,7 +237,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 3, '.trainer-dex-item');
     }
 
-    public function testPremiumFilterOff(): void
+    #[Test]
+    public function premiumFilterOff(): void
     {
         $client = self::createClient();
 
@@ -250,7 +261,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 18, '.trainer-dex-item');
     }
 
-    public function testAllFilterOff(): void
+    #[Test]
+    public function allFilterOff(): void
     {
         $client = self::createClient();
 
@@ -273,7 +285,8 @@ final class TrainerPageFiltersTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.trainer-dex-item');
     }
 
-    public function testAllFilterOn(): void
+    #[Test]
+    public function allFilterOn(): void
     {
         $client = self::createClient();
 

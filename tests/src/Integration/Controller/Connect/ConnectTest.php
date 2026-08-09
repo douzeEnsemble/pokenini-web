@@ -7,6 +7,7 @@ namespace App\Tests\Integration\Controller\Connect;
 use App\Controller\ConnectController;
 use App\Tests\Common\Traits\TestNavTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -18,7 +19,8 @@ final class ConnectTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testConnectPage(): void
+    #[Test]
+    public function connectPage(): void
     {
         $client = self::createClient();
 
@@ -49,7 +51,8 @@ final class ConnectTest extends WebTestCase
         $this->assertCount(0, $crawler->filter('.navbar-link'));
     }
 
-    public function testGoogleConnectPage(): void
+    #[Test]
+    public function googleConnectPage(): void
     {
         $client = self::createClient();
 
@@ -67,7 +70,8 @@ final class ConnectTest extends WebTestCase
         );
     }
 
-    public function testFakeConnectPage(): void
+    #[Test]
+    public function fakeConnectPage(): void
     {
         $client = self::createClient();
 

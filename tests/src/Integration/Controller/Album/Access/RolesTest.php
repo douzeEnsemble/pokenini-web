@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class RolesTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testReadNonConnectedNoToken(): void
+    #[Test]
+    public function readNonConnectedNoToken(): void
     {
         $client = self::createClient();
 
@@ -29,7 +31,8 @@ final class RolesTest extends WebTestCase
         $this->assertResponseStatusCodeSame(404);
     }
 
-    public function testReadNonConnected(): void
+    #[Test]
+    public function readNonConnected(): void
     {
         $client = self::createClient();
 
@@ -38,7 +41,8 @@ final class RolesTest extends WebTestCase
         $this->assertNoConnectedNavBar($crawler);
     }
 
-    public function testReadTrainer(): void
+    #[Test]
+    public function readTrainer(): void
     {
         $client = self::createClient();
 
@@ -55,7 +59,8 @@ final class RolesTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
 
-    public function testReadCollector(): void
+    #[Test]
+    public function readCollector(): void
     {
         $client = self::createClient();
 
@@ -72,7 +77,8 @@ final class RolesTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
 
-    public function testReadAdmin(): void
+    #[Test]
+    public function readAdmin(): void
     {
         $client = self::createClient();
 
@@ -90,7 +96,8 @@ final class RolesTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
 
-    public function testWriteNonConnected(): void
+    #[Test]
+    public function writeNonConnected(): void
     {
         $client = self::createClient();
 
@@ -99,7 +106,8 @@ final class RolesTest extends WebTestCase
         $this->assertResponseStatusCodeSame(404);
     }
 
-    public function testWriteTrainer(): void
+    #[Test]
+    public function writeTrainer(): void
     {
         $client = self::createClient();
 
@@ -116,7 +124,8 @@ final class RolesTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
 
-    public function testWriteCollector(): void
+    #[Test]
+    public function writeCollector(): void
     {
         $client = self::createClient();
 
@@ -133,7 +142,8 @@ final class RolesTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
 
-    public function testWriteAdmin(): void
+    #[Test]
+    public function writeAdmin(): void
     {
         $client = self::createClient();
 
@@ -151,7 +161,8 @@ final class RolesTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
 
-    public function testWriteTrainerOnPremiumDex(): void
+    #[Test]
+    public function writeTrainerOnPremiumDex(): void
     {
         $client = self::createClient();
 
@@ -168,7 +179,8 @@ final class RolesTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action');
     }
 
-    public function testWriteCollectorOnPremiumDex(): void
+    #[Test]
+    public function writeCollectorOnPremiumDex(): void
     {
         $client = self::createClient();
 
@@ -186,7 +198,8 @@ final class RolesTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
 
-    public function testWriteAdminOnPremiumDex(): void
+    #[Test]
+    public function writeAdminOnPremiumDex(): void
     {
         $client = self::createClient();
 

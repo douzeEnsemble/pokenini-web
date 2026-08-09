@@ -9,6 +9,7 @@ use App\Service\ModifyTrainerDexService;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -19,7 +20,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 #[Group('api-mocked-testing')]
 final class UpdateTest extends WebTestCase
 {
-    public function testUpdateConnected(): void
+    #[Test]
+    public function updateConnected(): void
     {
         $client = self::createClient();
 
@@ -39,7 +41,8 @@ final class UpdateTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
-    public function testUpdateNonConnected(): void
+    #[Test]
+    public function updateNonConnected(): void
     {
         $client = self::createClient();
 
@@ -61,7 +64,8 @@ final class UpdateTest extends WebTestCase
         $this->assertEquals('http://localhost/fr', $crawler->getBaseHref());
     }
 
-    public function testUpdatePremiumCollector(): void
+    #[Test]
+    public function updatePremiumCollector(): void
     {
         $client = self::createClient();
 
@@ -82,7 +86,8 @@ final class UpdateTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
-    public function testUpdatePremiumNonCollector(): void
+    #[Test]
+    public function updatePremiumNonCollector(): void
     {
         $client = self::createClient();
 
@@ -102,7 +107,8 @@ final class UpdateTest extends WebTestCase
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }
 
-    public function testUpdateFailed(): void
+    #[Test]
+    public function updateFailed(): void
     {
         $client = self::createClient();
 

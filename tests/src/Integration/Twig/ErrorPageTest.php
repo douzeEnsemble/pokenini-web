@@ -6,6 +6,7 @@ namespace App\Tests\Integration\Twig;
 
 use App\Tests\Common\Traits\TestNavTrait;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,8 @@ final class ErrorPageTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testError404(): void
+    #[Test]
+    public function error404(): void
     {
         $crawler = $this->renderErrorTemplate(404, 'Not Found');
 
@@ -28,7 +30,8 @@ final class ErrorPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#main-container a');
     }
 
-    public function testError500(): void
+    #[Test]
+    public function error500(): void
     {
         $crawler = $this->renderErrorTemplate(500, 'Internal Server Error');
 
@@ -38,7 +41,8 @@ final class ErrorPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#main-container a');
     }
 
-    public function testError512(): void
+    #[Test]
+    public function error512(): void
     {
         $crawler = $this->renderErrorTemplate(512, 'Custom Error');
 
