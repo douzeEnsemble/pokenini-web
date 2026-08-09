@@ -8,6 +8,7 @@ use App\Controller\OuterRoomController;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -19,7 +20,8 @@ final class OuterRoomTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testOuterRoomPageNonConnected(): void
+    #[Test]
+    public function outerRoomPageNonConnected(): void
     {
         $client = self::createClient();
 
@@ -28,7 +30,8 @@ final class OuterRoomTest extends WebTestCase
         $this->assertResponseStatusCodeSame(307);
     }
 
-    public function testOuterRoomPageConnectedAsTrainer(): void
+    #[Test]
+    public function outerRoomPageConnectedAsTrainer(): void
     {
         $client = self::createClient();
 
@@ -41,7 +44,8 @@ final class OuterRoomTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
     }
 
-    public function testOuterRoomPageConnectedAsAdminOnly(): void
+    #[Test]
+    public function outerRoomPageConnectedAsAdminOnly(): void
     {
         $client = self::createClient();
 
@@ -54,7 +58,8 @@ final class OuterRoomTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testOuterRoomPageConnectedAsAdmin(): void
+    #[Test]
+    public function outerRoomPageConnectedAsAdmin(): void
     {
         $client = self::createClient();
 
@@ -68,7 +73,8 @@ final class OuterRoomTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
     }
 
-    public function testOuterRoomPage(): void
+    #[Test]
+    public function outerRoomPage(): void
     {
         $client = self::createClient();
 

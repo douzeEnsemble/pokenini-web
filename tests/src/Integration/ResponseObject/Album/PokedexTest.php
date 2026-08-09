@@ -8,6 +8,7 @@ use App\ResponseObject\Album\Dex;
 use App\ResponseObject\Album\Pokedex;
 use App\ResponseObject\Common\Pokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -18,7 +19,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(Pokedex::class)]
 final class PokedexTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 
@@ -37,7 +39,8 @@ final class PokedexTest extends KernelTestCase
         $this->assertNotSame($object->getReport(), $object->getFilteredReport());
     }
 
-    public function testDeserializeWithNull(): void
+    #[Test]
+    public function deserializeWithNull(): void
     {
         self::bootKernel();
 

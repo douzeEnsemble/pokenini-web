@@ -14,6 +14,7 @@ use App\ResponseObject\Label\SpecialForm;
 use App\ResponseObject\Label\Type;
 use App\ResponseObject\Label\VariantForm;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -24,7 +25,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(Labels::class)]
 final class LabelsTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 

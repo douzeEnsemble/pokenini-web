@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class List5Test extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testDexList5Template(): void
+    #[Test]
+    public function dexList5Template(): void
     {
         $client = self::createClient();
 
@@ -37,7 +39,8 @@ final class List5Test extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.box');
     }
 
-    public function testFilterDexList5Template(): void
+    #[Test]
+    public function filterDexList5Template(): void
     {
         $client = self::createClient();
 

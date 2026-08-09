@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class BoxTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testDexBoxTemplate(): void
+    #[Test]
+    public function dexBoxTemplate(): void
     {
         $client = self::createClient();
 
@@ -69,7 +71,8 @@ final class BoxTest extends WebTestCase
         );
     }
 
-    public function testFrenchDexBoxTemplate(): void
+    #[Test]
+    public function frenchDexBoxTemplate(): void
     {
         $client = self::createClient();
 
@@ -89,7 +92,8 @@ final class BoxTest extends WebTestCase
         );
     }
 
-    public function testEnglishDexBoxTemplate(): void
+    #[Test]
+    public function englishDexBoxTemplate(): void
     {
         $client = self::createClient();
 
@@ -109,7 +113,8 @@ final class BoxTest extends WebTestCase
         );
     }
 
-    public function testFilterDexBoxTemplate(): void
+    #[Test]
+    public function filterDexBoxTemplate(): void
     {
         $client = self::createClient();
 

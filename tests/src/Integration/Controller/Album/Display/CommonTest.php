@@ -10,6 +10,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -23,7 +24,8 @@ final class CommonTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testListRead(): void
+    #[Test]
+    public function listRead(): void
     {
         $client = self::createClient();
 
@@ -37,7 +39,8 @@ final class CommonTest extends WebTestCase
         $this->assertNoConnectedNavBar($client->getCrawler());
     }
 
-    public function testListEdit(): void
+    #[Test]
+    public function listEdit(): void
     {
         $client = self::createClient();
 
@@ -54,7 +57,8 @@ final class CommonTest extends WebTestCase
         $this->assertTrainerAlbumNavBar($client->getCrawler());
     }
 
-    public function testListShiny(): void
+    #[Test]
+    public function listShiny(): void
     {
         $client = self::createClient();
 
@@ -66,7 +70,8 @@ final class CommonTest extends WebTestCase
     /**
      * Brand new dex has an issue with a division by zero.
      */
-    public function testListVirgin(): void
+    #[Test]
+    public function listVirgin(): void
     {
         $client = self::createClient();
 
@@ -79,16 +84,18 @@ final class CommonTest extends WebTestCase
     /**
      * Testing with caches cleared.
      */
-    public function testListCachesCleared(): void
+    #[Test]
+    public function listCachesCleared(): void
     {
         self::bootKernel();
         self::getContainer()->get('cache.app')->clear();
         self::ensureKernelShutdown();
 
-        $this->testListVirgin();
+        $this->listVirgin();
     }
 
-    public function testImageCreditBadgeIsShownWhenCreditExists(): void
+    #[Test]
+    public function imageCreditBadgeIsShownWhenCreditExists(): void
     {
         $client = self::createClient();
         $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');

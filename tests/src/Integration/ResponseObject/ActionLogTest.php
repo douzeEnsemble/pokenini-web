@@ -6,6 +6,7 @@ namespace App\Tests\Integration\ResponseObject;
 
 use App\ResponseObject\ActionLog;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -15,7 +16,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(ActionLog::class)]
 final class ActionLogTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 
@@ -42,7 +44,8 @@ final class ActionLogTest extends KernelTestCase
         $this->assertNull($object->errorTrace);
     }
 
-    public function testDeserializeWithNullDetails(): void
+    #[Test]
+    public function deserializeWithNullDetails(): void
     {
         self::bootKernel();
 
@@ -65,7 +68,8 @@ final class ActionLogTest extends KernelTestCase
         $this->assertNull($object->details);
     }
 
-    public function testDeserializeWithDoneAt(): void
+    #[Test]
+    public function deserializeWithDoneAt(): void
     {
         self::bootKernel();
 

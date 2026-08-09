@@ -9,6 +9,7 @@ use App\ResponseObject\Common\Pokemon;
 use App\ResponseObject\Election\ElectionIndex;
 use App\ResponseObject\Election\TopPokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -19,7 +20,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(ElectionIndex::class)]
 final class ElectionIndexTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 
@@ -52,7 +54,8 @@ final class ElectionIndexTest extends KernelTestCase
         $this->assertSame(7, $object->getMetrics()['total_round_count']);
     }
 
-    public function testDeserializeWithNullAndEmptyArrays(): void
+    #[Test]
+    public function deserializeWithNullAndEmptyArrays(): void
     {
         self::bootKernel();
 

@@ -7,6 +7,7 @@ namespace App\Tests\Integration\ResponseObject\Common;
 use App\ResponseObject\Common\Pokemon;
 use App\ResponseObject\Common\PokemonCredit;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -16,7 +17,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(Pokemon::class)]
 final class PokemonTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 
@@ -114,7 +116,8 @@ final class PokemonTest extends KernelTestCase
         $this->assertSame('PokemonDB', $bigShinyCredit->getName());
     }
 
-    public function testDeserializeWithNullValues(): void
+    #[Test]
+    public function deserializeWithNullValues(): void
     {
         self::bootKernel();
 
@@ -198,7 +201,8 @@ final class PokemonTest extends KernelTestCase
         $this->assertSame('9999-0006-004', $object->getPokemonOrderNumber());
     }
 
-    public function testDeserializeWithNullForms(): void
+    #[Test]
+    public function deserializeWithNullForms(): void
     {
         self::bootKernel();
 

@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -21,7 +22,8 @@ final class TrainerPageTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testTrainerPage(): void
+    #[Test]
+    public function trainerPage(): void
     {
         $client = self::createClient();
 
@@ -64,7 +66,8 @@ final class TrainerPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.dex_is_custom');
     }
 
-    public function testCollectorPage(): void
+    #[Test]
+    public function collectorPage(): void
     {
         $client = self::createClient();
 
@@ -108,7 +111,8 @@ final class TrainerPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.dex_is_custom');
     }
 
-    public function testAdminTrainerPage(): void
+    #[Test]
+    public function adminTrainerPage(): void
     {
         $client = self::createClient();
 
@@ -153,7 +157,8 @@ final class TrainerPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.dex_is_custom');
     }
 
-    public function testTrainerPageNotAllowed(): void
+    #[Test]
+    public function trainerPageNotAllowed(): void
     {
         $client = self::createClient();
 

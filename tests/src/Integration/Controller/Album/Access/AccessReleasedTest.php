@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class AccessReleasedTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAccessOwnReleasedAlbum(): void
+    #[Test]
+    public function accessOwnReleasedAlbum(): void
     {
         $client = self::createClient();
 
@@ -44,7 +46,8 @@ final class AccessReleasedTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
     }
 
-    public function testTrainerAccessUnreleasedAlbum(): void
+    #[Test]
+    public function trainerAccessUnreleasedAlbum(): void
     {
         $client = self::createClient();
 
@@ -57,7 +60,8 @@ final class AccessReleasedTest extends WebTestCase
         $this->assertResponseStatusCodeSame(404);
     }
 
-    public function testAdminAccessUnreleasedAlbum(): void
+    #[Test]
+    public function adminAccessUnreleasedAlbum(): void
     {
         $client = self::createClient();
 
@@ -71,7 +75,8 @@ final class AccessReleasedTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.navbar-nav #private-tag');
     }
 
-    public function testAccessAnotherUnreleasedAlbum(): void
+    #[Test]
+    public function accessAnotherUnreleasedAlbum(): void
     {
         $client = self::createClient();
 

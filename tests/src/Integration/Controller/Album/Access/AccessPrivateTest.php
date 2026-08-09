@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class AccessPrivateTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testAccessOwnPublicAlbum(): void
+    #[Test]
+    public function accessOwnPublicAlbum(): void
     {
         $client = self::createClient();
 
@@ -45,7 +47,8 @@ final class AccessPrivateTest extends WebTestCase
         $this->assertSame('', $crawler->filter('input[name="t"]')->attr('value'));
     }
 
-    public function testAccessOwnPrivateAlbum(): void
+    #[Test]
+    public function accessOwnPrivateAlbum(): void
     {
         $client = self::createClient();
 
@@ -70,7 +73,8 @@ final class AccessPrivateTest extends WebTestCase
         $this->assertSame('', $crawler->filter('input[name="t"]')->attr('value'));
     }
 
-    public function testAccessAnotherPublicAlbum(): void
+    #[Test]
+    public function accessAnotherPublicAlbum(): void
     {
         $client = self::createClient();
 
@@ -95,7 +99,8 @@ final class AccessPrivateTest extends WebTestCase
         $this->assertSame('7b52009b64fd0a2a49e6d8a939753077792b0554', $crawler->filter('input[name="t"]')->attr('value'));
     }
 
-    public function testAccessAnotherPrivateAlbum(): void
+    #[Test]
+    public function accessAnotherPrivateAlbum(): void
     {
         $client = self::createClient();
 
@@ -108,7 +113,8 @@ final class AccessPrivateTest extends WebTestCase
         $this->assertResponseStatusCodeSame(404);
     }
 
-    public function testAccessNonExistingAlbum(): void
+    #[Test]
+    public function accessNonExistingAlbum(): void
     {
         $client = self::createClient();
 

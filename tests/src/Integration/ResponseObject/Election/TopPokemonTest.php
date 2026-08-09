@@ -6,6 +6,7 @@ namespace App\Tests\Integration\ResponseObject\Election;
 
 use App\ResponseObject\Election\TopPokemon;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -16,7 +17,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[CoversClass(TopPokemon::class)]
 final class TopPokemonTest extends KernelTestCase
 {
-    public function testDeserialize(): void
+    #[Test]
+    public function deserialize(): void
     {
         self::bootKernel();
 
@@ -96,7 +98,8 @@ final class TopPokemonTest extends KernelTestCase
         $this->assertFalse($object->getScore()->isSignificance());
     }
 
-    public function testDeserializeSignificant(): void
+    #[Test]
+    public function deserializeSignificant(): void
     {
         self::bootKernel();
 
@@ -145,7 +148,8 @@ final class TopPokemonTest extends KernelTestCase
         $this->assertTrue($object->getScore()->isSignificance());
     }
 
-    public function testDeserializeNullForms(): void
+    #[Test]
+    public function deserializeNullForms(): void
     {
         self::bootKernel();
 
@@ -187,7 +191,8 @@ final class TopPokemonTest extends KernelTestCase
         $this->assertNull($object->getPokemon()->getLabels()->getFormsFrenchLabel());
     }
 
-    public function testDeserializeArray(): void
+    #[Test]
+    public function deserializeArray(): void
     {
         self::bootKernel();
 
@@ -209,7 +214,8 @@ final class TopPokemonTest extends KernelTestCase
         $this->assertNotNull($objects[0]->getForms());
     }
 
-    public function testDeserializeEmptyArray(): void
+    #[Test]
+    public function deserializeEmptyArray(): void
     {
         self::bootKernel();
 

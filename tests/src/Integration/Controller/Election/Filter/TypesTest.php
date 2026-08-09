@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class TypesTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testFilterPrimaryTypeFire(): void
+    #[Test]
+    public function filterPrimaryTypeFire(): void
     {
         $client = self::createClient();
 
@@ -43,7 +45,8 @@ final class TypesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSecondaryTypePoisonOrFlying(): void
+    #[Test]
+    public function filterSecondaryTypePoisonOrFlying(): void
     {
         $client = self::createClient();
 
@@ -69,7 +72,8 @@ final class TypesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterPrimaryTypeFightingAndSecondaryTypeFireOrWater(): void
+    #[Test]
+    public function filterPrimaryTypeFightingAndSecondaryTypeFireOrWater(): void
     {
         $client = self::createClient();
 
@@ -95,7 +99,8 @@ final class TypesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterPrimaryTypeFightingAndSecondaryTypeNullFireOrWater(): void
+    #[Test]
+    public function filterPrimaryTypeFightingAndSecondaryTypeNullFireOrWater(): void
     {
         $client = self::createClient();
 
@@ -121,7 +126,8 @@ final class TypesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterAnyTypeFire(): void
+    #[Test]
+    public function filterAnyTypeFire(): void
     {
         $client = self::createClient();
 
@@ -144,7 +150,8 @@ final class TypesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterTypeUnknown(): void
+    #[Test]
+    public function filterTypeUnknown(): void
     {
         $client = self::createClient();
 

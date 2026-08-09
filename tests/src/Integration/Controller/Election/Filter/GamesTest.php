@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class GamesTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testFilterSwordShieldOriginalGame(): void
+    #[Test]
+    public function filterSwordShieldOriginalGame(): void
     {
         $client = self::createClient();
 
@@ -46,7 +48,8 @@ final class GamesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSwordShieldAndXYOriginalGame(): void
+    #[Test]
+    public function filterSwordShieldAndXYOriginalGame(): void
     {
         $client = self::createClient();
 
@@ -72,7 +75,8 @@ final class GamesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterOriginalGameUnknown(): void
+    #[Test]
+    public function filterOriginalGameUnknown(): void
     {
         $client = self::createClient();
 
@@ -95,7 +99,8 @@ final class GamesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSwordShieldGameBundle(): void
+    #[Test]
+    public function filterSwordShieldGameBundle(): void
     {
         $client = self::createClient();
 
@@ -121,7 +126,8 @@ final class GamesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterSwordShieldGameBundleShiny(): void
+    #[Test]
+    public function filterSwordShieldGameBundleShiny(): void
     {
         $client = self::createClient();
 
@@ -147,7 +153,8 @@ final class GamesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterNotSwordShieldGameBundle(): void
+    #[Test]
+    public function filterNotSwordShieldGameBundle(): void
     {
         $client = self::createClient();
 
@@ -173,7 +180,8 @@ final class GamesTest extends WebTestCase
         $this->assertSelectedOptions($crawler, 'select#collection_availability', ['']);
     }
 
-    public function testFilterNotSwordShieldGameBundleShiny(): void
+    #[Test]
+    public function filterNotSwordShieldGameBundleShiny(): void
     {
         $client = self::createClient();
 

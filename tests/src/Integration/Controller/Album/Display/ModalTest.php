@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -21,7 +22,8 @@ final class ModalTest extends WebTestCase
     use TestNavTrait;
     use ModalTestTrait;
 
-    public function testModals(): void
+    #[Test]
+    public function modals(): void
     {
         $client = self::createClient();
 
@@ -34,7 +36,8 @@ final class ModalTest extends WebTestCase
         $this->assertCountFilter($crawler, 6, '.modal');
     }
 
-    public function testRegularModal(): void
+    #[Test]
+    public function regularModal(): void
     {
         $client = self::createClient();
 
@@ -68,7 +71,8 @@ final class ModalTest extends WebTestCase
         $this->assertModalItemFamilyLink($crawler, 'home', 'bulbasaur', 'fr', 'bulbasaur', false);
     }
 
-    public function testRegularModalInEnglish(): void
+    #[Test]
+    public function regularModalInEnglish(): void
     {
         $client = self::createClient();
 
@@ -102,7 +106,8 @@ final class ModalTest extends WebTestCase
         $this->assertModalItemFamilyLink($crawler, 'home', 'bulbasaur', 'en', 'bulbasaur', false);
     }
 
-    public function testShinyModal(): void
+    #[Test]
+    public function shinyModal(): void
     {
         $client = self::createClient();
 
@@ -136,7 +141,8 @@ final class ModalTest extends WebTestCase
         $this->assertModalItemFamilyLink($crawler, 'demoliteshiny', 'bulbasaur', 'fr', 'bulbasaur', false);
     }
 
-    public function testRegionalWithFormsModal(): void
+    #[Test]
+    public function regionalWithFormsModal(): void
     {
         $client = self::createClient();
 
@@ -173,7 +179,8 @@ final class ModalTest extends WebTestCase
         $this->assertModalItemFamilyLink($crawler, 'goldsilvercrystal', 'meganium', 'fr', 'chikorita', true);
     }
 
-    public function testWithFormsModal(): void
+    #[Test]
+    public function withFormsModal(): void
     {
         $client = self::createClient();
 

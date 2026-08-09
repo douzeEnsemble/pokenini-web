@@ -8,6 +8,7 @@ use App\Controller\AdminController;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -17,7 +18,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 #[Group('api-mocked-testing')]
 final class PipelineStatusTest extends WebTestCase
 {
-    public function testPipelineStatusRenders(): void
+    #[Test]
+    public function pipelineStatusRenders(): void
     {
         $client = self::createClient();
 

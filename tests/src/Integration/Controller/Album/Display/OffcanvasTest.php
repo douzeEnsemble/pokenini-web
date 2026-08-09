@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -21,7 +22,8 @@ final class OffcanvasTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testOffcanvasHome(): void
+    #[Test]
+    public function offcanvasHome(): void
     {
         $client = self::createClient();
 
@@ -71,7 +73,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertResetLink($crawler, '/fr/album/home');
     }
 
-    public function testIntroDemoList3(): void
+    #[Test]
+    public function introDemoList3(): void
     {
         $client = self::createClient();
 
@@ -118,7 +121,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertResetLink($crawler, '/fr/album/demolist3');
     }
 
-    public function testIntroDemoLiteShiny(): void
+    #[Test]
+    public function introDemoLiteShiny(): void
     {
         $client = self::createClient();
 
@@ -160,7 +164,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertResetLink($crawler, '/fr/album/demoliteshiny');
     }
 
-    public function testIntroGoldSilverCrystal(): void
+    #[Test]
+    public function introGoldSilverCrystal(): void
     {
         $client = self::createClient();
 
@@ -211,7 +216,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertResetLink($crawler, '/fr/album/goldsilvercrystal');
     }
 
-    public function testIntroBlackWhiteFrench(): void
+    #[Test]
+    public function introBlackWhiteFrench(): void
     {
         $client = self::createClient();
 
@@ -262,7 +268,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertResetLink($crawler, '/fr/album/blackwhite');
     }
 
-    public function testIntroBlackWhiteEnglish(): void
+    #[Test]
+    public function introBlackWhiteEnglish(): void
     {
         $client = self::createClient();
 
@@ -313,7 +320,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertResetLink($crawler, '/en/album/blackwhite');
     }
 
-    public function testIntroDemoAnotherTrainer(): void
+    #[Test]
+    public function introDemoAnotherTrainer(): void
     {
         $client = self::createClient();
 
@@ -356,7 +364,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertResetLink($crawler, '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
     }
 
-    public function testSwitchesForOwner(): void
+    #[Test]
+    public function switchesForOwner(): void
     {
         $client = self::createClient();
 
@@ -377,7 +386,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertNull($isOnHome->attr('checked'));
     }
 
-    public function testSwitchesAbsentForAnotherTrainer(): void
+    #[Test]
+    public function switchesAbsentForAnotherTrainer(): void
     {
         $client = self::createClient();
 
@@ -390,7 +400,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#offcanvas form[data-dex]');
     }
 
-    public function testFlagToastsForOwner(): void
+    #[Test]
+    public function flagToastsForOwner(): void
     {
         $client = self::createClient();
 
@@ -404,7 +415,8 @@ final class OffcanvasTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#errorToast-goldsilvercrystal');
     }
 
-    public function testFlagToastsAbsentForAnotherTrainer(): void
+    #[Test]
+    public function flagToastsAbsentForAnotherTrainer(): void
     {
         $client = self::createClient();
 

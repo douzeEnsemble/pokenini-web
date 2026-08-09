@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class ActionTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testActionConnected(): void
+    #[Test]
+    public function actionConnected(): void
     {
         $client = self::createClient();
 
@@ -40,7 +42,8 @@ final class ActionTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testActionOnlyIsPrivate(): void
+    #[Test]
+    public function actionOnlyIsPrivate(): void
     {
         $client = self::createClient();
 
@@ -60,7 +63,8 @@ final class ActionTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testActionOnlyIsOnHome(): void
+    #[Test]
+    public function actionOnlyIsOnHome(): void
     {
         $client = self::createClient();
 
@@ -80,7 +84,8 @@ final class ActionTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testActionOnPremiumAsCollector(): void
+    #[Test]
+    public function actionOnPremiumAsCollector(): void
     {
         $client = self::createClient();
 
@@ -101,7 +106,8 @@ final class ActionTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testActionOnPremiumAsNonCollector(): void
+    #[Test]
+    public function actionOnPremiumAsNonCollector(): void
     {
         $client = self::createClient();
 
@@ -121,7 +127,8 @@ final class ActionTest extends WebTestCase
         $this->assertResponseStatusCodeSame(404);
     }
 
-    public function testActionNotConnected(): void
+    #[Test]
+    public function actionNotConnected(): void
     {
         $client = self::createClient();
 
@@ -137,7 +144,8 @@ final class ActionTest extends WebTestCase
         $this->assertResponseStatusCodeSame(307);
     }
 
-    public function testActionBadRequest(): void
+    #[Test]
+    public function actionBadRequest(): void
     {
         $client = self::createClient();
 
@@ -162,7 +170,8 @@ final class ActionTest extends WebTestCase
         $this->assertSame('{"error":"Fail to modify resources"}', $content);
     }
 
-    public function testActionFail(): void
+    #[Test]
+    public function actionFail(): void
     {
         $client = self::createClient();
 

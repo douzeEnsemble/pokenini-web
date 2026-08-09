@@ -9,6 +9,7 @@ use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -20,7 +21,8 @@ final class FormTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testDisplayForm(): void
+    #[Test]
+    public function displayForm(): void
     {
         $client = self::createClient();
 
@@ -35,7 +37,8 @@ final class FormTest extends WebTestCase
         $this->assertEquals('♂️', $crawler->filter('#venusaur .album-case-forms')->text());
     }
 
-    public function testNonDisplayForm(): void
+    #[Test]
+    public function nonDisplayForm(): void
     {
         $client = self::createClient();
 

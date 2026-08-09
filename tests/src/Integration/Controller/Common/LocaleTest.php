@@ -6,6 +6,7 @@ namespace App\Tests\Integration\Controller\Common;
 
 use App\Controller\HomeController;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -14,7 +15,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 #[CoversClass(HomeController::class)]
 final class LocaleTest extends WebTestCase
 {
-    public function testLocaleOk(): void
+    #[Test]
+    public function localeOk(): void
     {
         $client = self::createClient();
 
@@ -23,7 +25,8 @@ final class LocaleTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testLocaleNonOk(): void
+    #[Test]
+    public function localeNonOk(): void
     {
         $client = self::createClient();
 

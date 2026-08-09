@@ -9,6 +9,7 @@ use App\Controller\HomeController;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -21,7 +22,8 @@ final class CommonItemsTest extends WebTestCase
 {
     use TestNavTrait;
 
-    public function testHome(): void
+    #[Test]
+    public function home(): void
     {
         $client = self::createClient();
 
@@ -33,14 +35,16 @@ final class CommonItemsTest extends WebTestCase
         $this->assertCommonItems($client, '/fr/album/dex');
     }
 
-    public function testConnect(): void
+    #[Test]
+    public function connect(): void
     {
         $client = self::createClient();
 
         $this->assertCommonItems($client, '/fr/connect');
     }
 
-    public function testAdministration(): void
+    #[Test]
+    public function administration(): void
     {
         $client = self::createClient();
 
