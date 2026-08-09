@@ -96,7 +96,7 @@ final class CatchStatesValidatorTest extends ConstraintValidatorTestCase
     #[\Override]
     protected function createValidator(): CatchStatesValidator
     {
-        $getService = $this->createMock(GetLabelsService::class);
+        $getService = $this->createStub(GetLabelsService::class);
 
         $getService
             ->method('getCatchStates')
