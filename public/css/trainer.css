@@ -1,0 +1,40 @@
+/* Trainer page: "Links between dexes" tab — a deduplicated edge list acting
+    as a simple visual tree/graph of the trainer's dex links (see
+    src/Service/GetTrainerDexLinksTreeService.php for how edges are built). */
+.dex-links-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.dex-links-edge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: .5rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: .5rem;
+}
+.dex-links-node {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex: 1 1 220px;
+    min-width: 0;
+}
+.dex-links-node img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: .5rem;
+    background: var(--bs-secondary-bg);
+    flex-shrink: 0;
+}
+.dex-links-node span {
+    overflow-wrap: anywhere;
+}
+.dex-links-arrow {
+    flex: 0 0 auto;
+    font-size: 1.5rem;
+    color: var(--bs-primary);
+}

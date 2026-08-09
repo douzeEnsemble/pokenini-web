@@ -55,7 +55,7 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertStringContainsString(
             '/connect/logout',
-            $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
+            $crawler->filter('#section-logout a')->attr('href') ?? ''
         );
 
         $this->assertCount(0, $crawler->filter('.navbar-link'));
@@ -100,7 +100,7 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertStringContainsString(
             '/connect/logout',
-            $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
+            $crawler->filter('#section-logout a')->attr('href') ?? ''
         );
 
         $this->assertCount(0, $crawler->filter('.navbar-link'));
@@ -146,7 +146,7 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertStringContainsString(
             '/connect/logout',
-            $crawler->filter('.accordion-item')->last()->filter('a')->attr('href') ?? ''
+            $crawler->filter('#section-logout a')->attr('href') ?? ''
         );
 
         $this->assertCount(0, $crawler->filter('.navbar-link'));

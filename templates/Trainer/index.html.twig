@@ -8,6 +8,8 @@
 {% block stylesheets %}
   {{ parent() }}
 
+  <link rel="stylesheet" href="{{ asset('css/trainer.css') }}">
+
   <style>
   {% include 'common/_catch_state_color_tokens.html.twig' %}
   {% include 'common/_catch_state_progress_bar_styles.html.twig' %}
@@ -36,11 +38,13 @@
   {{ parent() }}
   <script src="{{ asset('js/trainer_dex.js') }}"></script>
   <script src="{{ asset('js/trainer_filters.js') }}"></script>
+  <script src="{{ asset('js/trainer_tabs.js') }}"></script>
 
   <script>
     const locale = '{{ locale }}';
 
     watchAttributes();
     watchFilters();
+    watchTrainerTabs();
   </script>
 {% endblock foot_javascript %}

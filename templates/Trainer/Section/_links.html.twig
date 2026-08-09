@@ -1,0 +1,25 @@
+<p class="text-secondary">{{ 'trainer.links.intro'|trans }}</p>
+
+{% if linksTree.isEmpty %}
+  <p class="text-secondary">{{ 'trainer.links.empty'|trans }}</p>
+{% else %}
+  <div class="dex-links-tree">
+    {% for edge in linksTree.edges %}
+      {% set fromBannerUrl = dexBannerUrl|format(edge.from.dex.slug) %}
+      {% set toBannerUrl = dexBannerUrl|format(edge.to.dex.slug) %}
+      <div class="dex-links-edge">
+        <div class="dex-links-node">
+          <img src="{{ fromBannerUrl }}" alt="" loading="lazy">
+          <span>{{ locale is same as('fr') ? edge.from.settings.frenchName : edge.from.settings.name }}</span>
+        </div>
+        <div class="dex-links-arrow" title="{{ ('album.offcanvas.links.direction.'~(edge.mode == 'both' ? 'both' : 'to'))|trans }}">
+          <i class="bi {{ edge.mode == 'both' ? 'bi-arrow-left-right' : 'bi-arrow-right' }}"></i>
+        </div>
+        <div class="dex-links-node">
+          <img src="{{ toBannerUrl }}" alt="" loading="lazy">
+          <span>{{ locale is same as('fr') ? edge.to.settings.frenchName : edge.to.settings.name }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
