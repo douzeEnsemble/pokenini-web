@@ -14,7 +14,7 @@ use App\Tests\Unit\Service\AppVersionServiceTest;
  * can prove the missing-file guard clause returns early instead of falling through to
  * filemtime() (whose failure on a missing path would otherwise mask the removed guard).
  */
-function filemtime(string $filename): int|false
+function filemtime(string $filename): false|int
 {
     ++AppVersionServiceTest::$filemtimeCallCount;
 
