@@ -154,7 +154,9 @@ final class GetElectionIndexServiceTest extends AbstractTestBackService
         ];
 
         if (null !== $token) {
-            $headers['Authorization'] = 'Bearer '.$token;
+            // The logged-in path sends the internal session token as bearer, not the raw
+            // provider access token — see AbstractBackService::request() and User::getSessionToken().
+            $headers['Authorization'] = 'Bearer test-session-token';
             $headers['X-Provider'] = 'testprovider';
         }
 
