@@ -20,8 +20,8 @@ env:
   PHP_CS_FIXER_IGNORE_ENV: 1
 
 jobs:
-  allin:
-    name: All tests
+  unit-tests:
+    name: Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,7 +30,58 @@ jobs:
         uses: ./.github/actions/docker-compose
       - name: PHPUnit / Run
         run: |
-          docker compose exec -T php php vendor/bin/phpunit tests/src/ --exclude-group="time-testing"
+          docker compose exec -T php php vendor/bin/phpunit tests/src/Unit --exclude-group="time-testing"
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: PHPUnit / Run
+        run: |
+          docker compose exec -T php php vendor/bin/phpunit tests/src/Integration --exclude-group="time-testing"
+
+  browser-tests-chrome:
+    name: Browser Tests (Chrome)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: PHPUnit / Run
+        run: |
+          docker compose exec \
+            -e PANTHER_SELENIUM_HOST=http://chrome:4444/wd/hub \
+            -e PANTHER_BROWSER_NAME=chrome \
+            -T php php vendor/bin/phpunit tests/src/Browser --exclude-group="time-testing"
+
+  browser-tests-firefox:
+    name: Browser Tests (Firefox)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: PHPUnit / Run
+        run: |
+          docker compose exec \
+            -e PANTHER_SELENIUM_HOST=http://firefox:4444/wd/hub \
+            -e PANTHER_BROWSER_NAME=firefox \
+            -T php php vendor/bin/phpunit tests/src/Browser --exclude-group="time-testing"
+
+  measures:
+    name: Measures (Coverage & Mutation Testing)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
       - name: Measures / Run Coverage
         run: |
           docker compose exec \
@@ -50,6 +101,15 @@ jobs:
             --skip-initial-tests --coverage=build/coverage \
             --min-msi=100 --min-covered-msi=100 \
             --filter=src
+
+  security:
+    name: Security
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
       - name: Security / Symfony Security Check
         run: |
           docker compose exec -T php symfony security:check
