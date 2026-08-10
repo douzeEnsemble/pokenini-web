@@ -352,22 +352,22 @@ runs:
 Note the changes, copied from the corrected `pokenini-back`/`pokenini-api` versions:
 
 1. The archive-save step (`docker save ...`) runs AFTER `Start services`, not before.
-   `docker compose up` (with `--build` dropped) is what actually builds and tags the 3
-   built services under the compose-generated names — `docker buildx bake` alone does
-   not tag them, since none of the 3 declare an explicit `image:` key in
-   `docker-compose.yaml`. Saving before `up` would find those 3 image names missing
-   and fail on every cache-miss run (this was a Critical bug caught in `pokenini-back`'s
-   first draft of this change).
+  `docker compose up` (with `--build` dropped) is what actually builds and tags the 3
+  built services under the compose-generated names — `docker buildx bake` alone does
+  not tag them, since none of the 3 declare an explicit `image:` key in
+  `docker-compose.yaml`. Saving before `up` would find those 3 image names missing
+  and fail on every cache-miss run (this was a Critical bug caught in `pokenini-back`'s
+  first draft of this change).
 2. The cache uses split `actions/cache/restore@v5` / `actions/cache/save@v5` steps, so
-   the save happens as an ordinary step right after the tar is written — not deferred
-   to a `post-if: success()` hook that a later step failing would silently skip. The
-   save step reuses `steps.docker-images-cache.outputs.cache-primary-key` rather than
-   re-typing the key expression, so the two can never drift out of sync.
+  the save happens as an ordinary step right after the tar is written — not deferred
+  to a `post-if: success()` hook that a later step failing would silently skip. The
+  save step reuses `steps.docker-images-cache.outputs.cache-primary-key` rather than
+  re-typing the key expression, so the two can never drift out of sync.
 3. `docker save` is scoped to the 3 built services only
-   (`docker compose config --images php moco.back moco.matomo.gbl`) — `redis`,
-   `chrome`, `firefox`, and `web` are pulled, not built, so archiving them wastes
-   cache space for no benefit. This repo's `chrome`/`firefox` Selenium containers in
-   particular are large pulled images that must NOT be included.
+  (`docker compose config --images php moco.back moco.matomo.gbl`) — `redis`,
+  `chrome`, `firefox`, and `web` are pulled, not built, so archiving them wastes
+  cache space for no benefit. This repo's `chrome`/`firefox` Selenium containers in
+  particular are large pulled images that must NOT be included.
 4. `Composer install` is unconditional and unchanged, same as before this task.
 
 - [ ] **Step 3: Validate YAML syntax**

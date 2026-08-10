@@ -30,9 +30,9 @@ behavior-preserving split, unlike every other job in this design.
 
 Single job `allin` in `.github/workflows/ci_tests.yml`:
 1. `phpunit tests/src/ --exclude-group="time-testing"` (full suite: Unit + Integration
-   + Browser, run together — no `PANTHER_SELENIUM_HOST`/`PANTHER_BROWSER_NAME` set)
+  + Browser, run together — no `PANTHER_SELENIUM_HOST`/`PANTHER_BROWSER_NAME` set)
 2. Coverage run (full suite again, `--exclude-group="browser-testing"`, Xdebug —
-   despite the flag's name this does not actually exclude Browser tests; see below)
+  despite the flag's name this does not actually exclude Browser tests; see below)
 3. Infection composer install + run (consumes step 2's coverage output)
 4. `symfony security:check`
 
