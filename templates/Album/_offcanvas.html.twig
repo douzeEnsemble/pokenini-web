@@ -168,8 +168,9 @@
             {% if not isCurrent %}role="button" tabindex="0"{% endif %}
           >
             {% if not isCurrent %}
-              <a class="dex-pick-view" href="{{ path('app_albumindex_index', { 'dexSlug': item.settings.slug }) }}" title="{{ 'album.offcanvas.links.view'|trans }}" aria-label="{{ 'album.offcanvas.links.view'|trans }}">
-                <i class="bi bi-eye"></i>
+              <a class="dex-pick-view btn btn-light btn-sm d-block mb-1" href="{{ path('app_albumindex_index', { 'dexSlug': item.settings.slug }) }}" title="{{ 'trainer.dex.see'|trans }}">
+                <i class="bi bi-eye-fill"></i>
+                {{ 'trainer.dex.see'|trans }}
               </a>
             {% endif %}
             <img src="{{ thumbUrl }}" alt="" loading="lazy">

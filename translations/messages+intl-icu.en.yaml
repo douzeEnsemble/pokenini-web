@@ -148,7 +148,6 @@ album:
       title: Links
       description: A link synchronizes the catch state between this dex and another of your dexes.
       see_tree: See the tree of all my links
-      view: View this dex
       current: Current dex
       add:
         label: "Your other dexes — pick one to create or manage a link:"
