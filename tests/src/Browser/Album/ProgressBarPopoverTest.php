@@ -35,8 +35,7 @@ final class ProgressBarPopoverTest extends AbstractBrowserTestCase
 
         $client->executeScript('document.querySelector(\'.report-container .progress\').click()');
 
-        $this->assertSelectorWillExist('.popover');
-        $this->assertSelectorIsVisible('.popover');
+        $this->assertSelectorWillBeVisible('.popover');
     }
 
     /**
