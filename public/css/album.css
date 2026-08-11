@@ -124,6 +124,10 @@ a.album-case-catch-state-edit-action:hover {
     z-index: 2;
     background: var(--bs-body-bg);
     padding-top: .25rem;
+    /* Without a bottom padding, #create-link's own `mb-3` margin collapses out
+        of this block, leaving a transparent strip under the pinned controls
+        where the scrolling grid cards would show through. */
+    padding-bottom: .25rem;
 }
 .dex-picker-grid {
     display: grid;
@@ -155,7 +159,8 @@ a.album-case-catch-state-edit-action:hover {
     background: var(--bs-secondary-bg);
     color: var(--bs-secondary-color);
 }
-/* Client-side filtering (search + flags) on the picker grid. */
+/* Client-side filtering (dex attribute selects + "already linked") on the
+    picker grid. */
 .dex-pick-card.dex-pick-hidden {
     display: none;
 }
@@ -195,9 +200,13 @@ a.album-case-catch-state-edit-action:hover {
     background: var(--bs-primary-bg-subtle);
     color: var(--bs-primary);
 }
+/* Sits over the top-left corner of the thumbnail, not the card's top edge:
+    the "Voir" button above it is a full-width in-flow `.btn-sm` (~1.94rem tall
+    including borders) starting at the card's .35rem padding, so anything above
+    ~2.3rem would paint on top of it. */
 .dex-pick-card .unlink-btn {
     position: absolute;
-    top: .2rem;
+    top: 2.55rem;
     left: .2rem;
     width: 1.15rem;
     height: 1.15rem;

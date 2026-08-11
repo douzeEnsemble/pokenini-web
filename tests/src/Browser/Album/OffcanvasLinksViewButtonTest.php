@@ -29,7 +29,7 @@ final class OffcanvasLinksViewButtonTest extends AbstractBrowserTestCase
         $user->addTrainerRole();
         $this->loginUser($client, $user);
 
-        $crawler = $client->request('GET', '/fr/album/demolite');
+        $client->request('GET', '/fr/album/demolite');
 
         $client->executeScript("document.querySelector('.open-offcanvas').click()");
         $this->assertSelectorWillBeVisible('#offcanvas');
@@ -39,8 +39,39 @@ final class OffcanvasLinksViewButtonTest extends AbstractBrowserTestCase
         $this->assertSelectorWillBeVisible('.dex-pick-card[data-dex-slug="redgreenblueyellow"] a.btn.btn-light.btn-sm');
         $this->assertSelectorWillBeVisible('.dex-pick-card[data-dex-slug="redgreenblueyellow"] a.btn.btn-light.btn-sm i.bi-eye-fill');
 
-        $link = $crawler->filter('.dex-pick-card[data-dex-slug="redgreenblueyellow"] a.btn.btn-light.btn-sm');
+        $link = $client->getCrawler()->filter('.dex-pick-card[data-dex-slug="redgreenblueyellow"] a.btn.btn-light.btn-sm');
         $this->assertStringContainsString('Voir', trim($link->text()));
         $this->assertStringContainsString('/fr/album/redgreenblueyellow', $link->attr('href') ?? '');
+    }
+
+    #[Test]
+    public function viewButtonDoesNotOverlapTheUnlinkControlOnLinkedCards(): void
+    {
+        $client = $this->getNewClient();
+
+        $user = GetUserToken::getFakeUserToken('109903422692691643666', 'TestProvider');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demolite');
+
+        $client->executeScript("document.querySelector('.open-offcanvas').click()");
+        $this->assertSelectorWillBeVisible('#offcanvas');
+        $client->waitFor('#offcanvas.show:not(.showing)');
+        // goldsilvercrystal is already linked in the Moco fixture, so its card
+        // is the one carrying the absolutely positioned unlink control.
+        $client->waitFor('.dex-pick-card[data-dex-slug="goldsilvercrystal"].linked .unlink-btn');
+
+        // The "Voir" button is a full-width in-flow element at the top of the
+        // card; the unlink control is absolutely positioned. Their boxes must
+        // not intersect, otherwise the X paints over the button's left edge.
+        $this->assertSame('no-overlap', $client->executeScript("
+            var card = document.querySelector('.dex-pick-card[data-dex-slug=\"goldsilvercrystal\"]');
+            var view = card.querySelector('.dex-pick-view').getBoundingClientRect();
+            var unlink = card.querySelector('.unlink-btn').getBoundingClientRect();
+            var gap = Math.round(unlink.top - view.bottom);
+
+            return gap >= 0 ? 'no-overlap' : 'overlap:' + gap;
+        "));
     }
 }
