@@ -62,8 +62,6 @@ final class OffcanvasLinksSelfLinkGuardTest extends AbstractBrowserTestCase
 
         // Without the guard, createLink would make a fetch POST that would succeed (201)
         // and show the success toast. With the guard, no fetch is made and no toast appears.
-        // Use a small sleep to allow the toast to appear if the request was made
-        sleep(1);
-        $this->assertSelectorIsNotVisible('#linksToastSuccess');
+        $this->assertSelectorWillNotBeVisible('#linksToastSuccess');
     }
 }
