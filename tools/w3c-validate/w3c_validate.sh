@@ -53,6 +53,8 @@ URLS=(
 	"en/legals"
 	"en/cookies"
 	"fr/trainer"
+	"fr/trainer/links"
+	"fr/trainer/personnal_data"
 	"fr/istration"
 )
 
