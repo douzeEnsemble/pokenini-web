@@ -18,6 +18,9 @@ function watchAlbumLinks() {
     if (card.classList.contains("linked")) {
       return;
     }
+    if (card.classList.contains("dex-pick-card-current")) {
+      return;
+    }
 
     document.querySelectorAll(".dex-pick-card").forEach(function (c) {
       c.classList.remove("selected");
@@ -98,7 +101,7 @@ function applyDexPickerFilters() {
 }
 
 function createLink(dexSlug, selectedTargetDexSlug) {
-  if (!selectedTargetDexSlug) {
+  if (!selectedTargetDexSlug || selectedTargetDexSlug === dexSlug) {
     return;
   }
 
