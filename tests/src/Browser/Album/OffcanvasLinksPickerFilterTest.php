@@ -107,4 +107,38 @@ final class OffcanvasLinksPickerFilterTest extends AbstractBrowserTestCase
         $this->assertSelectorWillBeVisible('.dex-pick-card[data-dex-slug="rubysapphireemerald"]');
         $this->assertSelectorWillNotBeVisible('.dex-pick-card[data-dex-slug="redgreenblueyellow"]');
     }
+
+    #[Test]
+    public function hidingTheSelectedCardWithAFilterClearsTheSelection(): void
+    {
+        $client = $this->getNewClient();
+
+        $user = GetUserToken::getFakeUserToken('109903422692691643666', 'TestProvider');
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/album/demolite');
+
+        $client->executeScript("document.querySelector('.open-offcanvas').click()");
+        $this->assertSelectorWillBeVisible('#offcanvas');
+        $client->waitFor('#offcanvas.show:not(.showing)');
+        $client->waitFor('.dex-pick-card.linked');
+
+        $client->executeScript("document.querySelector('.dex-pick-card[data-dex-slug=\"swordshield\"]').click()");
+
+        $client->waitFor('.dex-pick-card[data-dex-slug="swordshield"].selected');
+        $this->assertNull($client->getCrawler()->filter('#create-link')->attr('disabled'));
+
+        // The privacy filter hides swordshield (see privacyFilterHidesNonMatchingCards):
+        // "Créer le lien" must not stay armed on a card the user can no longer see.
+        $client->executeScript("
+            var el = document.getElementById('dex-picker-filter-privacy');
+            el.value = '1';
+            el.dispatchEvent(new Event('change'));
+        ");
+
+        $this->assertSelectorWillNotBeVisible('.dex-pick-card[data-dex-slug="swordshield"]');
+        $this->assertNotNull($client->getCrawler()->filter('#create-link')->attr('disabled'));
+        $this->assertCount(0, $client->getCrawler()->filter('.dex-pick-card.selected'));
+    }
 }

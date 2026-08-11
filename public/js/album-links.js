@@ -1,3 +1,19 @@
+// Slug of the dex card currently picked in the grid, or null when nothing is
+// selected. Kept at module scope so that the grid re-render and the client-side
+// filters can reset it (a selection that is no longer visible, or no longer
+// meaningful after a create/delete, must never stay armed on "Créer le lien").
+let selectedTargetDexSlug = null;
+
+function clearDexPickerSelection() {
+  selectedTargetDexSlug = null;
+
+  document.querySelectorAll(".dex-pick-card.selected").forEach(function (card) {
+    card.classList.remove("selected");
+  });
+
+  document.getElementById("create-link").disabled = true;
+}
+
 function watchAlbumLinks() {
   const section = document.getElementById("album-links-section");
 
@@ -6,7 +22,6 @@ function watchAlbumLinks() {
   }
 
   const dexSlug = section.dataset.dexSlug;
-  let selectedTargetDexSlug = null;
 
   document
     .getElementById("offcanvas")
@@ -98,10 +113,16 @@ function applyDexPickerFilters() {
 
     card.classList.toggle("dex-pick-hidden", !visible);
   });
+
+  // A filter change may have hidden the card the user had picked: drop the
+  // selection so "Créer le lien" cannot be fired against an invisible card.
+  if (document.querySelector(".dex-pick-card.selected.dex-pick-hidden")) {
+    clearDexPickerSelection();
+  }
 }
 
-function createLink(dexSlug, selectedTargetDexSlug) {
-  if (!selectedTargetDexSlug || selectedTargetDexSlug === dexSlug) {
+function createLink(dexSlug, targetDexSlug) {
+  if (!targetDexSlug || targetDexSlug === dexSlug) {
     return;
   }
 
@@ -112,7 +133,7 @@ function createLink(dexSlug, selectedTargetDexSlug) {
   const request = new Request("/" + locale + "/album_link/" + dexSlug, {
     method: "POST",
     body: JSON.stringify({
-      targetDexSlug: selectedTargetDexSlug,
+      targetDexSlug: targetDexSlug,
       bidirectional: direction === "both",
     }),
   });
@@ -171,9 +192,12 @@ function renderPickerGrid(dexSlug, links) {
     both: linksLabels.directionBoth,
   };
 
-  document.querySelectorAll(".dex-pick-card").forEach(function (card) {
-    card.classList.remove("selected");
+  // The grid is rebuilt from scratch: any previous pick is stale (it may have
+  // just been linked), so reset both the highlight and the "Créer le lien"
+  // button instead of leaving it armed on the same target.
+  clearDexPickerSelection();
 
+  document.querySelectorAll(".dex-pick-card").forEach(function (card) {
     if (card.classList.contains("dex-pick-card-current")) {
       // The current dex's own card is never selectable and never carries a
       // link (linking a dex to itself makes no sense) — leave it untouched.
