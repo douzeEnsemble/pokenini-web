@@ -24,26 +24,26 @@ component:
 
 1. The picker's filters (search + shiny/premium/custom) don't do anything.
 2. Need a "lien actif"/"lien non actif" filter — clarified: this means
-   "already has a link to the current dex" vs. not, not a new status field
-   on the link itself (the link model has no such concept and none is being
-   added).
+  "already has a link to the current dex" vs. not, not a new status field
+  on the link itself (the link model has no such concept and none is being
+  added).
 3. The picker's filters must be exactly the Trainer page's 5 filters
-   (`privacy`, `homepaged`, `released`, `shiny`, `premium`, same icons,
-   labels, and role-gating) — and the text search must be removed.
+  (`privacy`, `homepaged`, `released`, `shiny`, `premium`, same icons,
+  labels, and role-gating) — and the text search must be removed.
 4. The current dex is selectable as a link target for itself. The code
-   already has explicit guards against this (CSS opacity + `cursor:
-   not-allowed` on `.dex-pick-card-current`, no click/keydown listener
-   attached to that card, no "voir" link rendered for it) — confirmed as a
-   real bug (it still happens) rather than a request to change intended
-   behaviour.
+  already has explicit guards against this (CSS opacity + `cursor:
+  not-allowed` on `.dex-pick-card-current`, no click/keydown listener
+  attached to that card, no "voir" link rendered for it) — confirmed as a
+  real bug (it still happens) rather than a request to change intended
+  behaviour.
 5. The picker's per-card "voir le dex" link (`.dex-pick-view`, icon-only,
-   hidden until hover/focus, `bi-eye`) must match the always-visible,
-   labelled button used on the Trainer page
-   (`templates/Trainer/Section/_dex.html.twig:49-52`: `btn btn-light
-   btn-sm`, `bi-eye-fill` + `trainer.dex.see`|trans` = "Voir").
+  hidden until hover/focus, `bi-eye`) must match the always-visible,
+  labelled button used on the Trainer page
+  (`templates/Trainer/Section/_dex.html.twig:49-52`: `btn btn-light
+  btn-sm`, `bi-eye-fill` + `trainer.dex.see`|trans` = "Voir").
 6. The direction selector + "Créer le lien" button sit above the grid; on a
-   long grid the user has to scroll back up to check/change the direction
-   before creating a link.
+  long grid the user has to scroll back up to check/change the direction
+  before creating a link.
 
 ## Goal
 
