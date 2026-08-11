@@ -118,20 +118,22 @@
         </a>
       </p>
 
-      <div class="btn-group w-100 mb-2" role="group" aria-label="{{ 'album.offcanvas.links.title'|trans }}">
-        <input type="radio" class="btn-check" name="link-direction" id="link-direction-to" value="to" autocomplete="off" checked>
-        <label class="btn btn-outline-secondary btn-sm" for="link-direction-to"><i class="bi bi-arrow-right"></i> {{ 'album.offcanvas.links.direction.to'|trans }}</label>
+      <div class="dex-link-controls">
+        <div class="btn-group w-100 mb-2" role="group" aria-label="{{ 'album.offcanvas.links.title'|trans }}">
+          <input type="radio" class="btn-check" name="link-direction" id="link-direction-to" value="to" autocomplete="off" checked>
+          <label class="btn btn-outline-secondary btn-sm" for="link-direction-to"><i class="bi bi-arrow-right"></i> {{ 'album.offcanvas.links.direction.to'|trans }}</label>
 
-        <input type="radio" class="btn-check" name="link-direction" id="link-direction-from" value="from" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-sm" for="link-direction-from"><i class="bi bi-arrow-left"></i> {{ 'album.offcanvas.links.direction.from'|trans }}</label>
+          <input type="radio" class="btn-check" name="link-direction" id="link-direction-from" value="from" autocomplete="off">
+          <label class="btn btn-outline-secondary btn-sm" for="link-direction-from"><i class="bi bi-arrow-left"></i> {{ 'album.offcanvas.links.direction.from'|trans }}</label>
 
-        <input type="radio" class="btn-check" name="link-direction" id="link-direction-both" value="both" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-sm" for="link-direction-both"><i class="bi bi-arrow-left-right"></i> {{ 'album.offcanvas.links.direction.both'|trans }}</label>
+          <input type="radio" class="btn-check" name="link-direction" id="link-direction-both" value="both" autocomplete="off">
+          <label class="btn btn-outline-secondary btn-sm" for="link-direction-both"><i class="bi bi-arrow-left-right"></i> {{ 'album.offcanvas.links.direction.both'|trans }}</label>
+        </div>
+
+        <button type="button" class="btn btn-primary w-100 mb-3" id="create-link" disabled>
+          <i class="bi bi-plus-lg"></i> {{ 'album.offcanvas.links.create'|trans }}
+        </button>
       </div>
-
-      <button type="button" class="btn btn-primary w-100 mb-3" id="create-link" disabled>
-        <i class="bi bi-plus-lg"></i> {{ 'album.offcanvas.links.create'|trans }}
-      </button>
 
       <div class="dex-picker-filters row g-2 mb-2">
         {% import 'common/Filter/_dex_attribute_select.html.twig' as attributeSelectMacro %}

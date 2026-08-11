@@ -118,6 +118,13 @@ a.album-case-catch-state-edit-action:hover {
     width: 480px;
     max-width: 100%;
 }
+.dex-link-controls {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--bs-body-bg);
+    padding-top: .25rem;
+}
 .dex-picker-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
