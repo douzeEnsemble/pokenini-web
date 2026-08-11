@@ -134,23 +134,22 @@
       </button>
 
       <div class="dex-picker-filters row g-2 mb-2">
-        <div class="col-12">
-          <label for="dex-picker-search" class="visually-hidden">{{ 'album.offcanvas.links.filters.search.label'|trans }}</label>
-          <div class="input-group input-group-sm">
-            <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="search" class="form-control" id="dex-picker-search" placeholder="{{ 'album.offcanvas.links.filters.search.label'|trans }}">
+        {% import 'common/Filter/_dex_attribute_select.html.twig' as attributeSelectMacro %}
+        {% for item in ['privacy', 'homepaged', 'released', 'shiny', 'premium'] %}
+          {{ attributeSelectMacro.attributeSelect(item, 'dex-picker-filter', 'col-6', null, null) }}
+        {% endfor %}
+        <div class="col-6">
+          <div class="form-floating">
+            <select class="form-select" id="dex-picker-filter-linked">
+              <option value="">{{ 'album.offcanvas.links.filters.attributes.linked.all'|trans }}</option>
+              <option value="1">{{ 'album.offcanvas.links.filters.attributes.linked.on'|trans }}</option>
+              <option value="0">{{ 'album.offcanvas.links.filters.attributes.linked.off'|trans }}</option>
+            </select>
+            <label for="dex-picker-filter-linked">
+              <i class="bi bi-link-45deg"></i>&nbsp;{{ 'album.offcanvas.links.filters.attributes.linked.label'|trans }}
+            </label>
           </div>
         </div>
-        {% for attribute in ['shiny', 'premium', 'custom'] %}
-          <div class="col-4">
-            <label for="dex-picker-filter-{{ attribute }}" class="visually-hidden">{{ ('album.offcanvas.links.filters.attributes.'~attribute~'.label')|trans }}</label>
-            <select class="form-select form-select-sm" id="dex-picker-filter-{{ attribute }}">
-              <option value="">{{ ('album.offcanvas.links.filters.attributes.'~attribute~'.all')|trans }}</option>
-              <option value="1">{{ ('album.offcanvas.links.filters.attributes.'~attribute~'.on')|trans }}</option>
-              <option value="0">{{ ('album.offcanvas.links.filters.attributes.'~attribute~'.off')|trans }}</option>
-            </select>
-          </div>
-        {% endfor %}
       </div>
 
       <p class="form-text mb-1">{{ 'album.offcanvas.links.add.label'|trans }}</p>
@@ -161,10 +160,11 @@
           <div
             class="dex-pick-card{{ isCurrent ? ' dex-pick-card-current' : '' }}"
             data-dex-slug="{{ item.settings.slug }}"
-            data-name="{{ (item.settings.name~' '~item.settings.frenchName)|lower }}"
-            data-is-shiny="{{ item.flags.isShiny ? '1' : '0' }}"
-            data-is-premium="{{ item.flags.isPremium ? '1' : '0' }}"
-            data-is-custom="{{ item.flags.isCustom ? '1' : '0' }}"
+            data-filter-privacy="{{ item.flags.isPrivate ? '1' : '0' }}"
+            data-filter-homepaged="{{ item.flags.isOnHome ? '1' : '0' }}"
+            data-filter-released="{{ item.flags.isReleased ? '1' : '0' }}"
+            data-filter-shiny="{{ item.flags.isShiny ? '1' : '0' }}"
+            data-filter-premium="{{ item.flags.isPremium ? '1' : '0' }}"
             {% if not isCurrent %}role="button" tabindex="0"{% endif %}
           >
             {% if not isCurrent %}
