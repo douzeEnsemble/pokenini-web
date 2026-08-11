@@ -166,16 +166,6 @@ album:
       delete_title: Supprimer ce lien
       filters:
         attributes:
-          shiny:
-            label: Chromatique
-            all: Tous
-            "on": Chromatiques
-            "off": Normaux
-          premium:
-            label: Premium
-            all: Tous
-            "on": Premiums
-            "off": Gratuits
           linked:
             label: "Déjà lié"
             all: Tous
