@@ -53,3 +53,4 @@ tools/php-security-checker/local-php-security-checker
 /.superpowers/
 /.worktrees/
 /.worktrees-avt/
+/.worktrees-dexlink/
