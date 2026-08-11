@@ -59,41 +59,39 @@ function watchAlbumLinks() {
 }
 
 function watchDexPickerFilters() {
-  const search = document.getElementById("dex-picker-search");
   const filters = document.querySelectorAll('[id^="dex-picker-filter-"]');
 
-  if (!search) {
-    return;
-  }
-
-  search.addEventListener("input", applyDexPickerFilters);
   filters.forEach(function (filter) {
     filter.addEventListener("change", applyDexPickerFilters);
   });
 }
 
 function applyDexPickerFilters() {
-  const searchInput = document.getElementById("dex-picker-search");
-  const search = searchInput ? searchInput.value.trim().toLowerCase() : "";
-  const flagFilters = {
-    isShiny: document.getElementById("dex-picker-filter-shiny"),
-    isPremium: document.getElementById("dex-picker-filter-premium"),
-    isCustom: document.getElementById("dex-picker-filter-custom"),
-  };
+  const attributeFilters = [
+    { filterId: "dex-picker-filter-privacy", dataKey: "filterPrivacy" },
+    { filterId: "dex-picker-filter-homepaged", dataKey: "filterHomepaged" },
+    { filterId: "dex-picker-filter-released", dataKey: "filterReleased" },
+    { filterId: "dex-picker-filter-shiny", dataKey: "filterShiny" },
+    { filterId: "dex-picker-filter-premium", dataKey: "filterPremium" },
+  ];
+  const linkedFilter = document.getElementById("dex-picker-filter-linked");
 
   document.querySelectorAll(".dex-pick-card").forEach(function (card) {
     let visible = true;
 
-    if (search && card.dataset.name.indexOf(search) === -1) {
-      visible = false;
-    }
-
-    Object.keys(flagFilters).forEach(function (flag) {
-      const select = flagFilters[flag];
-      if (visible && select && select.value && card.dataset[flag] !== select.value) {
+    attributeFilters.forEach(function (entry) {
+      const select = document.getElementById(entry.filterId);
+      if (visible && select && select.value && card.dataset[entry.dataKey] !== select.value) {
         visible = false;
       }
     });
+
+    if (visible && linkedFilter && linkedFilter.value) {
+      const isLinked = card.classList.contains("linked") ? "1" : "0";
+      if (isLinked !== linkedFilter.value) {
+        visible = false;
+      }
+    }
 
     card.classList.toggle("dex-pick-hidden", !visible);
   });

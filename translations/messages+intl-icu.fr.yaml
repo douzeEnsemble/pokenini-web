@@ -165,8 +165,6 @@ album:
       create: Créer le lien
       delete_title: Supprimer ce lien
       filters:
-        search:
-          label: Rechercher un dex
         attributes:
           shiny:
             label: Chromatique
@@ -178,11 +176,11 @@ album:
             all: Tous
             "on": Premiums
             "off": Gratuits
-          custom:
-            label: Personnalisé
+          linked:
+            label: "Déjà lié"
             all: Tous
-            "on": Personnalisés
-            "off": Officiels
+            "on": "Déjà liés"
+            "off": "Non liés"
       toast:
         success: "Lien mis à jour avec succès."
         error: "Une erreur est survenue lors de la mise à jour du lien."

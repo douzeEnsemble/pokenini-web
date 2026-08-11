@@ -159,8 +159,6 @@ album:
       create: Create the link
       delete_title: Delete this link
       filters:
-        search:
-          label: Search a dex
         attributes:
           shiny:
             label: Shiny
@@ -172,11 +170,11 @@ album:
             all: All
             "on": Premium
             "off": Free
-          custom:
-            label: Custom
+          linked:
+            label: Already linked
             all: All
-            "on": Custom
-            "off": Official
+            "on": Linked
+            "off": Not linked
       toast:
         success: Link updated successfully.
         error: Something went wrong while updating the link.
