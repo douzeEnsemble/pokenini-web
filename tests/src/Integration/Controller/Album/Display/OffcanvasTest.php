@@ -71,6 +71,11 @@ final class OffcanvasTest extends WebTestCase
 
         $this->assertFilters($crawler, 'fr');
         $this->assertResetLink($crawler, '/fr/album/home');
+
+        $this->assertStringContainsString(
+            '/fr/trainer/links',
+            $crawler->filter('#album-links-section a')->attr('href') ?? ''
+        );
     }
 
     #[Test]
