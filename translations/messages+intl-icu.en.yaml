@@ -227,7 +227,7 @@ trainer:
     Hello, young trainer.
     This is your space.
 
-    Here you can personalize your albums, view personal data and log out.
+    Here you can personalize your albums, and view the links between your dexes and your personal data.
     Have fun.
   personnal_data:
     title: "Personal data"

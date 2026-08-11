@@ -232,7 +232,7 @@ trainer:
     Bonjour à toi jeune dresseur.
     Ceci est ton espace.
 
-    Tu peux y personnaliser tes albums, consulter les données personnelles et te déconnecter.
+    Tu peux y personnaliser tes albums, consulter les liens entre tes dex et tes données personnelles.
     Amuse toi bien.
   personnal_data:
     title: "Données personnelles"
