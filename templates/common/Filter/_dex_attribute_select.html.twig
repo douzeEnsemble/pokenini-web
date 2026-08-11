@@ -1,0 +1,36 @@
+{% macro attributeSelect(item, idPrefix, colClass, name, selectedValue) %}
+  {% set filtersIcons = {
+    'privacy': 'incognito',
+    'homepaged': 'house',
+    'released': 'lock',
+    'shiny': 'stars',
+    'premium': 'patch-plus',
+  } %}
+  {% set filtersRole = {
+    'privacy': 'ROLE_TRAINER',
+    'homepaged': 'ROLE_TRAINER',
+    'released': 'ROLE_ADMIN',
+    'shiny': 'ROLE_TRAINER',
+    'premium': 'ROLE_COLLECTOR',
+  } %}
+  {% if is_granted(filtersRole[item]) %}
+    <div class="{{ colClass }}">
+      <div class="form-floating">
+        <select class="form-select" {% if name is not null %}name="{{ name }}"{% endif %} id="{{ idPrefix }}-{{ item }}">
+          <option value="" {{ selectedValue is null ? 'selected' : ''}}>
+            {{ ('trainer.filters.attributes.'~item~'.all')|trans }}
+          </option>
+          <option value="1" {{ true == selectedValue ? 'selected' : ''}}>
+            {{ ('trainer.filters.attributes.'~item~'.on')|trans }}
+          </option>
+          <option value="0" {{ selectedValue is not null and false == selectedValue ? 'selected' : ''}}>
+            {{ ('trainer.filters.attributes.'~item~'.off')|trans }}
+          </option>
+        </select>
+        <label for="{{ idPrefix }}-{{ item }}">
+          <i class="bi bi-{{ filtersIcons[item] }}"></i>&nbsp;{{ ('trainer.filters.attributes.'~item~'.label')|trans }}
+        </label>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

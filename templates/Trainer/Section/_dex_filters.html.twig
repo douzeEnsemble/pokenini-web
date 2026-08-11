@@ -1,3 +1,4 @@
+{% import 'common/Filter/_dex_attribute_select.html.twig' as attributeSelectMacro %}
 <form id="dexFilters" class="row">
   {% set filtersItems = [
     'privacy',
@@ -13,40 +14,7 @@
     'shiny': 's',
     'premium': 'm',
   } %}
-  {% set filtersIcons = {
-    'privacy': 'incognito',
-    'homepaged': 'house',
-    'released': 'lock',
-    'shiny': 'stars',
-    'premium': 'patch-plus',
-  } %}
-  {% set filtersRole = {
-    'privacy': 'ROLE_TRAINER',
-    'homepaged': 'ROLE_TRAINER',
-    'released': 'ROLE_ADMIN',
-    'shiny': 'ROLE_TRAINER',
-    'premium': 'ROLE_COLLECTOR',
-  } %}
   {% for item in filtersItems %}
-    {% if is_granted(filtersRole[item]) %}
-      <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
-        <div class="form-floating">
-          <select class="form-select" name="{{ filtersName[item] }}" id="filter-{{ item }}">
-            <option value="" {{ attribute(filters, item).value is null ? 'selected' : ''}}>
-              {{ ('trainer.filters.attributes.'~item~'.all')|trans }}
-            </option>
-            <option value="1" {{ true == attribute(filters, item).value ? 'selected' : ''}}>
-              {{ ('trainer.filters.attributes.'~item~'.on')|trans }}
-            </option>
-            <option value="0" {{ attribute(filters, item).value is not null and false == attribute(filters, item).value ? 'selected' : ''}}>
-              {{ ('trainer.filters.attributes.'~item~'.off')|trans }}
-            </option>
-          </select>
-          <label for="filter-{{ item }}">
-            <i class="bi bi-{{ filtersIcons[item] }}"></i>&nbsp;{{ ('trainer.filters.attributes.'~item~'.label')|trans }}
-          </label>
-        </div>
-      </div>
-    {% endif %}
+    {{ attributeSelectMacro.attributeSelect(item, 'filter', 'col-sm-12 col-md-6 col-lg-4 mb-3', filtersName[item], attribute(filters, item).value) }}
   {% endfor %}
 </form>
