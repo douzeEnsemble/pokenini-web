@@ -2525,6 +2525,41 @@
       "uri": {
         "match": "/album_link/[\\w-]*"
       },
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": [
+        {
+          "id": "demo-link-1",
+          "direction": "both",
+          "target_dex_slug": "goldsilvercrystal",
+          "target_name": "Gold, Silver, Crystal",
+          "target_french_name": "Or, Argent, Cristal"
+        },
+        {
+          "id": "demo-link-2",
+          "direction": "to",
+          "target_dex_slug": "rubysapphireemerald",
+          "target_name": "Ruby, Sapphire, Emerald",
+          "target_french_name": "Rubis, Saphir, Émeraude"
+        }
+      ]
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album_link/[\\w-]*"
+      },
       "method": "post",
       "headers": {
         "X-Provider": {
