@@ -25,9 +25,14 @@
             <ul class="navbar-nav">
                 <li class="nav-item trainer-link">
                     {% if is_granted("ROLE_TRAINER") %}
+                    {% set onTrainer = currentRoute in [
+                        'app_trainerindex_index',
+                        'app_trainerlinks_index',
+                        'app_trainerpersonnaldata_index',
+                    ] %}
                     <a
-                        class="nav-link {{ currentRoute == 'app_trainerindex_index' ? ' active' : '' }}"
-                        {{ currentRoute == 'app_trainerindex_index' ? 'aria-current="page"' : '' }}
+                        class="nav-link {{ onTrainer ? ' active' : '' }}"
+                        {{ onTrainer ? 'aria-current="page"' : '' }}
                         href="{{ path('app_trainerindex_index') }}"
                     >
                         <i class="bi bi-person-badge"></i>
