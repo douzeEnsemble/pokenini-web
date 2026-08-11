@@ -160,16 +160,6 @@ album:
       delete_title: Delete this link
       filters:
         attributes:
-          shiny:
-            label: Shiny
-            all: All
-            "on": Shiny
-            "off": Regular
-          premium:
-            label: Premium
-            all: All
-            "on": Premium
-            "off": Free
           linked:
             label: Already linked
             all: All
