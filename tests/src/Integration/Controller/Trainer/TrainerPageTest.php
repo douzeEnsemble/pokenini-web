@@ -46,10 +46,11 @@ final class TrainerPageTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1');
-        $this->assertCountFilter($crawler, 2, 'table thead th');
-        $this->assertCountFilter($crawler, 2, 'table tbody tr');
-        $this->assertEquals('Identifiant 789465465489', $crawler->filter('table tbody tr')->eq(0)->text());
-        $this->assertEquals("Service d'identification TestProvider", $crawler->filter('table tbody tr')->eq(1)->text());
+
+        $this->assertStringContainsString(
+            'Tu peux y personnaliser tes albums, consulter les liens entre tes dex et tes données personnelles.',
+            $crawler->filter('#main-container')->text()
+        );
 
         $this->assertCustomizeAlbumSection($crawler, false, false, 5);
 
@@ -88,10 +89,6 @@ final class TrainerPageTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1');
-        $this->assertCountFilter($crawler, 2, 'table thead th');
-        $this->assertCountFilter($crawler, 2, 'table tbody tr');
-        $this->assertEquals('Identifiant 789465465489', $crawler->filter('table tbody tr')->eq(0)->text());
-        $this->assertEquals("Service d'identification TestProvider", $crawler->filter('table tbody tr')->eq(1)->text());
 
         $this->assertCustomizeAlbumSection($crawler, false, true, 5);
 
@@ -131,10 +128,6 @@ final class TrainerPageTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1');
-        $this->assertCountFilter($crawler, 2, 'table thead th');
-        $this->assertCountFilter($crawler, 2, 'table tbody tr');
-        $this->assertEquals('Identifiant 8764532', $crawler->filter('table tbody tr')->eq(0)->text());
-        $this->assertEquals("Service d'identification TestAdminProvider", $crawler->filter('table tbody tr')->eq(1)->text());
 
         $this->assertCustomizeAlbumSection($crawler, true, true, 0);
 

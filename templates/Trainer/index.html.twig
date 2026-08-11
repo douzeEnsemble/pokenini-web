@@ -29,7 +29,6 @@
       <p class="text-secondary">{{ 'trainer.welcome'|trans|htmlNl2br }}</p>
 
       {{ include('Trainer/Section/_dex.html.twig') }}
-      {{ include('Trainer/_section.html.twig') }}
     </div>
   </div>
 {% endblock container %}
@@ -38,13 +37,11 @@
   {{ parent() }}
   <script src="{{ asset('js/trainer_dex.js') }}"></script>
   <script src="{{ asset('js/trainer_filters.js') }}"></script>
-  <script src="{{ asset('js/trainer_tabs.js') }}"></script>
 
   <script>
     const locale = '{{ locale }}';
 
     watchAttributes();
     watchFilters();
-    watchTrainerTabs();
   </script>
 {% endblock foot_javascript %}
