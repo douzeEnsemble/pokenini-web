@@ -65,6 +65,15 @@ trait TestNavTrait
         $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link');
     }
 
+    public function assertLogoutNavBar(Crawler $crawler): void
+    {
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .logout-link');
+        $this->assertStringContainsString(
+            '/connect/logout',
+            $crawler->filter('.navbar-nav .logout-link a')->attr('href') ?? ''
+        );
+    }
+
     public function assertCountFilter(
         Crawler $crawler,
         int $expectedValue,
