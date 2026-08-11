@@ -5,6 +5,12 @@
 
 {% block title %}Pokénini {{ 'title.trainer'|trans }}{% endblock title %}
 
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/trainer.css') }}">
+{% endblock stylesheets %}
+
 {% block container %}
   <div class="row">
     <div class="col-md-10 mx-auto text-center row">
