@@ -49,11 +49,22 @@ final class TrainerLinksPageTest extends WebTestCase
             'Voici tous les liens que tu as créés entre tes dex.',
             $mainText
         );
-        $this->assertStringContainsString(
-            "Tu n'as pas encore créé de lien entre tes dex.",
-            $mainText
-        );
-        $this->assertCount(0, $crawler->filter('.dex-links-tree'));
+
+        // The Moco /album_link fixture returns the same 2 demo links (a "both" link to
+        // goldsilvercrystal and a "to" link to rubysapphireemerald) for every dex slug
+        // queried. GetTrainerDexLinksTreeService fans that call out to every dex in the
+        // trainer's own dex list (21 dexes in the fixture) and deduplicates by unordered
+        // (from, to) pair, so the tree is not empty: it ends up with 41 edges (21 "both",
+        // 20 "to" — the goldsilvercrystal<->rubysapphireemerald pair is reported from both
+        // sides and collapses to a single "both" edge).
+        $this->assertCount(1, $crawler->filter('.dex-links-tree'));
+        $this->assertCount(41, $crawler->filter('.dex-links-edge'));
+        $this->assertCount(21, $crawler->filter('.dex-links-arrow .bi-arrow-left-right'));
+        $this->assertCount(20, $crawler->filter('.dex-links-arrow .bi-arrow-right'));
+
+        $firstEdgeText = $crawler->filter('.dex-links-edge')->first()->text();
+        $this->assertStringContainsString('Rouge, Vert, Bleu, Jaune', $firstEdgeText);
+        $this->assertStringContainsString('Or, Argent, Cristal', $firstEdgeText);
     }
 
     #[Test]
