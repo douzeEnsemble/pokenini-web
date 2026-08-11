@@ -308,8 +308,6 @@ trainer:
         all: "Tous"
         "on": "Premiums"
         "off": "Gratuits"
-  logout:
-    title: "Session"
 
 outer_room:
   message: |

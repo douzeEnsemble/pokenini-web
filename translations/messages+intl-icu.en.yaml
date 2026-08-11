@@ -303,8 +303,6 @@ trainer:
         all: "All"
         "on": "Premium"
         "off": "Free"
-  logout:
-    title: "Session"
 
 outer_room:
   message: |

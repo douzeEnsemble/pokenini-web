@@ -53,10 +53,7 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertCustomizeAlbumSection($crawler, false, false, 5);
 
-        $this->assertStringContainsString(
-            '/connect/logout',
-            $crawler->filter('#section-logout a')->attr('href') ?? ''
-        );
+        $this->assertLogoutNavBar($crawler);
 
         $this->assertCount(0, $crawler->filter('.navbar-link'));
 
@@ -98,10 +95,7 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertCustomizeAlbumSection($crawler, false, true, 5);
 
-        $this->assertStringContainsString(
-            '/connect/logout',
-            $crawler->filter('#section-logout a')->attr('href') ?? ''
-        );
+        $this->assertLogoutNavBar($crawler);
 
         $this->assertCount(0, $crawler->filter('.navbar-link'));
 
@@ -144,10 +138,7 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertCustomizeAlbumSection($crawler, true, true, 0);
 
-        $this->assertStringContainsString(
-            '/connect/logout',
-            $crawler->filter('#section-logout a')->attr('href') ?? ''
-        );
+        $this->assertLogoutNavBar($crawler);
 
         $this->assertCount(0, $crawler->filter('.navbar-link'));
 
