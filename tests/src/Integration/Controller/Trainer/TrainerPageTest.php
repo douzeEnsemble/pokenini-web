@@ -56,6 +56,12 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertLogoutNavBar($crawler);
 
+        $this->assertCount(3, $crawler->filter('#trainer-section-tab .nav-link'));
+        $this->assertSame(
+            '/fr/trainer',
+            $crawler->filter('#trainer-section-tab .nav-link.active')->attr('href')
+        );
+
         $this->assertCount(0, $crawler->filter('.navbar-link'));
 
         $this->assertCountFilter($crawler, 1, '.dex_is_shiny');

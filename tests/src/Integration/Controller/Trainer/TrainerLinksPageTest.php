@@ -65,6 +65,12 @@ final class TrainerLinksPageTest extends WebTestCase
         $firstEdgeText = $crawler->filter('.dex-links-edge')->first()->text();
         $this->assertStringContainsString('Rouge, Vert, Bleu, Jaune', $firstEdgeText);
         $this->assertStringContainsString('Or, Argent, Cristal', $firstEdgeText);
+
+        $this->assertCount(3, $crawler->filter('#trainer-section-tab .nav-link'));
+        $this->assertSame(
+            '/fr/trainer/links',
+            $crawler->filter('#trainer-section-tab .nav-link.active')->attr('href')
+        );
     }
 
     #[Test]

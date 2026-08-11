@@ -1,0 +1,19 @@
+{% set trainerPages = [
+  {'key': 'customization', 'label': 'trainer.dex.title', 'route': 'app_trainerindex_index'},
+  {'key': 'links', 'label': 'trainer.links.title', 'route': 'app_trainerlinks_index'},
+  {'key': 'personnal_data', 'label': 'trainer.personnal_data.title', 'route': 'app_trainerpersonnaldata_index'},
+] %}
+
+<ul class="nav nav-tabs nav-fill mb-4" id="trainer-section-tab" role="tablist">
+  {% for page in trainerPages %}
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link{{ page.key == active ? ' active' : '' }}"
+        {{ page.key == active ? 'aria-current="page"' : '' }}
+        href="{{ path(page.route) }}"
+      >
+        {{ page.label|trans }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
