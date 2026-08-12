@@ -25,7 +25,11 @@
 <div id="admin" class="row">
   <div class="col-12">
     <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
+  </div>
+  <div class="col-md-3 sticky-top">
     {% include 'Admin/_tabs.html.twig' with {'page': 'reports', 'active': 'reports'} %}
+  </div>
+  <div class="col-md-9">
     {% include 'Admin/_reports.html.twig' %}
   </div>
 </div>

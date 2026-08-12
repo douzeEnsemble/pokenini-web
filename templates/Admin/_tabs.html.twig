@@ -8,9 +8,9 @@
   {'key': 'versions', 'label': 'title.admin_versions', 'route': 'app_admin_versions'},
 ] %}
 
-<ul class="nav nav-tabs nav-fill mb-4" id="admin-actions-tab" role="tablist">
+<ul class="nav flex-column nav-pills mb-4 mb-md-0" id="admin-actions-tab">
   {% for page in adminPages %}
-    <li class="nav-item" role="presentation">
+    <li class="nav-item">
       <a
         class="nav-link{{ page.key == active ? ' active' : '' }}"
         {{ page.key == active ? 'aria-current="page"' : '' }}
