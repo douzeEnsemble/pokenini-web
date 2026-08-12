@@ -109,24 +109,48 @@
                     </a>
                 </li>
                 {% if is_granted("ROLE_ADMIN") %}
-                {% set onAdmin = currentRoute in [
-                    'app_admin_update_data',
-                    'app_admin_update_availabilities',
-                    'app_admin_calculate_data',
-                    'app_admin_invalidate_data',
-                    'app_admin_trigger_pipeline',
-                    'app_admin_reports',
-                    'app_admin_versions',
+                {% set adminPages = [
+                    {'key': 'update_data', 'label': 'admin.actions.update_data.title', 'route': 'app_admin_update_data'},
+                    {'key': 'update_availabilities', 'label': 'admin.actions.update_availabilities.title', 'route': 'app_admin_update_availabilities'},
+                    {'key': 'calculate_data', 'label': 'admin.actions.calculate_data.title', 'route': 'app_admin_calculate_data'},
+                    {'key': 'invalidate_data', 'label': 'admin.actions.invalidate_data.title', 'route': 'app_admin_invalidate_data'},
+                    {'key': 'trigger_pipeline', 'label': 'admin.actions.trigger_pipeline.title', 'route': 'app_admin_trigger_pipeline'},
+                    {'key': 'reports', 'label': 'title.admin_reports', 'route': 'app_admin_reports'},
+                    {'key': 'versions', 'label': 'title.admin_versions', 'route': 'app_admin_versions'},
                 ] %}
+                {% set onAdmin = currentRoute in adminPages|map(p => p.route) %}
                 <li class="nav-item admin-link">
-                    <a
-                        class="nav-link {{ onAdmin ? ' active' : '' }}"
-                        {{ onAdmin ? 'aria-current="page"' : '' }}
-                        href="{{ path('app_admin_update_data') }}"
-                    >
-                        <i class="bi bi-wrench-adjustable-circle"></i>
-                        {{ 'nav.admin'|trans }}
-                    </a>
+                    <div class="dropdown dropup d-flex align-items-center">
+                        <a
+                            class="nav-link {{ onAdmin ? ' active' : '' }}"
+                            {{ onAdmin ? 'aria-current="page"' : '' }}
+                            href="{{ path('app_admin_update_data') }}"
+                        >
+                            <i class="bi bi-wrench-adjustable-circle"></i>
+                            {{ 'nav.admin'|trans }}
+                        </a>
+                        <button
+                            class="nav-link dropdown-toggle dropdown-toggle-split"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            <span class="visually-hidden">{{ 'nav.toggle_submenu'|trans }}</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            {% for page in adminPages %}
+                            <li>
+                                <a
+                                    class="dropdown-item{{ currentRoute == page.route ? ' active' : '' }}"
+                                    {{ currentRoute == page.route ? 'aria-current="page"' : '' }}
+                                    href="{{ path(page.route) }}"
+                                >
+                                    {{ page.label|trans }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </li>
                 {% endif %}
                 {% if app.user %}
