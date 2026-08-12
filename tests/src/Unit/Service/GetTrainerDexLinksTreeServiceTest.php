@@ -135,6 +135,48 @@ final class GetTrainerDexLinksTreeServiceTest extends TestCase
     }
 
     #[Test]
+    public function getTreeStillProcessesLaterLinksAfterASkippedDuplicate(): void
+    {
+        // The dedup skip must `continue` the inner loop, not abort it — otherwise every
+        // link reported after the duplicate, for that same source dex, would be lost too.
+        $aaa = $this->createDexListItem('aaa');
+        $bbb = $this->createDexListItem('bbb');
+        $ccc = $this->createDexListItem('ccc');
+
+        $getTrainerDexListService = $this->createMock(GetTrainerDexListService::class);
+        $getTrainerDexListService
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn([$aaa, $bbb, $ccc])
+        ;
+
+        $trainerDexLinkService = $this->createMock(TrainerDexLinkService::class);
+        $trainerDexLinkService
+            ->expects($this->exactly(3))
+            ->method('list')
+            ->willReturnMap([
+                ['aaa', [$this->createLink('link-ab', 'both', 'bbb')]],
+                ['bbb', [
+                    // Reports the already-recorded aaa<->bbb pair again: skipped as a duplicate.
+                    $this->createLink('link-ba', 'to', 'aaa'),
+                    // A distinct pair, reported right after the skipped duplicate.
+                    $this->createLink('link-bc', 'to', 'ccc'),
+                ]],
+                ['ccc', []],
+            ])
+        ;
+
+        $service = new GetTrainerDexLinksTreeService($getTrainerDexListService, $trainerDexLinkService);
+        $edges = $service->getTree()->getEdges();
+
+        $this->assertCount(2, $edges);
+        $this->assertSame('link-ab', $edges[0]->getId());
+        $this->assertSame('link-bc', $edges[1]->getId());
+        $this->assertSame($bbb, $edges[1]->getFrom());
+        $this->assertSame($ccc, $edges[1]->getTo());
+    }
+
+    #[Test]
     public function getTreeIgnoresHttpExceptionsFromASingleDex(): void
     {
         $swordshield = $this->createDexListItem('swordshield');
@@ -228,6 +270,45 @@ final class GetTrainerDexLinksTreeServiceTest extends TestCase
         $tree = $service->getTree();
 
         $this->assertTrue($tree->isEmpty());
+    }
+
+    #[Test]
+    public function getTreeStillProcessesLaterLinksAfterADroppedOne(): void
+    {
+        // A dex's link list can mix a droppable link (target outside the trainer's own
+        // dex list) with a resolvable one. The drop must `continue` the inner loop, not
+        // abort it — otherwise every link after the dropped one in that same dex's list
+        // would be silently lost too.
+        $swordshield = $this->createDexListItem('swordshield');
+        $scarletviolet = $this->createDexListItem('scarletviolet');
+
+        $getTrainerDexListService = $this->createMock(GetTrainerDexListService::class);
+        $getTrainerDexListService
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn([$swordshield, $scarletviolet])
+        ;
+
+        $trainerDexLinkService = $this->createMock(TrainerDexLinkService::class);
+        $trainerDexLinkService
+            ->expects($this->exactly(2))
+            ->method('list')
+            ->willReturnMap([
+                ['swordshield', [
+                    $this->createLink('link-dropped', 'to', 'unknowndex'),
+                    $this->createLink('link-kept', 'to', 'scarletviolet'),
+                ]],
+                ['scarletviolet', []],
+            ])
+        ;
+
+        $service = new GetTrainerDexLinksTreeService($getTrainerDexListService, $trainerDexLinkService);
+        $edges = $service->getTree()->getEdges();
+
+        $this->assertCount(1, $edges);
+        $this->assertSame('link-kept', $edges[0]->getId());
+        $this->assertSame($swordshield, $edges[0]->getFrom());
+        $this->assertSame($scarletviolet, $edges[0]->getTo());
     }
 
     private function createLink(string $id, string $direction, string $targetDexSlug): TrainerDexLink
