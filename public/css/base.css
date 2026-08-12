@@ -100,3 +100,16 @@ html {
     font-size: .8rem;
     color: var(--bs-secondary-color);
 }
+
+/* _nav.html.twig's split-dropdown <ul> is a flex-item child of the
+    d-flex .dropdown row (needed so Bootstrap's JS finds it as a sibling of
+    the toggle button), not of a block-level <li> like Bootstrap's normal
+    navbar-dropdown markup. Below the sm breakpoint Bootstrap's own CSS sets
+    .navbar-nav .dropdown-menu to position: static, so it would render as a
+    third flex item beside the label/caret and overflow the viewport with
+    long labels. Force absolute positioning at every width - the .dropdown
+    wrapper is already position: relative, and the navbar is fixed-bottom so
+    there's always room above. */
+.navbar-nav .dropdown.dropup .dropdown-menu {
+    position: absolute;
+}

@@ -71,6 +71,12 @@ final class TrainerLinksPageTest extends WebTestCase
             '/fr/trainer/links',
             $crawler->filter('#trainer-section-tab .nav-link.active')->attr('href')
         );
+
+        $this->assertCount(1, $crawler->filter('.navbar-nav .trainer-link .dropdown-item.active'));
+        $this->assertStringContainsString(
+            '/fr/trainer/links',
+            $crawler->filter('.navbar-nav .trainer-link .dropdown-item.active')->attr('href') ?? ''
+        );
     }
 
     #[Test]
