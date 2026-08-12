@@ -125,5 +125,11 @@ final class AdminReportsTest extends WebTestCase
                 ->eq(3)
                 ->text()
         );
+
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link .dropdown-item.active');
+        $this->assertStringContainsString(
+            '/fr/istration/reports',
+            $crawler->filter('.navbar-nav .admin-link .dropdown-item.active')->attr('href') ?? ''
+        );
     }
 }
