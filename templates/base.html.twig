@@ -23,7 +23,7 @@
     <body>
         {% block nav %}{% endblock nav %}
         {% block body %}
-        <div class="container" id="main-container">
+        <div class="{% block container_class %}container{% endblock container_class %}" id="main-container">
             {% block container %}{% endblock container %}
         </div>
         {% block footer %}

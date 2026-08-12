@@ -4,12 +4,12 @@
   {'key': 'api', 'label': 'admin.versions.api', 'color': 'warning', 'brickVersion': versionsOverview.api},
   {'key': 'resources', 'label': 'admin.versions.resources', 'color': 'success', 'brickVersion': versionsOverview.resources},
 ] %}
-<div class="list-group col-4" id="versions-list">
+<div class="list-group col-12 col-lg-6" id="versions-list">
   {% for brick in bricks %}
-    <div class="list-group-item d-flex align-items-center gap-3" id="versions-row-{{ brick.key }}">
+    <div class="list-group-item d-flex flex-wrap align-items-center gap-3" id="versions-row-{{ brick.key }}">
       <span class="badge rounded-pill text-bg-{{ brick.color }}">{{ brick.label|trans|slice(0, 1)|upper }}</span>
       <span class="fw-semibold">{{ brick.label|trans }}</span>
-      <span class="versions-version fw-bold ms-auto">
+      <span class="versions-version fw-bold ms-sm-auto text-break">
         {% if brick.brickVersion.version is not null %}
           {{ brick.brickVersion.version }}
         {% else %}
