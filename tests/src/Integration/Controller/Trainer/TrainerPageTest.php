@@ -62,6 +62,21 @@ final class TrainerPageTest extends WebTestCase
             $crawler->filter('#trainer-section-tab .nav-link.active')->attr('href')
         );
 
+        $this->assertCountFilter($crawler, 3, '.navbar-nav .trainer-link .dropdown-menu .dropdown-item');
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .trainer-link .dropdown-item.active');
+        $this->assertStringContainsString(
+            '/fr/trainer',
+            $crawler->filter('.navbar-nav .trainer-link .dropdown-item.active')->attr('href') ?? ''
+        );
+        $this->assertStringContainsString(
+            '/fr/trainer/links',
+            $crawler->filter('.navbar-nav .trainer-link .dropdown-item')->eq(1)->attr('href') ?? ''
+        );
+        $this->assertStringContainsString(
+            '/fr/trainer/personnal_data',
+            $crawler->filter('.navbar-nav .trainer-link .dropdown-item')->eq(2)->attr('href') ?? ''
+        );
+
         $this->assertCount(0, $crawler->filter('.navbar-link'));
 
         $this->assertCountFilter($crawler, 1, '.dex_is_shiny');

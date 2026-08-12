@@ -24,6 +24,7 @@ nav:
   is_private: "Album privé"
   open-offcanvas: "Ouvrir le panneau latéral"
   cookie-manager: "Gère tes cookies"
+  toggle_submenu: "Voir les sous-pages"
 
 title:
   home: "Accueil"
