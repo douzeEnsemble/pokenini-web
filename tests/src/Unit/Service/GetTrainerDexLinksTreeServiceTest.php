@@ -21,6 +21,8 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * @internal
+ *
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
  */
 #[CoversClass(GetTrainerDexLinksTreeService::class)]
 final class GetTrainerDexLinksTreeServiceTest extends TestCase
@@ -146,6 +148,7 @@ final class GetTrainerDexLinksTreeServiceTest extends TestCase
         ;
 
         $httpException = new class('http error') extends \RuntimeException implements HttpExceptionInterface {
+            #[\Override]
             public function getResponse(): ResponseInterface
             {
                 throw new \LogicException('not needed for this test');
