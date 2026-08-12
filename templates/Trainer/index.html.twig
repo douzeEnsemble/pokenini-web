@@ -22,14 +22,10 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12 mx-auto">
+    <div class="col-md-3 sticky-top">
       {{ include('Trainer/_tabs.html.twig', {'active': 'customization'}) }}
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12 mx-auto row">
-
+    <div class="col-md-9">
       <p class="text-secondary">{{ 'trainer.welcome'|trans|htmlNl2br }}</p>
 
       {{ include('Trainer/Section/_dex.html.twig') }}
