@@ -420,7 +420,7 @@ admin:
       failed: "Échoué"
   actions:
     update_availabilities:
-      title: "MAJ des données de disponibilités"
+      title: "Mise à jour des données de disponibilités"
       games_availabilities:
         title: "Mise à jour des disponibilités des jeux"
         item: "Disponibilités des jeux"
@@ -437,7 +437,7 @@ admin:
         cta: "Mettre à jour"
         description: "Resynchronise depuis Google Sheets quels Pokémon sont disponibles dans chaque collection."
     update_data:
-      title: "MAJ des données"
+      title: "Mise à jour des données"
       labels:
         title: "Mise à jour des labels"
         cta: "Mettre à jour"
