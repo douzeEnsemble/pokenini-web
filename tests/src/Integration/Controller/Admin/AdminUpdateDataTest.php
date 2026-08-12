@@ -52,6 +52,21 @@ final class AdminUpdateDataTest extends WebTestCase
         $this->assertCountFilter($crawler, 7, '#admin-actions-tab > .nav-item > .nav-link');
         $this->assertCountFilter($crawler, 1, '#admin-actions-tab .nav-link.active');
 
+        $this->assertCountFilter($crawler, 7, '.navbar-nav .admin-link .dropdown-menu .dropdown-item');
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link .dropdown-item.active');
+        $this->assertStringContainsString(
+            '/fr/istration/update_data',
+            $crawler->filter('.navbar-nav .admin-link .dropdown-item.active')->attr('href') ?? ''
+        );
+        $this->assertStringContainsString(
+            '/fr/istration/reports',
+            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(5)->attr('href') ?? ''
+        );
+        $this->assertStringContainsString(
+            '/fr/istration/versions',
+            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(6)->attr('href') ?? ''
+        );
+
         $reportsLinkHref = $crawler->filter('#admin-actions-tab a.nav-link')->eq(5)->attr('href') ?? '';
         $this->assertStringContainsString('/fr/istration/reports', $reportsLinkHref);
 
