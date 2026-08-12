@@ -25,19 +25,43 @@
             <ul class="navbar-nav">
                 <li class="nav-item trainer-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    {% set onTrainer = currentRoute in [
-                        'app_trainerindex_index',
-                        'app_trainerlinks_index',
-                        'app_trainerpersonnaldata_index',
+                    {% set trainerPages = [
+                        {'key': 'customization', 'label': 'trainer.dex.title', 'route': 'app_trainerindex_index'},
+                        {'key': 'links', 'label': 'trainer.links.title', 'route': 'app_trainerlinks_index'},
+                        {'key': 'personnal_data', 'label': 'trainer.personnal_data.title', 'route': 'app_trainerpersonnaldata_index'},
                     ] %}
-                    <a
-                        class="nav-link {{ onTrainer ? ' active' : '' }}"
-                        {{ onTrainer ? 'aria-current="page"' : '' }}
-                        href="{{ path('app_trainerindex_index') }}"
-                    >
-                        <i class="bi bi-person-badge"></i>
-                        {{ 'title.trainer'|trans }}
-                    </a>
+                    {% set onTrainer = currentRoute in trainerPages|map(p => p.route) %}
+                    <div class="dropdown dropup d-flex align-items-center">
+                        <a
+                            class="nav-link {{ onTrainer ? ' active' : '' }}"
+                            {{ onTrainer ? 'aria-current="page"' : '' }}
+                            href="{{ path('app_trainerindex_index') }}"
+                        >
+                            <i class="bi bi-person-badge"></i>
+                            {{ 'title.trainer'|trans }}
+                        </a>
+                        <button
+                            class="nav-link dropdown-toggle dropdown-toggle-split"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            <span class="visually-hidden">{{ 'nav.toggle_submenu'|trans }}</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% for page in trainerPages %}
+                            <li>
+                                <a
+                                    class="dropdown-item{{ currentRoute == page.route ? ' active' : '' }}"
+                                    {{ currentRoute == page.route ? 'aria-current="page"' : '' }}
+                                    href="{{ path(page.route) }}"
+                                >
+                                    {{ page.label|trans }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                     {% else %}
                     <a class="nav-link" href="{{ path('app_connect_index') }}">
                         <i class="bi bi-person"></i>
