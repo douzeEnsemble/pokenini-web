@@ -6,14 +6,14 @@ The Trainer space (`TrainerIndexController::index()`, route
 `app_trainerindex_index`, `/trainer`) currently renders a single page with:
 
 1. Album customization (`Trainer/Section/_dex.html.twig` +
-   `_dex_filters.html.twig`) — always visible above the tabs, driven by
-   `GetTrainerDexListService` + `DexFiltersRequest`.
+    `_dex_filters.html.twig`) — always visible above the tabs, driven by
+    `GetTrainerDexListService` + `DexFiltersRequest`.
 2. A Bootstrap JS tab-switcher (`Trainer/_section.html.twig`,
-   `trainer_tabs.js`) with three panes, none of them separate routes:
-   - `personnal_data` (`_personnal_data.html.twig`) — id/provider table.
-   - `links` (`_links.html.twig`) — the trainer's cross-dex link tree, from
-     `GetTrainerDexLinksTreeService`.
-   - `logout` (`_logout.html.twig`) — a single link to `app_connect_logout`.
+    `trainer_tabs.js`) with three panes, none of them separate routes:
+    - `personnal_data` (`_personnal_data.html.twig`) — id/provider table.
+    - `links` (`_links.html.twig`) — the trainer's cross-dex link tree, from
+      `GetTrainerDexLinksTreeService`.
+    - `logout` (`_logout.html.twig`) — a single link to `app_connect_logout`.
 
 `Album/_offcanvas.html.twig` deep-links into the `links` pane via
 `app_trainerindex_index` + `_fragment: 'section-links'`, activated on load
