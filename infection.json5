@@ -35,6 +35,22 @@
                 "App\\ResponseObject\\Common\\Pokemon::*",
             ],
         },
+        // pairKey() builds a consistent unordered-pair key by always sorting the two
+        // slugs into the same string regardless of call-argument order. Both mutants
+        // below produce a different-looking but equally consistent ordering (larger
+        // slug first instead of smaller), so they're behaviourally equivalent to the
+        // original for every possible input — no black-box test on the public
+        // getTree() API can ever distinguish them.
+        LessThan: {
+            ignore: [
+                "App\\Service\\GetTrainerDexLinksTreeService::pairKey",
+            ],
+        },
+        Ternary: {
+            ignore: [
+                "App\\Service\\GetTrainerDexLinksTreeService::pairKey",
+            ],
+        },
         "global-ignoreSourceCodeByRegex": [
             "\\$query .= <<<'SUBSQL'.*",
         ],
