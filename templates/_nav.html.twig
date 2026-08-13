@@ -22,7 +22,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item trainer-link">
                     {% if is_granted("ROLE_TRAINER") %}
                     {% set trainerPages = [
