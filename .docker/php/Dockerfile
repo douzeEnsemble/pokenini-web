@@ -94,7 +94,9 @@ RUN set -eux; \
 
 COPY . ./
 
-RUN mv .env.prod .env && chown www-data:www-data .env
+# .env.dev is consumed here to populate %env(...)% processors in config/services.yaml at build time.
+# Keep .env.dev in sync with all keys referenced there; missing keys break the prod release build.
+RUN mv .env.dev .env && chown www-data:www-data .env
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
