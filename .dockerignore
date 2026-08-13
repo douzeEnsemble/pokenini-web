@@ -33,7 +33,8 @@ vendor/
 .editorconfig
 .env
 *.env.*
-!.env.prod
+# Required by .docker/php/Dockerfile php_prod stage: `mv .env.dev .env` builds the prod cache with this file
+!.env.dev
 coverage.xml
 deptract.yaml
 infection.json5

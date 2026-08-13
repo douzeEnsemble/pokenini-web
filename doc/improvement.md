@@ -132,7 +132,7 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 **Fichiers** : `.env`, `.env.dev`
 
-**Traité** : sans modification — toutes les credentials OAuth présentes dans les fichiers versionnés (`.env.dev`, `.env.prod`, `.env.ci`, `.env.int`) sont des valeurs **fictives**. Aucun risque réel d'exposition.
+**Traité** : sans modification — toutes les credentials OAuth présentes dans les fichiers versionnés (`.env.dev`, `.env.ci`, `.env.int`) sont des valeurs **fictives**. Aucun risque réel d'exposition. `.env.prod` a été supprimé (2026-08-13) : le build de l'image de prod copie désormais `.env.dev` pour compiler le container Symfony, valeurs jetées avant la fin du build.
 
 ---
 
@@ -144,7 +144,7 @@ $this->logger->info("Requesting {$method} {$endpointUrl}", $loggableOptions);
 
 **Fichier** : `docker-compose.yaml:39`
 
-**Traité** : `REDIS_PASSWORD=douze` ajouté dans `.env` (base, lue par Docker Compose) et dans chaque `.env.*` de dev/test (`.env.prod` avec `!ChangeMe!`). `REDIS_DSN` mis à jour en `redis://:${REDIS_PASSWORD}@redis:6379/0` dans tous les fichiers env. `docker-compose.yaml` utilise `${REDIS_PASSWORD:-douze}`. 194 tests d'intégration verts.
+**Traité** : `REDIS_PASSWORD=douze` ajouté dans `.env` (base, lue par Docker Compose) et dans chaque `.env.*` de dev/test. `REDIS_DSN` mis à jour en `redis://:${REDIS_PASSWORD}@redis:6379/0` dans tous les fichiers env. `docker-compose.yaml` utilise `${REDIS_PASSWORD:-douze}`. 194 tests d'intégration verts. (`.env.prod` n'existe plus depuis le 2026-08-13 — le build de prod copie `.env.dev`.)
 
 ---
 
