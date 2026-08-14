@@ -47,7 +47,7 @@
         "ext-tokenizer": "*",
         "ext-xml": "*",
         "ext-xmlwriter": "*",
-        "phpunit/phpunit": "^13.3.0",
+        "phpunit/phpunit": "^13.3.1",
         "symfony/browser-kit": "8.1.*",
         "symfony/css-selector": "8.1.*",
         "symfony/dom-crawler": "8.0.*",
