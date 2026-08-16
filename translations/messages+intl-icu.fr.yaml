@@ -540,6 +540,10 @@ admin:
         title: "Mettre à jour les images des Pokémon"
         cta: "Déclencher"
         description: "Régénère le jeu d'images des Pokémon à partir des dernières données."
+      update_banners:
+        title: "Mettre à jour les bannières"
+        cta: "Déclencher"
+        description: "Régénère le jeu de bannières dex/filtres à partir de la base et des calques."
 
     reports_data:
       reports:

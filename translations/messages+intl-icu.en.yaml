@@ -534,6 +534,10 @@ admin:
         title: "Update Pokémon images"
         cta: "Trigger!"
         description: "Regenerates the Pokémon image set from the latest data."
+      update_banners:
+        title: "Update banners"
+        cta: "Trigger!"
+        description: "Regenerates the dex/filter banner set from base + layers."
     reports_data:
       reports:
         title: "Invalidate reports cache"

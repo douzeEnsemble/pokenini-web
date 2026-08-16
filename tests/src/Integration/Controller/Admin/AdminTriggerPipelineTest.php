@@ -66,10 +66,11 @@ final class AdminTriggerPipelineTest extends WebTestCase
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
 
-        $this->assertCountFilter($crawler, 1, '.admin-item-description');
+        $this->assertCountFilter($crawler, 2, '.admin-item-description');
         $this->assertCountFilter($crawler, 1, '#trigger_update_images button.admin-item-cta');
+        $this->assertCountFilter($crawler, 1, '#trigger_update_banners button.admin-item-cta');
         $this->assertCountFilter($crawler, 0, '.admin-item-cta.disabled');
-        $this->assertCountFilter($crawler, 1, '.admin-pipeline-status');
+        $this->assertCountFilter($crawler, 2, '.admin-pipeline-status');
 
         $this->assertSame(
             "Régénère le jeu d'images des Pokémon à partir des dernières données.",
