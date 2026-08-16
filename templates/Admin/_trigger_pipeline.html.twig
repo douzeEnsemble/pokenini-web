@@ -4,6 +4,7 @@
   <p class="text-body-secondary small">{{ 'admin.actions.trigger_pipeline.help'|trans }}</p>
   {% set triggerPipelineItems = {
     'update_images': 'images',
+    'update_banners': 'image',
   } %}
   {% for item, icon in triggerPipelineItems %}
     {{ admin.action('trigger_pipeline', 'trigger', item, icon, updatedItem, updatedAction, updatedState, actionLogsData) }}
@@ -11,3 +12,4 @@
 </div>
 
 {% include 'Admin/_pipeline_status.html.twig' %}
+{% include 'Admin/_banner_pipeline_status.html.twig' %}
