@@ -750,6 +750,26 @@
   {
     "request": {
       "uri": {
+        "match": "/istration/action/trigger/update_banners/status"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {}
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/istration/version"
       },
       "method": "get",

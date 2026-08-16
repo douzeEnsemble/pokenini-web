@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\DTO\AdminAction;
 use App\Service\Back\GetActionLogsService;
+use App\Service\Back\GetBannerPipelineStatusService;
 use App\Service\Back\GetImagePipelineStatusService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,7 @@ final class AdminTriggerPipelineController extends AbstractController
     public function __construct(
         private readonly GetActionLogsService $getActionLogsService,
         private readonly GetImagePipelineStatusService $getImagePipelineStatusService,
+        private readonly GetBannerPipelineStatusService $getBannerPipelineStatusService,
     ) {}
 
     #[Route('/trigger_pipeline', methods: ['GET'], name: 'app_admin_trigger_pipeline')]
@@ -45,6 +47,7 @@ final class AdminTriggerPipelineController extends AbstractController
             [
                 'actionLogsData' => $this->getActionLogsService->get(),
                 'imagePipelineStatus' => $this->getImagePipelineStatusService->get($request->query->has('refresh')),
+                'bannerPipelineStatus' => $this->getBannerPipelineStatusService->get($request->query->has('refresh')),
             ]
         );
     }

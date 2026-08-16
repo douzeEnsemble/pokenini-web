@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Controller;
 use App\Controller\AdminTriggerPipelineController;
 use App\DTO\AdminAction;
 use App\Service\Back\GetActionLogsService;
+use App\Service\Back\GetBannerPipelineStatusService;
 use App\Service\Back\GetImagePipelineStatusService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -77,6 +78,7 @@ final class AdminTriggerPipelineControllerTest extends TestCase
                 [
                     'actionLogsData' => [],
                     'imagePipelineStatus' => null,
+                    'bannerPipelineStatus' => null,
                 ]
             )
             ->willReturn('<html></html>')
@@ -169,6 +171,7 @@ final class AdminTriggerPipelineControllerTest extends TestCase
                 [
                     'actionLogsData' => [],
                     'imagePipelineStatus' => null,
+                    'bannerPipelineStatus' => null,
                 ]
             )
             ->willReturn('<html></html>')
@@ -226,6 +229,18 @@ final class AdminTriggerPipelineControllerTest extends TestCase
             ->willReturn(null)
         ;
 
-        return new AdminTriggerPipelineController($getActionLogsService, $getImagePipelineStatusService);
+        $getBannerPipelineStatusService = $this->createMock(GetBannerPipelineStatusService::class);
+        $getBannerPipelineStatusService
+            ->expects($this->once())
+            ->method('get')
+            ->with(false)
+            ->willReturn(null)
+        ;
+
+        return new AdminTriggerPipelineController(
+            $getActionLogsService,
+            $getImagePipelineStatusService,
+            $getBannerPipelineStatusService,
+        );
     }
 }
