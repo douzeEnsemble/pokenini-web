@@ -724,6 +724,32 @@
   {
     "request": {
       "uri": {
+        "match": "/istration/action/trigger/update_banners"
+      },
+      "method": "post",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "202",
+      "json": {
+        "action": "trigger",
+        "item": "update_banners",
+        "state": "ok",
+        "content": "",
+        "error": ""
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/istration/action/trigger/update_images/status"
       },
       "method": "get",
