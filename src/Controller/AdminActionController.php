@@ -117,6 +117,7 @@ final class AdminActionController extends AbstractController
         condition: "params['name']
             in [
                 'update_images',
+                'update_banners',
             ]"
     )]
     public function trigger(
