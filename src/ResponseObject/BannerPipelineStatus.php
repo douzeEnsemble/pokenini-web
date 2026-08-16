@@ -9,6 +9,9 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 final class BannerPipelineStatus
 {
     /**
+     * Same verified php-code-coverage artifact as BannerPipelineStageStatus::__construct()
+     * — see that constructor's docblock.
+     *
      * @codeCoverageIgnore
      */
     public function __construct(

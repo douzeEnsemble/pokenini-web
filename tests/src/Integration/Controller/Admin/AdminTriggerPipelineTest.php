@@ -77,6 +77,11 @@ final class AdminTriggerPipelineTest extends WebTestCase
             $crawler->filter('#trigger_update_images .admin-item-description')->text()
         );
 
+        $this->assertSame(
+            'Régénère le jeu de bannières dex/filtres à partir de la base et des calques.',
+            $crawler->filter('#trigger_update_banners .admin-item-description')->text()
+        );
+
         $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
