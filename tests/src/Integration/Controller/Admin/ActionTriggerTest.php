@@ -49,4 +49,33 @@ final class ActionTriggerTest extends WebTestCase
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
     }
+
+    #[Test]
+    public function adminTriggerUpdateBanners(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
+        $user->addAdminRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/istration/trigger_pipeline');
+
+        $this->assertStringContainsString(
+            'Ceci ne fait que lancer le pipeline sur GitHub Actions',
+            $crawler->outerHtml()
+        );
+
+        $form = $crawler->filter('#trigger_update_banners form')->form();
+        $client->submit($form);
+
+        $this->assertResponseStatusCodeSame(302);
+        $crawler = $client->followRedirect();
+        $this->assertSame('http://localhost/fr/istration/trigger_pipeline', $client->getRequest()->getUri());
+
+        $this->assertCountFilter($crawler, 1, '#trigger_update_banners .icon-square.bg-success');
+
+        $this->assertConnectedNavBar($crawler);
+        $this->assertFrenchLangSwitch($crawler);
+    }
 }
