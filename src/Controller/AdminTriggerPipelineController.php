@@ -46,8 +46,8 @@ final class AdminTriggerPipelineController extends AbstractController
             'Admin/trigger_pipeline.html.twig',
             [
                 'actionLogsData' => $this->getActionLogsService->get(),
-                'imagePipelineStatus' => $this->getImagePipelineStatusService->get($request->query->has('refresh')),
-                'bannerPipelineStatus' => $this->getBannerPipelineStatusService->get($request->query->has('refresh')),
+                'imagePipelineStatus' => $this->getImagePipelineStatusService->get($request->query->has('refresh_images')),
+                'bannerPipelineStatus' => $this->getBannerPipelineStatusService->get($request->query->has('refresh_banners')),
             ]
         );
     }

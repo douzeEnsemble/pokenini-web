@@ -212,6 +212,100 @@ final class AdminTriggerPipelineControllerTest extends TestCase
         );
     }
 
+    public function testRefreshImagesDoesNotRefreshBanners(): void
+    {
+        $getImagePipelineStatusService = $this->createMock(GetImagePipelineStatusService::class);
+        $getImagePipelineStatusService
+            ->expects($this->once())
+            ->method('get')
+            ->with(true)
+            ->willReturn(null)
+        ;
+
+        $getBannerPipelineStatusService = $this->createMock(GetBannerPipelineStatusService::class);
+        $getBannerPipelineStatusService
+            ->expects($this->once())
+            ->method('get')
+            ->with(false)
+            ->willReturn(null)
+        ;
+
+        $controller = new AdminTriggerPipelineController(
+            $this->createActionLogsServiceStub(),
+            $getImagePipelineStatusService,
+            $getBannerPipelineStatusService,
+        );
+        $requestStack = $this->createRequestStackStub();
+        $controller->setContainer($this->createContainerStub($requestStack));
+
+        $controller->triggerPipeline($requestStack, new Request(['refresh_images' => '123']));
+    }
+
+    public function testRefreshBannersDoesNotRefreshImages(): void
+    {
+        $getImagePipelineStatusService = $this->createMock(GetImagePipelineStatusService::class);
+        $getImagePipelineStatusService
+            ->expects($this->once())
+            ->method('get')
+            ->with(false)
+            ->willReturn(null)
+        ;
+
+        $getBannerPipelineStatusService = $this->createMock(GetBannerPipelineStatusService::class);
+        $getBannerPipelineStatusService
+            ->expects($this->once())
+            ->method('get')
+            ->with(true)
+            ->willReturn(null)
+        ;
+
+        $controller = new AdminTriggerPipelineController(
+            $this->createActionLogsServiceStub(),
+            $getImagePipelineStatusService,
+            $getBannerPipelineStatusService,
+        );
+        $requestStack = $this->createRequestStackStub();
+        $controller->setContainer($this->createContainerStub($requestStack));
+
+        $controller->triggerPipeline($requestStack, new Request(['refresh_banners' => '123']));
+    }
+
+    private function createActionLogsServiceStub(): GetActionLogsService
+    {
+        $getActionLogsService = $this->createStub(GetActionLogsService::class);
+        $getActionLogsService->method('get')->willReturn([]);
+
+        return $getActionLogsService;
+    }
+
+    private function createRequestStackStub(): RequestStack
+    {
+        $session = $this->createStub(SessionInterface::class);
+        $session->method('get')->willReturn(null);
+
+        $flashBagSession = $this->createStub(FlashBagAwareSessionInterface::class);
+        $flashBagSession->method('getFlashBag')->willReturn(new FlashBag());
+
+        $requestStack = $this->createStub(RequestStack::class);
+        $requestStack->method('getSession')->willReturn($session, $flashBagSession, $flashBagSession, $flashBagSession);
+
+        return $requestStack;
+    }
+
+    private function createContainerStub(RequestStack $requestStack): ContainerInterface
+    {
+        $twig = $this->createStub(Environment::class);
+        $twig->method('render')->willReturn('<html></html>');
+
+        $container = $this->createStub(ContainerInterface::class);
+        $container->method('has')->willReturn(true);
+        $container->method('get')->willReturnCallback(
+            static fn (string $id) => 'twig' === $id ? $twig : $requestStack
+        );
+
+        return $container;
+    }
+
     private function getController(): AdminTriggerPipelineController
     {
         $getActionLogsService = $this->createMock(GetActionLogsService::class);
