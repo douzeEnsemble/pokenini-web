@@ -36,9 +36,15 @@ final class PipelineStatusTest extends WebTestCase
         $this->assertStringContainsString('Fermée', $html);
         $this->assertStringNotContainsString('admin.pipeline_status.state.closed', $html);
 
-        $refreshLink = $crawler->filter('.admin-pipeline-status')->siblings()->filter('a.btn-outline-info')->first();
-        $href = (string) $refreshLink->attr('href');
-        $this->assertMatchesRegularExpression('/refresh=\d+/', $href);
-        $this->assertStringContainsString('#trigger_update_images', $href);
+        // Crawler::siblings() only ever operates on the first matched node,
+        // so it cannot distinguish the two panels' refresh links -- select
+        // each one directly by its target fragment instead.
+        $imagesHref = (string) $crawler->filterXPath("//a[contains(@href, '#trigger_update_images')]")->attr('href');
+        $this->assertMatchesRegularExpression('/refresh_images=\d+/', $imagesHref);
+        $this->assertStringNotContainsString('refresh_banners', $imagesHref);
+
+        $bannersHref = (string) $crawler->filterXPath("//a[contains(@href, '#trigger_update_banners')]")->attr('href');
+        $this->assertMatchesRegularExpression('/refresh_banners=\d+/', $bannersHref);
+        $this->assertStringNotContainsString('refresh_images', $bannersHref);
     }
 }
