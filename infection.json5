@@ -61,7 +61,7 @@
     tmpDir: "/app/var/cache/infection",
     timeout: 30,
     testFramework: "phpunit",
-    testFrameworkOptions: '--exclude-group="browser-testing"',
+    testFrameworkOptions: '--exclude-testsuite="Browser Test Suite"',
     logs: {
         "text": "/app/build/infection/infection_text.log",
         "summary": "/app/build/infection/infection_summary.log",
