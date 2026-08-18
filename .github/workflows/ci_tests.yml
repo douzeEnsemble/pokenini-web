@@ -87,7 +87,7 @@ jobs:
           docker compose exec \
             -e XDEBUG_MODE=coverage \
             -T php php vendor/bin/phpunit \
-            --exclude-group="browser-testing" \
+            --exclude-testsuite="Browser Test Suite" \
             --coverage-clover=coverage.xml \
             --coverage-xml=build/coverage/coverage-xml \
             --log-junit=build/coverage/junit.xml
