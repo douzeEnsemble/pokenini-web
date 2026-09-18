@@ -1,6 +1,6 @@
 {
     "type": "tools",
     "require": {
-        "deptrac/deptrac": "^4.7.1"
+        "deptrac/deptrac": "^4.7.2"
     }
 }
