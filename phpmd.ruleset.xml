@@ -45,6 +45,7 @@
     <exclude name="ShortVariable" />
     <exclude name="LongVariable" />
     <exclude name="LongClassName" />
+    <exclude name="LongMethodName" />
   </rule>
   <rule ref="rulesets/naming.xml/ShortVariable">
     <properties>
@@ -71,6 +72,12 @@
         name="subtract-suffixes"
         value="Command,Controller,Exception,Repository,Service,Test,ActionStarter"
       />
+    </properties>
+  </rule>
+
+  <rule ref="rulesets/naming.xml/LongMethodName">
+    <properties>
+      <property name="maximum" value="100" />
     </properties>
   </rule>
 
