@@ -15,6 +15,6 @@
         "ext-xml": "*",
         "ext-xmlwriter": "*",
         "ext-zip": "*",
-        "phpmd/phpmd": "^2.15"
+        "phpmd/phpmd": "^3.0"
     }
 }
