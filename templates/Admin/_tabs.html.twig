@@ -8,21 +8,7 @@
   {'key': 'versions', 'label': 'title.admin_versions', 'route': 'app_admin_versions'},
 ] %}
 
-<div class="d-none d-md-flex justify-content-end mb-2">
-  <button
-    type="button"
-    class="btn btn-sm btn-outline-secondary"
-    id="admin-sidebar-toggle"
-    aria-controls="admin-actions-tab"
-    aria-expanded="true"
-    aria-label="{{ 'admin.sidebar.collapse'|trans }}"
-    title="{{ 'admin.sidebar.collapse'|trans }}"
-    data-label-collapse="{{ 'admin.sidebar.collapse'|trans }}"
-    data-label-expand="{{ 'admin.sidebar.expand'|trans }}"
-  >
-    <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
-  </button>
-</div>
+{{ include('common/_sidebar_toggle.html.twig', {'name': 'admin', 'navId': 'admin-actions-tab'}) }}
 
 <ul class="nav flex-column nav-pills mb-4 mb-md-0" id="admin-actions-tab">
   {% for page in adminPages %}
@@ -37,40 +23,3 @@
     </li>
   {% endfor %}
 </ul>
-
-<script>
-  (function () {
-    const storageKey = 'admin-sidebar-collapsed';
-    const admin = document.getElementById('admin');
-    const toggle = document.getElementById('admin-sidebar-toggle');
-    const icon = toggle.querySelector('.bi');
-
-    const apply = function (collapsed) {
-      admin.classList.toggle('admin-sidebar-collapsed', collapsed);
-      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-      const label = collapsed ? toggle.dataset.labelExpand : toggle.dataset.labelCollapse;
-      toggle.setAttribute('aria-label', label);
-      toggle.setAttribute('title', label);
-      icon.classList.toggle('bi-chevron-double-left', !collapsed);
-      icon.classList.toggle('bi-chevron-double-right', collapsed);
-    };
-
-    let collapsed = false;
-    try {
-      collapsed = 'true' === localStorage.getItem(storageKey);
-    } catch (e) {
-      // localStorage unavailable: keep the sidebar expanded
-    }
-    apply(collapsed);
-
-    toggle.addEventListener('click', function () {
-      collapsed = !collapsed;
-      apply(collapsed);
-      try {
-        localStorage.setItem(storageKey, collapsed ? 'true' : 'false');
-      } catch (e) {
-        // localStorage unavailable: the choice only lasts for this page
-      }
-    });
-  })();
-</script>

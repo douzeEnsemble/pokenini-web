@@ -4,6 +4,8 @@
   {'key': 'personnal_data', 'label': 'trainer.personnal_data.title', 'route': 'app_trainerpersonnaldata_index'},
 ] %}
 
+{{ include('common/_sidebar_toggle.html.twig', {'name': 'trainer', 'navId': 'trainer-section-tab'}) }}
+
 <ul class="nav flex-column nav-pills mb-4 mb-md-0" id="trainer-section-tab">
   {% for page in trainerPages %}
     <li class="nav-item">

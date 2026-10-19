@@ -1,0 +1,53 @@
+{# Collapse button for a left sidebar: expects #<name> (row) holding .sidebar-column and .sidebar-main #}
+<div class="d-none d-md-flex justify-content-end mb-2">
+  <button
+    type="button"
+    class="btn btn-sm btn-outline-secondary"
+    id="{{ name }}-sidebar-toggle"
+    aria-controls="{{ navId }}"
+    aria-expanded="true"
+    aria-label="{{ 'nav.sidebar.collapse'|trans }}"
+    title="{{ 'nav.sidebar.collapse'|trans }}"
+    data-label-collapse="{{ 'nav.sidebar.collapse'|trans }}"
+    data-label-expand="{{ 'nav.sidebar.expand'|trans }}"
+  >
+    <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
+  </button>
+</div>
+
+<script>
+  (function () {
+    const storageKey = '{{ name }}-sidebar-collapsed';
+    const layout = document.getElementById('{{ name }}');
+    const toggle = document.getElementById('{{ name }}-sidebar-toggle');
+    const icon = toggle.querySelector('.bi');
+
+    const apply = function (collapsed) {
+      layout.classList.toggle('sidebar-collapsed', collapsed);
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      const label = collapsed ? toggle.dataset.labelExpand : toggle.dataset.labelCollapse;
+      toggle.setAttribute('aria-label', label);
+      toggle.setAttribute('title', label);
+      icon.classList.toggle('bi-chevron-double-left', !collapsed);
+      icon.classList.toggle('bi-chevron-double-right', collapsed);
+    };
+
+    let collapsed = false;
+    try {
+      collapsed = 'true' === localStorage.getItem(storageKey);
+    } catch (e) {
+      // localStorage unavailable: keep the sidebar expanded
+    }
+    apply(collapsed);
+
+    toggle.addEventListener('click', function () {
+      collapsed = !collapsed;
+      apply(collapsed);
+      try {
+        localStorage.setItem(storageKey, collapsed ? 'true' : 'false');
+      } catch (e) {
+        // localStorage unavailable: the choice only lasts for this page
+      }
+    });
+  })();
+</script>

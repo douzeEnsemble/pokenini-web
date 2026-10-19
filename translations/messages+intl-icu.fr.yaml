@@ -25,6 +25,9 @@ nav:
   open-offcanvas: "Ouvrir le panneau latéral"
   cookie-manager: "Gère tes cookies"
   toggle_submenu: "Voir les sous-pages"
+  sidebar:
+    collapse: "Réduire le menu"
+    expand: "Afficher le menu"
 
 title:
   home: "Accueil"
@@ -361,9 +364,6 @@ error:
       une capture, le max d'info.
 
 admin:
-  sidebar:
-    collapse: "Réduire le menu"
-    expand: "Afficher le menu"
   reports:
     cache:
       title: "Cache"

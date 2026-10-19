@@ -25,6 +25,9 @@ nav:
   open-offcanvas: "Open the sidebar"
   cookie-manager: "Cookie manager"
   toggle_submenu: "View sub-pages"
+  sidebar:
+    collapse: "Collapse menu"
+    expand: "Expand menu"
 
 title:
   home: "Home"
@@ -356,9 +359,6 @@ error:
       a capture, the max of info.
 
 admin:
-  sidebar:
-    collapse: "Collapse menu"
-    expand: "Expand menu"
   reports:
     cache:
       title: "Cache"

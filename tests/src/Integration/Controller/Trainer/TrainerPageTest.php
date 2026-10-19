@@ -57,6 +57,12 @@ final class TrainerPageTest extends WebTestCase
         $this->assertLogoutNavBar($crawler);
 
         $this->assertCount(3, $crawler->filter('#trainer-section-tab .nav-link'));
+        $this->assertCount(1, $crawler->filter('#trainer > #trainer-sidebar #trainer-sidebar-toggle'));
+        $this->assertCount(1, $crawler->filter('#trainer > #trainer-main'));
+        $this->assertSame(
+            'Réduire le menu',
+            $crawler->filter('#trainer-sidebar-toggle')->attr('aria-label')
+        );
         $this->assertSame(
             '/fr/trainer',
             $crawler->filter('#trainer-section-tab .nav-link.active')->attr('href')

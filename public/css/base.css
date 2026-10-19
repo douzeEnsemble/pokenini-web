@@ -12,6 +12,21 @@ html {
     padding-bottom: 4rem;
 }
 
+/* Collapsible left sidebar (admin, trainer), see common/_sidebar_toggle.html.twig */
+@media (min-width: 768px) {
+    .sidebar-collapsed > .sidebar-column {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .sidebar-collapsed > .sidebar-column .nav {
+        display: none;
+    }
+    .sidebar-collapsed > .sidebar-main {
+        flex: 1 1 0;
+        width: auto;
+    }
+}
+
 /* Shared by Album and Election, which both render Pokémon icon links and
     type badges - kept here once instead of duplicated per feature file. */
 .pokemon-icon {
