@@ -71,6 +71,17 @@ final class AdminTriggerPipelineTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#trigger_update_banners button.admin-item-cta');
         $this->assertCountFilter($crawler, 0, '.admin-item-cta.disabled');
         $this->assertCountFilter($crawler, 2, '.admin-pipeline-status');
+        $this->assertCountFilter($crawler, 2, '.admin-pipeline-status-title');
+
+        $this->assertSame(
+            'Mettre à jour les images des Pokémon',
+            $crawler->filter('#pipeline_status_update_images')->text()
+        );
+
+        $this->assertSame(
+            'Mettre à jour les bannières',
+            $crawler->filter('#pipeline_status_update_banners')->text()
+        );
 
         $this->assertSame(
             "Régénère le jeu d'images des Pokémon à partir des dernières données.",

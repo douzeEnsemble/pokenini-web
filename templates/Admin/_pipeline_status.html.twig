@@ -1,6 +1,9 @@
 {% if imagePipelineStatus is not null %}
   <div class="row px-4 pb-4">
     <div class="col-12">
+      <h4 class="h5 text-body-emphasis admin-pipeline-status-title" id="pipeline_status_update_images">
+        {{ 'admin.actions.trigger_pipeline.update_images.title'|trans }}
+      </h4>
       {% set stageColor = {
         'idle': 'light',
         'running': 'info',
