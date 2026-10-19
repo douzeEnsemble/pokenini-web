@@ -1,45 +1,40 @@
 {% if bannerPipelineStatus is not null %}
-  <div class="row px-4 pb-4">
-    <div class="col-12">
-      <h4 class="h5 text-body-emphasis admin-pipeline-status-title" id="pipeline_status_update_banners">
-        {{ 'admin.actions.trigger_pipeline.update_banners.title'|trans }}
-      </h4>
-      {% set stageColor = {
-        'idle': 'light',
-        'running': 'info',
-        'open': 'info',
-        'done': 'success',
-        'merged': 'success',
-        'closed': 'danger',
-        'failed': 'danger',
-      } %}
-      {% set stages = [
-        {'label': 'workflow_a', 'stage': bannerPipelineStatus.workflowA},
-        {'label': 'icon_pr', 'stage': bannerPipelineStatus.iconPr},
-        {'label': 'workflow_b', 'stage': bannerPipelineStatus.workflowB},
-        {'label': 'resources_pr', 'stage': bannerPipelineStatus.resourcesPr},
-      ] %}
-      <dl class="row admin-pipeline-status">
-        {% for item in stages %}
-          <dt class="col-6 col-md-3">
-            {{ ('admin.pipeline_status.'~item.label)|trans }}
-          </dt>
-          <dd class="col-6 col-md-3">
-            <span class="badge text-bg-{{ stageColor[item.stage.state]|default('light') }}">
-              {{ ('admin.pipeline_status.state.'~item.stage.state)|trans }}
-            </span>
-            &nbsp;
-            {% if item.stage.url is not empty %}
-              <a href="{{ item.stage.url }}" target="_blank" rel="noopener">
-                <i class="bi bi-box-arrow-up-right"></i>
-              </a>
-            {% endif %}
-          </dd>
-        {% endfor %}
-      </dl>
-      <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'refresh_banners': 'now'|date('U'), '_fragment': 'trigger_update_banners'})) }}" class="btn btn-outline-info btn-sm">
-        {{ 'admin.pipeline_status.refresh'|trans }}
-      </a>
-    </div>
+  <div class="col-lg-8 col-md-6 px-3 pt-3 admin-pipeline-status-container" id="pipeline_status_update_banners">
+    {% set stageColor = {
+      'idle': 'light',
+      'running': 'info',
+      'open': 'info',
+      'done': 'success',
+      'merged': 'success',
+      'closed': 'danger',
+      'failed': 'danger',
+    } %}
+    {% set stages = [
+      {'label': 'workflow_a', 'stage': bannerPipelineStatus.workflowA},
+      {'label': 'icon_pr', 'stage': bannerPipelineStatus.iconPr},
+      {'label': 'workflow_b', 'stage': bannerPipelineStatus.workflowB},
+      {'label': 'resources_pr', 'stage': bannerPipelineStatus.resourcesPr},
+    ] %}
+    <dl class="row admin-pipeline-status">
+      {% for item in stages %}
+        <dt class="col-6">
+          {{ ('admin.pipeline_status.'~item.label)|trans }}
+        </dt>
+        <dd class="col-6">
+          <span class="badge text-bg-{{ stageColor[item.stage.state]|default('light') }}">
+            {{ ('admin.pipeline_status.state.'~item.stage.state)|trans }}
+          </span>
+          &nbsp;
+          {% if item.stage.url is not empty %}
+            <a href="{{ item.stage.url }}" target="_blank" rel="noopener">
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          {% endif %}
+        </dd>
+      {% endfor %}
+    </dl>
+    <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'refresh_banners': 'now'|date('U'), '_fragment': 'trigger_update_banners'})) }}" class="btn btn-outline-info btn-sm">
+      {{ 'admin.pipeline_status.refresh'|trans }}
+    </a>
   </div>
 {% endif %}
