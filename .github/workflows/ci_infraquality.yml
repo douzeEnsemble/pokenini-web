@@ -22,7 +22,7 @@ env:
 jobs:
   docker-compose-lint:
     name: Docker Compose Linter
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
       image: zavoloklom/dclint:3.1.0-alpine
       volumes:
@@ -33,7 +33,7 @@ jobs:
 
   dotenv-lint:
     name: DotEnv Linter
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out code
         uses: actions/checkout@v6
@@ -48,7 +48,7 @@ jobs:
 
   dockerfile-lint:
     name: Dockerfile Linter
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out code
         uses: actions/checkout@v6
@@ -63,7 +63,7 @@ jobs:
 
   moco-refs:
     name: Moco References
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out code
         uses: actions/checkout@v6

@@ -15,7 +15,7 @@ concurrency:
 jobs:
   composer-updates:
     name: Update Composer dependencies
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -48,7 +48,7 @@ jobs:
         run: composer update --bump-after-update --with-all-dependencies --optimize-autoloader --working-dir=tools/psalm
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.PAT_TOKEN }}
           branch: chore/composer-updates
