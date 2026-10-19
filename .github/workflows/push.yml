@@ -34,7 +34,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           flavor: |
@@ -43,12 +43,12 @@ jobs:
             suffix=${{ env.IMAGE_TAG_SUFFIXE }}-${{ env.ARCH }},onlatest=true
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
         with:
           platforms: linux/${{ env.ARCH }}
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
         with:
           platforms: linux/${{ env.ARCH }}
 
@@ -59,7 +59,7 @@ jobs:
 
       - name: Build and push Docker image
         id: push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./.docker/php/Dockerfile
@@ -72,7 +72,7 @@ jobs:
           cache-to: type=inline
 
   build-and-push-image-amd:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       ARCH: amd64
     permissions:
@@ -93,7 +93,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           flavor: |
@@ -102,12 +102,12 @@ jobs:
             suffix=${{ env.IMAGE_TAG_SUFFIXE }}-${{ env.ARCH }},onlatest=true
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
         with:
           platforms: linux/${{ env.ARCH }}
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
         with:
           platforms: linux/${{ env.ARCH }}
 
@@ -118,7 +118,7 @@ jobs:
 
       - name: Build and push Docker image
         id: push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./.docker/php/Dockerfile
@@ -131,12 +131,12 @@ jobs:
           cache-to: type=inline
 
   create-manifest:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: [build-and-push-image-arm, build-and-push-image-amd]
     steps:
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           flavor: |
