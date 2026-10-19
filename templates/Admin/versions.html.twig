@@ -16,10 +16,10 @@
   <div class="col-12">
     <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
   </div>
-  <div class="col-md-3" id="admin-sidebar">
+  <div class="col-md-3 sidebar-column" id="admin-sidebar">
     {% include 'Admin/_tabs.html.twig' with {'page': 'versions', 'active': 'versions'} %}
   </div>
-  <div id="admin-main" class="col-md-9 row justify-content-center">
+  <div id="admin-main" class="sidebar-main col-md-9 row justify-content-center">
     {% include 'Admin/_versions.html.twig' %}
   </div>
 </div>

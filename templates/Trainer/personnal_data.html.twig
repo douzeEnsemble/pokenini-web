@@ -12,11 +12,11 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-3">
+  <div id="trainer" class="row">
+    <div class="col-md-3 sidebar-column" id="trainer-sidebar">
       {{ include('Trainer/_tabs.html.twig', {'active': 'personnal_data'}) }}
     </div>
-    <div class="col-md-9">
+    <div id="trainer-main" class="sidebar-main col-md-9">
       {{ include('Trainer/Section/_personnal_data.html.twig') }}
     </div>
   </div>

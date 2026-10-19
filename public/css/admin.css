@@ -1,17 +1,3 @@
-@media (min-width: 768px) {
-    #admin.admin-sidebar-collapsed > #admin-sidebar {
-        flex: 0 0 auto;
-        width: auto;
-    }
-    #admin.admin-sidebar-collapsed > #admin-sidebar #admin-actions-tab {
-        display: none;
-    }
-    #admin.admin-sidebar-collapsed > #admin-main {
-        flex: 1 1 0;
-        width: auto;
-    }
-}
-
 .admin-item-report {
     font-size: .75rem;
 }
