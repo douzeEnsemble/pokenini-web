@@ -51,6 +51,12 @@ final class AdminUpdateDataTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 7, '#admin-actions-tab > .nav-item > .nav-link');
         $this->assertCountFilter($crawler, 1, '#admin-actions-tab .nav-link.active');
+        $this->assertCountFilter($crawler, 1, '#admin > #admin-sidebar #admin-sidebar-toggle');
+        $this->assertCountFilter($crawler, 1, '#admin > #admin-main');
+        $this->assertSame(
+            'Réduire le menu',
+            $crawler->filter('#admin-sidebar-toggle')->attr('aria-label')
+        );
 
         $this->assertCountFilter($crawler, 7, '.navbar-nav .admin-link .dropdown-menu .dropdown-item');
         $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link .dropdown-item.active');

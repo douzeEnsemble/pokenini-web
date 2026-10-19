@@ -26,10 +26,10 @@
   <div class="col-12">
     <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3" id="admin-sidebar">
     {% include 'Admin/_tabs.html.twig' with {'active': 'update_availabilities'} %}
   </div>
-  <div class="col-md-9">
+  <div id="admin-main" class="col-md-9">
     {% include 'Admin/_update_availabilities.html.twig' %}
   </div>
 </div>
