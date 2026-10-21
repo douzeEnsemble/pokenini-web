@@ -59,7 +59,8 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.color-choice', 2, '.color-swatch');
         $this->assertSame('background-color: #B45AA0;', $crawler->filter('.color-swatch')->eq(0)->attr('style'));
         $this->assertSame('2', $crawler->filter('.color-choices input[name="position"]')->attr('value'));
-        $this->assertCountFilter($crawler, 0, '.color-names');
+        $this->assertSame(['violet', 'vert', 'bleu vert', 'rose', 'jaune'], $crawler->filter('.color-swatch')->each(static fn (Crawler $node): ?string => $node->attr('title')));
+        $this->assertSame("C'est quoi ses couleurs ?", $crawler->filter('.color-game-status h4')->text());
         $this->assertCountFilter($crawler, 0, '.pokemon-image');
         $this->assertSame("L'image du Pokémon apparaît après ta réponse", $crawler->filter('.pokemon-image-pending')->text());
         $this->assertSame(['1', '2', '3'], $crawler->filter('.color-choice .choice-key')->each(static fn (Crawler $node): string => $node->text()));
@@ -159,16 +160,19 @@ final class ColorGamePlayTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.color-choices');
         $this->assertCountFilter($crawler, 0, '.stop-game');
-        $this->assertCountFilter($crawler, 3, '.color-answers li');
-        $this->assertSame(
-            ['violet, vert', 'bleu vert, rose', 'jaune'],
-            $crawler->filter('.color-names')->each(static fn (Crawler $node): string => $node->text()),
-        );
-        $this->assertSame('Ton choix', $crawler->filter('.color-answers li')->eq(0)->filter('.badge')->text());
-        $this->assertStringContainsString('chosen-choice', (string) $crawler->filter('.color-answers li')->eq(0)->attr('class'));
-        $this->assertSame('Les bonnes couleurs', $crawler->filter('.color-answers li')->eq(1)->filter('.badge')->text());
-        $this->assertStringContainsString('correct-choice', (string) $crawler->filter('.color-answers li')->eq(1)->attr('class'));
-        $this->assertCountFilter($crawler, 0, '.color-answers li', 2, '.badge');
+        $this->assertStringContainsString('color-game-status', (string) $crawler->filter('.answer-box')->attr('class'));
+        $this->assertCountFilter($crawler, 3, '.color-answers .color-answer');
+        $this->assertCountFilter($crawler, 0, '.color-answer[data-key]');
+        $this->assertSame(['violet', 'vert', 'bleu vert', 'rose', 'jaune'], $crawler->filter('.color-swatch')->each(static fn (Crawler $node): ?string => $node->attr('title')));
+        $this->assertCountFilter($crawler, 2, '.color-answer', 0, '.color-swatch');
+        $this->assertCountFilter($crawler, 1, '.color-answer', 2, '.color-swatch');
+        $this->assertSame('Ton choix', $crawler->filter('.color-answer')->eq(0)->filter('.choice-key')->text());
+        $this->assertStringContainsString('chosen-choice', (string) $crawler->filter('.color-answer')->eq(0)->attr('class'));
+        $this->assertCountFilter($crawler, 1, '.color-answer', 0, '.bi-x-lg');
+        $this->assertSame('Les bonnes couleurs', $crawler->filter('.color-answer')->eq(1)->filter('.choice-key')->text());
+        $this->assertStringContainsString('correct-choice', (string) $crawler->filter('.color-answer')->eq(1)->attr('class'));
+        $this->assertCountFilter($crawler, 1, '.color-answer', 1, '.bi-check-lg');
+        $this->assertSame('3', $crawler->filter('.color-answer')->eq(2)->filter('.choice-key')->text());
         $this->assertCountFilter($crawler, 1, '.chosen-choice');
         $this->assertCountFilter($crawler, 1, '.correct-choice');
 
@@ -190,10 +194,11 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('Well done!', $crawler->filter('.answer-result')->text());
         $this->assertStringContainsString('alert-success', (string) $crawler->filter('.answer-box')->attr('class'));
         $this->assertSame('2 right answers out of 2', $crawler->filter('p.text-center .color-game-score')->text());
-        $this->assertSame(['purple, green', 'teal, pink', 'yellow'], $crawler->filter('.color-names')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['purple', 'green', 'teal', 'pink', 'yellow'], $crawler->filter('.color-swatch')->each(static fn (Crawler $node): ?string => $node->attr('title')));
         $this->assertCountFilter($crawler, 0, '.chosen-choice');
         $this->assertCountFilter($crawler, 1, '.correct-choice');
-        $this->assertSame('The right colours', $crawler->filter('.correct-choice .badge')->text());
+        $this->assertSame('The right colours', $crawler->filter('.correct-choice .choice-key')->text());
+        $this->assertSame(['1', '3'], $crawler->filter('.color-answer:not(.correct-choice) .choice-key')->each(static fn (Crawler $node): string => $node->text()));
     }
 
     #[Test]
