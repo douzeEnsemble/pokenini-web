@@ -68,6 +68,9 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('Astuce : les touches 1 à 3 choisissent un lot de couleurs.', $crawler->filter('.color-choices + p')->text());
 
         $this->assertSame('/fr/game/color', $crawler->filter('a.stop-game')->attr('href'));
+
+        $this->assertSame('Couleurs extraites automatiquement des sprites des Pokémon. Voir les crédits', $crawler->filter('.color-game-credit')->text());
+        $this->assertSame('/fr/credits', $crawler->filter('.color-game-credit a')->attr('href'));
     }
 
     #[Test]
@@ -198,6 +201,8 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.chosen-choice');
         $this->assertCountFilter($crawler, 1, '.correct-choice');
         $this->assertSame('The right colours', $crawler->filter('.correct-choice .choice-key')->text());
+        $this->assertSame('Colours automatically extracted from the Pokémon sprites. See the credits', $crawler->filter('.color-game-credit')->text());
+        $this->assertSame('/en/credits', $crawler->filter('.color-game-credit a')->attr('href'));
         $this->assertSame(['1', '3'], $crawler->filter('.color-answer:not(.correct-choice) .choice-key')->each(static fn (Crawler $node): string => $node->text()));
     }
 
