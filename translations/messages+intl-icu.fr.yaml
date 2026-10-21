@@ -748,7 +748,8 @@ color_game:
     image_pending: "L'image du Pokémon apparaît après ta réponse"
     keys: "Astuce : clique une fois pour choisir un lot, une seconde fois pour valider. Au clavier, les touches 1 à {count} choisissent et Entrée valide."
     confirm: "Clique encore pour valider"
-    warning: "Les couleurs sont calculées automatiquement à partir des images : elles ne correspondent pas forcément au visuel du Pokémon."
+    warning: "Le visuel du Pokémon ne correspond pas forcément à ses couleurs."
+    source: "Source des couleurs :"
   answer:
     correct: "Bien vu !"
     wrong: "Raté !"
