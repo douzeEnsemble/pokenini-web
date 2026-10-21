@@ -48,6 +48,7 @@ URLS=(
 	"fr/game"
 	"fr/game/color"
 	"fr/game/shiny"
+	"fr/game/which-shiny"
 	"fr/outerroom"
 	"fr/policy"
 	"fr/legals"

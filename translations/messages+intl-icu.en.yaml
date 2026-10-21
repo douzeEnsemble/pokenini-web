@@ -775,3 +775,23 @@ shiny_game:
     your_choice: "Your choice"
   flash:
     create_failed: "The game could not be created. Try again a bit later."
+
+which_shiny_game:
+  title: "Which one is shiny?"
+  description: "We show you a Pokémon in its regular and shiny versions, you find the shiny one."
+  dex:
+    subtitle: "Choose the dex you want to play with. You can stop whenever you want, your game will wait for you"
+    no_playable: "No Pokémon in this dex yet."
+    none: "There is no dex to play Which one is shiny yet."
+  round:
+    question: "Which one is shiny?"
+    image: "Image {slot}"
+    keys: "Tip: key 1 picks the left image, key 2 the right one."
+  answer:
+    correct: "Well done!"
+    wrong: "Missed!"
+    regular: "Regular"
+    shiny: "Shiny"
+    your_choice: "Your choice"
+  flash:
+    create_failed: "The game could not be created. Try again a bit later."

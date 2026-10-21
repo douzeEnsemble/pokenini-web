@@ -1,0 +1,32 @@
+{
+  "game": {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "dex": {
+      "slug": "demo",
+      "name": "Demo",
+      "french_name": "Démo"
+    },
+    "status": "in_progress",
+    "round_count": 3,
+    "answered_count": 1,
+    "correct_count": 1,
+    "started_at": "2026-10-20T10:00:00+00:00",
+    "last_played_at": "2026-10-20T10:01:00+00:00",
+    "ended_at": null
+  },
+  "round": {
+    "position": 2,
+    "pokemon": {
+      "slug": "ivysaur",
+      "name": "Ivysaur",
+      "french_name": "Herbizarre",
+      "simplified_name": "Ivysaur",
+      "simplified_french_name": "Herbizarre",
+      "forms_label": "",
+      "forms_french_label": "",
+      "national_dex_number": 2,
+      "icon": "ivysaur"
+    },
+    "shiny_slot": 1
+  }
+}

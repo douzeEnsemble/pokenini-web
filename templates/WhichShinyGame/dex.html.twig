@@ -1,0 +1,139 @@
+{% set locale = app.request.locale %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+{% import 'ColorGame/_macros.html.twig' as colorGame %}
+{% import 'WhichShinyGame/_macros.html.twig' as whichShinyGame %}
+
+{% block title %}Pokénini {{ 'which_shiny_game.title'|trans }}{% endblock title %}
+
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/dex-list.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/color-game.css') }}">
+{% endblock stylesheets %}
+
+{% block container %}
+  <div class="row">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
+      <h1>{{ 'which_shiny_game.title'|trans }}</h1>
+      <h2>
+        <small class="text-body-secondary">{{ 'which_shiny_game.dex.subtitle'|trans }}</small>
+      </h2>
+    </div>
+  </div>
+
+  {% for message in app.flashes('warning') %}
+  <div class="alert alert-warning mt-3" role="alert">{{ message|trans }}</div>
+  {% endfor %}
+
+  <div class="row g-lg-4 g-md-4 g-sm-3 g-2 mt-2">
+    {% for item in dex %}
+    {% set titles = (locale is same as('fr') ? item.frenchName : item.name)|split("\n") %}
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 dex-item position-relative">
+      <div class="card h-100">
+        <img
+          src="{{ dexBannerUrl|format(item.slug) }}"
+          class="card-img"
+          alt=""
+          loading="lazy"
+          onerror="this.onerror=null;this.src='/img/banner/default.webp';"
+        >
+        <div class="card-body">
+          <div class="position-absolute top-0 end-0 me-2">
+            {% if item.isPremium %}
+            <span class="dex_is_premium badge text-bg-success" data-bs-toggle="tooltip" data-bs-title="{{ 'trainer.dex.attributes.is_premium.label'|trans }}" tabindex="0">
+              <i class="bi bi-patch-plus"></i>
+            </span>
+            {% endif %}
+            {% if not item.isReleased %}
+            <span class="dex_not_is_released badge text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ 'trainer.dex.attributes.not.is_released.label'|trans }}" tabindex="0">
+              <i class="bi bi-lock"></i>
+            </span>
+            {% endif %}
+          </div>
+
+          <h2 class="h5 card-title">{{ titles.0 }}</h2>
+          {% if titles.1 is defined %}
+          <h3 class="h6 card-subtitle mb-2 text-body-secondary">{{ titles.1 }}</h3>
+          {% endif %}
+
+          <p>
+            <span class="badge rounded-pill bg-primary playable-count">
+              {{ 'color_game.dex.playable_count'|trans({'count': item.playableCount}) }}
+            </span>
+          </p>
+
+          {% set description = locale is same as('fr') ? item.frenchDescription : item.description %}
+          {% if description is not empty %}
+          <p class="small text-start text-body-secondary">{{ description }}</p>
+          {% endif %}
+
+          {% if item.playableCount > 0 %}
+            {% if item.currentGame is not null %}
+            <div class="current-game mb-3">
+              {{ colorGame.progress(item.currentGame) }}
+              <p class="small mb-0">{{ colorGame.score(item.currentGame) }}</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="{{ path('app_whichshinygame_play', {'gameId': item.currentGame.id}) }}" class="btn btn-primary resume-game">
+                {{ 'color_game.dex.resume'|trans }}
+              </a>
+              {{ whichShinyGame.newGameForm(item.slug, 'color_game.dex.new', 'btn-outline-secondary new-game') }}
+            </div>
+            {% else %}
+            {{ whichShinyGame.newGameForm(item.slug, 'color_game.dex.play', 'btn-primary new-game') }}
+            {% endif %}
+          {% else %}
+          <p class="small text-body-secondary no-playable">{{ 'which_shiny_game.dex.no_playable'|trans }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="alert alert-secondary mt-5 no-dex" role="alert">{{ 'which_shiny_game.dex.none'|trans }}</div>
+    {% endfor %}
+  </div>
+
+  <h2 class="mt-5">{{ 'color_game.history.title'|trans }}</h2>
+  {% if games is empty %}
+  <p class="text-body-secondary no-history">{{ 'color_game.history.none'|trans }}</p>
+  {% else %}
+  <div class="table-responsive">
+    <table class="table table-striped align-middle which-shiny-game-history">
+      <thead>
+        <tr>
+          <th scope="col">{{ 'color_game.history.started_at'|trans }}</th>
+          <th scope="col">{{ 'color_game.history.dex'|trans }}</th>
+          <th scope="col">{{ 'color_game.history.status'|trans }}</th>
+          <th scope="col">{{ 'color_game.history.score'|trans }}</th>
+          <th scope="col"><span class="visually-hidden">{{ 'color_game.history.actions'|trans }}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for game in games %}
+        <tr>
+          <td>{{ game.startedAt|date('d/m/Y H:i') }}</td>
+          <td>{{ (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first }}</td>
+          <td>{{ ('color_game.status.'~game.status)|trans }}</td>
+          <td>
+            {{ colorGame.score(game) }}
+            <span class="small text-body-secondary">
+              ({{ 'color_game.progress'|trans({'answered': game.answeredCount, 'total': game.roundCount}) }})
+            </span>
+          </td>
+          <td>
+            {% if game.status is same as('in_progress') %}
+            <a href="{{ path('app_whichshinygame_play', {'gameId': game.id}) }}" class="btn btn-sm btn-outline-primary">
+              {{ 'color_game.dex.resume'|trans }}
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+{% endblock container %}

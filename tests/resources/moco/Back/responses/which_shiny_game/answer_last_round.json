@@ -1,0 +1,21 @@
+{
+  "position": 3,
+  "is_correct": true,
+  "chosen_slot": 2,
+  "shiny_slot": 2,
+  "game": {
+    "id": "66666666-6666-4666-8666-666666666666",
+    "dex": {
+      "slug": "demo",
+      "name": "Demo",
+      "french_name": "Démo"
+    },
+    "status": "completed",
+    "round_count": 3,
+    "answered_count": 3,
+    "correct_count": 3,
+    "started_at": "2026-10-20T10:00:00+00:00",
+    "last_played_at": "2026-10-20T10:03:00+00:00",
+    "ended_at": "2026-10-20T10:03:00+00:00"
+  }
+}
