@@ -68,7 +68,9 @@
 
       <div class="col-xl-8 col-lg-7 col-12">
         {% if answer is null %}
-        <h4 class="h5 mb-3">{{ 'color_game.round.question'|trans }}</h4>
+        <div class="d-flex align-items-center mb-3 color-game-status">
+          <h4 class="h5 mb-0">{{ 'color_game.round.question'|trans }}</h4>
+        </div>
         <form method="post" action="{{ path('app_colorgame_answer', {'gameId': game.id}) }}" class="d-grid gap-2 color-choices">
           <input type="hidden" name="_token" value="{{ csrf_token('color_game') }}">
           <input type="hidden" name="position" value="{{ round.position }}">
@@ -83,34 +85,35 @@
             data-key="{{ loop.index }}"
           >
             <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
-            {{ colorGame.swatches(choice) }}
+            {{ colorGame.swatches(choice, locale) }}
           </button>
           {% endfor %}
         </form>
         <p class="small text-body-secondary mt-2 mb-0 d-none d-lg-block">{{ 'color_game.round.keys'|trans({'count': round.choices|length}) }}</p>
         {% else %}
-        <div class="alert {{ answer.isCorrect ? 'alert-success' : 'alert-danger' }} d-flex flex-wrap align-items-center justify-content-between gap-2 py-2 answer-box">
+        <div class="alert {{ answer.isCorrect ? 'alert-success' : 'alert-danger' }} d-flex flex-wrap align-items-center justify-content-between gap-2 py-2 mb-3 color-game-status answer-box">
           <span class="fs-5 fw-semibold answer-result" role="status">{{ (answer.isCorrect ? 'color_game.answer.correct' : 'color_game.answer.wrong')|trans }}</span>
           <a href="{{ path('app_colorgame_play', {'gameId': game.id}) }}" class="btn btn-primary next-round" aria-keyshortcuts="Enter">
             {{ (game.answeredCount < game.roundCount ? 'color_game.answer.next' : 'color_game.answer.result')|trans }}
           </a>
         </div>
 
-        <ul class="list-group color-answers">
+        <div class="d-grid gap-2 color-answers">
           {% for choice in round.choices %}
           {% set isCorrectChoice = choice.index == answer.correctChoice %}
           {% set isChosenChoice = choice.index == answer.chosenChoice %}
-          <li class="list-group-item d-flex flex-wrap align-items-center gap-3{{ isCorrectChoice ? ' list-group-item-success correct-choice' : '' }}{{ isChosenChoice and not isCorrectChoice ? ' list-group-item-danger chosen-choice' : '' }}">
-            {{ colorGame.swatches(choice) }}
-            <span class="color-names">{{ (locale is same as('fr') ? choice.frenchNames : choice.names)|join(', ') }}</span>
+          <div class="btn btn-outline-secondary d-flex align-items-center gap-3 color-answer{{ isCorrectChoice ? ' correct-choice' : '' }}{{ isChosenChoice and not isCorrectChoice ? ' chosen-choice' : '' }}">
             {% if isCorrectChoice %}
-            <span class="badge text-bg-success ms-auto">{{ 'color_game.answer.right_set'|trans }}</span>
+            <span class="choice-key"><i class="bi bi-check-lg" aria-hidden="true"></i><span class="visually-hidden">{{ 'color_game.answer.right_set'|trans }}</span></span>
             {% elseif isChosenChoice %}
-            <span class="badge text-bg-danger ms-auto">{{ 'color_game.answer.your_choice'|trans }}</span>
+            <span class="choice-key"><i class="bi bi-x-lg" aria-hidden="true"></i><span class="visually-hidden">{{ 'color_game.answer.your_choice'|trans }}</span></span>
+            {% else %}
+            <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
             {% endif %}
-          </li>
+            {{ colorGame.swatches(choice, locale) }}
+          </div>
           {% endfor %}
-        </ul>
+        </div>
         {% endif %}
       </div>
     </div>

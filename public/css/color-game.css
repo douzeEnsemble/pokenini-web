@@ -17,9 +17,8 @@
     padding: .75rem;
 }
 
-.color-answers .color-swatch {
-    width: 2rem;
-    height: 2rem;
+.color-swatch[title] {
+    cursor: help;
 }
 
 .pokemon-image {
@@ -27,8 +26,43 @@
     height: auto;
 }
 
-.color-game-board .color-choice {
+.color-game-board .color-choice,
+.color-game-board .color-answer {
     padding: .5rem 1rem;
+}
+
+/* Same height as the answer alert, so the colour sets do not move between the question and the answer */
+.color-game-status {
+    min-height: 3.5rem;
+}
+
+.color-answer {
+    --bs-btn-hover-bg: var(--bs-btn-bg);
+    --bs-btn-hover-color: var(--bs-btn-color);
+    --bs-btn-hover-border-color: var(--bs-btn-border-color);
+    cursor: default;
+}
+
+.color-answer.correct-choice {
+    --bs-btn-bg: var(--bs-success-bg-subtle);
+    --bs-btn-border-color: var(--bs-success);
+    box-shadow: inset 0 0 0 1px var(--bs-success);
+}
+
+.color-answer.chosen-choice {
+    --bs-btn-bg: var(--bs-danger-bg-subtle);
+    --bs-btn-border-color: var(--bs-danger);
+    box-shadow: inset 0 0 0 1px var(--bs-danger);
+}
+
+.correct-choice .choice-key {
+    background-color: var(--bs-success);
+    color: #fff;
+}
+
+.chosen-choice .choice-key {
+    background-color: var(--bs-danger);
+    color: #fff;
 }
 
 .choice-key {
