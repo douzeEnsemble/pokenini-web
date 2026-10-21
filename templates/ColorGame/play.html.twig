@@ -115,6 +115,11 @@
           {% endfor %}
         </div>
         {% endif %}
+
+        <p class="small text-body-secondary mt-3 mb-0 color-game-credit">
+          {{ 'color_game.credit.text'|trans }}
+          <a href="{{ path('app_credits_index') }}">{{ 'color_game.credit.link'|trans }}</a>
+        </p>
       </div>
     </div>
   {% else %}

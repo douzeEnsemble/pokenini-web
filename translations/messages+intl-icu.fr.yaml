@@ -763,6 +763,9 @@ color_game:
     back: "Retour aux dex"
   flash:
     create_failed: "La partie n'a pas pu être créée. Réessaie un peu plus tard."
+  credit:
+    text: "Couleurs extraites automatiquement des sprites des Pokémon."
+    link: "Voir les crédits"
 
 shiny_game:
   title: "Shiny or not"
