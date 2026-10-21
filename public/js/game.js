@@ -1,5 +1,5 @@
-// A first click (or key) picks a colour set, a second one on the same set confirms it: a double click answers at once
-function onColorChoiceClick(event) {
+// A first click (or key) picks a choice, a second one on the same choice confirms it: a double click answers at once
+function onGameChoiceClick(event) {
   const choice = event.currentTarget;
   if (choice.classList.contains('is-selected')) {
     return;
@@ -7,7 +7,7 @@ function onColorChoiceClick(event) {
 
   event.preventDefault();
 
-  document.querySelectorAll('.color-choice.is-selected').forEach((selected) => {
+  document.querySelectorAll('.game-choice.is-selected').forEach((selected) => {
     selected.classList.remove('is-selected');
     selected.setAttribute('aria-pressed', 'false');
   });
@@ -16,12 +16,12 @@ function onColorChoiceClick(event) {
   choice.setAttribute('aria-pressed', 'true');
 }
 
-function onColorGameKeydown(event) {
+function onGameKeydown(event) {
   if (event.altKey || event.ctrlKey || event.metaKey || event.repeat) {
     return;
   }
 
-  const choice = document.querySelector('.color-choice[data-key="' + event.key + '"]');
+  const choice = document.querySelector('.game-choice[data-key="' + event.key + '"]');
   if (null !== choice) {
     event.preventDefault();
     choice.click();
@@ -33,8 +33,8 @@ function onColorGameKeydown(event) {
     return;
   }
 
-  const selectedChoice = document.querySelector('.color-choice.is-selected');
-  if (null !== selectedChoice && !document.activeElement.classList.contains('color-choice')) {
+  const selectedChoice = document.querySelector('.game-choice.is-selected');
+  if (null !== selectedChoice && !document.activeElement.classList.contains('game-choice')) {
     event.preventDefault();
     selectedChoice.click();
 
@@ -48,7 +48,7 @@ function onColorGameKeydown(event) {
   }
 }
 
-document.querySelectorAll('.color-choice').forEach((choice) => {
-  choice.addEventListener('click', onColorChoiceClick);
+document.querySelectorAll('.game-choice').forEach((choice) => {
+  choice.addEventListener('click', onGameChoiceClick);
 });
-document.addEventListener('keydown', onColorGameKeydown);
+document.addEventListener('keydown', onGameKeydown);

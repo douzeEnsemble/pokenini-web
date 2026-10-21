@@ -83,7 +83,7 @@
     min-height: 16rem;
 }
 
-.color-game-bar-progress {
+.game-bar-progress {
     width: 10rem;
 }
 
@@ -95,7 +95,7 @@
     visibility: hidden;
 }
 
-.color-choice.is-selected {
+.game-choice.is-selected {
     --bs-btn-bg: var(--bs-primary-bg-subtle);
     --bs-btn-color: var(--bs-body-color);
     --bs-btn-border-color: var(--bs-primary);
@@ -105,11 +105,16 @@
     box-shadow: inset 0 0 0 1px var(--bs-primary);
 }
 
-.color-choice.is-selected .choice-key {
+.game-choice.is-selected .choice-key {
     background-color: var(--bs-primary);
     color: #fff;
 }
 
-.color-choice.is-selected .choice-confirm {
+.game-choice.is-selected .choice-confirm {
     visibility: visible;
+}
+
+/* Same height with or without a badge, so the cards do not change size between the question and the answer */
+.game-choice-caption {
+    min-height: 1.75rem;
 }

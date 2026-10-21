@@ -4,11 +4,12 @@
     height: auto;
 }
 
-.which-shiny-choice {
+/* Same padding for the choices and the answers, so the images do not move between the question and the answer */
+.which-shiny-card {
     padding: 1rem;
 }
 
-.which-shiny-choice .choice-key {
+.which-shiny-card .choice-key {
     align-self: flex-start;
 }
 

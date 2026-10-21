@@ -781,7 +781,7 @@ shiny_game:
     image: "Le Pokémon à deviner"
     regular: "Normal"
     shiny: "Chromatique"
-    keys: "Astuce : la touche 1 choisit normal, la touche 2 chromatique."
+    keys: "Astuce : clique une fois pour choisir, une seconde fois pour valider. Au clavier, la touche 1 choisit normal, la touche 2 chromatique et Entrée valide."
   answer:
     correct: "Bien vu !"
     wrong: "Raté !"
@@ -800,7 +800,7 @@ which_shiny_game:
   round:
     question: "Lequel est le shiny ?"
     image: "Image {slot}"
-    keys: "Astuce : la touche 1 choisit l'image de gauche, la touche 2 celle de droite."
+    keys: "Astuce : clique une fois sur une image pour la choisir, une seconde fois pour valider. Au clavier, la touche 1 choisit l'image de gauche, la touche 2 celle de droite et Entrée valide."
   answer:
     correct: "Bien vu !"
     wrong: "Raté !"

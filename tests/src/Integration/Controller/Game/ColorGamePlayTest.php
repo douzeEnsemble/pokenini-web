@@ -46,12 +46,12 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.active');
 
         $this->assertSame('1 manche jouée sur 3', $crawler->filter('.color-game-progress + p')->text());
-        $this->assertSame('1 bonne réponse sur 1', $crawler->filter('.color-game-bar .color-game-score')->text());
+        $this->assertSame('1 bonne réponse sur 1', $crawler->filter('.game-bar .color-game-score')->text());
 
-        $this->assertSame('Manche 2 sur 3', $crawler->filter('.color-game-bar .round-position')->text());
-        $this->assertSame('Jeu des couleurs', $crawler->filter('.color-game-bar h1')->text());
-        $this->assertCountFilter($crawler, 1, '.color-game-bar .color-game-progress + p.visually-hidden');
-        $this->assertCountFilter($crawler, 1, '.color-game-bar a.stop-game');
+        $this->assertSame('Manche 2 sur 3', $crawler->filter('.game-bar .round-position')->text());
+        $this->assertSame('Jeu des couleurs', $crawler->filter('.game-bar h1')->text());
+        $this->assertCountFilter($crawler, 1, '.game-bar .color-game-progress + p.visually-hidden');
+        $this->assertCountFilter($crawler, 1, '.game-bar a.stop-game');
         $this->assertSame('Herbizarre', $crawler->filter('.pokemon-name')->text());
         $this->assertCountFilter($crawler, 0, '.pokemon-forms');
 
@@ -202,7 +202,7 @@ final class ColorGamePlayTest extends WebTestCase
 
         $this->assertSame('Well done!', $crawler->filter('.answer-result')->text());
         $this->assertStringContainsString('alert-success', (string) $crawler->filter('.answer-box')->attr('class'));
-        $this->assertSame('2 right answers out of 2', $crawler->filter('.color-game-bar .color-game-score')->text());
+        $this->assertSame('2 right answers out of 2', $crawler->filter('.game-bar .color-game-score')->text());
         $this->assertSame(['purple', 'green', 'teal', 'pink', 'yellow'], $crawler->filter('.color-swatch')->each(static fn (Crawler $node): ?string => $node->attr('title')));
         $this->assertCountFilter($crawler, 0, '.chosen-choice');
         $this->assertCountFilter($crawler, 1, '.correct-choice');

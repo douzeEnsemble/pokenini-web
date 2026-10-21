@@ -45,9 +45,13 @@ final class ShinyGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.active');
 
         $this->assertSame('1 manche jouée sur 3', $crawler->filter('.color-game-progress + p')->text());
-        $this->assertSame('1 bonne réponse sur 1', $crawler->filter('p.text-center .color-game-score')->text());
+        $this->assertSame('1 bonne réponse sur 1', $crawler->filter('.game-bar .color-game-score')->text());
 
-        $this->assertSame('Manche 2 sur 3', $crawler->filter('.round-position')->text());
+        $this->assertSame('Manche 2 sur 3', $crawler->filter('.game-bar .round-position')->text());
+        $this->assertSame('Shiny or not', $crawler->filter('.game-bar h1')->text());
+        $this->assertCountFilter($crawler, 1, '.game-bar .color-game-progress + p.visually-hidden');
+        $this->assertCountFilter($crawler, 1, '.game-bar a.stop-game');
+        $this->assertCountFilter($crawler, 0, '.game-is-shiny');
         $this->assertSame('Herbizarre', $crawler->filter('.pokemon-name')->text());
         $this->assertCountFilter($crawler, 0, '.pokemon-forms');
         $this->assertSame('Normal ou chromatique ?', $crawler->filter('.color-game-status h4')->text());
@@ -63,9 +67,13 @@ final class ShinyGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '.shiny-choices button.shiny-choice');
         $this->assertSame(['0', '1'], $crawler->filter('.shiny-choice')->each(static fn (Crawler $node): ?string => $node->attr('value')));
         $this->assertSame(['1', '2'], $crawler->filter('.shiny-choice')->each(static fn (Crawler $node): ?string => $node->attr('data-key')));
-        $this->assertSame(['1 Normal', '2 Chromatique'], $crawler->filter('.shiny-choice')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['1', '2'], $crawler->filter('.shiny-choice .choice-key')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['Normal', 'Chromatique'], $crawler->filter('.shiny-choice .version-name')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['Clique encore pour valider', 'Clique encore pour valider'], $crawler->filter('.shiny-choice .choice-confirm')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['false', 'false'], $crawler->filter('.shiny-choice')->each(static fn (Crawler $node): ?string => $node->attr('aria-pressed')));
+        $this->assertCountFilter($crawler, 2, '.shiny-choice.game-choice');
         $this->assertSame('2', $crawler->filter('.shiny-choices input[name="position"]')->attr('value'));
-        $this->assertSame('Astuce : la touche 1 choisit normal, la touche 2 chromatique.', $crawler->filter('.shiny-choices + p')->text());
+        $this->assertSame('Astuce : clique une fois pour choisir, une seconde fois pour valider. Au clavier, la touche 1 choisit normal, la touche 2 chromatique et Entrée valide.', $crawler->filter('.shiny-choices + p')->text());
 
         $this->assertCountFilter($crawler, 0, '.shiny-answers');
         $this->assertSame('/fr/game/shiny', $crawler->filter('a.stop-game')->attr('href'));
@@ -83,7 +91,9 @@ final class ShinyGamePlayTest extends WebTestCase
         $this->assertSame('Alolan Raichu', $crawler->filter('.pokemon-name')->text());
         $this->assertSame('Alolan form', $crawler->filter('.pokemon-forms')->text());
         $this->assertSame('Regular or shiny?', $crawler->filter('.color-game-status h4')->text());
-        $this->assertSame(['1 Regular', '2 Shiny'], $crawler->filter('.shiny-choice')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['Regular', 'Shiny'], $crawler->filter('.shiny-choice .version-name')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['Click again to confirm', 'Click again to confirm'], $crawler->filter('.shiny-choice .choice-confirm')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame('Tip: click once to pick, a second time to confirm. On the keyboard, key 1 picks regular, key 2 picks shiny and Enter confirms.', $crawler->filter('.shiny-choices + p')->text());
     }
 
     #[Test]
@@ -157,6 +167,9 @@ final class ShinyGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.shiny-choices');
         $this->assertCountFilter($crawler, 0, '.round-image');
         $this->assertCountFilter($crawler, 0, '.stop-game');
+        $this->assertSame('Manche 2 sur 3', $crawler->filter('.game-bar .round-position')->text());
+        $this->assertSame('https://icon.pokenini.fr/pokemon/big/regular/ivysaur.png', $crawler->filter('.shiny-game-image-box .shown-image')->attr('src'));
+        $this->assertSame('Herbizarre', $crawler->filter('.shiny-game-image-box .shown-image')->attr('alt'));
         $this->assertCountFilter($crawler, 2, '.shiny-answers .shiny-version');
         $this->assertSame(
             [
@@ -199,7 +212,7 @@ final class ShinyGamePlayTest extends WebTestCase
 
         $this->assertSame('Well done!', $crawler->filter('.answer-result')->text());
         $this->assertStringContainsString('alert-success', (string) $crawler->filter('.answer-box')->attr('class'));
-        $this->assertSame('2 right answers out of 2', $crawler->filter('p.text-center .color-game-score')->text());
+        $this->assertSame('2 right answers out of 2', $crawler->filter('.game-bar .color-game-score')->text());
         $this->assertCountFilter($crawler, 0, '.chosen-version');
         $this->assertCountFilter($crawler, 1, '.version-label');
         $this->assertSame('The image shown', $crawler->filter('.shown-version .version-label')->text());

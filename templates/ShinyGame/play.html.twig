@@ -24,31 +24,41 @@
     {% set pokemon = round.pokemon %}
     {% set pokemonName = locale is same as('fr') ? pokemon.frenchName : pokemon.name %}
     {% set formsLabel = locale is same as('fr') ? pokemon.formsFrenchLabel : pokemon.formsLabel %}
+    {% include 'Game/_bar.html.twig' with {
+      'title': 'shiny_game.title',
+      'dexName': dexName,
+      'isShiny': false,
+      'game': game,
+      'round': round,
+      'stopPath': answer is null ? path('app_shinygame_dex') : null,
+    } only %}
+
     <div class="row g-4 mt-1 shiny-game-board">
       <div class="col-xl-4 col-lg-5 col-12">
-        <section class="d-flex flex-column gap-3 h-100 p-4 border rounded-3 bg-body-tertiary">
+        <section class="d-flex flex-column gap-3">
           <div>
-            <h1 class="h6 text-uppercase text-body-secondary mb-1">{{ 'shiny_game.title'|trans }}</h1>
-            <h2 class="h6 mb-3">
-              <small class="text-body-secondary">{{ dexName }}</small>
-            </h2>
-            <p class="text-body-secondary mb-1 round-position">
-              {{ 'color_game.round.position'|trans({'position': round.position, 'total': game.roundCount}) }}
-            </p>
-            <h3 class="h2 mb-0 pokemon-name">{{ pokemonName }}</h3>
+            <h3 class="display-5 fw-bold mb-0 pokemon-name">{{ pokemonName }}</h3>
             {% if formsLabel is not empty %}
-            <p class="text-body-secondary mb-0 pokemon-forms">{{ formsLabel }}</p>
+            <p class="fs-5 text-body-secondary mb-0 pokemon-forms">{{ formsLabel }}</p>
             {% endif %}
           </div>
 
-          <div>
-            {{ colorGame.progress(game) }}
-            <p class="text-center mt-2 mb-0">{{ colorGame.score(game) }}</p>
+          <div class="d-flex align-items-center justify-content-center rounded-3 border bg-body-tertiary shiny-game-image-box">
+            {% if answer is null %}
+            {# The image is served by the web, so its URL does not tell which version it is #}
+            <img
+              src="{{ path('app_shinygame_image', {'gameId': game.id, 'position': round.position}) }}"
+              alt="{{ 'shiny_game.round.image'|trans }}"
+              class="shiny-game-image round-image"
+            >
+            {% else %}
+            <img
+              src="{{ pokemonImageUrl|format(answer.isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
+              alt="{{ pokemonName }}"
+              class="shiny-game-image shown-image"
+            >
+            {% endif %}
           </div>
-
-          {% if answer is null %}
-          <a href="{{ path('app_shinygame_dex') }}" class="mt-auto stop-game">{{ 'color_game.round.stop'|trans }}</a>
-          {% endif %}
         </section>
       </div>
 
@@ -58,31 +68,33 @@
           <h4 class="h5 mb-0">{{ 'shiny_game.round.question'|trans }}</h4>
         </div>
 
-        <div class="d-flex align-items-center justify-content-center rounded-3 bg-body mb-3 shiny-game-image-box">
-          {# The image is served by the web, so its URL does not tell which version it is #}
-          <img
-            src="{{ path('app_shinygame_image', {'gameId': game.id, 'position': round.position}) }}"
-            alt="{{ 'shiny_game.round.image'|trans }}"
-            class="shiny-game-image round-image"
-          >
-        </div>
-
-        <form method="post" action="{{ path('app_shinygame_answer', {'gameId': game.id}) }}" class="d-grid d-sm-flex gap-2 shiny-choices">
+        <form method="post" action="{{ path('app_shinygame_answer', {'gameId': game.id}) }}" class="row g-3 shiny-choices">
           <input type="hidden" name="_token" value="{{ csrf_token('shiny_game') }}">
           <input type="hidden" name="position" value="{{ round.position }}">
           {% for isShiny in [false, true] %}
-          <button
-            type="submit"
-            name="is_shiny"
-            value="{{ isShiny ? '1' : '0' }}"
-            class="btn btn-outline-secondary btn-lg d-flex flex-fill align-items-center justify-content-center gap-3 shiny-choice"
-            aria-keyshortcuts="{{ loop.index }}"
-            data-key="{{ loop.index }}"
-          >
-            <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
-            {% if isShiny %}<i class="bi bi-stars" aria-hidden="true"></i>{% endif %}
-            {{ (isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans }}
-          </button>
+          <div class="col-6">
+            <button
+              type="submit"
+              name="is_shiny"
+              value="{{ isShiny ? '1' : '0' }}"
+              class="btn btn-outline-secondary w-100 h-100 d-flex flex-column align-items-center gap-2 shiny-card game-choice shiny-choice"
+              aria-keyshortcuts="{{ loop.index }}"
+              data-key="{{ loop.index }}"
+              aria-pressed="false"
+            >
+              <span class="d-flex align-items-center justify-content-center gap-2 fs-5 fw-semibold">
+                <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
+                {% if isShiny %}<i class="bi bi-stars" aria-hidden="true"></i>{% endif %}
+                <span class="version-name">{{ (isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans }}</span>
+              </span>
+              <span class="d-none d-lg-flex align-items-center justify-content-center w-100 rounded-3 pokemon-image-pending shiny-version-box">
+                <i class="bi bi-question-lg fs-1 text-body-secondary" aria-hidden="true"></i>
+              </span>
+              <span class="d-flex align-items-center justify-content-center game-choice-caption">
+                <span class="badge text-bg-primary choice-confirm">{{ 'color_game.round.confirm'|trans }}</span>
+              </span>
+            </button>
+          </div>
           {% endfor %}
         </form>
         <p class="small text-body-secondary mt-2 mb-0 d-none d-lg-block">{{ 'shiny_game.round.keys'|trans }}</p>
@@ -99,19 +111,24 @@
           {% set isShown = isShiny == answer.isShiny %}
           {% set isChosen = isShiny == answer.isChosenShiny %}
           <div class="col-6">
-            <figure class="h-100 m-0 p-3 border rounded-3 text-center shiny-version{{ isShown ? ' shown-version' : '' }}{{ isChosen and not isShown ? ' chosen-version' : '' }}">
-              <img
-                src="{{ pokemonImageUrl|format(isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
-                alt="{{ pokemonName }} {{ (isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans }}"
-                class="shiny-game-image"
-              >
-              <figcaption class="mt-2 fw-semibold">
+            <figure class="h-100 m-0 border rounded-3 d-flex flex-column align-items-center gap-2 shiny-card shiny-version{{ isShown ? ' shown-version' : '' }}{{ isChosen and not isShown ? ' chosen-version' : '' }}">
+              <span class="d-flex align-items-center justify-content-center gap-2 fs-5 fw-semibold">
+                <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
                 {% if isShiny %}<i class="bi bi-stars" aria-hidden="true"></i>{% endif %}
                 <span class="version-name">{{ (isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans }}</span>
+              </span>
+              <span class="d-flex align-items-center justify-content-center w-100 shiny-version-box">
+                <img
+                  src="{{ pokemonImageUrl|format(isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
+                  alt="{{ pokemonName }} {{ (isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans }}"
+                  class="shiny-game-image"
+                >
+              </span>
+              <figcaption class="d-flex align-items-center justify-content-center game-choice-caption">
                 {% if isShown %}
-                <span class="d-block"><span class="badge text-bg-success mt-2 version-label"><i class="bi bi-check-lg" aria-hidden="true"></i> {{ 'shiny_game.answer.shown'|trans }}</span></span>
+                <span class="badge text-bg-success version-label"><i class="bi bi-check-lg" aria-hidden="true"></i> {{ 'shiny_game.answer.shown'|trans }}</span>
                 {% elseif isChosen %}
-                <span class="d-block"><span class="badge text-bg-danger mt-2 version-label"><i class="bi bi-x-lg" aria-hidden="true"></i> {{ 'shiny_game.answer.your_choice'|trans }}</span></span>
+                <span class="badge text-bg-danger version-label"><i class="bi bi-x-lg" aria-hidden="true"></i> {{ 'shiny_game.answer.your_choice'|trans }}</span>
                 {% endif %}
               </figcaption>
             </figure>
@@ -152,5 +169,5 @@
 {% block foot_javascript %}
   {{ parent() }}
 
-  <script src="{{ asset('js/shiny-game.js') }}"></script>
+  <script src="{{ asset('js/game.js') }}"></script>
 {% endblock foot_javascript %}
