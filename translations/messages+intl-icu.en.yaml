@@ -755,6 +755,7 @@ color_game:
   flash:
     create_failed: "The game could not be created. Try again a bit later."
   credit:
+    warning: "The colours are computed automatically: the Pokémon picture may not match them exactly."
     text: "Colours automatically extracted from the Pokémon sprites."
     link: "See the credits"
 
