@@ -4,12 +4,21 @@
 
 .shiny-game-image {
     width: 100%;
-    max-width: 16rem;
+    max-width: 14rem;
     height: auto;
 }
 
-.shiny-choice {
-    padding: .75rem 1rem;
+/* Same padding and boxes for the choices and the answers, so nothing moves between the question and the answer */
+.shiny-card {
+    padding: 1rem;
+}
+
+.shiny-version-box {
+    min-height: 10rem;
+}
+
+.shiny-version-box .shiny-game-image {
+    max-width: 10rem;
 }
 
 .shiny-version.shown-version {

@@ -772,7 +772,7 @@ shiny_game:
     image: "The Pokémon to guess"
     regular: "Regular"
     shiny: "Shiny"
-    keys: "Tip: key 1 picks regular, key 2 picks shiny."
+    keys: "Tip: click once to pick, a second time to confirm. On the keyboard, key 1 picks regular, key 2 picks shiny and Enter confirms."
   answer:
     correct: "Well done!"
     wrong: "Missed!"
@@ -791,7 +791,7 @@ which_shiny_game:
   round:
     question: "Which one is shiny?"
     image: "Image {slot}"
-    keys: "Tip: key 1 picks the left image, key 2 the right one."
+    keys: "Tip: click an image once to pick it, a second time to confirm. On the keyboard, key 1 picks the left image, key 2 the right one and Enter confirms."
   answer:
     correct: "Well done!"
     wrong: "Missed!"

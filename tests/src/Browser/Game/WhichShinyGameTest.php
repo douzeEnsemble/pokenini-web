@@ -19,7 +19,7 @@ use PHPUnit\Framework\Attributes\Test;
 final class WhichShinyGameTest extends AbstractBrowserTestCase
 {
     #[Test]
-    public function answerWithKeys(): void
+    public function answerWithKeysAndClicks(): void
     {
         $client = $this->getNewClient();
 
@@ -32,6 +32,17 @@ final class WhichShinyGameTest extends AbstractBrowserTestCase
         $this->assertSelectorTextContains('.round-position', 'Manche 2 sur 3');
 
         $client->getKeyboard()->sendKeys('2');
+
+        $this->assertSelectorAttributeContains('.which-shiny-choice[data-key="2"]', 'aria-pressed', 'true');
+        $this->assertSelectorExists('.which-shiny-choices');
+
+        $client->getKeyboard()->sendKeys('1');
+
+        $this->assertSelectorAttributeContains('.which-shiny-choice[data-key="1"]', 'aria-pressed', 'true');
+        $this->assertSelectorAttributeContains('.which-shiny-choice[data-key="2"]', 'aria-pressed', 'false');
+
+        $client->getKeyboard()->sendKeys('2');
+        $client->getKeyboard()->sendKeys(WebDriverKeys::ENTER);
         $client->waitFor('.answer-result');
 
         $this->assertSelectorExists('.which-shiny-answers');
@@ -40,6 +51,14 @@ final class WhichShinyGameTest extends AbstractBrowserTestCase
         $client->getKeyboard()->sendKeys(WebDriverKeys::ENTER);
         $client->waitFor('.which-shiny-choices');
 
-        $this->assertSelectorNotExists('.answer-result');
+        $client->getCrawler()->filter('.which-shiny-choice')->eq(0)->click();
+
+        $this->assertSelectorAttributeContains('.which-shiny-choice[data-key="1"]', 'aria-pressed', 'true');
+        $this->assertSelectorExists('.which-shiny-choices');
+
+        $client->getCrawler()->filter('.which-shiny-choice')->eq(0)->click();
+        $client->waitFor('.answer-result');
+
+        $this->assertSelectorExists('.which-shiny-answers');
     }
 }
