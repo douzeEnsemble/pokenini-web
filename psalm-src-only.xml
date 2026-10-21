@@ -38,6 +38,7 @@
                 <directory name="src/ResponseObject" />
                 <referencedMethod name="App\Security\User::getId" />
                 <referencedMethod name="App\Security\User::getProfile" />
+                <referencedMethod name="App\Security\User::getAccessToken" />
             </errorLevel>
         </PossiblyUnusedMethod>
 
