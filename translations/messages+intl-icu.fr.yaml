@@ -24,6 +24,7 @@ nav:
   is_private: "Album privé"
   open-offcanvas: "Ouvrir le panneau latéral"
   cookie-manager: "Gère tes cookies"
+  game: "Jeux"
   toggle_submenu: "Voir les sous-pages"
   sidebar:
     collapse: "Réduire le menu"
@@ -708,3 +709,55 @@ credit:
     size:
       small: "petit sprite"
       big: "grand sprite"
+
+game:
+  title: "Jeux"
+  subtitle: "Des petits jeux autour des Pokémons. Pour l'instant, y'en a qu'un"
+
+color_game:
+  title: "Jeu des couleurs"
+  description: "On te donne un Pokémon, tu retrouves ses couleurs parmi plusieurs lots."
+  shiny: "Chromatique"
+  score: "{correct, plural, =0 {Aucune bonne réponse} one {# bonne réponse} other {# bonnes réponses}} sur {answered}"
+  progress: "{answered, plural, one {# manche jouée} other {# manches jouées}} sur {total}"
+  dex:
+    subtitle: "Choisis le dex avec lequel tu veux jouer. Tu peux t'arrêter quand tu veux, ta partie t'attend"
+    playable_count: "{count, plural, one {# Pokémon} other {# Pokémons}}"
+    play: "Jouer"
+    resume: "Continuer"
+    new: "Nouvelle partie"
+    no_playable: "Pas encore de couleurs pour ce dex."
+    none: "Y'a pas encore de dex pour jouer aux couleurs."
+  history:
+    title: "Tes parties"
+    none: "Tu n'as pas encore joué."
+    started_at: "Commencée le"
+    dex: "Dex"
+    status: "État"
+    score: "Score"
+    actions: "Actions"
+  status:
+    in_progress: "En cours"
+    completed: "Terminée"
+    abandoned: "Abandonnée"
+  round:
+    position: "Manche {position} sur {total}"
+    question: "C'est quoi ses couleurs ?"
+    choice: "Lot de couleurs {n}"
+    stop: "Faire une pause"
+  answer:
+    correct: "Bien vu !"
+    wrong: "Raté !"
+    right_set: "Les bonnes couleurs"
+    your_choice: "Ton choix"
+    next: "Manche suivante"
+    result: "Voir le résultat"
+  over:
+    title:
+      in_progress: "Partie en cours"
+      completed: "Partie terminée !"
+      abandoned: "Partie abandonnée"
+    replay: "Rejouer"
+    back: "Retour aux dex"
+  flash:
+    create_failed: "La partie n'a pas pu être créée. Réessaie un peu plus tard."

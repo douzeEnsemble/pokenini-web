@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'game.title'|trans }}{% endblock title %}
+
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/dex-list.css') }}">
+{% endblock stylesheets %}
+
+{% block container %}
+  <div class="row">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
+      <h1>{{ 'game.title'|trans }}</h1>
+      <h2>
+        <small class="text-body-secondary">{{ 'game.subtitle'|trans }}</small>
+      </h2>
+    </div>
+  </div>
+
+  <div class="row g-lg-4 g-md-4 g-sm-3 g-2 mt-2">
+    <div class="col-lg-4 col-md-6 col-12 dex-item game-item">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="h5 card-title">
+            <a href="{{ path('app_colorgame_dex') }}">
+              <i class="bi bi-palette"></i>
+              {{ 'color_game.title'|trans }}
+            </a>
+          </h2>
+          <p class="card-text text-body-secondary">{{ 'color_game.description'|trans }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock container %}

@@ -1,0 +1,19 @@
+{
+  "game": {
+    "id": "22222222-2222-4222-8222-222222222222",
+    "dex": {
+      "slug": "homeshiny",
+      "name": "Home Shiny",
+      "french_name": "Home Chromatique"
+    },
+    "is_shiny": true,
+    "status": "completed",
+    "round_count": 2,
+    "answered_count": 2,
+    "correct_count": 1,
+    "started_at": "2026-10-20T10:00:00+00:00",
+    "last_played_at": "2026-10-19T10:05:00+00:00",
+    "ended_at": "2026-10-19T10:05:00+00:00"
+  },
+  "round": null
+}

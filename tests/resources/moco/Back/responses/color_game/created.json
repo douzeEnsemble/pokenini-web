@@ -1,0 +1,16 @@
+{
+  "id": "33333333-3333-4333-8333-333333333333",
+  "dex": {
+    "slug": "demo",
+    "name": "Demo",
+    "french_name": "Démo"
+  },
+  "is_shiny": false,
+  "status": "in_progress",
+  "round_count": 4,
+  "answered_count": 0,
+  "correct_count": 0,
+  "started_at": "2026-10-20T10:00:00+00:00",
+  "last_played_at": null,
+  "ended_at": null
+}

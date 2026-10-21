@@ -27,6 +27,7 @@ security:
     - { path: ^/(en|fr)/istration, roles: ROLE_ADMIN }
     - { path: ^/(en|fr)/trainer, roles: ROLE_TRAINER }
     - { path: ^/(en|fr)/election, roles: ROLE_TRAINER }
+    - { path: ^/(en|fr)/game, roles: ROLE_TRAINER }
     - { path: ^/(en|fr)/outerroom, roles: ROLE_USER }
     - { path: ^/, roles: PUBLIC_ACCESS }
 

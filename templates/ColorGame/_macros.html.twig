@@ -1,0 +1,38 @@
+{% macro swatches(choice) %}
+<span class="color-swatches">
+  {% for code in choice.codes %}
+  <span class="color-swatch" style="background-color: {{ code }};"></span>
+  {% endfor %}
+</span>
+{% endmacro %}
+
+{% macro score(game) %}
+<span class="color-game-score">
+  {{ 'color_game.score'|trans({'correct': game.correctCount, 'answered': game.answeredCount}) }}
+</span>
+{% endmacro %}
+
+{% macro progress(game) %}
+{% set percent = game.roundCount > 0 ? (game.answeredCount * 100 / game.roundCount)|round(0, 'floor') : 0 %}
+<div
+  class="progress color-game-progress"
+  role="progressbar"
+  aria-label="{{ 'color_game.progress'|trans({'answered': game.answeredCount, 'total': game.roundCount}) }}"
+  aria-valuenow="{{ game.answeredCount }}"
+  aria-valuemin="0"
+  aria-valuemax="{{ game.roundCount }}"
+>
+  <div class="progress-bar bg-info" style="width: {{ percent }}%"></div>
+</div>
+<p class="small text-body-secondary mb-0">
+  {{ 'color_game.progress'|trans({'answered': game.answeredCount, 'total': game.roundCount}) }}
+</p>
+{% endmacro %}
+
+{% macro newGameForm(dexSlug, label, buttonClass) %}
+<form method="post" action="{{ path('app_colorgame_create') }}" class="d-inline">
+  <input type="hidden" name="_token" value="{{ csrf_token('color_game') }}">
+  <input type="hidden" name="dex_slug" value="{{ dexSlug }}">
+  <button type="submit" class="btn {{ buttonClass }}">{{ label|trans }}</button>
+</form>
+{% endmacro %}

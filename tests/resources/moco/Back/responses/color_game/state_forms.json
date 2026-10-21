@@ -1,0 +1,76 @@
+{
+  "game": {
+    "id": "77777777-7777-4777-8777-777777777777",
+    "dex": {
+      "slug": "demo",
+      "name": "Demo",
+      "french_name": "Démo"
+    },
+    "is_shiny": true,
+    "status": "in_progress",
+    "round_count": 3,
+    "answered_count": 1,
+    "correct_count": 1,
+    "started_at": "2026-10-20T10:00:00+00:00",
+    "last_played_at": "2026-10-20T10:01:00+00:00",
+    "ended_at": null
+  },
+  "round": {
+    "position": 2,
+    "pokemon": {
+      "slug": "raichu-alola",
+      "name": "Alolan Raichu",
+      "french_name": "Raichu d'Alola",
+      "simplified_name": "Raichu",
+      "simplified_french_name": "Raichu",
+      "forms_label": "Alolan form",
+      "forms_french_label": "Forme d'Alola",
+      "national_dex_number": 26,
+      "icon": "raichu-alola"
+    },
+    "choices": [
+      {
+        "index": 0,
+        "codes": [
+          "#B45AA0",
+          "#8CE66E"
+        ],
+        "names": [
+          "purple",
+          "green"
+        ],
+        "french_names": [
+          "violet",
+          "vert"
+        ]
+      },
+      {
+        "index": 1,
+        "codes": [
+          "#5AA0B4",
+          "#E66E8C"
+        ],
+        "names": [
+          "teal",
+          "pink"
+        ],
+        "french_names": [
+          "bleu vert",
+          "rose"
+        ]
+      },
+      {
+        "index": 2,
+        "codes": [
+          "#F0C030"
+        ],
+        "names": [
+          "yellow"
+        ],
+        "french_names": [
+          "jaune"
+        ]
+      }
+    ]
+  }
+}
