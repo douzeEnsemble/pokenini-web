@@ -9,6 +9,11 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\PantherTestCase;
 
+/**
+ * Every browser test extends it, so its number of children grows with the browser tests.
+ *
+ * @SuppressWarnings("PHPMD.NumberOfChildren")
+ */
 abstract class AbstractBrowserTestCase extends PantherTestCase
 {
     protected static function getNewClient(): Client
