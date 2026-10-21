@@ -1,0 +1,32 @@
+{
+  "game": {
+    "id": "44444444-4444-4444-8444-444444444444",
+    "dex": {
+      "slug": "redgreenblueyellow",
+      "name": "Red / Green / Blue / Yellow\nKanto",
+      "french_name": "Rouge / Vert / Bleu / Jaune\nKanto"
+    },
+    "status": "abandoned",
+    "round_count": 151,
+    "answered_count": 0,
+    "correct_count": 0,
+    "started_at": "2026-10-20T10:00:00+00:00",
+    "last_played_at": null,
+    "ended_at": "2026-10-18T10:00:00+00:00"
+  },
+  "round": {
+    "position": 1,
+    "pokemon": {
+      "slug": "bulbasaur",
+      "name": "Bulbasaur",
+      "french_name": "Bulbizarre",
+      "simplified_name": "Bulbasaur",
+      "simplified_french_name": "Bulbizarre",
+      "forms_label": "",
+      "forms_french_label": "",
+      "national_dex_number": 1,
+      "icon": "bulbasaur"
+    },
+    "shiny_slot": 1
+  }
+}

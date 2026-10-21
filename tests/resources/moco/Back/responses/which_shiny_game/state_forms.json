@@ -1,0 +1,32 @@
+{
+  "game": {
+    "id": "77777777-7777-4777-8777-777777777777",
+    "dex": {
+      "slug": "demo",
+      "name": "Demo",
+      "french_name": "Démo"
+    },
+    "status": "in_progress",
+    "round_count": 3,
+    "answered_count": 1,
+    "correct_count": 1,
+    "started_at": "2026-10-20T10:00:00+00:00",
+    "last_played_at": "2026-10-20T10:01:00+00:00",
+    "ended_at": null
+  },
+  "round": {
+    "position": 2,
+    "pokemon": {
+      "slug": "raichu-alola",
+      "name": "Alolan Raichu",
+      "french_name": "Raichu d'Alola",
+      "simplified_name": "Raichu",
+      "simplified_french_name": "Raichu",
+      "forms_label": "Alolan form",
+      "forms_french_label": "Forme d'Alola",
+      "national_dex_number": 26,
+      "icon": "raichu-alola"
+    },
+    "shiny_slot": 2
+  }
+}

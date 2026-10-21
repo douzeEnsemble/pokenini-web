@@ -10,7 +10,7 @@ use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
- * Fetches the image of a shiny game round, so the browser never sees
+ * Fetches the image of a "Shiny or not" or "Which one is shiny?" round, so the browser never sees
  * whether the regular or the shiny image is shown.
  */
 class ShinyGameImageService

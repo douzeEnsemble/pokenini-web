@@ -1,0 +1,151 @@
+{% set locale = app.request.locale %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+{% import 'ColorGame/_macros.html.twig' as colorGame %}
+{% import 'WhichShinyGame/_macros.html.twig' as whichShinyGame %}
+
+{% block title %}Pokénini {{ 'which_shiny_game.title'|trans }}{% endblock title %}
+
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/color-game.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/which-shiny-game.css') }}">
+{% endblock stylesheets %}
+
+{% block container %}
+  {% set dexName = (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+
+  {# An abandoned game can still have unanswered rounds: it can not be played anymore #}
+  {% set showRound = round is not null and (answer is not null or game.status is same as('in_progress')) %}
+
+  {% if showRound %}
+    {% set pokemon = round.pokemon %}
+    {% set pokemonName = locale is same as('fr') ? pokemon.frenchName : pokemon.name %}
+    {% set formsLabel = locale is same as('fr') ? pokemon.formsFrenchLabel : pokemon.formsLabel %}
+    <div class="row g-4 mt-1 which-shiny-game-board">
+      <div class="col-xl-4 col-lg-5 col-12">
+        <section class="d-flex flex-column gap-3 h-100 p-4 border rounded-3 bg-body-tertiary">
+          <div>
+            <h1 class="h6 text-uppercase text-body-secondary mb-1">{{ 'which_shiny_game.title'|trans }}</h1>
+            <h2 class="h6 mb-3">
+              <small class="text-body-secondary">{{ dexName }}</small>
+            </h2>
+            <p class="text-body-secondary mb-1 round-position">
+              {{ 'color_game.round.position'|trans({'position': round.position, 'total': game.roundCount}) }}
+            </p>
+            <h3 class="h2 mb-0 pokemon-name">{{ pokemonName }}</h3>
+            {% if formsLabel is not empty %}
+            <p class="text-body-secondary mb-0 pokemon-forms">{{ formsLabel }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            {{ colorGame.progress(game) }}
+            <p class="text-center mt-2 mb-0">{{ colorGame.score(game) }}</p>
+          </div>
+
+          {% if answer is null %}
+          <a href="{{ path('app_whichshinygame_dex') }}" class="mt-auto stop-game">{{ 'color_game.round.stop'|trans }}</a>
+          {% endif %}
+        </section>
+      </div>
+
+      <div class="col-xl-8 col-lg-7 col-12">
+        {% if answer is null %}
+        <div class="d-flex align-items-center mb-3 color-game-status">
+          <h4 class="h5 mb-0">{{ 'which_shiny_game.round.question'|trans }}</h4>
+        </div>
+
+        <form method="post" action="{{ path('app_whichshinygame_answer', {'gameId': game.id}) }}" class="row g-3 which-shiny-choices">
+          <input type="hidden" name="_token" value="{{ csrf_token('which_shiny_game') }}">
+          <input type="hidden" name="position" value="{{ round.position }}">
+          {% for slot in [1, 2] %}
+          <div class="col-6">
+            {# The images are served by the web, so their URL does not tell which one is the shiny #}
+            <button
+              type="submit"
+              name="slot"
+              value="{{ slot }}"
+              class="btn btn-outline-secondary w-100 h-100 d-flex flex-column align-items-center gap-2 which-shiny-choice"
+              aria-keyshortcuts="{{ slot }}"
+              data-key="{{ slot }}"
+            >
+              <span class="choice-key" aria-hidden="true">{{ slot }}</span>
+              <img
+                src="{{ path('app_whichshinygame_image', {'gameId': game.id, 'position': round.position, 'slot': slot}) }}"
+                alt="{{ 'which_shiny_game.round.image'|trans({'slot': slot}) }}"
+                class="which-shiny-game-image round-image"
+              >
+            </button>
+          </div>
+          {% endfor %}
+        </form>
+        <p class="small text-body-secondary mt-2 mb-0 d-none d-lg-block">{{ 'which_shiny_game.round.keys'|trans }}</p>
+        {% else %}
+        <div class="alert {{ answer.isCorrect ? 'alert-success' : 'alert-danger' }} d-flex flex-wrap align-items-center justify-content-between gap-2 py-2 mb-3 color-game-status answer-box">
+          <span class="fs-5 fw-semibold answer-result" role="status">{{ (answer.isCorrect ? 'which_shiny_game.answer.correct' : 'which_shiny_game.answer.wrong')|trans }}</span>
+          <a href="{{ path('app_whichshinygame_play', {'gameId': game.id}) }}" class="btn btn-primary next-round" aria-keyshortcuts="Enter">
+            {{ (game.answeredCount < game.roundCount ? 'color_game.answer.next' : 'color_game.answer.result')|trans }}
+          </a>
+        </div>
+
+        <div class="row g-3 which-shiny-answers">
+          {% for slot in [1, 2] %}
+          {% set isShiny = slot == answer.shinySlot %}
+          {% set isChosen = slot == answer.chosenSlot %}
+          <div class="col-6">
+            <figure class="h-100 m-0 p-3 border rounded-3 text-center which-shiny-version{{ isShiny ? ' shiny-version' : '' }}{{ isChosen and not isShiny ? ' chosen-version' : '' }}">
+              <img
+                src="{{ pokemonImageUrl|format(isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
+                alt="{{ pokemonName }} {{ (isShiny ? 'which_shiny_game.answer.shiny' : 'which_shiny_game.answer.regular')|trans }}"
+                class="which-shiny-game-image"
+              >
+              <figcaption class="mt-2 fw-semibold">
+                {% if isShiny %}<i class="bi bi-stars" aria-hidden="true"></i>{% endif %}
+                <span class="version-name">{{ (isShiny ? 'which_shiny_game.answer.shiny' : 'which_shiny_game.answer.regular')|trans }}</span>
+                {% if isChosen %}
+                <span class="d-block"><span class="badge {{ isShiny ? 'text-bg-success' : 'text-bg-danger' }} mt-2 version-label"><i class="bi {{ isShiny ? 'bi-check-lg' : 'bi-x-lg' }}" aria-hidden="true"></i> {{ 'which_shiny_game.answer.your_choice'|trans }}</span></span>
+                {% endif %}
+              </figcaption>
+            </figure>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+  <div class="row">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
+      <h1>{{ 'which_shiny_game.title'|trans }}</h1>
+      <h2>
+        <small class="text-body-secondary">{{ dexName }}</small>
+      </h2>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto">
+      {{ colorGame.progress(game) }}
+      <p class="text-center mt-2">{{ colorGame.score(game) }}</p>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center game-over">
+      <h3>{{ ('color_game.over.title.'~game.status)|trans }}</h3>
+      <p class="lead">{{ colorGame.score(game) }}</p>
+      {{ whichShinyGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
+      <a href="{{ path('app_whichshinygame_dex') }}" class="btn btn-outline-secondary">{{ 'color_game.over.back'|trans }}</a>
+    </div>
+  </div>
+  {% endif %}
+{% endblock container %}
+
+{% block foot_javascript %}
+  {{ parent() }}
+
+  <script src="{{ asset('js/which-shiny-game.js') }}"></script>
+{% endblock foot_javascript %}

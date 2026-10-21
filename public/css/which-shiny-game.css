@@ -1,0 +1,25 @@
+.which-shiny-game-image {
+    width: 100%;
+    max-width: 14rem;
+    height: auto;
+}
+
+.which-shiny-choice {
+    padding: 1rem;
+}
+
+.which-shiny-choice .choice-key {
+    align-self: flex-start;
+}
+
+.which-shiny-version.shiny-version {
+    border-color: var(--bs-success) !important;
+    background-color: var(--bs-success-bg-subtle);
+    box-shadow: inset 0 0 0 1px var(--bs-success);
+}
+
+.which-shiny-version.chosen-version {
+    border-color: var(--bs-danger) !important;
+    background-color: var(--bs-danger-bg-subtle);
+    box-shadow: inset 0 0 0 1px var(--bs-danger);
+}
