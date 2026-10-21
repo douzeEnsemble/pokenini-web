@@ -739,6 +739,7 @@ color_game:
     image_pending: "The Pokémon image shows up after your answer"
     keys: "Tip: click once to pick a set, a second time to confirm it. On the keyboard, keys 1 to {count} pick and Enter confirms."
     confirm: "Click again to confirm"
+    warning: "The colours are computed automatically from the pictures: they may not exactly match how the Pokémon looks."
   answer:
     correct: "Well done!"
     wrong: "Missed!"
@@ -755,10 +756,6 @@ color_game:
     back: "Back to the dex"
   flash:
     create_failed: "The game could not be created. Try again a bit later."
-  credit:
-    warning: "The colours are computed automatically: the Pokémon picture may not match them exactly."
-    text: "Colours automatically extracted from the Pokémon sprites."
-    link: "See the credits"
 
 shiny_game:
   title: "Shiny or not"
