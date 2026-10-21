@@ -45,6 +45,8 @@ URLS=(
 	"fr/album/demolite"
 	"fr/election/dex"
 	"fr/election/demo"
+	"fr/game"
+	"fr/game/color"
 	"fr/outerroom"
 	"fr/policy"
 	"fr/legals"

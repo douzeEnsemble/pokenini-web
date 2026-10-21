@@ -1,0 +1,28 @@
+.color-swatches {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+}
+
+.color-swatch {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(0, 0, 0, .25);
+    border-radius: .5rem;
+}
+
+.color-choice {
+    padding: .75rem;
+}
+
+.color-answers .color-swatch {
+    width: 2rem;
+    height: 2rem;
+}
+
+.pokemon-image {
+    max-width: 12rem;
+    height: auto;
+}

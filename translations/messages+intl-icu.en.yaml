@@ -24,6 +24,7 @@ nav:
   is_private: "Private album"
   open-offcanvas: "Open the sidebar"
   cookie-manager: "Cookie manager"
+  game: "Games"
   toggle_submenu: "View sub-pages"
   sidebar:
     collapse: "Collapse menu"
@@ -699,3 +700,55 @@ credit:
     size:
       small: "small sprite"
       big: "big sprite"
+
+game:
+  title: "Games"
+  subtitle: "Small games around Pokémons. Only one for now"
+
+color_game:
+  title: "Colour game"
+  description: "We give you a Pokémon, you find its colours among several sets."
+  shiny: "Shiny"
+  score: "{correct, plural, =0 {No right answer} one {# right answer} other {# right answers}} out of {answered}"
+  progress: "{answered, plural, one {# round played} other {# rounds played}} out of {total}"
+  dex:
+    subtitle: "Choose the dex you want to play with. You can stop whenever you want, your game will wait for you"
+    playable_count: "{count, plural, one {# Pokémon} other {# Pokémons}}"
+    play: "Play"
+    resume: "Resume"
+    new: "New game"
+    no_playable: "No colours for this dex yet."
+    none: "There is no dex to play the colour game yet."
+  history:
+    title: "Your games"
+    none: "You haven't played yet."
+    started_at: "Started on"
+    dex: "Dex"
+    status: "Status"
+    score: "Score"
+    actions: "Actions"
+  status:
+    in_progress: "In progress"
+    completed: "Completed"
+    abandoned: "Abandoned"
+  round:
+    position: "Round {position} of {total}"
+    question: "What are its colours?"
+    choice: "Colour set {n}"
+    stop: "Take a break"
+  answer:
+    correct: "Well done!"
+    wrong: "Missed!"
+    right_set: "The right colours"
+    your_choice: "Your choice"
+    next: "Next round"
+    result: "See the result"
+  over:
+    title:
+      in_progress: "Game in progress"
+      completed: "Game over!"
+      abandoned: "Abandoned game"
+    replay: "Play again"
+    back: "Back to the dex"
+  flash:
+    create_failed: "The game could not be created. Try again a bit later."

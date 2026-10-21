@@ -1,0 +1,65 @@
+[
+  {
+    "slug": "demo",
+    "name": "Demo",
+    "french_name": "Démo",
+    "is_shiny": false,
+    "is_released": true,
+    "is_premium": false,
+    "description": "A small dex to try.",
+    "french_description": "Un petit dex pour essayer.",
+    "playable_count": 4,
+    "current_game": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "dex": {
+        "slug": "demo",
+        "name": "Demo",
+        "french_name": "Démo"
+      },
+      "is_shiny": false,
+      "status": "in_progress",
+      "round_count": 3,
+      "answered_count": 1,
+      "correct_count": 1,
+      "started_at": "2026-10-20T10:00:00+00:00",
+      "last_played_at": "2026-10-20T10:01:00+00:00",
+      "ended_at": null
+    }
+  },
+  {
+    "slug": "redgreenblueyellow",
+    "name": "Red / Green / Blue / Yellow\nKanto",
+    "french_name": "Rouge / Vert / Bleu / Jaune\nKanto",
+    "is_shiny": false,
+    "is_released": true,
+    "is_premium": false,
+    "description": "",
+    "french_description": "",
+    "playable_count": 151,
+    "current_game": null
+  },
+  {
+    "slug": "homeshiny",
+    "name": "Home Shiny",
+    "french_name": "Home Chromatique",
+    "is_shiny": true,
+    "is_released": false,
+    "is_premium": true,
+    "description": "",
+    "french_description": "",
+    "playable_count": 2,
+    "current_game": null
+  },
+  {
+    "slug": "homepogo",
+    "name": "Home Pokémon GO",
+    "french_name": "Home Pokémon GO",
+    "is_shiny": false,
+    "is_released": true,
+    "is_premium": false,
+    "description": "",
+    "french_description": "",
+    "playable_count": 0,
+    "current_game": null
+  }
+]

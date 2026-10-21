@@ -1,0 +1,138 @@
+{% set locale = app.request.locale %}
+
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+{% import 'ColorGame/_macros.html.twig' as colorGame %}
+
+{% block title %}Pokénini {{ 'color_game.title'|trans }}{% endblock title %}
+
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/color-game.css') }}">
+{% endblock stylesheets %}
+
+{% block container %}
+  {% set dexName = (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+  <div class="row">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
+      <h1>{{ 'color_game.title'|trans }}</h1>
+      <h2>
+        <small class="text-body-secondary">
+          {{ dexName }}
+          {% if game.isShiny %}
+          <span class="badge text-bg-warning game-is-shiny"><i class="bi bi-stars"></i> {{ 'color_game.shiny'|trans }}</span>
+          {% endif %}
+        </small>
+      </h2>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto">
+      {{ colorGame.progress(game) }}
+      <p class="text-center mt-2">{{ colorGame.score(game) }}</p>
+    </div>
+  </div>
+
+  {# An abandoned game can still have unanswered rounds: it can not be played anymore #}
+  {% set showRound = round is not null and (answer is not null or game.status is same as('in_progress')) %}
+
+  {% if showRound %}
+    {% set pokemon = round.pokemon %}
+    {% set pokemonName = locale is same as('fr') ? pokemon.frenchName : pokemon.name %}
+    {% set formsLabel = locale is same as('fr') ? pokemon.formsFrenchLabel : pokemon.formsLabel %}
+    <div class="row mt-3">
+      <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
+        <p class="text-body-secondary mb-1 round-position">
+          {{ 'color_game.round.position'|trans({'position': round.position, 'total': game.roundCount}) }}
+        </p>
+        <h3 class="pokemon-name">{{ pokemonName }}</h3>
+        {% if formsLabel is not empty %}
+        <p class="text-body-secondary pokemon-forms">{{ formsLabel }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if answer is null %}
+    <div class="row mt-3">
+      <div class="col-xl-6 col-lg-8 col-12 mx-auto">
+        <p class="text-center">{{ 'color_game.round.question'|trans }}</p>
+        <form method="post" action="{{ path('app_colorgame_answer', {'gameId': game.id}) }}" class="d-grid gap-3 color-choices">
+          <input type="hidden" name="_token" value="{{ csrf_token('color_game') }}">
+          <input type="hidden" name="position" value="{{ round.position }}">
+          {% for choice in round.choices %}
+          <button
+            type="submit"
+            name="choice"
+            value="{{ choice.index }}"
+            class="btn btn-outline-secondary color-choice"
+            aria-label="{{ 'color_game.round.choice'|trans({'n': loop.index}) }}"
+          >
+            {{ colorGame.swatches(choice) }}
+          </button>
+          {% endfor %}
+        </form>
+      </div>
+    </div>
+    {% else %}
+    <div class="row mt-3">
+      <div class="col-xl-6 col-lg-8 col-12 mx-auto">
+        {% if answer.isCorrect %}
+        <div class="alert alert-success text-center answer-result" role="status">{{ 'color_game.answer.correct'|trans }}</div>
+        {% else %}
+        <div class="alert alert-danger text-center answer-result" role="status">{{ 'color_game.answer.wrong'|trans }}</div>
+        {% endif %}
+
+        <div class="text-center mb-3">
+          <img
+            src="{{ pokemonImageUrl|format(game.isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
+            alt="{{ pokemonName }}"
+            class="pokemon-image"
+            loading="lazy"
+          >
+        </div>
+
+        <ul class="list-group color-answers">
+          {% for choice in round.choices %}
+          {% set isCorrectChoice = choice.index == answer.correctChoice %}
+          {% set isChosenChoice = choice.index == answer.chosenChoice %}
+          <li class="list-group-item d-flex flex-wrap align-items-center gap-3{{ isCorrectChoice ? ' list-group-item-success correct-choice' : '' }}{{ isChosenChoice and not isCorrectChoice ? ' list-group-item-danger chosen-choice' : '' }}">
+            {{ colorGame.swatches(choice) }}
+            <span class="color-names">{{ (locale is same as('fr') ? choice.frenchNames : choice.names)|join(', ') }}</span>
+            {% if isCorrectChoice %}
+            <span class="badge text-bg-success ms-auto">{{ 'color_game.answer.right_set'|trans }}</span>
+            {% elseif isChosenChoice %}
+            <span class="badge text-bg-danger ms-auto">{{ 'color_game.answer.your_choice'|trans }}</span>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div class="text-center mt-4">
+          <a href="{{ path('app_colorgame_play', {'gameId': game.id}) }}" class="btn btn-primary next-round">
+            {{ (game.answeredCount < game.roundCount ? 'color_game.answer.next' : 'color_game.answer.result')|trans }}
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  {% else %}
+  <div class="row mt-3">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center game-over">
+      <h3>{{ ('color_game.over.title.'~game.status)|trans }}</h3>
+      <p class="lead">{{ colorGame.score(game) }}</p>
+      {{ colorGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
+      <a href="{{ path('app_colorgame_dex') }}" class="btn btn-outline-secondary">{{ 'color_game.over.back'|trans }}</a>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if showRound and answer is null %}
+  <div class="row mt-4">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
+      <a href="{{ path('app_colorgame_dex') }}" class="btn btn-link stop-game">{{ 'color_game.round.stop'|trans }}</a>
+    </div>
+  </div>
+  {% endif %}
+{% endblock container %}
