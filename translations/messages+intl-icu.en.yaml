@@ -703,7 +703,7 @@ credit:
 
 game:
   title: "Games"
-  subtitle: "Small games around Pokémons. Only one for now"
+  subtitle: "Small games around Pokémons"
 
 color_game:
   title: "Colour game"
@@ -752,5 +752,26 @@ color_game:
       abandoned: "Abandoned game"
     replay: "Play again"
     back: "Back to the dex"
+  flash:
+    create_failed: "The game could not be created. Try again a bit later."
+
+shiny_game:
+  title: "Shiny or not"
+  description: "We show you a Pokémon, you guess if it is the regular or the shiny one."
+  dex:
+    subtitle: "Choose the dex you want to play with. You can stop whenever you want, your game will wait for you"
+    no_playable: "No Pokémon in this dex yet."
+    none: "There is no dex to play Shiny or not yet."
+  round:
+    question: "Regular or shiny?"
+    image: "The Pokémon to guess"
+    regular: "Regular"
+    shiny: "Shiny"
+    keys: "Tip: key 1 picks regular, key 2 picks shiny."
+  answer:
+    correct: "Well done!"
+    wrong: "Missed!"
+    shown: "The image shown"
+    your_choice: "Your choice"
   flash:
     create_failed: "The game could not be created. Try again a bit later."

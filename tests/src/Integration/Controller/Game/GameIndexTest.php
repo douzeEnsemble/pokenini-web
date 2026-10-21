@@ -11,6 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * @internal
@@ -36,9 +37,16 @@ final class GameIndexTest extends WebTestCase
 
         $this->assertSame('Pokénini Jeux', $crawler->filter('title')->text());
         $this->assertSame('Jeux', $crawler->filter('h1')->text());
-        $this->assertCountFilter($crawler, 1, '.game-item');
-        $this->assertSame('/fr/game/color', $crawler->filter('.game-item a')->attr('href'));
-        $this->assertSame('Jeu des couleurs', $crawler->filter('.game-item .card-title')->text());
+        $this->assertSame('Des petits jeux autour des Pokémons', $crawler->filter('h2 small')->text());
+        $this->assertCountFilter($crawler, 2, '.game-item');
+        $this->assertSame(
+            ['/fr/game/color', '/fr/game/shiny'],
+            $crawler->filter('.game-item a')->each(static fn (Crawler $node): ?string => $node->attr('href')),
+        );
+        $this->assertSame(
+            ['Jeu des couleurs', 'Shiny or not'],
+            $crawler->filter('.game-item .card-title')->each(static fn (Crawler $node): string => $node->text()),
+        );
 
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.active');
         $this->assertSame('/fr/game', $crawler->filter('.navbar-nav .game-link a')->attr('href'));
@@ -57,7 +65,11 @@ final class GameIndexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertSame('Games', $crawler->filter('h1')->text());
-        $this->assertSame('Colour game', $crawler->filter('.game-item .card-title')->text());
+        $this->assertSame('Colour game', $crawler->filter('.game-item .card-title')->eq(0)->text());
+        $this->assertSame(
+            'We show you a Pokémon, you guess if it is the regular or the shiny one.',
+            $crawler->filter('.game-item .card-text')->eq(1)->text(),
+        );
     }
 
     #[Test]

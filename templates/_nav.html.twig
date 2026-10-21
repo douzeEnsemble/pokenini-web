@@ -84,7 +84,7 @@
                 </li>
                 <li class="nav-item game-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    {% set onGame = currentRoute|default('') starts with 'app_game_' or currentRoute|default('') starts with 'app_colorgame_' %}
+                    {% set onGame = currentRoute|default('') starts with 'app_game_' or currentRoute|default('') starts with 'app_colorgame_' or currentRoute|default('') starts with 'app_shinygame_' %}
                     <a
                         class="nav-link {{ onGame ? ' active' : '' }}"
                         {{ onGame ? 'aria-current="page"' : '' }}

@@ -1,0 +1,32 @@
+{
+  "game": {
+    "id": "66666666-6666-4666-8666-666666666666",
+    "dex": {
+      "slug": "demo",
+      "name": "Demo",
+      "french_name": "Démo"
+    },
+    "status": "in_progress",
+    "round_count": 3,
+    "answered_count": 2,
+    "correct_count": 2,
+    "started_at": "2026-10-20T10:00:00+00:00",
+    "last_played_at": "2026-10-20T10:01:00+00:00",
+    "ended_at": null
+  },
+  "round": {
+    "position": 3,
+    "pokemon": {
+      "slug": "venusaur",
+      "name": "Venusaur",
+      "french_name": "Florizarre",
+      "simplified_name": "Venusaur",
+      "simplified_french_name": "Florizarre",
+      "forms_label": "",
+      "forms_french_label": "",
+      "national_dex_number": 3,
+      "icon": "venusaur"
+    },
+    "is_shiny": true
+  }
+}
