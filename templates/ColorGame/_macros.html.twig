@@ -13,7 +13,7 @@
 </span>
 {% endmacro %}
 
-{% macro progress(game) %}
+{% macro progress(game, showLabel = true) %}
 {% set percent = game.roundCount > 0 ? (game.answeredCount * 100 / game.roundCount)|round(0, 'floor') : 0 %}
 <div
   class="progress color-game-progress"
@@ -25,7 +25,7 @@
 >
   <div class="progress-bar bg-info" style="width: {{ percent }}%"></div>
 </div>
-<p class="small text-body-secondary mb-0">
+<p class="small text-body-secondary mb-0{{ showLabel ? '' : ' visually-hidden' }}">
   {{ 'color_game.progress'|trans({'answered': game.answeredCount, 'total': game.roundCount}) }}
 </p>
 {% endmacro %}
