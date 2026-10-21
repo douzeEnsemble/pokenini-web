@@ -31,7 +31,7 @@ pokenini-web/
 │   │   ├── Common/             # Pokemon (partagé)
 │   │   ├── Election/           # ElectionIndex, ElectionList, TopPokemon
 │   │   └── Label/              # Labels, CatchState, Type, CategoryForm, GameBundle…
-│   ├── Security/               # User, authenticateurs OAuth2, UserProvider, UserRefresher
+│   ├── Security/               # User, authenticateurs OAuth2, UserProvider
 │   ├── Service/                # Orchestration : compose Back services, gère erreurs HTTP
 │   │   └── Back/               # Clients HTTP vers pokenini-api (AbstractBackService)
 │   ├── Twig/                   # Extensions Twig (AppExtension, AppRequestExtension, AppTranslatorExtension)
@@ -75,7 +75,7 @@ pokenini-web/
 | `ResponseObject/` | POPOs désérialisés depuis le JSON de l'API. Constructeur promotionnel readonly + `#[SerializedName]`. Aucune logique.                                                                                 | Peut dépendre de : Serializer seulement                                                       |
 | `DTO/`            | Conteneurs de transfert Controller ↔ Service. Deux variantes : immutables (factory `createFromArray`) ou avec `OptionsResolver` pour la validation.                                                   | Peut dépendre de : DTO, ResponseObject, HttpFoundation, OptionsResolver                       |
 | `AlbumFilters/`   | `FromRequest` parse les query params en `AlbumFilterBag` (value object). `AlbumFilterBag::toApiParams()` mappe les clés courtes vers les clés API longues ; `toRouteParams()` retourne le tableau mixte pour Twig/redirectToRoute. | Dépend uniquement de HttpFoundation                                                           |
-| `Security/`       | `User` (stocke `AccessToken` + rôles). Authenticateurs OAuth2 (Discord, Google, Fake). `UserTokenService` : `getLoggedUserId()` = `sha1(userIdentifier)`. `UserRefresher` rafraîchit le token expiré. | Peut dépendre de : DTO, Service, KnpU, LeagueOAuth2, SymfonySecurity                          |
+| `Security/`       | `User` (stocke `AccessToken` + rôles). Authenticateurs OAuth2 (Discord, Google, Fake). `UserTokenService` : `getLoggedUserId()` = `sha1(userIdentifier)`. La session dure `SESSION_TTL` : l'expiration du token du provider n'est pas vérifiée après la connexion. | Peut dépendre de : DTO, Service, KnpU, LeagueOAuth2, SymfonySecurity                          |
 | `Twig/`           | Extensions Twig : filtres `ksort`, `sha1`, `htmlNl2br`, `almost_exactly` ; fonctions `version()`, `getArrayFromRequest()`.                                                                            | Dépend de Twig, HttpFoundation, SymfonyContractsTranslation                                   |
 | `Utils/`          | `JsonDecoder` : wrapper `json_decode` avec `JSON_THROW_ON_ERROR` et profondeur 5.                                                                                                                     | Aucune dépendance App                                                                         |
 | `Validator/`      | `CatchStates` (contrainte) + `CatchStatesValidator` (interroge `GetLabelsService` pour valider les slugs).                                                                                            | Peut dépendre de : Service, Validator                                                         |
