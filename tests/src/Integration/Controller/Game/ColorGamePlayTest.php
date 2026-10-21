@@ -71,6 +71,7 @@ final class ColorGamePlayTest extends WebTestCase
 
         $this->assertSame('Couleurs extraites automatiquement des sprites des Pokémon. Voir les crédits', $crawler->filter('.color-game-credit')->text());
         $this->assertSame('/fr/credits', $crawler->filter('.color-game-credit a')->attr('href'));
+        $this->assertSame('Les couleurs sont calculées automatiquement : le visuel du Pokémon ne leur correspond pas forcément.', $crawler->filter('.color-game-warning')->text());
     }
 
     #[Test]
@@ -203,6 +204,7 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('The right colours', $crawler->filter('.correct-choice .choice-key')->text());
         $this->assertSame('Colours automatically extracted from the Pokémon sprites. See the credits', $crawler->filter('.color-game-credit')->text());
         $this->assertSame('/en/credits', $crawler->filter('.color-game-credit a')->attr('href'));
+        $this->assertSame('The colours are computed automatically: the Pokémon picture may not match them exactly.', $crawler->filter('.color-game-warning')->text());
         $this->assertSame(['1', '3'], $crawler->filter('.color-answer:not(.correct-choice) .choice-key')->each(static fn (Crawler $node): string => $node->text()));
     }
 
