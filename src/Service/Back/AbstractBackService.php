@@ -12,6 +12,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
+/**
+ * Every back service extends it, so its number of children grows with the back endpoints.
+ *
+ * @SuppressWarnings("PHPMD.NumberOfChildren")
+ */
 abstract class AbstractBackService
 {
     public function __construct(
