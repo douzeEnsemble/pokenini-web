@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ab82134e20592d84bc9c0905613bd9a",
+    "content-hash": "1de5694eef0aa3ba4b280f21162c91b7",
     "packages": [
         {
             "name": "phar-io/version",
@@ -261,7 +261,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.5.8",
+        "php": ">=8.5.11",
         "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-dom": "*",
