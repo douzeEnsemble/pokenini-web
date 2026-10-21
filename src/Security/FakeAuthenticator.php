@@ -37,8 +37,7 @@ final class FakeAuthenticator extends OAuth2Authenticator
     {
         $identifier = $request->query->getString('t');
 
-        // expires is set to PHP_INT_MAX so dev sessions never expire and
-        // UserRefresher never attempts an OAuth refresh for the fake provider.
+        // expires is set to PHP_INT_MAX so the fake access token never looks expired.
         $accessToken = new AccessToken([
             'access_token' => $identifier,
             'expires' => PHP_INT_MAX,

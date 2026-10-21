@@ -6,7 +6,6 @@ namespace App\Tests\Unit\Security;
 
 use App\Security\User;
 use App\Security\UserProvider;
-use App\Security\UserRefresher;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
@@ -24,13 +23,7 @@ final class UserProviderTest extends TestCase
     #[Test]
     public function loadUserByIdentifier(): void
     {
-        $refresher = $this->createMock(UserRefresher::class);
-        $refresher
-            ->expects($this->never())
-            ->method('refresh')
-        ;
-
-        $provider = new UserProvider($refresher);
+        $provider = new UserProvider();
 
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessageIsOrContains('Not use in this project');
@@ -39,7 +32,7 @@ final class UserProviderTest extends TestCase
     }
 
     #[Test]
-    public function refreshUser(): void
+    public function refreshUserKeepsUserWithExpiredProviderToken(): void
     {
         $user = new User(
             'douze',
@@ -51,29 +44,15 @@ final class UserProviderTest extends TestCase
             'test-session-token',
         );
 
-        $refresher = $this->createMock(UserRefresher::class);
-        $refresher
-            ->expects($this->once())
-            ->method('refresh')
-            ->with($user)
-            ->willReturn($user)
-        ;
+        $provider = new UserProvider();
 
-        $provider = new UserProvider($refresher);
-
-        $provider->refreshUser($user);
+        $this->assertSame($user, $provider->refreshUser($user));
     }
 
     #[Test]
     public function refreshUserWrongUser(): void
     {
-        $refresher = $this->createMock(UserRefresher::class);
-        $refresher
-            ->expects($this->never())
-            ->method('refresh')
-        ;
-
-        $provider = new UserProvider($refresher);
+        $provider = new UserProvider();
 
         $this->expectException(UnsupportedUserException::class);
         $this->expectExceptionMessageMatches('/Invalid user class "TestStub_UserInterface_.{8}"\./');
@@ -86,13 +65,7 @@ final class UserProviderTest extends TestCase
     #[Test]
     public function upgradePassword(): void
     {
-        $refresher = $this->createMock(UserRefresher::class);
-        $refresher
-            ->expects($this->never())
-            ->method('refresh')
-        ;
-
-        $provider = new UserProvider($refresher);
+        $provider = new UserProvider();
 
         $user = $initialUser = $this->createStub(PasswordAuthenticatedUserInterface::class);
 
@@ -104,13 +77,7 @@ final class UserProviderTest extends TestCase
     #[Test]
     public function supportsClass(): void
     {
-        $refresher = $this->createMock(UserRefresher::class);
-        $refresher
-            ->expects($this->never())
-            ->method('refresh')
-        ;
-
-        $provider = new UserProvider($refresher);
+        $provider = new UserProvider();
 
         $this->assertTrue($provider->supportsClass('App\Security\User'));
         $this->assertFalse($provider->supportsClass('App\Entity\User'));

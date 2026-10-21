@@ -61,7 +61,6 @@
             <errorLevel type="suppress">
                 <directory name="src/Service" />
                 <file name="src/Security/UserTokenService.php" />
-                <file name="src/Security/UserRefresher.php" />
             </errorLevel>
         </ClassMustBeFinal>
     </issueHandlers>

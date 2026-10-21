@@ -15,10 +15,6 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
  */
 final class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 {
-    public function __construct(
-        private readonly UserRefresher $refresher,
-    ) {}
-
     /**
      * @SuppressWarnings("PHPMD.UnusedFormalParameter")
      */
@@ -38,7 +34,10 @@ final class UserProvider implements UserProviderInterface, PasswordUpgraderInter
             throw new UnsupportedUserException(sprintf('Invalid user class "%s".', get_class($user)));
         }
 
-        return $this->refresher->refresh($user);
+        // The user only lives in the session: the pokenini-back session token it carries is
+        // valid for SESSION_TTL, like the session itself. The provider (Google/Discord) access
+        // token is not used after login, so its own, much shorter, expiry must not log the user out.
+        return $user;
     }
 
     #[\Override]
