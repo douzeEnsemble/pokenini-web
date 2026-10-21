@@ -41,6 +41,9 @@ final class ShinyGamePlayTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertSame('Pokénini Shiny or not', $crawler->filter('title')->text());
+        // The release version is in the CSS and JS URLs, so a new release is not served the previous files from the browser cache
+        $this->assertCountFilter($crawler, 1, 'link[href="/css/shiny-game.css?v=1.2.12"]');
+        $this->assertCountFilter($crawler, 1, 'script[src="/js/game.js?v=1.2.12"]');
         $this->assertSame('Démo', $crawler->filter('h2 small')->text());
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.active');
 

@@ -42,7 +42,7 @@ final class HomeTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 6, '.dex-item');
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/album.js?v="]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());

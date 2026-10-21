@@ -78,7 +78,7 @@ final class AdminCalculateDataTest extends WebTestCase
         $dexAvailabilitiesHref = $crawler->filter('#calculate_dex_availabilities .admin-item-refresh')->attr('href') ?? '';
         $this->assertStringContainsString('/fr/istration/calculate_data?refresh=', $dexAvailabilitiesHref);
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/album.js?v="]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());

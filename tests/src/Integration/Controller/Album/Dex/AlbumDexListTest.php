@@ -74,7 +74,7 @@ final class AlbumDexListTest extends WebTestCase
         $megaAlbum = $crawler->filter('.dex-item')->eq(5);
         $this->assertCountFilter($megaAlbum, 0, '.progress');
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/album.js?v="]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());

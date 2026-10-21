@@ -105,7 +105,7 @@ final class AdminUpdateDataTest extends WebTestCase
         $this->assertStringContainsString('/fr/istration/update_data?refresh=', $updateGamesCollectionsAndDexHref);
         $this->assertStringContainsString('#update_games_collections_and_dex', $updateGamesCollectionsAndDexHref);
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/album.js?v="]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());

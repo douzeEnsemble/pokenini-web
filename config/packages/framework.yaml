@@ -19,6 +19,11 @@ framework:
         cookie_lifetime: "%env(SESSION_TTL)%"
         gc_maxlifetime: "%env(SESSION_TTL)%"
 
+    # Each release changes the CSS and JS URLs, so browsers do not keep the previous files
+    assets:
+        version: '%env(trim:file:default:app.version_file:APP_VERSION_FILE)%'
+        version_format: '%%s?v=%%s'
+
     property_info:
         enabled: false
         with_constructor_extractor: false

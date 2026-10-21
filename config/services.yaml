@@ -1,6 +1,8 @@
 parameters:
   # The images of the shiny game are fetched by the server, as their URL gives the answer
   shiny_game.image_url: "%env(POKEMON_IMAGE_URL)%"
+  # Written by the CI at release time, its content versions the CSS and JS URLs
+  app.version_file: "%kernel.project_dir%/resources/metadata/version"
 
 services:
   _defaults:
