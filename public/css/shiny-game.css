@@ -2,6 +2,17 @@
     min-height: 16rem;
 }
 
+/* Smaller image on a phone, so the two choices fit under it without scrolling */
+@media (max-width: 991.98px) {
+    .shiny-game-image-box {
+        min-height: 11rem;
+    }
+
+    .shiny-game-image-box .shiny-game-image {
+        max-width: 10rem;
+    }
+}
+
 .shiny-game-image {
     width: 100%;
     max-width: 14rem;

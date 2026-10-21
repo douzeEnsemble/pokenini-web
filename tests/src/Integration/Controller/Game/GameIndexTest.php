@@ -50,6 +50,14 @@ final class GameIndexTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.active');
         $this->assertSame('/fr/game', $crawler->filter('.navbar-nav .game-link a')->attr('href'));
+        $this->assertSame(
+            ['/fr/game/color', '/fr/game/shiny', '/fr/game/which-shiny'],
+            $crawler->filter('.navbar-nav .game-link .dropdown-item')->each(static fn (Crawler $node): ?string => $node->attr('href')),
+        );
+        $this->assertSame(
+            ['Jeu des couleurs', 'Shiny or not', 'Lequel est le shiny ?'],
+            $crawler->filter('.navbar-nav .game-link .dropdown-item')->each(static fn (Crawler $node): string => $node->text()),
+        );
     }
 
     #[Test]

@@ -42,12 +42,16 @@ final class WhichShinyGamePlayTest extends WebTestCase
 
         $this->assertSame('Pokénini Lequel est le shiny ?', $crawler->filter('title')->text());
         $this->assertSame('Démo', $crawler->filter('h2 small')->text());
-        $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.active');
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.nav-link.active');
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link .dropdown-item.active');
+        $this->assertSame('/fr/game/which-shiny', $crawler->filter('.navbar-nav .game-link .dropdown-item.active')->attr('href'));
 
         $this->assertSame('1 manche jouée sur 3', $crawler->filter('.color-game-progress + p')->text());
         $this->assertSame('1 bonne réponse sur 1', $crawler->filter('.game-bar .color-game-score')->text());
 
         $this->assertSame('Manche 2 sur 3', $crawler->filter('.game-bar .round-position')->text());
+        $this->assertSame('2/3', $crawler->filter('.game-bar .round-position-short')->text());
+        $this->assertSame('1/1', $crawler->filter('.game-bar .game-score-short')->text());
         $this->assertSame('Lequel est le shiny ?', $crawler->filter('.game-bar h1')->text());
         $this->assertCountFilter($crawler, 1, '.game-bar .color-game-progress + p.visually-hidden');
         $this->assertCountFilter($crawler, 1, '.game-bar a.stop-game');

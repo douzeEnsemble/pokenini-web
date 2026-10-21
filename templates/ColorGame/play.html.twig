@@ -31,7 +31,7 @@
       'stopPath': answer is null ? path('app_colorgame_dex') : null,
     } only %}
 
-    <div class="row g-4 mt-1 color-game-board">
+    <div class="row g-3 g-lg-4 mt-0 mt-lg-1 color-game-board">
       <div class="col-xl-4 col-lg-5 col-12">
         <section class="d-flex flex-column gap-3 color-game-panel">
           <div>
@@ -61,7 +61,7 @@
         <div class="d-flex align-items-center mb-3 color-game-status">
           <h4 class="h5 mb-0">{{ 'color_game.round.question'|trans }}</h4>
         </div>
-        <form method="post" action="{{ path('app_colorgame_answer', {'gameId': game.id}) }}" class="d-grid gap-2 color-choices">
+        <form method="post" action="{{ path('app_colorgame_answer', {'gameId': game.id}) }}" class="d-grid gap-3 color-choices">
           <input type="hidden" name="_token" value="{{ csrf_token('color_game') }}">
           <input type="hidden" name="position" value="{{ round.position }}">
           {% for choice in round.choices %}
@@ -77,7 +77,7 @@
           >
             <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
             {{ colorGame.swatches(choice, locale) }}
-            <span class="badge text-bg-primary ms-auto choice-confirm">{{ 'color_game.round.confirm'|trans }}</span>
+            <span class="badge text-bg-primary choice-confirm">{{ 'color_game.round.confirm'|trans }}</span>
           </button>
           {% endfor %}
         </form>
@@ -90,7 +90,7 @@
           </a>
         </div>
 
-        <div class="d-grid gap-2 color-answers">
+        <div class="d-grid gap-3 color-answers">
           {% for choice in round.choices %}
           {% set isCorrectChoice = choice.index == answer.correctChoice %}
           {% set isChosenChoice = choice.index == answer.chosenChoice %}
