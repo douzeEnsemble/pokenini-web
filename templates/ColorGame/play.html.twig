@@ -86,9 +86,11 @@
             aria-label="{{ 'color_game.round.choice'|trans({'n': loop.index}) }}"
             aria-keyshortcuts="{{ loop.index }}"
             data-key="{{ loop.index }}"
+            aria-pressed="false"
           >
             <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
             {{ colorGame.swatches(choice, locale) }}
+            <span class="badge text-bg-primary ms-auto choice-confirm">{{ 'color_game.round.confirm'|trans }}</span>
           </button>
           {% endfor %}
         </form>

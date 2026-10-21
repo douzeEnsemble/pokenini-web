@@ -19,7 +19,7 @@ use PHPUnit\Framework\Attributes\Test;
 final class ColorGameTest extends AbstractBrowserTestCase
 {
     #[Test]
-    public function answerWithKeys(): void
+    public function answerWithKeysAndClicks(): void
     {
         $client = $this->getNewClient();
 
@@ -32,6 +32,17 @@ final class ColorGameTest extends AbstractBrowserTestCase
         $this->assertSelectorTextContains('.round-position', 'Manche 2 sur 3');
 
         $client->getKeyboard()->sendKeys('2');
+
+        $this->assertSelectorAttributeContains('.color-choice[data-key="2"]', 'aria-pressed', 'true');
+        $this->assertSelectorExists('.color-choices');
+
+        $client->getKeyboard()->sendKeys('1');
+
+        $this->assertSelectorAttributeContains('.color-choice[data-key="1"]', 'aria-pressed', 'true');
+        $this->assertSelectorAttributeContains('.color-choice[data-key="2"]', 'aria-pressed', 'false');
+
+        $client->getKeyboard()->sendKeys('2');
+        $client->getKeyboard()->sendKeys(WebDriverKeys::ENTER);
         $client->waitFor('.answer-result');
 
         $this->assertSelectorExists('.color-answers');
@@ -40,6 +51,14 @@ final class ColorGameTest extends AbstractBrowserTestCase
         $client->getKeyboard()->sendKeys(WebDriverKeys::ENTER);
         $client->waitFor('.color-choices');
 
-        $this->assertSelectorNotExists('.answer-result');
+        $client->getCrawler()->filter('.color-choice')->eq(0)->click();
+
+        $this->assertSelectorAttributeContains('.color-choice[data-key="1"]', 'aria-pressed', 'true');
+        $this->assertSelectorExists('.color-choices');
+
+        $client->getCrawler()->filter('.color-choice')->eq(0)->click();
+        $client->waitFor('.answer-result');
+
+        $this->assertSelectorExists('.color-answers');
     }
 }

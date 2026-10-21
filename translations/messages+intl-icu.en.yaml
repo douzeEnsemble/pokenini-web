@@ -737,7 +737,8 @@ color_game:
     choice: "Colour set {n}"
     stop: "Take a break"
     image_pending: "The Pokémon image shows up after your answer"
-    keys: "Tip: keys 1 to {count} pick a colour set."
+    keys: "Tip: click once to pick a set, a second time to confirm it. On the keyboard, keys 1 to {count} pick and Enter confirms."
+    confirm: "Click again to confirm"
   answer:
     correct: "Well done!"
     wrong: "Missed!"
