@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32a3a7d841840fd2e6aa316e2768e328",
+    "content-hash": "5d7b92099e9e43365f48e26eedfea182",
     "packages": [
         {
             "name": "seld/jsonlint",
@@ -78,7 +78,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.5.8"
+        "php": ">=8.5.11"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"

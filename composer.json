@@ -2,7 +2,7 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=8.5.8",
+        "php": ">=8.5.11",
         "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
@@ -50,7 +50,7 @@
         "phpunit/phpunit": "^13.4.3",
         "symfony/browser-kit": "8.1.*",
         "symfony/css-selector": "8.1.*",
-        "symfony/dom-crawler": "8.0.*",
+        "symfony/dom-crawler": "8.1.*",
         "symfony/debug-bundle": "8.1.*",
         "symfony/panther": "^2.4",
         "symfony/phpunit-bridge": "8.1.*",
