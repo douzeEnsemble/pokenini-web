@@ -54,7 +54,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertTrainerAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
@@ -72,7 +72,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertTrainerAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
@@ -91,7 +91,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertAdminAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
@@ -119,7 +119,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertTrainerAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
@@ -137,7 +137,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertTrainerAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
@@ -156,7 +156,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertAdminAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
@@ -174,7 +174,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertTrainerAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action');
     }
@@ -193,7 +193,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertTrainerAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }
@@ -213,7 +213,7 @@ final class RolesTest extends WebTestCase
 
         $this->assertAdminAlbumNavBar($crawler);
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album-edit.js?v="]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action');
     }

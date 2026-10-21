@@ -163,8 +163,8 @@ final class CommonTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 2, '.toast');
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album.js"]');
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album-edit.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album.js?v="]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/album-edit.js?v="]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
@@ -187,7 +187,7 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.toast.text-bg-light');
         $this->assertCountFilter($crawler, 44, '.toast.text-bg-danger');
 
-        $this->assertCountFilter($crawler, 1, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/album.js?v="]');
 
         $this->assertStringContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringContainsString('watchCatchStates();', $crawler->outerHtml());

@@ -82,7 +82,7 @@ final class AdminInvalidateDataTest extends WebTestCase
             $this->assertNoReport($crawler, $itemId, 'current');
         }
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/album.js?v="]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());

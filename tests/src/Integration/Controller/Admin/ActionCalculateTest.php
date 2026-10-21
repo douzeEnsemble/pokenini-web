@@ -161,7 +161,7 @@ final class ActionCalculateTest extends WebTestCase
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
 
-        $this->assertCountFilter($crawler, 0, 'script[src="/js/album.js"]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/album.js?v="]');
 
         $this->assertStringNotContainsString('const catchStates = JSON.parse', $crawler->outerHtml());
         $this->assertStringNotContainsString('watchCatchStates();', $crawler->outerHtml());
