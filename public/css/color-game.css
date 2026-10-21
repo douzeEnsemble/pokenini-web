@@ -26,3 +26,29 @@
     max-width: 12rem;
     height: auto;
 }
+
+.color-game-board .color-choice {
+    padding: .5rem 1rem;
+}
+
+.choice-key {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background-color: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.pokemon-image-box {
+    min-height: 12rem;
+}
+
+.pokemon-image-pending {
+    border: 2px dashed var(--bs-border-color);
+}

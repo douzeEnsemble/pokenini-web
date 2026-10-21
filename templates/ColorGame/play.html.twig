@@ -14,26 +14,6 @@
 
 {% block container %}
   {% set dexName = (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
-  <div class="row">
-    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
-      <h1>{{ 'color_game.title'|trans }}</h1>
-      <h2>
-        <small class="text-body-secondary">
-          {{ dexName }}
-          {% if game.isShiny %}
-          <span class="badge text-bg-warning game-is-shiny"><i class="bi bi-stars"></i> {{ 'color_game.shiny'|trans }}</span>
-          {% endif %}
-        </small>
-      </h2>
-    </div>
-  </div>
-
-  <div class="row mt-3">
-    <div class="col-xl-6 col-lg-8 col-12 mx-auto">
-      {{ colorGame.progress(game) }}
-      <p class="text-center mt-2">{{ colorGame.score(game) }}</p>
-    </div>
-  </div>
 
   {# An abandoned game can still have unanswered rounds: it can not be played anymore #}
   {% set showRound = round is not null and (answer is not null or game.status is same as('in_progress')) %}
@@ -42,23 +22,54 @@
     {% set pokemon = round.pokemon %}
     {% set pokemonName = locale is same as('fr') ? pokemon.frenchName : pokemon.name %}
     {% set formsLabel = locale is same as('fr') ? pokemon.formsFrenchLabel : pokemon.formsLabel %}
-    <div class="row mt-3">
-      <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
-        <p class="text-body-secondary mb-1 round-position">
-          {{ 'color_game.round.position'|trans({'position': round.position, 'total': game.roundCount}) }}
-        </p>
-        <h3 class="pokemon-name">{{ pokemonName }}</h3>
-        {% if formsLabel is not empty %}
-        <p class="text-body-secondary pokemon-forms">{{ formsLabel }}</p>
-        {% endif %}
-      </div>
-    </div>
+    <div class="row g-4 mt-1 color-game-board">
+      <div class="col-xl-4 col-lg-5 col-12">
+        <section class="color-game-panel d-flex flex-column gap-3 h-100 p-4 border rounded-3 bg-body-tertiary">
+          <div>
+            <h1 class="h6 text-uppercase text-body-secondary mb-1">{{ 'color_game.title'|trans }}</h1>
+            <h2 class="h6 mb-3">
+              <small class="text-body-secondary">{{ dexName }}</small>
+              {% if game.isShiny %}
+              <span class="badge text-bg-warning game-is-shiny"><i class="bi bi-stars"></i> {{ 'color_game.shiny'|trans }}</span>
+              {% endif %}
+            </h2>
+            <p class="text-body-secondary mb-1 round-position">
+              {{ 'color_game.round.position'|trans({'position': round.position, 'total': game.roundCount}) }}
+            </p>
+            <h3 class="h2 mb-0 pokemon-name">{{ pokemonName }}</h3>
+            {% if formsLabel is not empty %}
+            <p class="text-body-secondary mb-0 pokemon-forms">{{ formsLabel }}</p>
+            {% endif %}
+          </div>
 
-    {% if answer is null %}
-    <div class="row mt-3">
-      <div class="col-xl-6 col-lg-8 col-12 mx-auto">
-        <p class="text-center">{{ 'color_game.round.question'|trans }}</p>
-        <form method="post" action="{{ path('app_colorgame_answer', {'gameId': game.id}) }}" class="d-grid gap-3 color-choices">
+          <div class="pokemon-image-box align-items-center justify-content-center rounded-3{{ answer is null ? ' pokemon-image-pending d-none d-lg-flex' : ' d-flex bg-body' }}">
+            {% if answer is null %}
+            <span class="text-body-secondary small text-center px-3">{{ 'color_game.round.image_pending'|trans }}</span>
+            {% else %}
+            <img
+              src="{{ pokemonImageUrl|format(game.isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
+              alt="{{ pokemonName }}"
+              class="pokemon-image"
+              loading="lazy"
+            >
+            {% endif %}
+          </div>
+
+          <div>
+            {{ colorGame.progress(game) }}
+            <p class="text-center mt-2 mb-0">{{ colorGame.score(game) }}</p>
+          </div>
+
+          {% if answer is null %}
+          <a href="{{ path('app_colorgame_dex') }}" class="mt-auto stop-game">{{ 'color_game.round.stop'|trans }}</a>
+          {% endif %}
+        </section>
+      </div>
+
+      <div class="col-xl-8 col-lg-7 col-12">
+        {% if answer is null %}
+        <h4 class="h5 mb-3">{{ 'color_game.round.question'|trans }}</h4>
+        <form method="post" action="{{ path('app_colorgame_answer', {'gameId': game.id}) }}" class="d-grid gap-2 color-choices">
           <input type="hidden" name="_token" value="{{ csrf_token('color_game') }}">
           <input type="hidden" name="position" value="{{ round.position }}">
           {% for choice in round.choices %}
@@ -66,31 +77,23 @@
             type="submit"
             name="choice"
             value="{{ choice.index }}"
-            class="btn btn-outline-secondary color-choice"
+            class="btn btn-outline-secondary d-flex align-items-center gap-3 color-choice"
             aria-label="{{ 'color_game.round.choice'|trans({'n': loop.index}) }}"
+            aria-keyshortcuts="{{ loop.index }}"
+            data-key="{{ loop.index }}"
           >
+            <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
             {{ colorGame.swatches(choice) }}
           </button>
           {% endfor %}
         </form>
-      </div>
-    </div>
-    {% else %}
-    <div class="row mt-3">
-      <div class="col-xl-6 col-lg-8 col-12 mx-auto">
-        {% if answer.isCorrect %}
-        <div class="alert alert-success text-center answer-result" role="status">{{ 'color_game.answer.correct'|trans }}</div>
+        <p class="small text-body-secondary mt-2 mb-0 d-none d-lg-block">{{ 'color_game.round.keys'|trans({'count': round.choices|length}) }}</p>
         {% else %}
-        <div class="alert alert-danger text-center answer-result" role="status">{{ 'color_game.answer.wrong'|trans }}</div>
-        {% endif %}
-
-        <div class="text-center mb-3">
-          <img
-            src="{{ pokemonImageUrl|format(game.isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
-            alt="{{ pokemonName }}"
-            class="pokemon-image"
-            loading="lazy"
-          >
+        <div class="alert {{ answer.isCorrect ? 'alert-success' : 'alert-danger' }} d-flex flex-wrap align-items-center justify-content-between gap-2 py-2 answer-box">
+          <span class="fs-5 fw-semibold answer-result" role="status">{{ (answer.isCorrect ? 'color_game.answer.correct' : 'color_game.answer.wrong')|trans }}</span>
+          <a href="{{ path('app_colorgame_play', {'gameId': game.id}) }}" class="btn btn-primary next-round" aria-keyshortcuts="Enter">
+            {{ (game.answeredCount < game.roundCount ? 'color_game.answer.next' : 'color_game.answer.result')|trans }}
+          </a>
         </div>
 
         <ul class="list-group color-answers">
@@ -108,16 +111,29 @@
           </li>
           {% endfor %}
         </ul>
-
-        <div class="text-center mt-4">
-          <a href="{{ path('app_colorgame_play', {'gameId': game.id}) }}" class="btn btn-primary next-round">
-            {{ (game.answeredCount < game.roundCount ? 'color_game.answer.next' : 'color_game.answer.result')|trans }}
-          </a>
-        </div>
+        {% endif %}
       </div>
     </div>
-    {% endif %}
   {% else %}
+  <div class="row">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
+      <h1>{{ 'color_game.title'|trans }}</h1>
+      <h2>
+        <small class="text-body-secondary">{{ dexName }}</small>
+        {% if game.isShiny %}
+        <span class="badge text-bg-warning game-is-shiny"><i class="bi bi-stars"></i> {{ 'color_game.shiny'|trans }}</span>
+        {% endif %}
+      </h2>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto">
+      {{ colorGame.progress(game) }}
+      <p class="text-center mt-2">{{ colorGame.score(game) }}</p>
+    </div>
+  </div>
+
   <div class="row mt-3">
     <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center game-over">
       <h3>{{ ('color_game.over.title.'~game.status)|trans }}</h3>
@@ -127,12 +143,10 @@
     </div>
   </div>
   {% endif %}
-
-  {% if showRound and answer is null %}
-  <div class="row mt-4">
-    <div class="col-xl-6 col-lg-8 col-12 mx-auto text-center">
-      <a href="{{ path('app_colorgame_dex') }}" class="btn btn-link stop-game">{{ 'color_game.round.stop'|trans }}</a>
-    </div>
-  </div>
-  {% endif %}
 {% endblock container %}
+
+{% block foot_javascript %}
+  {{ parent() }}
+
+  <script src="{{ asset('js/color-game.js') }}"></script>
+{% endblock foot_javascript %}

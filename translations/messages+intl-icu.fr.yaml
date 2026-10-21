@@ -745,6 +745,8 @@ color_game:
     question: "C'est quoi ses couleurs ?"
     choice: "Lot de couleurs {n}"
     stop: "Faire une pause"
+    image_pending: "L'image du Pokémon apparaît après ta réponse"
+    keys: "Astuce : les touches 1 à {count} choisissent un lot de couleurs."
   answer:
     correct: "Bien vu !"
     wrong: "Raté !"

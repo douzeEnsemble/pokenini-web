@@ -61,6 +61,10 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('2', $crawler->filter('.color-choices input[name="position"]')->attr('value'));
         $this->assertCountFilter($crawler, 0, '.color-names');
         $this->assertCountFilter($crawler, 0, '.pokemon-image');
+        $this->assertSame("L'image du Pokémon apparaît après ta réponse", $crawler->filter('.pokemon-image-pending')->text());
+        $this->assertSame(['1', '2', '3'], $crawler->filter('.color-choice .choice-key')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['1', '2', '3'], $crawler->filter('.color-choice')->each(static fn (Crawler $node): ?string => $node->attr('data-key')));
+        $this->assertSame('Astuce : les touches 1 à 3 choisissent un lot de couleurs.', $crawler->filter('.color-choices + p')->text());
 
         $this->assertSame('/fr/game/color', $crawler->filter('a.stop-game')->attr('href'));
     }
@@ -144,7 +148,7 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertSame('Raté !', $crawler->filter('.answer-result')->text());
-        $this->assertStringContainsString('alert-danger', (string) $crawler->filter('.answer-result')->attr('class'));
+        $this->assertStringContainsString('alert-danger', (string) $crawler->filter('.answer-box')->attr('class'));
         $this->assertSame('2 manches jouées sur 3', $crawler->filter('.color-game-progress + p')->text());
         $this->assertSame('Herbizarre', $crawler->filter('.pokemon-name')->text());
         $this->assertSame(
@@ -184,7 +188,7 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertSame('Well done!', $crawler->filter('.answer-result')->text());
-        $this->assertStringContainsString('alert-success', (string) $crawler->filter('.answer-result')->attr('class'));
+        $this->assertStringContainsString('alert-success', (string) $crawler->filter('.answer-box')->attr('class'));
         $this->assertSame('2 right answers out of 2', $crawler->filter('p.text-center .color-game-score')->text());
         $this->assertSame(['purple, green', 'teal, pink', 'yellow'], $crawler->filter('.color-names')->each(static fn (Crawler $node): string => $node->text()));
         $this->assertCountFilter($crawler, 0, '.chosen-choice');
