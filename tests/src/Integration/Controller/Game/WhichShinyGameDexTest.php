@@ -34,7 +34,9 @@ final class WhichShinyGameDexTest extends WebTestCase
 
         $this->assertSame('Pokénini Lequel est le shiny ?', $crawler->filter('title')->text());
         $this->assertSame('Lequel est le shiny ?', $crawler->filter('h1')->text());
-        $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.active');
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.nav-link.active');
+        $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link .dropdown-item.active');
+        $this->assertSame('/fr/game/which-shiny', $crawler->filter('.navbar-nav .game-link .dropdown-item.active')->attr('href'));
 
         $this->assertCountFilter($crawler, 3, '.dex-item');
         $this->assertSame(

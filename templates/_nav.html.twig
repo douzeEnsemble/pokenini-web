@@ -84,15 +84,46 @@
                 </li>
                 <li class="nav-item game-link">
                     {% if is_granted("ROLE_TRAINER") %}
-                    {% set onGame = currentRoute|default('') starts with 'app_game_' or currentRoute|default('') starts with 'app_colorgame_' or currentRoute|default('') starts with 'app_shinygame_' or currentRoute|default('') starts with 'app_whichshinygame_' %}
-                    <a
-                        class="nav-link {{ onGame ? ' active' : '' }}"
-                        {{ onGame ? 'aria-current="page"' : '' }}
-                        href="{{ path('app_game_index') }}"
-                    >
-                        <i class="bi bi-controller"></i>
-                        {{ 'nav.game'|trans }}
-                    </a>
+                    {% set gamePages = [
+                        {'prefix': 'app_colorgame_', 'icon': 'bi-palette', 'label': 'color_game.title', 'route': 'app_colorgame_dex'},
+                        {'prefix': 'app_shinygame_', 'icon': 'bi-stars', 'label': 'shiny_game.title', 'route': 'app_shinygame_dex'},
+                        {'prefix': 'app_whichshinygame_', 'icon': 'bi-intersect', 'label': 'which_shiny_game.title', 'route': 'app_whichshinygame_dex'},
+                    ] %}
+                    {% set gameRoute = currentRoute|default('') %}
+                    {% set onGame = gameRoute starts with 'app_game_' or gamePages|filter(p => gameRoute starts with p.prefix)|length > 0 %}
+                    <div class="dropdown dropup d-flex align-items-center">
+                        <a
+                            class="nav-link {{ onGame ? ' active' : '' }}"
+                            {{ onGame ? 'aria-current="page"' : '' }}
+                            href="{{ path('app_game_index') }}"
+                        >
+                            <i class="bi bi-controller"></i>
+                            {{ 'nav.game'|trans }}
+                        </a>
+                        <button
+                            class="nav-link dropdown-toggle dropdown-toggle-split"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            <span class="visually-hidden">{{ 'nav.toggle_submenu'|trans }}</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% for page in gamePages %}
+                            {% set onPage = gameRoute starts with page.prefix %}
+                            <li>
+                                <a
+                                    class="dropdown-item{{ onPage ? ' active' : '' }}"
+                                    {{ onPage ? 'aria-current="page"' : '' }}
+                                    href="{{ path(page.route) }}"
+                                >
+                                    <i class="bi {{ page.icon }}"></i>
+                                    {{ page.label|trans }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                     {% endif %}
                 </li>
                 <li class="nav-item cookie-manager">
