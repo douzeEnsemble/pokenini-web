@@ -68,7 +68,9 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame("L'image du Pokémon apparaît après ta réponse", $crawler->filter('.pokemon-image-pending')->text());
         $this->assertSame(['1', '2', '3'], $crawler->filter('.color-choice .choice-key')->each(static fn (Crawler $node): string => $node->text()));
         $this->assertSame(['1', '2', '3'], $crawler->filter('.color-choice')->each(static fn (Crawler $node): ?string => $node->attr('data-key')));
-        $this->assertSame('Astuce : les touches 1 à 3 choisissent un lot de couleurs.', $crawler->filter('.color-choices + p')->text());
+        $this->assertSame('Astuce : clique une fois pour choisir un lot, une seconde fois pour valider. Au clavier, les touches 1 à 3 choisissent et Entrée valide.', $crawler->filter('.color-choices + p')->text());
+        $this->assertSame(['Clique encore pour valider', 'Clique encore pour valider', 'Clique encore pour valider'], $crawler->filter('.color-choice .choice-confirm')->each(static fn (Crawler $node): string => $node->text()));
+        $this->assertSame(['false', 'false', 'false'], $crawler->filter('.color-choice')->each(static fn (Crawler $node): ?string => $node->attr('aria-pressed')));
 
         $this->assertSame('/fr/game/color', $crawler->filter('a.stop-game')->attr('href'));
 
