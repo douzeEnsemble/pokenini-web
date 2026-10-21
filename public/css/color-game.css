@@ -22,7 +22,7 @@
 }
 
 .pokemon-image {
-    max-width: 12rem;
+    max-width: 14rem;
     height: auto;
 }
 
@@ -80,7 +80,11 @@
 }
 
 .pokemon-image-box {
-    min-height: 12rem;
+    min-height: 16rem;
+}
+
+.color-game-bar-progress {
+    width: 10rem;
 }
 
 .pokemon-image-pending {
