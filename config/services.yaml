@@ -1,3 +1,7 @@
+parameters:
+  # The images of the shiny game are fetched by the server, as their URL gives the answer
+  shiny_game.image_url: "%env(POKEMON_IMAGE_URL)%"
+
 services:
   _defaults:
     autowire: true
@@ -8,6 +12,7 @@ services:
       string $backCafilePath: "%env(BACK_CAFILE_PATH)%"
       string $demoUserId: "%env(DEMO_USER_ID)%"
       string $resourcesVersionUrl: "%env(RESOURCES_VERSION_URL)%"
+      string $gameImageUrl: "%shiny_game.image_url%"
 
   App\:
     resource: "../src/"
@@ -15,3 +20,7 @@ services:
       - "../src/DependencyInjection/"
       - "../src/Entity/"
       - "../src/Kernel.php"
+
+when@test:
+  parameters:
+    shiny_game.image_url: "http://moco.back/pokemon/big/%%1$s/%%2$s.png"

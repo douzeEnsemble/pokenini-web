@@ -712,7 +712,7 @@ credit:
 
 game:
   title: "Jeux"
-  subtitle: "Des petits jeux autour des Pokémons. Pour l'instant, y'en a qu'un"
+  subtitle: "Des petits jeux autour des Pokémons"
 
 color_game:
   title: "Jeu des couleurs"
@@ -761,5 +761,26 @@ color_game:
       abandoned: "Partie abandonnée"
     replay: "Rejouer"
     back: "Retour aux dex"
+  flash:
+    create_failed: "La partie n'a pas pu être créée. Réessaie un peu plus tard."
+
+shiny_game:
+  title: "Shiny or not"
+  description: "On te montre un Pokémon, tu devines si c'est sa version normale ou chromatique."
+  dex:
+    subtitle: "Choisis le dex avec lequel tu veux jouer. Tu peux t'arrêter quand tu veux, ta partie t'attend"
+    no_playable: "Pas encore de Pokémon dans ce dex."
+    none: "Y'a pas encore de dex pour jouer à Shiny or not."
+  round:
+    question: "Normal ou chromatique ?"
+    image: "Le Pokémon à deviner"
+    regular: "Normal"
+    shiny: "Chromatique"
+    keys: "Astuce : la touche 1 choisit normal, la touche 2 chromatique."
+  answer:
+    correct: "Bien vu !"
+    wrong: "Raté !"
+    shown: "L'image montrée"
+    your_choice: "Ton choix"
   flash:
     create_failed: "La partie n'a pas pu être créée. Réessaie un peu plus tard."
