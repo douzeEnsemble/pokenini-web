@@ -242,14 +242,15 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
         $this->assertSame(
-            'Prêt à choisir ton Pokémon préféré ?',
+            'Envie de jouer ?',
             $crawler->filter('#jumbotron h2')->text()
         );
         $this->assertSame(
-            'Tu vas pouvoir, enfin, choisir ton Pokémon préféré ! Tu penses peut-être que tu le connais déjà ? Détrompe-toi ! Sache que ce site, testé par des experts dans le domaine, va te surprendre. Es-tu prêt ?!',
+            'Jeu des couleurs, Shiny or not, Lequel est le shiny ? : des petits jeux pour tester ton œil de dresseur. Et pour choisir ton Pokémon préféré, les élections t\'attendent.',
             $crawler->filter('#jumbotron p')->text()
         );
-        $this->assertCountFilter($crawler, 1, '#jumbotron a[href="/fr/election/dex"]');
+        $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-game[href="/fr/game"]');
+        $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-election[href="/fr/election/dex"]');
         $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
     }
 
@@ -291,14 +292,15 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertEquals('/en/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
         $this->assertSame(
-            'Ready to pick your favorite Pokémon?',
+            'Up for a game?',
             $crawler->filter('#jumbotron h2')->text()
         );
         $this->assertSame(
-            'Now you can finally choose your favorite Pokémon! Think you already know it? Think again! This site, tested by experts in the field, will surprise you. Are you ready?!',
+            'Colour game, Shiny or not, Which one is shiny?: small games to test your trainer\'s eye. And to pick your favorite Pokémon, the elections are waiting for you.',
             $crawler->filter('#jumbotron p')->text()
         );
-        $this->assertCountFilter($crawler, 1, '#jumbotron a[href="/en/election/dex"]');
+        $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-game[href="/en/game"]');
+        $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-election[href="/en/election/dex"]');
         $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
     }
 
