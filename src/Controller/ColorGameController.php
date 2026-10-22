@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\DTO\GameRoundCount;
 use App\ResponseObject\ColorGame\ColorGameState;
 use App\Service\Back\ColorGameService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,7 +41,10 @@ final class ColorGameController extends AbstractController
         $this->assertCsrfTokenIsValid($request);
 
         try {
-            $game = $this->colorGameService->create($request->request->getString('dex_slug'));
+            $game = $this->colorGameService->create(
+                $request->request->getString('dex_slug'),
+                (new GameRoundCount($request->request->getString('round_count')))->value,
+            );
         } catch (HttpExceptionInterface) {
             $this->addFlash('warning', 'color_game.flash.create_failed');
 

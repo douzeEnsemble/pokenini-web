@@ -80,10 +80,10 @@
               <a href="{{ path('app_whichshinygame_play', {'gameId': item.currentGame.id}) }}" class="btn btn-primary resume-game">
                 {{ 'color_game.dex.resume'|trans }}
               </a>
-              {{ whichShinyGame.newGameForm(item.slug, 'color_game.dex.new', 'btn-outline-secondary new-game') }}
+              {{ whichShinyGame.newGameForm(item.slug, 'color_game.dex.new', 'btn-outline-secondary new-game', item.playableCount) }}
             </div>
             {% else %}
-            {{ whichShinyGame.newGameForm(item.slug, 'color_game.dex.play', 'btn-primary new-game') }}
+            {{ whichShinyGame.newGameForm(item.slug, 'color_game.dex.play', 'btn-primary new-game', item.playableCount) }}
             {% endif %}
           {% else %}
           <p class="small text-body-secondary no-playable">{{ 'which_shiny_game.dex.no_playable'|trans }}</p>

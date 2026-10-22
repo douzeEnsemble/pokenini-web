@@ -74,6 +74,29 @@
         }
       },
       "text": {
+        "match": ".*\"dex_slug\":\"demo\",\"round_count\":10[,}].*"
+      }
+    },
+    "response": {
+      "status": "201",
+      "file": "/var/moco/responses/color_game/created_ten_rounds.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/color_game/games"
+      },
+      "method": "post",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      },
+      "text": {
         "match": ".*\"dex_slug\":\"demo\".*"
       }
     },
@@ -426,6 +449,29 @@
     "response": {
       "status": "200",
       "text": "[]"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/shiny_game/games"
+      },
+      "method": "post",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      },
+      "text": {
+        "match": ".*\"dex_slug\":\"demo\",\"round_count\":10[,}].*"
+      }
+    },
+    "response": {
+      "status": "201",
+      "file": "/var/moco/responses/shiny_game/created_ten_rounds.json"
     }
   },
   {
@@ -821,6 +867,29 @@
     "response": {
       "status": "200",
       "text": "[]"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/which_shiny_game/games"
+      },
+      "method": "post",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      },
+      "text": {
+        "match": ".*\"dex_slug\":\"demo\",\"round_count\":10[,}].*"
+      }
+    },
+    "response": {
+      "status": "201",
+      "file": "/var/moco/responses/which_shiny_game/created_ten_rounds.json"
     }
   },
   {

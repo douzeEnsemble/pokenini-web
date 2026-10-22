@@ -74,6 +74,24 @@ final class ColorGameDexTest extends WebTestCase
         $this->assertCount(0, $kanto->filter('a.resume-game'));
         $this->assertSame('Jouer', $kanto->filter('.new-game')->text());
 
+        // The number of rounds is chosen before starting
+        $this->assertSame('Combien de manches ?', $kanto->filter('.round-count-menu .dropdown-header')->text());
+        $this->assertSame(
+            ['10 manches', '20 manches', '50 manches'],
+            $kanto->filter('button.round-count')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertSame(
+            ['10', '20', '50'],
+            $kanto->filter('button.round-count')->each(static fn (Crawler $node): string => (string) $node->attr('value')),
+        );
+        $this->assertSame('Toute la liste (151)', $kanto->filter('button.round-count-all')->text());
+        $this->assertSame('', $kanto->filter('button.round-count-all')->attr('value'));
+        $this->assertSame('151', $kanto->filter('.round-count-custom input[name="round_count"]')->attr('max'));
+
+        // Too few Pokémon to choose: the whole dex is played
+        $this->assertCount(0, $demo->filter('.round-count-menu'));
+        $this->assertCount(1, $demo->filter('form'));
+
         $pogo = $crawler->filter('.dex-item')->eq(3);
         $this->assertCount(0, $pogo->filter('form'));
         $this->assertSame('Pas encore de couleurs pour ce dex.', $pogo->filter('.no-playable')->text());

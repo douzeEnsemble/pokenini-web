@@ -64,6 +64,27 @@ final class ShinyGameDexTest extends WebTestCase
         $this->assertCount(0, $kanto->filter('.current-game'));
         $this->assertSame('Jouer', $kanto->filter('.new-game')->text());
 
+        // The number of rounds is chosen before starting
+        $this->assertSame('Combien de manches ?', $kanto->filter('.round-count-menu .dropdown-header')->text());
+        $this->assertSame(
+            ['10 manches', '20 manches', '50 manches'],
+            $kanto->filter('button.round-count')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertSame(
+            ['10', '20', '50'],
+            $kanto->filter('button.round-count')->each(static fn (Crawler $node): string => (string) $node->attr('value')),
+        );
+        $this->assertSame('Toute la liste (151)', $kanto->filter('button.round-count-all')->text());
+        $this->assertSame('', $kanto->filter('button.round-count-all')->attr('value'));
+        $this->assertSame('151', $kanto->filter('.round-count-custom input[name="round_count"]')->attr('max'));
+
+        // Only the numbers of rounds below the dex size are offered
+        $this->assertSame(
+            ['10', '20'],
+            $demo->filter('button.round-count')->each(static fn (Crawler $node): string => (string) $node->attr('value')),
+        );
+        $this->assertSame('Toute la liste (21)', $demo->filter('button.round-count-all')->text());
+
         $pogo = $crawler->filter('.dex-item')->eq(2);
         $this->assertCount(0, $pogo->filter('form'));
         $this->assertSame('Pas encore de Pokémon dans ce dex.', $pogo->filter('.no-playable')->text());

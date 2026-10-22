@@ -30,10 +30,7 @@
 </p>
 {% endmacro %}
 
-{% macro newGameForm(dexSlug, label, buttonClass) %}
-<form method="post" action="{{ path('app_colorgame_create') }}" class="d-inline">
-  <input type="hidden" name="_token" value="{{ csrf_token('color_game') }}">
-  <input type="hidden" name="dex_slug" value="{{ dexSlug }}">
-  <button type="submit" class="btn {{ buttonClass }}">{{ label|trans }}</button>
-</form>
+{% macro newGameForm(dexSlug, label, buttonClass, playableCount = null) %}
+{% import 'Game/_macros.html.twig' as game %}
+{{ game.newGameForm('app_colorgame_create', 'color_game', dexSlug, label, buttonClass, playableCount) }}
 {% endmacro %}

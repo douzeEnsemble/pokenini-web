@@ -43,3 +43,19 @@
     background-color: var(--bs-danger-bg-subtle);
     box-shadow: inset 0 0 0 1px var(--bs-danger);
 }
+
+/* On a narrow phone, "Chromatique" does not fit next to the key and the icon: smaller text, no key (no keyboard there) */
+@media (max-width: 575.98px) {
+    .shiny-card {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .shiny-card-label {
+        font-size: 1rem !important;
+        gap: 0.25rem !important;
+    }
+
+    .shiny-card-label .choice-key {
+        display: none;
+    }
+}

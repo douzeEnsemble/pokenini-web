@@ -726,6 +726,13 @@ color_game:
     new: "New game"
     no_playable: "No colours for this dex yet."
     none: "There is no dex to play the colour game yet."
+  rounds:
+    title: "How many rounds?"
+    count: "{count} rounds"
+    all: "The whole list"
+    all_count: "The whole list ({count})"
+    custom: "Other number"
+    custom_submit: "Let's go"
   history:
     title: "Your games"
     none: "You haven't played yet."
