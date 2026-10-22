@@ -69,11 +69,28 @@ final class ColorGameServiceTest extends AbstractTestBackService
             'POST',
             self::JSON,
             'color_game/games',
-            ['json' => ['dex_slug' => 'demo']],
+            ['json' => ['dex_slug' => 'demo', 'round_count' => null]],
             $this->getSerializerMock(ColorGame::class, $game),
         );
 
-        $this->assertSame($game, $service->create('demo'));
+        $this->assertSame($game, $service->create('demo', null));
+    }
+
+    #[Test]
+    public function createWithRoundCount(): void
+    {
+        $game = $this->makeGame();
+
+        /** @var ColorGameService $service */
+        $service = $this->getServiceWithLoggedUser(
+            'POST',
+            self::JSON,
+            'color_game/games',
+            ['json' => ['dex_slug' => 'demo', 'round_count' => 20]],
+            $this->getSerializerMock(ColorGame::class, $game),
+        );
+
+        $this->assertSame($game, $service->create('demo', 20));
     }
 
     #[Test]

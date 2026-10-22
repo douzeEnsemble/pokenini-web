@@ -29,9 +29,9 @@ class ColorGameService extends AbstractBackService
         return $this->serializer->deserialize($json, ColorGame::class.'[]', 'json');
     }
 
-    public function create(string $dexSlug): ColorGame
+    public function create(string $dexSlug, ?int $roundCount): ColorGame
     {
-        $json = $this->requestContent('POST', '/color_game/games', ['json' => ['dex_slug' => $dexSlug]]);
+        $json = $this->requestContent('POST', '/color_game/games', ['json' => ['dex_slug' => $dexSlug, 'round_count' => $roundCount]]);
 
         /** @var ColorGame */
         return $this->serializer->deserialize($json, ColorGame::class, 'json');

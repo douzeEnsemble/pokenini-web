@@ -69,11 +69,28 @@ final class ShinyGameServiceTest extends AbstractTestBackService
             'POST',
             self::JSON,
             'shiny_game/games',
-            ['json' => ['dex_slug' => 'demo']],
+            ['json' => ['dex_slug' => 'demo', 'round_count' => null]],
             $this->getSerializerMock(ShinyGame::class, $game),
         );
 
-        $this->assertSame($game, $service->create('demo'));
+        $this->assertSame($game, $service->create('demo', null));
+    }
+
+    #[Test]
+    public function createWithRoundCount(): void
+    {
+        $game = $this->makeGame();
+
+        /** @var ShinyGameService $service */
+        $service = $this->getServiceWithLoggedUser(
+            'POST',
+            self::JSON,
+            'shiny_game/games',
+            ['json' => ['dex_slug' => 'demo', 'round_count' => 20]],
+            $this->getSerializerMock(ShinyGame::class, $game),
+        );
+
+        $this->assertSame($game, $service->create('demo', 20));
     }
 
     #[Test]

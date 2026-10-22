@@ -107,6 +107,9 @@
 
 .choice-confirm {
     visibility: hidden;
+    /* Wraps instead of going out of a narrow card on a phone */
+    max-width: 100%;
+    white-space: normal;
 }
 
 .game-choice.is-selected {
@@ -131,4 +134,8 @@
 /* Same height with or without a badge, so the cards do not change size between the question and the answer */
 .game-choice-caption {
     min-height: 1.75rem;
+}
+
+.round-count-menu {
+    min-width: 16rem;
 }

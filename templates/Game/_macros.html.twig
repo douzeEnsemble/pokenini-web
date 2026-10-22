@@ -1,0 +1,49 @@
+{#
+  Starts a game on a dex, after choosing the number of rounds: 10, 20, 50, the whole dex, or another number.
+  playableCount is the number of Pokémon of the dex, when it is known: the counts it does not reach are not offered.
+#}
+{% macro newGameForm(route, csrfId, dexSlug, label, buttonClass, playableCount = null) %}
+{% set roundCounts = [10, 20, 50]|filter(count => playableCount is null or count < playableCount) %}
+{% if roundCounts is empty %}
+<form method="post" action="{{ path(route) }}" class="d-inline">
+  <input type="hidden" name="_token" value="{{ csrf_token(csrfId) }}">
+  <input type="hidden" name="dex_slug" value="{{ dexSlug }}">
+  <button type="submit" class="btn {{ buttonClass }}">{{ label|trans }}</button>
+</form>
+{% else %}
+<div class="dropdown d-inline-block new-game-dropdown">
+  <button type="button" class="btn {{ buttonClass }} dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{{ label|trans }}</button>
+  <div class="dropdown-menu round-count-menu">
+    <form method="post" action="{{ path(route) }}" class="round-count-presets">
+      <input type="hidden" name="_token" value="{{ csrf_token(csrfId) }}">
+      <input type="hidden" name="dex_slug" value="{{ dexSlug }}">
+      <h6 class="dropdown-header">{{ 'color_game.rounds.title'|trans }}</h6>
+      {% for count in roundCounts %}
+      <button type="submit" name="round_count" value="{{ count }}" class="dropdown-item round-count">{{ 'color_game.rounds.count'|trans({'count': count}) }}</button>
+      {% endfor %}
+      <button type="submit" name="round_count" value="" class="dropdown-item round-count-all">
+        {{ playableCount is null ? 'color_game.rounds.all'|trans : 'color_game.rounds.all_count'|trans({'count': playableCount}) }}
+      </button>
+    </form>
+    <div class="dropdown-divider"></div>
+    <form method="post" action="{{ path(route) }}" class="px-3 py-1 round-count-custom">
+      <input type="hidden" name="_token" value="{{ csrf_token(csrfId) }}">
+      <input type="hidden" name="dex_slug" value="{{ dexSlug }}">
+      <div class="input-group input-group-sm">
+        <input
+          type="number"
+          name="round_count"
+          min="1"
+          {% if playableCount is not null %}max="{{ playableCount }}"{% endif %}
+          required
+          class="form-control"
+          placeholder="{{ 'color_game.rounds.custom'|trans }}"
+          aria-label="{{ 'color_game.rounds.custom'|trans }}"
+        >
+        <button type="submit" class="btn btn-primary">{{ 'color_game.rounds.custom_submit'|trans }}</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}
+{% endmacro %}

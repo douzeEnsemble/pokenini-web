@@ -29,9 +29,9 @@ class WhichShinyGameService extends AbstractBackService
         return $this->serializer->deserialize($json, WhichShinyGame::class.'[]', 'json');
     }
 
-    public function create(string $dexSlug): WhichShinyGame
+    public function create(string $dexSlug, ?int $roundCount): WhichShinyGame
     {
-        $json = $this->requestContent('POST', '/which_shiny_game/games', ['json' => ['dex_slug' => $dexSlug]]);
+        $json = $this->requestContent('POST', '/which_shiny_game/games', ['json' => ['dex_slug' => $dexSlug, 'round_count' => $roundCount]]);
 
         /** @var WhichShinyGame */
         return $this->serializer->deserialize($json, WhichShinyGame::class, 'json');

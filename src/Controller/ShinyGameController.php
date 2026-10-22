@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\DTO\GameRoundCount;
 use App\ResponseObject\ShinyGame\ShinyGameState;
 use App\Service\Back\ShinyGameService;
 use App\Service\ShinyGameImageService;
@@ -42,7 +43,10 @@ final class ShinyGameController extends AbstractController
         $this->assertCsrfTokenIsValid($request);
 
         try {
-            $game = $this->shinyGameService->create($request->request->getString('dex_slug'));
+            $game = $this->shinyGameService->create(
+                $request->request->getString('dex_slug'),
+                (new GameRoundCount($request->request->getString('round_count')))->value,
+            );
         } catch (HttpExceptionInterface) {
             $this->addFlash('warning', 'shiny_game.flash.create_failed');
 

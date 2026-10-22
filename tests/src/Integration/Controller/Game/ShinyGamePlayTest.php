@@ -317,6 +317,46 @@ final class ShinyGamePlayTest extends WebTestCase
     }
 
     #[Test]
+    public function createWithPresetRoundCount(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/shiny');
+        $form = $crawler->filter('.dex-item')->eq(1)->filter('button.round-count')->eq(0)->form();
+        $form['dex_slug'] = 'demo';
+        $client->submit($form);
+
+        $this->assertResponseRedirects('/fr/game/shiny/44444444-4444-4444-8444-444444444444');
+    }
+
+    #[Test]
+    public function createWithCustomRoundCount(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/shiny');
+        $form = $crawler->filter('.dex-item')->eq(1)->filter('.round-count-custom')->form();
+        $form['dex_slug'] = 'demo';
+        $form['round_count'] = '10';
+        $client->submit($form);
+
+        $this->assertResponseRedirects('/fr/game/shiny/44444444-4444-4444-8444-444444444444');
+    }
+
+    #[Test]
+    public function createWithTheWholeDex(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/shiny');
+        $form = $crawler->filter('.dex-item')->eq(1)->filter('button.round-count-all')->form();
+        $form['dex_slug'] = 'demo';
+        $client->submit($form);
+
+        $this->assertResponseRedirects('/fr/game/shiny/33333333-3333-4333-8333-333333333333');
+    }
+
+    #[Test]
     public function createFailed(): void
     {
         $client = $this->createTrainerClient();

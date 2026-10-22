@@ -82,7 +82,7 @@
               data-key="{{ loop.index }}"
               aria-pressed="false"
             >
-              <span class="d-flex align-items-center justify-content-center gap-2 fs-5 fw-semibold">
+              <span class="d-flex align-items-center justify-content-center gap-2 fs-5 fw-semibold shiny-card-label">
                 <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
                 {% if isShiny %}<i class="bi bi-stars" aria-hidden="true"></i>{% endif %}
                 <span class="version-name">{{ (isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans }}</span>
@@ -112,7 +112,7 @@
           {% set isChosen = isShiny == answer.isChosenShiny %}
           <div class="col-6">
             <figure class="h-100 m-0 border rounded-3 d-flex flex-column align-items-center gap-2 shiny-card shiny-version{{ isShown ? ' shown-version' : '' }}{{ isChosen and not isShown ? ' chosen-version' : '' }}">
-              <span class="d-flex align-items-center justify-content-center gap-2 fs-5 fw-semibold">
+              <span class="d-flex align-items-center justify-content-center gap-2 fs-5 fw-semibold shiny-card-label">
                 <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
                 {% if isShiny %}<i class="bi bi-stars" aria-hidden="true"></i>{% endif %}
                 <span class="version-name">{{ (isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans }}</span>
