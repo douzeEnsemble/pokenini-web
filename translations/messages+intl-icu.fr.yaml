@@ -630,6 +630,13 @@ election:
       }
 
 album_dex_list:
+  welcome:
+    title: "Envie de jouer ?"
+    description: |
+      Jeu des couleurs, Shiny or not, Lequel est le shiny ? : des petits jeux pour tester ton œil de dresseur.
+      Et pour choisir ton Pokémon préféré, les élections t'attendent.
+    game: "Jouer"
+    election: "Choisir mon préféré"
   dex:
     report_badge_suffixe: capturés
 

@@ -1,9 +1,8 @@
-const jumbotronKey = 'app/album-dex-list/jumbotron/hidden';
+// The banner now presents the games and the elections: a new key, so it shows again to those who closed the elections one
+const jumbotronKey = 'app/album-dex-list/jumbotron/games-elections/hidden';
 
 function watchJumbotronCloseButton() {
   const jumbotron = document.getElementById('jumbotron');
-
-  console.debug(localStorage.getItem(jumbotronKey));
 
   if (localStorage.getItem(jumbotronKey) === 'true') {
     return;
@@ -15,7 +14,7 @@ function watchJumbotronCloseButton() {
     element.addEventListener("click", onCloseJumbotron);
   });
 
-  // The accept link navigates to the election - only remember the choice,
+  // The accept links navigate to the games or the elections - only remember the choice,
   // don't preventDefault or the navigation itself would be cancelled.
   document
   .querySelectorAll(".jumbotron-accept")

@@ -621,6 +621,13 @@ election:
     details:
 
 album_dex_list:
+  welcome:
+    title: "Up for a game?"
+    description: |
+      Colour game, Shiny or not, Which one is shiny?: small games to test your trainer's eye.
+      And to pick your favorite Pokémon, the elections are waiting for you.
+    game: "Play"
+    election: "Pick my favorite"
   dex:
     report_badge_suffixe: caught
 

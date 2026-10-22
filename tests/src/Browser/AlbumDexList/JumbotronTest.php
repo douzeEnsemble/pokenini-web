@@ -49,7 +49,7 @@ final class JumbotronTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/dex');
 
-        $client->executeScript('localStorage.setItem(\'app/album-dex-list/jumbotron/hidden\', \'true\')');
+        $client->executeScript('localStorage.setItem(\'app/album-dex-list/jumbotron/games-elections/hidden\', \'true\')');
 
         $client->request('GET', '/fr/album/dex');
 
