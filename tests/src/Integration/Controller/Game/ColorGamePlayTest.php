@@ -173,7 +173,8 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('Herbizarre', $crawler->filter('.pokemon-image')->attr('alt'));
 
         $this->assertCountFilter($crawler, 0, '.color-choices');
-        $this->assertCountFilter($crawler, 0, '.stop-game');
+        // The game can be paused after an answer too
+        $this->assertSame('/fr/game/color', $crawler->filter('.game-bar a.stop-game')->attr('href'));
         $this->assertStringContainsString('color-game-status', (string) $crawler->filter('.answer-box')->attr('class'));
         $this->assertCountFilter($crawler, 3, '.color-answers .color-answer');
         $this->assertCountFilter($crawler, 0, '.color-answer[data-key]');

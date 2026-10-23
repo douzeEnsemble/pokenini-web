@@ -171,7 +171,8 @@ final class WhichShinyGamePlayTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.which-shiny-choices');
         $this->assertCountFilter($crawler, 0, '.round-image');
-        $this->assertCountFilter($crawler, 0, '.stop-game');
+        // The game can be paused after an answer too
+        $this->assertSame('/fr/game/which-shiny', $crawler->filter('.game-bar a.stop-game')->attr('href'));
         $this->assertSame('Manche 2 sur 3', $crawler->filter('.game-bar .round-position')->text());
         $this->assertSame(['1', '2'], $crawler->filter('.which-shiny-version .choice-key')->each(static fn (Crawler $node): string => $node->text()));
         $this->assertCountFilter($crawler, 2, '.which-shiny-answers .which-shiny-version');

@@ -139,3 +139,9 @@
 .round-count-menu {
     min-width: 16rem;
 }
+
+/* An open round count menu goes over the next dex cards (a hovered card is its own stacking context) */
+.dex-item:has(.round-count-menu.show),
+.dex-item:focus-within {
+    z-index: 2;
+}
