@@ -183,7 +183,7 @@ final class ColorGameDexTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertCountFilter($crawler, 0, '.dex-item');
-        $this->assertSame("Y'a pas encore de dex pour jouer aux couleurs.", $crawler->filter('.no-dex')->text());
+        $this->assertSame("Y'a pas encore de dex pour jouer à Bonne Palette.", $crawler->filter('.no-dex')->text());
         $this->assertCountFilter($crawler, 0, '.color-game-history');
         $this->assertSame("Tu n'as pas encore joué.", $crawler->filter('.no-history')->text());
     }
