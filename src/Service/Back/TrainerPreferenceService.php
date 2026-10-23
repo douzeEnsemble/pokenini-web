@@ -12,12 +12,10 @@ class TrainerPreferenceService extends AbstractBackService
     {
         $json = $this->requestContent('GET', '/trainer/preference');
 
-        /** @var array{home_page?: mixed} $content */
+        /** @var array{home_page?: string} $content */
         $content = json_decode($json, true) ?? [];
 
-        $homePage = $content['home_page'] ?? '';
-
-        return new HomePage(\is_string($homePage) ? $homePage : '');
+        return new HomePage($content['home_page'] ?? '');
     }
 
     public function modifyHomePage(HomePage $homePage): void
