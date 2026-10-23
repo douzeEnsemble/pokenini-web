@@ -239,6 +239,27 @@ trainer:
 
     Tu peux y personnaliser tes albums, consulter les liens entre tes dex et tes données personnelles.
     Amuse toi bien.
+  home_page:
+    title: "Page d'accueil"
+    intro: "Quand tu arrives sur Pokénini, tu veux voir :"
+    default: "par défaut"
+    submit: "Enregistrer"
+    saved: "C'est noté, tu arriveras sur « {page} »."
+    error: "Ton choix n'a pas pu être enregistré, réessaie un peu plus tard."
+    outro: "L'accueil reste accessible à tout moment avec « Accueil » dans le menu."
+    options:
+      hub:
+        label: "L'accueil Pokénini"
+        description: "Le hub avec tes albums, les élections et les jeux."
+      album:
+        label: "Tes albums"
+        description: "La liste de tes dex."
+      election:
+        label: "C'est quoi ton préféré ?"
+        description: "La liste des élections."
+      game:
+        label: "Jeux"
+        description: "La page des jeux."
   personnal_data:
     title: "Données personnelles"
     intro: "Voici les données personnelles que j'ai te concernant"
@@ -629,14 +650,30 @@ election:
           other {between {value0} and {value1}}
       }
 
+hub:
+  subtitle: "Salut jeune dresseur, tu veux faire quoi aujourd'hui ?"
+  choose_home: "Tu préfères arriver directement sur tes albums, les élections ou les jeux ? <a>Choisis ta page d'accueil</a>"
+  album:
+    description: "Attrape les tous. Suis l'avancement de tes dex : tous les Pokémon, toutes les formes, tous les jeux."
+    action: "Voir mes albums"
+  election:
+    description: "Les élections : choisis tes Pokémon préférés dex par dex, puis vote jusqu'à trouver ton favori."
+    action: "Choisir mon préféré"
+  game:
+    description: "Des petits jeux pour tester ton œil de dresseur."
+    action: "Jouer"
+  visitor:
+    subtitle: "Suis ta collection, élis ton Pokémon préféré et joue."
+    demo: "Exemple d'albums"
+    album:
+      title: "Les albums"
+      action: "Voir un exemple"
+    election:
+      action: "Connecte-toi pour voter"
+    game:
+      action: "Connecte-toi pour jouer"
+
 album_dex_list:
-  welcome:
-    title: "Envie de jouer ?"
-    description: |
-      Bonne Palette, Chroma ou pas, Chroma-Trouvé : des petits jeux pour tester ton œil de dresseur.
-      Et pour choisir ton Pokémon préféré, les élections t'attendent.
-    game: "Jouer"
-    election: "Choisir mon préféré"
   dex:
     report_badge_suffixe: capturés
 
@@ -734,7 +771,7 @@ game:
       error: "Le résultat n'a pas pu être copié."
 
 color_game:
-  title: "Bonne Palette"
+  title: "Jeu des couleurs"
   description: "On te donne un Pokémon, tu retrouves ses couleurs parmi plusieurs lots."
   shiny: "Chromatique"
   score: "{correct, plural, =0 {Aucune bonne réponse} one {# bonne réponse} other {# bonnes réponses}} sur {answered}"
@@ -746,7 +783,7 @@ color_game:
     resume: "Continuer"
     new: "Nouvelle partie"
     no_playable: "Pas encore de couleurs pour ce dex."
-    none: "Y'a pas encore de dex pour jouer à Bonne Palette."
+    none: "Y'a pas encore de dex pour jouer aux couleurs."
   rounds:
     title: "Combien de manches ?"
     count: "{count} manches"
@@ -794,12 +831,12 @@ color_game:
     create_failed: "La partie n'a pas pu être créée. Réessaie un peu plus tard."
 
 shiny_game:
-  title: "Chroma ou pas"
+  title: "Shiny or not"
   description: "On te montre un Pokémon, tu devines si c'est sa version normale ou chromatique."
   dex:
     subtitle: "Choisis le dex avec lequel tu veux jouer. Tu peux t'arrêter quand tu veux, ta partie t'attend"
     no_playable: "Pas encore de Pokémon dans ce dex."
-    none: "Y'a pas encore de dex pour jouer à Chroma ou pas."
+    none: "Y'a pas encore de dex pour jouer à Shiny or not."
   round:
     question: "Normal ou chromatique ?"
     image: "Le Pokémon à deviner"
@@ -815,12 +852,12 @@ shiny_game:
     create_failed: "La partie n'a pas pu être créée. Réessaie un peu plus tard."
 
 which_shiny_game:
-  title: "Chroma-Trouvé"
+  title: "Lequel est le shiny ?"
   description: "On te montre un Pokémon en normal et en chromatique, à toi de trouver le chromatique."
   dex:
     subtitle: "Choisis le dex avec lequel tu veux jouer. Tu peux t'arrêter quand tu veux, ta partie t'attend"
     no_playable: "Pas encore de Pokémon dans ce dex."
-    none: "Y'a pas encore de dex pour jouer à Chroma-Trouvé."
+    none: "Y'a pas encore de dex pour jouer à Lequel est le shiny."
   round:
     question: "Lequel est le shiny ?"
     image: "Image {slot}"

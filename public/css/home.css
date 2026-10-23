@@ -3,3 +3,65 @@
     height: 3rem;
     border-radius: .75rem;
 }
+
+/* The hub: one card per part of Pokénini, each with its own colour */
+.hub-album {
+    --hub-color: #0b5ed7;
+    --hub-tint: #e7f1ff;
+}
+
+.hub-election {
+    --hub-color: #a61e5c;
+    --hub-tint: #fbe7f0;
+}
+
+.hub-game {
+    --hub-color: #59359a;
+    --hub-tint: #efe9fa;
+}
+
+.hub-item {
+    border-radius: 1rem;
+}
+
+.hub-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background-color: var(--hub-tint);
+    color: var(--hub-color);
+    font-size: 2rem;
+}
+
+.hub-action {
+    background-color: var(--hub-color);
+    border-color: var(--hub-color);
+    color: #fff;
+}
+
+.hub-action:hover,
+.hub-action:focus-visible {
+    background-color: var(--hub-color);
+    border-color: var(--hub-color);
+    color: #fff;
+    filter: brightness(.85);
+}
+
+.hub-action-outline {
+    border-color: var(--hub-color);
+    color: var(--hub-color);
+}
+
+.hub-action-outline:hover,
+.hub-action-outline:focus-visible {
+    background-color: var(--hub-tint);
+    border-color: var(--hub-color);
+    color: var(--hub-color);
+}
+
+.hub-games i {
+    color: var(--hub-color);
+}

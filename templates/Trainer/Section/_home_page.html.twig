@@ -1,0 +1,53 @@
+<form id="home-page-form" method="post" action="{{ path('app_trainerhomepage_save') }}">
+  <input type="hidden" name="_token" value="{{ csrf_token(csrfTokenId) }}">
+
+  <fieldset>
+    <legend class="fs-5 text-body-secondary">{{ 'trainer.home_page.intro'|trans }}</legend>
+
+    <div class="row g-3">
+      {% for page in homePages %}
+      {% set checked = page == homePage.value %}
+      <div class="col-lg-6 col-12">
+        <label class="d-flex gap-3 h-100 p-3 border rounded-3 home-page-option{{ checked ? ' border-primary bg-primary-subtle' : '' }}" for="home-page-{{ page }}">
+          <input
+            class="form-check-input mt-1 flex-shrink-0"
+            type="radio"
+            name="home_page"
+            id="home-page-{{ page }}"
+            value="{{ page }}"
+            {{ checked ? 'checked' : '' }}
+          >
+          <span class="d-flex flex-column gap-1">
+            <span class="fs-5">
+              {{ ('trainer.home_page.options.'~page~'.label')|trans }}
+              {% if page == 'hub' %}
+              <span class="badge rounded-pill text-bg-light border fw-normal ms-1">{{ 'trainer.home_page.default'|trans }}</span>
+              {% endif %}
+            </span>
+            <span class="text-body-secondary">{{ ('trainer.home_page.options.'~page~'.description')|trans }}</span>
+          </span>
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+  </fieldset>
+
+  <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
+    <button type="submit" class="btn btn-primary">{{ 'trainer.home_page.submit'|trans }}</button>
+    {% for status in app.flashes('home_page') %}
+    {% if status == 'saved' %}
+    <span class="text-success home-page-saved" role="status">
+      <i class="bi bi-check-circle"></i>
+      {{ 'trainer.home_page.saved'|trans({'page': ('trainer.home_page.options.'~homePage.value~'.label')|trans}) }}
+    </span>
+    {% else %}
+    <span class="text-danger home-page-error" role="alert">
+      <i class="bi bi-exclamation-triangle"></i>
+      {{ 'trainer.home_page.error'|trans }}
+    </span>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <p class="mt-3 text-body-secondary">{{ 'trainer.home_page.outro'|trans }}</p>
+</form>

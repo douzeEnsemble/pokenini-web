@@ -1,5 +1,5 @@
-{% set currentRouteParameters = app.request.attributes.get('_route_params') %}
 {% set locale = app.request.locale %}
+{% set isTrainer = is_granted('ROLE_TRAINER') %}
 
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
@@ -11,31 +11,125 @@
   {{ parent() }}
 
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+  {% if not isTrainer %}
   <link rel="stylesheet" href="{{ asset('css/dex-list.css') }}">
 
   <style>
   {% include 'common/_catch_state_color_tokens.html.twig' %}
   {% include 'common/_catch_state_progress_bar_styles.html.twig' %}
   </style>
+  {% endif %}
 {% endblock stylesheets %}
+
+{% set games = [
+  {'icon': 'bi-palette', 'label': 'color_game.title', 'route': 'app_colorgame_dex'},
+  {'icon': 'bi-stars', 'label': 'shiny_game.title', 'route': 'app_shinygame_dex'},
+  {'icon': 'bi-intersect', 'label': 'which_shiny_game.title', 'route': 'app_whichshinygame_dex'},
+] %}
 
 {% block container %}
 <div id="home" class="row">
   <div class="mx-auto text-center">
     <h1>Pokénini</h1>
+    <p class="fs-5 text-body-secondary">
+      {{ (isTrainer ? 'hub.subtitle' : 'hub.visitor.subtitle')|trans }}
+    </p>
+  </div>
 
-    <div class="mt-3 mb-3 alert alert-warning" role="alert">
-      <p>
+  {% if not app.user %}
+  <div class="col-12 mt-2 mb-3">
+    <div class="alert alert-warning d-flex flex-wrap align-items-center gap-3" role="alert">
+      <p class="mb-0 flex-grow-1">
         {{ 'home.alert.not_connected.description'|trans|htmlNl2br }}
       </p>
       <a href="{{ path('app_connect_index') }}" class="btn btn-warning">
         {{ 'home.alert.not_connected.action'|trans }}
       </a>
     </div>
+  </div>
+  {% endif %}
 
-    <div class="text-start">
-    {{ list.listAlbums(dex, locale, demoUserId) }}
+  <div class="col-12">
+    <div class="row g-4 mt-1">
+      <div class="col-lg-4 col-12">
+        <div class="card h-100 hub-item hub-album">
+          <div class="card-body d-flex flex-column gap-3 p-4">
+            <div class="hub-icon"><i class="bi bi-journal-bookmark"></i></div>
+            <h2 class="h3 card-title mb-0">{{ (isTrainer ? 'title.album.nav' : 'hub.visitor.album.title')|trans }}</h2>
+            <p class="card-text text-body-secondary flex-grow-1">{{ 'hub.album.description'|trans }}</p>
+            {% if isTrainer %}
+            <a href="{{ path('app_albumdexlist_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action">{{ 'hub.album.action'|trans }}</a>
+            {% else %}
+            <a href="#home-demo" class="btn btn-lg rounded-pill align-self-start hub-action">{{ 'hub.visitor.album.action'|trans }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-12">
+        <div class="card h-100 hub-item hub-election">
+          <div class="card-body d-flex flex-column gap-3 p-4">
+            <div class="hub-icon"><i class="bi bi-heart"></i></div>
+            <h2 class="h3 card-title mb-0">{{ 'title.election.nav'|trans }}</h2>
+            <p class="card-text text-body-secondary flex-grow-1">{{ 'hub.election.description'|trans }}</p>
+            {% if isTrainer %}
+            <a href="{{ path('app_electiondexlist_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action">{{ 'hub.election.action'|trans }}</a>
+            {% else %}
+            <a href="{{ path('app_connect_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action-outline">
+              <i class="bi bi-lock"></i>
+              {{ 'hub.visitor.election.action'|trans }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-12">
+        <div class="card h-100 hub-item hub-game">
+          <div class="card-body d-flex flex-column gap-3 p-4">
+            <div class="hub-icon"><i class="bi bi-controller"></i></div>
+            <h2 class="h3 card-title mb-0">{{ 'game.title'|trans }}</h2>
+            <p class="card-text text-body-secondary">{{ 'hub.game.description'|trans }}</p>
+            <ul class="list-unstyled d-flex flex-column gap-2 flex-grow-1 mb-0 hub-games">
+              {% for game in games %}
+              <li>
+                {% if isTrainer %}
+                <a href="{{ path(game.route) }}" class="d-flex align-items-center gap-2 px-3 py-2 rounded-3 text-body text-decoration-none bg-body-tertiary">
+                  <i class="bi {{ game.icon }}"></i>
+                  {{ game.label|trans }}
+                </a>
+                {% else %}
+                <span class="d-flex align-items-center gap-2 px-3 py-2 rounded-3 bg-body-tertiary">
+                  <i class="bi {{ game.icon }}"></i>
+                  {{ game.label|trans }}
+                </span>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+            {% if isTrainer %}
+            <a href="{{ path('app_game_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action">{{ 'hub.game.action'|trans }}</a>
+            {% else %}
+            <a href="{{ path('app_connect_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action-outline">
+              <i class="bi bi-lock"></i>
+              {{ 'hub.visitor.game.action'|trans }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  {% if isTrainer %}
+  <p class="col-12 mt-4 text-center text-body-secondary hub-choose-home">
+    {{ 'hub.choose_home'|trans|replace({'<a>': '<a href="'~path('app_trainerhomepage_index')~'">'})|raw }}
+  </p>
+  {% else %}
+  <div id="home-demo" class="col-12 mt-5 text-start">
+    <h2 class="h4">{{ 'hub.visitor.demo'|trans }}</h2>
+    {{ list.listAlbums(dex, locale, demoUserId) }}
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

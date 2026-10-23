@@ -40,6 +40,7 @@ pin_cross_project_dns() {
 URLS=(
 	""
 	"fr"
+	"fr/hub"
 	"fr/connect"
 	"fr/album/dex"
 	"fr/album/demolite"
@@ -58,6 +59,7 @@ URLS=(
 	"en/cookies"
 	"fr/trainer"
 	"fr/trainer/links"
+	"fr/trainer/home_page"
 	"fr/trainer/personnal_data"
 	"fr/istration"
 )

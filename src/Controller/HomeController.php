@@ -4,40 +4,64 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Exception\NoLoggedUserException;
-use App\Security\UserTokenServiceInterface;
 use App\Service\Back\GetAlbumDexListService;
+use App\Service\Back\TrainerPreferenceService;
 use App\Service\GetLabelsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 final class HomeController extends AbstractController
 {
-    #[Route('')]
-    public function index(
-        UserTokenServiceInterface $userTokenService,
-        GetAlbumDexListService $service,
-        GetLabelsService $getLabelsService,
-        string $demoUserId,
-    ): Response {
-        try {
-            $userTokenService->getLoggedUserId();
+    public function __construct(
+        private readonly GetAlbumDexListService $albumDexListService,
+        private readonly GetLabelsService $getLabelsService,
+        private readonly string $demoUserId,
+    ) {}
 
-            return new RedirectResponse($this->generateUrl('app_albumdexlist_index'));
-        } catch (NoLoggedUserException) {
-            // nothing to do
+    /**
+     * Opens Pokénini on the page the trainer chose, the hub otherwise.
+     */
+    #[Route('')]
+    public function index(TrainerPreferenceService $trainerPreferenceService): Response
+    {
+        if (!$this->isGranted('ROLE_TRAINER')) {
+            return $this->renderHub();
         }
 
-        $album = $service->get($demoUserId);
+        try {
+            $homePage = $trainerPreferenceService->getHomePage();
+        } catch (ExceptionInterface) {
+            // The hub still leads everywhere when the choice can't be read
+            return $this->renderHub();
+        }
+
+        if ($homePage->isHub()) {
+            return $this->renderHub();
+        }
+
+        return $this->redirectToRoute($homePage->getRoute());
+    }
+
+    #[Route('/hub')]
+    public function hub(): Response
+    {
+        return $this->renderHub();
+    }
+
+    private function renderHub(): Response
+    {
+        if ($this->isGranted('ROLE_TRAINER')) {
+            return $this->render('Home/index.html.twig');
+        }
 
         return $this->render(
             'Home/index.html.twig',
             [
-                'dex' => $album,
-                'demoUserId' => $demoUserId,
-                'catchStates' => $getLabelsService->getCatchStates(),
+                'dex' => $this->albumDexListService->get($this->demoUserId),
+                'demoUserId' => $this->demoUserId,
+                'catchStates' => $this->getLabelsService->getCatchStates(),
             ]
         );
     }

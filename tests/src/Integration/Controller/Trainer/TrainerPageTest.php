@@ -56,7 +56,7 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertLogoutNavBar($crawler);
 
-        $this->assertCount(3, $crawler->filter('#trainer-section-tab .nav-link'));
+        $this->assertCount(4, $crawler->filter('#trainer-section-tab .nav-link'));
         $this->assertCount(1, $crawler->filter('#trainer > #trainer-sidebar #trainer-sidebar-toggle'));
         $this->assertCount(1, $crawler->filter('#trainer > #trainer-main'));
         $this->assertSame(
@@ -68,7 +68,7 @@ final class TrainerPageTest extends WebTestCase
             $crawler->filter('#trainer-section-tab .nav-link.active')->attr('href')
         );
 
-        $this->assertCountFilter($crawler, 3, '.navbar-nav .trainer-link .dropdown-menu .dropdown-item');
+        $this->assertCountFilter($crawler, 4, '.navbar-nav .trainer-link .dropdown-menu .dropdown-item');
         $this->assertCountFilter($crawler, 1, '.navbar-nav .trainer-link .dropdown-item.active');
         $this->assertStringContainsString(
             '/fr/trainer',
@@ -79,8 +79,12 @@ final class TrainerPageTest extends WebTestCase
             $crawler->filter('.navbar-nav .trainer-link .dropdown-item')->eq(1)->attr('href') ?? ''
         );
         $this->assertStringContainsString(
-            '/fr/trainer/personnal_data',
+            '/fr/trainer/home_page',
             $crawler->filter('.navbar-nav .trainer-link .dropdown-item')->eq(2)->attr('href') ?? ''
+        );
+        $this->assertStringContainsString(
+            '/fr/trainer/personnal_data',
+            $crawler->filter('.navbar-nav .trainer-link .dropdown-item')->eq(3)->attr('href') ?? ''
         );
 
         $this->assertCount(0, $crawler->filter('.navbar-link'));

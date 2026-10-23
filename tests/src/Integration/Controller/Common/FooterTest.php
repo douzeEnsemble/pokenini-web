@@ -51,7 +51,7 @@ final class FooterTest extends WebTestCase
         $this->assertStringContainsString('Crédits', $crawler->filter('footer ul li')->eq($index)->text());
 
         $this->assertSame(
-            '/fr/album/dex',
+            '/fr',
             $crawler->filter('.navbar-logo')->attr('href') ?? ''
         );
     }
