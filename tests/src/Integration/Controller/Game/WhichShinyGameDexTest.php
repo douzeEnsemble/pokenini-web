@@ -32,8 +32,8 @@ final class WhichShinyGameDexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertSame('Pokénini Lequel est le shiny ?', $crawler->filter('title')->text());
-        $this->assertSame('Lequel est le shiny ?', $crawler->filter('h1')->text());
+        $this->assertSame('Pokénini Chroma-Trouvé', $crawler->filter('title')->text());
+        $this->assertSame('Chroma-Trouvé', $crawler->filter('h1')->text());
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.nav-link.active');
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link .dropdown-item.active');
         $this->assertSame('/fr/game/which-shiny', $crawler->filter('.navbar-nav .game-link .dropdown-item.active')->attr('href'));
@@ -103,7 +103,7 @@ final class WhichShinyGameDexTest extends WebTestCase
         $this->assertSame('Terminée', $crawler->filter('.which-shiny-game-history tbody tr')->eq(1)->filter('td')->eq(2)->text());
         $this->assertSame('Abandonnée', $crawler->filter('.which-shiny-game-history tbody tr')->eq(2)->filter('td')->eq(2)->text());
         $this->assertSame(
-            "Pokénini · Lequel est le shiny ?\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/which-shiny",
+            "Pokénini · Chroma-Trouvé\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/which-shiny",
             $crawler->filter('.which-shiny-game-history tbody tr')->eq(1)->filter('.game-share-panel')->attr('data-share-grid'),
         );
         $this->assertCount(0, $crawler->filter('.which-shiny-game-history tbody tr')->eq(2)->filter('.game-share'));
@@ -118,7 +118,7 @@ final class WhichShinyGameDexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertSame('Which one is shiny?', $crawler->filter('h1')->text());
+        $this->assertSame('Spot The Shiny', $crawler->filter('h1')->text());
         $this->assertSame('Demo', $crawler->filter('.dex-item .card-title')->eq(0)->text());
         $this->assertSame('No Pokémon in this dex yet.', $crawler->filter('.no-playable')->text());
     }
@@ -133,7 +133,7 @@ final class WhichShinyGameDexTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertCountFilter($crawler, 0, '.dex-item');
-        $this->assertSame("Y'a pas encore de dex pour jouer à Lequel est le shiny.", $crawler->filter('.no-dex')->text());
+        $this->assertSame("Y'a pas encore de dex pour jouer à Chroma-Trouvé.", $crawler->filter('.no-dex')->text());
         $this->assertCountFilter($crawler, 0, '.which-shiny-game-history');
         $this->assertSame("Tu n'as pas encore joué.", $crawler->filter('.no-history')->text());
     }

@@ -32,8 +32,8 @@ final class ShinyGameDexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertSame('Pokénini Shiny or not', $crawler->filter('title')->text());
-        $this->assertSame('Shiny or not', $crawler->filter('h1')->text());
+        $this->assertSame('Pokénini Chroma ou pas', $crawler->filter('title')->text());
+        $this->assertSame('Chroma ou pas', $crawler->filter('h1')->text());
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.nav-link.active');
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link .dropdown-item.active');
         $this->assertSame('/fr/game/shiny', $crawler->filter('.navbar-nav .game-link .dropdown-item.active')->attr('href'));
@@ -103,7 +103,7 @@ final class ShinyGameDexTest extends WebTestCase
         $this->assertSame('Terminée', $crawler->filter('.shiny-game-history tbody tr')->eq(1)->filter('td')->eq(2)->text());
         $this->assertSame('Abandonnée', $crawler->filter('.shiny-game-history tbody tr')->eq(2)->filter('td')->eq(2)->text());
         $this->assertSame(
-            "Pokénini · Shiny or not\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/shiny",
+            "Pokénini · Chroma ou pas\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/shiny",
             $crawler->filter('.shiny-game-history tbody tr')->eq(1)->filter('.game-share-panel')->attr('data-share-grid'),
         );
         $this->assertCount(0, $crawler->filter('.shiny-game-history tbody tr')->eq(2)->filter('.game-share'));
@@ -133,7 +133,7 @@ final class ShinyGameDexTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertCountFilter($crawler, 0, '.dex-item');
-        $this->assertSame("Y'a pas encore de dex pour jouer à Shiny or not.", $crawler->filter('.no-dex')->text());
+        $this->assertSame("Y'a pas encore de dex pour jouer à Chroma ou pas.", $crawler->filter('.no-dex')->text());
         $this->assertCountFilter($crawler, 0, '.shiny-game-history');
         $this->assertSame("Tu n'as pas encore joué.", $crawler->filter('.no-history')->text());
     }

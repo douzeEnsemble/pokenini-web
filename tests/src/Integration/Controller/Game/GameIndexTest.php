@@ -44,7 +44,7 @@ final class GameIndexTest extends WebTestCase
             $crawler->filter('.game-item a')->each(static fn (Crawler $node): ?string => $node->attr('href')),
         );
         $this->assertSame(
-            ['Jeu des couleurs', 'Shiny or not', 'Lequel est le shiny ?'],
+            ['Bonne Palette', 'Chroma ou pas', 'Chroma-Trouvé'],
             $crawler->filter('.game-item .card-title')->each(static fn (Crawler $node): string => $node->text()),
         );
 
@@ -55,7 +55,7 @@ final class GameIndexTest extends WebTestCase
             $crawler->filter('.navbar-nav .game-link .dropdown-item')->each(static fn (Crawler $node): ?string => $node->attr('href')),
         );
         $this->assertSame(
-            ['Jeu des couleurs', 'Shiny or not', 'Lequel est le shiny ?'],
+            ['Bonne Palette', 'Chroma ou pas', 'Chroma-Trouvé'],
             $crawler->filter('.navbar-nav .game-link .dropdown-item')->each(static fn (Crawler $node): string => $node->text()),
         );
     }
@@ -73,7 +73,7 @@ final class GameIndexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertSame('Games', $crawler->filter('h1')->text());
-        $this->assertSame('Colour game', $crawler->filter('.game-item .card-title')->eq(0)->text());
+        $this->assertSame('Palet Found', $crawler->filter('.game-item .card-title')->eq(0)->text());
         $this->assertSame(
             'We show you a Pokémon, you guess if it is the regular or the shiny one.',
             $crawler->filter('.game-item .card-text')->eq(1)->text(),

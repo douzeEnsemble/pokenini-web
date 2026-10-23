@@ -246,7 +246,7 @@ final class AlbumDexListTest extends WebTestCase
             $crawler->filter('#jumbotron h2')->text()
         );
         $this->assertSame(
-            'Jeu des couleurs, Shiny or not, Lequel est le shiny ? : des petits jeux pour tester ton œil de dresseur. Et pour choisir ton Pokémon préféré, les élections t\'attendent.',
+            'Bonne Palette, Chroma ou pas, Chroma-Trouvé : des petits jeux pour tester ton œil de dresseur. Et pour choisir ton Pokémon préféré, les élections t\'attendent.',
             $crawler->filter('#jumbotron p')->text()
         );
         $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-game[href="/fr/game"]');
@@ -296,7 +296,7 @@ final class AlbumDexListTest extends WebTestCase
             $crawler->filter('#jumbotron h2')->text()
         );
         $this->assertSame(
-            'Colour game, Shiny or not, Which one is shiny?: small games to test your trainer\'s eye. And to pick your favorite Pokémon, the elections are waiting for you.',
+            'Palet Found, Shiny or not, Spot The Shiny: small games to test your trainer\'s eye. And to pick your favorite Pokémon, the elections are waiting for you.',
             $crawler->filter('#jumbotron p')->text()
         );
         $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-game[href="/en/game"]');
