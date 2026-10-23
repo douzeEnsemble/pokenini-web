@@ -3872,5 +3872,141 @@
     "response": {
       "status": "200"
     }
+  },
+  {
+    "request": {
+      "uri": "/trainer/preference",
+      "method": "get",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 92177b375e0bada8581a6acc3d1324c338b55e63"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "home_page": "album"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/preference",
+      "method": "get",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 2685c317c2b851544715f9b75b585256384827f3"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "home_page": "election"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/preference",
+      "method": "get",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 844845977fdd192d6750f94a83840dcd6496aa1b"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "home_page": "game"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/preference",
+      "method": "get",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 955f03209a2a2faa831e6a2d99d1bfdee50ebd3e"
+        }
+      }
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/preference",
+      "method": "get",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "home_page": "hub"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/preference",
+      "method": "put",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 26227ed8a9c6d34b128e3de44fecf689d54a4e35"
+        }
+      }
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/preference",
+      "method": "put",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200"
+    }
   }
 ]

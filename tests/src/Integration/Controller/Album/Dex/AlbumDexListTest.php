@@ -241,17 +241,7 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertEquals('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
-        $this->assertSame(
-            'Envie de jouer ?',
-            $crawler->filter('#jumbotron h2')->text()
-        );
-        $this->assertSame(
-            'Bonne Palette, Chroma ou pas, Chroma-Trouvé : des petits jeux pour tester ton œil de dresseur. Et pour choisir ton Pokémon préféré, les élections t\'attendent.',
-            $crawler->filter('#jumbotron p')->text()
-        );
-        $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-game[href="/fr/game"]');
-        $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-election[href="/fr/election/dex"]');
-        $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
+        $this->assertCountFilter($crawler, 0, '#jumbotron');
     }
 
     #[Test]
@@ -291,17 +281,7 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertEquals('Home Shiny 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/en/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
-        $this->assertSame(
-            'Up for a game?',
-            $crawler->filter('#jumbotron h2')->text()
-        );
-        $this->assertSame(
-            'Palet Found, Shiny or not, Spot The Shiny: small games to test your trainer\'s eye. And to pick your favorite Pokémon, the elections are waiting for you.',
-            $crawler->filter('#jumbotron p')->text()
-        );
-        $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-game[href="/en/game"]');
-        $this->assertCountFilter($crawler, 1, '#jumbotron a.jumbotron-election[href="/en/election/dex"]');
-        $this->assertCountFilter($crawler, 2, '#jumbotron .jumbotron-close');
+        $this->assertCountFilter($crawler, 0, '#jumbotron');
     }
 
     #[Test]

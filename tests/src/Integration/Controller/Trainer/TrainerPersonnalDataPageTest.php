@@ -47,7 +47,7 @@ final class TrainerPersonnalDataPageTest extends WebTestCase
         $this->assertEquals('Identifiant 789465465489', $crawler->filter('table tbody tr')->eq(0)->text());
         $this->assertEquals("Service d'identification TestProvider", $crawler->filter('table tbody tr')->eq(1)->text());
 
-        $this->assertCount(3, $crawler->filter('#trainer-section-tab .nav-link'));
+        $this->assertCount(4, $crawler->filter('#trainer-section-tab .nav-link'));
         $this->assertSame(
             '/fr/trainer/personnal_data',
             $crawler->filter('#trainer-section-tab .nav-link.active')->attr('href')

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+
+{% block title %}Pokénini {{ 'title.trainer'|trans }}{% endblock title %}
+
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/trainer.css') }}">
+{% endblock stylesheets %}
+
+{% block container_class %}container-fluid{% endblock container_class %}
+
+{% block container %}
+  <div class="row">
+    <div class="col-md-10 mx-auto text-center row">
+      <h1>{{ 'title.trainer'|trans }}</h1>
+    </div>
+  </div>
+
+  <div id="trainer" class="row">
+    <div class="col-md-3 sidebar-column" id="trainer-sidebar">
+      {{ include('Trainer/_tabs.html.twig', {'active': 'home_page'}) }}
+    </div>
+    <div id="trainer-main" class="sidebar-main col-md-9">
+      {{ include('Trainer/Section/_home_page.html.twig') }}
+    </div>
+  </div>
+{% endblock container %}

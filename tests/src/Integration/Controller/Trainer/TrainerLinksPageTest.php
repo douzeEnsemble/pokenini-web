@@ -66,7 +66,7 @@ final class TrainerLinksPageTest extends WebTestCase
         $this->assertStringContainsString('Rouge, Vert, Bleu, Jaune', $firstEdgeText);
         $this->assertStringContainsString('Or, Argent, Cristal', $firstEdgeText);
 
-        $this->assertCount(3, $crawler->filter('#trainer-section-tab .nav-link'));
+        $this->assertCount(4, $crawler->filter('#trainer-section-tab .nav-link'));
         $this->assertSame(
             '/fr/trainer/links',
             $crawler->filter('#trainer-section-tab .nav-link.active')->attr('href')

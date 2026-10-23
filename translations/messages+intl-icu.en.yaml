@@ -234,6 +234,27 @@ trainer:
 
     Here you can personalize your albums, and view the links between your dexes and your personal data.
     Have fun.
+  home_page:
+    title: "Home page"
+    intro: "When you open Pokénini, you want to see:"
+    default: "default"
+    submit: "Save"
+    saved: "Got it, you will land on “{page}”."
+    error: "Your choice could not be saved, try again a bit later."
+    outro: "The home stays one click away with “Home” in the menu."
+    options:
+      hub:
+        label: "The Pokénini home"
+        description: "The hub with your albums, the elections and the games."
+      album:
+        label: "Your albums"
+        description: "The list of your dex."
+      election:
+        label: "What's your favorite?"
+        description: "The list of the elections."
+      game:
+        label: "Games"
+        description: "The games page."
   personnal_data:
     title: "Personal data"
     intro: "Here is the personal data I have about you"
@@ -620,14 +641,30 @@ election:
   dex:
     details:
 
+hub:
+  subtitle: "Hi young trainer, what do you want to do today?"
+  choose_home: "Would you rather land straight on your albums, the elections or the games? <a>Choose your home page</a>"
+  album:
+    description: "Gotta catch 'em all. Follow the progress of your dex: every Pokémon, every form, every game."
+    action: "See my albums"
+  election:
+    description: "The elections: pick your favorite Pokémon dex by dex, then vote until you find the one."
+    action: "Pick my favorite"
+  game:
+    description: "Small games to test your trainer's eye."
+    action: "Play"
+  visitor:
+    subtitle: "Follow your collection, elect your favorite Pokémon and play."
+    demo: "Sample albums"
+    album:
+      title: "The albums"
+      action: "See a sample"
+    election:
+      action: "Log in to vote"
+    game:
+      action: "Log in to play"
+
 album_dex_list:
-  welcome:
-    title: "Up for a game?"
-    description: |
-      Palet Found, Shiny or not, Spot The Shiny: small games to test your trainer's eye.
-      And to pick your favorite Pokémon, the elections are waiting for you.
-    game: "Play"
-    election: "Pick my favorite"
   dex:
     report_badge_suffixe: caught
 
@@ -725,7 +762,7 @@ game:
       error: "The result could not be copied."
 
 color_game:
-  title: "Palet Found"
+  title: "Colour game"
   description: "We give you a Pokémon, you find its colours among several sets."
   shiny: "Shiny"
   score: "{correct, plural, =0 {No right answer} one {# right answer} other {# right answers}} out of {answered}"
@@ -737,7 +774,7 @@ color_game:
     resume: "Resume"
     new: "New game"
     no_playable: "No colours for this dex yet."
-    none: "There is no dex to play Palet Found yet."
+    none: "There is no dex to play the colour game yet."
   rounds:
     title: "How many rounds?"
     count: "{count} rounds"
@@ -806,12 +843,12 @@ shiny_game:
     create_failed: "The game could not be created. Try again a bit later."
 
 which_shiny_game:
-  title: "Spot The Shiny"
+  title: "Which one is shiny?"
   description: "We show you a Pokémon in its regular and shiny versions, you find the shiny one."
   dex:
     subtitle: "Choose the dex you want to play with. You can stop whenever you want, your game will wait for you"
     no_playable: "No Pokémon in this dex yet."
-    none: "There is no dex to play Spot The Shiny yet."
+    none: "There is no dex to play Which one is shiny yet."
   round:
     question: "Which one is shiny?"
     image: "Image {slot}"
