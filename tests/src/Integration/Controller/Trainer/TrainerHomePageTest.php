@@ -123,6 +123,8 @@ final class TrainerHomePageTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/trainer/home_page');
 
+        $this->assertResponseIsSuccessful();
+
         $form = $crawler->filter('#home-page-form')->form();
         $client->submit($form, ['home_page' => 'game']);
 
