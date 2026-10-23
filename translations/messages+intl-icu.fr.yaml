@@ -724,6 +724,8 @@ game:
     button: "Partager"
     title: "Partager le résultat de cette partie"
     score: "{correct}/{answered} ({percent} %)"
+    with_grid: "Avec la grille"
+    score_only: "Score seul"
     toast:
       success: "Résultat copié, tu peux le coller où tu veux."
       error: "Le résultat n'a pas pu être copié."

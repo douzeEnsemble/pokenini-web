@@ -49,29 +49,43 @@
 {% endmacro %}
 
 {#
-  Shares the result of a game as a text: the game, the dex, the score, a grid of the answered rounds (one square per round, ten per line, up to 50 rounds) and a link to the game.
+  Shares the result of a game as a text: the game, the dex, the score, a grid of the answered rounds and a link to the game.
+  The player chooses between the text with the grid (see GameExtension) and the score alone.
   On a phone it opens the share menu of the device, elsewhere it copies the text (see public/js/game-share.js and the toasts of shareToasts).
 #}
 {% macro shareButton(game, titleKey, dexRoute, buttonClass, isShiny = false, iconOnly = false) %}
 {% set dexName = (app.request.locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
 {% set percent = game.answeredCount > 0 ? (game.correctCount * 100 / game.answeredCount)|round : 0 %}
-{% set lines = [
-  'Pokénini · ' ~ titleKey|trans ~ (isShiny ? ' ✨' : ''),
-  dexName ~ ' · ' ~ 'game.share.score'|trans({'correct': game.correctCount, 'answered': game.answeredCount, 'percent': percent}),
-] %}
-{% if game.results is not empty and game.results|length <= 50 %}
-  {% set lines = lines|merge(game.results|batch(10)|map(row => row|map(result => result ? '🟩' : '🟥')|join)) %}
-{% endif %}
-{% set lines = lines|merge([url(dexRoute)]) %}
-<button
-  type="button"
-  class="btn {{ buttonClass }} game-share"
-  data-share-text="{{ lines|join("\n") }}"
-  title="{{ 'game.share.title'|trans }}"
->
-  <i class="bi bi-share" aria-hidden="true"></i>
-  <span{% if iconOnly %} class="visually-hidden"{% endif %}>{{ 'game.share.button'|trans }}</span>
-</button>
+{% set header = 'Pokénini · ' ~ titleKey|trans ~ (isShiny ? ' ✨' : '') ~ "\n" ~ dexName ~ ' · ' ~ 'game.share.score'|trans({'correct': game.correctCount, 'answered': game.answeredCount, 'percent': percent}) %}
+{% set link = url(dexRoute) %}
+{% set grid = game_results_grid(game.results) %}
+<div class="dropdown d-inline-block game-share-dropdown">
+  <button
+    type="button"
+    class="btn {{ buttonClass }} dropdown-toggle"
+    data-bs-toggle="dropdown"
+    data-bs-popper-config='{"strategy":"fixed"}'
+    aria-expanded="false"
+    title="{{ 'game.share.title'|trans }}"
+  >
+    <i class="bi bi-share" aria-hidden="true"></i>
+    <span{% if iconOnly %} class="visually-hidden"{% endif %}>{{ 'game.share.button'|trans }}</span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    {% if grid is not empty %}
+    <li>
+      <button type="button" class="dropdown-item game-share game-share-grid" data-share-text="{{ header ~ "\n" ~ grid ~ "\n" ~ link }}">
+        {{ 'game.share.with_grid'|trans }}
+      </button>
+    </li>
+    {% endif %}
+    <li>
+      <button type="button" class="dropdown-item game-share game-share-score" data-share-text="{{ header ~ "\n" ~ link }}">
+        {{ 'game.share.score_only'|trans }}
+      </button>
+    </li>
+  </ul>
+</div>
 {% endmacro %}
 
 {% macro shareToasts() %}
