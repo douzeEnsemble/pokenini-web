@@ -104,7 +104,7 @@ final class ShinyGameDexTest extends WebTestCase
         $this->assertSame('Abandonnée', $crawler->filter('.shiny-game-history tbody tr')->eq(2)->filter('td')->eq(2)->text());
         $this->assertSame(
             "Pokénini · Shiny or not\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/shiny",
-            $crawler->filter('.shiny-game-history tbody tr')->eq(1)->filter('.game-share')->attr('data-share-text'),
+            $crawler->filter('.shiny-game-history tbody tr')->eq(1)->filter('.game-share-grid')->attr('data-share-text'),
         );
         $this->assertCount(0, $crawler->filter('.shiny-game-history tbody tr')->eq(2)->filter('.game-share'));
     }
