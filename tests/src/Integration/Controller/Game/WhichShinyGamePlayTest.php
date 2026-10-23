@@ -160,7 +160,11 @@ final class WhichShinyGamePlayTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/game/which-shiny/'.self::IN_PROGRESS);
         $form = $crawler->filter('.which-shiny-choice')->eq(1)->form();
-        $crawler = $client->submit($form);
+        $client->submit($form);
+
+        $this->assertResponseRedirects('/fr/game/which-shiny/'.self::IN_PROGRESS.'/rounds/2/answer');
+
+        $crawler = $client->followRedirect();
 
         $this->assertResponseIsSuccessful();
 
@@ -217,7 +221,11 @@ final class WhichShinyGamePlayTest extends WebTestCase
 
         $crawler = $client->request('GET', '/en/game/which-shiny/'.self::IN_PROGRESS);
         $form = $crawler->filter('.which-shiny-choice')->eq(0)->form();
-        $crawler = $client->submit($form);
+        $client->submit($form);
+
+        $this->assertResponseRedirects('/en/game/which-shiny/'.self::IN_PROGRESS.'/rounds/2/answer');
+
+        $crawler = $client->followRedirect();
 
         $this->assertResponseIsSuccessful();
 
@@ -239,7 +247,11 @@ final class WhichShinyGamePlayTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/game/which-shiny/'.self::LAST_ROUND);
         $form = $crawler->filter('.which-shiny-choice')->eq(1)->form();
-        $crawler = $client->submit($form);
+        $client->submit($form);
+
+        $this->assertResponseRedirects('/fr/game/which-shiny/'.self::LAST_ROUND.'/rounds/3/answer');
+
+        $crawler = $client->followRedirect();
 
         $this->assertResponseIsSuccessful();
 
@@ -248,6 +260,74 @@ final class WhichShinyGamePlayTest extends WebTestCase
         $this->assertSame(['Normal', 'Chromatique'], $crawler->filter('.version-name')->each(static fn (Crawler $node): string => $node->text()));
         $this->assertSame('Chromatique', $crawler->filter('.shiny-version .version-name')->text());
         $this->assertSame('Voir le résultat', trim($crawler->filter('a.next-round')->text()));
+    }
+
+    #[Test]
+    public function answerReloaded(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/which-shiny/'.self::IN_PROGRESS);
+        $form = $crawler->filter('.which-shiny-choice')->eq(1)->form();
+        $client->submit($form);
+        $client->followRedirect();
+
+        // Reloading the answer page shows the answer again without sending it again
+        $crawler = $client->request('GET', '/fr/game/which-shiny/'.self::IN_PROGRESS.'/rounds/2/answer');
+
+        $this->assertResponseIsSuccessful();
+
+        $this->assertSame('Raté !', $crawler->filter('.answer-result')->text());
+        $this->assertSame('2 manches jouées sur 3', $crawler->filter('.color-game-progress + p')->text());
+        $this->assertSame('/fr/game/which-shiny/'.self::IN_PROGRESS, $crawler->filter('a.next-round')->attr('href'));
+    }
+
+    #[Test]
+    public function answeredNotAnswered(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $client->request('GET', '/fr/game/which-shiny/'.self::IN_PROGRESS.'/rounds/2/answer');
+
+        $this->assertResponseRedirects('/fr/game/which-shiny/'.self::IN_PROGRESS);
+    }
+
+    #[Test]
+    public function answeredAnotherRound(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/which-shiny/'.self::IN_PROGRESS);
+        $form = $crawler->filter('.which-shiny-choice')->eq(1)->form();
+        $client->submit($form);
+
+        $client->request('GET', '/fr/game/which-shiny/'.self::IN_PROGRESS.'/rounds/1/answer');
+
+        $this->assertResponseRedirects('/fr/game/which-shiny/'.self::IN_PROGRESS);
+    }
+
+    #[Test]
+    public function answeredAnotherGame(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/which-shiny/'.self::IN_PROGRESS);
+        $form = $crawler->filter('.which-shiny-choice')->eq(1)->form();
+        $client->submit($form);
+
+        $client->request('GET', '/fr/game/which-shiny/'.self::LAST_ROUND.'/rounds/2/answer');
+
+        $this->assertResponseRedirects('/fr/game/which-shiny/'.self::LAST_ROUND);
+    }
+
+    #[Test]
+    public function answeredNotAPosition(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $client->request('GET', '/fr/game/which-shiny/'.self::IN_PROGRESS.'/rounds/douze/answer');
+
+        $this->assertResponseStatusCodeSame(404);
     }
 
     #[Test]
