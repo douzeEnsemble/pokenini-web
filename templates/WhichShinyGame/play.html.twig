@@ -133,7 +133,7 @@
       {{ whichShinyGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
       <a href="{{ path('app_whichshinygame_dex') }}" class="btn btn-outline-secondary">{{ 'color_game.over.back'|trans }}</a>
       {% if game.answeredCount > 0 %}
-      {{ gameMacros.shareButton(game, 'which_shiny_game.title', 'app_whichshinygame_dex', 'btn-outline-success', false) }}
+      {{ gameMacros.sharePanel(game, 'which_shiny_game.title', 'app_whichshinygame_dex', false) }}
       {% endif %}
     </div>
   </div>

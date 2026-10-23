@@ -726,6 +726,9 @@ game:
     score: "{correct}/{answered} ({percent} %)"
     with_grid: "Avec la grille"
     score_only: "Score seul"
+    heading: "Partager ton résultat"
+    version: "Version à partager"
+    close: "Fermer"
     toast:
       success: "Résultat copié, tu peux le coller où tu veux."
       error: "Le résultat n'a pas pu être copié."

@@ -35,6 +35,23 @@ function onGameShareClick(event) {
   copyGameShareText(text);
 }
 
+// Shows the chosen version (with the grid or the score alone) in the preview, and shares it
+function onGameShareVersionClick(event) {
+  const version = event.currentTarget;
+  const panel = version.closest('.game-share-panel');
+  const text = 'grid' === version.dataset.version ? panel.dataset.shareGrid : panel.dataset.shareScore;
+
+  panel.querySelectorAll('.game-share-version').forEach((button) => {
+    button.classList.toggle('active', button === version);
+    button.setAttribute('aria-pressed', String(button === version));
+  });
+  panel.querySelector('.game-share-preview').textContent = text;
+  panel.querySelector('.game-share').dataset.shareText = text;
+}
+
+document.querySelectorAll('.game-share-version').forEach((button) => {
+  button.addEventListener('click', onGameShareVersionClick);
+});
 document.querySelectorAll('.game-share').forEach((button) => {
   button.addEventListener('click', onGameShareClick);
 });

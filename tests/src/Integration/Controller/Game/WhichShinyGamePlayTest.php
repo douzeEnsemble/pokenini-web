@@ -119,7 +119,7 @@ final class WhichShinyGamePlayTest extends WebTestCase
         $this->assertSame('/fr/game/which-shiny', $crawler->filter('.game-over a')->attr('href'));
         $this->assertSame(
             "Pokénini · Lequel est le shiny ?\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/which-shiny",
-            $crawler->filter('.game-over .game-share-grid')->attr('data-share-text'),
+            $crawler->filter('.game-over .game-share-panel')->attr('data-share-grid'),
         );
     }
 

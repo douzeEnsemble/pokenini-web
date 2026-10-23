@@ -135,7 +135,7 @@
             </a>
             {% endif %}
             {% if game.answeredCount > 0 %}
-            {{ gameMacros.shareButton(game, 'color_game.title', 'app_colorgame_dex', 'btn-sm btn-outline-success', game.isShiny, true) }}
+            {{ gameMacros.shareModal(game, 'color_game.title', 'app_colorgame_dex', game.isShiny) }}
             {% endif %}
           </td>
         </tr>

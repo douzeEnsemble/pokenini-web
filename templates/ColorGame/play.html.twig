@@ -146,7 +146,7 @@
       {{ colorGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
       <a href="{{ path('app_colorgame_dex') }}" class="btn btn-outline-secondary">{{ 'color_game.over.back'|trans }}</a>
       {% if game.answeredCount > 0 %}
-      {{ gameMacros.shareButton(game, 'color_game.title', 'app_colorgame_dex', 'btn-outline-success', game.isShiny) }}
+      {{ gameMacros.sharePanel(game, 'color_game.title', 'app_colorgame_dex', game.isShiny) }}
       {% endif %}
     </div>
   </div>

@@ -50,41 +50,55 @@
 
 {#
   Shares the result of a game as a text: the game, the dex, the score, a grid of the answered rounds and a link to the game.
-  The player chooses between the text with the grid (see GameExtension) and the score alone.
+  The player sees a preview and switches between the text with the grid (see GameExtension) and the score alone.
   On a phone it opens the share menu of the device, elsewhere it copies the text (see public/js/game-share.js and the toasts of shareToasts).
 #}
-{% macro shareButton(game, titleKey, dexRoute, buttonClass, isShiny = false, iconOnly = false) %}
+{% macro sharePanel(game, titleKey, dexRoute, isShiny = false, showHeading = true) %}
 {% set dexName = (app.request.locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
 {% set percent = game.answeredCount > 0 ? (game.correctCount * 100 / game.answeredCount)|round : 0 %}
 {% set header = 'Pokénini · ' ~ titleKey|trans ~ (isShiny ? ' ✨' : '') ~ "\n" ~ dexName ~ ' · ' ~ 'game.share.score'|trans({'correct': game.correctCount, 'answered': game.answeredCount, 'percent': percent}) %}
 {% set link = url(dexRoute) %}
 {% set grid = game_results_grid(game.results) %}
-<div class="dropdown d-inline-block game-share-dropdown">
-  <button
-    type="button"
-    class="btn {{ buttonClass }} dropdown-toggle"
-    data-bs-toggle="dropdown"
-    data-bs-popper-config='{"strategy":"fixed"}'
-    aria-expanded="false"
-    title="{{ 'game.share.title'|trans }}"
-  >
-    <i class="bi bi-share" aria-hidden="true"></i>
-    <span{% if iconOnly %} class="visually-hidden"{% endif %}>{{ 'game.share.button'|trans }}</span>
+{% set scoreText = header ~ "\n" ~ link %}
+{% set gridText = grid is empty ? '' : header ~ "\n" ~ grid ~ "\n" ~ link %}
+{% set text = grid is empty ? scoreText : gridText %}
+<div class="game-share-panel" data-share-grid="{{ gridText }}" data-share-score="{{ scoreText }}">
+  {% if showHeading %}
+  <h4 class="h6">{{ 'game.share.heading'|trans }}</h4>
+  {% endif %}
+  {% if grid is not empty %}
+  <div class="btn-group btn-group-sm mb-2" role="group" aria-label="{{ 'game.share.version'|trans }}">
+    <button type="button" class="btn btn-outline-secondary game-share-version active" data-version="grid" aria-pressed="true">{{ 'game.share.with_grid'|trans }}</button>
+    <button type="button" class="btn btn-outline-secondary game-share-version" data-version="score" aria-pressed="false">{{ 'game.share.score_only'|trans }}</button>
+  </div>
+  {% endif %}
+  <pre class="game-share-preview">{{ text }}</pre>
+  <button type="button" class="btn btn-success game-share" data-share-text="{{ text }}" title="{{ 'game.share.title'|trans }}">
+    <i class="bi bi-share" aria-hidden="true"></i> {{ 'game.share.button'|trans }}
   </button>
-  <ul class="dropdown-menu dropdown-menu-end">
-    {% if grid is not empty %}
-    <li>
-      <button type="button" class="dropdown-item game-share game-share-grid" data-share-text="{{ header ~ "\n" ~ grid ~ "\n" ~ link }}">
-        {{ 'game.share.with_grid'|trans }}
-      </button>
-    </li>
-    {% endif %}
-    <li>
-      <button type="button" class="dropdown-item game-share game-share-score" data-share-text="{{ header ~ "\n" ~ link }}">
-        {{ 'game.share.score_only'|trans }}
-      </button>
-    </li>
-  </ul>
+</div>
+{% endmacro %}
+
+{# The share icon of a game in the history opens the share panel of this game in a modal #}
+{% macro shareModal(game, titleKey, dexRoute, isShiny = false) %}
+{% import _self as gameMacros %}
+{% set modalId = 'game-share-' ~ game.id %}
+<button type="button" class="btn btn-sm btn-outline-success game-share-open" data-bs-toggle="modal" data-bs-target="#{{ modalId }}" title="{{ 'game.share.title'|trans }}">
+  <i class="bi bi-share" aria-hidden="true"></i>
+  <span class="visually-hidden">{{ 'game.share.button'|trans }}</span>
+</button>
+<div class="modal fade text-center game-share-modal" id="{{ modalId }}" tabindex="-1" aria-labelledby="{{ modalId }}-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="{{ modalId }}-title">{{ 'game.share.heading'|trans }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'game.share.close'|trans }}"></button>
+      </div>
+      <div class="modal-body">
+        {{ gameMacros.sharePanel(game, titleKey, dexRoute, isShiny, false) }}
+      </div>
+    </div>
+  </div>
 </div>
 {% endmacro %}
 
