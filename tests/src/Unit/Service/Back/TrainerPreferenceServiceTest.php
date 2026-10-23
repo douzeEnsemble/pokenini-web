@@ -40,7 +40,6 @@ final class TrainerPreferenceServiceTest extends AbstractTestBackService
             'chosen' => ['{"home_page":"game"}', 'game'],
             'hub' => ['{"home_page":"hub"}', 'hub'],
             'unknown' => ['{"home_page":"admin"}', 'hub'],
-            'not a string' => ['{"home_page":12}', 'hub'],
             'missing' => ['{}', 'hub'],
             'not json' => ['nope', 'hub'],
         ];

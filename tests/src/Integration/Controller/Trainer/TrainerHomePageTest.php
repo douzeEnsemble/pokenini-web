@@ -81,8 +81,7 @@ final class TrainerHomePageTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/trainer/home_page');
 
         $form = $crawler->filter('#home-page-form')->form();
-        $form['home_page']->select('album');
-        $client->submit($form);
+        $client->submit($form, ['home_page' => 'album']);
 
         $this->assertResponseRedirects('/fr/trainer/home_page');
         $crawler = $client->followRedirect();
@@ -125,8 +124,7 @@ final class TrainerHomePageTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/trainer/home_page');
 
         $form = $crawler->filter('#home-page-form')->form();
-        $form['home_page']->select('game');
-        $client->submit($form);
+        $client->submit($form, ['home_page' => 'game']);
 
         $this->assertResponseRedirects('/fr/trainer/home_page');
         $crawler = $client->followRedirect();
