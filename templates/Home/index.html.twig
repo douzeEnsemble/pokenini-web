@@ -11,7 +11,7 @@
   {{ parent() }}
 
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-  {% if not isTrainer %}
+  {% if dex is defined %}
   <link rel="stylesheet" href="{{ asset('css/dex-list.css') }}">
 
   <style>
@@ -125,7 +125,9 @@
   <p class="col-12 mt-4 text-center text-body-secondary hub-choose-home">
     {{ 'hub.choose_home'|trans|replace({'<a>': '<a href="'~path('app_trainerhomepage_index')~'">'})|raw }}
   </p>
-  {% else %}
+  {% endif %}
+
+  {% if dex is defined %}
   <div id="home-demo" class="col-12 mt-5 text-start">
     <h2 class="h4">{{ 'hub.visitor.demo'|trans }}</h2>
     {{ list.listAlbums(dex, locale, demoUserId) }}

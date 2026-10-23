@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\DTO\HomePage;
 use App\Service\Back\GetAlbumDexListService;
 use App\Service\Back\TrainerPreferenceService;
 use App\Service\GetLabelsService;
@@ -26,16 +27,9 @@ final class HomeController extends AbstractController
     #[Route('')]
     public function index(TrainerPreferenceService $trainerPreferenceService): Response
     {
-        if (!$this->isGranted('ROLE_TRAINER')) {
-            return $this->renderHub();
-        }
-
-        try {
-            $homePage = $trainerPreferenceService->getHomePage();
-        } catch (ExceptionInterface) {
-            // The hub still leads everywhere when the choice can't be read
-            return $this->renderHub();
-        }
+        $homePage = $this->isGranted('ROLE_TRAINER')
+            ? $this->getHomePage($trainerPreferenceService)
+            : new HomePage(HomePage::HUB);
 
         if ($homePage->isHub()) {
             return $this->renderHub();
@@ -48,6 +42,16 @@ final class HomeController extends AbstractController
     public function hub(): Response
     {
         return $this->renderHub();
+    }
+
+    private function getHomePage(TrainerPreferenceService $trainerPreferenceService): HomePage
+    {
+        try {
+            return $trainerPreferenceService->getHomePage();
+        } catch (ExceptionInterface) {
+            // The hub still leads everywhere when the choice can't be read
+            return new HomePage(HomePage::HUB);
+        }
     }
 
     private function renderHub(): Response
