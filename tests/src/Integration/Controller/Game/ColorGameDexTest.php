@@ -131,17 +131,24 @@ final class ColorGameDexTest extends WebTestCase
         $rows = $crawler->filter('.color-game-history tbody tr');
         $this->assertSame(
             "Pokénini · Jeu des couleurs\nDémo · 1/1 (100 %)\n🟩\nhttp://localhost/fr/game/color",
-            $rows->eq(0)->filter('.game-share-grid')->attr('data-share-text'),
+            $rows->eq(0)->filter('.game-share-panel')->attr('data-share-grid'),
         );
         $this->assertSame(
             "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
-            $rows->eq(1)->filter('.game-share-grid')->attr('data-share-text'),
+            $rows->eq(1)->filter('.game-share-panel')->attr('data-share-grid'),
         );
         $this->assertSame(
             "Pokénini · Jeu des couleurs\nDémo · 1/1 (100 %)\nhttp://localhost/fr/game/color",
-            $rows->eq(0)->filter('.game-share-score')->attr('data-share-text'),
+            $rows->eq(0)->filter('.game-share-panel')->attr('data-share-score'),
         );
+        $this->assertSame(
+            '#game-share-11111111-1111-4111-8111-111111111111',
+            $rows->eq(0)->filter('.game-share-open')->attr('data-bs-target'),
+        );
+        $this->assertSame('Partager ton résultat', $rows->eq(0)->filter('.game-share-modal .modal-title')->text());
+        $this->assertCount(0, $rows->eq(0)->filter('.game-share-panel h4'));
         $this->assertCount(0, $rows->eq(2)->filter('.game-share'));
+        $this->assertCount(0, $rows->eq(2)->filter('.game-share-open'));
         $this->assertCountFilter($crawler, 1, '#gameShareToastSuccess');
         $this->assertCountFilter($crawler, 1, 'script[src^="/js/game-share.js"]');
     }
@@ -161,7 +168,7 @@ final class ColorGameDexTest extends WebTestCase
         $this->assertSame('Red / Green / Blue / Yellow', $crawler->filter('.color-game-history tbody tr')->eq(2)->filter('td')->eq(1)->text());
         $this->assertSame(
             "Pokénini · Colour game\nDemo · 1/1 (100%)\n🟩\nhttp://localhost/en/game/color",
-            $crawler->filter('.color-game-history .game-share-grid')->attr('data-share-text'),
+            $crawler->filter('.color-game-history .game-share-panel')->attr('data-share-grid'),
         );
         $this->assertSame('1 right answer out of 1', $crawler->filter('.dex-item .current-game .color-game-score')->text());
     }

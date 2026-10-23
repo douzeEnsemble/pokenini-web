@@ -115,16 +115,27 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('homeshiny', $crawler->filter('.game-over input[name="dex_slug"]')->attr('value'));
         $this->assertSame('Rejouer', $crawler->filter('.game-over .new-game')->text());
         $this->assertSame('/fr/game/color', $crawler->filter('.game-over a')->attr('href'));
-        $this->assertSame('Partager', $crawler->filter('.game-over .game-share-dropdown .dropdown-toggle')->text());
+        $this->assertSame('Partager', $crawler->filter('.game-over .game-share')->text());
         $this->assertSame(
             "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
-            $crawler->filter('.game-over .game-share-grid')->attr('data-share-text'),
+            $crawler->filter('.game-over .game-share-panel')->attr('data-share-grid'),
         );
-        $this->assertSame('Avec la grille', $crawler->filter('.game-over .game-share-grid')->text());
-        $this->assertSame('Score seul', $crawler->filter('.game-over .game-share-score')->text());
+        $this->assertSame('Partager ton résultat', $crawler->filter('.game-over .game-share-panel h4')->text());
+        // The grid is shown first
+        $this->assertSame(
+            "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
+            $crawler->filter('.game-over .game-share-preview')->text(null, false),
+        );
+        $this->assertSame(
+            "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
+            $crawler->filter('.game-over .game-share')->attr('data-share-text'),
+        );
+        $this->assertSame('true', $crawler->filter('.game-over .game-share-version[data-version="grid"]')->attr('aria-pressed'));
+        $this->assertSame('Avec la grille', $crawler->filter('.game-over .game-share-version[data-version="grid"]')->text());
+        $this->assertSame('Score seul', $crawler->filter('.game-over .game-share-version[data-version="score"]')->text());
         $this->assertSame(
             "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\nhttp://localhost/fr/game/color",
-            $crawler->filter('.game-over .game-share-score')->attr('data-share-text'),
+            $crawler->filter('.game-over .game-share-panel')->attr('data-share-score'),
         );
         $this->assertCountFilter($crawler, 1, '#gameShareToastSuccess');
         $this->assertCountFilter($crawler, 1, '#gameShareToastError');
@@ -146,7 +157,7 @@ final class ColorGamePlayTest extends WebTestCase
         // More than 50 rounds: the grid sums them up by tenths
         $this->assertSame(
             "Pokénini · Jeu des couleurs\nRouge / Vert / Bleu / Jaune · 45/60 (75 %)\n🟩🟨🟩🟨🟩🟨🟩🟨🟩🟨\nhttp://localhost/fr/game/color",
-            $crawler->filter('.game-over .game-share-grid')->attr('data-share-text'),
+            $crawler->filter('.game-over .game-share-panel')->attr('data-share-grid'),
         );
     }
 

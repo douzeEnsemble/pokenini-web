@@ -145,3 +145,31 @@
 .dex-item:focus-within {
     z-index: 2;
 }
+
+/* Share panel of a game: a preview of the text to share, with or without the grid */
+.game-share-panel {
+    max-width: 28rem;
+    margin: 1.5rem auto 0;
+}
+
+.game-over .game-share-panel {
+    padding-top: 1rem;
+    border-top: 1px solid var(--bs-border-color);
+}
+
+.game-share-preview {
+    margin-bottom: .75rem;
+    padding: .75rem 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: .5rem;
+    background-color: var(--bs-tertiary-bg);
+    font-family: inherit;
+    font-size: .9rem;
+    text-align: start;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.game-share-modal .game-share-panel {
+    margin-top: 0;
+}

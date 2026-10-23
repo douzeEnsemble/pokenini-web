@@ -131,7 +131,7 @@
             </a>
             {% endif %}
             {% if game.answeredCount > 0 %}
-            {{ gameMacros.shareButton(game, 'which_shiny_game.title', 'app_whichshinygame_dex', 'btn-sm btn-outline-success', false, true) }}
+            {{ gameMacros.shareModal(game, 'which_shiny_game.title', 'app_whichshinygame_dex', false) }}
             {% endif %}
           </td>
         </tr>
