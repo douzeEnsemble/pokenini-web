@@ -31,20 +31,6 @@ final class TrainerPreferenceServiceTest extends AbstractTestBackService
         $this->assertSame($expected, $service->getHomePage()->value);
     }
 
-    #[Test]
-    public function modifyHomePage(): void
-    {
-        /** @var TrainerPreferenceService $service */
-        $service = $this->getServiceWithLoggedUser(
-            'PUT',
-            '',
-            'trainer/preference',
-            ['body' => '{"home_page":"election"}'],
-        );
-
-        $service->modifyHomePage(new HomePage('election'));
-    }
-
     /**
      * @return string[][]
      */
@@ -58,6 +44,20 @@ final class TrainerPreferenceServiceTest extends AbstractTestBackService
             'missing' => ['{}', 'hub'],
             'not json' => ['nope', 'hub'],
         ];
+    }
+
+    #[Test]
+    public function modifyHomePage(): void
+    {
+        /** @var TrainerPreferenceService $service */
+        $service = $this->getServiceWithLoggedUser(
+            'PUT',
+            '',
+            'trainer/preference',
+            ['body' => '{"home_page":"election"}'],
+        );
+
+        $service->modifyHomePage(new HomePage('election'));
     }
 
     #[\Override]

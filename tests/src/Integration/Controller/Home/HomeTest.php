@@ -68,6 +68,18 @@ final class HomeTest extends WebTestCase
         $this->assertResponseRedirects($url);
     }
 
+    /**
+     * @return string[][]
+     */
+    public static function providerChosenHomePages(): array
+    {
+        return [
+            'album' => ['home-album', '/fr/album/dex'],
+            'election' => ['home-election', '/fr/election/dex'],
+            'game' => ['home-game', '/fr/game'],
+        ];
+    }
+
     #[Test]
     public function homeAsTrainerInEnglishRedirectsToTheChosenPage(): void
     {
@@ -128,18 +140,6 @@ final class HomeTest extends WebTestCase
         $this->assertCountFilter($crawler, 3, '.hub-item');
         $this->assertCountFilter($crawler, 0, '.alert-warning');
         $this->assertCountFilter($crawler, 6, '.dex-item');
-    }
-
-    /**
-     * @return string[][]
-     */
-    public static function providerChosenHomePages(): array
-    {
-        return [
-            'album' => ['home-album', '/fr/album/dex'],
-            'election' => ['home-election', '/fr/election/dex'],
-            'game' => ['home-game', '/fr/game'],
-        ];
     }
 
     private function trainerClient(string $identifier): KernelBrowser

@@ -28,18 +28,6 @@ final class HomePageTest extends TestCase
         $this->assertTrue(HomePage::isValid($value));
     }
 
-    #[Test]
-    #[DataProvider('providerUnknownValues')]
-    public function unknownPageIsTheHub(string $value): void
-    {
-        $homePage = new HomePage($value);
-
-        $this->assertSame('hub', $homePage->value);
-        $this->assertSame('app_home_hub', $homePage->getRoute());
-        $this->assertTrue($homePage->isHub());
-        $this->assertFalse(HomePage::isValid($value));
-    }
-
     /**
      * @return array<string, array{string, string, bool}>
      */
@@ -51,6 +39,18 @@ final class HomePageTest extends TestCase
             'election' => ['election', 'app_electiondexlist_index', false],
             'game' => ['game', 'app_game_index', false],
         ];
+    }
+
+    #[Test]
+    #[DataProvider('providerUnknownValues')]
+    public function unknownPageIsTheHub(string $value): void
+    {
+        $homePage = new HomePage($value);
+
+        $this->assertSame('hub', $homePage->value);
+        $this->assertSame('app_home_hub', $homePage->getRoute());
+        $this->assertTrue($homePage->isHub());
+        $this->assertFalse(HomePage::isValid($value));
     }
 
     /**
