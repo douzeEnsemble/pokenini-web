@@ -75,6 +75,10 @@ final class GameExtensionTest extends TestCase
                 ],
                 '🟩🟩🟨🟨🟥🟥🟩🟨🟥🟥',
             ],
+            'a hundred and ten rounds summed up by eleven, just under the thresholds' => [
+                [...self::part(8, 11), ...self::part(5, 11), ...array_fill(0, 88, true)],
+                '🟨🟥🟩🟩🟩🟩🟩🟩🟩🟩',
+            ],
             'fifty-one rounds summed up in uneven parts' => [
                 // Parts of 5 rounds, the last one of 6
                 [...array_fill(0, 45, true), ...self::part(4, 6)],
