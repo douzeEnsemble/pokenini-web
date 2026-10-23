@@ -117,16 +117,27 @@ final class ColorGameDexTest extends WebTestCase
         $this->assertSame('Rouge / Vert / Bleu / Jaune', $thirdRow->filter('td')->eq(1)->text());
         $this->assertSame('Abandonnée', $thirdRow->filter('td')->eq(2)->text());
         $this->assertSame('Aucune bonne réponse sur 0 (0 manche jouée sur 151)', $thirdRow->filter('td')->eq(3)->text());
+    }
 
+    #[Test]
+    public function dexShare(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/color');
+
+        $this->assertResponseIsSuccessful();
+
+        $rows = $crawler->filter('.color-game-history tbody tr');
         $this->assertSame(
             "Pokénini · Jeu des couleurs\nDémo · 1/1 (100 %)\n🟩\nhttp://localhost/fr/game/color",
-            $firstRow->filter('.game-share')->attr('data-share-text'),
+            $rows->eq(0)->filter('.game-share')->attr('data-share-text'),
         );
         $this->assertSame(
             "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
-            $secondRow->filter('.game-share')->attr('data-share-text'),
+            $rows->eq(1)->filter('.game-share')->attr('data-share-text'),
         );
-        $this->assertCount(0, $thirdRow->filter('.game-share'));
+        $this->assertCount(0, $rows->eq(2)->filter('.game-share'));
         $this->assertCountFilter($crawler, 1, '#gameShareToastSuccess');
         $this->assertCountFilter($crawler, 1, 'script[src^="/js/game-share.js"]');
     }
