@@ -633,7 +633,7 @@ album_dex_list:
   welcome:
     title: "Envie de jouer ?"
     description: |
-      Jeu des couleurs, Shiny or not, Lequel est le shiny ? : des petits jeux pour tester ton œil de dresseur.
+      Bonne Palette, Chroma ou pas, Chroma-Trouvé : des petits jeux pour tester ton œil de dresseur.
       Et pour choisir ton Pokémon préféré, les élections t'attendent.
     game: "Jouer"
     election: "Choisir mon préféré"
@@ -734,7 +734,7 @@ game:
       error: "Le résultat n'a pas pu être copié."
 
 color_game:
-  title: "Jeu des couleurs"
+  title: "Bonne Palette"
   description: "On te donne un Pokémon, tu retrouves ses couleurs parmi plusieurs lots."
   shiny: "Chromatique"
   score: "{correct, plural, =0 {Aucune bonne réponse} one {# bonne réponse} other {# bonnes réponses}} sur {answered}"
@@ -746,7 +746,7 @@ color_game:
     resume: "Continuer"
     new: "Nouvelle partie"
     no_playable: "Pas encore de couleurs pour ce dex."
-    none: "Y'a pas encore de dex pour jouer aux couleurs."
+    none: "Y'a pas encore de dex pour jouer à Bonne Palette."
   rounds:
     title: "Combien de manches ?"
     count: "{count} manches"
@@ -794,12 +794,12 @@ color_game:
     create_failed: "La partie n'a pas pu être créée. Réessaie un peu plus tard."
 
 shiny_game:
-  title: "Shiny or not"
+  title: "Chroma ou pas"
   description: "On te montre un Pokémon, tu devines si c'est sa version normale ou chromatique."
   dex:
     subtitle: "Choisis le dex avec lequel tu veux jouer. Tu peux t'arrêter quand tu veux, ta partie t'attend"
     no_playable: "Pas encore de Pokémon dans ce dex."
-    none: "Y'a pas encore de dex pour jouer à Shiny or not."
+    none: "Y'a pas encore de dex pour jouer à Chroma ou pas."
   round:
     question: "Normal ou chromatique ?"
     image: "Le Pokémon à deviner"
@@ -815,12 +815,12 @@ shiny_game:
     create_failed: "La partie n'a pas pu être créée. Réessaie un peu plus tard."
 
 which_shiny_game:
-  title: "Lequel est le shiny ?"
+  title: "Chroma-Trouvé"
   description: "On te montre un Pokémon en normal et en chromatique, à toi de trouver le chromatique."
   dex:
     subtitle: "Choisis le dex avec lequel tu veux jouer. Tu peux t'arrêter quand tu veux, ta partie t'attend"
     no_playable: "Pas encore de Pokémon dans ce dex."
-    none: "Y'a pas encore de dex pour jouer à Lequel est le shiny."
+    none: "Y'a pas encore de dex pour jouer à Chroma-Trouvé."
   round:
     question: "Lequel est le shiny ?"
     image: "Image {slot}"

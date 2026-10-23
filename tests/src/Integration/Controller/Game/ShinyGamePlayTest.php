@@ -40,7 +40,7 @@ final class ShinyGamePlayTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertSame('Pokénini Shiny or not', $crawler->filter('title')->text());
+        $this->assertSame('Pokénini Chroma ou pas', $crawler->filter('title')->text());
         // The release version is in the CSS and JS URLs, so a new release is not served the previous files from the browser cache
         $this->assertCountFilter($crawler, 1, 'link[href="/css/shiny-game.css?v=1.2.12"]');
         $this->assertCountFilter($crawler, 1, 'script[src="/js/game.js?v=1.2.12"]');
@@ -55,7 +55,7 @@ final class ShinyGamePlayTest extends WebTestCase
         $this->assertSame('Manche 2 sur 3', $crawler->filter('.game-bar .round-position')->text());
         $this->assertSame('2/3', $crawler->filter('.game-bar .round-position-short')->text());
         $this->assertSame('1/1', $crawler->filter('.game-bar .game-score-short')->text());
-        $this->assertSame('Shiny or not', $crawler->filter('.game-bar h1')->text());
+        $this->assertSame('Chroma ou pas', $crawler->filter('.game-bar h1')->text());
         $this->assertCountFilter($crawler, 1, '.game-bar .color-game-progress + p.visually-hidden');
         $this->assertCountFilter($crawler, 1, '.game-bar a.stop-game');
         $this->assertCountFilter($crawler, 0, '.game-is-shiny');
@@ -120,7 +120,7 @@ final class ShinyGamePlayTest extends WebTestCase
         $this->assertSame('/fr/game/shiny', $crawler->filter('.game-over form')->attr('action'));
         $this->assertSame('/fr/game/shiny', $crawler->filter('.game-over a')->attr('href'));
         $this->assertSame(
-            "Pokénini · Shiny or not\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/shiny",
+            "Pokénini · Chroma ou pas\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/shiny",
             $crawler->filter('.game-over .game-share-panel')->attr('data-share-grid'),
         );
     }

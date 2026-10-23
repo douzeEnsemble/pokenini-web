@@ -32,8 +32,8 @@ final class ColorGameDexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertSame('Pokénini Jeu des couleurs', $crawler->filter('title')->text());
-        $this->assertSame('Jeu des couleurs', $crawler->filter('h1')->text());
+        $this->assertSame('Pokénini Bonne Palette', $crawler->filter('title')->text());
+        $this->assertSame('Bonne Palette', $crawler->filter('h1')->text());
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.nav-link.active');
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link .dropdown-item.active');
         $this->assertSame('/fr/game/color', $crawler->filter('.navbar-nav .game-link .dropdown-item.active')->attr('href'));
@@ -130,15 +130,15 @@ final class ColorGameDexTest extends WebTestCase
 
         $rows = $crawler->filter('.color-game-history tbody tr');
         $this->assertSame(
-            "Pokénini · Jeu des couleurs\nDémo · 1/1 (100 %)\n🟩\nhttp://localhost/fr/game/color",
+            "Pokénini · Bonne Palette\nDémo · 1/1 (100 %)\n🟩\nhttp://localhost/fr/game/color",
             $rows->eq(0)->filter('.game-share-panel')->attr('data-share-grid'),
         );
         $this->assertSame(
-            "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
+            "Pokénini · Bonne Palette ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
             $rows->eq(1)->filter('.game-share-panel')->attr('data-share-grid'),
         );
         $this->assertSame(
-            "Pokénini · Jeu des couleurs\nDémo · 1/1 (100 %)\nhttp://localhost/fr/game/color",
+            "Pokénini · Bonne Palette\nDémo · 1/1 (100 %)\nhttp://localhost/fr/game/color",
             $rows->eq(0)->filter('.game-share-panel')->attr('data-share-score'),
         );
         $this->assertSame(
@@ -162,12 +162,12 @@ final class ColorGameDexTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertSame('Colour game', $crawler->filter('h1')->text());
+        $this->assertSame('Palet Found', $crawler->filter('h1')->text());
         $this->assertSame('Demo', $crawler->filter('.dex-item .card-title')->eq(0)->text());
         $this->assertSame('A small dex to try.', $crawler->filter('.dex-item')->eq(0)->filter('p.small.text-start')->text());
         $this->assertSame('Red / Green / Blue / Yellow', $crawler->filter('.color-game-history tbody tr')->eq(2)->filter('td')->eq(1)->text());
         $this->assertSame(
-            "Pokénini · Colour game\nDemo · 1/1 (100%)\n🟩\nhttp://localhost/en/game/color",
+            "Pokénini · Palet Found\nDemo · 1/1 (100%)\n🟩\nhttp://localhost/en/game/color",
             $crawler->filter('.color-game-history .game-share-panel')->attr('data-share-grid'),
         );
         $this->assertSame('1 right answer out of 1', $crawler->filter('.dex-item .current-game .color-game-score')->text());

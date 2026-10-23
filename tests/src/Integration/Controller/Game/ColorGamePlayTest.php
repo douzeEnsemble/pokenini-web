@@ -40,7 +40,7 @@ final class ColorGamePlayTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertSame('Pokénini Jeu des couleurs', $crawler->filter('title')->text());
+        $this->assertSame('Pokénini Bonne Palette', $crawler->filter('title')->text());
         $this->assertSame('Démo', $crawler->filter('h2 small')->text());
         $this->assertCountFilter($crawler, 0, '.game-is-shiny');
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.nav-link.active');
@@ -53,7 +53,7 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('Manche 2 sur 3', $crawler->filter('.game-bar .round-position')->text());
         $this->assertSame('2/3', $crawler->filter('.game-bar .round-position-short')->text());
         $this->assertSame('1/1', $crawler->filter('.game-bar .game-score-short')->text());
-        $this->assertSame('Jeu des couleurs', $crawler->filter('.game-bar h1')->text());
+        $this->assertSame('Bonne Palette', $crawler->filter('.game-bar h1')->text());
         $this->assertCountFilter($crawler, 1, '.game-bar .color-game-progress + p.visually-hidden');
         $this->assertCountFilter($crawler, 1, '.game-bar a.stop-game');
         $this->assertSame('Herbizarre', $crawler->filter('.pokemon-name')->text());
@@ -117,24 +117,24 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('/fr/game/color', $crawler->filter('.game-over a')->attr('href'));
         $this->assertSame('Partager', $crawler->filter('.game-over .game-share')->text());
         $this->assertSame(
-            "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
+            "Pokénini · Bonne Palette ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
             $crawler->filter('.game-over .game-share-panel')->attr('data-share-grid'),
         );
         $this->assertSame('Partager ton résultat', $crawler->filter('.game-over .game-share-panel h4')->text());
         // The grid is shown first
         $this->assertSame(
-            "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
+            "Pokénini · Bonne Palette ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
             $crawler->filter('.game-over .game-share-preview')->text(null, false),
         );
         $this->assertSame(
-            "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
+            "Pokénini · Bonne Palette ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
             $crawler->filter('.game-over .game-share')->attr('data-share-text'),
         );
         $this->assertSame('true', $crawler->filter('.game-over .game-share-version[data-version="grid"]')->attr('aria-pressed'));
         $this->assertSame('Avec la grille', $crawler->filter('.game-over .game-share-version[data-version="grid"]')->text());
         $this->assertSame('Score seul', $crawler->filter('.game-over .game-share-version[data-version="score"]')->text());
         $this->assertSame(
-            "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\nhttp://localhost/fr/game/color",
+            "Pokénini · Bonne Palette ✨\nHome Chromatique · 1/2 (50 %)\nhttp://localhost/fr/game/color",
             $crawler->filter('.game-over .game-share-panel')->attr('data-share-score'),
         );
         $this->assertCountFilter($crawler, 1, '#gameShareToastSuccess');
@@ -156,7 +156,7 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('Partie abandonnée', $crawler->filter('.game-over h3')->text());
         // More than 50 rounds: the grid sums them up by tenths
         $this->assertSame(
-            "Pokénini · Jeu des couleurs\nRouge / Vert / Bleu / Jaune · 45/60 (75 %)\n🟩🟨🟩🟨🟩🟨🟩🟨🟩🟨\nhttp://localhost/fr/game/color",
+            "Pokénini · Bonne Palette\nRouge / Vert / Bleu / Jaune · 45/60 (75 %)\n🟩🟨🟩🟨🟩🟨🟩🟨🟩🟨\nhttp://localhost/fr/game/color",
             $crawler->filter('.game-over .game-share-panel')->attr('data-share-grid'),
         );
     }
