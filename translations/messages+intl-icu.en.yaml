@@ -711,6 +711,13 @@ credit:
 game:
   title: "Games"
   subtitle: "Small games around Pokémons"
+  share:
+    button: "Share"
+    title: "Share the result of this game"
+    score: "{correct}/{answered} ({percent}%)"
+    toast:
+      success: "Result copied, you can paste it anywhere."
+      error: "The result could not be copied."
 
 color_game:
   title: "Colour game"

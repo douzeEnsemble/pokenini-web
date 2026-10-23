@@ -117,6 +117,18 @@ final class ColorGameDexTest extends WebTestCase
         $this->assertSame('Rouge / Vert / Bleu / Jaune', $thirdRow->filter('td')->eq(1)->text());
         $this->assertSame('Abandonnée', $thirdRow->filter('td')->eq(2)->text());
         $this->assertSame('Aucune bonne réponse sur 0 (0 manche jouée sur 151)', $thirdRow->filter('td')->eq(3)->text());
+
+        $this->assertSame(
+            "Pokénini · Jeu des couleurs\nDémo · 1/1 (100 %)\n🟩\nhttp://localhost/fr/game/color",
+            $firstRow->filter('.game-share')->attr('data-share-text'),
+        );
+        $this->assertSame(
+            "Pokénini · Jeu des couleurs ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",
+            $secondRow->filter('.game-share')->attr('data-share-text'),
+        );
+        $this->assertCount(0, $thirdRow->filter('.game-share'));
+        $this->assertCountFilter($crawler, 1, '#gameShareToastSuccess');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/game-share.js"]');
     }
 
     #[Test]
@@ -132,6 +144,10 @@ final class ColorGameDexTest extends WebTestCase
         $this->assertSame('Demo', $crawler->filter('.dex-item .card-title')->eq(0)->text());
         $this->assertSame('A small dex to try.', $crawler->filter('.dex-item')->eq(0)->filter('p.small.text-start')->text());
         $this->assertSame('Red / Green / Blue / Yellow', $crawler->filter('.color-game-history tbody tr')->eq(2)->filter('td')->eq(1)->text());
+        $this->assertSame(
+            "Pokénini · Colour game\nDemo · 1/1 (100%)\n🟩\nhttp://localhost/en/game/color",
+            $crawler->filter('.color-game-history .game-share')->attr('data-share-text'),
+        );
         $this->assertSame('1 right answer out of 1', $crawler->filter('.dex-item .current-game .color-game-score')->text());
     }
 

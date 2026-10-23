@@ -47,3 +47,46 @@
 </div>
 {% endif %}
 {% endmacro %}
+
+{#
+  Shares the result of a game as a text: the game, the dex, the score, a grid of the answered rounds (one square per round, ten per line, up to 50 rounds) and a link to the game.
+  On a phone it opens the share menu of the device, elsewhere it copies the text (see public/js/game-share.js and the toasts of shareToasts).
+#}
+{% macro shareButton(game, titleKey, dexRoute, buttonClass, isShiny = false, iconOnly = false) %}
+{% set dexName = (app.request.locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+{% set percent = game.answeredCount > 0 ? (game.correctCount * 100 / game.answeredCount)|round : 0 %}
+{% set lines = [
+  'Pokénini · ' ~ titleKey|trans ~ (isShiny ? ' ✨' : ''),
+  dexName ~ ' · ' ~ 'game.share.score'|trans({'correct': game.correctCount, 'answered': game.answeredCount, 'percent': percent}),
+] %}
+{% if game.results is not empty and game.results|length <= 50 %}
+  {% set lines = lines|merge(game.results|batch(10)|map(row => row|map(result => result ? '🟩' : '🟥')|join)) %}
+{% endif %}
+{% set lines = lines|merge([url(dexRoute)]) %}
+<button
+  type="button"
+  class="btn {{ buttonClass }} game-share"
+  data-share-text="{{ lines|join("\n") }}"
+  title="{{ 'game.share.title'|trans }}"
+>
+  <i class="bi bi-share" aria-hidden="true"></i>
+  <span{% if iconOnly %} class="visually-hidden"{% endif %}>{{ 'game.share.button'|trans }}</span>
+</button>
+{% endmacro %}
+
+{% macro shareToasts() %}
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="gameShareToastSuccess" class="toast text-bg-success" role="status" aria-live="polite" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">{{ 'game.share.toast.success'|trans }}</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+  <div id="gameShareToastError" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">{{ 'game.share.toast.error'|trans }}</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+{% endmacro %}

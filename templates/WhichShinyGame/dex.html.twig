@@ -4,6 +4,7 @@
 {% use '_nav.html.twig' %}
 {% import 'ColorGame/_macros.html.twig' as colorGame %}
 {% import 'WhichShinyGame/_macros.html.twig' as whichShinyGame %}
+{% import 'Game/_macros.html.twig' as gameMacros %}
 
 {% block title %}Pokénini {{ 'which_shiny_game.title'|trans }}{% endblock title %}
 
@@ -129,6 +130,9 @@
               {{ 'color_game.dex.resume'|trans }}
             </a>
             {% endif %}
+            {% if game.answeredCount > 0 %}
+            {{ gameMacros.shareButton(game, 'which_shiny_game.title', 'app_whichshinygame_dex', 'btn-sm btn-outline-success', false, true) }}
+            {% endif %}
           </td>
         </tr>
         {% endfor %}
@@ -136,4 +140,11 @@
     </table>
   </div>
   {% endif %}
+  {{ gameMacros.shareToasts() }}
 {% endblock container %}
+
+{% block foot_javascript %}
+  {{ parent() }}
+
+  <script src="{{ asset('js/game-share.js') }}"></script>
+{% endblock foot_javascript %}

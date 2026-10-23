@@ -11,6 +11,9 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
  */
 final class WhichShinyGame
 {
+    /**
+     * @param list<bool> $results answered rounds results, in the rounds order
+     */
     public function __construct(
         #[SerializedName('id')]
         private readonly string $id,
@@ -30,6 +33,8 @@ final class WhichShinyGame
         private readonly ?string $lastPlayedAt,
         #[SerializedName('ended_at')]
         private readonly ?string $endedAt,
+        #[SerializedName('results')]
+        private readonly array $results = [],
     ) {}
 
     public function getId(): string
@@ -75,5 +80,13 @@ final class WhichShinyGame
     public function getEndedAt(): ?string
     {
         return $this->endedAt;
+    }
+
+    /**
+     * @return list<bool> answered rounds results, in the rounds order
+     */
+    public function getResults(): array
+    {
+        return $this->results;
     }
 }

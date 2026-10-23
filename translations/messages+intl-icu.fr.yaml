@@ -720,6 +720,13 @@ credit:
 game:
   title: "Jeux"
   subtitle: "Des petits jeux autour des Pokémons"
+  share:
+    button: "Partager"
+    title: "Partager le résultat de cette partie"
+    score: "{correct}/{answered} ({percent} %)"
+    toast:
+      success: "Résultat copié, tu peux le coller où tu veux."
+      error: "Le résultat n'a pas pu être copié."
 
 color_game:
   title: "Jeu des couleurs"

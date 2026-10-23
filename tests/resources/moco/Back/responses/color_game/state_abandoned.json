@@ -9,8 +9,9 @@
     "is_shiny": false,
     "status": "abandoned",
     "round_count": 151,
-    "answered_count": 0,
-    "correct_count": 0,
+    "answered_count": 60,
+    "correct_count": 45,
+    "results": [true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false, true, true, true, false],
     "started_at": "2026-10-20T10:00:00+00:00",
     "last_played_at": null,
     "ended_at": "2026-10-18T10:00:00+00:00"

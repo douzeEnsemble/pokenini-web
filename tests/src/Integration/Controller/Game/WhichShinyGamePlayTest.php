@@ -117,6 +117,10 @@ final class WhichShinyGamePlayTest extends WebTestCase
         $this->assertSame('redgreenblueyellow', $crawler->filter('.game-over input[name="dex_slug"]')->attr('value'));
         $this->assertSame('/fr/game/which-shiny', $crawler->filter('.game-over form')->attr('action'));
         $this->assertSame('/fr/game/which-shiny', $crawler->filter('.game-over a')->attr('href'));
+        $this->assertSame(
+            "Pokénini · Lequel est le shiny ?\nRouge / Vert / Bleu / Jaune · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/which-shiny",
+            $crawler->filter('.game-over .game-share')->attr('data-share-text'),
+        );
     }
 
     #[Test]
@@ -131,6 +135,8 @@ final class WhichShinyGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.which-shiny-choices');
         $this->assertCountFilter($crawler, 0, '.pokemon-name');
         $this->assertSame('Partie abandonnée', $crawler->filter('.game-over h3')->text());
+        // No answered round: nothing to share
+        $this->assertCountFilter($crawler, 0, '.game-share');
     }
 
     #[Test]
