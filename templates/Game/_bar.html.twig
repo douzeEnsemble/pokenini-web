@@ -22,12 +22,10 @@
     <span class="badge rounded-pill bg-success-subtle text-success-emphasis fs-6 fw-semibold d-md-none game-score-short" title="{{ 'color_game.score'|trans({'correct': game.correctCount, 'answered': game.answeredCount}) }}">
       <i class="bi bi-check-lg" aria-hidden="true"></i> {{ game.correctCount }}/{{ game.answeredCount }}
     </span>
-    {% if stopPath is not null %}
     <a href="{{ stopPath }}" class="text-nowrap stop-game" title="{{ 'color_game.round.stop'|trans }}">
       <i class="bi bi-pause-circle d-md-none fs-5" aria-hidden="true"></i>
       <span class="d-none d-md-inline">{{ 'color_game.round.stop'|trans }}</span>
       <span class="visually-hidden d-md-none">{{ 'color_game.round.stop'|trans }}</span>
     </a>
-    {% endif %}
   </div>
 </header>

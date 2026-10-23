@@ -173,7 +173,8 @@ final class ShinyGamePlayTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.shiny-choices');
         $this->assertCountFilter($crawler, 0, '.round-image');
-        $this->assertCountFilter($crawler, 0, '.stop-game');
+        // The game can be paused after an answer too
+        $this->assertSame('/fr/game/shiny', $crawler->filter('.game-bar a.stop-game')->attr('href'));
         $this->assertSame('Manche 2 sur 3', $crawler->filter('.game-bar .round-position')->text());
         $this->assertSame('https://icon.pokenini.fr/pokemon/big/regular/ivysaur.png', $crawler->filter('.shiny-game-image-box .shown-image')->attr('src'));
         $this->assertSame('Herbizarre', $crawler->filter('.shiny-game-image-box .shown-image')->attr('alt'));
