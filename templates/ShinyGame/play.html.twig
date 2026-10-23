@@ -4,6 +4,7 @@
 {% use '_nav.html.twig' %}
 {% import 'ColorGame/_macros.html.twig' as colorGame %}
 {% import 'ShinyGame/_macros.html.twig' as shinyGame %}
+{% import 'Game/_macros.html.twig' as gameMacros %}
 
 {% block title %}Pokénini {{ 'shiny_game.title'|trans }}{% endblock title %}
 
@@ -161,8 +162,12 @@
       <p class="lead">{{ colorGame.score(game) }}</p>
       {{ shinyGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
       <a href="{{ path('app_shinygame_dex') }}" class="btn btn-outline-secondary">{{ 'color_game.over.back'|trans }}</a>
+      {% if game.answeredCount > 0 %}
+      {{ gameMacros.shareButton(game, 'shiny_game.title', 'app_shinygame_dex', 'btn-outline-success', false) }}
+      {% endif %}
     </div>
   </div>
+  {{ gameMacros.shareToasts() }}
   {% endif %}
 {% endblock container %}
 
@@ -170,4 +175,5 @@
   {{ parent() }}
 
   <script src="{{ asset('js/game.js') }}"></script>
+  <script src="{{ asset('js/game-share.js') }}"></script>
 {% endblock foot_javascript %}

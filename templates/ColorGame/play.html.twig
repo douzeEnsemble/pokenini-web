@@ -3,6 +3,7 @@
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 {% import 'ColorGame/_macros.html.twig' as colorGame %}
+{% import 'Game/_macros.html.twig' as gameMacros %}
 
 {% block title %}Pokénini {{ 'color_game.title'|trans }}{% endblock title %}
 
@@ -144,8 +145,12 @@
       <p class="lead">{{ colorGame.score(game) }}</p>
       {{ colorGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
       <a href="{{ path('app_colorgame_dex') }}" class="btn btn-outline-secondary">{{ 'color_game.over.back'|trans }}</a>
+      {% if game.answeredCount > 0 %}
+      {{ gameMacros.shareButton(game, 'color_game.title', 'app_colorgame_dex', 'btn-outline-success', game.isShiny) }}
+      {% endif %}
     </div>
   </div>
+  {{ gameMacros.shareToasts() }}
   {% endif %}
 {% endblock container %}
 
@@ -153,4 +158,5 @@
   {{ parent() }}
 
   <script src="{{ asset('js/game.js') }}"></script>
+  <script src="{{ asset('js/game-share.js') }}"></script>
 {% endblock foot_javascript %}

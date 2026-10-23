@@ -20,7 +20,7 @@ final class ShinyGameTest extends TestCase
     public function getters(): void
     {
         $dex = new ShinyGameDexSummary('demo', 'Demo', 'Démo');
-        $object = new ShinyGame('g1', $dex, 'completed', 3, 2, 1, '2026-10-20T10:00:00+00:00', '2026-10-20T10:01:00+00:00', '2026-10-20T10:02:00+00:00');
+        $object = new ShinyGame('g1', $dex, 'completed', 3, 2, 1, '2026-10-20T10:00:00+00:00', '2026-10-20T10:01:00+00:00', '2026-10-20T10:02:00+00:00', [true, false]);
 
         $this->assertSame('g1', $object->getId());
         $this->assertSame($dex, $object->getDex());
@@ -31,5 +31,15 @@ final class ShinyGameTest extends TestCase
         $this->assertSame('2026-10-20T10:00:00+00:00', $object->getStartedAt());
         $this->assertSame('2026-10-20T10:01:00+00:00', $object->getLastPlayedAt());
         $this->assertSame('2026-10-20T10:02:00+00:00', $object->getEndedAt());
+        $this->assertSame([true, false], $object->getResults());
+    }
+
+    #[Test]
+    public function resultsDefaultToNone(): void
+    {
+        $dex = new ShinyGameDexSummary('demo', 'Demo', 'Démo');
+        $object = new ShinyGame('g1', $dex, 'completed', 3, 2, 1, '2026-10-20T10:00:00+00:00', '2026-10-20T10:01:00+00:00', '2026-10-20T10:02:00+00:00');
+
+        $this->assertSame([], $object->getResults());
     }
 }

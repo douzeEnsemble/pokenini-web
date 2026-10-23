@@ -15,6 +15,7 @@
     "round_count": 3,
     "answered_count": 3,
     "correct_count": 3,
+    "results": [true, true, true],
     "started_at": "2026-10-20T10:00:00+00:00",
     "last_played_at": "2026-10-20T10:03:00+00:00",
     "ended_at": "2026-10-20T10:03:00+00:00"
