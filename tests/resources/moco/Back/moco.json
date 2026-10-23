@@ -3964,6 +3964,27 @@
           "match": ".*"
         },
         "authorization": {
+          "match": "Bearer 26227ed8a9c6d34b128e3de44fecf689d54a4e35"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "json": {
+        "home_page": "hub"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": "/trainer/preference",
+      "method": "get",
+      "headers": {
+        "accept": "application/json",
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
           "match": "Bearer .*"
         }
       }
