@@ -38,8 +38,11 @@ class DexCategoryGroupService
 
         usort(
             $groups,
-            static fn (array $first, array $second): int => [$first['category']->getOrderNumber(), $first['category']->getSlug()]
-                <=> [$second['category']->getOrderNumber(), $second['category']->getSlug()],
+            /**
+             * @param array{category: DexCategory, items: list<DexCategorizedInterface>} $first
+             * @param array{category: DexCategory, items: list<DexCategorizedInterface>} $second
+             */
+            static fn (array $first, array $second): int => self::compare($first['category'], $second['category']),
         );
 
         if ([] !== $uncategorized) {
@@ -47,5 +50,10 @@ class DexCategoryGroupService
         }
 
         return $groups;
+    }
+
+    private static function compare(DexCategory $first, DexCategory $second): int
+    {
+        return [$first->getOrderNumber(), $first->getSlug()] <=> [$second->getOrderNumber(), $second->getSlug()];
     }
 }
