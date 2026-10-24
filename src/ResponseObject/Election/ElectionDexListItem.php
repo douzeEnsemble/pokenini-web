@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\ResponseObject\Election;
 
 use App\ResponseObject\Album\DexFlags;
+use App\ResponseObject\Common\DexCategorizedInterface;
+use App\ResponseObject\Common\DexCategory;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 /**
  * @SuppressWarnings("PHPMD.ExcessiveParameterList")
  */
-final class ElectionDexListItem
+final class ElectionDexListItem implements DexCategorizedInterface
 {
     public function __construct(
         #[SerializedName('slug')]
@@ -33,6 +35,8 @@ final class ElectionDexListItem
         private readonly ?int $dexTotalCount,
         #[SerializedName('report')]
         private readonly ?ElectionReport $report = null,
+        #[SerializedName('category')]
+        private readonly ?DexCategory $category = null,
     ) {}
 
     public function getSlug(): string
@@ -83,5 +87,11 @@ final class ElectionDexListItem
     public function getReport(): ?ElectionReport
     {
         return $this->report;
+    }
+
+    #[\Override]
+    public function getCategory(): ?DexCategory
+    {
+        return $this->category;
     }
 }

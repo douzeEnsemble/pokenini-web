@@ -25,7 +25,8 @@
       "started_at": "2026-10-20T10:00:00+00:00",
       "last_played_at": "2026-10-20T10:01:00+00:00",
       "ended_at": null
-    }
+    },
+    "category": { "slug": "demo", "name": "Demo", "french_name": "Démo", "order_number": 1 }
   },
   {
     "slug": "redgreenblueyellow",
@@ -37,7 +38,8 @@
     "description": "",
     "french_description": "",
     "playable_count": 151,
-    "current_game": null
+    "current_game": null,
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 2 }
   },
   {
     "slug": "homeshiny",
@@ -49,7 +51,8 @@
     "description": "",
     "french_description": "",
     "playable_count": 2,
-    "current_game": null
+    "current_game": null,
+    "category": { "slug": "home", "name": "Pokémon Home", "french_name": "Pokémon Home", "order_number": 3 }
   },
   {
     "slug": "homepogo",
@@ -61,6 +64,7 @@
     "description": "",
     "french_description": "",
     "playable_count": 0,
-    "current_game": null
+    "current_game": null,
+    "category": { "slug": "home", "name": "Pokémon Home", "french_name": "Pokémon Home", "order_number": 3 }
   }
 ]

@@ -11,6 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * @internal
@@ -77,5 +78,43 @@ final class ElectionDexListTest extends WebTestCase
 
         $this->assertSame('/fr/election/redgreenblueyellow', $crawler->filter('.dex-item .card-title a')->eq(0)->attr('href'));
         $this->assertSame('/fr/election/rubysapphireemerald', $crawler->filter('.dex-item .card-title a')->eq(2)->attr('href'));
+    }
+
+    #[Test]
+    public function indexGroupsTheDexByCategory(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('categorized', 'TestProvider');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/election/dex');
+
+        $this->assertResponseIsSuccessful();
+
+        $this->assertCountFilter($crawler, 6, '.dex-item');
+        $this->assertSame(
+            ['Pokémon Home 3 dex', 'Formes spéciales 1 dex', 'Autres 2 dex'],
+            $crawler->filter('.dex-category')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertCountFilter($crawler, 2, '#dex-category-other + .row .dex-item');
+    }
+
+    #[Test]
+    public function indexWithoutCategory(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('789465465489', 'TestProvider');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/election/dex');
+
+        $this->assertResponseIsSuccessful();
+
+        $this->assertCountFilter($crawler, 21, '.dex-item');
+        $this->assertCountFilter($crawler, 0, '.dex-category');
     }
 }

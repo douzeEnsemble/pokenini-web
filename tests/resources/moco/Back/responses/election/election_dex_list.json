@@ -37,7 +37,8 @@
         "total_round_count": 10,
         "winner_average": 4
       }
-    }
+    },
+    "category": { "slug": "home", "name": "Pokémon Home", "french_name": "Pokémon Home", "order_number": 2 }
   },
   {
     "slug": "homeshiny",
@@ -77,7 +78,8 @@
         "total_round_count": 7,
         "winner_average": 6
       }
-    }
+    },
+    "category": { "slug": "home", "name": "Pokémon Home", "french_name": "Pokémon Home", "order_number": 2 }
   },
   {
     "slug": "homepogo",
@@ -117,7 +119,8 @@
         "total_round_count": 2,
         "winner_average": 6
       }
-    }
+    },
+    "category": { "slug": "home", "name": "Pokémon Home", "french_name": "Pokémon Home", "order_number": 2 }
   },
   {
     "slug": "mega",
@@ -157,7 +160,8 @@
         "total_round_count": 7,
         "winner_average": 3.2
       }
-    }
+    },
+    "category": { "slug": "special", "name": "Special forms", "french_name": "Formes spéciales", "order_number": 3 }
   },
   {
     "slug": "sunmoon",

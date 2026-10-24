@@ -677,6 +677,11 @@ album_dex_list:
   dex:
     report_badge_suffixe: capturés
 
+dex_category:
+  other: Autres
+  album_count: "{count, plural, one {# album} other {# albums}}"
+  dex_count: "{count, plural, one {# dex} other {# dex}}"
+
 dex:
   filters:
     submit:
