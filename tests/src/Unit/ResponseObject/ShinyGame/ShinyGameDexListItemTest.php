@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\ResponseObject\ShinyGame;
 
+use App\ResponseObject\Common\DexCategory;
 use App\ResponseObject\ShinyGame\ShinyGame;
 use App\ResponseObject\ShinyGame\ShinyGameDexListItem;
 use App\ResponseObject\ShinyGame\ShinyGameDexSummary;
@@ -21,7 +22,8 @@ final class ShinyGameDexListItemTest extends TestCase
     public function getters(): void
     {
         $game = new ShinyGame('g1', new ShinyGameDexSummary('demo', 'Demo', 'Démo'), 'in_progress', 3, 1, 1, '2026-10-20T10:00:00+00:00', null, null);
-        $object = new ShinyGameDexListItem('demo', 'Demo', 'Démo', false, true, 'Description', 'Description fr', 4, $game);
+        $category = new DexCategory('home', 'Pokémon Home', 'Pokémon Home', 2);
+        $object = new ShinyGameDexListItem('demo', 'Demo', 'Démo', false, true, 'Description', 'Description fr', 4, $game, $category);
 
         $this->assertSame('demo', $object->getSlug());
         $this->assertSame('Demo', $object->getName());
@@ -32,5 +34,6 @@ final class ShinyGameDexListItemTest extends TestCase
         $this->assertSame('Description fr', $object->getFrenchDescription());
         $this->assertSame(4, $object->getPlayableCount());
         $this->assertSame($game, $object->getCurrentGame());
+        $this->assertSame($category, $object->getCategory());
     }
 }

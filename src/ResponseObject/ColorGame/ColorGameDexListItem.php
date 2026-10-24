@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\ColorGame;
 
+use App\ResponseObject\Common\DexCategorizedInterface;
+use App\ResponseObject\Common\DexCategory;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 /**
  * @SuppressWarnings("PHPMD.ExcessiveParameterList")
  */
-final class ColorGameDexListItem
+final class ColorGameDexListItem implements DexCategorizedInterface
 {
     public function __construct(
         #[SerializedName('slug')]
@@ -32,6 +34,8 @@ final class ColorGameDexListItem
         private readonly int $playableCount,
         #[SerializedName('current_game')]
         private readonly ?ColorGame $currentGame,
+        #[SerializedName('category')]
+        private readonly ?DexCategory $category = null,
     ) {}
 
     public function getSlug(): string
@@ -82,5 +86,11 @@ final class ColorGameDexListItem
     public function getCurrentGame(): ?ColorGame
     {
         return $this->currentGame;
+    }
+
+    #[\Override]
+    public function getCategory(): ?DexCategory
+    {
+        return $this->category;
     }
 }

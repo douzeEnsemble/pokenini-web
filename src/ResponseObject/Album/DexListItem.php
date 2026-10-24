@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Album;
 
+use App\ResponseObject\Common\DexCategorizedInterface;
+use App\ResponseObject\Common\DexCategory;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-final class DexListItem
+final class DexListItem implements DexCategorizedInterface
 {
     public function __construct(
         #[SerializedName('dex')]
@@ -17,6 +19,8 @@ final class DexListItem
         private readonly DexFlags $flags,
         #[SerializedName('report')]
         private readonly ?Report $report = null,
+        #[SerializedName('category')]
+        private readonly ?DexCategory $category = null,
     ) {}
 
     public function getDex(): DexListItemRef
@@ -37,5 +41,11 @@ final class DexListItem
     public function getReport(): ?Report
     {
         return $this->report;
+    }
+
+    #[\Override]
+    public function getCategory(): ?DexCategory
+    {
+        return $this->category;
     }
 }

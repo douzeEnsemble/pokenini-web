@@ -2,67 +2,80 @@
   {
     "dex": { "slug": "redgreenblueyellow" },
     "settings": { "name": "Red, Green, Blue, Yellow", "french_name": "Rouge, Vert, Bleu, Jaune", "slug": "redgreenblueyellow", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "goldsilvercrystal" },
     "settings": { "name": "Gold, Silver, Crystal", "french_name": "Or, Argent, Cristal", "slug": "goldsilvercrystal", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "rubysapphireemerald" },
     "settings": { "name": "Ruby, Sapphire, Emerald", "french_name": "Rubis, Saphir, Émeraude", "slug": "rubysapphireemerald", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "fireredleafgreen" },
     "settings": { "name": "Red Fire, Leaf Green", "french_name": "Rouge Feu, Vert Feuille", "slug": "fireredleafgreen", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "diamondpearlplatinium" },
     "settings": { "name": "Diamond, Pearl, Platinium", "french_name": "Diamant, Perle, Platine", "slug": "diamondpearlplatinium", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "heartgoldsoulsilver" },
     "settings": { "name": "Heart Gold, Soul Silver", "french_name": "Or HeartGold, Argent SoulSilver", "slug": "heartgoldsoulsilver", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "blackwhite" },
     "settings": { "name": "Black, White", "french_name": "Noire, Blanche", "slug": "blackwhite", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "black2white2" },
     "settings": { "name": "Black 2, White 2", "french_name": "Noire 2, Blanche 2", "slug": "black2white2", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "xy" },
     "settings": { "name": "X, Y", "french_name": "X, Y", "slug": "xy", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "omegarubyalphasapphire" },
     "settings": { "name": "Omega Ruby, Alpha Sapphire", "french_name": "Rubis Oméga, Saphir Alpha", "slug": "omegarubyalphasapphire", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "sunmoon" },
     "settings": { "name": "Sun, Moon", "french_name": "Soleil, Lune", "slug": "sunmoon", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "ultrasunultramoon" },
     "settings": { "name": "Ultra Sun, Ultra Moon", "french_name": "Ultra Soleil, Ultra Lune", "slug": "ultrasunultramoon", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "letsgopikachuletsgoeevee" },
     "settings": { "name": "Let's Go Pikachu, Let's Go Eevee", "french_name": "Let's Go Pikachu, Let's Go Évoli", "slug": "letsgopikachuletsgoeevee", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "swordshield" },
@@ -80,12 +93,14 @@
   {
     "dex": { "slug": "brillantdiamondshiningpearl" },
     "settings": { "name": "Brillant Diamond, Shining Pearl", "french_name": "Diamant Étincelant, Perle Scintillante", "slug": "brillantdiamondshiningpearl", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "pokemonlegendsarceus" },
     "settings": { "name": "Pokémon Legends Arceus", "french_name": "Légendes Pokémon : Arceus", "slug": "pokemonlegendsarceus", "display_template": "box" },
-    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": true, "is_on_home": false, "is_display_form": true, "is_released": true, "is_premium": false, "is_custom": false },
+    "category": { "slug": "main", "name": "Main games", "french_name": "Jeux principaux", "order_number": 1 }
   },
   {
     "dex": { "slug": "home" },
@@ -145,6 +160,7 @@
   {
     "dex": { "slug": "mega" },
     "settings": { "name": "Mega", "french_name": "Méga", "slug": "mega", "display_template": "list-3" },
-    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false }
+    "flags": { "is_shiny": false, "is_private": false, "is_on_home": true, "is_display_form": true, "is_released": true, "is_premium": true, "is_custom": false },
+    "category": { "slug": "special", "name": "Special forms", "french_name": "Formes spéciales", "order_number": 3 }
   }
 ]

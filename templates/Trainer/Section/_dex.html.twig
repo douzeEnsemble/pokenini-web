@@ -1,4 +1,5 @@
 {% import "common/_progress_bar_macros.html.twig" as progressBar %}
+{% import "common/_dex_category_macros.html.twig" as dexCategory %}
 {% set attributes = [
     'is_private',
     'is_on_home',
@@ -13,8 +14,14 @@
     {{ include('Trainer/Section/_dex_filters.html.twig') }}
   </div>
   <div class="card-body">
+    {% set dexGroups = trainerDex|dex_category_groups %}
+    {% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
+    {% for group in dexGroups %}
+    {% if showDexCategories %}
+    {{ dexCategory.heading(group, locale, 'dex_category.dex_count', 'h3') }}
+    {% endif %}
     <div class="row">
-      {% for dex in trainerDex %}
+      {% for dex in group.items %}
         {% set canEdit = dex.flags.isPremium == false or is_granted('ROLE_COLLECTOR') %}
         {% set flagMap = {'is_private': dex.flags.isPrivate, 'is_on_home': dex.flags.isOnHome} %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 mb-sm-3 trainer-dex-item border rounded border-opacity-50 position-relative" id="trainer-dex-{{ dex.settings.slug }}">
@@ -76,7 +83,10 @@
           </form>
         </div>
       {% endfor %}
+    </div>
+    {% endfor %}
 
+    <div class="row">
       <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
         {% for dex in trainerDex %}
           {% set dexName = locale is same as('fr') ? dex.settings.frenchName : dex.settings.name %}
