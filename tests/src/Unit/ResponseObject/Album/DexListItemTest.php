@@ -9,6 +9,7 @@ use App\ResponseObject\Album\DexListItem;
 use App\ResponseObject\Album\DexListItemRef;
 use App\ResponseObject\Album\DexListItemSettings;
 use App\ResponseObject\Album\Report;
+use App\ResponseObject\Common\DexCategory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -45,6 +46,7 @@ final class DexListItemTest extends TestCase
         $this->assertSame($settings, $item->getSettings());
         $this->assertSame($flags, $item->getFlags());
         $this->assertNull($item->getReport());
+        $this->assertNull($item->getCategory());
     }
 
     #[Test]
@@ -68,8 +70,11 @@ final class DexListItemTest extends TestCase
         );
         $report = new Report(total: 151, totalCaught: 42, totalUncaught: 109, detail: []);
 
-        $item = new DexListItem(dex: $ref, settings: $settings, flags: $flags, report: $report);
+        $category = new DexCategory('main', 'Main games', 'Jeux principaux', 1);
+
+        $item = new DexListItem(dex: $ref, settings: $settings, flags: $flags, report: $report, category: $category);
 
         $this->assertSame($report, $item->getReport());
+        $this->assertSame($category, $item->getCategory());
     }
 }

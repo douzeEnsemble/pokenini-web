@@ -43,6 +43,11 @@ final class ColorGameDexTest extends WebTestCase
             ['Démo', 'Rouge / Vert / Bleu / Jaune', 'Home Chromatique', 'Home Pokémon GO'],
             $crawler->filter('.dex-item .card-title')->each(static fn (Crawler $node): string => $node->text()),
         );
+        $this->assertSame(
+            ['Démo 1 dex', 'Jeux principaux 1 dex', 'Pokémon Home 2 dex'],
+            $crawler->filter('.dex-category')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertCountFilter($crawler, 2, '#dex-category-home + .row .dex-item');
         $this->assertSame('Kanto', $crawler->filter('.dex-item')->eq(1)->filter('.card-subtitle')->text());
         $this->assertSame(
             ['4 Pokémons', '151 Pokémons', '2 Pokémons', '0 Pokémon'],
@@ -183,6 +188,7 @@ final class ColorGameDexTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertCountFilter($crawler, 0, '.dex-item');
+        $this->assertCountFilter($crawler, 0, '.dex-category');
         $this->assertSame("Y'a pas encore de dex pour jouer à Bonne Palette.", $crawler->filter('.no-dex')->text());
         $this->assertCountFilter($crawler, 0, '.color-game-history');
         $this->assertSame("Tu n'as pas encore joué.", $crawler->filter('.no-history')->text());

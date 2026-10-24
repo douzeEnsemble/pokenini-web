@@ -141,22 +141,42 @@
 </div>
 {% endmacro %}
 
-{% macro listAlbums(dex, locale, forcedTrainerId = null) %}
+{% macro listAlbums(dex, locale, forcedTrainerId = null, headingTag = 'h2') %}
+{% import 'common/_dex_category_macros.html.twig' as dexCategory %}
+{% set dexGroups = dex|filter(item => item.flags.isOnHome is same as(true))|dex_category_groups %}
+{% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
+{% for group in dexGroups %}
+{% if showDexCategories %}
+{{ dexCategory.heading(group, locale, 'dex_category.album_count', headingTag) }}
+{% endif %}
 <div class="row g-lg-4 g-md-4 g-sm-3 g-2">
-  {% for item in dex|filter(item => item.flags.isOnHome is same as(true)) %}
+  {% for item in group.items %}
   {{ _self.item('album', item, locale, forcedTrainerId) }}
-  {% else %}
-  {{ _self.none('albums') }}
-{% endfor %}
+  {% endfor %}
 </div>
+{% else %}
+<div class="row g-lg-4 g-md-4 g-sm-3 g-2">
+  {{ _self.none('albums') }}
+</div>
+{% endfor %}
 {% endmacro %}
 
 {% macro listElections(dex, locale, forcedTrainerId = null) %}
+{% import 'common/_dex_category_macros.html.twig' as dexCategory %}
+{% set dexGroups = dex|dex_category_groups %}
+{% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
+{% for group in dexGroups %}
+{% if showDexCategories %}
+{{ dexCategory.heading(group, locale) }}
+{% endif %}
 <div class="row g-lg-4 g-md-4 g-sm-3 g-2">
-  {% for item in dex %}
+  {% for item in group.items %}
   {{ _self.itemElection(item, locale, forcedTrainerId) }}
-  {% else %}
-  {{ _self.none('election') }}
-{% endfor %}
+  {% endfor %}
 </div>
+{% else %}
+<div class="row g-lg-4 g-md-4 g-sm-3 g-2">
+  {{ _self.none('election') }}
+</div>
+{% endfor %}
 {% endmacro %}

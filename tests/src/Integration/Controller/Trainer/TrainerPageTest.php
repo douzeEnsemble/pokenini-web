@@ -96,6 +96,28 @@ final class TrainerPageTest extends WebTestCase
     }
 
     #[Test]
+    public function trainerPageGroupsTheDexByCategory(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken();
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/en/trainer');
+
+        $this->assertResponseStatusCodeSame(200);
+
+        $this->assertSame(
+            ['Main games 16 dex', 'Pokémon Home 3 dex', 'Special forms 2 dex'],
+            $crawler->filter('.dex-category')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertCountFilter($crawler, 3, '.dex-category h3');
+        $this->assertCountFilter($crawler, 16, '#dex-category-main + .row .trainer-dex-item');
+        $this->assertCountFilter($crawler, 2, '#dex-category-special + .row .trainer-dex-item');
+    }
+
+    #[Test]
     public function collectorPage(): void
     {
         $client = self::createClient();

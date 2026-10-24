@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\ResponseObject\Election;
 
 use App\ResponseObject\Album\DexFlags;
+use App\ResponseObject\Common\DexCategory;
 use App\ResponseObject\Election\ElectionDexListItem;
 use App\ResponseObject\Election\ElectionReport;
 use App\ResponseObject\Election\ElectionReportCompletion;
@@ -54,6 +55,7 @@ final class ElectionDexListItemTest extends TestCase
         $this->assertSame('Une description', $item->getFrenchDescription());
         $this->assertSame(832, $item->getDexTotalCount());
         $this->assertNull($item->getReport());
+        $this->assertNull($item->getCategory());
     }
 
     #[Test]
@@ -121,5 +123,33 @@ final class ElectionDexListItemTest extends TestCase
         );
 
         $this->assertSame($report, $item->getReport());
+    }
+
+    #[Test]
+    public function category(): void
+    {
+        $category = new DexCategory('home', 'Pokémon Home', 'Pokémon Home', 2);
+        $item = new ElectionDexListItem(
+            slug: 'home',
+            originalSlug: 'home',
+            name: 'Home',
+            frenchName: 'Home',
+            flags: new DexFlags(
+                isShiny: false,
+                isPrivate: false,
+                isOnHome: true,
+                isDisplayForm: true,
+                isReleased: true,
+                isPremium: false,
+                isCustom: false,
+            ),
+            displayTemplate: null,
+            description: null,
+            frenchDescription: null,
+            dexTotalCount: null,
+            category: $category,
+        );
+
+        $this->assertSame($category, $item->getCategory());
     }
 }

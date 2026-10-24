@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\WhichShinyGame;
 
+use App\ResponseObject\Common\DexCategorizedInterface;
+use App\ResponseObject\Common\DexCategory;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 /**
  * @SuppressWarnings("PHPMD.ExcessiveParameterList")
  */
-final class WhichShinyGameDexListItem
+final class WhichShinyGameDexListItem implements DexCategorizedInterface
 {
     public function __construct(
         #[SerializedName('slug')]
@@ -30,6 +32,8 @@ final class WhichShinyGameDexListItem
         private readonly int $playableCount,
         #[SerializedName('current_game')]
         private readonly ?WhichShinyGame $currentGame,
+        #[SerializedName('category')]
+        private readonly ?DexCategory $category = null,
     ) {}
 
     public function getSlug(): string
@@ -75,5 +79,11 @@ final class WhichShinyGameDexListItem
     public function getCurrentGame(): ?WhichShinyGame
     {
         return $this->currentGame;
+    }
+
+    #[\Override]
+    public function getCategory(): ?DexCategory
+    {
+        return $this->category;
     }
 }

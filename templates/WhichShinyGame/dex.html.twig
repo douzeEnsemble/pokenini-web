@@ -5,6 +5,7 @@
 {% import 'ColorGame/_macros.html.twig' as colorGame %}
 {% import 'WhichShinyGame/_macros.html.twig' as whichShinyGame %}
 {% import 'Game/_macros.html.twig' as gameMacros %}
+{% import 'common/_dex_category_macros.html.twig' as dexCategory %}
 
 {% block title %}Pokénini {{ 'which_shiny_game.title'|trans }}{% endblock title %}
 
@@ -29,8 +30,14 @@
   <div class="alert alert-warning mt-3" role="alert">{{ message|trans }}</div>
   {% endfor %}
 
+  {% set dexGroups = dex|dex_category_groups %}
+  {% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
+  {% for group in dexGroups %}
+  {% if showDexCategories %}
+  {{ dexCategory.heading(group, locale) }}
+  {% endif %}
   <div class="row g-lg-4 g-md-4 g-sm-3 g-2 mt-2">
-    {% for item in dex %}
+    {% for item in group.items %}
     {% set titles = (locale is same as('fr') ? item.frenchName : item.name)|split("\n") %}
     <div class="col-lg-3 col-md-4 col-sm-6 col-12 dex-item position-relative">
       <div class="card h-100">
@@ -92,10 +99,13 @@
         </div>
       </div>
     </div>
-    {% else %}
-    <div class="alert alert-secondary mt-5 no-dex" role="alert">{{ 'which_shiny_game.dex.none'|trans }}</div>
     {% endfor %}
   </div>
+  {% else %}
+  <div class="row g-lg-4 g-md-4 g-sm-3 g-2 mt-2">
+    <div class="alert alert-secondary mt-5 no-dex" role="alert">{{ 'which_shiny_game.dex.none'|trans }}</div>
+  </div>
+  {% endfor %}
 
   <h2 class="mt-5">{{ 'color_game.history.title'|trans }}</h2>
   {% if games is empty %}

@@ -1,0 +1,14 @@
+{# Title of a group of dex, made by the dex_category_groups filter #}
+{% macro heading(group, locale, countKey = 'dex_category.dex_count', tag = 'h2') %}
+{% set category = group.category %}
+<div class="dex-category d-flex align-items-baseline gap-2 border-bottom pb-2 mt-4 mb-3" id="dex-category-{{ category is null ? 'other' : category.slug }}">
+  <{{ tag }} class="h4 mb-0 dex-category-name">
+    {% if category is null %}
+      {{ 'dex_category.other'|trans }}
+    {% else %}
+      {{ locale is same as('fr') ? category.frenchName : category.name }}
+    {% endif %}
+  </{{ tag }}>
+  <span class="small text-body-secondary dex-category-count">{{ countKey|trans({'count': group.items|length}) }}</span>
+</div>
+{% endmacro %}
