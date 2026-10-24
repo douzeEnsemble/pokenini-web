@@ -762,7 +762,7 @@ game:
       error: "The result could not be copied."
 
 color_game:
-  title: "Colour game"
+  title: "Palet Found"
   description: "We give you a Pokémon, you find its colours among several sets."
   shiny: "Shiny"
   score: "{correct, plural, =0 {No right answer} one {# right answer} other {# right answers}} out of {answered}"
@@ -774,7 +774,7 @@ color_game:
     resume: "Resume"
     new: "New game"
     no_playable: "No colours for this dex yet."
-    none: "There is no dex to play the colour game yet."
+    none: "There is no dex to play Palet Found yet."
   rounds:
     title: "How many rounds?"
     count: "{count} rounds"
@@ -843,12 +843,12 @@ shiny_game:
     create_failed: "The game could not be created. Try again a bit later."
 
 which_shiny_game:
-  title: "Which one is shiny?"
+  title: "Spot The Shiny"
   description: "We show you a Pokémon in its regular and shiny versions, you find the shiny one."
   dex:
     subtitle: "Choose the dex you want to play with. You can stop whenever you want, your game will wait for you"
     no_playable: "No Pokémon in this dex yet."
-    none: "There is no dex to play Which one is shiny yet."
+    none: "There is no dex to play Spot The Shiny yet."
   round:
     question: "Which one is shiny?"
     image: "Image {slot}"
