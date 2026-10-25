@@ -16,11 +16,14 @@
   <div class="card-body">
     {% set dexGroups = trainerDex|dex_category_groups %}
     {% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
+    {% if showDexCategories %}
+    {{ dexCategory.summary(dexGroups, locale) }}
+    {% endif %}
     {% for group in dexGroups %}
     {% if showDexCategories %}
     {{ dexCategory.heading(group, locale, 'dex_category.dex_count', 'h3') }}
     {% endif %}
-    <div class="row">
+    <div class="row{{ showDexCategories ? ' collapse show' }}"{% if showDexCategories %} {{ dexCategory.listAttributes(group) }}{% endif %}>
       {% for dex in group.items %}
         {% set canEdit = dex.flags.isPremium == false or is_granted('ROLE_COLLECTOR') %}
         {% set flagMap = {'is_private': dex.flags.isPrivate, 'is_on_home': dex.flags.isOnHome} %}

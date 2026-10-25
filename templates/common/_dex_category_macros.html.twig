@@ -1,14 +1,47 @@
-{# Title of a group of dex, made by the dex_category_groups filter #}
+{# Groups of dex, made by the dex_category_groups filter #}
+{% macro slug(group) %}{{ group.category is null ? 'other' : group.category.slug }}{% endmacro %}
+
+{% macro name(group, locale) %}
+{%- if group.category is null -%}
+  {{ 'dex_category.other'|trans }}
+{%- else -%}
+  {{ locale is same as('fr') ? group.category.frenchName : group.category.name }}
+{%- endif -%}
+{% endmacro %}
+
+{# Links to every group of the list, put above the list #}
+{% macro summary(groups, locale) %}
+<nav class="dex-category-summary d-flex flex-wrap gap-2 mt-3" aria-label="{{ 'dex_category.summary'|trans }}">
+  {% for group in groups %}
+  {% set slug = _self.slug(group) %}
+  <a class="btn btn-sm btn-outline-primary dex-category-link" href="#dex-category-{{ slug }}" data-dex-category-list="#dex-category-{{ slug }}-list">
+    {{ _self.name(group, locale) }}
+    <span class="badge text-bg-secondary dex-category-link-count">{{ group.items|length }}</span>
+  </a>
+  {% endfor %}
+</nav>
+{% endmacro %}
+
+{# Title of a group, which folds and unfolds the list that follows it (the attributes of that list are given by listAttributes) #}
 {% macro heading(group, locale, countKey = 'dex_category.dex_count', tag = 'h2') %}
-{% set category = group.category %}
-<div class="dex-category d-flex align-items-baseline gap-2 border-bottom pb-2 mt-4 mb-3" id="dex-category-{{ category is null ? 'other' : category.slug }}">
+{% set slug = _self.slug(group) %}
+<div class="dex-category d-flex align-items-baseline gap-2 border-bottom pb-2 mt-4 mb-3" id="dex-category-{{ slug }}">
   <{{ tag }} class="h4 mb-0 dex-category-name">
-    {% if category is null %}
-      {{ 'dex_category.other'|trans }}
-    {% else %}
-      {{ locale is same as('fr') ? category.frenchName : category.name }}
-    {% endif %}
+    <button
+      class="btn btn-link link-body-emphasis text-decoration-none p-0 fs-4 dex-category-toggle"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#dex-category-{{ slug }}-list"
+      aria-expanded="true"
+      aria-controls="dex-category-{{ slug }}-list"
+    >
+      <i class="bi bi-chevron-down" aria-hidden="true"></i>
+      {{ _self.name(group, locale) }}
+    </button>
   </{{ tag }}>
   <span class="small text-body-secondary dex-category-count">{{ countKey|trans({'count': group.items|length}) }}</span>
 </div>
 {% endmacro %}
+
+{# Attributes of the list of a group, so that its heading can fold it #}
+{% macro listAttributes(group) %}id="dex-category-{{ _self.slug(group) }}-list"{% endmacro %}

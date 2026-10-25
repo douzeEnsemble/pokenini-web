@@ -62,6 +62,19 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 3, '.dex-category h2');
         $this->assertCountFilter($crawler, 1, '#dex-category-main + .row .dex-item');
         $this->assertCountFilter($crawler, 3, '#dex-category-home + .row .dex-item');
+        $this->assertSame(
+            ['Jeux principaux 1', 'Pokémon Home 3', 'Formes spéciales 2'],
+            $crawler->filter('.dex-category-summary .dex-category-link')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertSame(
+            ['#dex-category-main', '#dex-category-home', '#dex-category-special'],
+            $crawler->filter('.dex-category-summary .dex-category-link')->each(static fn (Crawler $node): string => (string) $node->attr('href')),
+        );
+        $this->assertSame(
+            '#dex-category-home-list',
+            $crawler->filter('#dex-category-home .dex-category-toggle')->attr('data-bs-target'),
+        );
+        $this->assertCountFilter($crawler, 3, '#dex-category-home-list.collapse.show .dex-item');
 
         $this->assertCountFilter($crawler, 2, '.dex_is_premium');
         $this->assertCountFilter($crawler, 0, '.dex_not_is_released');
@@ -215,6 +228,8 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 2, '.dex-item h2');
         $this->assertCountFilter($crawler, 0, '.dex-item h3');
         $this->assertCountFilter($crawler, 0, '.dex-category');
+        $this->assertCountFilter($crawler, 0, '.dex-category-summary');
+        $this->assertCountFilter($crawler, 0, '.dex-category-toggle');
     }
 
     #[Test]
