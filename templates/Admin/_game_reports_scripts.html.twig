@@ -1,0 +1,131 @@
+{% set locale = app.request.locale %}
+{% set games = gameReportsData.games %}
+{% set gameLabels = games|map(s => (s.game ~ '.title')|trans) %}
+
+<script>
+  Chart.register(window.ChartDataLabels);
+
+  // Same palette as the other reports (colorsPaired12): one color per game
+  const gameColors = {
+    color_game: '#1f78b4',
+    shiny_game: '#33a02c',
+    which_shiny_game: '#ff7f00',
+  };
+</script>
+
+<script>
+  (function () {
+    new Chart(document.getElementById('game_answers'), {
+      locale: '{{ locale }}',
+      type: 'bar',
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            stacked: true,
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            stacked: true,
+            title: {
+              display: true,
+              text: {{ ('admin.game_reports.answers.nb'|trans)|json_encode()|raw }}
+            },
+            ticks: {
+              callback: function (value) {
+                return (Math.floor(value) === value) ? value : null;
+              }
+            }
+          }
+        },
+        plugins: {
+          datalabels: {
+            display: function (context) {
+              return context.dataset.data[context.dataIndex] > 0;
+            },
+            backgroundColor: 'white',
+            borderColor: 'black',
+            borderWidth: 1,
+            color: 'black',
+            padding: 3,
+            formatter: function (value) {
+              return new Intl.NumberFormat('fr-FR').format(value);
+            }
+          }
+        }
+      },
+      data: {
+        labels: {{ gameLabels|json_encode()|raw }},
+        datasets: [
+          {
+            label: {{ ('admin.game_reports.answers.correct'|trans)|json_encode()|raw }},
+            data: {{ games|map(s => s.rounds.correct)|json_encode()|raw }},
+            backgroundColor: '#81c784'
+          },
+          {
+            label: {{ ('admin.game_reports.answers.incorrect'|trans)|json_encode()|raw }},
+            data: {{ games|map(s => s.rounds.answered - s.rounds.correct)|json_encode()|raw }},
+            backgroundColor: '#e57373'
+          }
+        ]
+      }
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    {% set dailyGames = gameReportsData.daily_games %}
+    new Chart(document.getElementById('game_daily_games'), {
+      locale: '{{ locale }}',
+      type: 'line',
+      options: {
+        responsive: true,
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
+        scales: {
+          x: {
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            min: 0,
+            title: {
+              display: true,
+              text: {{ ('admin.game_reports.daily_games.nb'|trans)|json_encode()|raw }}
+            },
+            ticks: {
+              callback: function (value) {
+                return (Math.floor(value) === value) ? value : null;
+              }
+            }
+          }
+        },
+        plugins: {
+          datalabels: {
+            display: false
+          }
+        }
+      },
+      data: {
+        labels: {{ dailyGames|map(d => d.date|date(locale is same as('fr') ? 'd/m' : 'm/d'))|json_encode()|raw }},
+        datasets: [
+          {% for stats in games %}
+          {
+            label: {{ ((stats.game ~ '.title')|trans)|json_encode()|raw }},
+            data: {{ dailyGames|map(d => attribute(d, stats.game))|json_encode()|raw }},
+            borderColor: gameColors['{{ stats.game }}'],
+            backgroundColor: gameColors['{{ stats.game }}'],
+            tension: 0.2
+          },
+          {% endfor %}
+        ]
+      }
+    });
+  })();
+</script>

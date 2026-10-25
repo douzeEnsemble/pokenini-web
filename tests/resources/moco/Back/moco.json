@@ -2058,6 +2058,24 @@
   },
   {
     "request": {
+      "uri": "/istration/reports/games",
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/reports_games.json"
+    }
+  },
+  {
+    "request": {
       "uri": {
         "match": "/istration/reports"
       },
