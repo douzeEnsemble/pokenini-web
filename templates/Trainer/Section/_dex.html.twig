@@ -53,7 +53,7 @@
 
           {% set bannerUrl = dexBannerUrl|format(dex.dex.slug) %}
           {% set defaultBannerUrl = dexBannerUrl|format('default') %}
-          <img src="{{ bannerUrl }}" class="img-fluid" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';">
+          <img src="{{ bannerUrl }}" class="img-fluid img-loader" alt="" width="578" height="325" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';">
 
           <span class="d-block mt-3 mb-3">
             <a class="float-end btn btn-light btn-sm" href="{{ path('app_albumindex_index', {'dexSlug': dex.settings.slug}) }}" title="{{ 'trainer.dex.see'|trans }}">

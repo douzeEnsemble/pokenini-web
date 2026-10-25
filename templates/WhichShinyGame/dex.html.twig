@@ -46,9 +46,12 @@
       <div class="card h-100">
         <img
           src="{{ dexBannerUrl|format(item.slug) }}"
-          class="card-img"
+          class="card-img img-loader"
           alt=""
+          width="578"
+          height="325"
           loading="lazy"
+          onload="this.classList.add('is-loaded')"
           onerror="this.onerror=null;this.src='/img/banner/default.webp';"
         >
         <div class="card-body">

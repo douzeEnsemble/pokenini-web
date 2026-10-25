@@ -69,6 +69,7 @@ final class ShinyGamePlayTest extends WebTestCase
             $crawler->filter('.round-image')->attr('src'),
         );
         $this->assertSame('Le Pokémon à deviner', $crawler->filter('.round-image')->attr('alt'));
+        $this->assertCountFilter($crawler, 1, '.round-image.img-loader');
         $this->assertStringNotContainsString('pokemon/big', (string) $client->getResponse()->getContent());
 
         $this->assertCountFilter($crawler, 2, '.shiny-choices button.shiny-choice');

@@ -27,6 +27,34 @@ html {
     }
 }
 
+/* Loader shown on banner and Pokémon images until they are loaded (or
+    replaced by their fallback): the images come from another server and
+    can be slow, a blank space did not tell anything was coming.
+    The <img> carries its width/height attributes, so it already has its
+    final size while loading, and onload adds "is-loaded". The spinner is
+    the image's own background, which is why it has to be removed once
+    loaded: the Pokémon images are transparent.
+    The height rule has no specificity, so a size set elsewhere still wins. */
+:where(.img-loader) {
+    height: auto;
+}
+.img-loader:not(.is-loaded) {
+    color: transparent;
+    background-color: var(--bs-secondary-bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='%236c757d' stroke-opacity='.25' stroke-width='3'/%3E%3Cpath d='M12 3a9 9 0 0 1 9 9' fill='none' stroke='%236c757d' stroke-width='3' stroke-linecap='round'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 12 12' to='360 12 12' dur='.8s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2rem;
+}
+.pokemon-icon.img-loader:not(.is-loaded) {
+    background-size: 1.25rem;
+}
+@media (prefers-reduced-motion: reduce) {
+    .img-loader:not(.is-loaded) {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='%236c757d' stroke-opacity='.25' stroke-width='3'/%3E%3Cpath d='M12 3a9 9 0 0 1 9 9' fill='none' stroke='%236c757d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+}
+
 /* Shared by Album and Election, which both render Pokémon icon links and
     type badges - kept here once instead of duplicated per feature file. */
 .pokemon-icon {

@@ -175,7 +175,7 @@
                 {{ 'trainer.dex.see'|trans }}
               </a>
             {% endif %}
-            <img src="{{ thumbUrl }}" alt="" loading="lazy">
+            <img src="{{ thumbUrl }}" class="img-loader" alt="" width="123" height="69" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.classList.add('is-loaded')">
             <small>
               <span class="pick-name">{{ locale is same as('fr') ? item.settings.frenchName : item.settings.name }}</span>
               {% if isCurrent %}

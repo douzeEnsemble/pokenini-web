@@ -8,9 +8,12 @@
       {% set defaultBannerUrl = '/img/banner/default.webp' %}
       <img
         src="{{ bannerUrl }}"
-        class="card-img"
+        class="card-img img-loader"
         alt=""
+        width="578"
+        height="325"
         loading="lazy"
+        onload="this.classList.add('is-loaded')"
         onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';"
       >
     </a>
@@ -68,9 +71,12 @@
       {% set defaultBannerUrl = '/img/banner/default.webp' %}
       <img
         src="{{ bannerUrl }}"
-        class="card-img"
+        class="card-img img-loader"
         alt=""
+        width="578"
+        height="325"
         loading="lazy"
+        onload="this.classList.add('is-loaded')"
         onerror="this.onerror=null;this.src='{{ defaultBannerUrl }}';"
       >
     </a>

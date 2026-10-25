@@ -50,13 +50,21 @@
             <img
               src="{{ path('app_shinygame_image', {'gameId': game.id, 'position': round.position}) }}"
               alt="{{ 'shiny_game.round.image'|trans }}"
-              class="shiny-game-image round-image"
+              class="shiny-game-image round-image img-loader"
+              width="256"
+              height="256"
+              onload="this.classList.add('is-loaded')"
+              onerror="this.classList.add('is-loaded')"
             >
             {% else %}
             <img
               src="{{ pokemonImageUrl|format(answer.isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
               alt="{{ pokemonName }}"
-              class="shiny-game-image shown-image"
+              class="shiny-game-image shown-image img-loader"
+              width="256"
+              height="256"
+              onload="this.classList.add('is-loaded')"
+              onerror="this.classList.add('is-loaded')"
             >
             {% endif %}
           </div>
@@ -122,7 +130,11 @@
                 <img
                   src="{{ pokemonImageUrl|format(isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
                   alt="{{ pokemonName }} {{ (isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans }}"
-                  class="shiny-game-image"
+                  class="shiny-game-image img-loader"
+                  width="256"
+                  height="256"
+                  onload="this.classList.add('is-loaded')"
+                  onerror="this.classList.add('is-loaded')"
                 >
               </span>
               <figcaption class="d-flex align-items-center justify-content-center game-choice-caption">

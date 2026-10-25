@@ -24,9 +24,12 @@
 
     <img
         alt="{{ ('album.icon.alt.'~dir)|trans }} {{ pokemonName }}"
-        class="pokemon-icon img-fluid {{ classMore }}"
+        class="pokemon-icon img-fluid img-loader {{ classMore }}"
         src="{{ iconUrl }}"
+        width="56"
+        height="56"
         loading="lazy"
+        onload="this.classList.add('is-loaded')"
         onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
     >
     {% if showCredit %}
@@ -58,9 +61,12 @@
 
     <img
         alt="{{ ('album.image.alt.'~dir)|trans }} {{ pokemonName }}"
-        class="album-modal-image card-img img-fluid {{ classMore }}"
+        class="album-modal-image card-img img-fluid img-loader {{ classMore }}"
         src="{{ imageUrl }}"
+        width="256"
+        height="256"
         loading="lazy"
+        onload="this.classList.add('is-loaded')"
         onerror="this.onerror=null;this.src='/img/pokemon/default_image.webp';"
     >
     {{ _self.creditBadge(credit) }}
