@@ -1,0 +1,319 @@
+{
+  "games": [
+    {
+      "game": "color_game",
+      "games": {
+        "total": 28,
+        "played": 24,
+        "in_progress": 4,
+        "completed": 18,
+        "abandoned": 6,
+        "players": 4
+      },
+      "rounds": {
+        "planned": 840,
+        "answered": 610,
+        "correct": 402
+      },
+      "dex_usage": [
+        {
+          "dex": {
+            "slug": "demo",
+            "name": "Demo",
+            "french_name": "Démo"
+          },
+          "games": 16,
+          "players": 4,
+          "answered": 360,
+          "correct": 241
+        },
+        {
+          "dex": {
+            "slug": "homeshiny",
+            "name": "Home Shiny",
+            "french_name": "Home Chromatique"
+          },
+          "games": 12,
+          "players": 2,
+          "answered": 250,
+          "correct": 161
+        }
+      ],
+      "hardest_pokemons": [
+        {
+          "pokemon": {
+            "slug": "caterpie",
+            "name": "Caterpie",
+            "french_name": "Chenipan",
+            "simplified_name": "Caterpie",
+            "simplified_french_name": "Chenipan",
+            "forms_label": "",
+            "forms_french_label": "",
+            "icon": "caterpie"
+          },
+          "answered": 6,
+          "correct": 1
+        },
+        {
+          "pokemon": {
+            "slug": "venusaur-f",
+            "name": "Venusaur",
+            "french_name": "Florizarre",
+            "simplified_name": "Venusaur",
+            "simplified_french_name": "Florizarre",
+            "forms_label": "Female",
+            "forms_french_label": "Femelle",
+            "icon": "venusaur-f"
+          },
+          "answered": 4,
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "game": "shiny_game",
+      "games": {
+        "total": 10,
+        "played": 10,
+        "in_progress": 1,
+        "completed": 9,
+        "abandoned": 0,
+        "players": 3
+      },
+      "rounds": {
+        "planned": 200,
+        "answered": 190,
+        "correct": 148
+      },
+      "dex_usage": [
+        {
+          "dex": {
+            "slug": "redgreenblueyellow",
+            "name": "Red / Green / Blue / Yellow",
+            "french_name": "Rouge / Vert / Bleu / Jaune"
+          },
+          "games": 10,
+          "players": 3,
+          "answered": 190,
+          "correct": 148
+        }
+      ],
+      "hardest_pokemons": [
+        {
+          "pokemon": {
+            "slug": "metapod",
+            "name": "Metapod",
+            "french_name": "Chrysacier",
+            "simplified_name": "Metapod",
+            "simplified_french_name": "Chrysacier",
+            "forms_label": "",
+            "forms_french_label": "",
+            "icon": "metapod"
+          },
+          "answered": 5,
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "game": "which_shiny_game",
+      "games": {
+        "total": 0,
+        "played": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "abandoned": 0,
+        "players": 0
+      },
+      "rounds": {
+        "planned": 0,
+        "answered": 0,
+        "correct": 0
+      },
+      "dex_usage": [],
+      "hardest_pokemons": []
+    }
+  ],
+  "daily_games": [
+    {
+      "date": "2026-09-26",
+      "color_game": 2,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-09-27",
+      "color_game": 1,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-09-28",
+      "color_game": 2,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-09-29",
+      "color_game": 1,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-09-30",
+      "color_game": 1,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-01",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-02",
+      "color_game": 0,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-03",
+      "color_game": 1,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-04",
+      "color_game": 1,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-05",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-06",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-07",
+      "color_game": 2,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-08",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-09",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-10",
+      "color_game": 2,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-11",
+      "color_game": 0,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-12",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-13",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-14",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-15",
+      "color_game": 2,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-16",
+      "color_game": 2,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-17",
+      "color_game": 2,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-18",
+      "color_game": 0,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-19",
+      "color_game": 1,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-20",
+      "color_game": 1,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-21",
+      "color_game": 1,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-22",
+      "color_game": 1,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-23",
+      "color_game": 1,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-24",
+      "color_game": 1,
+      "shiny_game": 0,
+      "which_shiny_game": 0
+    },
+    {
+      "date": "2026-10-25",
+      "color_game": 0,
+      "shiny_game": 1,
+      "which_shiny_game": 0
+    }
+  ]
+}

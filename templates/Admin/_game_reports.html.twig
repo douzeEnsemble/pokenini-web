@@ -1,0 +1,163 @@
+{% set locale = app.request.locale %}
+
+{# A share of a total, "-" when there is nothing to share #}
+{% macro rate(value, total) %}
+  {%- if total > 0 -%}
+    {{ (value * 100 / total)|number_format(1, '.', ' ') }} %
+  {%- else -%}
+    -
+  {%- endif -%}
+{% endmacro %}
+
+{% macro average(value, total) %}
+  {%- if total > 0 -%}
+    {{ (value / total)|number_format(1, '.', ' ') }}
+  {%- else -%}
+    -
+  {%- endif -%}
+{% endmacro %}
+
+{# One figure of the overview table, for one game #}
+{% macro overview(key, stats) %}
+  {%- import _self as report -%}
+  {%- set games = stats.games -%}
+  {%- set rounds = stats.rounds -%}
+  {%- set values = {
+    'games': games.total|number_format(0, '.', ' '),
+    'played': games.played|number_format(0, '.', ' '),
+    'players': games.players|number_format(0, '.', ' '),
+    'games_per_player': report.average(games.total, games.players),
+    'in_progress': games.in_progress|number_format(0, '.', ' '),
+    'completed': games.completed|number_format(0, '.', ' '),
+    'abandoned': games.abandoned|number_format(0, '.', ' '),
+    'completion_rate': report.rate(games.completed, games.total),
+    'planned_rounds': rounds.planned|number_format(0, '.', ' '),
+    'rounds_per_game': report.average(rounds.planned, games.total),
+    'answered_rounds': rounds.answered|number_format(0, '.', ' '),
+    'round_completion_rate': report.rate(rounds.answered, rounds.planned),
+    'correct': rounds.correct|number_format(0, '.', ' '),
+    'incorrect': (rounds.answered - rounds.correct)|number_format(0, '.', ' '),
+    'success_rate': report.rate(rounds.correct, rounds.answered),
+  } -%}
+  {{- values[key] -}}
+{% endmacro %}
+
+{% import _self as report %}
+
+{% set games = gameReportsData.games %}
+
+<h3 class="mt-3">{{ 'admin.game_reports.overview.title'|trans }}</h3>
+<div class="row justify-content-center">
+  <div class="col-lg-10 table-responsive">
+    <table class="report-table table table-striped table-hover table-borderless align-middle" id="report-table-games-overview">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          {% for stats in games %}
+            <th scope="col" class="text-end">{{ (stats.game ~ '.title')|trans }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for key in ['games', 'played', 'players', 'games_per_player', 'in_progress', 'completed', 'abandoned', 'completion_rate', 'planned_rounds', 'rounds_per_game', 'answered_rounds', 'round_completion_rate', 'correct', 'incorrect', 'success_rate'] %}
+          <tr id="games-overview-{{ key }}">
+            <th scope="row">{{ ('admin.game_reports.overview.' ~ key)|trans }}</th>
+            {% for stats in games %}
+              <td class="text-end">{{ report.overview(key, stats) }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3 class="mt-3">{{ 'admin.game_reports.answers.title'|trans }}</h3>
+<div class="row align-items-center justify-content-center">
+  <div class="col-lg-8">
+    <div class="wrapper">
+      <canvas id="game_answers"></canvas>
+    </div>
+  </div>
+</div>
+
+<h3 class="mt-3">{{ 'admin.game_reports.daily_games.title'|trans }}</h3>
+<div class="row align-items-center justify-content-center">
+  <div class="col-lg-10">
+    <div class="wrapper">
+      <canvas id="game_daily_games"></canvas>
+    </div>
+  </div>
+</div>
+
+{% for stats in games %}
+  <section class="mt-5" id="game-report-{{ stats.game }}">
+    <h2 class="mb-3 pb-2 border-bottom">{{ (stats.game ~ '.title')|trans }}</h2>
+
+    <div class="row">
+      <div class="col-xl-6 table-responsive">
+        <h3 class="h5">{{ 'admin.game_reports.dex_usage.title'|trans }}</h3>
+        {% if stats.dex_usage is empty %}
+          <p class="text-body-secondary game-report-empty">{{ 'admin.game_reports.dex_usage.none'|trans }}</p>
+        {% else %}
+          <table class="report-table table table-striped table-hover table-borderless align-middle" id="report-table-dex_usage-{{ stats.game }}">
+            <thead>
+              <tr>
+                <th scope="col">{{ 'admin.game_reports.dex_usage.dex'|trans }}</th>
+                <th scope="col" class="text-end">{{ 'admin.game_reports.dex_usage.games'|trans }}</th>
+                <th scope="col" class="text-end">{{ 'admin.game_reports.dex_usage.players'|trans }}</th>
+                <th scope="col" class="text-end">{{ 'admin.game_reports.dex_usage.answered'|trans }}</th>
+                <th scope="col" class="text-end">{{ 'admin.game_reports.dex_usage.success_rate'|trans }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in stats.dex_usage %}
+                <tr>
+                  <th scope="row">{{ locale is same as('fr') ? row.dex.french_name : row.dex.name }}</th>
+                  <td class="text-end">{{ row.games|number_format(0, '.', ' ') }}</td>
+                  <td class="text-end">{{ row.players|number_format(0, '.', ' ') }}</td>
+                  <td class="text-end">{{ row.answered|number_format(0, '.', ' ') }}</td>
+                  <td class="text-end">{{ report.rate(row.correct, row.answered) }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+      </div>
+
+      <div class="col-xl-6 table-responsive">
+        <h3 class="h5">{{ 'admin.game_reports.hardest_pokemons.title'|trans }}</h3>
+        {% if stats.hardest_pokemons is empty %}
+          <p class="text-body-secondary game-report-empty">{{ 'admin.game_reports.hardest_pokemons.none'|trans }}</p>
+        {% else %}
+          <table class="report-table table table-striped table-hover table-borderless align-middle" id="report-table-hardest_pokemons-{{ stats.game }}">
+            <thead>
+              <tr>
+                <th scope="col">{{ 'admin.game_reports.hardest_pokemons.pokemon'|trans }}</th>
+                <th scope="col" class="text-end">{{ 'admin.game_reports.hardest_pokemons.answered'|trans }}</th>
+                <th scope="col" class="text-end">{{ 'admin.game_reports.hardest_pokemons.correct'|trans }}</th>
+                <th scope="col" class="text-end">{{ 'admin.game_reports.hardest_pokemons.success_rate'|trans }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in stats.hardest_pokemons %}
+                {% set formsLabel = locale is same as('fr') ? row.pokemon.forms_french_label : row.pokemon.forms_label %}
+                <tr>
+                  <th scope="row">
+                    {{ locale is same as('fr') ? row.pokemon.french_name : row.pokemon.name }}
+                    {% if formsLabel is not empty %}
+                      <small class="text-body-secondary">{{ formsLabel }}</small>
+                    {% endif %}
+                  </th>
+                  <td class="text-end">{{ row.answered|number_format(0, '.', ' ') }}</td>
+                  <td class="text-end">{{ row.correct|number_format(0, '.', ' ') }}</td>
+                  <td class="text-end">{{ report.rate(row.correct, row.answered) }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endfor %}
