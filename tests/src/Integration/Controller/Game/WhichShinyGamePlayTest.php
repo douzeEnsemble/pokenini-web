@@ -58,7 +58,7 @@ final class WhichShinyGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.game-is-shiny');
         $this->assertSame('Herbizarre', $crawler->filter('.pokemon-name')->text());
         $this->assertCountFilter($crawler, 0, '.pokemon-forms');
-        $this->assertSame('Lequel est le shiny ?', $crawler->filter('.color-game-status h4')->text());
+        $this->assertSame('Lequel est le chromatique ?', $crawler->filter('.color-game-status h4')->text());
 
         // The images URL must not tell which one is the shiny
         $this->assertSame(
