@@ -11,6 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * @internal
@@ -47,10 +48,23 @@ final class AdminReportsTest extends WebTestCase
             $crawler->filter('h1')->text()
         );
 
-        $this->assertCountFilter($crawler, 2, 'table.report-table');
+        $this->assertSame(
+            ['Collection', 'Jeux'],
+            $crawler->filter('#reports-sections a.nav-link')->each(static fn (Crawler $link): string => $link->text()),
+        );
+        $this->assertSame(
+            ['#collection-reports', '#game-reports'],
+            $crawler->filter('#reports-sections a.nav-link')->each(static fn (Crawler $link): string => $link->attr('href') ?? ''),
+        );
+        $this->assertSame('Collection', $crawler->filter('#collection-reports > h2')->text());
+        $this->assertSame('Jeux', $crawler->filter('#game-reports > h2')->text());
+
+        $this->assertCountFilter($crawler, 7, 'table.report-table');
+        $this->assertCountFilter($crawler, 2, '#collection-reports table.report-table');
+        $this->assertCountFilter($crawler, 5, '#game-reports table.report-table');
         $this->assertCountFilter($crawler, 1, '.admin-item-invalidate_reports button.admin-item-cta');
         $this->assertSame(
-            'Vide le cache des rapports admin pour recharger des chiffres à jour au prochain accès.',
+            'Vide le cache des rapports admin (collection et jeux) pour recharger des chiffres à jour au prochain accès.',
             $crawler->filter('#invalidate_reports .admin-item-description')->text()
         );
 

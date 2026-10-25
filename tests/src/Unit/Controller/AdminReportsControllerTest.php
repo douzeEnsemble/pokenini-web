@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Controller;
 
 use App\Controller\AdminReportsController;
 use App\DTO\AdminAction;
+use App\Service\Back\GetGameReportsService;
 use App\Service\Back\GetReportsService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
@@ -76,6 +77,7 @@ final class AdminReportsControllerTest extends TestCase
                 'Admin/reports.html.twig',
                 [
                     'reportsData' => [],
+                    'gameReportsData' => ['games' => []],
                 ]
             )
             ->willReturn('<html></html>')
@@ -168,6 +170,7 @@ final class AdminReportsControllerTest extends TestCase
                 'Admin/reports.html.twig',
                 [
                     'reportsData' => [],
+                    'gameReportsData' => ['games' => []],
                 ]
             )
             ->willReturn('<html></html>')
@@ -217,6 +220,13 @@ final class AdminReportsControllerTest extends TestCase
             ->willReturn([])
         ;
 
-        return new AdminReportsController($getReportsService);
+        $getGameReportsService = $this->createMock(GetGameReportsService::class);
+        $getGameReportsService
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn(['games' => []])
+        ;
+
+        return new AdminReportsController($getReportsService, $getGameReportsService);
     }
 }

@@ -37,7 +37,6 @@ title:
   admin: "Backoffice"
   admin_actions: "Data and caches"
   admin_reports: "Reporting"
-  admin_game_reports: "Games statistics"
   admin_versions: "Versions"
   box: "Box"
   empty: " "
@@ -383,6 +382,9 @@ error:
 
 admin:
   reports:
+    sections:
+      collection: "Collection"
+      games: "Games"
     cache:
       title: "Cache"
     table:
@@ -611,7 +613,7 @@ admin:
       reports:
         title: "Invalidate reports cache"
         cta: "Invalidate!"
-        description: "Clears the cached admin reports so the next visit reloads up-to-date figures."
+        description: "Clears the cached admin reports (collection and games) so the next visit reloads up-to-date figures."
 
 election:
   candidates:

@@ -37,7 +37,6 @@ title:
   admin: "Administration"
   admin_actions: "Données et caches"
   admin_reports: "Rapports"
-  admin_game_reports: "Statistiques des jeux"
   admin_versions: "Versions"
   box: "Boite"
   empty: " "
@@ -388,6 +387,9 @@ error:
 
 admin:
   reports:
+    sections:
+      collection: "Collection"
+      games: "Jeux"
     cache:
       title: "Cache"
     table:
@@ -618,7 +620,7 @@ admin:
       reports:
         title: "Invalidation du cache des rapports"
         cta: "Invalider"
-        description: "Vide le cache des rapports admin pour recharger des chiffres à jour au prochain accès."
+        description: "Vide le cache des rapports admin (collection et jeux) pour recharger des chiffres à jour au prochain accès."
 
 election:
   candidates:

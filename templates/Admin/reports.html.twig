@@ -32,7 +32,29 @@
     {% include 'Admin/_tabs.html.twig' with {'page': 'reports', 'active': 'reports'} %}
   </div>
   <div id="admin-main" class="sidebar-main col-md-9">
-    {% include 'Admin/_reports.html.twig' %}
+    <ul class="nav nav-pills mt-3" id="reports-sections">
+      <li class="nav-item">
+        <a class="nav-link" href="#collection-reports">{{ 'admin.reports.sections.collection'|trans }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#game-reports">{{ 'admin.reports.sections.games'|trans }}</a>
+      </li>
+    </ul>
+
+    <section id="collection-reports">
+      <h2 class="mt-4 pb-2 border-bottom">{{ 'admin.reports.sections.collection'|trans }}</h2>
+      {% include 'Admin/_reports.html.twig' %}
+    </section>
+
+    <section id="game-reports">
+      <h2 class="mt-5 pb-2 border-bottom">{{ 'admin.reports.sections.games'|trans }}</h2>
+      {% include 'Admin/_game_reports.html.twig' %}
+    </section>
+
+    <div class="row px-4 py-5">
+      <h2 class="mb-3 pb-2 border-bottom">{{ 'admin.reports.cache.title'|trans }}</h2>
+      {{ admin.action('reports_data', 'invalidate', 'reports', 'bar-chart', updatedItem, updatedAction, updatedState) }}
+    </div>
   </div>
 </div>
 {% endblock %}
@@ -45,4 +67,5 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js" integrity="sha256-IMCPPZxtLvdt9tam8RJ8ABMzn+Mq3SQiInbDmMYwjDg=" crossorigin="anonymous"></script>
 
   {% include 'Admin/_reports_scripts.html.twig' %}
+  {% include 'Admin/_game_reports_scripts.html.twig' %}
 {% endblock %}
