@@ -49,8 +49,12 @@
             <img
               src="{{ pokemonImageUrl|format(game.isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
               alt="{{ pokemonName }}"
-              class="pokemon-image"
+              class="pokemon-image img-loader"
+              width="256"
+              height="256"
               loading="lazy"
+              onload="this.classList.add('is-loaded')"
+              onerror="this.classList.add('is-loaded')"
             >
             {% endif %}
           </div>

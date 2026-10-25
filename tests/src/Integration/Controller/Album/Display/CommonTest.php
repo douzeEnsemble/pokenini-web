@@ -393,6 +393,7 @@ final class CommonTest extends WebTestCase
             '/regular/',
             $crawler->filter('.pokemon-icon')->first()->attr('src') ?? ''
         );
+        $this->assertStringContainsString('img-loader', $crawler->filter('.pokemon-icon')->first()->attr('class') ?? '');
     }
 
     private function assertShiny(KernelBrowser $client): void

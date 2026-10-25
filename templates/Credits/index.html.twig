@@ -6,10 +6,11 @@
 {% macro tile(imageUrl, pokemonName, typeLabel, credit) %}
   <div class="credit-tile">
     <img
-      class="credit-tile-image img-fluid"
+      class="credit-tile-image img-fluid img-loader"
       src="{{ imageUrl }}"
       alt=""
       loading="lazy"
+      onload="this.classList.add('is-loaded')"
       onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
     >
     <div class="credit-tile-name">{{ pokemonName }}</div>

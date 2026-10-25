@@ -84,6 +84,7 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertEquals('Épée, Bouclier 100%', $firstAlbum->text());
         $this->assertEquals('/fr/album/swordshield', $firstAlbum->filter('a')->attr('href'));
         $this->assertEquals('https://icon.pokenini.fr/dex/banner/swordshield.png', $firstAlbum->filter('img')->attr('src'));
+        $this->assertCountFilter($firstAlbum, 1, 'img.img-loader[width="578"][height="325"]');
 
         $secondAlbum = $crawler->filter('.dex-item')->eq(2);
         $this->assertEquals('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
