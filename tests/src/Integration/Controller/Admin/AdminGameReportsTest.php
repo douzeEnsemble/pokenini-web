@@ -54,7 +54,7 @@ final class AdminGameReportsTest extends WebTestCase
 
         $this->assertSame(
             ['', 'Bonne Palette', 'Chroma ou pas', 'Chroma-Trouvé'],
-            $crawler->filter('#report-table-games-overview thead th')->each(static fn (Crawler $th): string => $th->text()),
+            $crawler->filter('#report-table-games-overview thead th')->each(static fn (Crawler $cell): string => $cell->text()),
         );
         $this->assertCountFilter($crawler, 15, '#report-table-games-overview tbody tr');
 
@@ -102,7 +102,7 @@ final class AdminGameReportsTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#game-report-which_shiny_game table');
         $this->assertSame(
             ["Aucune partie pour l'instant.", 'Pas encore assez de réponses (au moins 3 par Pokémon).'],
-            $crawler->filter('#game-report-which_shiny_game .game-report-empty')->each(static fn (Crawler $p): string => $p->text()),
+            $crawler->filter('#game-report-which_shiny_game .game-report-empty')->each(static fn (Crawler $paragraph): string => $paragraph->text()),
         );
         $this->assertCountFilter($crawler, 0, '#game-report-color_game .game-report-empty');
     }
@@ -114,7 +114,7 @@ final class AdminGameReportsTest extends WebTestCase
 
         $this->assertSame(
             ['', 'Palet Found', 'Shiny or not', 'Spot The Shiny'],
-            $crawler->filter('#report-table-games-overview thead th')->each(static fn (Crawler $th): string => $th->text()),
+            $crawler->filter('#report-table-games-overview thead th')->each(static fn (Crawler $cell): string => $cell->text()),
         );
         $this->assertSame(
             ['Demo', '16', '4', '360', '66.9 %'],
@@ -159,7 +159,7 @@ final class AdminGameReportsTest extends WebTestCase
         $row = $crawler->filter("#games-overview-{$key}");
 
         $this->assertSame($label, $row->filter('th')->text());
-        $this->assertSame($values, $row->filter('td')->each(static fn (Crawler $td): string => $td->text()));
+        $this->assertSame($values, $row->filter('td')->each(static fn (Crawler $cell): string => $cell->text()));
     }
 
     /**
