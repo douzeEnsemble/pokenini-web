@@ -146,7 +146,7 @@ final class AdminUpdateDataTest extends WebTestCase
     private function getExpectedDescriptions(): array
     {
         return [
-            'update_labels' => 'Resynchronise les labels (statuts, types, régions, catégories, formes régionales, formes spéciales, variantes) depuis la source Google Sheets.',
+            'update_labels' => 'Resynchronise les labels (statuts, types, régions, catégories de dex, catégories, formes régionales, formes spéciales, variantes) depuis la source Google Sheets.',
             'update_games_collections_and_dex' => 'Resynchronise les jeux, les collections et les dex depuis la source Google Sheets.',
             'update_pokemons' => 'Resynchronise les données des Pokémon depuis la source Google Sheets.',
             'update_regional_dex_numbers' => 'Resynchronise les numéros de dex régionaux depuis la source Google Sheets.',

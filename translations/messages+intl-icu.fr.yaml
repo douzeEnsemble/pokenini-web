@@ -508,7 +508,7 @@ admin:
       labels:
         title: "Mise à jour des labels"
         cta: "Mettre à jour"
-        description: "Resynchronise les labels (statuts, types, régions, catégories, formes régionales, formes spéciales, variantes) depuis la source Google Sheets."
+        description: "Resynchronise les labels (statuts, types, régions, catégories de dex, catégories, formes régionales, formes spéciales, variantes) depuis la source Google Sheets."
       games_collections_and_dex:
         title: "Mise à jour des jeux, des collections et des dex"
         cta: "Mettre à jour"
