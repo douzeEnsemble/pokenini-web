@@ -911,7 +911,7 @@ which_shiny_game:
     no_playable: "Pas encore de Pokémon dans ce dex."
     none: "Y'a pas encore de dex pour jouer à Chroma-Trouvé."
   round:
-    question: "Lequel est le shiny ?"
+    question: "Lequel est le chromatique ?"
     image: "Image {slot}"
     keys: "Astuce : clique une fois sur une image pour la choisir, une seconde fois pour valider. Au clavier, la touche 1 choisit l'image de gauche, la touche 2 celle de droite et Entrée valide."
   answer:
