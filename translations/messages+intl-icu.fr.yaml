@@ -531,6 +531,8 @@ admin:
         item: "Jeux"
       dex:
         item: "Dex"
+      dex_categories:
+        item: "Catégories de dex"
       collections:
         item: "Collections"
       catch_states:
