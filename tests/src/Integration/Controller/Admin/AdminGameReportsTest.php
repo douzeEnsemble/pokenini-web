@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\Controller\Admin;
 
-use App\Controller\AdminGameReportsController;
+use App\Controller\AdminReportsController;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -16,7 +16,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * @internal
  */
-#[CoversClass(AdminGameReportsController::class)]
+#[CoversClass(AdminReportsController::class)]
 #[Group('api-mocked-testing')]
 final class AdminGameReportsTest extends WebTestCase
 {
@@ -33,16 +33,16 @@ final class AdminGameReportsTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 1, '#admin-actions-tab .nav-link.active');
         $this->assertStringContainsString(
-            '/fr/istration/reports/games',
+            '/fr/istration/reports',
             $crawler->filter('#admin-actions-tab .nav-link.active')->attr('href') ?? ''
         );
         $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link .dropdown-item.active');
         $this->assertStringContainsString(
-            '/fr/istration/reports/games',
+            '/fr/istration/reports',
             $crawler->filter('.navbar-nav .admin-link .dropdown-item.active')->attr('href') ?? ''
         );
 
-        $this->assertCountFilter($crawler, 5, 'table.report-table');
+        $this->assertCountFilter($crawler, 5, '#game-reports table.report-table');
         $this->assertCountFilter($crawler, 1, 'canvas#game_answers');
         $this->assertCountFilter($crawler, 1, 'canvas#game_daily_games');
     }
@@ -80,7 +80,7 @@ final class AdminGameReportsTest extends WebTestCase
     {
         $crawler = $this->getPage('fr');
 
-        $this->assertSame('Bonne Palette', $crawler->filter('#game-report-color_game h2')->text());
+        $this->assertSame('Bonne Palette', $crawler->filter('#game-report-color_game h3')->text());
         $this->assertCountFilter($crawler, 2, '#report-table-dex_usage-color_game tbody tr');
         $this->assertSame(
             ['Démo', '16', '4', '360', '66.9 %'],
@@ -135,7 +135,7 @@ final class AdminGameReportsTest extends WebTestCase
         $user->addCollectorRole();
         $client->loginUser($user, 'web');
 
-        $client->request('GET', '/fr/istration/reports/games');
+        $client->request('GET', '/fr/istration/reports');
 
         $this->assertResponseStatusCodeSame(403);
     }
@@ -148,7 +148,7 @@ final class AdminGameReportsTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        return $client->request('GET', "/{$locale}/istration/reports/games");
+        return $client->request('GET', "/{$locale}/istration/reports");
     }
 
     /**

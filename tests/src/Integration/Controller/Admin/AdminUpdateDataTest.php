@@ -58,7 +58,7 @@ final class AdminUpdateDataTest extends WebTestCase
             $crawler->filter('#admin-sidebar-toggle')->attr('aria-label')
         );
 
-        $this->assertCountFilter($crawler, 8, '.navbar-nav .admin-link .dropdown-menu .dropdown-item');
+        $this->assertCountFilter($crawler, 7, '.navbar-nav .admin-link .dropdown-menu .dropdown-item');
         $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link .dropdown-item.active');
         $this->assertStringContainsString(
             '/fr/istration/update_data',
@@ -69,21 +69,14 @@ final class AdminUpdateDataTest extends WebTestCase
             $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(5)->attr('href') ?? ''
         );
         $this->assertStringContainsString(
-            '/fr/istration/reports/games',
-            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(6)->attr('href') ?? ''
-        );
-        $this->assertStringContainsString(
             '/fr/istration/versions',
-            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(7)->attr('href') ?? ''
+            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(6)->attr('href') ?? ''
         );
 
         $reportsLinkHref = $crawler->filter('#admin-actions-tab a.nav-link')->eq(5)->attr('href') ?? '';
         $this->assertStringContainsString('/fr/istration/reports', $reportsLinkHref);
 
-        $gameReportsLinkHref = $crawler->filter('#admin-actions-tab a.nav-link')->eq(6)->attr('href') ?? '';
-        $this->assertStringContainsString('/fr/istration/reports/games', $gameReportsLinkHref);
-
-        $versionsLinkHref = $crawler->filter('#admin-actions-tab a.nav-link')->eq(7)->attr('href') ?? '';
+        $versionsLinkHref = $crawler->filter('#admin-actions-tab a.nav-link')->eq(6)->attr('href') ?? '';
         $this->assertStringContainsString('/fr/istration/versions', $versionsLinkHref);
 
         $this->assertCountFilter($crawler, 4, '.admin-item-description');

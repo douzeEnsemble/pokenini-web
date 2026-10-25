@@ -92,11 +92,11 @@
 
 {% for stats in games %}
   <section class="mt-5" id="game-report-{{ stats.game }}">
-    <h2 class="mb-3 pb-2 border-bottom">{{ (stats.game ~ '.title')|trans }}</h2>
+    <h3 class="mb-3 pb-2 border-bottom">{{ (stats.game ~ '.title')|trans }}</h3>
 
     <div class="row">
       <div class="col-xl-6 table-responsive">
-        <h3 class="h5">{{ 'admin.game_reports.dex_usage.title'|trans }}</h3>
+        <h4 class="h5">{{ 'admin.game_reports.dex_usage.title'|trans }}</h4>
         {% if stats.dex_usage is empty %}
           <p class="text-body-secondary game-report-empty">{{ 'admin.game_reports.dex_usage.none'|trans }}</p>
         {% else %}
@@ -126,7 +126,7 @@
       </div>
 
       <div class="col-xl-6 table-responsive">
-        <h3 class="h5">{{ 'admin.game_reports.hardest_pokemons.title'|trans }}</h3>
+        <h4 class="h5">{{ 'admin.game_reports.hardest_pokemons.title'|trans }}</h4>
         {% if stats.hardest_pokemons is empty %}
           <p class="text-body-secondary game-report-empty">{{ 'admin.game_reports.hardest_pokemons.none'|trans }}</p>
         {% else %}
