@@ -111,6 +111,36 @@ final class JsonDecoderTest extends TestCase
         );
     }
 
+    #[Test]
+    public function decodeWithDepth(): void
+    {
+        $this->assertEquals(
+            [
+                'lvl1' => [
+                    'lvl2' => [
+                        'lvl3' => [
+                            'lvl4' => [
+                                'value' => 'Douze',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            JsonDecoder::decode(
+                self::getMaxDepthPlusOneJson(),
+                6,
+            ),
+        );
+    }
+
+    #[Test]
+    public function decodeWithDepthException(): void
+    {
+        $this->expectException(\JsonException::class);
+
+        JsonDecoder::decode(self::getMaxDepthJson(), 4);
+    }
+
     #[DataProvider('providerDecodeException')]
     #[Test]
     public function decodeException(string $json): void

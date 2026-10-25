@@ -8,6 +8,9 @@ use App\Utils\JsonDecoder;
 
 class GetGameReportsService extends AbstractBackService
 {
+    /** 6 levels of container nesting: root → games[] → game{} → hardest_pokemons[] → item{} → pokemon{} */
+    private const int JSON_DEPTH = 7;
+
     /**
      * @return array<string, list<array<string, mixed>>>
      */
@@ -19,6 +22,6 @@ class GetGameReportsService extends AbstractBackService
         );
 
         /** @var array<string, list<array<string, mixed>>> */
-        return JsonDecoder::decode($json);
+        return JsonDecoder::decode($json, self::JSON_DEPTH);
     }
 }
