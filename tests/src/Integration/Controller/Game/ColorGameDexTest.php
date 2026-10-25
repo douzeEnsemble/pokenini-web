@@ -24,6 +24,27 @@ final class ColorGameDexTest extends WebTestCase
     use TestNavTrait;
 
     #[Test]
+    public function dexGroupedByCategory(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/color');
+
+        $this->assertResponseIsSuccessful();
+
+        $this->assertSame(
+            ['Démo 1 dex', 'Jeux principaux 1 dex', 'Pokémon Home 2 dex'],
+            $crawler->filter('.dex-category')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertCountFilter($crawler, 2, '#dex-category-home + .row .dex-item');
+        $this->assertSame(
+            ['Démo 1', 'Jeux principaux 1', 'Pokémon Home 2'],
+            $crawler->filter('.dex-category-summary .dex-category-link')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertCountFilter($crawler, 2, '#dex-category-home-list.collapse.show .dex-item');
+    }
+
+    #[Test]
     public function dex(): void
     {
         $client = $this->createTrainerClient();
@@ -43,16 +64,6 @@ final class ColorGameDexTest extends WebTestCase
             ['Démo', 'Rouge / Vert / Bleu / Jaune', 'Home Chromatique', 'Home Pokémon GO'],
             $crawler->filter('.dex-item .card-title')->each(static fn (Crawler $node): string => $node->text()),
         );
-        $this->assertSame(
-            ['Démo 1 dex', 'Jeux principaux 1 dex', 'Pokémon Home 2 dex'],
-            $crawler->filter('.dex-category')->each(static fn (Crawler $node): string => $node->text()),
-        );
-        $this->assertCountFilter($crawler, 2, '#dex-category-home + .row .dex-item');
-        $this->assertSame(
-            ['Démo 1', 'Jeux principaux 1', 'Pokémon Home 2'],
-            $crawler->filter('.dex-category-summary .dex-category-link')->each(static fn (Crawler $node): string => $node->text()),
-        );
-        $this->assertCountFilter($crawler, 2, '#dex-category-home-list.collapse.show .dex-item');
         $this->assertSame('Kanto', $crawler->filter('.dex-item')->eq(1)->filter('.card-subtitle')->text());
         $this->assertSame(
             ['4 Pokémons', '151 Pokémons', '2 Pokémons', '0 Pokémon'],
