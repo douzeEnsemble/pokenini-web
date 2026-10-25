@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "548443401229f0c22bbd90730fd82cdd",
+    "content-hash": "3a57b4ce1b9205658052bbfb66d3f7f4",
     "packages": [
         {
             "name": "colinodell/json5",
@@ -2630,7 +2630,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.5.11",
+        "php": ">=8.5.12",
         "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-dom": "*",

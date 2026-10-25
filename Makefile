@@ -12,8 +12,8 @@ SYMFONY  = $(PHP) bin/console
 PHPUNIT  = $(PHP) vendor/bin/phpunit --display-all
 DOCKERCOMPOSE_LINTER_CMD = docker run -t --rm -v ${PWD}:/app zavoloklom/dclint:3.1.0-alpine
 DOTENV_LINTER_CMD = docker run -t --rm -v ${PWD}:/app -w /app dotenvlinter/dotenv-linter:4.0.0
-HADOLINT_CMD = docker run -t --rm -v ${PWD}:/app hadolint/hadolint:v2.14.0-alpine hadolint
-EDITORCONFIG_LINTER_CMD = docker run --rm --volume=${PWD}:/check mstruebing/editorconfig-checker:v3.6.0
+HADOLINT_CMD = docker run -t --rm -v ${PWD}:/app hadolint/hadolint:v2.15.1-alpine hadolint
+EDITORCONFIG_LINTER_CMD = docker run --rm --volume=${PWD}:/check mstruebing/editorconfig-checker:4.0.2
 
 # Misc
 SHELL := /bin/bash

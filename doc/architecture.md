@@ -184,8 +184,8 @@ Browser → /{locale}/connect/discord → DiscordController::goto → OAuth2 red
 | `php`             | `.docker/php/Dockerfile` (php:8.5.5-fpm-alpine3.24) | 8.5.5   | PHP-FPM + Xdebug + Chromedriver (dev)       |
 | `web`             | `nginx:1.28-alpine`                                 | 1.28    | Reverse proxy HTTP/443 → PHP-FPM            |
 | `redis`           | `redis:8.0-alpine`                                  | 8.0     | Cache session/app                           |
-| `moco.back`       | `.docker/moco/Dockerfile` (Moco 1.5.0)              | 1.5.0   | Mock HTTP pour pokenini-api                 |
-| `moco.matomo.gbl` | idem                                                | 1.5.0   | Mock HTTP pour Matomo analytics (port 8888) |
+| `moco.back`       | `.docker/moco/Dockerfile` (Moco 1.6.1)              | 1.6.1   | Mock HTTP pour pokenini-api                 |
+| `moco.matomo.gbl` | idem                                                | 1.6.1   | Mock HTTP pour Matomo analytics (port 8888) |
 | `vnu`             | `ghcr.io/validator/validator:latest`                | latest  | Validateur W3C HTML                         |
 
 ## Environnements

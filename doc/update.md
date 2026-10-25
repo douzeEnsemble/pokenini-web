@@ -54,13 +54,13 @@
 
 | Service | Image | Version actuelle | Action recommandée |
 |---------|-------|-----------------|-------------------|
-| `php` | `php:*-fpm-alpine3.24` | `8.5.11` | OK — récent ; mettre à jour lors des patch releases PHP |
+| `php` | `php:*-fpm-alpine3.24` | `8.5.12` | OK — récent ; mettre à jour lors des patch releases PHP |
 | `web` | `nginx:*-alpine` | `1.28-alpine` | OK — récent |
 | `redis` | `redis:*-alpine` | `8.0-alpine` | OK — Redis 8 LTS |
-| `moco.back` | `.docker/moco/Dockerfile` | Moco `1.5.0` | Surveiller — vérifier si 1.6+ existe |
-| `moco.matomo.gbl` | idem | `1.5.0` | Surveiller |
+| `moco.back` | `.docker/moco/Dockerfile` | Moco `1.6.1` | Surveiller — à jour |
+| `moco.matomo.gbl` | idem | `1.6.1` | Surveiller |
 | W3C validator (w3c_validate.sh) | `ghcr.io/validator/validator:latest` | `latest` | **Risque** — tag `latest` non reproductible ; épingler une version explicite (ex. `24.x.x`). Lancé via `docker run` à la volée (plus de service Compose) |
-| symfony-cli (dans php dev) | `ghcr.io/symfony-cli/symfony-cli:5.17.1` | `5.17.1` | Surveiller |
+| symfony-cli (dans php dev) | `ghcr.io/symfony-cli/symfony-cli:5.22.2` | `5.22.2` | Surveiller |
 
 ## Outils CI (images)
 
@@ -69,7 +69,7 @@
 | `hadolint/hadolint`               | `2.12.0-alpine`  | Vérifier si 2.13+ disponible |
 | `zavoloklom/dclint`               | `3.1.0-alpine`   | OK                           |
 | `dotenvlinter/dotenv-linter`      | `4.0.0`          | OK                           |
-| `mstruebing/editorconfig-checker` | `v3.6.0`         | OK                           |
+| `mstruebing/editorconfig-checker` | `4.0.2`         | OK                           |
 
 ## Outils non-Composer
 
