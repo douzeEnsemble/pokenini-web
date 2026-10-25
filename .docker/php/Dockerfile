@@ -1,4 +1,4 @@
-FROM php:8.5.11-fpm-alpine3.24 AS php_base
+FROM php:8.5.12-fpm-alpine3.24 AS php_base
 
 WORKDIR /app
 
@@ -64,7 +64,7 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS linux-headers \
 	&& apk del .build-deps
 
 COPY --link \
-	--from=ghcr.io/symfony-cli/symfony-cli:5.17.1 \
+	--from=ghcr.io/symfony-cli/symfony-cli:5.22.2 \
 	/usr/local/bin/symfony /usr/local/bin/symfony
 
 ## < Panther / Selenium
