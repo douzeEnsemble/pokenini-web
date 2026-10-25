@@ -527,6 +527,8 @@ admin:
         item: "Games"
       dex:
         item: "Dex"
+      dex_categories:
+        item: "Dex categories"
       collections:
         item: "Collections"
       catch_states:
