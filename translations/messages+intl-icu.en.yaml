@@ -716,6 +716,7 @@ album_dex_list:
 
 dex_category:
   other: Others
+  summary: "Dex categories"
   album_count: "{count, plural, one {# album} other {# albums}}"
   dex_count: "{count, plural, one {# dex} other {# dex}}"
 

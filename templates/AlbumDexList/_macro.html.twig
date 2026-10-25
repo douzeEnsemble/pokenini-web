@@ -145,11 +145,14 @@
 {% import 'common/_dex_category_macros.html.twig' as dexCategory %}
 {% set dexGroups = dex|filter(item => item.flags.isOnHome is same as(true))|dex_category_groups %}
 {% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
+{% if showDexCategories %}
+{{ dexCategory.summary(dexGroups, locale) }}
+{% endif %}
 {% for group in dexGroups %}
 {% if showDexCategories %}
 {{ dexCategory.heading(group, locale, 'dex_category.album_count', headingTag) }}
 {% endif %}
-<div class="row g-lg-4 g-md-4 g-sm-3 g-2">
+<div class="row g-lg-4 g-md-4 g-sm-3 g-2{{ showDexCategories ? ' collapse show' }}"{% if showDexCategories %} {{ dexCategory.listAttributes(group) }}{% endif %}>
   {% for item in group.items %}
   {{ _self.item('album', item, locale, forcedTrainerId) }}
   {% endfor %}
@@ -165,11 +168,14 @@
 {% import 'common/_dex_category_macros.html.twig' as dexCategory %}
 {% set dexGroups = dex|dex_category_groups %}
 {% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
+{% if showDexCategories %}
+{{ dexCategory.summary(dexGroups, locale) }}
+{% endif %}
 {% for group in dexGroups %}
 {% if showDexCategories %}
 {{ dexCategory.heading(group, locale) }}
 {% endif %}
-<div class="row g-lg-4 g-md-4 g-sm-3 g-2">
+<div class="row g-lg-4 g-md-4 g-sm-3 g-2{{ showDexCategories ? ' collapse show' }}"{% if showDexCategories %} {{ dexCategory.listAttributes(group) }}{% endif %}>
   {% for item in group.items %}
   {{ _self.itemElection(item, locale, forcedTrainerId) }}
   {% endfor %}

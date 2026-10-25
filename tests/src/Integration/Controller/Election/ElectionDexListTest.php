@@ -99,6 +99,15 @@ final class ElectionDexListTest extends WebTestCase
             $crawler->filter('.dex-category')->each(static fn (Crawler $node): string => $node->text()),
         );
         $this->assertCountFilter($crawler, 2, '#dex-category-other + .row .dex-item');
+        $this->assertSame(
+            ['Pokémon Home 3', 'Formes spéciales 1', 'Autres 2'],
+            $crawler->filter('.dex-category-summary .dex-category-link')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertSame(
+            '#dex-category-other-list',
+            $crawler->filter('.dex-category-link')->last()->attr('data-dex-category-list'),
+        );
+        $this->assertCountFilter($crawler, 2, '#dex-category-other-list.collapse.show .dex-item');
     }
 
     #[Test]
@@ -116,5 +125,7 @@ final class ElectionDexListTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 21, '.dex-item');
         $this->assertCountFilter($crawler, 0, '.dex-category');
+        $this->assertCountFilter($crawler, 0, '.dex-category-summary');
+        $this->assertCountFilter($crawler, 0, '.dex-category-toggle');
     }
 }

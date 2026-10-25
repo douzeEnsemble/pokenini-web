@@ -115,6 +115,19 @@ final class TrainerPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 3, '.dex-category h3');
         $this->assertCountFilter($crawler, 16, '#dex-category-main + .row .trainer-dex-item');
         $this->assertCountFilter($crawler, 2, '#dex-category-special + .row .trainer-dex-item');
+        $this->assertSame(
+            ['Main games 16', 'Pokémon Home 3', 'Special forms 2'],
+            $crawler->filter('.dex-category-summary .dex-category-link')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertSame(
+            ['#dex-category-main', '#dex-category-home', '#dex-category-special'],
+            $crawler->filter('.dex-category-summary .dex-category-link')->each(static fn (Crawler $node): string => (string) $node->attr('href')),
+        );
+        $this->assertSame(
+            '#dex-category-main-list',
+            $crawler->filter('#dex-category-main .dex-category-toggle')->attr('data-bs-target'),
+        );
+        $this->assertCountFilter($crawler, 16, '#dex-category-main-list.collapse.show .trainer-dex-item');
     }
 
     #[Test]

@@ -40,6 +40,8 @@ final class WhichShinyGameDexTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 3, '.dex-item');
         $this->assertCountFilter($crawler, 0, '.dex-category');
+        $this->assertCountFilter($crawler, 0, '.dex-category-summary');
+        $this->assertCountFilter($crawler, 0, '.dex-category-toggle');
         $this->assertSame(
             ['Démo', 'Rouge / Vert / Bleu / Jaune', 'Home Pokémon GO'],
             $crawler->filter('.dex-item .card-title')->each(static fn (Crawler $node): string => $node->text()),

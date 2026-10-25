@@ -48,6 +48,11 @@ final class ColorGameDexTest extends WebTestCase
             $crawler->filter('.dex-category')->each(static fn (Crawler $node): string => $node->text()),
         );
         $this->assertCountFilter($crawler, 2, '#dex-category-home + .row .dex-item');
+        $this->assertSame(
+            ['Démo 1', 'Jeux principaux 1', 'Pokémon Home 2'],
+            $crawler->filter('.dex-category-summary .dex-category-link')->each(static fn (Crawler $node): string => $node->text()),
+        );
+        $this->assertCountFilter($crawler, 2, '#dex-category-home-list.collapse.show .dex-item');
         $this->assertSame('Kanto', $crawler->filter('.dex-item')->eq(1)->filter('.card-subtitle')->text());
         $this->assertSame(
             ['4 Pokémons', '151 Pokémons', '2 Pokémons', '0 Pokémon'],
@@ -189,6 +194,8 @@ final class ColorGameDexTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 0, '.dex-item');
         $this->assertCountFilter($crawler, 0, '.dex-category');
+        $this->assertCountFilter($crawler, 0, '.dex-category-summary');
+        $this->assertCountFilter($crawler, 0, '.dex-category-toggle');
         $this->assertSame("Y'a pas encore de dex pour jouer à Bonne Palette.", $crawler->filter('.no-dex')->text());
         $this->assertCountFilter($crawler, 0, '.color-game-history');
         $this->assertSame("Tu n'as pas encore joué.", $crawler->filter('.no-history')->text());

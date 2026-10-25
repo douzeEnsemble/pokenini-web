@@ -128,3 +128,13 @@ html {
 .navbar-nav .dropdown.dropup .dropdown-menu {
     position: absolute;
 }
+
+/* Groups of dex: the chevron of a folded group points to the right */
+.dex-category-toggle .bi {
+    display: inline-block;
+    transition: transform .2s ease-in-out;
+}
+
+.dex-category-toggle.collapsed .bi {
+    transform: rotate(-90deg);
+}
