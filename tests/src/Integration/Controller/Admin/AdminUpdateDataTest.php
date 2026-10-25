@@ -49,7 +49,7 @@ final class AdminUpdateDataTest extends WebTestCase
     {
         $crawler = $this->getPageConnected();
 
-        $this->assertCountFilter($crawler, 8, '#admin-actions-tab > .nav-item > .nav-link');
+        $this->assertCountFilter($crawler, 7, '#admin-actions-tab > .nav-item > .nav-link');
         $this->assertCountFilter($crawler, 1, '#admin-actions-tab .nav-link.active');
         $this->assertCountFilter($crawler, 1, '#admin > #admin-sidebar #admin-sidebar-toggle');
         $this->assertCountFilter($crawler, 1, '#admin > #admin-main');
