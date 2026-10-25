@@ -504,7 +504,7 @@ admin:
       labels:
         title: "Update labels"
         cta: "Update!"
-        description: "Resyncs labels (catch states, types, regions, category forms, regional forms, special forms, variant forms) from the Google Sheets source."
+        description: "Resyncs labels (catch states, types, regions, dex categories, category forms, regional forms, special forms, variant forms) from the Google Sheets source."
       games_collections_and_dex:
         title: "Update games, collections and dex"
         cta: "Update!"
