@@ -59,6 +59,21 @@ final class GetGameReportsServiceTest extends AbstractTestBackService
         $this->assertCount(30, $reports['daily_games']);
     }
 
+    #[Test]
+    public function getTooDeep(): void
+    {
+        /** @var GetGameReportsService $service */
+        $service = $this->getServiceWithLoggedUser(
+            'GET',
+            '{"a":{"b":{"c":{"d":{"e":{"f":{"g":"Douze"}}}}}}}',
+            self::ENDPOINT,
+        );
+
+        $this->expectException(\JsonException::class);
+
+        $service->get();
+    }
+
     #[\Override]
     protected function instanciateService(
         LoggerInterface $logger,
