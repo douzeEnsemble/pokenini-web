@@ -10,3 +10,13 @@
     box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
     transform: translateY(-2px);
 }
+
+.game-item .card-title a {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.game-item .game-icon {
+    flex: none;
+}

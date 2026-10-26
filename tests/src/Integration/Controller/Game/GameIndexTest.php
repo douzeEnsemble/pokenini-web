@@ -47,6 +47,10 @@ final class GameIndexTest extends WebTestCase
             ['Bonne Palette', 'Chroma ou pas', 'Chroma-Trouvé'],
             $crawler->filter('.game-item .card-title')->each(static fn (Crawler $node): string => $node->text()),
         );
+        $this->assertSame(
+            ['/img/game/color.svg', '/img/game/shiny.svg', '/img/game/which-shiny.svg'],
+            $crawler->filter('.game-item img.game-icon')->each(static fn (Crawler $node): string => explode('?', (string) $node->attr('src'))[0]),
+        );
 
         $this->assertCountFilter($crawler, 1, '.navbar-nav .game-link a.active');
         $this->assertSame('/fr/game', $crawler->filter('.navbar-nav .game-link a')->attr('href'));

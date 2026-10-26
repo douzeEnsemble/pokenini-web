@@ -22,9 +22,9 @@
 {% endblock stylesheets %}
 
 {% set games = [
-  {'icon': 'bi-palette', 'label': 'color_game.title', 'route': 'app_colorgame_dex'},
-  {'icon': 'bi-stars', 'label': 'shiny_game.title', 'route': 'app_shinygame_dex'},
-  {'icon': 'bi-intersect', 'label': 'which_shiny_game.title', 'route': 'app_whichshinygame_dex'},
+  {'icon': 'img/game/color.svg', 'label': 'color_game.title', 'route': 'app_colorgame_dex'},
+  {'icon': 'img/game/shiny.svg', 'label': 'shiny_game.title', 'route': 'app_shinygame_dex'},
+  {'icon': 'img/game/which-shiny.svg', 'label': 'which_shiny_game.title', 'route': 'app_whichshinygame_dex'},
 ] %}
 
 {% block container %}
@@ -95,12 +95,12 @@
               <li>
                 {% if isTrainer %}
                 <a href="{{ path(game.route) }}" class="d-flex align-items-center gap-2 px-3 py-2 rounded-3 text-body text-decoration-none bg-body-tertiary">
-                  <i class="bi {{ game.icon }}"></i>
+                  <img src="{{ asset(game.icon) }}" alt="" width="24" height="24" class="game-icon">
                   {{ game.label|trans }}
                 </a>
                 {% else %}
                 <span class="d-flex align-items-center gap-2 px-3 py-2 rounded-3 bg-body-tertiary">
-                  <i class="bi {{ game.icon }}"></i>
+                  <img src="{{ asset(game.icon) }}" alt="" width="24" height="24" class="game-icon">
                   {{ game.label|trans }}
                 </span>
                 {% endif %}

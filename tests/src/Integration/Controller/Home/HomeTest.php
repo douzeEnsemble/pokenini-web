@@ -213,6 +213,10 @@ final class HomeTest extends WebTestCase
         $this->assertSame('/fr/game/color', $crawler->filter('.hub-games a')->eq(0)->attr('href'));
         $this->assertSame('/fr/game/shiny', $crawler->filter('.hub-games a')->eq(1)->attr('href'));
         $this->assertSame('/fr/game/which-shiny', $crawler->filter('.hub-games a')->eq(2)->attr('href'));
+        $this->assertSame(
+            ['/img/game/color.svg', '/img/game/shiny.svg', '/img/game/which-shiny.svg'],
+            $crawler->filter('.hub-games img.game-icon')->each(static fn (Crawler $node): string => explode('?', (string) $node->attr('src'))[0]),
+        );
 
         $this->assertSame('/fr/trainer/home_page', $crawler->filter('.hub-choose-home a')->attr('href'));
         $this->assertSame(
