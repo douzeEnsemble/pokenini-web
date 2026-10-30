@@ -7,7 +7,6 @@ namespace App\Tests\Unit\Service\Back;
 use App\ResponseObject\WhichShinyGame\WhichShinyGame;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameAnswer;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameDexSummary;
-use App\ResponseObject\WhichShinyGame\WhichShinyGameRounds;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameState;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
@@ -109,23 +108,6 @@ final class WhichShinyGameServiceTest extends AbstractTestBackService
         );
 
         $this->assertSame($state, $service->get('g1'));
-    }
-
-    #[Test]
-    public function getRounds(): void
-    {
-        $rounds = new WhichShinyGameRounds($this->makeGame(), []);
-
-        /** @var WhichShinyGameService $service */
-        $service = $this->getServiceWithLoggedUser(
-            'GET',
-            self::JSON,
-            'which_shiny_game/games/g1/rounds',
-            [],
-            $this->getSerializerMock(WhichShinyGameRounds::class, $rounds),
-        );
-
-        $this->assertSame($rounds, $service->getRounds('g1'));
     }
 
     #[Test]

@@ -132,20 +132,35 @@ final class ColorGameDexTest extends WebTestCase
 
         $secondRow = $crawler->filter('.color-game-history tbody tr')->eq(1);
         $this->assertSame('Terminée', $secondRow->filter('td')->eq(2)->text());
-        // A finished game can not be resumed, but its rounds can be looked at again
+        // A finished game can not be resumed
         $this->assertCount(0, $secondRow->filter('a.btn-outline-primary'));
-        $this->assertSame(
-            '/fr/game/color/22222222-2222-4222-8222-222222222222/rounds',
-            $secondRow->filter('a.game-review')->attr('href'),
-        );
-        $this->assertSame('Revoir', $secondRow->filter('a.game-review')->text());
 
         $thirdRow = $crawler->filter('.color-game-history tbody tr')->eq(2);
         $this->assertSame('Rouge / Vert / Bleu / Jaune', $thirdRow->filter('td')->eq(1)->text());
         $this->assertSame('Abandonnée', $thirdRow->filter('td')->eq(2)->text());
         $this->assertSame('Aucune bonne réponse sur 0 (0 manche jouée sur 151)', $thirdRow->filter('td')->eq(3)->text());
+    }
+
+    #[Test]
+    public function dexReviewLinks(): void
+    {
+        $client = $this->createTrainerClient();
+
+        $crawler = $client->request('GET', '/fr/game/color');
+
+        $this->assertResponseIsSuccessful();
+
+        $rows = $crawler->filter('.color-game-history tbody tr');
+
+        // The rounds of a finished game can be looked at again
+        $this->assertSame(
+            '/fr/game/color/22222222-2222-4222-8222-222222222222/rounds',
+            $rows->eq(1)->filter('a.game-review')->attr('href'),
+        );
+        $this->assertSame('Revoir', $rows->eq(1)->filter('a.game-review')->text());
+
         // No answered round: nothing to look at again
-        $this->assertCount(0, $thirdRow->filter('a.game-review'));
+        $this->assertCount(0, $rows->eq(2)->filter('a.game-review'));
     }
 
     #[Test]
