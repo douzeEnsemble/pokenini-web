@@ -41,7 +41,7 @@ services:
         condition: service_healthy
 
   redis:
-    image: redis:8.10.2-alpine3.23
+    image: redis:8.10.3-alpine3.23
     volumes:
       - redis_data:/data
     command: redis-server --requirepass ${REDIS_PASSWORD:-douze}
