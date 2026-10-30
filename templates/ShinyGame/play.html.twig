@@ -175,6 +175,7 @@
       {{ shinyGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
       <a href="{{ path('app_shinygame_dex') }}" class="btn btn-outline-secondary">{{ 'color_game.over.back'|trans }}</a>
       {% if game.answeredCount > 0 %}
+      <a href="{{ path('app_shinygame_rounds', {'gameId': game.id}) }}" class="btn btn-outline-primary game-review">{{ 'game.review.over'|trans }}</a>
       {{ gameMacros.sharePanel(game, 'shiny_game.title', 'app_shinygame_dex', false) }}
       {% endif %}
     </div>

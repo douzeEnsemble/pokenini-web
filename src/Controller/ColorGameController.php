@@ -125,6 +125,27 @@ final class ColorGameController extends AbstractController
         );
     }
 
+    /**
+     * The answered rounds of a game, to look at it again once it is over.
+     */
+    #[Route('/{gameId}/rounds', name: 'app_colorgame_rounds', requirements: ['gameId' => Requirement::UUID], methods: ['GET'])]
+    public function rounds(string $gameId): Response
+    {
+        try {
+            $rounds = $this->colorGameService->getRounds($gameId);
+        } catch (HttpExceptionInterface $e) {
+            throw $this->createNotFoundException("Game {$gameId} not found", $e);
+        }
+
+        return $this->render(
+            'ColorGame/rounds.html.twig',
+            [
+                'game' => $rounds->getGame(),
+                'rounds' => $rounds->getRounds(),
+            ]
+        );
+    }
+
     private function getState(string $gameId): ColorGameState
     {
         try {

@@ -1,0 +1,47 @@
+{% set titleKey = 'color_game.title' %}
+{% set dexRoute = 'app_colorgame_dex' %}
+{% set playRoute = 'app_colorgame_play' %}
+
+{% extends 'Game/rounds.html.twig' %}
+{% import 'ColorGame/_macros.html.twig' as colorGame %}
+
+{% block title_badge %}
+  {% if game.isShiny %}
+  <span class="badge text-bg-warning game-is-shiny"><i class="bi bi-stars"></i> {{ 'color_game.shiny'|trans }}</span>
+  {% endif %}
+{% endblock title_badge %}
+
+{% block new_game %}
+  {{ colorGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
+{% endblock new_game %}
+
+{% block round_body %}
+  <div class="d-flex align-items-start gap-3 mt-2">
+    <img
+      src="{{ pokemonImageUrl|format(game.isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
+      alt="{{ pokemonName }}"
+      class="game-round-image img-loader"
+      width="96"
+      height="96"
+      loading="lazy"
+      onload="this.classList.add('is-loaded')"
+      onerror="this.classList.add('is-loaded')"
+    >
+    <div class="d-grid gap-2 flex-grow-1 round-choices color-answers">
+      {% for choice in round.choices %}
+      {% set isCorrectChoice = choice.index == round.correctChoice %}
+      {% set isChosenChoice = choice.index == round.chosenChoice %}
+      <div class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-2 color-answer{{ isCorrectChoice ? ' correct-choice' : '' }}{{ isChosenChoice and not isCorrectChoice ? ' chosen-choice' : '' }}">
+        {% if isCorrectChoice %}
+        <span class="choice-key"><i class="bi bi-check-lg" aria-hidden="true"></i><span class="visually-hidden">{{ 'color_game.answer.right_set'|trans }}</span></span>
+        {% elseif isChosenChoice %}
+        <span class="choice-key"><i class="bi bi-x-lg" aria-hidden="true"></i><span class="visually-hidden">{{ 'color_game.answer.your_choice'|trans }}</span></span>
+        {% else %}
+        <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
+        {% endif %}
+        {{ colorGame.swatches(choice, locale) }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock round_body %}

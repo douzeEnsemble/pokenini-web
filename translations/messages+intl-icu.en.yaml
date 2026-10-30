@@ -812,6 +812,20 @@ game:
     toast:
       success: "Result copied, you can paste it anywhere."
       error: "The result could not be copied."
+  review:
+    link: "Review"
+    link_title: "Review the rounds of this game"
+    over: "Review the rounds"
+    started_at: "Game started on {date}"
+    back: "Back to your games"
+    none: "No round played in this game."
+    round: "Round {position}"
+    correct: "Well spotted"
+    wrong: "Missed"
+    filter:
+      label: "Rounds to show"
+      all: "All ({count})"
+      wrong: "{count, plural, =0 {None missed} one {# missed} other {# missed}}"
 
 color_game:
   title: "Palet Found"

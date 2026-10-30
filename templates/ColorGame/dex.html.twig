@@ -151,6 +151,9 @@
             </a>
             {% endif %}
             {% if game.answeredCount > 0 %}
+            <a href="{{ path('app_colorgame_rounds', {'gameId': game.id}) }}" class="btn btn-sm btn-outline-secondary game-review" title="{{ 'game.review.link_title'|trans }}">
+              <i class="bi bi-eye" aria-hidden="true"></i> {{ 'game.review.link'|trans }}
+            </a>
             {{ gameMacros.shareModal(game, 'color_game.title', 'app_colorgame_dex', game.isShiny) }}
             {% endif %}
           </td>

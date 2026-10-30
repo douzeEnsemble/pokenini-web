@@ -255,6 +255,85 @@
   {
     "request": {
       "uri": {
+        "match": "/color_game/games/22222222-2222-4222-8222-222222222222/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/color_game/rounds_completed.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/color_game/games/11111111-1111-4111-8111-111111111111/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/color_game/rounds_in_progress.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/color_game/games/44444444-4444-4444-8444-444444444444/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/color_game/rounds_abandoned.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/color_game/games/[\\w-]*/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "404"
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/color_game/games/11111111-1111-4111-8111-111111111111"
       },
       "method": "get",
@@ -642,6 +721,85 @@
     "response": {
       "status": "200",
       "file": "/var/moco/responses/shiny_game/answer_wrong.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/shiny_game/games/22222222-2222-4222-8222-222222222222/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/shiny_game/rounds_completed.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/shiny_game/games/11111111-1111-4111-8111-111111111111/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/shiny_game/rounds_in_progress.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/shiny_game/games/44444444-4444-4444-8444-444444444444/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/shiny_game/rounds_abandoned.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/shiny_game/games/[\\w-]*/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "404"
     }
   },
   {
@@ -1060,6 +1218,85 @@
     "response": {
       "status": "200",
       "file": "/var/moco/responses/which_shiny_game/answer_wrong.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/which_shiny_game/games/22222222-2222-4222-8222-222222222222/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/which_shiny_game/rounds_completed.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/which_shiny_game/games/11111111-1111-4111-8111-111111111111/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/which_shiny_game/rounds_in_progress.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/which_shiny_game/games/44444444-4444-4444-8444-444444444444/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/which_shiny_game/rounds_abandoned.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/which_shiny_game/games/[\\w-]*/rounds"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "404"
     }
   },
   {
