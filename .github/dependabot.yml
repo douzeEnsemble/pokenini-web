@@ -40,3 +40,37 @@ updates:
     directory: "/tools/psalm"
     schedule:
       interval: "weekly"
+
+  - package-ecosystem: "docker"
+    directories:
+      - "/.docker/php"
+      - "/.docker/moco"
+    schedule:
+      interval: "weekly"
+    ignore:
+      # PHP bumps also touch composer.json and tools/*/composer.json: done by hand
+      - dependency-name: "php"
+    groups:
+      docker:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "docker-compose"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      docker-compose:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "github-actions"
+    directories:
+      - "/"
+      - "/.github/actions/*"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
