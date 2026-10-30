@@ -79,7 +79,7 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('/fr/game/color', $crawler->filter('a.stop-game')->attr('href'));
 
         $this->assertCountFilter($crawler, 0, '.color-game-credit');
-        $this->assertSame('Le visuel du Pokémon ne correspond pas forcément à ses couleurs.', $crawler->filter('.color-game-warning')->text());
+        $this->assertSame('Le visuel du Pokémon ne correspond pas forcément à ses couleurs.', $crawler->filter('.color-game-panel .pokemon-image-box + .color-game-warning')->text());
         $this->assertSame('Source des couleurs : PokéAPI', $crawler->filter('.color-game-source')->text());
         $this->assertSame('https://pokeapi.co/', $crawler->filter('.color-game-source a')->attr('href'));
     }
@@ -251,7 +251,7 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '.chosen-choice');
         $this->assertCountFilter($crawler, 1, '.correct-choice');
         $this->assertSame('The right colours', $crawler->filter('.correct-choice .choice-key')->text());
-        $this->assertSame('The Pokémon picture may not exactly match its colours.', $crawler->filter('.color-game-warning')->text());
+        $this->assertSame('The Pokémon picture may not exactly match its colours.', $crawler->filter('.color-game-panel .pokemon-image-box + .color-game-warning')->text());
         $this->assertSame('Colours source: PokéAPI', $crawler->filter('.color-game-source')->text());
         $this->assertSame('https://pokeapi.co/', $crawler->filter('.color-game-source a')->attr('href'));
         $this->assertSame(['1', '3'], $crawler->filter('.color-answer:not(.correct-choice) .choice-key')->each(static fn (Crawler $node): string => $node->text()));
