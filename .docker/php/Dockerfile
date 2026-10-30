@@ -77,7 +77,7 @@ ARG UID=1000
 ARG GID=1000
 RUN addgroup -g ${GID} app && adduser -u ${UID} -G app -s /bin/sh -D app
 
-USER app
+USER ${UID}:${GID}
 
 FROM php_base AS php_prod
 
