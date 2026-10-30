@@ -821,6 +821,20 @@ game:
     toast:
       success: "Résultat copié, tu peux le coller où tu veux."
       error: "Le résultat n'a pas pu être copié."
+  review:
+    link: "Revoir"
+    link_title: "Revoir les manches de cette partie"
+    over: "Revoir les manches"
+    started_at: "Partie commencée le {date}"
+    back: "Retour à tes parties"
+    none: "Aucune manche jouée dans cette partie."
+    round: "Manche {position}"
+    correct: "Bien vu"
+    wrong: "Raté"
+    filter:
+      label: "Manches à afficher"
+      all: "Toutes ({count})"
+      wrong: "{count, plural, =0 {Aucune ratée} one {# ratée} other {# ratées}}"
 
 color_game:
   title: "Bonne Palette"

@@ -1,0 +1,37 @@
+{% set titleKey = 'shiny_game.title' %}
+{% set dexRoute = 'app_shinygame_dex' %}
+{% set playRoute = 'app_shinygame_play' %}
+
+{% extends 'Game/rounds.html.twig' %}
+{% import 'ShinyGame/_macros.html.twig' as shinyGame %}
+
+{% block game_stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/shiny-game.css') }}">
+{% endblock game_stylesheets %}
+
+{% block new_game %}
+  {{ shinyGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
+{% endblock new_game %}
+
+{% block round_body %}
+  {% set shownVersion = (round.isShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans %}
+  {% set chosenVersion = (round.isChosenShiny ? 'shiny_game.round.shiny' : 'shiny_game.round.regular')|trans %}
+  <div class="d-flex align-items-center gap-3 mt-2">
+    <img
+      src="{{ pokemonImageUrl|format(round.isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
+      alt="{{ pokemonName }} {{ shownVersion }}"
+      class="game-round-image img-loader"
+      width="96"
+      height="96"
+      loading="lazy"
+      onload="this.classList.add('is-loaded')"
+      onerror="this.classList.add('is-loaded')"
+    >
+    <dl class="mb-0 small">
+      <dt>{{ 'shiny_game.answer.shown'|trans }}</dt>
+      <dd class="round-shown">{% if round.isShiny %}<i class="bi bi-stars" aria-hidden="true"></i> {% endif %}{{ shownVersion }}</dd>
+      <dt>{{ 'shiny_game.answer.your_choice'|trans }}</dt>
+      <dd class="mb-0 round-chosen">{% if round.isChosenShiny %}<i class="bi bi-stars" aria-hidden="true"></i> {% endif %}{{ chosenVersion }}</dd>
+    </dl>
+  </div>
+{% endblock round_body %}

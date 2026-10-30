@@ -115,6 +115,8 @@ final class ColorGamePlayTest extends WebTestCase
         $this->assertSame('homeshiny', $crawler->filter('.game-over input[name="dex_slug"]')->attr('value'));
         $this->assertSame('Rejouer', $crawler->filter('.game-over .new-game')->text());
         $this->assertSame('/fr/game/color', $crawler->filter('.game-over a')->attr('href'));
+        $this->assertSame('Revoir les manches', $crawler->filter('.game-over a.game-review')->text());
+        $this->assertSame('/fr/game/color/22222222-2222-4222-8222-222222222222/rounds', $crawler->filter('.game-over a.game-review')->attr('href'));
         $this->assertSame('Partager', $crawler->filter('.game-over .game-share')->text());
         $this->assertSame(
             "Pokénini · Bonne Palette ✨\nHome Chromatique · 1/2 (50 %)\n🟥🟩\nhttp://localhost/fr/game/color",

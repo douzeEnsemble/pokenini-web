@@ -7,6 +7,7 @@ namespace App\Service\Back;
 use App\ResponseObject\WhichShinyGame\WhichShinyGame;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameAnswer;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameDexListItem;
+use App\ResponseObject\WhichShinyGame\WhichShinyGameRounds;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameState;
 
 class WhichShinyGameService extends AbstractBackService
@@ -43,6 +44,14 @@ class WhichShinyGameService extends AbstractBackService
 
         /** @var WhichShinyGameState */
         return $this->serializer->deserialize($json, WhichShinyGameState::class, 'json');
+    }
+
+    public function getRounds(string $gameId): WhichShinyGameRounds
+    {
+        $json = $this->requestContent('GET', "/which_shiny_game/games/{$gameId}/rounds");
+
+        /** @var WhichShinyGameRounds */
+        return $this->serializer->deserialize($json, WhichShinyGameRounds::class, 'json');
     }
 
     public function answer(string $gameId, int $position, int $slot): WhichShinyGameAnswer

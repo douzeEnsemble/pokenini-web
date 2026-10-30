@@ -110,6 +110,14 @@ final class WhichShinyGameDexTest extends WebTestCase
             $crawler->filter('.which-shiny-game-history tbody tr')->eq(1)->filter('.game-share-panel')->attr('data-share-grid'),
         );
         $this->assertCount(0, $crawler->filter('.which-shiny-game-history tbody tr')->eq(2)->filter('.game-share'));
+        // The rounds of the games with an answered round can be looked at again
+        $this->assertSame(
+            [
+                '/fr/game/which-shiny/11111111-1111-4111-8111-111111111111/rounds',
+                '/fr/game/which-shiny/22222222-2222-4222-8222-222222222222/rounds',
+            ],
+            $crawler->filter('.which-shiny-game-history a.game-review')->each(static fn (Crawler $node): string => (string) $node->attr('href')),
+        );
     }
 
     #[Test]

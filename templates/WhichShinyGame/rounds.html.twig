@@ -1,0 +1,45 @@
+{% set titleKey = 'which_shiny_game.title' %}
+{% set dexRoute = 'app_whichshinygame_dex' %}
+{% set playRoute = 'app_whichshinygame_play' %}
+
+{% extends 'Game/rounds.html.twig' %}
+{% import 'WhichShinyGame/_macros.html.twig' as whichShinyGame %}
+
+{% block game_stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/which-shiny-game.css') }}">
+{% endblock game_stylesheets %}
+
+{% block new_game %}
+  {{ whichShinyGame.newGameForm(game.dex.slug, 'color_game.over.replay', 'btn-primary new-game') }}
+{% endblock new_game %}
+
+{% block round_body %}
+  <div class="row g-2 mt-1 round-versions">
+    {% for slot in [1, 2] %}
+    {% set isShiny = slot == round.shinySlot %}
+    {% set isChosen = slot == round.chosenSlot %}
+    {% set version = (isShiny ? 'which_shiny_game.answer.shiny' : 'which_shiny_game.answer.regular')|trans %}
+    <div class="col-6">
+      <figure class="h-100 m-0 p-2 border rounded-3 d-flex flex-column align-items-center gap-1 which-shiny-version{{ isShiny ? ' shiny-version' : '' }}{{ isChosen and not isShiny ? ' chosen-version' : '' }}">
+        <img
+          src="{{ pokemonImageUrl|format(isShiny ? 'shiny' : 'regular', pokemon.icon) }}"
+          alt="{{ pokemonName }} {{ version }}"
+          class="game-round-image img-loader"
+          width="96"
+          height="96"
+          loading="lazy"
+          onload="this.classList.add('is-loaded')"
+          onerror="this.classList.add('is-loaded')"
+        >
+        <figcaption class="d-flex flex-wrap align-items-center justify-content-center gap-1 small fw-semibold">
+          {% if isShiny %}<i class="bi bi-stars" aria-hidden="true"></i>{% endif %}
+          <span class="version-name">{{ version }}</span>
+          {% if isChosen %}
+          <span class="badge {{ isShiny ? 'text-bg-success' : 'text-bg-danger' }} version-label">{{ 'which_shiny_game.answer.your_choice'|trans }}</span>
+          {% endif %}
+        </figcaption>
+      </figure>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock round_body %}

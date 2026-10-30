@@ -1,0 +1,93 @@
+{#
+  The answered rounds of a game, to look at it again once it is over.
+  Each game sets titleKey, dexRoute and playRoute, and fills the new_game, title_badge and round_body blocks.
+#}
+{% extends 'base.html.twig' %}
+{% use '_nav.html.twig' %}
+{% import 'ColorGame/_macros.html.twig' as colorGame %}
+
+{% block title %}Pokénini {{ titleKey|trans }}{% endblock title %}
+
+{% block stylesheets %}
+  {{ parent() }}
+
+  <link rel="stylesheet" href="{{ asset('css/color-game.css') }}">
+  {% block game_stylesheets %}{% endblock game_stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/game-rounds.css') }}">
+{% endblock stylesheets %}
+
+{% block container %}
+  {% set locale = app.request.locale %}
+  {% set dexName = (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+  {% set wrongCount = rounds|filter(round => not round.isCorrect)|length %}
+
+  <div class="row">
+    <div class="col-xl-8 col-lg-10 col-12 mx-auto text-center">
+      <h1>{{ titleKey|trans }}</h1>
+      <h2>
+        <small class="text-body-secondary">{{ dexName }}</small>
+        {% block title_badge %}{% endblock title_badge %}
+      </h2>
+      <p class="game-rounds-summary">
+        {{ 'game.review.started_at'|trans({'date': game.startedAt|date('d/m/Y H:i')}) }}
+        · <span class="game-status">{{ ('color_game.status.'~game.status)|trans }}</span>
+        · {{ colorGame.score(game) }}
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-2 game-rounds-actions">
+        {% if game.status is same as('in_progress') %}
+        <a href="{{ path(playRoute, {'gameId': game.id}) }}" class="btn btn-primary resume-game">{{ 'color_game.dex.resume'|trans }}</a>
+        {% else %}
+        {% block new_game %}{% endblock new_game %}
+        {% endif %}
+        <a href="{{ path(dexRoute) }}" class="btn btn-outline-secondary back-to-games">{{ 'game.review.back'|trans }}</a>
+      </div>
+    </div>
+  </div>
+
+  {% if rounds is empty %}
+  <p class="text-center text-body-secondary mt-4 no-rounds">{{ 'game.review.none'|trans }}</p>
+  {% else %}
+  <div class="d-flex justify-content-center mt-4">
+    <div class="btn-group game-rounds-filter" role="group" aria-label="{{ 'game.review.filter.label'|trans }}">
+      <button type="button" class="btn btn-outline-secondary active" data-filter="all" aria-pressed="true">
+        {{ 'game.review.filter.all'|trans({'count': rounds|length}) }}
+      </button>
+      <button type="button" class="btn btn-outline-secondary" data-filter="wrong" aria-pressed="false"{{ wrongCount == 0 ? ' disabled' : '' }}>
+        {{ 'game.review.filter.wrong'|trans({'count': wrongCount}) }}
+      </button>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 game-rounds">
+    {% for round in rounds %}
+    {% set pokemon = round.pokemon %}
+    {% set pokemonName = locale is same as('fr') ? pokemon.frenchName : pokemon.name %}
+    {% set formsLabel = locale is same as('fr') ? pokemon.formsFrenchLabel : pokemon.formsLabel %}
+    <div class="col game-round {{ round.isCorrect ? 'is-correct' : 'is-wrong' }}">
+      <article class="card h-100 border-{{ round.isCorrect ? 'success' : 'danger' }}">
+        <header class="card-header d-flex justify-content-between align-items-center">
+          <span class="round-position">{{ 'game.review.round'|trans({'position': round.position}) }}</span>
+          <span class="badge text-bg-{{ round.isCorrect ? 'success' : 'danger' }} round-result">
+            <i class="bi {{ round.isCorrect ? 'bi-check-lg' : 'bi-x-lg' }}" aria-hidden="true"></i>
+            {{ (round.isCorrect ? 'game.review.correct' : 'game.review.wrong')|trans }}
+          </span>
+        </header>
+        <div class="card-body">
+          <h3 class="h5 mb-0 pokemon-name">{{ pokemonName }}</h3>
+          {% if formsLabel is not empty %}
+          <p class="small text-body-secondary mb-0 pokemon-forms">{{ formsLabel }}</p>
+          {% endif %}
+          {% block round_body %}{% endblock round_body %}
+        </div>
+      </article>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endblock container %}
+
+{% block foot_javascript %}
+  {{ parent() }}
+
+  <script src="{{ asset('js/game-rounds.js') }}"></script>
+{% endblock foot_javascript %}

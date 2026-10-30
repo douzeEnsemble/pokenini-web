@@ -61,4 +61,30 @@ final class ShinyGameTest extends AbstractBrowserTestCase
 
         $this->assertSelectorExists('.shiny-answers');
     }
+
+    #[Test]
+    public function reviewOnlyTheMissedRounds(): void
+    {
+        $client = $this->getNewClient();
+
+        $user = GetUserToken::getFakeUserToken();
+        $user->addTrainerRole();
+        $this->loginUser($client, $user);
+
+        $client->request('GET', '/fr/game/shiny/22222222-2222-4222-8222-222222222222/rounds');
+
+        $this->assertSelectorIsVisible('.game-round.is-correct');
+        $this->assertSelectorIsVisible('.game-round.is-wrong');
+
+        $client->getCrawler()->filter('.game-rounds-filter button[data-filter="wrong"]')->click();
+
+        $this->assertSelectorAttributeContains('.game-rounds-filter button[data-filter="wrong"]', 'aria-pressed', 'true');
+        $this->assertSelectorIsNotVisible('.game-round.is-correct');
+        $this->assertSelectorIsVisible('.game-round.is-wrong');
+
+        $client->getCrawler()->filter('.game-rounds-filter button[data-filter="all"]')->click();
+
+        $this->assertSelectorAttributeContains('.game-rounds-filter button[data-filter="wrong"]', 'aria-pressed', 'false');
+        $this->assertSelectorIsVisible('.game-round.is-correct');
+    }
 }
