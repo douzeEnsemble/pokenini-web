@@ -31,22 +31,17 @@ final class GameServiceRoundsTest extends AbstractTestBackService
 {
     private const string JSON = '{"doesnt": "matter"}';
 
-    /**
-     * @var class-string<ColorGameService|ShinyGameService|WhichShinyGameService>
-     */
-    private string $serviceClass = ColorGameService::class;
+    private string $prefix = 'color_game';
 
-    /**
-     * @param class-string<ColorGameService|ShinyGameService|WhichShinyGameService> $serviceClass
-     * @param class-string                                                          $roundsClass
-     */
     #[Test]
     #[DataProvider('providerGames')]
-    public function getRounds(string $serviceClass, string $prefix, string $roundsClass): void
+    public function getRounds(string $prefix, string $roundsClass): void
     {
-        $this->serviceClass = $serviceClass;
+        $this->prefix = $prefix;
 
-        $rounds = new \ReflectionClass($roundsClass)->newInstanceWithoutConstructor();
+        /** @var class-string $class */
+        $class = $roundsClass;
+        $rounds = new \ReflectionClass($class)->newInstanceWithoutConstructor();
 
         $serializer = $this->createMock(SerializerInterface::class);
         $serializer
@@ -69,14 +64,14 @@ final class GameServiceRoundsTest extends AbstractTestBackService
     }
 
     /**
-     * @return array<string, array{class-string<ColorGameService|ShinyGameService|WhichShinyGameService>, string, class-string}>
+     * @return array<string, list{string, string}>
      */
     public static function providerGames(): array
     {
         return [
-            'color' => [ColorGameService::class, 'color_game', 'App\ResponseObject\ColorGame\ColorGameRounds'],
-            'shiny' => [ShinyGameService::class, 'shiny_game', 'App\ResponseObject\ShinyGame\ShinyGameRounds'],
-            'which_shiny' => [WhichShinyGameService::class, 'which_shiny_game', 'App\ResponseObject\WhichShinyGame\WhichShinyGameRounds'],
+            'color' => ['color_game', 'App\ResponseObject\ColorGame\ColorGameRounds'],
+            'shiny' => ['shiny_game', 'App\ResponseObject\ShinyGame\ShinyGameRounds'],
+            'which_shiny' => ['which_shiny_game', 'App\ResponseObject\WhichShinyGame\WhichShinyGameRounds'],
         ];
     }
 
@@ -89,13 +84,10 @@ final class GameServiceRoundsTest extends AbstractTestBackService
         UserTokenServiceInterface $userTokenService,
         SerializerInterface $serializer,
     ): AbstractBackService {
-        return new $this->serviceClass(
-            $logger,
-            $client,
-            $url,
-            $cafilePath,
-            $userTokenService,
-            $serializer,
-        );
+        return match ($this->prefix) {
+            'shiny_game' => new ShinyGameService($logger, $client, $url, $cafilePath, $userTokenService, $serializer),
+            'which_shiny_game' => new WhichShinyGameService($logger, $client, $url, $cafilePath, $userTokenService, $serializer),
+            default => new ColorGameService($logger, $client, $url, $cafilePath, $userTokenService, $serializer),
+        };
     }
 }
