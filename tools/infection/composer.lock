@@ -1448,16 +1448,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v8.1.9",
+            "version": "v8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "630e74196a2635ec0f06c12bd3fb47cfedf85157"
+                "reference": "5b6d9b127ec27bc6db59bf65e2e37b6fe5b00083"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/630e74196a2635ec0f06c12bd3fb47cfedf85157",
-                "reference": "630e74196a2635ec0f06c12bd3fb47cfedf85157",
+                "url": "https://api.github.com/repos/symfony/console/zipball/5b6d9b127ec27bc6db59bf65e2e37b6fe5b00083",
+                "reference": "5b6d9b127ec27bc6db59bf65e2e37b6fe5b00083",
                 "shasum": ""
             },
             "require": {
@@ -1524,7 +1524,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v8.1.9"
+                "source": "https://github.com/symfony/console/tree/v8.1.10"
             },
             "funding": [
                 {
@@ -1544,7 +1544,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-12T19:11:16+00:00"
+            "time": "2026-10-28T11:16:19+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1690,16 +1690,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v8.1.8",
+            "version": "v8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "bd4fed193a3132c91c5c93595cbfc78988915822"
+                "reference": "2f4c0f26106520d82e1b71759d2fb8d32d8b7a43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/bd4fed193a3132c91c5c93595cbfc78988915822",
-                "reference": "bd4fed193a3132c91c5c93595cbfc78988915822",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/2f4c0f26106520d82e1b71759d2fb8d32d8b7a43",
+                "reference": "2f4c0f26106520d82e1b71759d2fb8d32d8b7a43",
                 "shasum": ""
             },
             "require": {
@@ -1734,7 +1734,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v8.1.8"
+                "source": "https://github.com/symfony/finder/tree/v8.1.10"
             },
             "funding": [
                 {
@@ -1754,7 +1754,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-26T06:33:49+00:00"
+            "time": "2026-10-19T17:00:07+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2173,16 +2173,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v8.1.9",
+            "version": "v8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189"
+                "reference": "08aa69fa0998bb65a089f9e148a2c0f8b391398e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
-                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
+                "url": "https://api.github.com/repos/symfony/process/zipball/08aa69fa0998bb65a089f9e148a2c0f8b391398e",
+                "reference": "08aa69fa0998bb65a089f9e148a2c0f8b391398e",
                 "shasum": ""
             },
             "require": {
@@ -2214,7 +2214,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v8.1.9"
+                "source": "https://github.com/symfony/process/tree/v8.1.10"
             },
             "funding": [
                 {
@@ -2234,7 +2234,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-08T16:57:43+00:00"
+            "time": "2026-10-25T14:40:25+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -2325,16 +2325,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v8.1.9",
+            "version": "v8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "07fb208558f941eab50ec49c89c2a6a93fb11f01"
+                "reference": "6c6110979c0150393bbb336170e286d51ab4d76c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/07fb208558f941eab50ec49c89c2a6a93fb11f01",
-                "reference": "07fb208558f941eab50ec49c89c2a6a93fb11f01",
+                "url": "https://api.github.com/repos/symfony/string/zipball/6c6110979c0150393bbb336170e286d51ab4d76c",
+                "reference": "6c6110979c0150393bbb336170e286d51ab4d76c",
                 "shasum": ""
             },
             "require": {
@@ -2391,7 +2391,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v8.1.9"
+                "source": "https://github.com/symfony/string/tree/v8.1.10"
             },
             "funding": [
                 {
@@ -2411,7 +2411,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-03T15:16:03+00:00"
+            "time": "2026-10-23T17:06:53+00:00"
         },
         {
             "name": "thecodingmachine/safe",
