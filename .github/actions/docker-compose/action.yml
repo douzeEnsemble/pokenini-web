@@ -16,7 +16,7 @@ runs:
 
     - name: Restore Docker images archive cache
       id: docker-images-cache
-      uses: actions/cache/restore@v5
+      uses: actions/cache/restore@v6
       with:
         path: /tmp/docker-images-cache/images.tar
         key: docker-images-${{ runner.os }}-${{ hashFiles('.docker/php/Dockerfile', '.docker/php/conf.d/**', '.docker/moco/Dockerfile', 'docker-compose.yaml') }}-${{ env.APP_UID }}-${{ env.APP_GID }}
@@ -63,7 +63,7 @@ runs:
 
     - name: Save Docker images archive cache (upload)
       if: steps.docker-images-cache.outputs.cache-hit != 'true'
-      uses: actions/cache/save@v5
+      uses: actions/cache/save@v6
       with:
         path: /tmp/docker-images-cache/images.tar
         key: ${{ steps.docker-images-cache.outputs.cache-primary-key }}

@@ -28,7 +28,7 @@ jobs:
       volumes:
         - ${{ github.workspace }}:/app
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - run: /bin/dclint -r .
 
   dotenv-lint:
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Lint .env* files
         uses: dotenv-linter/action-dotenv-linter@v3
         with:
@@ -51,13 +51,13 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Lint moco Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.5.0
         with:
           dockerfile: ./.docker/moco/Dockerfile
       - name: Lint php Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.5.0
         with:
           dockerfile: ./.docker/php/Dockerfile
 
@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Check moco file references
         run: |
           tools/check-moco-refs/check_moco_refs.sh tests/resources/moco/Back/moco.json tests/resources/moco/Back
