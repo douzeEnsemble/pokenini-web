@@ -52,30 +52,66 @@ a.election-card-catch-state-edit-action:hover {
     height: 0.75rem;
 }
 
-label.filters-types {
-    font-size: large;
-    width: 75%;
-    text-align: left;
+/* Type filters: the checkbox and its badge form one bordered cell, so it's
+    obvious which box goes with which type. Hover/focus highlights the whole
+    cell and slides the type icon, like the album modal's icon links. */
+.filters-types-container {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    margin: 0;
+    padding: .25rem .4rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    cursor: pointer;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-label.filters-types-container:hover label {
+.filters-types-container .form-check-input {
+    float: none;
+    flex-shrink: 0;
+    margin: 0;
     cursor: pointer;
 }
 
-label.filters-types {
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 25%;
+.filters-types-container:hover,
+.filters-types-container:focus-within {
+    border-color: var(--icon-link-hover-color);
+    box-shadow: 0 0 0 .2rem rgb(64 139 145 / 25%);
 }
 
-@media (min-width: 768px) and (max-width: 1199.98px) {
-    label.filters-types {
-        font-size: medium;
+.filters-types {
+    flex-grow: 1;
+    min-width: 0;
+    white-space: normal;
+    font-size: medium;
+    text-align: left;
+    padding-right: 2em;
+    background-repeat: no-repeat;
+    background-position: right .3em center;
+    background-size: auto 100%;
+    transition: background-position .2s ease-in-out, opacity .15s ease-in-out;
+}
+
+.filters-types-container:hover .filters-types,
+.filters-types-container:focus-within .filters-types {
+    background-position: right 0 center;
+}
+
+/* Unchecked types are faded so the selection reads at a glance, including
+    on touch screens where there is no hover. */
+.filters-types-container:not(:has(.form-check-input:checked)) .filters-types {
+    opacity: .5;
+}
+
+@media (min-width: 1400px) {
+    .filters-types {
+        font-size: large;
     }
 }
 
 @media (max-width: 767.98px) {
-    label.filters-types {
+    .filters-types {
         font-size: small;
     }
 }

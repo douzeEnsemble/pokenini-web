@@ -19,7 +19,7 @@
       .filters-types.pokemon-type-{{type.slug}}{
         background-image: url('{{ iconUrl }}');
       }
-      .filters-types.pokemon-type-{{type.slug}}:hover {
+      .filters-types-container:hover .filters-types.pokemon-type-{{type.slug}} {
         background-color: {{type.color}}AA;
       }
     {% endfor %}
