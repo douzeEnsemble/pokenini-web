@@ -868,7 +868,7 @@ color_game:
     image_pending: "The Pokémon image shows up after your answer"
     keys: "Tip: click once to pick a set, a second time to confirm it. On the keyboard, keys 1 to {count} pick and Enter confirms."
     confirm: "Click again to confirm"
-    warning: "The Pokémon picture may not exactly match its colours."
+    warning: "The right palette is close to the picture's colours, even if the rendering may vary slightly."
     source: "Colours source:"
   answer:
     correct: "Well done!"
