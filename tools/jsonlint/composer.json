@@ -2,6 +2,6 @@
     "type": "tools",
     "require": {
         "php": ">=8.5.12",
-        "seld/jsonlint": "^1.12.1"
+        "seld/jsonlint": "^1.12.2"
     }
 }
