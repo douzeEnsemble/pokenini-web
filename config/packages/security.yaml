@@ -19,6 +19,7 @@ security:
       custom_authenticators:
         - App\Security\DiscordAuthenticator
         - App\Security\GoogleAuthenticator
+        - App\Security\E2eAuthenticator
 
   access_control:
     - { path: ^/(en|fr)/album/dex$, roles: ROLE_TRAINER }
@@ -37,5 +38,6 @@ when@dev: &fake_authenticator
       web:
         custom_authenticators:
           - App\Security\FakeAuthenticator
+          - App\Security\E2eAuthenticator
 
 when@test: *fake_authenticator

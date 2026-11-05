@@ -50,7 +50,7 @@ abstract class AbstractAuthenticator extends OAuth2Authenticator
 
     abstract protected function getProviderName(): string;
 
-    private function loadFromAccessToken(AccessToken $accessToken, string $providerName): User
+    protected function loadFromAccessToken(AccessToken $accessToken, string $providerName): User
     {
         $userInfo = $this->getUserInfoService->get($accessToken, $providerName);
 
