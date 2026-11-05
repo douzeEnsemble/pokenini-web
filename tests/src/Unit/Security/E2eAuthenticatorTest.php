@@ -77,7 +77,7 @@ final class E2eAuthenticatorTest extends TestCase
         $getUserInfoService->expects($this->never())->method('get');
 
         $this->expectException(BadCredentialsException::class);
-        $this->expectExceptionMessage('Missing E2E login.');
+        $this->expectExceptionMessageIsOrContains('Missing E2E login.');
 
         $this->getAuthenticator($getUserInfoService)->authenticate(new Request());
     }
@@ -92,7 +92,7 @@ final class E2eAuthenticatorTest extends TestCase
         $request->headers->set('X-E2E-Login', '');
 
         $this->expectException(BadCredentialsException::class);
-        $this->expectExceptionMessage('Missing E2E login.');
+        $this->expectExceptionMessageIsOrContains('Missing E2E login.');
 
         $this->getAuthenticator($getUserInfoService)->authenticate($request);
     }
