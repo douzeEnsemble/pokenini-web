@@ -68,8 +68,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-03T10:16:18+00:00",
-            "published-time": "2026-11-03T10:20:37+00:00"
+            "time": "2026-11-03T10:16:18+00:00"
         }
     ],
     "packages-dev": [],
@@ -82,5 +81,5 @@
         "php": ">=8.5.12"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.11.0"
+    "plugin-api-version": "2.9.0"
 }
