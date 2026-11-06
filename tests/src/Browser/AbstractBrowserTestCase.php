@@ -51,18 +51,30 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
 
     /**
      * Keeps the body of every request the page sends with fetch, to check what the page saved.
+     *
+     * The wrapper is injected as a page script and the bodies are kept in the DOM: a WebDriver
+     * script may run apart from the page (Firefox), and could neither wrap its fetch nor read its variables.
      */
     protected function recordFetchBodies(Client $client): void
     {
         $client->executeScript(<<<'JS'
-            window.fetchBodies = [];
-            const originalFetch = window.fetch;
-            window.fetch = function (resource, options) {
-                const request = new Request(resource, options);
-                request.clone().text().then(body => window.fetchBodies.push(body));
+            const script = document.createElement('script');
+            script.textContent = `
+                document.body.dataset.fetchBodies = '[]';
+                const originalFetch = window.fetch;
+                window.fetch = function (resource, options) {
+                    if (resource instanceof Request) {
+                        resource.clone().text().then(function (body) {
+                            const bodies = JSON.parse(document.body.dataset.fetchBodies);
+                            bodies.push(body);
+                            document.body.dataset.fetchBodies = JSON.stringify(bodies);
+                        });
+                    }
 
-                return originalFetch.call(this, request);
-            };
+                    return originalFetch(resource, options);
+                };
+            `;
+            document.head.appendChild(script);
             JS);
     }
 
@@ -71,7 +83,10 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
      */
     protected function getFetchBodies(Client $client): array
     {
+        /** @var string $bodies */
+        $bodies = $client->executeScript('return document.body.dataset.fetchBodies;');
+
         /** @var string[] */
-        return $client->executeScript('return window.fetchBodies;');
+        return json_decode($bodies, true, 512, JSON_THROW_ON_ERROR);
     }
 }
