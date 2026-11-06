@@ -48,4 +48,30 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
         // causing net::ERR_NAME_NOT_RESOLVED in CI when that external host isn't reachable.
         $client->executeScript("document.cookie = 'tarteaucitron=!matomocloud=false; path=/';");
     }
+
+    /**
+     * Keeps the body of every request the page sends with fetch, to check what the page saved.
+     */
+    protected function recordFetchBodies(Client $client): void
+    {
+        $client->executeScript(<<<'JS'
+            window.fetchBodies = [];
+            const originalFetch = window.fetch;
+            window.fetch = function (resource, options) {
+                const request = new Request(resource, options);
+                request.clone().text().then(body => window.fetchBodies.push(body));
+
+                return originalFetch.call(this, request);
+            };
+            JS);
+    }
+
+    /**
+     * @return string[]
+     */
+    protected function getFetchBodies(Client $client): array
+    {
+        /** @var string[] */
+        return $client->executeScript('return window.fetchBodies;');
+    }
 }

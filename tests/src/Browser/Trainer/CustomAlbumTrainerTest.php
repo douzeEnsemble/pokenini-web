@@ -36,11 +36,14 @@ final class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 
         $form = $crawler->filter('form[data-dex="goldsilvercrystal"]')->form();
 
+        $this->recordFetchBodies($client);
+
         /** @var ChoiceFormField $field */
         $field = $form->get('goldsilvercrystal-is_on_home');
         $field->tick();
 
         $this->assertSelectorWillBeVisible('#successToast-goldsilvercrystal');
+        $this->assertSame(['{"is_private":true,"is_on_home":true}'], $this->getFetchBodies($client));
         $this->assertSelectorWillNotBeVisible('#successToast-goldsilvercrystal');
         $this->assertSelectorWillNotBeVisible('#errorToast-goldsilvercrystal');
     }
@@ -62,11 +65,14 @@ final class CustomAlbumTrainerTest extends AbstractBrowserTestCase
 
         $form = $crawler->filter('form[data-dex="goldsilvercrystal"]')->form();
 
+        $this->recordFetchBodies($client);
+
         /** @var ChoiceFormField $field */
         $field = $form->get('goldsilvercrystal-is_private');
         $field->untick();
 
         $this->assertSelectorWillBeVisible('#successToast-goldsilvercrystal');
+        $this->assertSame(['{}'], $this->getFetchBodies($client));
         $this->assertSelectorWillNotBeVisible('#successToast-goldsilvercrystal');
         $this->assertSelectorWillNotBeVisible('#errorToast-goldsilvercrystal');
     }
