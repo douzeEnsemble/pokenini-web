@@ -278,8 +278,8 @@ trainer:
         label: "Album privé"
         help: "Uniquement accessible par toi"
       is_on_home:
-        label: "Album visible sur la page d'accueil"
-        help: "La page d'accueil n'est visible que par toi. C'est ta page."
+        label: "Album affiché dans Tes albums"
+        help: "Seuls les albums cochés apparaissent sur ta page Tes albums."
       is_premium:
         label: "Album premium"
         help: "Seulement pour les utilisateurs premium"
@@ -315,10 +315,10 @@ trainer:
         "on": "Privés seulement"
         "off": "Publics seulement"
       homepaged:
-        label: "Sur l'accueil"
+        label: "Dans Tes albums"
         all: "Tous"
-        "on": "Sur l'accueil"
-        "off": "Pas sur l'accueil"
+        "on": "Dans Tes albums"
+        "off": "Pas dans Tes albums"
       released:
         label: "Disponible"
         all: "Tous"

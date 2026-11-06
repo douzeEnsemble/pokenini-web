@@ -273,8 +273,8 @@ trainer:
         label: "Private album"
         help: "Only accessible by you"
       is_on_home:
-        label: "Album visible on the homepage"
-        help: "The home page is only visible to you. This is your page."
+        label: "Album shown in Your albums"
+        help: "Only the checked albums show up on your Your albums page."
       is_premium:
         label: "Album can be seen only for premium user"
         help: "Only for premium user"
@@ -310,10 +310,10 @@ trainer:
         "on": "Private only"
         "off": "Public only"
       homepaged:
-        label: "On home"
+        label: "In Your albums"
         all: "All"
-        "on": "On home"
-        "off": "Not on home"
+        "on": "In Your albums"
+        "off": "Not in Your albums"
       released:
         label: "Released"
         all: "All"
