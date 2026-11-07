@@ -1,0 +1,261 @@
+[
+  {
+    "slug": "home",
+    "original_slug": "home",
+    "name": "Home",
+    "french_name": "Home",
+    "flags": {
+      "is_shiny": false,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "box",
+    "description": "All Pokémons that can be transferred to Pokémon Home.\r\n\r\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pokémons anyway, in case it changes)",
+    "french_description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "dex_total_count": 61,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 0,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 0,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 0,
+          "at_max_count": 61
+        },
+        "dex_total_count": 61,
+        "round_count": 12,
+        "total_round_count": 12,
+        "winner_average": 4
+      }
+    },
+    "category": {
+      "slug": "home",
+      "name": "Pokémon Home",
+      "french_name": "Pokémon Home",
+      "order_number": 2
+    }
+  },
+  {
+    "slug": "homeshiny",
+    "original_slug": "homeshiny",
+    "name": "Home\nShiny",
+    "french_name": "Home\nChromatique",
+    "flags": {
+      "is_shiny": true,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "box",
+    "description": "All Pokémons that can be transferred to Pokémon Home.\r\n\r\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pokémons anyway, in case it changes)",
+    "french_description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "dex_total_count": 33,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 60,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 30,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 61,
+          "at_max_count": 0
+        },
+        "dex_total_count": 61,
+        "round_count": 0,
+        "total_round_count": 12,
+        "winner_average": 6
+      }
+    },
+    "category": {
+      "slug": "home",
+      "name": "Pokémon Home",
+      "french_name": "Pokémon Home",
+      "order_number": 2
+    }
+  },
+  {
+    "slug": "homepogo",
+    "original_slug": "homepokemongo",
+    "name": "Home Pokemon Go",
+    "french_name": "Home Pokemon Go",
+    "flags": {
+      "is_shiny": false,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": false,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": true
+    },
+    "display_template": "list-7",
+    "description": "All Pokémons that can be transferred to Pokémon Home.\r\n\r\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pokémons anyway, in case it changes)",
+    "french_description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "dex_total_count": 5,
+    "report": {
+      "top": [
+        {
+          "pokemon": {
+            "slug": "bulbasaur",
+            "labels": {
+              "name": "Bulbasaur",
+              "french_name": "Bulbizarre",
+              "simplified_name": "Bulbasaur",
+              "simplified_french_name": "Bulbizarre",
+              "forms_label": null,
+              "forms_french_label": null
+            },
+            "national_dex_number": 1,
+            "regional_dex_number": null,
+            "icon": "bulbasaur",
+            "family_order": 0,
+            "family_lead": null,
+            "original_game_bundle": {
+              "slug": "redgreenblueyellow"
+            },
+            "order_number": "9999-0001-000",
+            "game_bundles": {
+              "normal": [
+                {
+                  "slug": "redgreenblueyellow"
+                }
+              ],
+              "shiny": [
+                {
+                  "slug": "redgreenblueyellow"
+                }
+              ]
+            },
+            "small_regular_credit": {
+              "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+            },
+            "small_shiny_credit": {
+              "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+            },
+            "big_regular_credit": {
+              "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur"
+            },
+            "big_shiny_credit": {
+              "credit": "PokemonDB - https://pokemondb.net/sprites/bulbasaur"
+            }
+          },
+          "forms": {
+            "category": {
+              "slug": "starter",
+              "name": "Starter",
+              "french_name": "de Départ"
+            },
+            "regional": null,
+            "special": null,
+            "variant": null
+          },
+          "types": {
+            "primary": {
+              "slug": "grass",
+              "name": "Grass",
+              "french_name": "Plante",
+              "color": "#78C850"
+            },
+            "secondary": {
+              "slug": "poison",
+              "name": "Poison",
+              "french_name": "Poison",
+              "color": "#A040A0"
+            }
+          },
+          "score": {
+            "elo": 1040.0,
+            "significance": false
+          }
+        }
+      ],
+      "metrics": {
+        "view_count": {
+          "sum": 24,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 12,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 40,
+          "at_max_count": 21
+        },
+        "dex_total_count": 61,
+        "round_count": 4,
+        "total_round_count": 12,
+        "winner_average": 6
+      }
+    },
+    "category": {
+      "slug": "home",
+      "name": "Pokémon Home",
+      "french_name": "Pokémon Home",
+      "order_number": 2
+    }
+  },
+  {
+    "slug": "mega",
+    "original_slug": "mega",
+    "name": "Mega",
+    "french_name": "Méga",
+    "flags": {
+      "is_shiny": false,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": true,
+      "is_custom": false
+    },
+    "display_template": "list-3",
+    "description": "All Pokémons that can be transferred to Pokémon Home.\r\n\r\nIncluding males/female, different shapes and transformations (some are not kept during the transfer, but I wanted to have the Pokémons anyway, in case it changes)",
+    "french_description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "dex_total_count": 76,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 63,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 16,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 50,
+          "at_max_count": 11
+        },
+        "dex_total_count": 61,
+        "round_count": 2,
+        "total_round_count": 12,
+        "winner_average": 3.2
+      }
+    },
+    "category": {
+      "slug": "special",
+      "name": "Special forms",
+      "french_name": "Formes spéciales",
+      "order_number": 3
+    }
+  }
+]

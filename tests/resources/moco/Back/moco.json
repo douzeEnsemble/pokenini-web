@@ -1,6 +1,195 @@
 [
   {
     "request": {
+      "uri": "/trainer/dex",
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 466b806a704082180a18a8d48591c7c87164f465"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/dex/hub_highlights.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": "/album/dex",
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 466b806a704082180a18a8d48591c7c87164f465"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/dex/hub_highlights.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/election/dex"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 466b806a704082180a18a8d48591c7c87164f465"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/election/election_dex_list_hub.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/color_game/games"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 466b806a704082180a18a8d48591c7c87164f465"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/color_game/games_hub.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/shiny_game/games"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 466b806a704082180a18a8d48591c7c87164f465"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/shiny_game/games_hub.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/which_shiny_game/games"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 466b806a704082180a18a8d48591c7c87164f465"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/which_shiny_game/games_hub.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": "/album/dex",
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer a5449e52b37c4773c5bdf8eb0ad23dbc522e1c47"
+        }
+      }
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/election/dex"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer a5449e52b37c4773c5bdf8eb0ad23dbc522e1c47"
+        }
+      }
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/color_game/games"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer a5449e52b37c4773c5bdf8eb0ad23dbc522e1c47"
+        }
+      }
+    },
+    "response": {
+      "status": "500"
+    }
+  },
+  {
+    "request": {
       "uri": {
         "match": "/color_game/dex"
       },

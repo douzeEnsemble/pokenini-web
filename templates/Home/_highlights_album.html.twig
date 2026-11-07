@@ -1,0 +1,36 @@
+{% set locale = app.request.locale %}
+{% if albums is empty %}
+<p class="small text-body-secondary mb-0 hub-highlights-empty">
+  {{ 'hub.highlights.album.none'|trans|replace({'<a>': '<a href="'~path('app_trainerindex_index')~'">'})|raw }}
+</p>
+{% else %}
+<ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+  {% for dex in albums %}
+  {% set name = (locale is same as('fr') ? dex.settings.frenchName : dex.settings.name)|split("\n")|first %}
+  {% set percent = dex.report is not null and dex.report.total > 0 ? (100 * dex.report.totalCaught / dex.report.total)|round(0, 'floor') : null %}
+  <li>
+    <a href="{{ path('app_albumindex_index', {'dexSlug': dex.settings.slug}) }}" class="d-flex align-items-center gap-3 p-2 rounded-3 text-body text-decoration-none bg-body-tertiary hub-highlight hub-highlight-album">
+      <img
+        src="{{ dexBannerUrl|format(dex.dex.slug) }}"
+        class="rounded-2 flex-shrink-0 img-loader hub-highlight-banner"
+        alt=""
+        width="88"
+        height="50"
+        loading="lazy"
+        onload="this.classList.add('is-loaded')"
+        onerror="this.onerror=null;this.src='/img/banner/default.webp';"
+      >
+      <span class="d-flex flex-column gap-1 flex-grow-1 min-w-0">
+        <span class="fw-semibold text-truncate">{{ name }}</span>
+        {% if percent is not null %}
+        <span class="progress hub-highlight-progress" role="progressbar" aria-label="{{ 'hub.highlights.album.caught'|trans({'percent': percent}) }}" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100">
+          <span class="progress-bar" style="width: {{ percent }}%"></span>
+        </span>
+        <span class="small text-body-secondary">{{ 'hub.highlights.album.caught'|trans({'percent': percent}) }}</span>
+        {% endif %}
+      </span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

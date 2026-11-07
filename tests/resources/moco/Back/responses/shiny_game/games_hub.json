@@ -1,0 +1,45 @@
+[
+  {
+    "id": "44444444-4444-4444-8444-444444444444",
+    "dex": {
+      "slug": "redgreenblueyellow",
+      "name": "Red / Green / Blue / Yellow\nKanto",
+      "french_name": "Rouge / Vert / Bleu / Jaune\nKanto"
+    },
+    "status": "abandoned",
+    "round_count": 151,
+    "answered_count": 0,
+    "correct_count": 0,
+    "results": [],
+    "started_at": "2026-10-18T09:00:00+00:00",
+    "last_played_at": null,
+    "ended_at": "2026-10-18T10:00:00+00:00"
+  },
+  {
+    "id": "dddddddd-2222-4222-8222-222222222222",
+    "dex": {
+      "slug": "redgreenblueyellow",
+      "name": "Red / Green / Blue / Yellow\nKanto",
+      "french_name": "Rouge / Vert / Bleu / Jaune\nKanto"
+    },
+    "status": "completed",
+    "round_count": 10,
+    "answered_count": 10,
+    "correct_count": 7,
+    "results": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false
+    ],
+    "started_at": "2026-10-19T10:00:00+00:00",
+    "last_played_at": "2026-10-19T10:05:00+00:00",
+    "ended_at": "2026-10-19T10:05:00+00:00"
+  }
+]

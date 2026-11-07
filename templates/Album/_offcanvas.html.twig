@@ -80,9 +80,9 @@
 
       {% if allowedToEdit %}
         <form data-dex="{{ currentDexSlug }}" autocomplete="off">
-          {% set flagAttributes = ['is_private', 'is_on_home'] %}
-          {% set flagAttributesIcons = {'is_private': 'incognito', 'is_on_home': 'house-check'} %}
-          {% set flagMap = {'is_private': dex.isPrivate, 'is_on_home': dex.isOnHome} %}
+          {% set flagAttributes = ['is_private', 'is_on_home', 'is_on_hub'] %}
+          {% set flagAttributesIcons = {'is_private': 'incognito', 'is_on_home': 'house-check', 'is_on_hub': 'pin-angle'} %}
+          {% set flagMap = {'is_private': dex.isPrivate, 'is_on_home': dex.isOnHome, 'is_on_hub': dex.isOnHub} %}
           {% for flagAttribute in flagAttributes %}
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" role="switch"

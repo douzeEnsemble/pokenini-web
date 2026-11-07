@@ -108,6 +108,11 @@ final class Dex
         return $this->flags->isOnHome();
     }
 
+    public function isOnHub(): bool
+    {
+        return $this->flags->isOnHub();
+    }
+
     public function isDisplayForm(): bool
     {
         return $this->flags->isDisplayForm();

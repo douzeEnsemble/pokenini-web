@@ -285,6 +285,9 @@ trainer:
       is_on_home:
         label: "Album shown in Your albums"
         help: "Only the checked albums show up on your Your albums page."
+      is_on_hub:
+        label: "Album on the home page"
+        help: "Up to 3 albums put forward on the home page."
       is_premium:
         label: "Album can be seen only for premium user"
         help: "Only for premium user"
@@ -308,6 +311,7 @@ trainer:
         prefix: ""
         radical: "{dexName}"
         suffix: "setting have not been saved"
+      too_many_on_hub: "You already have {max} albums on the home page. Remove one to put another one."
   links:
     title: "Dex links"
     intro: "Here are all the links you have created between your dexes."
@@ -709,6 +713,24 @@ hub:
   game:
     description: "Small games to test your trainer's eye."
     action: "Play"
+  highlights:
+    loading: "Loading…"
+    album:
+      none: "Put up to 3 albums here with the “Album on the home page” option of <a>your trainer space</a>."
+      caught: "{percent}% caught"
+    election:
+      favourite: "Your favorite: {name}"
+      no_favourite: "No favorite yet"
+      in_progress: "Continue · round {round} of {total}"
+      not_started: "Start"
+      finished: "Finished"
+    game:
+      in_progress: "Game in progress · {dex} · {answered} of {total}"
+      last: "Last game · {dex} · {correct}/{answered}"
+      none: "Not played yet"
+      resume: "Resume"
+      replay: "Play again"
+      play: "Play"
   visitor:
     subtitle: "Follow your collection, elect your favorite Pokémon and play."
     demo: "Sample albums"

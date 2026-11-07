@@ -290,6 +290,9 @@ trainer:
       is_on_home:
         label: "Album affiché dans Tes albums"
         help: "Seuls les albums cochés apparaissent sur ta page Tes albums."
+      is_on_hub:
+        label: "Album sur l'accueil"
+        help: "Jusqu'à 3 albums mis en avant sur la page d'accueil."
       is_premium:
         label: "Album premium"
         help: "Seulement pour les utilisateurs premium"
@@ -313,6 +316,7 @@ trainer:
         prefix: "Le paramétrage de "
         radical: "{dexName}"
         suffix: "n'a pas été enregistré"
+      too_many_on_hub: "Tu as déjà {max} albums sur l'accueil. Retire-en un pour en mettre un autre."
   links:
     title: "Liens entre dex"
     intro: "Voici tous les liens que tu as créés entre tes dex."
@@ -718,6 +722,24 @@ hub:
   game:
     description: "Des petits jeux pour tester ton œil de dresseur."
     action: "Jouer"
+  highlights:
+    loading: "Chargement…"
+    album:
+      none: "Mets jusqu'à 3 albums ici avec l'option « Album sur l'accueil » de <a>ton espace dresseur</a>."
+      caught: "{percent} % attrapés"
+    election:
+      favourite: "Ton favori : {name}"
+      no_favourite: "Pas encore de favori"
+      in_progress: "Continuer · manche {round} sur {total}"
+      not_started: "Commencer"
+      finished: "Terminée"
+    game:
+      in_progress: "Partie en cours · {dex} · {answered} sur {total}"
+      last: "Dernière partie · {dex} · {correct}/{answered}"
+      none: "Pas encore joué"
+      resume: "Reprendre"
+      replay: "Rejouer"
+      play: "Jouer"
   visitor:
     subtitle: "Suis ta collection, élis ton Pokémon préféré et joue."
     demo: "Exemple d'albums"
