@@ -1,21 +1,53 @@
 .album-case {
     padding: 0 2px;
     border-radius: .25rem;
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
-.album-case:hover {
-    box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
-    transform: translateY(-2px);
+@media (prefers-reduced-motion: no-preference) {
+    .album-case {
+        transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .album-case:hover {
+        box-shadow: 0 10px 24px var(--pk-shadow-color);
+        transform: translateY(-2px);
+    }
 }
+/* Text stays >= 12px; long names wrap (or break) instead of shrinking. */
 .album-case-dex-number {
-    font-size: .5rem;
+    font-size: .75rem;
+}
+.album-case-title {
+    /* Wrap long names but cap at 2 lines so card heights stay bounded. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 .album-case-name {
-    font-size: .6rem;
+    font-size: .75rem;
     font-weight: bold;
+    overflow-wrap: anywhere;
+    hyphens: auto;
 }
 .album-case-catch-state {
-    font-size: .7rem;
+    font-size: .8rem;
+    overflow-wrap: anywhere;
+}
+/* Title/image triggers (button.btn.btn-link): neutral reset so they look
+    like the plain text/image they replaced. Class-based, tag-agnostic. */
+.album-case .btn.btn-link {
+    padding: 0;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    text-decoration: none;
+    vertical-align: baseline;
+    cursor: pointer;
+}
+.album-case .btn.btn-link:hover,
+.album-case .btn.btn-link:focus {
+    color: inherit;
+    text-decoration: none;
 }
 /* This label toggles the catch-state select below it (or is plain text when
     the trainer can't edit) - it isn't a navigation link, so it shouldn't
@@ -23,23 +55,46 @@
     as a regular hyperlink. */
 .album-case-catch-state-label {
     text-decoration: none;
+    /* Inherit the black/white text main.js picks from the API-provided
+        background (applyContrastColors); Bootstrap's link-dark forced a fixed
+        dark color over it with !important. */
+    color: inherit;
+}
+.album-case-catch-state-label:hover,
+.album-case-catch-state-label:focus {
+    color: inherit;
+}
+/* Fallback before/without main.js: dark text, as the API colors are light. */
+.album-case-catch-state,
+.album-case-action {
+    color: var(--bs-dark, #212529);
 }
 .album-case-forms {
-    font-size: .6rem;
+    font-size: .75rem;
+    overflow-wrap: anywhere;
 }
 .album-case-action {
-    font-size: .6rem;
+    font-size: .75rem;
     padding-bottom: .125rem;
 }
 
 .album-case-action select {
     width: 100%;
 }
-a.album-case-catch-state-edit-action {
+.album-case-catch-state-edit-action {
+    position: relative;
     color: inherit;
+    /* Native <button> reset so it looks like the plain icon link it replaced. */
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    line-height: inherit;
+    cursor: pointer;
 }
-a.album-case-catch-state-edit-action:hover {
-    color: black;
+.album-case-catch-state-edit-action:hover {
+    color: inherit;
+    opacity: .7;
 }
 
 .album-container {
@@ -75,7 +130,7 @@ a.album-case-catch-state-edit-action:hover {
     text-decoration: inherit;
 }
 .box .box-title {
-    background-color: white;
+    background-color: var(--pk-surface);
 }
 
 /* Bootstrap only ships row-cols-1 through -6; a list-7 dex needs a 7-column
@@ -98,7 +153,7 @@ a.album-case-catch-state-edit-action:hover {
     render, so a rough estimate is enough. */
 .album-case {
     content-visibility: auto;
-    contain-intrinsic-size: auto 140px;
+    contain-intrinsic-size: auto 160px;
 }
 
 .d-flex[hidden] {
@@ -144,6 +199,20 @@ a.album-case-catch-state-edit-action:hover {
 }
 .dex-pick-card:not(.linked):not(.dex-pick-card-current) {
     cursor: pointer;
+}
+/* Native <button> carrying the "select this dex" action: visually inert
+    (the card draws the selection state), keyboard focus ring kept. */
+.dex-pick-select {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    cursor: inherit;
+    border-radius: .3rem;
 }
 .dex-pick-card:not(.linked):not(.dex-pick-card-current):hover {
     border-color: var(--bs-primary);
@@ -220,9 +289,13 @@ a.album-case-catch-state-edit-action:hover {
     font-size: .55rem;
     opacity: 0;
     transform: scale(.85);
-    transition: opacity .12s ease, transform .12s ease;
     box-shadow: 0 0 0 2px var(--bs-body-bg);
     cursor: pointer;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .dex-pick-card .unlink-btn {
+        transition: opacity .12s ease, transform .12s ease;
+    }
 }
 .dex-pick-card.linked:hover .unlink-btn,
 .dex-pick-card.linked:focus-within .unlink-btn {

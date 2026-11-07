@@ -14,14 +14,20 @@
     Everything else (borders, card background, shadows) is expressed through
     Bootstrap's own CSS variables (--bs-border-color, --bs-body-bg, ...) so it
     keeps following the Bootstrap theme instead of hardcoding light-mode-only
-    colors. Note: this app does not implement a dark mode (no data-bs-theme
-    toggle anywhere), so no prefers-color-scheme handling was added here. */
+    colors. Dark mode: base.html.twig sets data-bs-theme on <html>. */
 
 :root {
     --pk-brand-red: #ff4249;
     --pk-brand-red-deep: #b5222a;
     --pk-brand-teal: var(--icon-link-hover-color, #408b91);
     --pk-brand-teal-deep: #235459;
+    --pk-heading-color: var(--pk-brand-teal-deep);
+    --pk-card-shadow-color: rgba(0, 0, 0, .06);
+}
+
+[data-bs-theme="dark"] {
+    --pk-heading-color: #7cc4ca;
+    --pk-card-shadow-color: rgba(0, 0, 0, .4);
 }
 
 .static-page-hero {
@@ -63,7 +69,7 @@
     background:
         linear-gradient(180deg, rgba(255, 66, 73, .05) 0%, rgba(64, 139, 145, .05) 100%),
         var(--bs-body-bg);
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .06);
+    box-shadow: 0 .25rem .75rem var(--pk-card-shadow-color);
 }
 
 .static-page-card h2 {
@@ -73,7 +79,7 @@
     border-bottom: 2px solid var(--pk-brand-teal);
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--pk-brand-teal-deep);
+    color: var(--pk-heading-color);
 }
 
 .static-page-card h2:first-child {
@@ -90,5 +96,5 @@
 }
 
 .static-page-card strong {
-    color: var(--pk-brand-teal-deep);
+    color: var(--pk-heading-color);
 }
