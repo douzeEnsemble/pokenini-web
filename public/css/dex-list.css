@@ -7,7 +7,7 @@
 }
 .dex-item .card:hover {
     border-color: var(--bs-secondary);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+    box-shadow: 0 10px 24px var(--pk-shadow-color, rgba(0, 0, 0, .16));
     transform: translateY(-2px);
 }
 

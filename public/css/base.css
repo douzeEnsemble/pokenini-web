@@ -1,15 +1,123 @@
 :root {
-    --icon-link-color: #aab7b8;
+    /* #5f6c6d gives ~5.4:1 on white (WCAG AA for text); the former #aab7b8
+        was ~2.1:1. */
+    --icon-link-color: #5f6c6d;
     --icon-link-hover-color: #408b91;
+
+    /* Height of the fixed-bottom navbar, plus the device's bottom inset
+        (iPhone home bar...). Everything pinned above the navbar (toasts,
+        election action bar, page bottom padding) derives from --nav-offset
+        instead of its own magic number. */
+    --nav-height: 3.5rem;
+    --nav-offset: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
+
+    /* Recurring surface/shadow/text tokens, themable through Bootstrap vars. */
+    --pk-surface: var(--bs-body-bg);
+    --pk-shadow-color: rgb(0 0 0 / 16%);
+    --pk-badge-bg: rgb(255 255 255 / 85%);
+    --pk-badge-shadow: rgb(0 0 0 / 40%);
+    --pk-on-color: #fff;
+}
+
+/* Set on <html> by the inline script in base.html.twig (system preference or
+    a theme saved in localStorage). */
+[data-bs-theme="dark"] {
+    color-scheme: dark;
+    --icon-link-color: #a9b4b5;
+    --icon-link-hover-color: #6fb7bd;
+    --pk-shadow-color: rgb(0 0 0 / 60%);
+    --pk-badge-bg: rgb(33 37 41 / 85%);
+    --pk-badge-shadow: rgb(255 255 255 / 40%);
+}
+
+/* btn-light is a fixed pale button: in dark mode make it a neutral dark one
+    (text #dee2e6 on #343a40 ~ 9:1; hover #495057 ~ 6.7:1). */
+[data-bs-theme="dark"] .btn-light {
+    --bs-btn-color: #dee2e6;
+    --bs-btn-bg: #343a40;
+    --bs-btn-border-color: #495057;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #495057;
+    --bs-btn-hover-border-color: #5c636a;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #495057;
+    --bs-btn-active-border-color: #5c636a;
+    --bs-btn-disabled-color: #adb5bd;
+    --bs-btn-disabled-bg: #343a40;
+    --bs-btn-disabled-border-color: #495057;
+}
+
+#main-container:focus {
+    outline: none;
 }
 
 html {
     scroll-behavior: auto !important;
-    scroll-padding-bottom: 80px;
+    scroll-padding-bottom: calc(var(--nav-offset) + 1rem);
 }
 
 .container {
-    padding-bottom: 4rem;
+    padding-bottom: calc(var(--nav-offset) + 0.5rem);
+}
+
+/* Visible keyboard focus: this outline applies everywhere except where
+    Bootstrap deliberately replaces it with its own box-shadow ring
+    (.btn:focus-visible, .btn-close:focus, form controls). The skip-link
+    target #main-container is focused programmatically only, so it has none.
+    Offset is negative inside album cases: they use content-visibility, whose
+    paint containment would clip an outer outline. */
+:focus-visible {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+.album-case :focus-visible,
+.election-card :focus-visible {
+    outline-offset: -2px;
+}
+
+/* Fixed navbar: keep the device's bottom inset inside it, and keep toasts
+    (templates give them Bootstrap's mb-5) clear of it at every width. */
+.navbar.fixed-bottom {
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+}
+.toast-container.position-fixed.bottom-0:not(.election-toast-container) {
+    margin-bottom: calc(var(--nav-offset) + 0.5rem) !important;
+}
+
+/* Enlarges the pointer hit area to at least 24x24 CSS px (WCAG 2.5.8)
+    without changing the visual size. Elements using it must be positioned. */
+.pokemon-image-credit::after,
+.album-case-catch-state-edit-action::after,
+.dex-pick-card .unlink-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 24px);
+    height: max(100%, 24px);
+    transform: translate(-50%, -50%);
+}
+
+/* The edit pencil sits flush against the right edge of the catch-state bar,
+    which is overflow:auto (Bootstrap .overflow-auto): a hit area centered on the
+    icon would stick out on the right and trigger a horizontal scrollbar. Grow
+    it to the left only. */
+.album-case-catch-state-edit-action::after {
+    left: auto;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 /* Collapsible left sidebar (admin, trainer), see common/_sidebar_toggle.html.twig */
@@ -68,8 +176,14 @@ html {
 /* Shared by Album and Election, which both render Pokémon icon links and
     type badges - kept here once instead of duplicated per feature file. */
 .pokemon-icon {
+    /* Reserved box (68x56 sprites) so lazy-loaded icons don't shift layout. */
+    width: 68px;
+    height: auto;
+    aspect-ratio: 68 / 56;
+    object-fit: contain;
     max-width: 68px;
     max-height: 56px;
+    vertical-align: middle; /* no baseline gap under the image in buttons/links */
     font-size: .3rem;
     color: rgba(0 0 0 / 0%);
 }
@@ -83,15 +197,16 @@ html {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     width: 1.1rem;
     height: 1.1rem;
     margin-top: -0.5rem;
     margin-left: -0.5rem;
     border-radius: 50%;
-    background-color: rgb(255 255 255 / 85%);
+    background-color: var(--pk-badge-bg);
     color: var(--icon-link-color);
     font-size: .75rem;
-    box-shadow: 0 0 2px rgb(0 0 0 / 40%);
+    box-shadow: 0 0 2px var(--pk-badge-shadow);
     cursor: pointer;
 }
 
@@ -100,7 +215,18 @@ html {
 }
 
 .album-modal-types {
-    color: white;
+    /* Fallback; main.js picks black/white per type color from its luminance
+        (see applyContrastColors). */
+    color: var(--pk-on-color);
+}
+
+/* Dex banners: real asset ratio (578x325) reserved up front to avoid CLS. */
+.dex-item .card-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 578 / 325;
+    object-fit: cover;
 }
 
 .list-group-item .icon-link {
@@ -116,6 +242,12 @@ html {
     color: #000;
     text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
     pointer-events: none;
+}
+
+/* The label is black/white-halo in both themes, so its track must not follow
+    the dark theme's --bs-progress-bg (dark grey) at 0%. */
+.round-bar {
+    --bs-progress-bg: #e9ecef;
 }
 
 /* common/_progress_bar_macros.html.twig's catchStateBar opens a legend
