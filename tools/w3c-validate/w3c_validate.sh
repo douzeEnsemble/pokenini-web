@@ -82,6 +82,9 @@ ALLOWED_DUPLICATES=""
 # Rôles authentifiés nécessaires (déduits de URLS), un cookie jar par rôle (dans le conteneur php).
 JAR_DIR="/tmp/w3c-cookies-$$"
 declare -A SEEN_ROLES=()
+declare -A ROLE_COOKIES=()
+# Page réservée à chaque rôle, utilisée pour vérifier que la session est reconnue après la connexion.
+declare -A PROBE_URLS=([trainer]="fr/trainer" [collector]="fr/trainer" [admin]="fr/istration/update_data")
 FAILURES=0
 
 fail() {
@@ -113,8 +116,25 @@ authenticate() {
 			exit 1
 		fi
 		# Le cookie jar (lignes "#HttpOnly_" comprises) doit contenir un cookie de session, sinon les pages seraient récupérées déconnectées.
-		if [ "$(docker compose exec -T php grep -cE '^(#HttpOnly_)?[^#[:space:]]' "$jar" | tr -d '\r')" = "0" ]; then
+		# Le cookie est ensuite renvoyé tel quel dans un en-tête Cookie (pas de dépendance à la correspondance de domaine du jar).
+		local cookie
+		cookie="$(docker compose exec -T php sh -c "grep -E '^(#HttpOnly_)?[^#[:space:]]' '$jar' | awk '{ printf \"%s%s=%s\", sep, \$6, \$7; sep=\"; \" }'" | tr -d '\r')"
+		if [ -z "$cookie" ]; then
 			echo "❌ No session cookie obtained for role ${role}" >&2
+			exit 1
+		fi
+		ROLE_COOKIES["$role"]="$cookie"
+		# Preuve que la session est reconnue côté serveur : une page réservée au rôle doit répondre 200 (sinon 307 = session perdue).
+		local probe code headers
+		probe="${PROBE_URLS[$role]}"
+		headers="$($CURL_CMD -sS -o /dev/null -D - -H "Cookie: ${cookie}" "${BASE_URI}${probe}" | tr -d '\r')"
+		code="$(printf '%s\n' "$headers" | awk 'NR==1 { print $2 }')"
+		if [ "$code" != "200" ]; then
+			echo "❌ Session of role ${role} not recognized: ${probe} answered HTTP ${code} instead of 200" >&2
+			echo "--- response headers" >&2
+			printf '%s\n' "$headers" >&2
+			echo "--- cookie jar" >&2
+			docker compose exec -T php cat "$jar" >&2 || true
 			exit 1
 		fi
 		echo "✅ Authenticated as ${role}."
@@ -140,7 +160,7 @@ fetch_and_clean() {
 	local outfile="${OUT_DIR}/${filename}.html"
 
 	local cookie_args=()
-	[ "$role" != "anon" ] && cookie_args=(-b "${JAR_DIR}/${role}.txt")
+	[ "$role" != "anon" ] && cookie_args=(-H "Cookie: ${ROLE_COOKIES[$role]}")
 
 	echo "🌐 Fetching $url as ${role} ... to $outfile"
 	# Pas de -L : on veut voir les redirections. Le code HTTP est ajouté après le corps.
