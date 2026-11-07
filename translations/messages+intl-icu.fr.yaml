@@ -29,6 +29,14 @@ nav:
   sidebar:
     collapse: "Réduire le menu"
     expand: "Afficher le menu"
+  skip_to_content: "Aller au contenu principal"
+  aria_label: "Navigation principale"
+  logo_alt: "Pokénini, retour à l'accueil"
+  toggle_navigation: "Afficher ou masquer la navigation"
+
+a11y:
+  close: "Fermer"
+  new_tab: "(nouvel onglet)"
 
 title:
   home: "Accueil"
@@ -102,6 +110,8 @@ album:
   catch_state:
     select:
       label: "Statut de capture de {pokemonName}"
+    edit:
+      label: "Modifier le statut de capture de {pokemonName}"
   update:
     title: "Maj"
     success:

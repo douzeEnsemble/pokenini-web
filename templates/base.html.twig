@@ -2,7 +2,35 @@
 <html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="color-scheme" content="light dark">
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#212529" media="(prefers-color-scheme: dark)">
         <title>{% block title %}Pokénini{% endblock %}</title>
+
+        {# Sets data-bs-theme before the CSS loads (no flash): a theme saved in
+            localStorage ("light"/"dark") wins, otherwise follow the system
+            preference, live. localStorage may throw (private mode...). #}
+        <script>
+        (function () {
+            var root = document.documentElement;
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) {}
+            if (saved === 'light' || saved === 'dark') {
+                root.setAttribute('data-bs-theme', saved);
+                return;
+            }
+            if (!window.matchMedia) {
+                return;
+            }
+            var query = window.matchMedia('(prefers-color-scheme: dark)');
+            var apply = function () { root.setAttribute('data-bs-theme', query.matches ? 'dark' : 'light'); };
+            apply();
+            if (query.addEventListener) {
+                query.addEventListener('change', apply);
+            }
+        })();
+        </script>
 
         <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
@@ -17,15 +45,14 @@
         {% endblock stylesheets %}
 
         {% block head_javascripts %}{% endblock head_javascripts %}
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <a class="visually-hidden-focusable" href="#main-container">{{ 'nav.skip_to_content'|trans }}</a>
         {% block nav %}{% endblock nav %}
         {% block body %}
-        <div class="{% block container_class %}container{% endblock container_class %}" id="main-container">
+        <main class="{% block container_class %}container{% endblock container_class %}" id="main-container" tabindex="-1">
             {% block container %}{% endblock container %}
-        </div>
+        </main>
         {% block footer %}
         {{ include('_footer.html.twig') }}
         {% endblock footer %}

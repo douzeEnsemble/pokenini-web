@@ -65,16 +65,18 @@
 
 {% block head_javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/album.js') }}"></script>
+    <script src="{{ asset('js/album.js') }}" defer></script>
 {% endblock head_javascripts %}
 
 {% block foot_javascript %}
     {{ parent() }}
     <script>
-    (function() {
+    // album.js is deferred: it runs before DOMContentLoaded, so its functions
+    // exist by the time this listener fires.
+    document.addEventListener('DOMContentLoaded', function() {
         watchScreenshotMode();
         watchShareLink();
-    })();
+    });
     </script>
 
     {% if allowedToEdit %}
@@ -96,14 +98,15 @@
     </script>
 
     <script>
-    (function() {
+    // watchToggleShinyMode / watchToAdjustSelectSizes live in the deferred album.js.
+    document.addEventListener('DOMContentLoaded', function() {
         watchToggleEditMode();
         watchCatchStates();
         watchToggleShinyMode();
         watchToAdjustSelectSizes();
         watchAttributes();
         watchAlbumLinks();
-    })();
+    });
     </script>
     {% endif %}
 {% endblock foot_javascript %}

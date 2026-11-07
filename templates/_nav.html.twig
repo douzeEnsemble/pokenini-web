@@ -5,15 +5,15 @@
 {% set locale = app.request.locale %}
 {% set sharedTrainerId = app.request.attributes.get('t') %}
 
-<nav class="navbar fixed-bottom navbar-expand-sm bg-light">
+<nav class="navbar fixed-bottom navbar-expand-sm bg-body-tertiary" aria-label="{{ 'nav.aria_label'|trans }}">
     <div class="container-fluid">
         <a
             class="navbar-brand navbar-logo"
             href="{{ path('app_home_index', {'_locale': locale}) }}"
         >
-            <img src="/img/logo/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top" loading="lazy">
+            <img src="/img/logo/logo.png" alt="{{ 'nav.logo_alt'|trans }}" width="30" height="30" class="d-inline-block align-text-top" loading="lazy">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{{ 'nav.toggle_navigation'|trans }}">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -50,7 +50,7 @@
                         {{ onElection ? 'aria-current="page"' : '' }}
                         href="{{ path('app_electiondexlist_index') }}"
                     >
-                        <i class="bi bi-heart"></i>
+                        <i class="bi bi-heart" aria-hidden="true"></i>
                         {{ 'title.election.nav'|trans }}
                     </a>
                     {% endif %}
@@ -114,7 +114,7 @@
                             {{ onTrainer ? 'aria-current="page"' : '' }}
                             href="{{ path('app_trainerindex_index') }}"
                         >
-                            <i class="bi bi-person-badge"></i>
+                            <i class="bi bi-person-badge" aria-hidden="true"></i>
                             {{ 'title.trainer'|trans }}
                         </a>
                         <button
@@ -141,14 +141,14 @@
                     </div>
                     {% else %}
                     <a class="nav-link" href="{{ path('app_connect_index') }}">
-                        <i class="bi bi-person"></i>
+                        <i class="bi bi-person" aria-hidden="true"></i>
                         {{ 'nav.login'|trans }}
                     </a>
                     {% endif %}
                 </li>
                 <li class="nav-item cookie-manager">
-                    <button class="nav-link">
-                        <i class="bi bi-cookie"></i>
+                    <button type="button" class="nav-link">
+                        <i class="bi bi-cookie" aria-hidden="true"></i>
                         {{ 'nav.cookie-manager'|trans }}
                     </button>
                 </li>
@@ -168,7 +168,7 @@
                             ? path(currentRoute, routeParameters)
                             : app.request.requesturi|replace({'/fr/': '/en/', '/en/': '/fr/'}) }}"
                     >
-                        <i class="bi bi-translate"></i>
+                        <i class="bi bi-translate" aria-hidden="true"></i>
                         {{ ('nav.lang.'~langTarget)|trans([], 'messages', langTarget) }}
                     </a>
                 </li>
@@ -190,7 +190,7 @@
                             {{ onAdmin ? 'aria-current="page"' : '' }}
                             href="{{ path('app_admin_update_data') }}"
                         >
-                            <i class="bi bi-wrench-adjustable-circle"></i>
+                            <i class="bi bi-wrench-adjustable-circle" aria-hidden="true"></i>
                             {{ 'nav.admin'|trans }}
                         </a>
                         <button
@@ -223,7 +223,7 @@
                         class="nav-link"
                         href="{{ path('app_connect_logout') }}"
                     >
-                        <i class="bi bi-box-arrow-right"></i>
+                        <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
                         {{ 'logout'|trans }}
                     </a>
                 </li>

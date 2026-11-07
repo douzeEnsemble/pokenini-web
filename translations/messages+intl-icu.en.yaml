@@ -29,6 +29,14 @@ nav:
   sidebar:
     collapse: "Collapse menu"
     expand: "Expand menu"
+  skip_to_content: "Skip to main content"
+  aria_label: "Main navigation"
+  logo_alt: "Pokénini, back to home"
+  toggle_navigation: "Toggle navigation"
+
+a11y:
+  close: "Close"
+  new_tab: "(new tab)"
 
 title:
   home: "Home"
@@ -96,6 +104,8 @@ album:
   catch_state:
     select:
       label: "Catch status of {pokemonName}"
+    edit:
+      label: "Edit the catch status of {pokemonName}"
   update:
     title: "Update"
     success:
