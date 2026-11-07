@@ -52,7 +52,7 @@
               {{ (row.count*100/total)|number_format(2, '.', ' ') }}
             </td>
             <th scope="row">
-              <a class="link-dark" href="#catch_state_counts_defined_by_trainer" id="catch_state_counts_defined_by_trainer-text-{{ row.trainer.external_id }}">
+              <a class="link-body-emphasis" href="#catch_state_counts_defined_by_trainer" id="catch_state_counts_defined_by_trainer-text-{{ row.trainer.external_id }}">
                 {{ row.trainer.external_id }}
               </a>
             </th>
@@ -106,18 +106,19 @@
         {% set total = reportsData.catch_state_usage|reduce((total, d) => total + d.count) %}
         {% for row in reportsData.catch_state_usage %}
           {% set label = locale is same as('fr') ? row.catch_state.french_name : row.catch_state.name %}
-          <tr class="active align-middle" id="catch_state_usage-row-{{ label }}">
+          {% set labelId = label|replace({' ': '_'}) %}
+          <tr class="active align-middle" id="catch_state_usage-row-{{ labelId }}">
             <td class="d-none d-xl-block">
-              <button type="button" class="btn btn-light" id="catch_state_usage-toggle-{{ label }}">
+              <button type="button" class="btn btn-light" id="catch_state_usage-toggle-{{ labelId }}">
                 <i title="{{ 'admin.reports.table.hide'|trans }}" class="bi bi-eye-slash toggle-icon disable-icon"></i>
                 <i title="{{ 'admin.reports.table.show'|trans }}" class="bi bi-eye toggle-icon active-icon"></i>
               </button>
             </td>
             <td class="canvas-container overflow-hidden">
-              <canvas id="catch_state_usage-legend-{{ label }}"></canvas>
+              <canvas id="catch_state_usage-legend-{{ labelId }}"></canvas>
             </td>
             <th scope="row">
-              <a class="link-dark" href="#catch_state_usage" id="catch_state_usage-text-{{ label }}">
+              <a class="link-body-emphasis" href="#catch_state_usage" id="catch_state_usage-text-{{ labelId }}">
                 {{ label }}
               </a>
             </th>
