@@ -74,7 +74,7 @@
   indistinguishable from "still loading" or broken. Moving the label to a
   sibling overlay centered on the outer .progress track (not the inner,
   width-constrained bar) keeps it visible at any completion, including 0%. #}
-<div class="progress mb-3 position-relative" role="progressbar" aria-label="{{ progressLabel }}" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+<div class="progress round-bar mb-3 position-relative" role="progressbar" aria-label="{{ progressLabel }}" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
     <div class="progress-bar progress-bar-striped bg-{{ progressColor }}" style="width: {{ progress }}%" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ tooltipContent }}"></div>
     <span class="round-bar-label position-absolute top-50 start-50 translate-middle small fw-semibold">{{ progress }}%</span>
 </div>

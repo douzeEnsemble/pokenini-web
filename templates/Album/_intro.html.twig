@@ -12,18 +12,20 @@
             class="btn btn-link btn-sm link-secondary goto goto-box1"
             href="#box-1"
             title="{{ 'album.intro.action.goto.box1'|trans }}"
+            aria-label="{{ 'album.intro.action.goto.box1'|trans }}"
             data-bs-toggle="tooltip"
         >
-            <i class="bi bi-box"></i>
+            <i class="bi bi-box" aria-hidden="true"></i>
         </a>
         {% elseif 'list-' in displayTemplateName %}
         <a
             class="btn btn-link btn-sm link-secondary goto goto-topofthelist"
             href="#top-of-the-list"
             title="{{ 'album.intro.action.goto.top_of_the_list'|trans }}"
+            aria-label="{{ 'album.intro.action.goto.top_of_the_list'|trans }}"
             data-bs-toggle="tooltip"
         >
-            <i class="bi bi-list"></i>
+            <i class="bi bi-list" aria-hidden="true"></i>
         </a>
         {% endif %}
     </div>
@@ -35,49 +37,53 @@
     <h1 id="album-title">{{ title }}</h1>
 
     {% if subtitle is not empty %}
-    <h2 id="album-subtitle">{{ subtitle }}</h2>
+    <p id="album-subtitle" class="h2">{{ subtitle }}</p>
     {% endif %}
 
     <div class="list-group list-group-horizontal group-actions">
         {# Edit/Read mode link #}
         {% if allowedToEdit %}
-            <a
-                href="#"
+            <button
+                type="button"
                 class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-read-action"
                 title="{{ (('album.intro.action.mode.read'))|trans }}"
+                aria-label="{{ 'album.intro.action.mode.read'|trans }}"
                 data-bs-toggle="tooltip"
                 hidden
             >
-                <i class="bi bi-book"></i>
-            </a>
-            <a
-                href="#"
+                <i class="bi bi-book" aria-hidden="true"></i>
+            </button>
+            <button
+                type="button"
                 class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-edit-action"
                 title="{{ (('album.intro.action.mode.write'))|trans }}"
+                aria-label="{{ 'album.intro.action.mode.write'|trans }}"
                 data-bs-toggle="tooltip"
             >
-                <i class="bi bi-pencil-square"></i>
-            </a>
+                <i class="bi bi-pencil-square" aria-hidden="true"></i>
+            </button>
         {% endif %}
 
         {# Screeshot mode #}
-        <a
+        <button
+            type="button"
             class="list-group-item list-group-item-action list-group-item-secondary flex-fill screenshot-mode screenshot-mode-off"
-            href="#"
             title="{{ 'album.intro.action.screenshot.disable'|trans }}"
+            aria-label="{{ 'album.intro.action.screenshot.disable'|trans }}"
             data-bs-toggle="tooltip"
             hidden
         >
-            <i class="bi bi-camera2"></i>
-        </a>
-        <a
+            <i class="bi bi-camera2" aria-hidden="true"></i>
+        </button>
+        <button
+            type="button"
             class="list-group-item list-group-item-action list-group-item-primary flex-fill screenshot-mode screenshot-mode-on"
-            href="#"
             title="{{ 'album.intro.action.screenshot.enable'|trans }}"
+            aria-label="{{ 'album.intro.action.screenshot.enable'|trans }}"
             data-bs-toggle="tooltip"
         >
-            <i class="bi bi-camera2"></i>
-        </a>
+            <i class="bi bi-camera2" aria-hidden="true"></i>
+        </button>
 
         {# Share link #}
         {% if not dex.isPrivate %}
@@ -85,9 +91,10 @@
                 class="list-group-item list-group-item-action list-group-item-success flex-fill share"
                 href="{{ path('app_albumindex_index', filters|merge({ 'dexSlug': currentDexSlug, 't': trainerId, }) ) }}"
                 title="{{ 'nav.share'|trans }}"
+                aria-label="{{ 'nav.share'|trans }}"
                 data-bs-toggle="tooltip"
             >
-                <i class="bi bi-share"></i>
+                <i class="bi bi-share" aria-hidden="true"></i>
             </a>
         {% endif %}
 
@@ -96,10 +103,12 @@
             class="list-group-item list-group-item-action list-group-item-info flex-fill open-offcanvas"
             href="#offcanvas"
             title="{{ 'nav.open-offcanvas'|trans }}"
+            aria-label="{{ 'nav.open-offcanvas'|trans }}"
+            aria-controls="offcanvas"
             data-bs-title="{{ 'nav.open-offcanvas'|trans }}"
             data-bs-toggle="offcanvas"
         >
-            <i class="bi bi-three-dots"></i>
+            <i class="bi bi-three-dots" aria-hidden="true"></i>
         </a>
     </div>
 </div>

@@ -17,9 +17,9 @@
     </div>
     <div class="election-actions-item text-end col-xl-2 col-lg-3 col-3">
       {% if not isTheLastOne %}
-        <a class="btn btn-light btn-sm" href="#election-modal-filters" data-bs-toggle="modal" data-bs-target="#election-modal-filters">
+        <a class="btn btn-light btn-sm" href="#election-modal-filters" aria-label="{{ 'election.actions.filters'|trans }}" data-bs-toggle="modal" data-bs-target="#election-modal-filters">
           <span class="d-none d-md-inline">{{ 'election.actions.filters'|trans }}</span>
-          <i class="bi bi-funnel"></i>
+          <i class="bi bi-funnel" aria-hidden="true"></i>
         </a>
       {% endif %}
     </div>
@@ -27,13 +27,13 @@
 </div>
 
 {% if isTheLastPage and not isTheLastOne %}
-  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div class="toast-container election-toast-container position-fixed bottom-0 end-0 p-3">
     <div id="election-lastpage-toast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
       <div class="d-flex">
         <div class="toast-body">
           {{ 'election.stats.last'|trans({'n': pokemons|length}) }}
         </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'a11y.close'|trans }}"></button>
       </div>
     </div>
   </div>

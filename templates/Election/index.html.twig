@@ -27,7 +27,7 @@
 {% endblock stylesheets %}
 
 {% block body %}
-  <div class="container-fluid" id="main-container">
+  <main class="container-fluid" id="main-container" tabindex="-1">
     <div class="row">
       <div class="col-md-8 mx-auto text-center row">
         <h1>
@@ -50,7 +50,7 @@
     {{ include('Election/_info.html.twig') }}
     {{ include('Election/_welcome_modal.html.twig') }}
     {{ include('Election/_filters_modal.html.twig') }}
-  </div>
+  </main>
   {% block footer %}
     {{ include('_footer.html.twig') }}
   {% endblock footer %}

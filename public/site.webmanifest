@@ -1,6 +1,8 @@
 {
     "name": "Pokénini",
     "short_name": "Pokénini",
+    "start_url": "/",
+    "lang": "fr",
     "icons": [
         {
             "src": "/img/favicon/android-chrome-192x192.png",
