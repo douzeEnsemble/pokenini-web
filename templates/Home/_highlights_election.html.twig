@@ -1,0 +1,41 @@
+{% set locale = app.request.locale %}
+<ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+  {% for election in elections %}
+  {% set dex = election.dex %}
+  {% set state = election.state %}
+  {% set name = (locale is same as('fr') ? dex.frenchName : dex.name)|split("\n")|first %}
+  {% set favourite = dex.report is not null ? dex.report.favourite : null %}
+  <li>
+    <a href="{{ path('app_electionindex_index', {'dexSlug': dex.slug}) }}" class="d-flex align-items-center gap-3 p-2 rounded-3 text-body text-decoration-none bg-body-tertiary hub-highlight hub-highlight-election" data-state="{{ state }}">
+      {% if favourite is not null %}
+      {% set favouriteName = locale is same as('fr') ? favourite.pokemon.labels.simplifiedFrenchName : favourite.pokemon.labels.simplifiedName %}
+      <img
+        src="{{ pokemonIconUrl|format(dex.flags.isShiny ? 'shiny' : 'regular', favourite.pokemon.icon) }}"
+        class="flex-shrink-0 img-loader hub-highlight-pokemon"
+        alt=""
+        width="48"
+        height="48"
+        loading="lazy"
+        onload="this.classList.add('is-loaded')"
+        onerror="this.onerror=null;this.src='/img/pokemon/default_icon.webp';"
+      >
+      {% else %}
+      <span class="hub-icon hub-highlight-pokemon flex-shrink-0" aria-hidden="true"><i class="bi bi-heart"></i></span>
+      {% endif %}
+      <span class="d-flex flex-column flex-grow-1 min-w-0">
+        <span class="fw-semibold text-truncate">{{ name }}</span>
+        <span class="small text-body-secondary text-truncate">
+          {{ favourite is not null ? 'hub.highlights.election.favourite'|trans({'name': favouriteName}) : 'hub.highlights.election.no_favourite'|trans }}
+        </span>
+        <span class="small fw-semibold hub-highlight-status">
+          {% if state is same as('in_progress') %}
+          {{ 'hub.highlights.election.in_progress'|trans({'round': dex.report.metrics.roundCount, 'total': dex.report.metrics.totalRoundCount}) }}
+          {% else %}
+          {{ ('hub.highlights.election.'~state)|trans }}
+          {% endif %}
+        </span>
+      </span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>

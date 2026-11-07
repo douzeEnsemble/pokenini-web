@@ -39,7 +39,8 @@ final class DexTest extends KernelTestCase
                     "is_display_form": true,
                     "is_released": true,
                     "is_premium": false,
-                    "is_custom": false
+                    "is_custom": false,
+                    "is_on_hub": true
                 },
                 "display_template": "box",
                 "region": { "name": "Kanto", "french_name": "Kan-to" },
@@ -70,6 +71,7 @@ final class DexTest extends KernelTestCase
         $this->assertFalse($object->isPremium());
         $this->assertFalse($object->isCustom());
         $this->assertFalse($object->isOnHome());
+        $this->assertTrue($object->isOnHub());
         $this->assertSame('', $object->getSelectionRule());
         // @phpstan-ignore method.alreadyNarrowedType
         $this->assertInstanceOf(DexFlags::class, $object->getFlags());
@@ -128,6 +130,8 @@ final class DexTest extends KernelTestCase
         $this->assertFalse($object->isPremium());
         $this->assertFalse($object->isCustom());
         $this->assertFalse($object->isOnHome());
+        // An api that doesn't know the hub yet: not on the hub
+        $this->assertFalse($object->isOnHub());
         $this->assertSame('', $object->getSelectionRule());
         // @phpstan-ignore method.alreadyNarrowedType
         $this->assertInstanceOf(DexFlags::class, $object->getFlags());

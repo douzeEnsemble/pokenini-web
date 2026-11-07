@@ -1,0 +1,36 @@
+{% set locale = app.request.locale %}
+<ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+  {% for hubGame in games %}
+  {% set game = hubGame.game %}
+  <li class="d-flex align-items-center gap-2 px-3 py-2 rounded-3 bg-body-tertiary hub-highlight hub-highlight-game" data-game="{{ hubGame.type }}">
+    <img src="{{ asset(hubGame.icon) }}" alt="" width="24" height="24" class="game-icon flex-shrink-0">
+    <span class="d-flex flex-column flex-grow-1 min-w-0">
+      <span class="fw-semibold">{{ hubGame.title|trans }}</span>
+      <span class="small text-body-secondary text-truncate">
+        {% if game is null %}
+        {{ 'hub.highlights.game.none'|trans }}
+        {% else %}
+        {% set dexName = (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+        {% if hubGame.inProgress %}
+        {{ 'hub.highlights.game.in_progress'|trans({'dex': dexName, 'answered': game.answeredCount, 'total': game.roundCount}) }}
+        {% else %}
+        {{ 'hub.highlights.game.last'|trans({'dex': dexName, 'correct': game.correctCount, 'answered': game.answeredCount}) }}
+        {% endif %}
+        {% endif %}
+      </span>
+    </span>
+    {% if game is null %}
+    <a href="{{ path(hubGame.dexRoute) }}" class="btn btn-sm rounded-pill flex-shrink-0 hub-action-outline hub-game-play">{{ 'hub.highlights.game.play'|trans }}</a>
+    {% elseif hubGame.inProgress %}
+    <a href="{{ path(hubGame.playRoute, {'gameId': game.id}) }}" class="btn btn-sm rounded-pill flex-shrink-0 hub-action-outline hub-game-resume">{{ 'hub.highlights.game.resume'|trans }}</a>
+    {% else %}
+    <form method="post" action="{{ path(hubGame.createRoute) }}" class="flex-shrink-0">
+      <input type="hidden" name="_token" value="{{ csrf_token(hubGame.csrfTokenId) }}">
+      <input type="hidden" name="dex_slug" value="{{ game.dex.slug }}">
+      <input type="hidden" name="round_count" value="{{ game.roundCount }}">
+      <button type="submit" class="btn btn-sm rounded-pill hub-action-outline hub-game-replay">{{ 'hub.highlights.game.replay'|trans }}</button>
+    </form>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>

@@ -7,6 +7,14 @@
 
 {% block title %}Pokénini{% endblock %}
 
+{% block foot_javascript %}
+  {{ parent() }}
+
+  {% if isTrainer %}
+  <script src="{{ asset('js/hub.js') }}"></script>
+  {% endif %}
+{% endblock foot_javascript %}
+
 {% block stylesheets %}
   {{ parent() }}
 
@@ -56,8 +64,15 @@
           <div class="card-body d-flex flex-column gap-3 p-4">
             <div class="hub-icon"><i class="bi bi-journal-bookmark"></i></div>
             <h2 class="h3 card-title mb-0">{{ (isTrainer ? 'title.album.nav' : 'hub.visitor.album.title')|trans }}</h2>
-            <p class="card-text text-body-secondary flex-grow-1">{{ 'hub.album.description'|trans }}</p>
+            <p class="card-text text-body-secondary{{ isTrainer ? '' : ' flex-grow-1' }}">{{ 'hub.album.description'|trans }}</p>
             {% if isTrainer %}
+            <div class="hub-highlights flex-grow-1" data-hub-highlights="{{ path('app_hubhighlights_album') }}" aria-busy="true">
+              <div class="d-flex justify-content-center py-3 hub-highlights-loader">
+                <span class="spinner-border spinner-border-sm text-body-secondary" role="status">
+                  <span class="visually-hidden">{{ 'hub.highlights.loading'|trans }}</span>
+                </span>
+              </div>
+            </div>
             <a href="{{ path('app_albumdexlist_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action">{{ 'hub.album.action'|trans }}</a>
             {% else %}
             <a href="#home-demo" class="btn btn-lg rounded-pill align-self-start hub-action">{{ 'hub.visitor.album.action'|trans }}</a>
@@ -71,8 +86,15 @@
           <div class="card-body d-flex flex-column gap-3 p-4">
             <div class="hub-icon"><i class="bi bi-heart"></i></div>
             <h2 class="h3 card-title mb-0">{{ 'title.election.nav'|trans }}</h2>
-            <p class="card-text text-body-secondary flex-grow-1">{{ 'hub.election.description'|trans }}</p>
+            <p class="card-text text-body-secondary{{ isTrainer ? '' : ' flex-grow-1' }}">{{ 'hub.election.description'|trans }}</p>
             {% if isTrainer %}
+            <div class="hub-highlights flex-grow-1" data-hub-highlights="{{ path('app_hubhighlights_election') }}" aria-busy="true">
+              <div class="d-flex justify-content-center py-3 hub-highlights-loader">
+                <span class="spinner-border spinner-border-sm text-body-secondary" role="status">
+                  <span class="visually-hidden">{{ 'hub.highlights.loading'|trans }}</span>
+                </span>
+              </div>
+            </div>
             <a href="{{ path('app_electiondexlist_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action">{{ 'hub.election.action'|trans }}</a>
             {% else %}
             <a href="{{ path('app_connect_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action-outline">
@@ -90,6 +112,9 @@
             <div class="hub-icon"><i class="bi bi-controller"></i></div>
             <h2 class="h3 card-title mb-0">{{ 'game.title'|trans }}</h2>
             <p class="card-text text-body-secondary">{{ 'hub.game.description'|trans }}</p>
+            {% if isTrainer %}
+            <div class="hub-highlights flex-grow-1" data-hub-highlights="{{ path('app_hubhighlights_game') }}" data-hub-highlights-fallback aria-busy="true">
+            {% endif %}
             <ul class="list-unstyled d-flex flex-column gap-2 flex-grow-1 mb-0 hub-games">
               {% for game in games %}
               <li>
@@ -107,6 +132,9 @@
               </li>
               {% endfor %}
             </ul>
+            {% if isTrainer %}
+            </div>
+            {% endif %}
             {% if isTrainer %}
             <a href="{{ path('app_game_index') }}" class="btn btn-lg rounded-pill align-self-start hub-action">{{ 'hub.game.action'|trans }}</a>
             {% else %}

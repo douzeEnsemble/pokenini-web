@@ -26,6 +26,7 @@ final class DexFlagsTest extends TestCase
             isReleased: true,
             isPremium: false,
             isCustom: true,
+            isOnHub: true,
         );
 
         $this->assertTrue($flags->isShiny());
@@ -35,5 +36,22 @@ final class DexFlagsTest extends TestCase
         $this->assertTrue($flags->isReleased());
         $this->assertFalse($flags->isPremium());
         $this->assertTrue($flags->isCustom());
+        $this->assertTrue($flags->isOnHub());
+    }
+
+    #[Test]
+    public function notOnHubByDefault(): void
+    {
+        $flags = new DexFlags(
+            isShiny: true,
+            isPrivate: false,
+            isOnHome: true,
+            isDisplayForm: true,
+            isReleased: true,
+            isPremium: false,
+            isCustom: true,
+        );
+
+        $this->assertFalse($flags->isOnHub());
     }
 }

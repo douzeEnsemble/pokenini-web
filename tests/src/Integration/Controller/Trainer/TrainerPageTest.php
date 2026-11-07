@@ -208,6 +208,30 @@ final class TrainerPageTest extends WebTestCase
     }
 
     #[Test]
+    public function trainerPageWithTheHubFull(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('hub-highlights');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/trainer');
+
+        $this->assertResponseStatusCodeSame(200);
+
+        // The albums on the hub can still be removed, the other ones can't be added
+        $this->assertNotNull($crawler->filter('#goldsilvercrystal-is_on_hub')->attr('checked'));
+        $this->assertNull($crawler->filter('#goldsilvercrystal-is_on_hub')->attr('disabled'));
+        $this->assertNull($crawler->filter('#redgreenblueyellow-is_on_hub')->attr('checked'));
+        $this->assertNotNull($crawler->filter('#redgreenblueyellow-is_on_hub')->attr('disabled'));
+        $this->assertNull($crawler->filter('#redgreenblueyellow-is_on_hub')->attr('data-locked'));
+        $this->assertNull($crawler->filter('#redgreenblueyellow-is_private')->attr('disabled'));
+
+        $this->assertSame("Album sur l'accueil", $crawler->filter('label[for="goldsilvercrystal-is_on_hub"]')->text());
+    }
+
+    #[Test]
     public function trainerPageNotAllowed(): void
     {
         $client = self::createClient();
@@ -254,7 +278,7 @@ final class TrainerPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 21, '.trainer-dex-item p.h5');
         $this->assertCountFilter($crawler, 0, '.trainer-dex-item h5');
         $this->assertCountFilter($crawler, 0, '.trainer-dex-item h6');
-        $this->assertCountFilter($crawler, 42, '.trainer-dex-item input[type="checkbox"]');
+        $this->assertCountFilter($crawler, 63, '.trainer-dex-item input[type="checkbox"]');
         $this->assertCountFilter($crawler, $reportCount, '.trainer-dex-item .progress');
 
         $this->assertEmpty($crawler->filter('#goldsilvercrystal-is_private')->attr('checked'));
@@ -262,6 +286,12 @@ final class TrainerPageTest extends WebTestCase
 
         $this->assertNull($crawler->filter('#home-is_private')->attr('checked'));
         $this->assertEmpty($crawler->filter('#home-is_on_home')->attr('checked'));
+
+        $this->assertCountFilter($crawler, 21, '.trainer-dex-item input[name$="-is_on_hub"]');
+        $this->assertCountFilter($crawler, 0, '.trainer-dex-item input[name$="-is_on_hub"][checked]');
+        $this->assertNull($crawler->filter('#home-is_on_hub')->attr('disabled'));
+        $this->assertSame('3', $crawler->filter('[data-max-on-hub]')->attr('data-max-on-hub'));
+        $this->assertCountFilter($crawler, 1, '#tooManyOnHubToast');
 
         $this->assertStringContainsString(
             'https://icon.pokenini.fr/dex/',

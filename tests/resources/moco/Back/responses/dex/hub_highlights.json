@@ -1,0 +1,170 @@
+[
+  {
+    "dex": {
+      "slug": "redgreenblueyellow"
+    },
+    "settings": {
+      "name": "Red, Green, Blue, Yellow",
+      "french_name": "Rouge, Vert, Bleu, Jaune",
+      "slug": "redgreenblueyellow",
+      "display_template": "box"
+    },
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false,
+      "is_on_hub": false
+    },
+    "category": {
+      "slug": "main",
+      "name": "Main games",
+      "french_name": "Jeux principaux",
+      "order_number": 1
+    }
+  },
+  {
+    "dex": {
+      "slug": "goldsilvercrystal"
+    },
+    "settings": {
+      "name": "Gold, Silver, Crystal",
+      "french_name": "Or, Argent, Cristal",
+      "slug": "goldsilvercrystal",
+      "display_template": "box"
+    },
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false,
+      "is_on_hub": true
+    },
+    "category": {
+      "slug": "main",
+      "name": "Main games",
+      "french_name": "Jeux principaux",
+      "order_number": 1
+    },
+    "report": {
+      "total": 200,
+      "total_caught": 150,
+      "total_uncaught": 50,
+      "detail": []
+    }
+  },
+  {
+    "dex": {
+      "slug": "rubysapphireemerald"
+    },
+    "settings": {
+      "name": "Ruby, Sapphire, Emerald",
+      "french_name": "Rubis, Saphir, Émeraude",
+      "slug": "rubysapphireemerald",
+      "display_template": "box"
+    },
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false,
+      "is_on_hub": true
+    },
+    "category": {
+      "slug": "main",
+      "name": "Main games",
+      "french_name": "Jeux principaux",
+      "order_number": 1
+    }
+  },
+  {
+    "dex": {
+      "slug": "fireredleafgreen"
+    },
+    "settings": {
+      "name": "Red Fire, Leaf Green",
+      "french_name": "Rouge Feu, Vert Feuille",
+      "slug": "fireredleafgreen",
+      "display_template": "box"
+    },
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false,
+      "is_on_hub": true
+    },
+    "category": {
+      "slug": "main",
+      "name": "Main games",
+      "french_name": "Jeux principaux",
+      "order_number": 1
+    }
+  },
+  {
+    "dex": {
+      "slug": "diamondpearlplatinium"
+    },
+    "settings": {
+      "name": "Diamond, Pearl, Platinium",
+      "french_name": "Diamant, Perle, Platine",
+      "slug": "diamondpearlplatinium",
+      "display_template": "box"
+    },
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false,
+      "is_on_hub": false
+    },
+    "category": {
+      "slug": "main",
+      "name": "Main games",
+      "french_name": "Jeux principaux",
+      "order_number": 1
+    }
+  },
+  {
+    "dex": {
+      "slug": "heartgoldsoulsilver"
+    },
+    "settings": {
+      "name": "Heart Gold, Soul Silver",
+      "french_name": "Or HeartGold, Argent SoulSilver",
+      "slug": "heartgoldsoulsilver",
+      "display_template": "box"
+    },
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false,
+      "is_on_hub": true
+    },
+    "category": {
+      "slug": "main",
+      "name": "Main games",
+      "french_name": "Jeux principaux",
+      "order_number": 1
+    }
+  }
+]

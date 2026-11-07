@@ -389,6 +389,11 @@ final class OffcanvasTest extends WebTestCase
         $isOnHome = $crawler->filter('#offcanvas form[data-dex="goldsilvercrystal"] input[name="goldsilvercrystal-is_on_home"]');
         $this->assertCount(1, $isOnHome);
         $this->assertNull($isOnHome->attr('checked'));
+
+        $isOnHub = $crawler->filter('#offcanvas form[data-dex="goldsilvercrystal"] input[name="goldsilvercrystal-is_on_hub"]');
+        $this->assertCount(1, $isOnHub);
+        $this->assertNull($isOnHub->attr('checked'));
+        $this->assertCountFilter($crawler, 1, '#tooManyOnHubToast');
     }
 
     #[Test]

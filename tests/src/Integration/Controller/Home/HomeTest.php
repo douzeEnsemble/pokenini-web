@@ -175,6 +175,8 @@ final class HomeTest extends WebTestCase
         $this->assertCountFilter($crawler, 3, '.hub-games li');
         $this->assertCountFilter($crawler, 0, '.hub-games a');
         $this->assertCountFilter($crawler, 0, '.hub-choose-home');
+        $this->assertCountFilter($crawler, 0, '[data-hub-highlights]');
+        $this->assertCountFilter($crawler, 0, 'script[src^="/js/hub.js"]');
 
         $this->assertSame("Exemple d'albums", $crawler->filter('#home-demo h2')->text());
         $this->assertCountFilter($crawler, 6, '#home-demo .dex-item');
@@ -217,6 +219,15 @@ final class HomeTest extends WebTestCase
             ['/img/game/color.svg', '/img/game/shiny.svg', '/img/game/which-shiny.svg'],
             $crawler->filter('.hub-games img.game-icon')->each(static fn (Crawler $node): string => explode('?', (string) $node->attr('src'))[0]),
         );
+
+        // What the hub puts forward is loaded once the page is shown
+        $this->assertSame(
+            ['/fr/hub/highlights/album', '/fr/hub/highlights/election', '/fr/hub/highlights/game'],
+            $crawler->filter('[data-hub-highlights]')->each(static fn (Crawler $node): ?string => $node->attr('data-hub-highlights')),
+        );
+        $this->assertCountFilter($crawler, 1, '.hub-game [data-hub-highlights][data-hub-highlights-fallback] .hub-games');
+        $this->assertCountFilter($crawler, 2, '[data-hub-highlights] .spinner-border');
+        $this->assertCountFilter($crawler, 1, 'script[src^="/js/hub.js"]');
 
         $this->assertSame('/fr/trainer/home_page', $crawler->filter('.hub-choose-home a')->attr('href'));
         $this->assertSame(

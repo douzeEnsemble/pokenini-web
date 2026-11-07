@@ -23,6 +23,8 @@ final class DexFlags
         private readonly bool $isPremium,
         #[SerializedName('is_custom')]
         private readonly bool $isCustom,
+        #[SerializedName('is_on_hub')]
+        private readonly bool $isOnHub = false,
     ) {}
 
     public function isShiny(): bool
@@ -38,6 +40,11 @@ final class DexFlags
     public function isOnHome(): bool
     {
         return $this->isOnHome;
+    }
+
+    public function isOnHub(): bool
+    {
+        return $this->isOnHub;
     }
 
     public function isDisplayForm(): bool
