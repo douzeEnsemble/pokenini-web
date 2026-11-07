@@ -22,9 +22,9 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
      * Action/item combinations whose fixture (tests/resources/moco/Back/responses/action-logs.json)
      * reports the current run as still "pending" (created_at set, done_at null). Task 1/3 of the
      * force-pending-admin-action feature made their button always carry a `data-confirm-message`
-     * attribute and pop a native `confirm()` on submit, so they can't use Panther's `submit()`
-     * helper (it calls `createCrawler()` right after clicking, which throws
-     * `UnexpectedAlertOpenException` while the alert is still open) — see ForceActionTest.
+     * attribute and open a Bootstrap confirmation modal (public/js/admin.js) on submit, so they can't
+     * use Panther's `submit()` helper (the form only submits once the modal's confirm button is
+     * clicked) — see ForceActionTest.
      *
      * @var list<string>
      */
@@ -171,10 +171,9 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
 
     /**
      * Pending action items always show a `data-confirm-message` button (Task 1/3 of the
-     * force-pending-admin-action feature) that pops a native `confirm()` on submit — Panther's
-     * `submit()` helper can't be used here since it calls `createCrawler()` right after clicking,
-     * which throws `UnexpectedAlertOpenException` while the alert is still open (see
-     * ForceActionTest for the same pattern).
+     * force-pending-admin-action feature) that opens a Bootstrap confirmation modal on submit — Panther's
+     * `submit()` helper can't be used here since the form only submits once the modal's confirm
+     * button is clicked (see ForceActionTest for the same pattern).
      */
     private function clickPendingActionAndAcceptConfirm(Client $client, string $action, string $item): void
     {
@@ -186,7 +185,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         // the button itself.
         $client->executeScript('arguments[0].scrollIntoView({block: "center", inline: "nearest"});', [$button]);
         $button->click();
-        $client->switchTo()->alert()->accept();
+        $this->answerConfirmModal($client, '.confirm-modal-ok');
     }
 
     private function submitActionForm(Client $client, string $action, string $item): void

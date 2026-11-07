@@ -33,7 +33,7 @@ final class ModalTest extends AbstractBrowserTestCase
 
         $this->assertSelectorIsNotVisible('#modal-blastoise-mega');
 
-        $client->executeScript('document.querySelector(\'span[data-bs-target="#modal-blastoise-mega"]\').click()');
+        $client->executeScript('document.querySelector(\'[data-bs-target="#modal-blastoise-mega"]\').click()');
 
         $this->assertSelectorWillBeVisible('#modal-blastoise-mega');
     }
