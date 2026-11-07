@@ -43,7 +43,7 @@ final class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+        $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
@@ -101,7 +101,7 @@ final class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+        $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertEquals(
@@ -155,10 +155,10 @@ final class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCountFilter($crawler, 1, 'h2#album-subtitle');
+        $this->assertCountFilter($crawler, 1, '#album-subtitle');
         $this->assertEquals(
             'chromatique',
-            $crawler->filter('h2#album-subtitle')->text()
+            $crawler->filter('#album-subtitle')->text()
         );
 
         $this->assertCountFilter($crawler, 1, '#intro .album-all-catch-state-read-action');
@@ -211,7 +211,7 @@ final class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+        $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
@@ -269,7 +269,7 @@ final class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+        $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
@@ -322,7 +322,7 @@ final class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+        $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
         $this->assertCountFilter($crawler, 1, '#album-description');
         $this->assertStringContainsString(
@@ -380,7 +380,7 @@ final class IntroTest extends WebTestCase
             $crawler->filter('h1#album-title')->text()
         );
 
-        $this->assertCountFilter($crawler, 0, 'h2#album-subtitle');
+        $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
         $this->assertCountFilter($crawler, 0, '#intro .album-all-catch-state-read-action');
         $this->assertCountFilter($crawler, 0, '#intro .album-all-catch-state-edit-action');
