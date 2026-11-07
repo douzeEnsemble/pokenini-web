@@ -43,7 +43,7 @@ class HubHighlightsService
             static fn (DexListItem $dex): bool => $dex->getFlags()->isOnHub(),
         );
 
-        return \array_slice(array_values($albums), 0, self::MAX_ALBUMS);
+        return \array_slice($albums, 0, self::MAX_ALBUMS);
     }
 
     /**
