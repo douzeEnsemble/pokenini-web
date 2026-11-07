@@ -45,6 +45,7 @@ function onChangeCatchState(event) {
   const previousValue = target.dataset.committedValue ?? target.value;
 
   target.disabled = true;
+  target.setAttribute("aria-busy", "true");
 
   saveCatchStateChange(target, previousValue);
 }
@@ -52,7 +53,7 @@ function onChangeCatchState(event) {
 function onActivateEditMode(event) {
   event.preventDefault();
 
-  const target = event.target;
+  const target = event.currentTarget;
 
   activateEditMode(target);
 }
@@ -66,14 +67,14 @@ function onActivateAllEditMode(event) {
       activateEditMode(element);
     });
 
-  const target = event.target;
+  const target = event.currentTarget;
 
-  const editMode = target.parentElement.querySelector(
+  const editMode = target.closest(".group-actions").querySelector(
     ".album-all-catch-state-edit-action"
   );
   editMode.setAttribute("hidden", true);
 
-  const readMode = target.parentElement.querySelector(
+  const readMode = target.closest(".group-actions").querySelector(
     ".album-all-catch-state-read-action"
   );
   readMode.removeAttribute("hidden");
@@ -88,14 +89,14 @@ function onActivateAllReadMode(event) {
       activateReadMode(element);
     });
 
-  const target = event.target;
+  const target = event.currentTarget;
 
-  const editMode = target.parentElement.querySelector(
+  const editMode = target.closest(".group-actions").querySelector(
     ".album-all-catch-state-edit-action"
   );
   editMode.removeAttribute("hidden");
 
-  const readMode = target.parentElement.querySelector(
+  const readMode = target.closest(".group-actions").querySelector(
     ".album-all-catch-state-read-action"
   );
   readMode.setAttribute("hidden", true);
@@ -121,6 +122,7 @@ function saveCatchStateChange(target, previousValue) {
       target.dataset.committedValue = catchState;
       changeClass(target);
       target.disabled = false;
+      target.removeAttribute("aria-busy");
 
       new bootstrap.Toast(
         document.getElementById("successToast-" + pokemon)
@@ -132,6 +134,7 @@ function saveCatchStateChange(target, previousValue) {
       target.value = previousValue;
       changeClass(target);
       target.disabled = false;
+      target.removeAttribute("aria-busy");
 
       new bootstrap.Toast(
         document.getElementById("errorToast-" + pokemon)
