@@ -45,12 +45,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
             '.album-case-catch-state .album-case-catch-state-edit-action'
         );
 
-        $this->assertEquals(
-            '#chikorita',
-            $crawler
-                ->filter('#chikorita .album-case-catch-state-edit-action')
-                ->attr('href')
-        );
+        $this->assertCountFilter($crawler, 1, '#chikorita .album-case-catch-state-edit-action');
     }
 
     #[Test]
@@ -77,12 +72,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
             '.album-case-catch-state .album-case-catch-state-edit-action'
         );
 
-        $this->assertEquals(
-            '#bulbasaur',
-            $crawler
-                ->filter('#bulbasaur .album-case-catch-state-edit-action')
-                ->attr('href')
-        );
+        $this->assertCountFilter($crawler, 1, '#bulbasaur .album-case-catch-state-edit-action');
     }
 
     #[Test]
@@ -109,12 +99,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
             '.album-case-catch-state .album-case-catch-state-edit-action'
         );
 
-        $this->assertEquals(
-            '#bulbasaur',
-            $crawler
-                ->filter('#bulbasaur .album-case-catch-state-edit-action')
-                ->attr('href')
-        );
+        $this->assertCountFilter($crawler, 1, '#bulbasaur .album-case-catch-state-edit-action');
     }
 
     #[Test]
@@ -131,12 +116,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorIsVisible('#bulbasaur .album-case-catch-state');
         $this->assertSelectorIsNotVisible('#bulbasaur .album-case-action');
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('#bulbasaur-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '#bulbasaur-catch-state-edit-action');
 
         $this->assertSelectorIsNotVisible('#bulbasaur .album-case-catch-state');
         $this->assertSelectorIsVisible('#bulbasaur .album-case-action');
@@ -156,12 +136,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorIsVisible('#bulbasaur .album-case-catch-state');
         $this->assertSelectorIsNotVisible('#bulbasaur .album-case-action');
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('#bulbasaur .album-case-catch-state .album-case-catch-state-label')
-                ->link()
-        );
+        $this->clickElement($client, '#bulbasaur .album-case-catch-state .album-case-catch-state-label');
 
         $this->assertSelectorIsNotVisible('#bulbasaur .album-case-catch-state');
         $this->assertSelectorIsVisible('#bulbasaur .album-case-action');
@@ -183,12 +158,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('.album-all-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '.album-all-catch-state-edit-action');
 
         $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 25, '.album-case-catch-state[hidden]');
@@ -212,24 +182,14 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('.album-all-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '.album-all-catch-state-edit-action');
 
         $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 25, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('.album-all-catch-state-read-action')
-                ->link()
-        );
+        $this->clickElement($client, '.album-all-catch-state-read-action');
 
         $this->assertCountFilter($crawler, 25, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
@@ -253,36 +213,21 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('#bulbasaur-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '#bulbasaur-catch-state-edit-action');
 
         $this->assertCountFilter($crawler, 24, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-read-action[hidden]');
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('.album-all-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '.album-all-catch-state-edit-action');
 
         $this->assertCountFilter($crawler, 0, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 25, '.album-case-catch-state[hidden]');
         $this->assertCountFilter($crawler, 1, '.album-all-catch-state-edit-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-all-catch-state-read-action[hidden]');
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('.album-all-catch-state-read-action')
-                ->link()
-        );
+        $this->clickElement($client, '.album-all-catch-state-read-action');
 
         $this->assertCountFilter($crawler, 25, '.album-case-action[hidden]');
         $this->assertCountFilter($crawler, 0, '.album-case-catch-state[hidden]');
@@ -308,12 +253,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->executeScript("document.getElementById('bulbasaur').scrollIntoView();");
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('#bulbasaur-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '#bulbasaur-catch-state-edit-action');
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
@@ -347,12 +287,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->executeScript("document.getElementById('squirtle').scrollIntoView();");
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('#squirtle-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '#squirtle-catch-state-edit-action');
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
@@ -383,12 +318,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->executeScript("document.getElementById('ivysaur').scrollIntoView();");
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('#ivysaur-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '#ivysaur-catch-state-edit-action');
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
@@ -418,12 +348,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->executeScript("document.getElementById('ivysaur').scrollIntoView();");
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('#ivysaur-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '#ivysaur-catch-state-edit-action');
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
@@ -455,12 +380,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->executeScript("document.getElementById('squirtle').scrollIntoView();");
 
-        $client->click(
-            $client
-                ->getCrawler()
-                ->filter('#squirtle-catch-state-edit-action')
-                ->link()
-        );
+        $this->clickElement($client, '#squirtle-catch-state-edit-action');
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 

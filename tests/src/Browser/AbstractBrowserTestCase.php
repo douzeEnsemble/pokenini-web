@@ -6,6 +6,7 @@ namespace App\Tests\Browser;
 
 use App\Security\User;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\WebDriverBy;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\PantherTestCase;
 
@@ -36,6 +37,34 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
                 'capabilities' => $capabilities,
             ],
         );
+    }
+
+    /**
+     * Clicks the first element matching the selector through WebDriver (works for buttons, unlike Crawler::link()).
+     */
+    protected function clickElement(Client $client, string $cssSelector): void
+    {
+        $client->getWebDriver()->findElement(WebDriverBy::cssSelector($cssSelector))->click();
+    }
+
+    /**
+     * Waits for the Bootstrap confirmation modal built by public/js/admin.js (showConfirmModal)
+     * to be fully shown, then returns its text and clicks the requested button.
+     *
+     * @param '.confirm-modal-cancel'|'.confirm-modal-ok' $buttonSelector
+     */
+    protected function answerConfirmModal(Client $client, string $buttonSelector): string
+    {
+        $client->waitForVisibility('.modal.show '.$buttonSelector);
+        // Bootstrap ignores hide() while the fade transition runs: wait until the dialog has settled.
+        $client->wait()->until(static fn () => (bool) $client->executeScript(<<<'JS'
+            const dialog = document.querySelector('.modal.show .modal-dialog');
+            return null !== dialog && ['none', 'matrix(1, 0, 0, 1, 0, 0)'].includes(getComputedStyle(dialog).transform);
+            JS));
+        $message = $client->findElement(WebDriverBy::cssSelector('.modal.show .confirm-modal-message'))->getText();
+        $client->findElement(WebDriverBy::cssSelector('.modal.show '.$buttonSelector))->click();
+
+        return $message;
     }
 
     protected function loginUser(Client $client, User $user): void
