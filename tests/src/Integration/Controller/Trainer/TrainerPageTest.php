@@ -251,7 +251,8 @@ final class TrainerPageTest extends WebTestCase
         $this->assertCountFilter($crawler, 21, '.trainer-dex-item');
         $this->assertCountFilter($crawler, 21, '.trainer-dex-item img');
         $this->assertCountFilter($crawler, 21, '.trainer-dex-item a');
-        $this->assertCountFilter($crawler, 21, '.trainer-dex-item h5');
+        $this->assertCountFilter($crawler, 21, '.trainer-dex-item p.h5');
+        $this->assertCountFilter($crawler, 0, '.trainer-dex-item h5');
         $this->assertCountFilter($crawler, 0, '.trainer-dex-item h6');
         $this->assertCountFilter($crawler, 42, '.trainer-dex-item input[type="checkbox"]');
         $this->assertCountFilter($crawler, $reportCount, '.trainer-dex-item .progress');

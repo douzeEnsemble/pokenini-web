@@ -372,7 +372,7 @@ trait ModalTestTrait
         );
 
         $this->assertEquals(
-            'fr' === $lang ? 'Fiche Poképédia' : "Poképédia's page (french)",
+            'fr' === $lang ? 'Fiche Poképédia (nouvel onglet)' : "Poképédia's page (french) (new tab)",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupIntemIndex)
                 ->text()
@@ -411,7 +411,7 @@ trait ModalTestTrait
         );
 
         $this->assertEquals(
-            'fr' === $lang ? 'Fiche Bulbapedia (anglais)' : "Bulbapedia's page",
+            'fr' === $lang ? 'Fiche Bulbapedia (anglais) (nouvel onglet)' : "Bulbapedia's page (new tab)",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupIntemIndex)
                 ->text()
