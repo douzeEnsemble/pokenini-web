@@ -7,25 +7,25 @@
 
   <div class="album-case col catch-state-{{ currentCatchState }}" id="{{ item.pokemonSlug }}">
     {% set dexNumber = dex.regionName is not empty ? item.pokemonRegionalDexNumber : item.pokemonNationalDexNumber %}
-    <div class="text-center text-truncate">
+    <div class="text-center">
       {# This title opens the info modal - it is not a form label for the
         catch-state select below, even though both share the same
         Pokémon. Giving it a `for` here used to make the select's
         accessible name "#150 Mewtwo" instead of describing the control,
         so the select gets its own hidden label instead (see below). #}
-      <span class="album-case-title" data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}">
+      <button type="button" class="album-case-title btn btn-link p-0 border-0 text-reset text-decoration-none mw-100 align-baseline" data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}" aria-haspopup="dialog">
         <span class="album-case-dex-number">
           #{{ dexNumber }}
         </span>
         <span class="album-case-name">
           {{ pokemonName }}
         </span>
-      </span>
+      </button>
     </div>
     <div class="album-case-image text-center" title="#{{ dexNumber }} {{ locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName }}">
-      <span data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}">
+      <button type="button" class="btn btn-link p-0 border-0" data-bs-toggle="modal" data-bs-target="#modal-{{ item.pokemonSlug }}" aria-haspopup="dialog">
         {{ dex.isShiny ? imageMacros.shinyPokemonIcon(item, locale, showCredit=false) : imageMacros.regularPokemonIcon(item, locale, showCredit=false) }}
-      </span>
+      </button>
     </div>
     <div class="album-case-forms text-truncate text-end">
       {% if dex.isDisplayForm %}
@@ -58,9 +58,9 @@
       {% endif %}
       <div class="album-case-catch-state rounded-1 ps-2 overflow-auto">
         {% if canEdit %}
-          <a href="#{{ item.pokemonSlug }}" class="link-dark album-case-catch-state-label">
+          <a href="#{{ item.pokemonSlug }}" class="album-case-catch-state-label">
           {% else %}
-            <span class="link-dark album-case-catch-state-label">
+            <span class="album-case-catch-state-label">
             {% endif %}
             {% if locale is same as('fr') %}
               {{ item.catchStateFrenchName ?? 'Non' }}
@@ -73,9 +73,9 @@
           </span>
         {% endif %}
         {% if canEdit %}
-          <a id="{{ item.pokemonSlug }}-catch-state-edit-action" class="album-case-catch-state-edit-action float-end pe-1" href="#{{ item.pokemonSlug }}">
-            <i class="bi bi-pencil-square"></i>
-          </a>
+          <button type="button" id="{{ item.pokemonSlug }}-catch-state-edit-action" class="album-case-catch-state-edit-action float-end pe-1" title="{{ 'album.catch_state.edit.label'|trans({'pokemonName': pokemonName}) }}" aria-label="{{ 'album.catch_state.edit.label'|trans({'pokemonName': pokemonName}) }}">
+            <i class="bi bi-pencil-square" aria-hidden="true"></i>
+          </button>
         {% endif %}
       </div>
     </div>
@@ -93,7 +93,7 @@
               {{ locale is same as('fr') ? item.pokemonName : item.pokemonFrenchName}}
             </span>
           </h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'a11y.close'|trans }}"></button>
         </div>
         <div class="modal-body">
           <div class="container-fluid">
@@ -174,7 +174,7 @@
                     {% endif %}
 
                     <span class="text-truncate">
-                      <i class="bi bi-caret-left"></i>
+                      <i class="bi bi-caret-left" aria-hidden="true"></i>
                       {{ 'album.icon.title.previous'|trans }}
                     </span>
                   </a>
@@ -190,7 +190,7 @@
 
                     <span class="text-truncate">
                       {{ 'album.icon.title.next'|trans }}
-                      <i class="bi bi-caret-right"></i>
+                      <i class="bi bi-caret-right" aria-hidden="true"></i>
                     </span>
                   </a>
                 </div>
@@ -202,14 +202,16 @@
                     </a>
                   </li>
                   <li class="list-group-item">
-                    <a href="https://www.pokepedia.fr/{{ item.pokemonSimplifiedFrenchName }}" target="_blank" class="icon-link icon-link-hover">
+                    <a href="https://www.pokepedia.fr/{{ item.pokemonSimplifiedFrenchName }}" target="_blank" rel="noopener noreferrer" class="icon-link icon-link-hover">
                       {{ 'album.modal.link.pokepedia'|trans }}
+                      <span class="visually-hidden">{{ 'a11y.new_tab'|trans }}</span>
                       <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
                     </a>
                   </li>
                   <li class="list-group-item">
-                    <a href="https://bulbapedia.bulbagarden.net/wiki/{{ item.pokemonSimplifiedName }}_(Pokémon)" target="_blank" class="icon-link icon-link-hover">
+                    <a href="https://bulbapedia.bulbagarden.net/wiki/{{ item.pokemonSimplifiedName }}_(Pokémon)" target="_blank" rel="noopener noreferrer" class="icon-link icon-link-hover">
                       {{ 'album.modal.link.bulbapedia'|trans }}
+                      <span class="visually-hidden">{{ 'a11y.new_tab'|trans }}</span>
                       <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
                     </a>
                   </li>
@@ -233,7 +235,7 @@
         <strong>{{ 'album.update.success.radical'|trans({'pokemonName': pokemonName}) }}</strong>
         {{ 'album.update.success.suffix'|trans }}
       </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'a11y.close'|trans }}"></button>
     </div>
   </div>
 
@@ -244,23 +246,23 @@
         <strong>{{ 'album.update.error.radical'|trans({'pokemonName': pokemonName}) }}</strong>
         {{ 'album.update.error.suffix'|trans }}
       </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'a11y.close'|trans }}"></button>
     </div>
   </div>
 {% endmacro %}
 
 {% macro shareToasts() %}
-  <div id="shareToastSuccess" class="toast text-bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
+  <div id="shareToastSuccess" class="toast text-bg-light" data-bs-theme="light" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body">{{ 'album.share.toast.success'|trans }}</div>
-      <button type="button" class="btn-close btn-close-dark me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'a11y.close'|trans }}"></button>
     </div>
   </div>
 
   <div id="shareToastError" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body">{{ 'album.share.toast.error'|trans }}</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'a11y.close'|trans }}"></button>
     </div>
   </div>
 {% endmacro %}
@@ -269,14 +271,14 @@
   <div id="linksToastSuccess" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body">{{ 'album.offcanvas.links.toast.success'|trans }}</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'a11y.close'|trans }}"></button>
     </div>
   </div>
 
   <div id="linksToastError" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body">{{ 'album.offcanvas.links.toast.error'|trans }}</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'a11y.close'|trans }}"></button>
     </div>
   </div>
 {% endmacro %}
@@ -287,11 +289,11 @@
     <h2 class="float-start">
       {{ title }}
     </h2>
-    <a class="ms-1" href="#box-{{ boxNumber }}" title="{{ title }}">
-      <i class="bi bi-link-45deg"></i>
+    <a class="ms-1" href="#box-{{ boxNumber }}" title="{{ title }}" aria-label="{{ title }}">
+      <i class="bi bi-link-45deg" aria-hidden="true"></i>
     </a>
-    <a class="btn btn-link btn-sm link-secondary goto goto-topofthepage float-end" href="#" title="{{ 'album.intro.action.goto.top_of_the_page'|trans }}" data-bs-toggle="tooltip">
-      <i class="bi bi-box-arrow-in-up"></i>
+    <a class="btn btn-link btn-sm link-secondary goto goto-topofthepage float-end" href="#" title="{{ 'album.intro.action.goto.top_of_the_page'|trans }}" aria-label="{{ 'album.intro.action.goto.top_of_the_page'|trans }}" data-bs-toggle="tooltip">
+      <i class="bi bi-box-arrow-in-up" aria-hidden="true"></i>
     </a>
   </div>
 {% endmacro %}

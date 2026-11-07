@@ -4,11 +4,20 @@
 // meaningful after a create/delete, must never stay armed on "Créer le lien").
 let selectedTargetDexSlug = null;
 
+function setPickPressed(card, pressed) {
+  const button = card.querySelector(".dex-pick-select");
+
+  if (button) {
+    button.setAttribute("aria-pressed", pressed ? "true" : "false");
+  }
+}
+
 function clearDexPickerSelection() {
   selectedTargetDexSlug = null;
 
   document.querySelectorAll(".dex-pick-card.selected").forEach(function (card) {
     card.classList.remove("selected");
+    setPickPressed(card, false);
   });
 
   document.getElementById("create-link").disabled = true;
@@ -39,8 +48,10 @@ function watchAlbumLinks() {
 
     document.querySelectorAll(".dex-pick-card").forEach(function (c) {
       c.classList.remove("selected");
+      setPickPressed(c, false);
     });
     card.classList.add("selected");
+    setPickPressed(card, true);
     selectedTargetDexSlug = card.dataset.dexSlug;
     document.getElementById("create-link").disabled = false;
   }
@@ -51,19 +62,12 @@ function watchAlbumLinks() {
     }
 
     card.addEventListener("click", function (event) {
-      if (event.target.closest(".dex-pick-view")) {
+      if (event.target.closest(".dex-pick-view, .unlink-btn")) {
         return;
       }
+      // Keyboard activation (Enter/Space) on the inner .dex-pick-select
+      // <button> fires a native click that bubbles up to this handler.
       selectCard(card);
-    });
-    card.addEventListener("keydown", function (event) {
-      if (event.target.closest(".dex-pick-view")) {
-        return;
-      }
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        selectCard(card);
-      }
     });
   });
 
@@ -215,6 +219,12 @@ function renderPickerGrid(dexSlug, links) {
     }
 
     const link = linkedBySlug[card.dataset.dexSlug];
+    const pickButton = card.querySelector(".dex-pick-select");
+
+    if (pickButton) {
+      // An already linked dex cannot be picked again.
+      pickButton.disabled = Boolean(link);
+    }
 
     if (!link) {
       card.classList.remove("linked");

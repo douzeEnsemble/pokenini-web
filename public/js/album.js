@@ -108,20 +108,14 @@ function onDisableScreenshotMode(event) {
 }
 
 function watchToAdjustSelectSizes() {
-  addEventListener('load', () => { adjustSelectSizes() });
-  addEventListener('resize', () => { adjustSelectSizes() });
+  adjustSelectSizes();
 }
 
 function adjustSelectSizes() {
-  const selects = document.querySelectorAll(".offcanvas select[multiple]");
-  const breakpoint = 768;
-
-  selects.forEach(function (select) {
-    if (window.innerWidth <= breakpoint) {
-      select.size = 1;
-    } else {
-      select.size = 4;
-    }
+  // A multiple select with size=1 is unusable on touch devices, so keep the
+  // same visible rows at every viewport width.
+  document.querySelectorAll(".offcanvas select[multiple]").forEach(function (select) {
+    select.size = 4;
   });
 }
 
