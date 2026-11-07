@@ -92,7 +92,7 @@
     item,
     icon,
 ) %}
-  <h3 class="text-body-emphasis">{{ ('admin.actions.'~action~'.'~item~'.title')|trans }}</h3>
+  <h2 class="h3 text-body-emphasis">{{ ('admin.actions.'~action~'.'~item~'.title')|trans }}</h2>
   <p class="admin-item-description text-body-secondary small">{{ ('admin.actions.'~action~'.'~item~'.description')|trans }}</p>
 {% endmacro %}
 
@@ -231,7 +231,6 @@
           </dt>
           <dd class="col-6 text-end mb-0 pe-5">{{ value|number_format(0, '.', ' ') }}
           </dd>
-        </d>
       {% endfor %}
     </dl>
   {% endif %}

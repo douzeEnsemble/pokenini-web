@@ -215,10 +215,10 @@
         const items = chart.options.plugins.legend.labels.generateLabels(chart);
 
         items.forEach(item => {
-          let row = document.getElementById("catch_state_usage-row-" + item.text);
-          let canvas = document.getElementById("catch_state_usage-legend-" + item.text);
-          let link = document.getElementById("catch_state_usage-text-" + item.text);
-          let toggle = document.getElementById("catch_state_usage-toggle-" + item.text);
+          let row = document.getElementById("catch_state_usage-row-" + item.text.replace(/ /g, "_"));
+          let canvas = document.getElementById("catch_state_usage-legend-" + item.text.replace(/ /g, "_"));
+          let link = document.getElementById("catch_state_usage-text-" + item.text.replace(/ /g, "_"));
+          let toggle = document.getElementById("catch_state_usage-toggle-" + item.text.replace(/ /g, "_"));
 
           canvas.width = 60;
           canvas.height = 28;

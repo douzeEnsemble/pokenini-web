@@ -17,7 +17,7 @@
     <form method="post" action="{{ path(route) }}" class="round-count-presets">
       <input type="hidden" name="_token" value="{{ csrf_token(csrfId) }}">
       <input type="hidden" name="dex_slug" value="{{ dexSlug }}">
-      <h6 class="dropdown-header">{{ 'color_game.rounds.title'|trans }}</h6>
+      <h3 class="dropdown-header">{{ 'color_game.rounds.title'|trans }}</h3>
       {% for count in roundCounts %}
       <button type="submit" name="round_count" value="{{ count }}" class="dropdown-item round-count">{{ 'color_game.rounds.count'|trans({'count': count}) }}</button>
       {% endfor %}
@@ -87,11 +87,11 @@
   <i class="bi bi-share" aria-hidden="true"></i>
   <span class="visually-hidden">{{ 'game.share.button'|trans }}</span>
 </button>
-<div class="modal fade text-center game-share-modal" id="{{ modalId }}" tabindex="-1" aria-labelledby="{{ modalId }}-title" aria-hidden="true">
+<div class="modal fade text-center game-share-modal" id="{{ modalId }}" tabindex="-1" role="dialog" aria-labelledby="{{ modalId }}-title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="{{ modalId }}-title">{{ 'game.share.heading'|trans }}</h5>
+        <h3 class="modal-title h5" id="{{ modalId }}-title">{{ 'game.share.heading'|trans }}</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'game.share.close'|trans }}"></button>
       </div>
       <div class="modal-body">
