@@ -37,41 +37,88 @@ pin_cross_project_dns() {
 	CURL_CMD="docker compose exec -T php curl --resolve web:8081:${web_ip}"
 }
 
+# Pages à valider, au format "rôle|chemin[|code HTTP attendu]" :
+#   - rôle : anon (page publique, sans session) ou trainer / collector / admin
+#            (compte factice du firewall de dev, cf. FakeAuthenticator : /fr/connect/f/c?t=<rôle>).
+#            collector = compte qui peut éditer (crayon d'édition sur l'album) ; admin = pages /istration.
+#   - code attendu : 200 par défaut. Une page avec un autre code attendu est vérifiée mais PAS validée
+#            par vnu (redirection, page d'erreur...) : elle ne doit jamais être validée à la place d'une vraie page.
 URLS=(
-	""
-	"fr"
-	"fr/hub"
-	"fr/connect"
-	"fr/album/dex"
-	"fr/album/demolite"
-	"fr/election/dex"
-	"fr/election/demo"
-	"fr/game"
-	"fr/game/color"
-	"fr/game/shiny"
-	"fr/game/which-shiny"
-	"fr/outerroom"
-	"fr/policy"
-	"fr/legals"
-	"fr/cookies"
-	"en/policy"
-	"en/legals"
-	"en/cookies"
-	"fr/trainer"
-	"fr/trainer/links"
-	"fr/trainer/home_page"
-	"fr/trainer/personnal_data"
-	"fr/istration"
+	"anon|fr"
+	"anon|fr/hub"
+	"anon|fr/connect"
+	"anon|fr/policy"
+	"anon|fr/legals"
+	"anon|fr/cookies"
+	"anon|en/policy"
+	"anon|en/legals"
+	"anon|en/cookies"
+	"trainer|fr/album/dex"
+	"trainer|fr/album/demolite"
+	"trainer|en/album/demolite"
+	"collector|fr/album/alpha"
+	"collector|en/album/alpha"
+	"trainer|fr/election/dex"
+	"trainer|fr/game"
+	"trainer|fr/game/color"
+	"trainer|fr/game/shiny"
+	"trainer|fr/game/which-shiny"
+	"trainer|fr/trainer"
+	"trainer|fr/trainer/links"
+	"trainer|fr/trainer/home_page"
+	"trainer|fr/trainer/personnal_data"
+	"admin|fr/istration/update_data"
+	"admin|fr/istration/reports"
+	# Exceptions documentées (code HTTP attendu autre que 200, rien à valider) :
+	"anon||301"            # la racine redirige vers /fr (déjà couvert par "fr")
+	"trainer|fr/outerroom|302" # redirige vers /fr
+	"trainer|fr/istration|403" # réservé à l'admin : vérifie que trainer est bien refusé
+	# fr/election/demo : 404 avec la fixture moco (pas d'élection "demo"), volontairement absent.
 )
 
+# Pages dont le contenu identique est explicitement attendu (liste de chemins séparés par un espace).
+ALLOWED_DUPLICATES=""
+
+# Rôles authentifiés nécessaires (déduits de URLS), un cookie jar par rôle (dans le conteneur php).
+JAR_DIR="/tmp/w3c-cookies-$$"
+declare -A SEEN_ROLES=()
+FAILURES=0
+
+fail() {
+	echo "❌ $*" >&2
+	FAILURES=$((FAILURES + 1))
+}
+
+cleanup() {
+	docker compose exec -T php rm -rf "$JAR_DIR" >/dev/null 2>&1 || true
+}
+trap cleanup EXIT
+
 authenticate() {
-	local url="${BASE_URI}fr/connect/f/c?t=trainer"
-	echo "🔐 Authenticating with $url ..."
-	if ! $CURL_CMD -fsSL "$url" >/dev/null; then
-		echo "❌ Authentication failed"
-		exit 1
-	fi
-	echo "✅ Authenticated successfully."
+	local entry role
+	for entry in "${URLS[@]}"; do
+		role="${entry%%|*}"
+		[ "$role" != "anon" ] && SEEN_ROLES["$role"]=1
+	done
+
+	$CURL_CMD --version >/dev/null # échoue tôt si le conteneur php est injoignable
+	docker compose exec -T php mkdir -p "$JAR_DIR"
+
+	for role in "${!SEEN_ROLES[@]}"; do
+		local url="${BASE_URI}fr/connect/f/c?t=${role}"
+		local jar="${JAR_DIR}/${role}.txt"
+		echo "🔐 Authenticating as ${role} with $url ..."
+		if ! $CURL_CMD -fsSL -c "$jar" -o /dev/null "$url"; then
+			echo "❌ Authentication failed for role ${role}" >&2
+			exit 1
+		fi
+		# Le cookie jar (lignes "#HttpOnly_" comprises) doit contenir un cookie de session, sinon les pages seraient récupérées déconnectées.
+		if [ "$(docker compose exec -T php grep -cE '^(#HttpOnly_)?[^#[:space:]]' "$jar" | tr -d '\r')" = "0" ]; then
+			echo "❌ No session cookie obtained for role ${role}" >&2
+			exit 1
+		fi
+		echo "✅ Authenticated as ${role}."
+	done
 	echo
 }
 
@@ -83,23 +130,68 @@ clean_output_dir() {
 }
 
 fetch_and_clean() {
-	local website="$1"
+	local entry="$1" role website expected
+	IFS='|' read -r role website expected <<<"$entry"
+	expected="${expected:-200}"
 	local url="${BASE_URI}${website}"
-	local filename="$(echo "$website" | sed 's|^https\?://||; s|[^A-Za-z0-9._-]|_|g')"
+	local filename
+	filename="$(echo "$website" | sed 's|^https\?://||; s|[^A-Za-z0-9._-]|_|g')"
 	[ -z "$filename" ] && filename="index"
 	local outfile="${OUT_DIR}/${filename}.html"
 
-	echo "🌐 Fetching $url ... to $outfile"
-	if ! $CURL_CMD -fsSL "$url" | grep -v "Symfony Web Debug Toolbar" >"$outfile"; then
-		echo "⚠️ Failed to fetch $url"
+	local cookie_args=()
+	[ "$role" != "anon" ] && cookie_args=(-b "${JAR_DIR}/${role}.txt")
+
+	echo "🌐 Fetching $url as ${role} ... to $outfile"
+	# Pas de -L : on veut voir les redirections. Le code HTTP est ajouté après le corps.
+	local raw code body
+	if ! raw="$($CURL_CMD -sS "${cookie_args[@]}" -w $'\n%{http_code}' "$url")"; then
+		fail "Failed to fetch $url (curl error)"
 		return
 	fi
+	code="${raw##*$'\n'}"
+	body="${raw%$'\n'*}"
+
+	if [ "$code" != "$expected" ]; then
+		if [[ "$code" == 30* && "$role" != "anon" ]]; then
+			fail "$url as ${role}: HTTP $code instead of $expected (redirect: session missing or role refused?)"
+		else
+			fail "$url as ${role}: HTTP $code instead of $expected"
+		fi
+		return
+	fi
+	if [ "$expected" != "200" ]; then
+		echo "   ↪ HTTP $code expected, not validated"
+		return
+	fi
+	printf '%s\n' "$body" | { grep -v "Symfony Web Debug Toolbar" || true; } >"$outfile"
+}
+
+# Deux URLs distinctes ne doivent pas donner le même contenu (signe d'une session perdue / page d'erreur / login).
+check_duplicates() {
+	local line prev_md5="" prev_file group=()
+	while read -r md5 file; do
+		if [ "$md5" = "$prev_md5" ]; then
+			group+=("$file")
+		else
+			report_group "${group[@]+"${group[@]}"}"
+			group=("$file")
+			prev_md5="$md5"
+		fi
+	done < <(cd "$OUT_DIR" && md5sum -- *.html | sort)
+	report_group "${group[@]+"${group[@]}"}"
+}
+
+report_group() {
+	[ "$#" -gt 1 ] || return 0
+	case " $ALLOWED_DUPLICATES " in *" $1 "*) return 0 ;; esac
+	fail "Identical content for distinct URLs: $* (wrong session, error page or login page?)"
 }
 
 run_validation() {
 	echo "🔍 Running HTML validation..."
 	if ! $VNU_CMD "/app/$OUT_DIR"; then
-		echo "⚠️ Validation errors detected"
+		fail "HTML validation errors detected"
 	else
 		echo "✅ All HTML files are valid!"
 	fi
@@ -110,11 +202,17 @@ main() {
 	clean_output_dir
 	authenticate
 
-	for website in "${URLS[@]}"; do
-		fetch_and_clean "$website"
+	for entry in "${URLS[@]}"; do
+		fetch_and_clean "$entry"
 	done
 
+	check_duplicates
 	run_validation
+
+	if [ "$FAILURES" -gt 0 ]; then
+		echo "🏁 Validation failed: ${FAILURES} problem(s)." >&2
+		exit 1
+	fi
 	echo "🏁 Validation completed."
 }
 
