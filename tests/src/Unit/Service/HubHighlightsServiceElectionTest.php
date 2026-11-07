@@ -5,13 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service;
 
 use App\DTO\HubElection;
-use App\DTO\HubGame;
 use App\ResponseObject\Album\DexFlags;
-use App\ResponseObject\Album\DexListItem;
-use App\ResponseObject\Album\DexListItemRef;
-use App\ResponseObject\Album\DexListItemSettings;
-use App\ResponseObject\ColorGame\ColorGame;
-use App\ResponseObject\ColorGame\ColorGameDexSummary;
 use App\ResponseObject\Election\ElectionDexListItem;
 use App\ResponseObject\Election\ElectionReport;
 use App\ResponseObject\Election\ElectionReportCompletion;
@@ -30,43 +24,8 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(HubHighlightsService::class)]
-final class HubHighlightsServiceTest extends TestCase
+final class HubHighlightsServiceElectionTest extends TestCase
 {
-    #[Test]
-    public function albums(): void
-    {
-        $albumService = $this->createMock(GetAlbumDexListService::class);
-        $albumService->expects($this->once())
-            ->method('get')
-            ->with(null)
-            ->willReturn([
-                self::album('a', false),
-                self::album('b', true),
-                self::album('c', true),
-                self::album('d', false),
-                self::album('e', true),
-                self::album('f', true),
-            ])
-        ;
-
-        $albums = $this->service(albumService: $albumService)->getAlbums();
-
-        $this->assertSame(
-            ['b', 'c', 'e'],
-            array_map(static fn (DexListItem $item): string => $item->getDex()->getSlug(), $albums),
-        );
-        $this->assertSame([0, 1, 2], array_keys($albums));
-    }
-
-    #[Test]
-    public function noAlbum(): void
-    {
-        $albumService = $this->createStub(GetAlbumDexListService::class);
-        $albumService->method('get')->willReturn([self::album('a', false)]);
-
-        $this->assertSame([], $this->service(albumService: $albumService)->getAlbums());
-    }
-
     #[Test]
     public function elections(): void
     {
@@ -112,44 +71,6 @@ final class HubHighlightsServiceTest extends TestCase
         $this->assertSame([], $this->service(electionService: $electionService)->getElections());
     }
 
-    #[Test]
-    public function games(): void
-    {
-        $colorGame = new ColorGame(
-            id: 'color',
-            dex: new ColorGameDexSummary(slug: 'home', name: 'Home', frenchName: 'Home'),
-            isShiny: false,
-            status: 'in_progress',
-            roundCount: 5,
-            answeredCount: 3,
-            correctCount: 2,
-            startedAt: '2026-11-01T10:00:00+00:00',
-            lastPlayedAt: null,
-            endedAt: null,
-        );
-
-        $colorGameService = $this->createMock(ColorGameService::class);
-        $colorGameService->expects($this->once())->method('getGames')->willReturn([$colorGame]);
-        $shinyGameService = $this->createMock(ShinyGameService::class);
-        $shinyGameService->expects($this->once())->method('getGames')->willReturn([]);
-        $whichShinyGameService = $this->createMock(WhichShinyGameService::class);
-        $whichShinyGameService->expects($this->once())->method('getGames')->willReturn([]);
-
-        $games = $this->service(
-            colorGameService: $colorGameService,
-            shinyGameService: $shinyGameService,
-            whichShinyGameService: $whichShinyGameService,
-        )->getGames();
-
-        $this->assertSame(
-            [HubGame::COLOR, HubGame::SHINY, HubGame::WHICH_SHINY],
-            array_map(static fn (HubGame $game): string => $game->type, $games),
-        );
-        $this->assertSame($colorGame, $games[0]->game);
-        $this->assertNull($games[1]->game);
-        $this->assertNull($games[2]->game);
-    }
-
     private function service(
         ?GetAlbumDexListService $albumService = null,
         ?GetElectionDexListService $electionService = null,
@@ -176,7 +97,7 @@ final class HubHighlightsServiceTest extends TestCase
         return array_map(static fn (HubElection $election): string => $election->dex->getSlug(), $elections);
     }
 
-    private static function flags(bool $isOnHub = false): DexFlags
+    private static function flags(): DexFlags
     {
         return new DexFlags(
             isShiny: false,
@@ -186,21 +107,6 @@ final class HubHighlightsServiceTest extends TestCase
             isReleased: true,
             isPremium: false,
             isCustom: false,
-            isOnHub: $isOnHub,
-        );
-    }
-
-    private static function album(string $slug, bool $isOnHub): DexListItem
-    {
-        return new DexListItem(
-            dex: new DexListItemRef(slug: $slug),
-            settings: new DexListItemSettings(
-                name: $slug,
-                frenchName: $slug,
-                slug: $slug,
-                displayTemplate: 'box',
-            ),
-            flags: self::flags($isOnHub),
         );
     }
 

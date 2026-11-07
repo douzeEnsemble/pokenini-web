@@ -24,7 +24,7 @@ final class DexFlags
         #[SerializedName('is_custom')]
         private readonly bool $isCustom,
         #[SerializedName('is_on_hub')]
-        private readonly bool $isOnHub = false,
+        private readonly ?bool $isOnHub = null,
     ) {}
 
     public function isShiny(): bool
@@ -44,7 +44,7 @@ final class DexFlags
 
     public function isOnHub(): bool
     {
-        return $this->isOnHub;
+        return true === $this->isOnHub;
     }
 
     public function isDisplayForm(): bool
