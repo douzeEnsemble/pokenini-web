@@ -15,6 +15,7 @@ class GetLabelsService
 {
     public function __construct(
         private readonly BackGetLabelsService $getService,
+        private readonly LocaleService $localeService,
         #[Autowire(service: 'cache.labels')]
         private readonly TagAwareCacheInterface $labelsCache,
     ) {}
@@ -34,10 +35,13 @@ class GetLabelsService
 
     private function getLabels(): Labels
     {
-        return $this->labelsCache->get('labels', function (ItemInterface $item): Labels {
+        // One entry per language, all tagged "labels" so that one invalidation empties them
+        $locale = $this->localeService->current();
+
+        return $this->labelsCache->get('labels_'.$locale, function (ItemInterface $item) use ($locale): Labels {
             $item->tag(['labels']);
 
-            return $this->getService->get();
+            return $this->getService->get($locale);
         });
     }
 }

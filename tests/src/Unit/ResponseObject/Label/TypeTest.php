@@ -31,4 +31,14 @@ final class TypeTest extends TestCase
         $this->assertSame('toto', $object->getSlug());
         $this->assertSame('#blouge', $object->getColor());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new Type('Combat', null, 'fighting', '#cf4069');
+
+        $this->assertSame('Combat', $object->getName());
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'Combat'], $object->getNames());
+    }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\ResponseObject\Common\NamesMap;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -61,7 +62,13 @@ class LocaleService
             return $name;
         }
 
-        return $names[$this->fallbackLocale] ?? '';
+        $fallbackName = $names[$this->fallbackLocale] ?? null;
+
+        if (null !== $fallbackName && '' !== $fallbackName) {
+            return $fallbackName;
+        }
+
+        return $names[NamesMap::RESOLVED] ?? '';
     }
 
     /**

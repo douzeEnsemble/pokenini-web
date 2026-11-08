@@ -41,4 +41,29 @@ final class TypeTest extends KernelTestCase
         $this->assertSame('fighting', $object->getSlug());
         $this->assertSame('#cf4069', $object->getColor());
     }
+
+    #[Test]
+    public function deserializeInASingleLanguage(): void
+    {
+        self::bootKernel();
+
+        /** @var SerializerInterface $serializer */
+        $serializer = self::getContainer()->get(SerializerInterface::class);
+
+        $json = <<<'JSON'
+            {
+                "name": "Combat",
+                "slug": "fighting",
+                "color": "#cf4069"
+            }
+            JSON;
+
+        $object = $serializer->deserialize($json, Type::class, 'json');
+
+        $this->assertInstanceOf(Type::class, $object);
+        $this->assertSame('Combat', $object->getName());
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'Combat'], $object->getNames());
+        $this->assertSame('fighting', $object->getSlug());
+    }
 }

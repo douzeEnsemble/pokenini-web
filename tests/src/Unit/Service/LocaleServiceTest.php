@@ -62,6 +62,10 @@ final class LocaleServiceTest extends TestCase
             'current locale is null' => ['names' => ['en' => 'Bulbasaur', 'fr' => null], 'requestLocale' => 'fr', 'expected' => 'Bulbasaur'],
             'current locale is empty' => ['names' => ['en' => 'Bulbasaur', 'fr' => ''], 'requestLocale' => 'fr', 'expected' => 'Bulbasaur'],
             'current and fallback locales are missing' => ['names' => ['de' => 'Bisasam'], 'requestLocale' => 'fr', 'expected' => ''],
+            'a name resolved by the API' => ['names' => ['*' => 'Combat'], 'requestLocale' => 'fr', 'expected' => 'Combat'],
+            'the current locale prevails over a resolved name' => ['names' => ['fr' => 'Bulbizarre', '*' => 'Combat'], 'requestLocale' => 'fr', 'expected' => 'Bulbizarre'],
+            'the fallback locale prevails over a resolved name' => ['names' => ['en' => 'Bulbasaur', '*' => 'Combat'], 'requestLocale' => 'fr', 'expected' => 'Bulbasaur'],
+            'an empty resolved name' => ['names' => ['*' => ''], 'requestLocale' => 'fr', 'expected' => ''],
             'the name is not a fallback of itself' => ['names' => ['en' => '', 'fr' => ''], 'requestLocale' => 'fr', 'expected' => ''],
         ];
     }

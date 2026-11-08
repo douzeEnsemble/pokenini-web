@@ -26,7 +26,7 @@ final class ReportDetail
         return $this->catchState->getName();
     }
 
-    public function getFrenchName(): string
+    public function getFrenchName(): ?string
     {
         return $this->catchState->getFrenchName();
     }
@@ -36,7 +36,7 @@ final class ReportDetail
      */
     public function getNames(): array
     {
-        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+        return $this->catchState->getNames();
     }
 
     public function getColor(): string

@@ -1,0 +1,400 @@
+{
+    "catch_states": [
+        {
+            "name": "No",
+            "slug": "no",
+            "color": "#e57373"
+        },
+        {
+            "name": "To evolve",
+            "slug": "toevolve",
+            "color": "#9575cd"
+        },
+        {
+            "name": "To breed",
+            "slug": "tobreed",
+            "color": "#4fc3f7"
+        },
+        {
+            "name": "To transfer",
+            "slug": "totransfer",
+            "color": "#ffd54f"
+        },
+        {
+            "name": "To trade",
+            "slug": "totrade",
+            "color": "#ff9100"
+        },
+        {
+            "name": "Yes",
+            "slug": "yes",
+            "color": "#66bb6a"
+        }
+    ],
+    "types": [
+        {
+            "name": "Normal",
+            "slug": "normal",
+            "color": "#9199a1"
+        },
+        {
+            "name": "Fighting",
+            "slug": "fighting",
+            "color": "#cf4069"
+        },
+        {
+            "name": "Flying",
+            "slug": "flying",
+            "color": "#8ea9df"
+        },
+        {
+            "name": "Poison",
+            "slug": "poison",
+            "color": "#aa6ac7"
+        },
+        {
+            "name": "Ground",
+            "slug": "ground",
+            "color": "#db7645"
+        },
+        {
+            "name": "Rock",
+            "slug": "rock",
+            "color": "#c7b78a"
+        },
+        {
+            "name": "Bug",
+            "slug": "bug",
+            "color": "#91c22e"
+        },
+        {
+            "name": "Ghost",
+            "slug": "ghost",
+            "color": "#5568aa"
+        },
+        {
+            "name": "Steel",
+            "slug": "steel",
+            "color": "#598fa2"
+        },
+        {
+            "name": "Fire",
+            "slug": "fire",
+            "color": "#ff9d55"
+        },
+        {
+            "name": "Water",
+            "slug": "water",
+            "color": "#4d91d7"
+        },
+        {
+            "name": "Grass",
+            "slug": "grass",
+            "color": "#61bb59"
+        },
+        {
+            "name": "Electric",
+            "slug": "electric",
+            "color": "#f3d33c"
+        },
+        {
+            "name": "Psychic",
+            "slug": "psychic",
+            "color": "#fb7075"
+        },
+        {
+            "name": "Ice",
+            "slug": "ice",
+            "color": "#71cfbe"
+        },
+        {
+            "name": "Dragon",
+            "slug": "dragon",
+            "color": "#0a6dc8"
+        },
+        {
+            "name": "Dark",
+            "slug": "dark",
+            "color": "#595265"
+        },
+        {
+            "name": "Fairy",
+            "slug": "fairy",
+            "color": "#ef8fe7"
+        }
+    ],
+    "category_forms": [
+        {
+            "name": "Starter",
+            "slug": "starter"
+        },
+        {
+            "name": "Legendary",
+            "slug": "legendary"
+        },
+        {
+            "name": "Mythical",
+            "slug": "mythical"
+        },
+        {
+            "name": "Ultra Beast",
+            "slug": "ultrabeast"
+        },
+        {
+            "name": "Baby",
+            "slug": "baby"
+        },
+        {
+            "name": "Paradox",
+            "slug": "paradox"
+        }
+    ],
+    "regional_forms": [
+        {
+            "name": "Alolan",
+            "slug": "alolan"
+        },
+        {
+            "name": "Galarian",
+            "slug": "galarian"
+        },
+        {
+            "name": "Hisuian",
+            "slug": "hisuian"
+        },
+        {
+            "name": "Paldean",
+            "slug": "paldean"
+        }
+    ],
+    "special_forms": [
+        {
+            "name": "Mega",
+            "slug": "mega"
+        },
+        {
+            "name": "Primal",
+            "slug": "primal"
+        },
+        {
+            "name": "Gigantamax",
+            "slug": "gigantamax"
+        },
+        {
+            "name": "Totem",
+            "slug": "totem"
+        },
+        {
+            "name": "Alpha",
+            "slug": "alpha"
+        },
+        {
+            "name": "Event",
+            "slug": "event"
+        },
+        {
+            "name": "Terastal",
+            "slug": "terastal"
+        }
+    ],
+    "variant_forms": [
+        {
+            "name": "Gender",
+            "slug": "gender"
+        },
+        {
+            "name": "Alternate",
+            "slug": "alternate"
+        },
+        {
+            "name": "Therian",
+            "slug": "therian"
+        },
+        {
+            "name": "Battle",
+            "slug": "battle"
+        },
+        {
+            "name": "Item",
+            "slug": "item"
+        },
+        {
+            "name": "Fusion",
+            "slug": "fusion"
+        },
+        {
+            "name": "Unobtainable",
+            "slug": "unobtainable"
+        }
+    ],
+    "game_bundles": [
+        {
+            "name": "Red, Green, Blue, Yellow",
+            "slug": "redgreenblueyellow",
+            "generation": {
+                "slug": "1"
+            }
+        },
+        {
+            "name": "Gold, Silver, Crystal",
+            "slug": "goldsilvercrystal",
+            "generation": {
+                "slug": "2"
+            }
+        },
+        {
+            "name": "Ruby, Sapphire, Emerald",
+            "slug": "rubysapphireemerald",
+            "generation": {
+                "slug": "3"
+            }
+        },
+        {
+            "name": "Fire Red, Leaf Green",
+            "slug": "fireredleafgreen",
+            "generation": {
+                "slug": "3"
+            }
+        },
+        {
+            "name": "Diamond, Pearl, Platinium",
+            "slug": "diamondpearlplatinium",
+            "generation": {
+                "slug": "4"
+            }
+        },
+        {
+            "name": "Heart Gold, Soul Silver",
+            "slug": "heartgoldsoulsilver",
+            "generation": {
+                "slug": "4"
+            }
+        },
+        {
+            "name": "Black, White",
+            "slug": "blackwhite",
+            "generation": {
+                "slug": "5"
+            }
+        },
+        {
+            "name": "Black 2, White 2",
+            "slug": "black2white2",
+            "generation": {
+                "slug": "5"
+            }
+        },
+        {
+            "name": "X, Y",
+            "slug": "xy",
+            "generation": {
+                "slug": "6"
+            }
+        },
+        {
+            "name": "Omega Ruby, Alpha Sapphire",
+            "slug": "omegarubyalphasapphire",
+            "generation": {
+                "slug": "6"
+            }
+        },
+        {
+            "name": "Sun, Moon",
+            "slug": "sunmoon",
+            "generation": {
+                "slug": "7"
+            }
+        },
+        {
+            "name": "Ultra Sun, Ultra Moon",
+            "slug": "ultrasunultramoon",
+            "generation": {
+                "slug": "7"
+            }
+        },
+        {
+            "name": "Let's Go Pikachu, Let's Go Eevee",
+            "slug": "letsgopikachuletsgoeevee",
+            "generation": {
+                "slug": "7"
+            }
+        },
+        {
+            "name": "Pokemon Go",
+            "slug": "pokemongo",
+            "generation": {
+                "slug": "7"
+            }
+        },
+        {
+            "name": "Sword, Shield",
+            "slug": "swordshield",
+            "generation": {
+                "slug": "8"
+            }
+        },
+        {
+            "name": "Brilliant Diamond, Shining Pearl",
+            "slug": "brilliantdiamondshiningpearl",
+            "generation": {
+                "slug": "8"
+            }
+        },
+        {
+            "name": "Pokémon Legends Arceus",
+            "slug": "pokemonlegendsarceus",
+            "generation": {
+                "slug": "8"
+            }
+        },
+        {
+            "name": "Scarlet, Violet",
+            "slug": "scarletviolet",
+            "generation": {
+                "slug": "8"
+            }
+        }
+    ],
+    "collections": [
+        {
+            "name": "Sword, Shield - Dynamax Adventures bosses",
+            "slug": "swshdynamaxadventuresbosses",
+            "order_number": 11
+        },
+        {
+            "name": "Scarlet, Violet - Paldea's outbreaks",
+            "slug": "svmassoutbreakspaldea",
+            "order_number": 20
+        },
+        {
+            "name": "Scarlet, Violet - Kitakami's outbreaks",
+            "slug": "svmassoutbreakskitakami",
+            "order_number": 21
+        },
+        {
+            "name": "Scarlet, Violet - Terrarium's outbreaks",
+            "slug": "svmassoutbreaksterrarium",
+            "order_number": 22
+        },
+        {
+            "name": "Scarlet, Violet - Transferable",
+            "slug": "svtransferable",
+            "order_number": 23
+        },
+        {
+            "name": "Pokemon Go - Shadow",
+            "slug": "pogoshadow",
+            "order_number": 50
+        },
+        {
+            "name": "Pokemon Go - Shiny Shadow",
+            "slug": "pogoshadowshiny",
+            "order_number": 51
+        },
+        {
+            "name": "Pokemon Go - Dynamax",
+            "slug": "pogodynamax",
+            "order_number": 52
+        }
+    ]
+}
