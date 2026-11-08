@@ -23,6 +23,7 @@ final class DexCategoryTest extends TestCase
         $this->assertSame('main', $category->getSlug());
         $this->assertSame('Main games', $category->getName());
         $this->assertSame('Jeux principaux', $category->getFrenchName());
+        $this->assertSame(['en' => 'Main games', 'fr' => 'Jeux principaux'], $category->getNames());
         $this->assertSame(1, $category->getOrderNumber());
     }
 }

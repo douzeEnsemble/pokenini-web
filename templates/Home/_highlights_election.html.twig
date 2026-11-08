@@ -1,14 +1,13 @@
-{% set locale = app.request.locale %}
 <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
   {% for election in elections %}
   {% set dex = election.dex %}
   {% set state = election.state %}
-  {% set name = (locale is same as('fr') ? dex.frenchName : dex.name)|split("\n")|first %}
+  {% set name = dex.names|localized|split("\n")|first %}
   {% set favourite = dex.report is not null ? dex.report.favourite : null %}
   <li>
     <a href="{{ path('app_electionindex_index', {'dexSlug': dex.slug}) }}" class="d-flex align-items-center gap-3 p-2 rounded-3 text-body text-decoration-none bg-body-tertiary hub-highlight hub-highlight-election" data-state="{{ state }}">
       {% if favourite is not null %}
-      {% set favouriteName = locale is same as('fr') ? favourite.pokemon.labels.simplifiedFrenchName : favourite.pokemon.labels.simplifiedName %}
+      {% set favouriteName = favourite.pokemonSimplifiedNames|localized %}
       <img
         src="{{ pokemonIconUrl|format(dex.flags.isShiny ? 'shiny' : 'regular', favourite.pokemon.icon) }}"
         class="flex-shrink-0 img-loader hub-highlight-pokemon"

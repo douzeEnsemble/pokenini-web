@@ -1,6 +1,9 @@
 logout: "Log out"
 login: "Log in"
 
+date:
+  short: "m/d"
+
 action:
   no_thanks: "No thanks"
 
@@ -102,6 +105,7 @@ album:
       regular: "Image if"
       shiny: "Shiny image of"
   catch_state:
+    none: "No"
     select:
       label: "Catch status of {pokemonName}"
     edit:

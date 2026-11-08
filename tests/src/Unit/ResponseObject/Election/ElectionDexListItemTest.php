@@ -49,10 +49,12 @@ final class ElectionDexListItemTest extends TestCase
         $this->assertSame('swordshield', $item->getOriginalSlug());
         $this->assertSame('Sword, Shield', $item->getName());
         $this->assertSame('Épée, Bouclier', $item->getFrenchName());
+        $this->assertSame(['en' => 'Sword, Shield', 'fr' => 'Épée, Bouclier'], $item->getNames());
         $this->assertSame($flags, $item->getFlags());
         $this->assertSame('box', $item->getDisplayTemplate());
         $this->assertSame('A description', $item->getDescription());
         $this->assertSame('Une description', $item->getFrenchDescription());
+        $this->assertSame(['en' => 'A description', 'fr' => 'Une description'], $item->getDescriptions());
         $this->assertSame(832, $item->getDexTotalCount());
         $this->assertNull($item->getReport());
         $this->assertNull($item->getCategory());
@@ -84,6 +86,7 @@ final class ElectionDexListItemTest extends TestCase
         $this->assertNull($item->getDisplayTemplate());
         $this->assertNull($item->getDescription());
         $this->assertNull($item->getFrenchDescription());
+        $this->assertSame(['en' => null, 'fr' => null], $item->getDescriptions());
         $this->assertNull($item->getDexTotalCount());
         $this->assertNull($item->getReport());
     }

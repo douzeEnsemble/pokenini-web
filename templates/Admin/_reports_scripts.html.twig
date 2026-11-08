@@ -142,7 +142,7 @@
 
 <script>
   (function () {
-    {% set dexUsageLabels = reportsData.dex_usage|map(d => locale is same as('fr') ? d.dex.french_name : d.dex.name) %}
+    {% set dexUsageLabels = reportsData.dex_usage|map(d => {'en': d.dex.name, 'fr': d.dex.french_name}|localized) %}
     {% set dexUsageData = reportsData.dex_usage|map(d => d.count) %}
     new Chart(document.getElementById('dex_usage'), {
       locale: '{{ locale }}',
@@ -203,7 +203,7 @@
 
 <script>
   (function () {
-    {% set catchStateUsageLabels = reportsData.catch_state_usage|map(d => locale is same as('fr') ? d.catch_state.french_name : d.catch_state.name) %}
+    {% set catchStateUsageLabels = reportsData.catch_state_usage|map(d => {'en': d.catch_state.name, 'fr': d.catch_state.french_name}|localized) %}
     {% set catchStateUsageData = reportsData.catch_state_usage|map(d => d.count) %}
     {% set catchStateUsageColors = reportsData.catch_state_usage|map(d => d.catch_state.color) %}
 

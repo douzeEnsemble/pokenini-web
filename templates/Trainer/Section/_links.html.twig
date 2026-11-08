@@ -10,14 +10,14 @@
       <div class="dex-links-edge">
         <div class="dex-links-node">
           <img src="{{ fromBannerUrl }}" class="img-loader" alt="" width="578" height="325" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.classList.add('is-loaded')">
-          <span>{{ locale is same as('fr') ? edge.from.settings.frenchName : edge.from.settings.name }}</span>
+          <span>{{ edge.from.settings.names|localized }}</span>
         </div>
         <div class="dex-links-arrow" title="{{ ('album.offcanvas.links.direction.'~(edge.mode == 'both' ? 'both' : 'to'))|trans }}">
           <i class="bi {{ edge.mode == 'both' ? 'bi-arrow-left-right' : 'bi-arrow-right' }}"></i>
         </div>
         <div class="dex-links-node">
           <img src="{{ toBannerUrl }}" class="img-loader" alt="" width="578" height="325" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.classList.add('is-loaded')">
-          <span>{{ locale is same as('fr') ? edge.to.settings.frenchName : edge.to.settings.name }}</span>
+          <span>{{ edge.to.settings.names|localized }}</span>
         </div>
       </div>
     {% endfor %}

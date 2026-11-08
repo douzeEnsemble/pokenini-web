@@ -152,8 +152,8 @@
                         {{ 'nav.cookie-manager'|trans }}
                     </button>
                 </li>
+                {% for langTarget in enabled_locales()|filter(l => l != locale) %}
                 <li class="nav-item lang-switch">
-                    {% set langTarget = locale == 'fr' ? 'en' : 'fr' %}
                     {% set routeParameters = currentRouteParameters|merge({
                         '_locale': langTarget
                     }) %}
@@ -162,16 +162,18 @@
                         't': sharedTrainerId
                     }) %}
                     {% endif %}
+                    {# Without a route, the locale is the first segment of the path (/fr/…) #}
                     <a
                         class="nav-link"
                         href="{{ currentRoute
                             ? path(currentRoute, routeParameters)
-                            : app.request.requesturi|replace({'/fr/': '/en/', '/en/': '/fr/'}) }}"
+                            : '/' ~ langTarget ~ app.request.requesturi[3:] }}"
                     >
                         <i class="bi bi-translate" aria-hidden="true"></i>
                         {{ ('nav.lang.'~langTarget)|trans([], 'messages', langTarget) }}
                     </a>
                 </li>
+                {% endfor %}
                 {% if is_granted("ROLE_ADMIN") %}
                 {% set adminPages = [
                     {'key': 'update_data', 'label': 'admin.actions.update_data.title', 'route': 'app_admin_update_data'},

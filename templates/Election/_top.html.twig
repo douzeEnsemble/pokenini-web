@@ -12,15 +12,15 @@
     {% for item in electionTop.items %}
       <div class="election-top-item col text-center position-relative" data-attr-elo="{{ item.score.elo }}">
         {% if pokedex.dex.isShiny %}
-          {{ imageMacros.shinyPokemonImage(item, locale) }}
+          {{ imageMacros.shinyPokemonImage(item) }}
         {% else %}
-          {{ imageMacros.regularPokemonImage(item, locale) }}
+          {{ imageMacros.regularPokemonImage(item) }}
         {% endif %}
         <br>
         {% if item.score.significance %}
           <i class="bi bi-star"></i>
         {% endif %}
-        <strong>{{ locale is same as('fr') ? item.pokemon.labels.simplifiedFrenchName : item.pokemon.labels.simplifiedName }}</strong>
+        <strong>{{ item.pokemonSimplifiedNames|localized }}</strong>
         {% if item.score.significance %}
           <i class="bi bi-star"></i>
         {% endif %}

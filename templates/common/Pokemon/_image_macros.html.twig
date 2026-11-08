@@ -1,23 +1,21 @@
-{% macro regularPokemonIcon(item, locale, classMore, showCredit = true) %}
+{% macro regularPokemonIcon(item, classMore, showCredit = true) %}
     {{ _self.pokemonIcon(
         item,
         'regular',
-        locale,
         classMore,
         showCredit,
     ) }}
 {% endmacro %}
-{% macro shinyPokemonIcon(item, locale, classMore, showCredit = true) %}
+{% macro shinyPokemonIcon(item, classMore, showCredit = true) %}
     {{ _self.pokemonIcon(
         item,
         'shiny',
-        locale,
         classMore,
         showCredit,
     ) }}
 {% endmacro %}
-{% macro pokemonIcon(item, dir, locale, classMore, showCredit = true) %}
-    {% set pokemonName = locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName %}
+{% macro pokemonIcon(item, dir, classMore, showCredit = true) %}
+    {% set pokemonName = item.pokemonNames|localized %}
 
     {% set iconUrl = pokemonIconUrl|format(dir, item.pokemonIcon) %}
     {% set credit = dir is same as('shiny') ? item.pokemonSmallShinyCredit : item.pokemonSmallRegularCredit %}
@@ -37,24 +35,22 @@
     {% endif %}
 {% endmacro %}
 
-{% macro regularPokemonImage(item, locale, classMore) %}
+{% macro regularPokemonImage(item, classMore) %}
     {{ _self.pokemonImage(
         item,
         'regular',
-        locale,
         classMore,
     ) }}
 {% endmacro %}
-{% macro shinyPokemonImage(item, locale, classMore) %}
+{% macro shinyPokemonImage(item, classMore) %}
     {{ _self.pokemonImage(
         item,
         'shiny',
-        locale,
         classMore,
     ) }}
 {% endmacro %}
-{% macro pokemonImage(item, dir, locale, classMore) %}
-    {% set pokemonName = locale is same as('fr') ? item.pokemonFrenchName : item.pokemonName %}
+{% macro pokemonImage(item, dir, classMore) %}
+    {% set pokemonName = item.pokemonNames|localized %}
 
     {% set imageUrl = pokemonImageUrl|format(dir, item.pokemonIcon) %}
     {% set credit = dir is same as('shiny') ? item.pokemonBigShinyCredit : item.pokemonBigRegularCredit %}

@@ -17,8 +17,7 @@
 {% endblock stylesheets %}
 
 {% block container %}
-  {% set locale = app.request.locale %}
-  {% set dexName = (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+  {% set dexName = game.dex.names|localized|split("\n")|first %}
   {% set wrongCount = rounds|filter(round => not round.isCorrect)|length %}
 
   <div class="row">
@@ -61,8 +60,8 @@
   <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 game-rounds">
     {% for round in rounds %}
     {% set pokemon = round.pokemon %}
-    {% set pokemonName = locale is same as('fr') ? pokemon.frenchName : pokemon.name %}
-    {% set formsLabel = locale is same as('fr') ? pokemon.formsFrenchLabel : pokemon.formsLabel %}
+    {% set pokemonName = pokemon.names|localized %}
+    {% set formsLabel = pokemon.formsLabels|localized %}
     <div class="col game-round {{ round.isCorrect ? 'is-correct' : 'is-wrong' }}">
       <article class="card h-100 border-{{ round.isCorrect ? 'success' : 'danger' }}">
         <header class="card-header d-flex justify-content-between align-items-center">

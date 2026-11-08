@@ -42,6 +42,14 @@ final class PokemonCreditRow
         return $this->pokemonFrenchName;
     }
 
+    /**
+     * @return array<string, string> the name of the Pokémon indexed by locale
+     */
+    public function getPokemonNames(): array
+    {
+        return ['en' => $this->getPokemonName(), 'fr' => $this->getPokemonFrenchName()];
+    }
+
     public function getPokemonIcon(): string
     {
         return $this->pokemonIcon;

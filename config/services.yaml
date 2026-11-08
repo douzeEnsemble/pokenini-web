@@ -1,4 +1,8 @@
 parameters:
+  # Enabled locales, in display order (keep in sync with framework.enabled_locales and the route requirement)
+  app.locales: ["en", "fr"]
+  # Used when a name is missing in the current locale
+  app.fallback_locale: "en"
   # The images of the shiny game are fetched by the server, as their URL gives the answer
   shiny_game.image_url: "%env(POKEMON_IMAGE_URL)%"
   # Written by the CI at release time, its content versions the CSS and JS URLs

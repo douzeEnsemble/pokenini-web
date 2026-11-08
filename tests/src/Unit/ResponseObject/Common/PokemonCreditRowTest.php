@@ -37,6 +37,7 @@ final class PokemonCreditRowTest extends TestCase
         $this->assertSame('bulbasaur', $row->getPokemonSlug());
         $this->assertSame('Bulbasaur', $row->getPokemonName());
         $this->assertSame('Bulbizarre', $row->getPokemonFrenchName());
+        $this->assertSame(['en' => 'Bulbasaur', 'fr' => 'Bulbizarre'], $row->getPokemonNames());
         $this->assertSame('bulbasaur', $row->getPokemonIcon());
         $this->assertSame($smallRegular, $row->getSmallRegularCredit());
         $this->assertNull($row->getSmallShinyCredit());

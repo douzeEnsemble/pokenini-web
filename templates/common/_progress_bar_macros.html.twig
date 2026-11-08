@@ -4,13 +4,13 @@
   touch, and needs only one interaction to see all of them instead of hunting
   for each sliver by hand. Bootstrap's Popover already defaults to a click
   trigger, so no extra data-bs-trigger is needed. #}
-{% macro catchStateBar(report, locale) %}
+{% macro catchStateBar(report) %}
 {% set legendContent %}
 <ul class="list-unstyled mb-0">
     {% for line in report.detail %}
         {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
         {% set completion = report.total ? (100 * count / report.total)|round(2) : 0 %}
-        {% set stateName = locale is same as('fr') ? line.frenchName : line.name %}
+        {% set stateName = line.names|localized %}
         <li class="d-flex align-items-center gap-2 mb-1">
             <span class="catch-state-dot catch-state-{{ line.slug }}"></span>
             <span>{{ stateName }} : {{ completion }}% ({{ count|number_format(0, '.', ' ') }})</span>
@@ -29,7 +29,7 @@
     {% for line in report.detail %}
         {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
         {% set completion = report.total ? (100 * count / report.total)|round(2) : 0 %}
-        {% set label = (locale is same as('fr') ? line.frenchName : line.name) ~ ': ' ~ completion ~ '%' %}
+        {% set label = (line.names|localized) ~ ': ' ~ completion ~ '%' %}
         <div class="progress-bar catch-state-{{ line.slug }}"
             role="progressbar"
             aria-label="{{ label }}"

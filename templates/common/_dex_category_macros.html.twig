@@ -1,21 +1,21 @@
 {# Groups of dex, made by the dex_category_groups filter #}
 {% macro slug(group) %}{{ group.category is null ? 'other' : group.category.slug }}{% endmacro %}
 
-{% macro name(group, locale) %}
+{% macro name(group) %}
 {%- if group.category is null -%}
   {{ 'dex_category.other'|trans }}
 {%- else -%}
-  {{ locale is same as('fr') ? group.category.frenchName : group.category.name }}
+  {{ group.category.names|localized }}
 {%- endif -%}
 {% endmacro %}
 
 {# Links to every group of the list, put above the list #}
-{% macro summary(groups, locale) %}
+{% macro summary(groups) %}
 <nav class="dex-category-summary d-flex flex-wrap gap-2 mt-3" aria-label="{{ 'dex_category.summary'|trans }}">
   {% for group in groups %}
   {% set slug = _self.slug(group) %}
   <a class="btn btn-sm btn-outline-primary dex-category-link" href="#dex-category-{{ slug }}" data-dex-category-list="#dex-category-{{ slug }}-list">
-    {{ _self.name(group, locale) }}
+    {{ _self.name(group) }}
     <span class="badge text-bg-secondary dex-category-link-count">{{ group.items|length }}</span>
   </a>
   {% endfor %}
@@ -23,7 +23,7 @@
 {% endmacro %}
 
 {# Title of a group, which folds and unfolds the list that follows it (the attributes of that list are given by listAttributes) #}
-{% macro heading(group, locale, countKey = 'dex_category.dex_count', tag = 'h2') %}
+{% macro heading(group, countKey = 'dex_category.dex_count', tag = 'h2') %}
 {% set slug = _self.slug(group) %}
 <div class="dex-category d-flex align-items-baseline gap-2 border-bottom pb-2 mt-4 mb-3" id="dex-category-{{ slug }}">
   <{{ tag }} class="h4 mb-0 dex-category-name">
@@ -36,7 +36,7 @@
       aria-controls="dex-category-{{ slug }}-list"
     >
       <i class="bi bi-chevron-down" aria-hidden="true"></i>
-      {{ _self.name(group, locale) }}
+      {{ _self.name(group) }}
     </button>
   </{{ tag }}>
   <span class="small text-body-secondary dex-category-count">{{ countKey|trans({'count': group.items|length}) }}</span>

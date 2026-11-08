@@ -40,6 +40,24 @@ final class TopPokemon
         return $this->pokemon->getLabels()->getFrenchName();
     }
 
+    /**
+     * @return array<string, string> the simplified name of the Pokémon indexed by locale
+     */
+    public function getPokemonSimplifiedNames(): array
+    {
+        $labels = $this->pokemon->getLabels();
+
+        return ['en' => $labels->getSimplifiedName(), 'fr' => $labels->getSimplifiedFrenchName()];
+    }
+
+    /**
+     * @return array<string, string> the name of the Pokémon indexed by locale
+     */
+    public function getPokemonNames(): array
+    {
+        return ['en' => $this->getPokemonName(), 'fr' => $this->getPokemonFrenchName()];
+    }
+
     public function getPokemonSmallRegularCredit(): ?PokemonCredit
     {
         return $this->pokemon->getSmallRegularCredit();

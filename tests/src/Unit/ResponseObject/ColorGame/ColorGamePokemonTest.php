@@ -23,10 +23,12 @@ final class ColorGamePokemonTest extends TestCase
         $this->assertSame('raichu-alola', $object->getSlug());
         $this->assertSame('Alolan Raichu', $object->getName());
         $this->assertSame('Raichu d\'Alola', $object->getFrenchName());
+        $this->assertSame(['en' => 'Alolan Raichu', 'fr' => 'Raichu d\'Alola'], $object->getNames());
         $this->assertSame('Raichu', $object->getSimplifiedName());
         $this->assertSame('Raichu fr', $object->getSimplifiedFrenchName());
         $this->assertSame('Alolan form', $object->getFormsLabel());
         $this->assertSame('Forme d\'Alola', $object->getFormsFrenchLabel());
+        $this->assertSame(['en' => 'Alolan form', 'fr' => 'Forme d\'Alola'], $object->getFormsLabels());
         $this->assertSame(26, $object->getNationalDexNumber());
         $this->assertSame('raichu-alola-icon', $object->getIcon());
     }

@@ -1,5 +1,5 @@
-{% macro swatches(choice, locale) %}
-{% set names = locale is same as('fr') ? choice.frenchNames : choice.names %}
+{% macro swatches(choice) %}
+{% set names = choice.namesByLocale|localized_list %}
 <span class="color-swatches">
   {% for code in choice.codes %}
   <span class="color-swatch" style="background-color: {{ code }};" title="{{ names[loop.index0] ?? '' }}"></span>

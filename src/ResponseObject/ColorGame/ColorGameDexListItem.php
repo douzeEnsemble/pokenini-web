@@ -53,6 +53,14 @@ final class ColorGameDexListItem implements DexCategorizedInterface
         return $this->frenchName;
     }
 
+    /**
+     * @return array<string, string> the name indexed by locale
+     */
+    public function getNames(): array
+    {
+        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+    }
+
     public function isShiny(): bool
     {
         return $this->isShiny;
@@ -76,6 +84,14 @@ final class ColorGameDexListItem implements DexCategorizedInterface
     public function getFrenchDescription(): ?string
     {
         return $this->frenchDescription;
+    }
+
+    /**
+     * @return array<string, null|string> the description indexed by locale
+     */
+    public function getDescriptions(): array
+    {
+        return ['en' => $this->getDescription(), 'fr' => $this->getFrenchDescription()];
     }
 
     public function getPlayableCount(): int

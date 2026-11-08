@@ -177,7 +177,7 @@
             {% if not isCurrent %}<button type="button" class="dex-pick-select" aria-pressed="false">{% endif %}
               <img src="{{ thumbUrl }}" class="img-loader" alt="" width="123" height="69" loading="lazy" onload="this.classList.add('is-loaded')" onerror="this.classList.add('is-loaded')">
               <small>
-                <span class="pick-name">{{ locale is same as('fr') ? item.settings.frenchName : item.settings.name }}</span>
+                <span class="pick-name">{{ item.settings.names|localized }}</span>
                 {% if isCurrent %}
                   <span class="chip-under chip-current">{{ 'album.offcanvas.links.current'|trans }}</span>
                 {% endif %}
@@ -213,8 +213,8 @@
 
         {# Region name or national #}
         {% if dex.regionName is not empty %}
-          <li class="list-group-item flex-fill dex-type dex-type-regional" title="{{ 'album.intro.label.region'|trans }} {{ locale is same as('fr') ? dex.regionFrenchName : dex.regionName }}" data-bs-toggle="tooltip">
-            {{ locale is same as('fr') ? dex.regionFrenchName : dex.regionName }}
+          <li class="list-group-item flex-fill dex-type dex-type-regional" title="{{ 'album.intro.label.region'|trans }} {{ dex.regionNames|localized }}" data-bs-toggle="tooltip">
+            {{ dex.regionNames|localized }}
           </li>
         {% else %}
           <li class="list-group-item flex-fill dex-type dex-type-national" title="{{ 'album.intro.label.dex'|trans }} {{ 'album.intro.value.national'|trans }}" data-bs-toggle="tooltip">
@@ -234,7 +234,7 @@
 
       {# Description #}
       <p id="album-description" class="small">
-        {{- (locale is same as('fr') ? dex.frenchDescription : dex.description)|htmlNl2br -}}
+        {{- dex.descriptions|localized|htmlNl2br -}}
       </p>
       {# Template text #}
       <p class="dex-template small fst-italic">

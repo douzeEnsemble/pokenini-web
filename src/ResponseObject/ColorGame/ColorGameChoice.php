@@ -52,4 +52,12 @@ final class ColorGameChoice
     {
         return $this->frenchNames;
     }
+
+    /**
+     * @return array<string, string[]> the names of the colors indexed by locale
+     */
+    public function getNamesByLocale(): array
+    {
+        return ['en' => $this->getNames(), 'fr' => $this->getFrenchNames()];
+    }
 }
