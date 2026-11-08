@@ -31,4 +31,12 @@ final class ColorGameDexSummary
     {
         return $this->frenchName;
     }
+
+    /**
+     * @return array<string, string> the name indexed by locale
+     */
+    public function getNames(): array
+    {
+        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+    }
 }

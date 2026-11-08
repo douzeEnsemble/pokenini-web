@@ -14,9 +14,9 @@
             <div class="card-pokemon-images">
               <span class="election-card-image-container-{{ pokedex.dex.isShiny ? 'shiny' : 'regular' }}">
                 {% if pokedex.dex.isShiny %}
-                  {{ imageMacros.shinyPokemonImage(item, locale) }}
+                  {{ imageMacros.shinyPokemonImage(item) }}
                 {% else %}
-                  {{ imageMacros.regularPokemonImage(item, locale) }}
+                  {{ imageMacros.regularPokemonImage(item) }}
                 {% endif %}
               </span>
             </div>
@@ -24,20 +24,20 @@
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <strong>
                   {% if pokedex.dex.isDisplayForm %}
-                    {{ locale is same as('fr') ? item.pokemonFrenchName : item.pokemon_name }}
+                    {{ item.pokemonNames|localized }}
                   {% else %}
-                    {{ locale is same as('fr') ? item.pokemonSimplifiedFrenchName : item.pokemonSimplifiedName }}
+                    {{ item.pokemonSimplifiedNames|localized }}
                   {% endif %}
                 </strong>
               </li>
               <li class="list-group-item d-flex justify-content-start align-items-center">
                 <span class="election-card-types election-card-type-primary pokemon-type-{{ item.primaryTypeSlug }} badge">
-                  {{ locale is same as('fr') ? item.primaryTypeFrenchName : item.primaryTypeName }}
+                  {{ item.primaryTypeNames|localized }}
                 </span>
 
-                {% if item.secondaryTypeFrenchName is not null %}
+                {% if item.secondaryTypeNames is not null %}
                   <span class="election-card-types election-card-type-secondary pokemon-type-{{ item.secondaryTypeSlug }} badge ms-2">
-                    {{ locale is same as('fr') ? item.secondaryTypeFrenchName : item.secondaryTypeName }}
+                    {{ item.secondaryTypeNames|localized }}
                   </span>
                 {% endif %}
               </li>

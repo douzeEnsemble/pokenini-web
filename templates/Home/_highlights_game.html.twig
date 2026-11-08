@@ -1,4 +1,3 @@
-{% set locale = app.request.locale %}
 <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
   {% for hubGame in games %}
   {% set game = hubGame.game %}
@@ -10,7 +9,7 @@
         {% if game is null %}
         {{ 'hub.highlights.game.none'|trans }}
         {% else %}
-        {% set dexName = (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+        {% set dexName = game.dex.names|localized|split("\n")|first %}
         {% if hubGame.inProgress %}
         {{ 'hub.highlights.game.in_progress'|trans({'dex': dexName, 'answered': game.answeredCount, 'total': game.roundCount}) }}
         {% else %}

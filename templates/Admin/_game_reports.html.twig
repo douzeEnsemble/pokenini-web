@@ -1,5 +1,3 @@
-{% set locale = app.request.locale %}
-
 {# A share of a total, "-" when there is nothing to share #}
 {% macro rate(value, total) %}
   {%- if total > 0 -%}
@@ -113,7 +111,7 @@
             <tbody>
               {% for row in stats.dex_usage %}
                 <tr>
-                  <th scope="row">{{ locale is same as('fr') ? row.dex.french_name : row.dex.name }}</th>
+                  <th scope="row">{{ {'en': row.dex.name, 'fr': row.dex.french_name}|localized }}</th>
                   <td class="text-end">{{ row.games|number_format(0, '.', ' ') }}</td>
                   <td class="text-end">{{ row.players|number_format(0, '.', ' ') }}</td>
                   <td class="text-end">{{ row.answered|number_format(0, '.', ' ') }}</td>
@@ -141,10 +139,10 @@
             </thead>
             <tbody>
               {% for row in stats.hardest_pokemons %}
-                {% set formsLabel = locale is same as('fr') ? row.pokemon.forms_french_label : row.pokemon.forms_label %}
+                {% set formsLabel = {'en': row.pokemon.forms_label, 'fr': row.pokemon.forms_french_label}|localized %}
                 <tr>
                   <th scope="row">
-                    {{ locale is same as('fr') ? row.pokemon.french_name : row.pokemon.name }}
+                    {{ {'en': row.pokemon.name, 'fr': row.pokemon.french_name}|localized }}
                     {% if formsLabel is not empty %}
                       <small class="text-body-secondary">{{ formsLabel }}</small>
                     {% endif %}

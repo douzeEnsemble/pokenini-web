@@ -35,6 +35,54 @@ final class Pokemon
         return $this->pokemon->getFrenchName();
     }
 
+    /**
+     * @return array<string, string> the name of the Pokémon indexed by locale
+     */
+    public function getPokemonNames(): array
+    {
+        return ['en' => $this->getPokemonName(), 'fr' => $this->getPokemonFrenchName()];
+    }
+
+    /**
+     * @return array<string, string> the simplified name of the Pokémon indexed by locale
+     */
+    public function getPokemonSimplifiedNames(): array
+    {
+        return ['en' => $this->getPokemonSimplifiedName(), 'fr' => $this->getPokemonSimplifiedFrenchName()];
+    }
+
+    /**
+     * @return array<string, string> the forms label of the Pokémon indexed by locale
+     */
+    public function getPokemonFormsLabels(): array
+    {
+        return ['en' => $this->getPokemonFormsLabel(), 'fr' => $this->getPokemonFormsFrenchLabel()];
+    }
+
+    /**
+     * @return null|array<string, string> the name of the catch state indexed by locale
+     */
+    public function getCatchStateNames(): ?array
+    {
+        return $this->catchState?->getNames();
+    }
+
+    /**
+     * @return null|array<string, string> the name of the primary type indexed by locale
+     */
+    public function getPrimaryTypeNames(): ?array
+    {
+        return $this->types->getPrimary()?->getNames();
+    }
+
+    /**
+     * @return null|array<string, string> the name of the secondary type indexed by locale
+     */
+    public function getSecondaryTypeNames(): ?array
+    {
+        return $this->types->getSecondary()?->getNames();
+    }
+
     public function getPokemonNationalDexNumber(): int
     {
         return $this->pokemon->getNationalDexNumber();

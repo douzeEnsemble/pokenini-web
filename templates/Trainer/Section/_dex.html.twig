@@ -22,11 +22,11 @@
     {% set dexGroups = trainerDex|dex_category_groups %}
     {% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
     {% if showDexCategories %}
-    {{ dexCategory.summary(dexGroups, locale) }}
+    {{ dexCategory.summary(dexGroups) }}
     {% endif %}
     {% for group in dexGroups %}
     {% if showDexCategories %}
-    {{ dexCategory.heading(group, locale, 'dex_category.dex_count', 'h3') }}
+    {{ dexCategory.heading(group, 'dex_category.dex_count', 'h3') }}
     {% endif %}
     <div class="row{{ showDexCategories ? ' collapse show' }}"{% if showDexCategories %} {{ dexCategory.listAttributes(group) }}{% endif %}>
       {% for dex in group.items %}
@@ -66,12 +66,12 @@
               {{ 'trainer.dex.see'|trans }}
             </a>
             <p class="h5">
-              {{ locale is same as('fr') ? dex.settings.frenchName : dex.settings.name }}
+              {{ dex.settings.names|localized }}
             </p>
           </div>
 
           {% if dex.report is not null %}
-          {{ progressBar.catchStateBar(dex.report, locale) }}
+          {{ progressBar.catchStateBar(dex.report) }}
           {% endif %}
 
           <hr>
@@ -99,7 +99,7 @@
       <div class="toast-container position-fixed bottom-0 mb-5 end-0 p-3">
         {{ include('common/_too_many_on_hub_toast.html.twig') }}
         {% for dex in trainerDex %}
-          {% set dexName = locale is same as('fr') ? dex.settings.frenchName : dex.settings.name %}
+          {% set dexName = dex.settings.names|localized %}
           <div id="successToast-{{ dex.settings.slug }}" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
               <div class="toast-body">

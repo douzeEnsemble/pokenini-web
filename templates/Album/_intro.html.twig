@@ -1,4 +1,3 @@
-{% set locale = app.request.locale %}
 {% set currentRoute = app.request.attributes.get('_route') %}
 {% set currentRouteParameters = app.request.attributes.get('_route_params') ?? [] %}
 {% set displayTemplateName = dex.displayTemplate is defined ? dex.displayTemplate : 'box' %}
@@ -30,7 +29,7 @@
         {% endif %}
     </div>
 
-    {% set titles = (locale is same as('fr') ? dex.frenchName : dex.name)|split("\n") %}
+    {% set titles = dex.names|localized|split("\n") %}
     {% set title = titles.0 %}
     {% set subtitle = titles.1 is defined ? titles.1 : '' %}
 

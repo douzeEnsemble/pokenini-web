@@ -1,5 +1,3 @@
-{% set locale = app.request.locale %}
-
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 {% import 'ColorGame/_macros.html.twig' as colorGame %}
@@ -14,15 +12,15 @@
 {% endblock stylesheets %}
 
 {% block container %}
-  {% set dexName = (locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+  {% set dexName = game.dex.names|localized|split("\n")|first %}
 
   {# An abandoned game can still have unanswered rounds: it can not be played anymore #}
   {% set showRound = round is not null and (answer is not null or game.status is same as('in_progress')) %}
 
   {% if showRound %}
     {% set pokemon = round.pokemon %}
-    {% set pokemonName = locale is same as('fr') ? pokemon.frenchName : pokemon.name %}
-    {% set formsLabel = locale is same as('fr') ? pokemon.formsFrenchLabel : pokemon.formsLabel %}
+    {% set pokemonName = pokemon.names|localized %}
+    {% set formsLabel = pokemon.formsLabels|localized %}
     {% include 'Game/_bar.html.twig' with {
       'title': 'color_game.title',
       'dexName': dexName,
@@ -86,7 +84,7 @@
             aria-pressed="false"
           >
             <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
-            {{ colorGame.swatches(choice, locale) }}
+            {{ colorGame.swatches(choice) }}
             <span class="badge text-bg-primary choice-confirm">{{ 'color_game.round.confirm'|trans }}</span>
           </button>
           {% endfor %}
@@ -112,7 +110,7 @@
             {% else %}
             <span class="choice-key" aria-hidden="true">{{ loop.index }}</span>
             {% endif %}
-            {{ colorGame.swatches(choice, locale) }}
+            {{ colorGame.swatches(choice) }}
           </div>
           {% endfor %}
         </div>

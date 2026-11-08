@@ -97,6 +97,7 @@ final class PokemonTest extends KernelTestCase
         $this->assertSame('yes', $object->getCatchStateSlug());
         $this->assertSame('Yes', $object->getCatchStateName());
         $this->assertSame('Oui', $object->getCatchStateFrenchName());
+        $this->assertSame(['en' => 'Yes', 'fr' => 'Oui'], $object->getCatchStateNames());
         $this->assertSame(9854, $object->getPokemonRegionalDexNumber());
         $this->assertSame('fire', $object->getPrimaryTypeSlug());
         $this->assertSame('Fire', $object->getPrimaryTypeName());
@@ -104,6 +105,7 @@ final class PokemonTest extends KernelTestCase
         $this->assertSame('flying', $object->getSecondaryTypeSlug());
         $this->assertSame('Flying', $object->getSecondaryTypeName());
         $this->assertSame('Vol', $object->getSecondaryTypeFrenchName());
+        $this->assertSame(['en' => 'Flying', 'fr' => 'Vol'], $object->getSecondaryTypeNames());
         $this->assertSame('9999-0006-004', $object->getPokemonOrderNumber());
         $smallRegularCredit = $object->getPokemonSmallRegularCredit();
         $this->assertInstanceOf(PokemonCredit::class, $smallRegularCredit);
@@ -177,6 +179,9 @@ final class PokemonTest extends KernelTestCase
         $this->assertSame('Méga Dracaufeu Y', $object->getPokemonFrenchName());
         $this->assertSame('Dracaufeu', $object->getPokemonSimplifiedFrenchName());
         $this->assertSame('Méga Y', $object->getPokemonFormsFrenchLabel());
+        $this->assertSame(['en' => 'Mega Charizard Y', 'fr' => 'Méga Dracaufeu Y'], $object->getPokemonNames());
+        $this->assertSame(['en' => 'Charizard', 'fr' => 'Dracaufeu'], $object->getPokemonSimplifiedNames());
+        $this->assertSame(['en' => 'Mega Y', 'fr' => 'Méga Y'], $object->getPokemonFormsLabels());
         $this->assertSame('charizard-mega-y', $object->getPokemonIcon());
         $this->assertSame(4, $object->getPokemonFamilyOrder());
         $this->assertSame('charmander', $object->getFamilyLeadSlug());
@@ -191,6 +196,7 @@ final class PokemonTest extends KernelTestCase
         $this->assertNull($object->getCatchStateSlug());
         $this->assertNull($object->getCatchStateName());
         $this->assertNull($object->getCatchStateFrenchName());
+        $this->assertNull($object->getCatchStateNames());
         $this->assertNull($object->getPokemonRegionalDexNumber());
         $this->assertSame('fire', $object->getPrimaryTypeSlug());
         $this->assertSame('Fire', $object->getPrimaryTypeName());
@@ -198,6 +204,8 @@ final class PokemonTest extends KernelTestCase
         $this->assertNull($object->getSecondaryTypeSlug());
         $this->assertNull($object->getSecondaryTypeName());
         $this->assertNull($object->getSecondaryTypeFrenchName());
+        $this->assertSame(['en' => 'Fire', 'fr' => 'Feu'], $object->getPrimaryTypeNames());
+        $this->assertNull($object->getSecondaryTypeNames());
         $this->assertSame('9999-0006-004', $object->getPokemonOrderNumber());
     }
 

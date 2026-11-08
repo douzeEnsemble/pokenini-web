@@ -23,5 +23,6 @@ final class WhichShinyGameDexSummaryTest extends TestCase
         $this->assertSame('demo', $object->getSlug());
         $this->assertSame('Demo', $object->getName());
         $this->assertSame('Démo', $object->getFrenchName());
+        $this->assertSame(['en' => 'Demo', 'fr' => 'Démo'], $object->getNames());
     }
 }

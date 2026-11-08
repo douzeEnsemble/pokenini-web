@@ -56,6 +56,14 @@ final class Dex
         return $this->frenchName;
     }
 
+    /**
+     * @return array<string, string> the name indexed by locale
+     */
+    public function getNames(): array
+    {
+        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+    }
+
     public function getFlags(): DexFlags
     {
         return $this->flags;
@@ -84,6 +92,14 @@ final class Dex
     public function getFrenchDescription(): string
     {
         return $this->frenchDescription;
+    }
+
+    /**
+     * @return array<string, string> the description indexed by locale
+     */
+    public function getDescriptions(): array
+    {
+        return ['en' => $this->getDescription(), 'fr' => $this->getFrenchDescription()];
     }
 
     public function getVersion(): string
@@ -141,5 +157,13 @@ final class Dex
     public function getRegionFrenchName(): ?string
     {
         return $this->region?->getFrenchName();
+    }
+
+    /**
+     * @return null|array<string, string> the name of the region indexed by locale
+     */
+    public function getRegionNames(): ?array
+    {
+        return $this->region?->getNames();
     }
 }

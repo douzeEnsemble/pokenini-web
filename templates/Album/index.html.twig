@@ -3,7 +3,7 @@
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 
-{% block title %}Pokénini {{ locale is same as('fr') ? dex.frenchName : dex.name }}{% endblock title %}
+{% block title %}Pokénini {{ dex.names|localized }}{% endblock title %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -85,7 +85,7 @@
     <script src="{{ asset('js/album-links.js') }}"></script>
 
     <script>
-    const catchStates = JSON.parse('{{ catchStates | map(cs => {name: cs.name, frenchName: cs.frenchName, slug: cs.slug, color: cs.color}) | json_encode | raw }}');
+    const catchStates = JSON.parse('{{ catchStates | map(cs => {name: cs.names|localized, slug: cs.slug, color: cs.color}) | json_encode | raw }}');
     const locale = '{{ locale }}';
     const dex = '{{ currentDexSlug }}';
     const dexBannerUrlTemplate = '{{ dexBannerUrl }}';

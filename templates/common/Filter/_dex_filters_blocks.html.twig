@@ -13,7 +13,7 @@
       </option>
       {% for item in types %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredAnyTypes) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -35,7 +35,7 @@
       </option>
       {% for item in types %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredPrimaryTypes) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -60,7 +60,7 @@
       </option>
       {% for item in types %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredSecondaryTypes) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -85,7 +85,7 @@
       </option>
       {% for item in forms.category %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredCategoryForms) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -110,7 +110,7 @@
       </option>
       {% for item in forms.regional %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredRegionalForms) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -135,7 +135,7 @@
       </option>
       {% for item in forms.special %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredSpecialForms) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -160,7 +160,7 @@
       </option>
       {% for item in forms.variant %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredVariantForms) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -182,7 +182,7 @@
       </option>
       {% for item in gameBundles %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredOriginalGameBundles) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -204,13 +204,13 @@
       </option>
       {% for item in gameBundles %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredGameBundlesAvailabilities) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
       {% for item in gameBundles %}
         <option value="!{{ item.slug }}" {{ (('!'~item.slug in filteredGameBundlesAvailabilities) ? 'selected': '') }}>
           {{- 'dex.filters.game_bundle_availability.value.negative'|trans -}}
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -232,13 +232,13 @@
       </option>
       {% for item in gameBundles %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredGameBundlesAvailabilities) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
       {% for item in gameBundles %}
         <option value="!{{ item.slug }}" {{ (('!'~item.slug in filteredGameBundlesAvailabilities) ? 'selected': '') }}>
           {{- 'dex.filters.game_bundle_shiny_availability.value.negative'|trans -}}
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>
@@ -260,13 +260,13 @@
       </option>
       {% for item in collections %}
         <option value="{{ item.slug }}" {{ ((item.slug in filteredCollections) ? 'selected': '') }}>
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
       {% for item in collections %}
         <option value="!{{ item.slug }}" {{ (('!'~item.slug in filteredCollections) ? 'selected': '') }}>
           {{- 'dex.filters.collection.value.negative'|trans -}}
-          {{- (locale is same as('fr') ? item.frenchName : item.name) -}}
+          {{- item.names|localized -}}
         </option>
       {% endfor %}
     </select>

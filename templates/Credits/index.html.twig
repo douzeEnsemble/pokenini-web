@@ -1,5 +1,3 @@
-{% set locale = app.request.locale %}
-
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 
@@ -38,7 +36,7 @@
 
       <div class="credit-grid">
         {% for row in credits %}
-          {% set pokemonName = locale is same as('fr') ? row.pokemonFrenchName : row.pokemonName %}
+          {% set pokemonName = row.pokemonNames|localized %}
           {% set regularIconUrl = pokemonIconUrl|format('regular', row.pokemonIcon) %}
 
           {% if row.hasAnyCredit %}

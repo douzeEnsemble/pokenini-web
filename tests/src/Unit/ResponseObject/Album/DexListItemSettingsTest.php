@@ -27,6 +27,7 @@ final class DexListItemSettingsTest extends TestCase
 
         $this->assertSame('Sword, Shield', $settings->getName());
         $this->assertSame('Épée, Bouclier', $settings->getFrenchName());
+        $this->assertSame(['en' => 'Sword, Shield', 'fr' => 'Épée, Bouclier'], $settings->getNames());
         $this->assertSame('swordshield', $settings->getSlug());
         $this->assertSame('box', $settings->getDisplayTemplate());
     }

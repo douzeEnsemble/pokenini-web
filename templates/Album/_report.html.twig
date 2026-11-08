@@ -6,11 +6,11 @@
     </h2>
 
     {% set progressBarReport = filteredReport.detail is not empty ? filteredReport : report %}
-    {{ progressBar.catchStateBar(progressBarReport, locale) }}
+    {{ progressBar.catchStateBar(progressBarReport) }}
     <table class="table table-hover table-bordered" id="report">
         <tbody>
         {% for line in report.detail %}
-            {% set catchStateLabel = locale is same as('fr') ? line.frenchName : line.name %}
+            {% set catchStateLabel = line.names|localized %}
             <tr class="catch-state-{{ line.slug }}">
                 <th>
                     <span class="float-start">{{ catchStateLabel }}</span>

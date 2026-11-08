@@ -44,6 +44,14 @@ final class WhichShinyGamePokemon
         return $this->frenchName;
     }
 
+    /**
+     * @return array<string, string> the name indexed by locale
+     */
+    public function getNames(): array
+    {
+        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+    }
+
     public function getSimplifiedName(): string
     {
         return $this->simplifiedName;
@@ -62,6 +70,14 @@ final class WhichShinyGamePokemon
     public function getFormsFrenchLabel(): string
     {
         return $this->formsFrenchLabel;
+    }
+
+    /**
+     * @return array<string, string> the forms label indexed by locale
+     */
+    public function getFormsLabels(): array
+    {
+        return ['en' => $this->getFormsLabel(), 'fr' => $this->getFormsFrenchLabel()];
     }
 
     public function getNationalDexNumber(): int

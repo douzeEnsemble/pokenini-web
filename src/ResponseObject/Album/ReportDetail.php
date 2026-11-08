@@ -31,6 +31,14 @@ final class ReportDetail
         return $this->catchState->getFrenchName();
     }
 
+    /**
+     * @return array<string, string> the name indexed by locale
+     */
+    public function getNames(): array
+    {
+        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+    }
+
     public function getColor(): string
     {
         return $this->catchState->getColor();

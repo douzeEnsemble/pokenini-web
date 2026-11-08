@@ -1,5 +1,3 @@
-{% set locale = app.request.locale %}
-
 {% extends 'base.html.twig' %}
 {% use '_nav.html.twig' %}
 {% import "AlbumDexList/_macro.html.twig" as list %}
@@ -27,6 +25,6 @@
       </div>
     </div>
 
-    {{ list.listElections(dex, locale, null) }}
+    {{ list.listElections(dex, null) }}
   </div>
 {% endblock container %}

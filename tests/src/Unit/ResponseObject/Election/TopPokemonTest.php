@@ -54,6 +54,8 @@ final class TopPokemonTest extends TestCase
         $this->assertSame('bulbasaur', $topPokemon->getPokemonIcon());
         $this->assertSame('Bulbasaur', $topPokemon->getPokemonName());
         $this->assertSame('Bulbizarre', $topPokemon->getPokemonFrenchName());
+        $this->assertSame(['en' => 'Bulbasaur', 'fr' => 'Bulbizarre'], $topPokemon->getPokemonNames());
+        $this->assertSame(['en' => 'Bulbasaur', 'fr' => 'Bulbizarre'], $topPokemon->getPokemonSimplifiedNames());
         $this->assertSame($smallRegular, $topPokemon->getPokemonSmallRegularCredit());
         $this->assertNull($topPokemon->getPokemonSmallShinyCredit());
         $this->assertNull($topPokemon->getPokemonBigRegularCredit());

@@ -5,7 +5,7 @@
     <label class="form-check filters-types-container" for="at_{{ item.slug }}">
       <input class="form-check-input" type="checkbox" value="{{ item.slug }}" name="at[]" id="at_{{ item.slug }}" {{ ((filteredAnyTypes is empty or item.slug in filteredAnyTypes) ? 'checked' : '') }}>
       <span class="filters-types pokemon-type-{{ item.slug }} badge">
-        {{ locale is same as('fr') ? item.frenchName : item.name }}
+        {{ item.names|localized }}
       </span>
     </label>
   </div>

@@ -42,6 +42,7 @@ final class ReportDetailTest extends KernelTestCase
         $this->assertSame('yes', $object->getSlug());
         $this->assertSame('Yes', $object->getName());
         $this->assertSame('Oui', $object->getFrenchName());
+        $this->assertSame(['en' => 'Yes', 'fr' => 'Oui'], $object->getNames());
         $this->assertSame('#66bb6a', $object->getColor());
         $this->assertSame(20, $object->getCount());
     }

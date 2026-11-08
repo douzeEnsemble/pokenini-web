@@ -29,6 +29,14 @@ final class DexListItemSettings
         return $this->frenchName;
     }
 
+    /**
+     * @return array<string, string> the name indexed by locale
+     */
+    public function getNames(): array
+    {
+        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+    }
+
     public function getSlug(): string
     {
         return $this->slug;

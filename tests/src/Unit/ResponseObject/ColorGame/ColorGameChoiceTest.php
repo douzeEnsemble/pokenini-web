@@ -24,5 +24,6 @@ final class ColorGameChoiceTest extends TestCase
         $this->assertSame(['#000000', '#FFFFFF'], $object->getCodes());
         $this->assertSame(['black', 'white'], $object->getNames());
         $this->assertSame(['noir', 'blanc'], $object->getFrenchNames());
+        $this->assertSame(['en' => ['black', 'white'], 'fr' => ['noir', 'blanc']], $object->getNamesByLocale());
     }
 }

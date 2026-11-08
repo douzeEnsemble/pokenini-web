@@ -113,7 +113,7 @@
         }
       },
       data: {
-        labels: {{ dailyGames|map(d => d.date|date(locale is same as('fr') ? 'd/m' : 'm/d'))|json_encode()|raw }},
+        labels: {{ dailyGames|map(d => d.date|date('date.short'|trans))|json_encode()|raw }},
         datasets: [
           {% for stats in games %}
           {

@@ -1,4 +1,4 @@
-{% macro item(type, dex, locale, forcedTrainerId) %}
+{% macro item(type, dex, forcedTrainerId) %}
 {% import "common/_progress_bar_macros.html.twig" as progressBar %}
 {% set url = path('app_'~type~'index_index', {'dexSlug': dex.settings.slug, 't': forcedTrainerId ?: null}) %}
 <div class="col-lg-3 col-md-4 col-sm-6 col-12 dex-item position-relative">
@@ -36,7 +36,7 @@
         {% endif %}
       </div>
 
-      {% set titles = (locale is same as('fr') ? dex.settings.frenchName : dex.settings.name)|split("\n") %}
+      {% set titles = dex.settings.names|localized|split("\n") %}
       {% set title = titles.0 %}
       {% set subtitle = titles.1 is defined ? titles.1 : '' %}
       <h2 class="h5 card-title">
@@ -53,7 +53,7 @@
       {% endif %}
 
       {% if dex.report is not null %}
-      {{ progressBar.catchStateBar(dex.report, locale) }}
+      {{ progressBar.catchStateBar(dex.report) }}
       {% endif %}
 
     </div>
@@ -61,7 +61,7 @@
 </div>
 {% endmacro %}
 
-{% macro itemElection(dex, locale, forcedTrainerId) %}
+{% macro itemElection(dex, forcedTrainerId) %}
 {% import "common/_progress_bar_macros.html.twig" as progressBar %}
 {% set url = path('app_electionindex_index', {'dexSlug': dex.slug, 't': forcedTrainerId ?: null}) %}
 <div class="col-lg-3 col-md-4 col-sm-6 col-12 dex-item position-relative">
@@ -99,7 +99,7 @@
         {% endif %}
       </div>
 
-      {% set titles = (locale is same as('fr') ? dex.frenchName : dex.name)|split("\n") %}
+      {% set titles = dex.names|localized|split("\n") %}
       {% set title = titles.0 %}
       {% set subtitle = titles.1 is defined ? titles.1 : '' %}
       <h2 class="h5 card-title">
@@ -128,7 +128,7 @@
 
       {% if dex.description is not null %}
       <p class="small text-start text-body-secondary">
-        {{ (locale is same as('fr') ? dex.frenchDescription : dex.description) }}
+        {{ dex.descriptions|localized }}
       </p>
       {% endif %}
 
@@ -147,20 +147,20 @@
 </div>
 {% endmacro %}
 
-{% macro listAlbums(dex, locale, forcedTrainerId = null, headingTag = 'h2') %}
+{% macro listAlbums(dex, forcedTrainerId = null, headingTag = 'h2') %}
 {% import 'common/_dex_category_macros.html.twig' as dexCategory %}
 {% set dexGroups = dex|filter(item => item.flags.isOnHome is same as(true))|dex_category_groups %}
 {% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
 {% if showDexCategories %}
-{{ dexCategory.summary(dexGroups, locale) }}
+{{ dexCategory.summary(dexGroups) }}
 {% endif %}
 {% for group in dexGroups %}
 {% if showDexCategories %}
-{{ dexCategory.heading(group, locale, 'dex_category.album_count', headingTag) }}
+{{ dexCategory.heading(group, 'dex_category.album_count', headingTag) }}
 {% endif %}
 <div class="row g-lg-4 g-md-4 g-sm-3 g-2{{ showDexCategories ? ' collapse show' }}"{% if showDexCategories %} {{ dexCategory.listAttributes(group) }}{% endif %}>
   {% for item in group.items %}
-  {{ _self.item('album', item, locale, forcedTrainerId) }}
+  {{ _self.item('album', item, forcedTrainerId) }}
   {% endfor %}
 </div>
 {% else %}
@@ -170,20 +170,20 @@
 {% endfor %}
 {% endmacro %}
 
-{% macro listElections(dex, locale, forcedTrainerId = null) %}
+{% macro listElections(dex, forcedTrainerId = null) %}
 {% import 'common/_dex_category_macros.html.twig' as dexCategory %}
 {% set dexGroups = dex|dex_category_groups %}
 {% set showDexCategories = dexGroups|filter(group => group.category is not null) is not empty %}
 {% if showDexCategories %}
-{{ dexCategory.summary(dexGroups, locale) }}
+{{ dexCategory.summary(dexGroups) }}
 {% endif %}
 {% for group in dexGroups %}
 {% if showDexCategories %}
-{{ dexCategory.heading(group, locale) }}
+{{ dexCategory.heading(group) }}
 {% endif %}
 <div class="row g-lg-4 g-md-4 g-sm-3 g-2{{ showDexCategories ? ' collapse show' }}"{% if showDexCategories %} {{ dexCategory.listAttributes(group) }}{% endif %}>
   {% for item in group.items %}
-  {{ _self.itemElection(item, locale, forcedTrainerId) }}
+  {{ _self.itemElection(item, forcedTrainerId) }}
   {% endfor %}
 </div>
 {% else %}

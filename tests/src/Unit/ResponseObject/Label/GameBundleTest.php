@@ -28,6 +28,7 @@ final class GameBundleTest extends TestCase
 
         $this->assertSame('Toto', $object->getName());
         $this->assertSame('Tautaux', $object->getFrenchName());
+        $this->assertSame(['en' => 'Toto', 'fr' => 'Tautaux'], $object->getNames());
         $this->assertSame('toto', $object->getSlug());
         $this->assertSame('gen_y', $object->getGeneration()->getSlug());
     }

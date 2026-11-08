@@ -54,7 +54,7 @@
   On a phone it opens the share menu of the device, elsewhere it copies the text (see public/js/game-share.js and the toasts of shareToasts).
 #}
 {% macro sharePanel(game, titleKey, dexRoute, isShiny = false, showHeading = true) %}
-{% set dexName = (app.request.locale is same as('fr') ? game.dex.frenchName : game.dex.name)|split("\n")|first %}
+{% set dexName = game.dex.names|localized|split("\n")|first %}
 {% set percent = game.answeredCount > 0 ? (game.correctCount * 100 / game.answeredCount)|round : 0 %}
 {% set header = 'Pokénini · ' ~ titleKey|trans ~ (isShiny ? ' ✨' : '') ~ "\n" ~ dexName ~ ' · ' ~ 'game.share.score'|trans({'correct': game.correctCount, 'answered': game.answeredCount, 'percent': percent}) %}
 {% set link = url(dexRoute) %}
