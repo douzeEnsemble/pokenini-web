@@ -51,11 +51,11 @@ final class GetLabelsServiceTest extends AbstractTestBackService
             'GET',
             $json,
             self::ENDPOINT,
-            [],
+            ['query' => ['lang' => 'fr']],
             $serializer,
         );
 
-        $object = $service->get();
+        $object = $service->get('fr');
 
         $this->assertCount(1, $object->getCatchStates());
         $this->assertCount(2, $object->getTypes());
@@ -91,11 +91,11 @@ final class GetLabelsServiceTest extends AbstractTestBackService
             'GET',
             $json,
             self::ENDPOINT,
-            [],
+            ['query' => ['lang' => 'fr']],
             $serializer,
         );
 
-        $object = $service->get();
+        $object = $service->get('fr');
 
         $this->assertCount(1, $object->getCatchStates());
         $this->assertCount(2, $object->getTypes());

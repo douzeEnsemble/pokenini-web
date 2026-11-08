@@ -8,11 +8,15 @@ use App\ResponseObject\Label\Labels;
 
 class GetLabelsService extends AbstractBackService
 {
-    public function get(): Labels
+    /**
+     * @param string $locale the language of the names of the labels
+     */
+    public function get(string $locale): Labels
     {
         $json = $this->requestContent(
             'GET',
-            '/labels'
+            '/labels',
+            ['query' => ['lang' => $locale]],
         );
 
         return $this->serializer->deserialize($json, Labels::class, 'json');

@@ -31,4 +31,14 @@ final class CollectionTest extends TestCase
         $this->assertSame('toto', $object->getSlug());
         $this->assertSame(11, $object->getOrderNumber());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new Collection('Boss', null, 'boss', 11);
+
+        $this->assertSame('Boss', $object->getName());
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'Boss'], $object->getNames());
+    }
 }

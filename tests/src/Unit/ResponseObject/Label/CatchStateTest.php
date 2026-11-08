@@ -31,4 +31,14 @@ final class CatchStateTest extends TestCase
         $this->assertSame('toto', $object->getSlug());
         $this->assertSame('#blouge', $object->getColor());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new CatchState('Non', null, 'no', '#e57373');
+
+        $this->assertSame('Non', $object->getName());
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'Non'], $object->getNames());
+    }
 }

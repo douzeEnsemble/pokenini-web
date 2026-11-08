@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Label;
 
+use App\ResponseObject\Common\NamesMap;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final class Collection
@@ -12,7 +13,7 @@ final class Collection
         #[SerializedName('name')]
         private readonly string $name,
         #[SerializedName('french_name')]
-        private readonly string $frenchName,
+        private readonly ?string $frenchName,
         #[SerializedName('slug')]
         private readonly string $slug,
         #[SerializedName('order_number')]
@@ -24,7 +25,7 @@ final class Collection
         return $this->name;
     }
 
-    public function getFrenchName(): string
+    public function getFrenchName(): ?string
     {
         return $this->frenchName;
     }
@@ -34,7 +35,7 @@ final class Collection
      */
     public function getNames(): array
     {
-        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+        return NamesMap::from($this->name, $this->frenchName);
     }
 
     public function getSlug(): string

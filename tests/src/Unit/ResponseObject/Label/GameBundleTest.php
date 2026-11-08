@@ -32,4 +32,14 @@ final class GameBundleTest extends TestCase
         $this->assertSame('toto', $object->getSlug());
         $this->assertSame('gen_y', $object->getGeneration()->getSlug());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new GameBundle('Rouge, Vert', null, 'rgby', new Generation('1'));
+
+        $this->assertSame('Rouge, Vert', $object->getName());
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'Rouge, Vert'], $object->getNames());
+    }
 }

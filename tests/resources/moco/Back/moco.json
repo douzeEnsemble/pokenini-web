@@ -1667,6 +1667,34 @@
   {
     "request": {
       "uri": "/labels",
+      "queries": {
+        "lang": "fr"
+      },
+      "headers": {
+        "accept": "application/json"
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/labels_fr.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/labels",
+      "queries": {
+        "lang": "en"
+      },
+      "headers": {
+        "accept": "application/json"
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/labels_en.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/labels",
       "headers": {
         "accept": "application/json"
       }

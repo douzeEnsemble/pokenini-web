@@ -31,4 +31,14 @@ final class CategoryFormTest extends TestCase
         $this->assertSame(['en' => 'Toto', 'fr' => 'Tautaux'], $object->getNames());
         $this->assertSame('toto', $object->getSlug());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new CategoryForm('de Départ', null, 'starter');
+
+        $this->assertSame('de Départ', $object->getName());
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'de Départ'], $object->getNames());
+    }
 }
