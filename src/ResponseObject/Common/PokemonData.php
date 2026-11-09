@@ -57,6 +57,30 @@ final class PokemonData
         return $this->labels->getFrenchName();
     }
 
+    /**
+     * @return array<string, string> the names indexed by locale
+     */
+    public function getNames(): array
+    {
+        return $this->labels->getNames();
+    }
+
+    /**
+     * @return array<string, string> the simplified names indexed by locale
+     */
+    public function getSimplifiedNames(): array
+    {
+        return $this->labels->getSimplifiedNames();
+    }
+
+    /**
+     * @return array<string, string> the forms label indexed by locale
+     */
+    public function getFormsLabels(): array
+    {
+        return $this->labels->getFormsLabels();
+    }
+
     public function getNationalDexNumber(): int
     {
         return $this->nationalDexNumber;

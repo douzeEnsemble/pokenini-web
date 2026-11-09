@@ -115,6 +115,44 @@ final class GetPokedexServiceTest extends AbstractTestBackService
         $this->assertSame(0, $album->getPokedex()->getFilteredReport()->getTotalCaught());
     }
 
+    #[Test]
+    public function getInALanguage(): void
+    {
+        $json = '{"doesnt": "matter"}';
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->willReturn($this->getStubAlbum())
+        ;
+
+        $service = $this->getService('lite', $json, ['lang' => 'fr'], $serializer);
+
+        $album = $service->get('lite', [], 'fr');
+
+        $this->assertSame('Stub', $album->getPokedex()->getDex()?->getName());
+    }
+
+    #[Test]
+    public function getWithTrainerIdInALanguage(): void
+    {
+        $json = '{"doesnt": "matter"}';
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->willReturn($this->getStubAlbum())
+        ;
+
+        $service = $this->getService('lite', $json, ['trainer_id' => '123', 'lang' => 'fr'], $serializer);
+
+        $album = $service->getWithTrainerId('123', 'lite', [], 'fr');
+
+        $this->assertSame('Stub', $album->getPokedex()->getDex()?->getName());
+    }
+
     #[\Override]
     protected function instanciateService(
         LoggerInterface $logger,

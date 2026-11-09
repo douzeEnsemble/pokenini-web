@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\Album;
 
+use App\ResponseObject\Common\NamesMap;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 /**
@@ -19,7 +20,7 @@ final class Dex
         #[SerializedName('name')]
         private readonly string $name,
         #[SerializedName('french_name')]
-        private readonly string $frenchName,
+        private readonly ?string $frenchName,
         #[SerializedName('flags')]
         private readonly DexFlags $flags,
         #[SerializedName('display_template')]
@@ -31,7 +32,7 @@ final class Dex
         #[SerializedName('description')]
         private readonly string $description,
         #[SerializedName('french_description')]
-        private readonly string $frenchDescription,
+        private readonly ?string $frenchDescription,
         #[SerializedName('version')]
         private readonly string $version,
     ) {}
@@ -51,7 +52,10 @@ final class Dex
         return $this->name;
     }
 
-    public function getFrenchName(): string
+    /**
+     * @return null|string null when the API answered in a single language
+     */
+    public function getFrenchName(): ?string
     {
         return $this->frenchName;
     }
@@ -61,7 +65,7 @@ final class Dex
      */
     public function getNames(): array
     {
-        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+        return NamesMap::from($this->name, $this->frenchName);
     }
 
     public function getFlags(): DexFlags
@@ -89,7 +93,10 @@ final class Dex
         return $this->description;
     }
 
-    public function getFrenchDescription(): string
+    /**
+     * @return null|string null when the API answered in a single language
+     */
+    public function getFrenchDescription(): ?string
     {
         return $this->frenchDescription;
     }
@@ -99,7 +106,7 @@ final class Dex
      */
     public function getDescriptions(): array
     {
-        return ['en' => $this->getDescription(), 'fr' => $this->getFrenchDescription()];
+        return NamesMap::from($this->description, $this->frenchDescription);
     }
 
     public function getVersion(): string
