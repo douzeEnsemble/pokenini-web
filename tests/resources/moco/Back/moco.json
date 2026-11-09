@@ -67,6 +67,29 @@
   {
     "request": {
       "uri": {
+        "match": "/election/dex"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer 06e4e4aa08da88263ed48f8a488060f2caf394c0"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/election/election_dex_list_hub_empty.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  },
+  {
+    "request": {
+      "uri": {
         "match": "/color_game/games"
       },
       "method": "get",

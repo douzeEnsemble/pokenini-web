@@ -57,6 +57,17 @@ final class HubHighlightsTest extends WebTestCase
     }
 
     #[Test]
+    public function noElectionToShow(): void
+    {
+        $client = $this->trainerClient('hub-no-election');
+
+        $client->request('GET', '/fr/hub/highlights/election');
+
+        // Nothing to put forward: the hub shows no block, which is what the 204 asks for
+        $this->assertResponseStatusCodeSame(204);
+    }
+
+    #[Test]
     public function elections(): void
     {
         $client = $this->trainerClient('hub-highlights');
