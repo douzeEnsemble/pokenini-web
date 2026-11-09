@@ -38,4 +38,15 @@ final class WhichShinyGameDexListItemTest extends TestCase
         $this->assertSame($game, $object->getCurrentGame());
         $this->assertSame($category, $object->getCategory());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new WhichShinyGameDexListItem('demo', 'Démo', null, false, true, 'Description', null, 4, null);
+
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'Démo'], $object->getNames());
+        $this->assertNull($object->getFrenchDescription());
+        $this->assertSame(['*' => 'Description'], $object->getDescriptions());
+    }
 }

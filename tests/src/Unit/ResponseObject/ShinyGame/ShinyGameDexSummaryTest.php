@@ -25,4 +25,13 @@ final class ShinyGameDexSummaryTest extends TestCase
         $this->assertSame('Démo', $object->getFrenchName());
         $this->assertSame(['en' => 'Demo', 'fr' => 'Démo'], $object->getNames());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new ShinyGameDexSummary('demo', 'Démo', null);
+
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'Démo'], $object->getNames());
+    }
 }

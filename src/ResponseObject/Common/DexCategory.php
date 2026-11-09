@@ -14,7 +14,7 @@ final class DexCategory
         #[SerializedName('name')]
         private readonly string $name,
         #[SerializedName('french_name')]
-        private readonly string $frenchName,
+        private readonly ?string $frenchName,
         #[SerializedName('order_number')]
         private readonly int $orderNumber,
     ) {}
@@ -29,7 +29,7 @@ final class DexCategory
         return $this->name;
     }
 
-    public function getFrenchName(): string
+    public function getFrenchName(): ?string
     {
         return $this->frenchName;
     }
@@ -39,7 +39,7 @@ final class DexCategory
      */
     public function getNames(): array
     {
-        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+        return NamesMap::from($this->name, $this->frenchName);
     }
 
     public function getOrderNumber(): int

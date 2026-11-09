@@ -9,6 +9,7 @@ use App\DTO\GameRoundCount;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameAnswer;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameState;
 use App\Service\Back\WhichShinyGameService;
+use App\Service\LocaleService;
 use App\Service\ShinyGameImageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,6 +26,7 @@ final class WhichShinyGameController extends AbstractController
 
     public function __construct(
         private readonly WhichShinyGameService $whichShinyGameService,
+        private readonly LocaleService $localeService,
         private readonly ShinyGameImageService $shinyGameImageService,
     ) {}
 
@@ -34,8 +36,8 @@ final class WhichShinyGameController extends AbstractController
         return $this->render(
             'WhichShinyGame/dex.html.twig',
             [
-                'dex' => $this->whichShinyGameService->getDexList(),
-                'games' => $this->whichShinyGameService->getGames(),
+                'dex' => $this->whichShinyGameService->getDexList($this->localeService->current()),
+                'games' => $this->whichShinyGameService->getGames($this->localeService->current()),
             ]
         );
     }
@@ -49,6 +51,7 @@ final class WhichShinyGameController extends AbstractController
             $game = $this->whichShinyGameService->create(
                 $request->request->getString('dex_slug'),
                 (new GameRoundCount($request->request->getString('round_count')))->value,
+                $this->localeService->current(),
             );
         } catch (HttpExceptionInterface) {
             $this->addFlash('warning', 'which_shiny_game.flash.create_failed');
@@ -88,7 +91,7 @@ final class WhichShinyGameController extends AbstractController
         }
 
         try {
-            $answer = $this->whichShinyGameService->answer($gameId, $position, $request->request->getInt('slot'));
+            $answer = $this->whichShinyGameService->answer($gameId, $position, $request->request->getInt('slot'), $this->localeService->current());
         } catch (HttpExceptionInterface) {
             return $this->redirectToRoute('app_whichshinygame_play', ['gameId' => $gameId]);
         }
@@ -168,7 +171,7 @@ final class WhichShinyGameController extends AbstractController
     public function rounds(string $gameId): Response
     {
         try {
-            $rounds = $this->whichShinyGameService->getRounds($gameId);
+            $rounds = $this->whichShinyGameService->getRounds($gameId, $this->localeService->current());
         } catch (HttpExceptionInterface $e) {
             throw $this->createNotFoundException("Game {$gameId} not found", $e);
         }
@@ -185,7 +188,7 @@ final class WhichShinyGameController extends AbstractController
     private function getState(string $gameId): WhichShinyGameState
     {
         try {
-            return $this->whichShinyGameService->get($gameId);
+            return $this->whichShinyGameService->get($gameId, $this->localeService->current());
         } catch (HttpExceptionInterface $e) {
             throw $this->createNotFoundException("Game {$gameId} not found", $e);
         }

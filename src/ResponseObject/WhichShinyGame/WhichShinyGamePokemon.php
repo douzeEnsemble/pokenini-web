@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\WhichShinyGame;
 
+use App\ResponseObject\Common\NamesMap;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final class WhichShinyGamePokemon
@@ -14,15 +15,15 @@ final class WhichShinyGamePokemon
         #[SerializedName('name')]
         private readonly string $name,
         #[SerializedName('french_name')]
-        private readonly string $frenchName,
+        private readonly ?string $frenchName,
         #[SerializedName('simplified_name')]
         private readonly string $simplifiedName,
         #[SerializedName('simplified_french_name')]
-        private readonly string $simplifiedFrenchName,
+        private readonly ?string $simplifiedFrenchName,
         #[SerializedName('forms_label')]
         private readonly string $formsLabel,
         #[SerializedName('forms_french_label')]
-        private readonly string $formsFrenchLabel,
+        private readonly ?string $formsFrenchLabel,
         #[SerializedName('national_dex_number')]
         private readonly int $nationalDexNumber,
         #[SerializedName('icon')]
@@ -39,7 +40,7 @@ final class WhichShinyGamePokemon
         return $this->name;
     }
 
-    public function getFrenchName(): string
+    public function getFrenchName(): ?string
     {
         return $this->frenchName;
     }
@@ -49,7 +50,7 @@ final class WhichShinyGamePokemon
      */
     public function getNames(): array
     {
-        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+        return NamesMap::from($this->name, $this->frenchName);
     }
 
     public function getSimplifiedName(): string
@@ -57,7 +58,7 @@ final class WhichShinyGamePokemon
         return $this->simplifiedName;
     }
 
-    public function getSimplifiedFrenchName(): string
+    public function getSimplifiedFrenchName(): ?string
     {
         return $this->simplifiedFrenchName;
     }
@@ -67,7 +68,7 @@ final class WhichShinyGamePokemon
         return $this->formsLabel;
     }
 
-    public function getFormsFrenchLabel(): string
+    public function getFormsFrenchLabel(): ?string
     {
         return $this->formsFrenchLabel;
     }
@@ -77,7 +78,7 @@ final class WhichShinyGamePokemon
      */
     public function getFormsLabels(): array
     {
-        return ['en' => $this->getFormsLabel(), 'fr' => $this->getFormsFrenchLabel()];
+        return NamesMap::from($this->formsLabel, $this->formsFrenchLabel);
     }
 
     public function getNationalDexNumber(): int
