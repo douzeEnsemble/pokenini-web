@@ -14,7 +14,7 @@ final class PokemonCreditRow
         #[SerializedName('pokemon_name')]
         private readonly string $pokemonName,
         #[SerializedName('pokemon_french_name')]
-        private readonly string $pokemonFrenchName,
+        private readonly ?string $pokemonFrenchName,
         #[SerializedName('pokemon_icon')]
         private readonly string $pokemonIcon,
         #[SerializedName('small_regular_credit')]
@@ -37,7 +37,7 @@ final class PokemonCreditRow
         return $this->pokemonName;
     }
 
-    public function getPokemonFrenchName(): string
+    public function getPokemonFrenchName(): ?string
     {
         return $this->pokemonFrenchName;
     }
@@ -47,7 +47,7 @@ final class PokemonCreditRow
      */
     public function getPokemonNames(): array
     {
-        return ['en' => $this->getPokemonName(), 'fr' => $this->getPokemonFrenchName()];
+        return NamesMap::from($this->pokemonName, $this->pokemonFrenchName);
     }
 
     public function getPokemonIcon(): string

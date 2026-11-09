@@ -98,4 +98,23 @@ final class PokemonCreditRowTest extends TestCase
 
         $this->assertFalse($row->hasAnyCredit());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $row = new PokemonCreditRow(
+            pokemonSlug: 'bulbasaur',
+            pokemonName: 'Bulbizarre',
+            pokemonFrenchName: null,
+            pokemonIcon: 'bulbasaur',
+            smallRegularCredit: null,
+            smallShinyCredit: null,
+            bigRegularCredit: null,
+            bigShinyCredit: null,
+        );
+
+        $this->assertSame('Bulbizarre', $row->getPokemonName());
+        $this->assertNull($row->getPokemonFrenchName());
+        $this->assertSame(['*' => 'Bulbizarre'], $row->getPokemonNames());
+    }
 }
