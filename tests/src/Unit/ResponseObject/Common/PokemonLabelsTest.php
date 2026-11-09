@@ -84,16 +84,16 @@ final class PokemonLabelsTest extends TestCase
     {
         $labels = new PokemonLabels(
             formsLabel: 'Méga Y',
-            names: ['en' => 'Mega Charizard Y', 'fr' => 'Méga Dracaufeu Y'],
-            simplifiedNames: ['en' => 'Charizard', 'fr' => 'Dracaufeu'],
+            names: ['en' => 'Mega Charizard Y', 'fr' => 'Méga Dracaufeu Y', 'de' => 'Mega-Glurak Y'],
+            simplifiedNames: ['en' => 'Charizard', 'fr' => 'Dracaufeu', 'de' => 'Glurak'],
         );
 
         $this->assertSame('Mega Charizard Y', $labels->getName());
         $this->assertSame('Méga Dracaufeu Y', $labels->getFrenchName());
-        $this->assertSame(['en' => 'Mega Charizard Y', 'fr' => 'Méga Dracaufeu Y'], $labels->getNames());
+        $this->assertSame(['en' => 'Mega Charizard Y', 'fr' => 'Méga Dracaufeu Y', 'de' => 'Mega-Glurak Y'], $labels->getNames());
         $this->assertSame('Charizard', $labels->getSimplifiedName());
         $this->assertSame('Dracaufeu', $labels->getSimplifiedFrenchName());
-        $this->assertSame(['en' => 'Charizard', 'fr' => 'Dracaufeu'], $labels->getSimplifiedNames());
+        $this->assertSame(['en' => 'Charizard', 'fr' => 'Dracaufeu', 'de' => 'Glurak'], $labels->getSimplifiedNames());
         $this->assertSame(['*' => 'Méga Y'], $labels->getFormsLabels());
     }
 
