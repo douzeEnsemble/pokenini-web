@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "demo",
+    "name": "Démo",
+    "french_name": null,
+    "is_released": true,
+    "is_premium": false,
+    "description": "Un petit dex pour essayer.",
+    "french_description": null,
+    "playable_count": 21,
+    "current_game": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "dex": {
+        "slug": "demo",
+        "name": "Démo",
+        "french_name": null
+      },
+      "status": "in_progress",
+      "round_count": 3,
+      "answered_count": 1,
+      "correct_count": 1,
+      "results": [
+        true
+      ],
+      "started_at": "2026-10-20T10:00:00+00:00",
+      "last_played_at": "2026-10-20T10:01:00+00:00",
+      "ended_at": null
+    }
+  },
+  {
+    "slug": "redgreenblueyellow",
+    "name": "Rouge / Vert / Bleu / Jaune\nKanto",
+    "french_name": null,
+    "is_released": true,
+    "is_premium": false,
+    "description": "",
+    "french_description": null,
+    "playable_count": 151,
+    "current_game": null
+  },
+  {
+    "slug": "homepogo",
+    "name": "Home Pokémon GO",
+    "french_name": null,
+    "is_released": true,
+    "is_premium": false,
+    "description": "",
+    "french_description": null,
+    "playable_count": 0,
+    "current_game": null
+  }
+]

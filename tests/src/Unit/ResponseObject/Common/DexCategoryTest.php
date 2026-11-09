@@ -26,4 +26,13 @@ final class DexCategoryTest extends TestCase
         $this->assertSame(['en' => 'Main games', 'fr' => 'Jeux principaux'], $category->getNames());
         $this->assertSame(1, $category->getOrderNumber());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $category = new DexCategory('main', 'Jeux principaux', null, 1);
+
+        $this->assertNull($category->getFrenchName());
+        $this->assertSame(['*' => 'Jeux principaux'], $category->getNames());
+    }
 }

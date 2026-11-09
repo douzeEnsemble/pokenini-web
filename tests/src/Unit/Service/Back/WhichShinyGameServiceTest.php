@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Service\Back;
 use App\ResponseObject\WhichShinyGame\WhichShinyGame;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameAnswer;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameDexSummary;
+use App\ResponseObject\WhichShinyGame\WhichShinyGameRounds;
 use App\ResponseObject\WhichShinyGame\WhichShinyGameState;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
@@ -19,6 +20,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
+ *
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
  */
 #[CoversClass(WhichShinyGameService::class)]
 final class WhichShinyGameServiceTest extends AbstractTestBackService
@@ -125,6 +128,42 @@ final class WhichShinyGameServiceTest extends AbstractTestBackService
         );
 
         $this->assertSame($answer, $service->answer('g1', 2, 2));
+    }
+
+    #[Test]
+    public function inALanguage(): void
+    {
+        $items = [];
+        $games = [$this->makeGame()];
+        $game = $this->makeGame();
+        $state = new WhichShinyGameState($game, null);
+        $rounds = new WhichShinyGameRounds($game, []);
+        $answer = new WhichShinyGameAnswer(2, true, 2, 1, $game);
+        $query = ['query' => ['lang' => 'fr']];
+
+        /** @var WhichShinyGameService $service */
+        $service = $this->getServiceWithLoggedUser('GET', self::JSON, 'which_shiny_game/dex', $query, $this->getSerializerMock('App\ResponseObject\WhichShinyGame\WhichShinyGameDexListItem[]', $items));
+        $this->assertSame($items, $service->getDexList('fr'));
+
+        /** @var WhichShinyGameService $service */
+        $service = $this->getServiceWithLoggedUser('GET', self::JSON, 'which_shiny_game/games', $query, $this->getSerializerMock(WhichShinyGame::class.'[]', $games));
+        $this->assertSame($games, $service->getGames('fr'));
+
+        /** @var WhichShinyGameService $service */
+        $service = $this->getServiceWithLoggedUser('POST', self::JSON, 'which_shiny_game/games', ['json' => ['dex_slug' => 'demo', 'round_count' => null]] + $query, $this->getSerializerMock(WhichShinyGame::class, $game));
+        $this->assertSame($game, $service->create('demo', null, 'fr'));
+
+        /** @var WhichShinyGameService $service */
+        $service = $this->getServiceWithLoggedUser('GET', self::JSON, 'which_shiny_game/games/g1', $query, $this->getSerializerMock(WhichShinyGameState::class, $state));
+        $this->assertSame($state, $service->get('g1', 'fr'));
+
+        /** @var WhichShinyGameService $service */
+        $service = $this->getServiceWithLoggedUser('GET', self::JSON, 'which_shiny_game/games/g1/rounds', $query, $this->getSerializerMock(WhichShinyGameRounds::class, $rounds));
+        $this->assertSame($rounds, $service->getRounds('g1', 'fr'));
+
+        /** @var WhichShinyGameService $service */
+        $service = $this->getServiceWithLoggedUser('POST', self::JSON, 'which_shiny_game/games/g1/answers', ['json' => ['position' => 2, 'slot' => 2]] + $query, $this->getSerializerMock(WhichShinyGameAnswer::class, $answer));
+        $this->assertSame($answer, $service->answer('g1', 2, 2, 'fr'));
     }
 
     #[\Override]

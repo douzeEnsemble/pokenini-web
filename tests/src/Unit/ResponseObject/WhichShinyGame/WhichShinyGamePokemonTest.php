@@ -32,4 +32,16 @@ final class WhichShinyGamePokemonTest extends TestCase
         $this->assertSame(26, $object->getNationalDexNumber());
         $this->assertSame('raichu-alola-icon', $object->getIcon());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new WhichShinyGamePokemon('raichu-alola', 'Raichu d\'Alola', null, 'Raichu', null, 'Forme d\'Alola', null, 26, 'raichu-alola-icon');
+
+        $this->assertNull($object->getFrenchName());
+        $this->assertNull($object->getSimplifiedFrenchName());
+        $this->assertNull($object->getFormsFrenchLabel());
+        $this->assertSame(['*' => 'Raichu d\'Alola'], $object->getNames());
+        $this->assertSame(['*' => 'Forme d\'Alola'], $object->getFormsLabels());
+    }
 }
