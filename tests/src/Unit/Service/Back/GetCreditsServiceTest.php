@@ -69,11 +69,11 @@ final class GetCreditsServiceTest extends AbstractTestBackService
             'GET',
             $json,
             self::ENDPOINT,
-            [],
+            ['query' => ['lang' => 'fr']],
             $serializer,
         );
 
-        $object = $service->get();
+        $object = $service->get('fr');
 
         $this->assertCount(2, $object);
         $this->assertSame('bulbasaur', $object[0]->getPokemonSlug());

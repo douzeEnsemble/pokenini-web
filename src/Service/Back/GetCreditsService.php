@@ -9,13 +9,16 @@ use App\ResponseObject\Common\PokemonCreditRow;
 class GetCreditsService extends AbstractBackService
 {
     /**
+     * @param string $locale the language of the names of the Pokémon
+     *
      * @return PokemonCreditRow[]
      */
-    public function get(): array
+    public function get(string $locale): array
     {
         $json = $this->requestContent(
             'GET',
-            '/credits'
+            '/credits',
+            ['query' => ['lang' => $locale]],
         );
 
         /** @var PokemonCreditRow[] */
