@@ -24,4 +24,13 @@ final class DexRegionTest extends TestCase
         $this->assertSame('Kanto', $region->getFrenchName());
         $this->assertSame(['en' => 'Kanto', 'fr' => 'Kanto'], $region->getNames());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $region = new DexRegion('Hoenn', null);
+
+        $this->assertNull($region->getFrenchName());
+        $this->assertSame(['*' => 'Hoenn'], $region->getNames());
+    }
 }

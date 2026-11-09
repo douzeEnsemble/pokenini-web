@@ -6,10 +6,13 @@ namespace App\Tests\Unit\Service;
 
 use App\Service\Back\GetPokedexService;
 use App\Service\GetTrainerPokedexService;
+use App\Service\LocaleService;
 use App\Tests\Common\Traits\ResponseObjectTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
@@ -32,6 +35,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->with(
                 'douze',
                 [],
+                'fr',
             )
             ->willReturn($this->getStubAlbum())
         ;
@@ -40,7 +44,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->method('getWithTrainerId')
         ;
 
-        $service = new GetTrainerPokedexService($getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService, $this->localeService('fr'));
         $pokedexData = $service->getPokedexData('douze', []);
 
         $this->assertNotNull($pokedexData);
@@ -63,6 +67,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
                     'to' => 'toto',
                     'ti' => 'titi',
                 ],
+                'fr',
             )
             ->willReturn($this->getStubAlbum())
         ;
@@ -71,7 +76,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->method('getWithTrainerId')
         ;
 
-        $service = new GetTrainerPokedexService($getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService, $this->localeService('fr'));
         $pokedexData = $service->getPokedexData(
             'douze',
             [
@@ -102,11 +107,12 @@ final class GetTrainerPokedexServiceTest extends TestCase
                 '8800088',
                 'douze',
                 [],
+                'fr',
             )
             ->willReturn($this->getStubAlbum())
         ;
 
-        $service = new GetTrainerPokedexService($getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService, $this->localeService('fr'));
         $pokedexData = $service->getPokedexData('douze', [], '8800088');
 
         $this->assertNotNull($pokedexData);
@@ -126,6 +132,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->with(
                 'douze',
                 [],
+                'fr',
             )
             ->willReturn($this->getStubAlbum())
         ;
@@ -134,7 +141,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->method('getWithTrainerId')
         ;
 
-        $service = new GetTrainerPokedexService($getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService, $this->localeService('fr'));
         $pokedexData = $service->getPokedexData('douze', [], null);
 
         $this->assertNotNull($pokedexData);
@@ -154,6 +161,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->with(
                 'douze',
                 [],
+                'fr',
             )
             ->willReturn($this->getStubAlbum())
         ;
@@ -162,7 +170,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->method('getWithTrainerId')
         ;
 
-        $service = new GetTrainerPokedexService($getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService, $this->localeService('fr'));
         $pokedexData = $service->getPokedexData('douze', [], '');
 
         $this->assertNotNull($pokedexData);
@@ -184,6 +192,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->with(
                 'douze',
                 [],
+                'fr',
             )
             ->willThrowException($exception)
         ;
@@ -192,7 +201,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->method('getWithTrainerId')
         ;
 
-        $service = new GetTrainerPokedexService($getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService, $this->localeService('fr'));
         $dexData = $service->getPokedexData('douze', []);
 
         $this->assertNull($dexData);
@@ -210,6 +219,7 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->with(
                 'douze',
                 [],
+                'fr',
             )
             ->willThrowException($exception)
         ;
@@ -218,9 +228,19 @@ final class GetTrainerPokedexServiceTest extends TestCase
             ->method('getWithTrainerId')
         ;
 
-        $service = new GetTrainerPokedexService($getPokedexService);
+        $service = new GetTrainerPokedexService($getPokedexService, $this->localeService('fr'));
         $dexData = $service->getPokedexData('douze', []);
 
         $this->assertNull($dexData);
+    }
+
+    private function localeService(string $locale): LocaleService
+    {
+        $request = new Request();
+        $request->setLocale($locale);
+        $requestStack = new RequestStack();
+        $requestStack->push($request);
+
+        return new LocaleService($requestStack, ['en', 'fr'], 'en');
     }
 }

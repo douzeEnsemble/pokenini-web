@@ -60,6 +60,9 @@ final class PokemonDataTest extends TestCase
         $this->assertSame('Mega Y', $data->getFormsLabel());
         $this->assertSame('Dracaufeu', $data->getSimplifiedFrenchName());
         $this->assertSame('Méga Y', $data->getFormsFrenchLabel());
+        $this->assertSame(['en' => 'Mega Charizard Y', 'fr' => 'Méga Dracaufeu Y'], $data->getNames());
+        $this->assertSame(['en' => 'Charizard', 'fr' => 'Dracaufeu'], $data->getSimplifiedNames());
+        $this->assertSame(['en' => 'Mega Y', 'fr' => 'Méga Y'], $data->getFormsLabels());
         $this->assertSame('charizard-mega-y', $data->getIcon());
         $this->assertSame(4, $data->getFamilyOrder());
         $this->assertSame($familyLead, $data->getFamilyLead());

@@ -3103,6 +3103,19 @@
     "request": {
       "uri": {
         "match": "/album/demolite"
+      },
+      "queries": {
+        "lang": "fr"
+      }
+    },
+    "response": {
+      "file": "/var/moco/responses/album/default/demo-lite_fr.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/album/demolite"
       }
     },
     "response": {

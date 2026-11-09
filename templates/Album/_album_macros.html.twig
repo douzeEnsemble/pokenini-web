@@ -28,8 +28,9 @@
     </div>
     <div class="album-case-forms text-truncate text-end">
       {% if dex.isDisplayForm %}
-        {{ item.pokemonFormsLabels|localized }}
-        {% if item.pokemonFormsLabels|names_by_locale is empty %}
+        {% set formsLabel = item.pokemonFormsLabels|localized %}
+        {{ formsLabel }}
+        {% if formsLabel is empty %}
         &nbsp;
         {% endif %}
       {% else %}

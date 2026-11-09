@@ -40,7 +40,7 @@ final class Pokemon
      */
     public function getPokemonNames(): array
     {
-        return ['en' => $this->getPokemonName(), 'fr' => $this->getPokemonFrenchName()];
+        return $this->pokemon->getNames();
     }
 
     /**
@@ -48,7 +48,7 @@ final class Pokemon
      */
     public function getPokemonSimplifiedNames(): array
     {
-        return ['en' => $this->getPokemonSimplifiedName(), 'fr' => $this->getPokemonSimplifiedFrenchName()];
+        return $this->pokemon->getSimplifiedNames();
     }
 
     /**
@@ -56,7 +56,7 @@ final class Pokemon
      */
     public function getPokemonFormsLabels(): array
     {
-        return ['en' => $this->getPokemonFormsLabel(), 'fr' => $this->getPokemonFormsFrenchLabel()];
+        return $this->pokemon->getFormsLabels();
     }
 
     /**
