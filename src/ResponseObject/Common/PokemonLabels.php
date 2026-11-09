@@ -40,12 +40,12 @@ final class PokemonLabels
 
     public function getName(): string
     {
-        return $this->name ?? $this->names['en'] ?? '';
+        return $this->legacyOrLocale($this->name, 'en') ?? '';
     }
 
     public function getFrenchName(): string
     {
-        return $this->frenchName ?? $this->names['fr'] ?? '';
+        return $this->legacyOrLocale($this->frenchName, 'fr') ?? '';
     }
 
     /**
@@ -53,17 +53,21 @@ final class PokemonLabels
      */
     public function getNames(): array
     {
-        return $this->names ?? ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+        if (null !== $this->names) {
+            return $this->names;
+        }
+
+        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
     }
 
     public function getSimplifiedName(): ?string
     {
-        return $this->simplifiedName ?? $this->simplifiedNames['en'] ?? null;
+        return null !== $this->simplifiedNames ? ($this->simplifiedNames['en'] ?? null) : $this->simplifiedName;
     }
 
     public function getSimplifiedFrenchName(): ?string
     {
-        return $this->simplifiedFrenchName ?? $this->simplifiedNames['fr'] ?? null;
+        return null !== $this->simplifiedNames ? ($this->simplifiedNames['fr'] ?? null) : $this->simplifiedFrenchName;
     }
 
     /**
@@ -71,10 +75,11 @@ final class PokemonLabels
      */
     public function getSimplifiedNames(): array
     {
-        return $this->simplifiedNames ?? [
-            'en' => $this->simplifiedName ?? '',
-            'fr' => $this->simplifiedFrenchName ?? '',
-        ];
+        if (null !== $this->simplifiedNames) {
+            return $this->simplifiedNames;
+        }
+
+        return ['en' => $this->simplifiedName ?? '', 'fr' => $this->simplifiedFrenchName ?? ''];
     }
 
     public function getFormsLabel(): ?string
@@ -97,5 +102,10 @@ final class PokemonLabels
         }
 
         return null === $this->formsLabel ? [] : [NamesMap::RESOLVED => $this->formsLabel];
+    }
+
+    private function legacyOrLocale(?string $legacy, string $locale): ?string
+    {
+        return null !== $this->names ? ($this->names[$locale] ?? null) : $legacy;
     }
 }
