@@ -1,0 +1,95 @@
+name: Composer Major Updates
+
+# Complements composer_updates.yml, which stays within the current constraints.
+# This one raises the constraints of the direct dependencies to their latest
+# version (major included) and opens one PR per composer project. It does not
+# adapt the code: if the CI of such a PR is red, the upgrade needs manual work.
+
+on:
+  schedule:
+    - cron: '27 5 * * *'
+  workflow_dispatch: ~
+
+permissions:
+  contents: read
+
+concurrency:
+  group: composer-major-updates
+  cancel-in-progress: true
+
+jobs:
+  composer-major-updates:
+    name: Major updates (${{ matrix.name }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: app, dir: . }
+          - { name: deptrac, dir: tools/deptrac }
+          - { name: infection, dir: tools/infection }
+          - { name: jsonlint, dir: tools/jsonlint }
+          - { name: php-cs-fixer, dir: tools/php-cs-fixer }
+          - { name: phpmd, dir: tools/phpmd }
+          - { name: phpstan, dir: tools/phpstan }
+          - { name: psalm, dir: tools/psalm }
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Prepare PHP
+        uses: ./.github/actions/local-php
+
+      - name: Raise constraints to the latest major versions
+        id: raise
+        working-directory: ${{ matrix.dir }}
+        run: |
+          set -euo pipefail
+
+          outdated=$(composer outdated --direct --format=json)
+          majors=$(jq -r '[.installed[] | select(."latest-status" == "update-possible")] | length' <<< "$outdated")
+
+          if [ "$majors" -eq 0 ]; then
+            echo "No major update available."
+            exit 0
+          fi
+
+          # Every outdated direct dependency is required together: a major bump
+          # often needs its plugins/companions to move as well (e.g. psalm 7 + its plugins).
+          prod=()
+          dev=()
+          while read -r name latest; do
+            constraint="${name}:^${latest#v}"
+            if jq -e --arg n "$name" '."require-dev"[$n]' composer.json > /dev/null; then
+              dev+=("$constraint")
+            else
+              prod+=("$constraint")
+            fi
+          done < <(jq -r '.installed[] | select(."latest-status" != "up-to-date") | "\(.name) \(.latest)"' <<< "$outdated")
+
+          ok=true
+          if [ "${#prod[@]}" -gt 0 ]; then
+            composer require "${prod[@]}" --with-all-dependencies --update-with-all-dependencies --no-scripts --optimize-autoloader || ok=false
+          fi
+          if [ "$ok" = true ] && [ "${#dev[@]}" -gt 0 ]; then
+            composer require --dev "${dev[@]}" --with-all-dependencies --update-with-all-dependencies --no-scripts --optimize-autoloader || ok=false
+          fi
+
+          if [ "$ok" != true ]; then
+            echo "::warning title=${{ matrix.name }}::Major updates cannot be resolved together, nothing to propose."
+            git checkout -- .
+          fi
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          branch: chore/composer-major-updates-${{ matrix.name }}
+          delete-branch: true
+          commit-message: "Composer major updates (${{ matrix.name }})"
+          title: "Composer major updates (${{ matrix.name }})"
+          body: |
+            Constraints raised to the latest versions, major included, by `composer_major_updates.yml`.
+
+            The code is not adapted automatically: if the checks fail, this upgrade needs manual work.
+          labels: dependencies
