@@ -1,0 +1,51 @@
+name: Infra Updates
+
+# Complements Dependabot (Docker images, compose, actions) with what it cannot do,
+# see scripts/infra-updates.py:
+#   - php:  PHP image + "php" constraint of every composer.json + lock hashes + setup-php
+#   - pins: images pinned in Makefile/workflows/Dockerfile and the Moco version
+# Latest versions are taken, major included. Nothing is adapted beyond the version
+# strings: if the CI of a PR is red, the bump needs manual work.
+
+on:
+  schedule:
+    - cron: '47 5 * * *'
+  workflow_dispatch: ~
+
+permissions:
+  contents: read
+
+concurrency:
+  group: infra-updates
+  cancel-in-progress: true
+
+jobs:
+  infra-updates:
+    name: Infra updates (${{ matrix.target }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [php, pins]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Prepare PHP
+        uses: ./.github/actions/local-php
+
+      - name: Bump ${{ matrix.target }}
+        run: |
+          printf 'Bumped by `infra_updates.yml`; the code is not adapted, a red CI means manual work is needed.\n\n' > "$RUNNER_TEMP/summary.md"
+          python3 scripts/infra-updates.py ${{ matrix.target }} --summary "$RUNNER_TEMP/summary.md"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          branch: chore/infra-updates-${{ matrix.target }}
+          delete-branch: true
+          commit-message: "Infra updates (${{ matrix.target }})"
+          title: "Infra updates (${{ matrix.target }})"
+          body-path: ${{ runner.temp }}/summary.md
+          labels: dependencies

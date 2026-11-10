@@ -46,9 +46,9 @@ updates:
       - "/.docker/php"
       - "/.docker/moco"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     ignore:
-      # PHP bumps also touch composer.json and tools/*/composer.json: done by hand
+      # PHP bumps also touch composer.json and tools/*/composer.json: see infra_updates.yml
       - dependency-name: "php"
     groups:
       docker:
@@ -58,7 +58,7 @@ updates:
   - package-ecosystem: "docker-compose"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     groups:
       docker-compose:
         patterns:
@@ -69,7 +69,7 @@ updates:
       - "/"
       - "/.github/actions/*"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     groups:
       github-actions:
         patterns:
