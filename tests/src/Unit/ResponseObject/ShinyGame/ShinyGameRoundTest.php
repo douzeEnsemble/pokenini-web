@@ -24,6 +24,6 @@ final class ShinyGameRoundTest extends TestCase
 
         $this->assertSame(4, $object->getPosition());
         $this->assertSame($pokemon, $object->getPokemon());
-        $this->assertSame(true, $object->isShiny());
+        $this->assertTrue($object->isShiny());
     }
 }

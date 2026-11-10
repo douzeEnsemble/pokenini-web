@@ -82,11 +82,11 @@ final class BoxTest extends WebTestCase
 
         $crawler = $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertEquals(
+        $this->assertSame(
             'Boite 1',
             $crawler->filter('#box-1 h2')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'Boite 2',
             $crawler->filter('#box-2 h2')->text()
         );
@@ -103,11 +103,11 @@ final class BoxTest extends WebTestCase
 
         $crawler = $client->request('GET', '/en/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
-        $this->assertEquals(
+        $this->assertSame(
             'Box 1',
             $crawler->filter('#box-1 h2')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'Box 2',
             $crawler->filter('#box-2 h2')->text()
         );
@@ -128,6 +128,6 @@ final class BoxTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, 'div.row.album-line');
         $this->assertCountFilter($crawler, 0, '.box');
         $this->assertCountFilter($crawler, 1, '.album-container h2');
-        $this->assertEquals(' ', $crawler->filter('.album-container h2')->text());
+        $this->assertSame(' ', $crawler->filter('.album-container h2')->text());
     }
 }

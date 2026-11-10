@@ -86,10 +86,12 @@ final class TopPokemonTest extends KernelTestCase
         $this->assertSame('9999-0003-004', $object->getPokemon()->getOrderNumber());
         $this->assertCount(1, $object->getPokemon()->getGameBundles()->getNormal());
         $this->assertCount(0, $object->getPokemon()->getGameBundles()->getShiny());
-        $this->assertNotNull($object->getForms());
-        $this->assertNull($object->getForms()->getCategory());
-        $this->assertNotNull($object->getForms()->getSpecial());
-        $this->assertSame('mega', $object->getForms()->getSpecial()->getSlug());
+        $forms = $object->getForms();
+        $this->assertNotNull($forms);
+        $this->assertNull($forms->getCategory());
+        $special = $forms->getSpecial();
+        $this->assertNotNull($special);
+        $this->assertSame('mega', $special->getSlug());
         $this->assertNotNull($object->getTypes()->getPrimary());
         $this->assertSame('grass', $object->getTypes()->getPrimary()->getSlug());
         $this->assertNotNull($object->getTypes()->getSecondary());

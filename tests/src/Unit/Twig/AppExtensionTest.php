@@ -31,7 +31,7 @@ final class AppExtensionTest extends TestCase
         $ksortFilter = $filters[0];
 
         $this->assertInstanceOf(TwigFilter::class, $ksortFilter);
-        $this->assertEquals('ksort', $ksortFilter->getName());
+        $this->assertSame('ksort', $ksortFilter->getName());
         $this->assertEquals([], $ksortFilter->getSafe(new Node()));
 
         /** @var mixed[] $ksortFilterCallable */
@@ -43,7 +43,7 @@ final class AppExtensionTest extends TestCase
         $sha1Filter = $filters[1];
 
         $this->assertInstanceOf(TwigFilter::class, $sha1Filter);
-        $this->assertEquals('sha1', $sha1Filter->getName());
+        $this->assertSame('sha1', $sha1Filter->getName());
         $this->assertEquals([], $sha1Filter->getSafe(new Node()));
 
         /** @var mixed[] $sha1FilterCallable */
@@ -55,7 +55,7 @@ final class AppExtensionTest extends TestCase
         $htmlNl2brFilter = $filters[2];
 
         $this->assertInstanceOf(TwigFilter::class, $htmlNl2brFilter);
-        $this->assertEquals('htmlNl2br', $htmlNl2brFilter->getName());
+        $this->assertSame('htmlNl2br', $htmlNl2brFilter->getName());
         $this->assertEquals(['html'], $htmlNl2brFilter->getSafe(new Node()));
 
         /** @var mixed[] $htmlNl2brCallable */
@@ -77,7 +77,7 @@ final class AppExtensionTest extends TestCase
         $versionFunction = $functions[0];
 
         $this->assertInstanceOf(TwigFunction::class, $versionFunction);
-        $this->assertEquals('version', $versionFunction->getName());
+        $this->assertSame('version', $versionFunction->getName());
 
         /** @var mixed[] $versionFunctionCallable */
         $versionFunctionCallable = $versionFunction->getCallable();

@@ -51,7 +51,7 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $response = $fakeAuthenticator->onAuthenticationSuccess($request, $token, 'web');
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertEquals('/success-but-not-a-trainer', $response->getTargetUrl());
+        $this->assertSame('/success-but-not-a-trainer', $response->getTargetUrl());
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
@@ -85,7 +85,7 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $response = $fakeAuthenticator->onAuthenticationSuccess($request, $token, 'web');
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertEquals('/success-trainer', $response->getTargetUrl());
+        $this->assertSame('/success-trainer', $response->getTargetUrl());
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
 
@@ -116,7 +116,7 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
         $response = $fakeAuthenticator->onAuthenticationSuccess($request, $token, 'web');
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertEquals('/fr/some-page', $response->getTargetUrl());
+        $this->assertSame('/fr/some-page', $response->getTargetUrl());
         $this->assertNull($session->get('_security_target_path'));
         $this->assertSame('TestProvider', $session->get('_security_provider'));
     }
@@ -133,7 +133,7 @@ final class FakeAuthenticatorOnAuthentificationTest extends TestCase
 
         $this->assertInstanceOf(Response::class, $response);
 
-        $this->assertEquals(403, $response->getStatusCode());
+        $this->assertSame(403, $response->getStatusCode());
         $this->assertEquals('An authentication exception occurred.', $response->getContent());
     }
 

@@ -90,7 +90,7 @@ final class AdminReportsTest extends WebTestCase
         $this->assertCountFilter($crawler, 3, 'table#report-table-catch_state_counts_defined_by_trainer tbody button');
         $this->assertCountFilter($crawler, 3, 'table#report-table-catch_state_counts_defined_by_trainer tbody canvas');
         $this->assertCountFilter($crawler, 3, 'table#report-table-catch_state_counts_defined_by_trainer tbody a');
-        $this->assertEquals(
+        $this->assertSame(
             '94',
             $crawler
                 ->filter('table#report-table-catch_state_counts_defined_by_trainer tbody tr')
@@ -99,7 +99,7 @@ final class AdminReportsTest extends WebTestCase
                 ->eq(2)
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             '1.61',
             $crawler
                 ->filter('table#report-table-catch_state_counts_defined_by_trainer tbody tr')
@@ -121,7 +121,7 @@ final class AdminReportsTest extends WebTestCase
         $this->assertCountFilter($crawler, 6, 'table#report-table-catch_state_usage tbody button');
         $this->assertCountFilter($crawler, 6, 'table#report-table-catch_state_usage tbody canvas');
         $this->assertCountFilter($crawler, 6, 'table#report-table-catch_state_usage tbody a');
-        $this->assertEquals(
+        $this->assertSame(
             '28',
             $crawler
                 ->filter('table#report-table-catch_state_usage tbody tr')
@@ -130,7 +130,7 @@ final class AdminReportsTest extends WebTestCase
                 ->eq(2)
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             '0.48',
             $crawler
                 ->filter('table#report-table-catch_state_usage tbody tr')

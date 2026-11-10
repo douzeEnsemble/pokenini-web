@@ -130,12 +130,13 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
         // Branch: last = null, current non-null (last null branch)
         $calcGameBundles = $byActionType['calculate_game_bundles_availabilities'];
         $this->assertNull($calcGameBundles->getLast());
-        $this->assertNotNull($calcGameBundles->getCurrent());
-        $this->assertEquals(new \DateTimeImmutable('2023-03-21T07:15:04+00:00'), $calcGameBundles->getCurrent()->createdAt);
-        $this->assertNull($calcGameBundles->getCurrent()->doneAt);
-        $this->assertNull($calcGameBundles->getCurrent()->executionTime);
-        $this->assertSame([], $calcGameBundles->getCurrent()->details);
-        $this->assertNull($calcGameBundles->getCurrent()->errorTrace);
+        $current = $calcGameBundles->getCurrent();
+        $this->assertNotNull($current);
+        $this->assertEquals(new \DateTimeImmutable('2023-03-21T07:15:04+00:00'), $current->createdAt);
+        $this->assertNull($current->doneAt);
+        $this->assertNull($current->executionTime);
+        $this->assertSame([], $current->details);
+        $this->assertNull($current->errorTrace);
 
         // Branch: current = null (current null branch)
         $updateRegionalDex = $byActionType['update_regional_dex_numbers'];
@@ -144,11 +145,12 @@ final class GetActionLogsServiceTest extends AbstractTestBackService
 
         // Branch: current non-null, last non-null (all values present)
         $calcDex = $byActionType['calculate_dex_availabilities'];
-        $this->assertNotNull($calcDex->getLast());
-        $this->assertEquals(new \DateTimeImmutable('2023-03-20T09:14:36+00:00'), $calcDex->getLast()->createdAt);
-        $this->assertEquals(new \DateTimeImmutable('2023-03-20T10:05:08+00:00'), $calcDex->getLast()->doneAt);
-        $this->assertSame(3032, $calcDex->getLast()->executionTime);
-        $this->assertSame(['dex_availabilities' => 22472], $calcDex->getLast()->details);
-        $this->assertNull($calcDex->getLast()->errorTrace);
+        $last = $calcDex->getLast();
+        $this->assertNotNull($last);
+        $this->assertEquals(new \DateTimeImmutable('2023-03-20T09:14:36+00:00'), $last->createdAt);
+        $this->assertEquals(new \DateTimeImmutable('2023-03-20T10:05:08+00:00'), $last->doneAt);
+        $this->assertSame(3032, $last->executionTime);
+        $this->assertSame(['dex_availabilities' => 22472], $last->details);
+        $this->assertNull($last->errorTrace);
     }
 }

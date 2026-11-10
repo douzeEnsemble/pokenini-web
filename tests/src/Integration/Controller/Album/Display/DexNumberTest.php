@@ -34,20 +34,20 @@ final class DexNumberTest extends WebTestCase
 
         $this->assertCountFilter($crawler, 278, '.album-case');
 
-        $this->assertEquals(
+        $this->assertSame(
             'Germignon',
             $crawler->filter('.album-case')->first()->filter('.album-case-name')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             '#1',
             $crawler->filter('.album-case')->first()->filter('.album-case-dex-number')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Bulbizarre',
             $crawler->filter('.album-case')->eq(252)->filter('.album-case-name')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             '#231',
             $crawler->filter('.album-case')->eq(252)->filter('.album-case-dex-number')->text()
         );

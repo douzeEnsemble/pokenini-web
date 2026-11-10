@@ -20,6 +20,6 @@ final class CatchStatesTest extends TestCase
     {
         $constraint = new CatchStates();
 
-        $this->assertEquals('App\Validator\CatchStatesValidator', $constraint->validatedBy());
+        $this->assertSame('App\Validator\CatchStatesValidator', $constraint->validatedBy());
     }
 }

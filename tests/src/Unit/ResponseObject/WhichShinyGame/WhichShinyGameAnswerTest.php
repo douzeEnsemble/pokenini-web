@@ -24,7 +24,7 @@ final class WhichShinyGameAnswerTest extends TestCase
         $object = new WhichShinyGameAnswer(2, false, 2, 1, $game);
 
         $this->assertSame(2, $object->getPosition());
-        $this->assertSame(false, $object->isCorrect());
+        $this->assertFalse($object->isCorrect());
         $this->assertSame(2, $object->getChosenSlot());
         $this->assertSame(1, $object->getShinySlot());
         $this->assertSame($game, $object->getGame());

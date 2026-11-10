@@ -24,7 +24,7 @@ final class ErrorPageTest extends WebTestCase
     {
         $crawler = $this->renderErrorTemplate(404, 'Not Found');
 
-        $this->assertEquals("Pokénini La page n'a pas été trouvée", $crawler->filter('title')->text());
+        $this->assertSame("Pokénini La page n'a pas été trouvée", $crawler->filter('title')->text());
         $this->assertCountFilter($crawler, 1, '#main-container h1');
         $this->assertCountFilter($crawler, 1, '#main-container p');
         $this->assertCountFilter($crawler, 1, '#main-container a');
@@ -35,7 +35,7 @@ final class ErrorPageTest extends WebTestCase
     {
         $crawler = $this->renderErrorTemplate(500, 'Internal Server Error');
 
-        $this->assertEquals("Pokénini Y'a eu une merde. C'est pas toi, c'est nous", $crawler->filter('title')->text());
+        $this->assertSame("Pokénini Y'a eu une merde. C'est pas toi, c'est nous", $crawler->filter('title')->text());
         $this->assertCountFilter($crawler, 1, '#main-container h1');
         $this->assertCountFilter($crawler, 1, '#main-container p');
         $this->assertCountFilter($crawler, 1, '#main-container a');
@@ -46,7 +46,7 @@ final class ErrorPageTest extends WebTestCase
     {
         $crawler = $this->renderErrorTemplate(512, 'Custom Error');
 
-        $this->assertEquals("Pokénini Y'a eu une erreur", $crawler->filter('title')->text());
+        $this->assertSame("Pokénini Y'a eu une erreur", $crawler->filter('title')->text());
         $this->assertCountFilter($crawler, 1, '#main-container h1');
         $this->assertCountFilter($crawler, 1, '#main-container p');
         $this->assertCountFilter($crawler, 1, '#main-container a');

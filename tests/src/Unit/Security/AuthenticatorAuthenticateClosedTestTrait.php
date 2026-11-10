@@ -37,11 +37,11 @@ trait AuthenticatorAuthenticateClosedTestTrait
         $this->assertFalse($user->isAnAdmin());
         $this->assertFalse($user->isATrainer());
         $this->assertFalse($user->isACollector());
-        $this->assertEquals('1212121212000000000000012', $user->getId());
-        $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
-        $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
-        $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
-        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
+        $this->assertSame('1212121212000000000000012', $user->getId());
+        $this->assertSame('1212121212000000000000012', $user->getUserIdentifier());
+        $this->assertSame('1212121212000000000000012', $user->getUserIdentifier());
+        $this->assertSame($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertSame('session-jwt-from-back', $user->getSessionToken());
     }
 
     #[Test]
@@ -60,10 +60,10 @@ trait AuthenticatorAuthenticateClosedTestTrait
         $this->assertFalse($user->isAnAdmin());
         $this->assertTrue($user->isATrainer());
         $this->assertFalse($user->isACollector());
-        $this->assertEquals('1212121212000000000000012', $user->getId());
-        $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
-        $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
-        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
+        $this->assertSame('1212121212000000000000012', $user->getId());
+        $this->assertSame('1212121212000000000000012', $user->getUserIdentifier());
+        $this->assertSame($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertSame('session-jwt-from-back', $user->getSessionToken());
     }
 
     #[Test]
@@ -82,10 +82,10 @@ trait AuthenticatorAuthenticateClosedTestTrait
         $this->assertFalse($user->isAnAdmin());
         $this->assertFalse($user->isATrainer());
         $this->assertTrue($user->isACollector());
-        $this->assertEquals('1212121212000000000000012', $user->getId());
-        $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
-        $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
-        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
+        $this->assertSame('1212121212000000000000012', $user->getId());
+        $this->assertSame('1212121212000000000000012', $user->getUserIdentifier());
+        $this->assertSame($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertSame('session-jwt-from-back', $user->getSessionToken());
     }
 
     #[Test]
@@ -104,10 +104,10 @@ trait AuthenticatorAuthenticateClosedTestTrait
         $this->assertTrue($user->isAnAdmin());
         $this->assertFalse($user->isATrainer());
         $this->assertFalse($user->isACollector());
-        $this->assertEquals('1212121212000000000000012', $user->getId());
-        $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
-        $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
-        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
+        $this->assertSame('1212121212000000000000012', $user->getId());
+        $this->assertSame('1212121212000000000000012', $user->getUserIdentifier());
+        $this->assertSame($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertSame('session-jwt-from-back', $user->getSessionToken());
     }
 
     #[Test]
@@ -126,10 +126,10 @@ trait AuthenticatorAuthenticateClosedTestTrait
         $this->assertTrue($user->isAnAdmin());
         $this->assertTrue($user->isATrainer());
         $this->assertFalse($user->isACollector());
-        $this->assertEquals('1212121212000000000000012', $user->getId());
-        $this->assertEquals('1212121212000000000000012', $user->getUserIdentifier());
-        $this->assertEquals($this->getAuthenticatorProviderName(), $user->getProviderName());
-        $this->assertEquals('session-jwt-from-back', $user->getSessionToken());
+        $this->assertSame('1212121212000000000000012', $user->getId());
+        $this->assertSame('1212121212000000000000012', $user->getUserIdentifier());
+        $this->assertSame($this->getAuthenticatorProviderName(), $user->getProviderName());
+        $this->assertSame('session-jwt-from-back', $user->getSessionToken());
     }
 
     /**

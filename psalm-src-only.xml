@@ -39,8 +39,29 @@
                 <referencedMethod name="App\Security\User::getId" />
                 <referencedMethod name="App\Security\User::getProfile" />
                 <referencedMethod name="App\Security\User::getAccessToken" />
+                <!-- Only exercised by tests, which this run does not analyze -->
+                <file name="src/Service/Back/GetPokemonsService.php" />
             </errorLevel>
         </PossiblyUnusedMethod>
+
+        <!--
+            Psalm 7 reports a private property/method as unused when its only readers are
+            public getters that are themselves never called from src/ (they are read by Twig,
+            the serializer or the tests).
+        -->
+        <UnusedProperty>
+            <errorLevel type="suppress">
+                <directory name="src/DTO" />
+                <directory name="src/ResponseObject" />
+                <file name="src/Security/User.php" />
+            </errorLevel>
+        </UnusedProperty>
+
+        <UnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="src/ResponseObject" />
+            </errorLevel>
+        </UnusedMethod>
 
         <PossiblyUnusedProperty>
             <errorLevel type="suppress">
@@ -51,7 +72,9 @@
 
         <UnusedClass>
             <errorLevel type="suppress">
-                <directory name="src/EventListener" />
+                <!-- Only exercised by tests, which this run does not analyze -->
+                <file name="src/ResponseObject/Election/ElectionList.php" />
+                <file name="src/Service/GetPokemonsListService.php" />
             </errorLevel>
         </UnusedClass>
 

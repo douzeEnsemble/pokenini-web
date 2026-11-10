@@ -24,9 +24,9 @@ final class ShinyGameAnswerTest extends TestCase
         $object = new ShinyGameAnswer(2, false, true, false, $game);
 
         $this->assertSame(2, $object->getPosition());
-        $this->assertSame(false, $object->isCorrect());
-        $this->assertSame(true, $object->isChosenShiny());
-        $this->assertSame(false, $object->isShiny());
+        $this->assertFalse($object->isCorrect());
+        $this->assertTrue($object->isChosenShiny());
+        $this->assertFalse($object->isShiny());
         $this->assertSame($game, $object->getGame());
     }
 }

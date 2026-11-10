@@ -15,13 +15,13 @@ trait ModalTestTrait
         string $secondaryName,
     ): void {
         $this->assertCountFilter($crawler, 1, "#modal-{$pokemonSlug} h3.modal-title");
-        $this->assertEquals(
+        $this->assertSame(
             "{$primaryName} / {$secondaryName}",
             $crawler->filter("#modal-{$pokemonSlug} h3.modal-title")->text()
         );
 
         $this->assertCountFilter($crawler, 1, "#modal-{$pokemonSlug} h3.modal-title .modal-subtitle");
-        $this->assertEquals(
+        $this->assertSame(
             "/ {$secondaryName}",
             $crawler->filter("#modal-{$pokemonSlug} h3.modal-title .modal-subtitle")->text()
         );
@@ -112,20 +112,20 @@ trait ModalTestTrait
             'em',
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             "{$primaryName} / {$secondaryName}",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             $primaryName,
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
                 ->filter('strong')
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             $secondaryName,
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
@@ -159,20 +159,20 @@ trait ModalTestTrait
 
         $formsPrefix = (('fr' === $lang) ? 'Forme' : 'Form');
 
-        $this->assertEquals(
+        $this->assertSame(
             "{$formsPrefix} {$formsLabel}",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             $formsPrefix,
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
                 ->filter('strong')
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             $formsLabel,
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
@@ -204,7 +204,7 @@ trait ModalTestTrait
             'span.album-modal-types',
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             $primaryType,
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item span.album-modal-type-primary")
                 ->eq(0)
@@ -212,7 +212,7 @@ trait ModalTestTrait
         );
 
         if (null !== $secondaryType) {
-            $this->assertEquals(
+            $this->assertSame(
                 $secondaryType,
                 $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item span.album-modal-type-secondary")
                     ->eq(0)
@@ -246,13 +246,13 @@ trait ModalTestTrait
 
         $dexNumberPrefix = (('fr' === $lang) ? 'Numéro de dex national' : 'National dex number');
 
-        $this->assertEquals(
+        $this->assertSame(
             "{$dexNumberPrefix} {$dexNumber}",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             $dexNumberPrefix,
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
@@ -293,13 +293,13 @@ trait ModalTestTrait
 
         $dexNumberPrefix = (('fr' === $lang) ? 'Numéro de dex régional' : 'Regional dex number');
 
-        $this->assertEquals(
+        $this->assertSame(
             "{$dexNumberPrefix} {$dexNumber}",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             $dexNumberPrefix,
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupItemIndex)
@@ -333,7 +333,7 @@ trait ModalTestTrait
             'a',
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Afficher la famille' : 'Filter this family only',
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupIntemIndex)
@@ -371,7 +371,7 @@ trait ModalTestTrait
             'a',
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Fiche Poképédia (nouvel onglet)' : "Poképédia's page (french) (new tab)",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupIntemIndex)
@@ -410,7 +410,7 @@ trait ModalTestTrait
             'a',
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Fiche Bulbapedia (anglais) (nouvel onglet)' : "Bulbapedia's page (new tab)",
             $crawler->filter("#modal-{$pokemonSlug} .modal-body .list-group-item")
                 ->eq($groupIntemIndex)

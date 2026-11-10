@@ -59,12 +59,12 @@ final class OffcanvasTest extends WebTestCase
             $crawler->filter('#offcanvas .dex-shiny-or-not')->attr('title')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
             $crawler->filter('#offcanvas .dex-template')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Version 4',
             $crawler->filter('#offcanvas .dex-version')->text()
         );
@@ -90,7 +90,7 @@ final class OffcanvasTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/demolist3');
 
         $this->assertCountFilter($crawler, 1, '#offcanvas #album-description');
-        $this->assertEquals(
+        $this->assertSame(
             'Tous les pokémons de la démo affiché en liste, 3 éléments par colonnes',
             $crawler->filter('#album-description')->text()
         );
@@ -112,12 +112,12 @@ final class OffcanvasTest extends WebTestCase
             $crawler->filter('#offcanvas .dex-shiny-or-not')->attr('title')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Liste de 3 pokémons par lignes',
             $crawler->filter('#offcanvas .dex-template')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Version 412',
             $crawler->filter('#offcanvas .dex-version')->text()
         );
@@ -138,7 +138,7 @@ final class OffcanvasTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/demoliteshiny');
 
         $this->assertCountFilter($crawler, 1, '#offcanvas #album-description');
-        $this->assertEquals(
+        $this->assertSame(
             '',
             $crawler->filter('#album-description')->text()
         );
@@ -155,12 +155,12 @@ final class OffcanvasTest extends WebTestCase
             $crawler->filter('#offcanvas .dex-shiny-or-not')->attr('title')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
             $crawler->filter('#offcanvas .dex-template')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Version 0',
             $crawler->filter('#offcanvas .dex-version')->text()
         );
@@ -207,12 +207,12 @@ final class OffcanvasTest extends WebTestCase
             $crawler->filter('#offcanvas .dex-shiny-or-not')->attr('title')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
             $crawler->filter('#offcanvas .dex-template')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Version 3',
             $crawler->filter('#offcanvas .dex-version')->text()
         );
@@ -259,12 +259,12 @@ final class OffcanvasTest extends WebTestCase
             $crawler->filter('#offcanvas .dex-shiny-or-not')->attr('title')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
             $crawler->filter('#offcanvas .dex-template')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Version 2',
             $crawler->filter('#offcanvas .dex-version')->text()
         );
@@ -311,12 +311,12 @@ final class OffcanvasTest extends WebTestCase
             $crawler->filter('#offcanvas .dex-shiny-or-not')->attr('title')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Display by box of 6 by 5 pokémons as in the games',
             $crawler->filter('#offcanvas .dex-template')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Version 2',
             $crawler->filter('#offcanvas .dex-version')->text()
         );
@@ -337,7 +337,7 @@ final class OffcanvasTest extends WebTestCase
         $crawler = $client->request('GET', '/fr/album/demo?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
 
         $this->assertCountFilter($crawler, 1, '#offcanvas #album-description');
-        $this->assertEquals(
+        $this->assertSame(
             'Tous les pokémons de la démo',
             $crawler->filter('#album-description')->text()
         );
@@ -355,12 +355,12 @@ final class OffcanvasTest extends WebTestCase
             $crawler->filter('#offcanvas .dex-shiny-or-not')->attr('title')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Affichage par boîte de 6 par 5 pokémons comme dans les jeux',
             $crawler->filter('#offcanvas .dex-template')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Version 412',
             $crawler->filter('#offcanvas .dex-version')->text()
         );
@@ -444,11 +444,11 @@ final class OffcanvasTest extends WebTestCase
     {
         $this->assertCount(1, $crawler->filter('select#primary_type'));
         $this->assertCount(19, $crawler->filter('select#primary_type option'));
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Tous' : 'All',
             $crawler->filter('select#primary_type option')->eq(0)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Normal' : 'Normal',
             $crawler->filter('select#primary_type option')->eq(1)->text()
         );
@@ -458,15 +458,15 @@ final class OffcanvasTest extends WebTestCase
     {
         $this->assertCount(1, $crawler->filter('select#secondary_type'));
         $this->assertCount(20, $crawler->filter('select#secondary_type option'));
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Tous' : 'All',
             $crawler->filter('select#secondary_type option')->eq(0)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Aucun' : 'None',
             $crawler->filter('select#secondary_type option')->eq(1)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Normal' : 'Normal',
             $crawler->filter('select#secondary_type option')->eq(2)->text()
         );
@@ -476,15 +476,15 @@ final class OffcanvasTest extends WebTestCase
     {
         $this->assertCount(1, $crawler->filter('select#category_form'));
         $this->assertCount(8, $crawler->filter('select#category_form option'));
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Toutes' : 'All',
             $crawler->filter('select#category_form option')->eq(0)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Aucune' : 'None',
             $crawler->filter('select#category_form option')->eq(1)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'de Départ' : 'Starter',
             $crawler->filter('select#category_form option')->eq(2)->text()
         );
@@ -494,15 +494,15 @@ final class OffcanvasTest extends WebTestCase
     {
         $this->assertCount(1, $crawler->filter('select#regional_form'));
         $this->assertCount(6, $crawler->filter('select#regional_form option'));
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Toutes' : 'All',
             $crawler->filter('select#regional_form option')->eq(0)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Aucune' : 'None',
             $crawler->filter('select#regional_form option')->eq(1)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? "d'Alola" : 'Alolan',
             $crawler->filter('select#regional_form option')->eq(2)->text()
         );
@@ -512,15 +512,15 @@ final class OffcanvasTest extends WebTestCase
     {
         $this->assertCount(1, $crawler->filter('select#special_form'));
         $this->assertCount(9, $crawler->filter('select#special_form option'));
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Toutes' : 'All',
             $crawler->filter('select#special_form option')->eq(0)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Aucune' : 'None',
             $crawler->filter('select#special_form option')->eq(1)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Mega' : 'Mega',
             $crawler->filter('select#special_form option')->eq(2)->text()
         );
@@ -530,15 +530,15 @@ final class OffcanvasTest extends WebTestCase
     {
         $this->assertCount(1, $crawler->filter('select#variant_form'));
         $this->assertCount(9, $crawler->filter('select#variant_form option'));
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Toutes' : 'All',
             $crawler->filter('select#variant_form option')->eq(0)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Aucune' : 'None',
             $crawler->filter('select#variant_form option')->eq(1)->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'fr' === $lang ? 'Genre' : 'Gender',
             $crawler->filter('select#variant_form option')->eq(2)->text()
         );

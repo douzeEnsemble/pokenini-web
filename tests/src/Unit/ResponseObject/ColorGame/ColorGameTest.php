@@ -24,7 +24,7 @@ final class ColorGameTest extends TestCase
 
         $this->assertSame('g1', $object->getId());
         $this->assertSame($dex, $object->getDex());
-        $this->assertSame(true, $object->isShiny());
+        $this->assertTrue($object->isShiny());
         $this->assertSame('completed', $object->getStatus());
         $this->assertSame(3, $object->getRoundCount());
         $this->assertSame(2, $object->getAnsweredCount());

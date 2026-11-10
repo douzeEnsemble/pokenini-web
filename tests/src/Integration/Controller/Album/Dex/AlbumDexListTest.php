@@ -81,13 +81,13 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.dex_is_custom');
 
         $firstAlbum = $crawler->filter('.dex-item')->first();
-        $this->assertEquals('Épée, Bouclier 100%', $firstAlbum->text());
+        $this->assertSame('Épée, Bouclier 100%', $firstAlbum->text());
         $this->assertEquals('/fr/album/swordshield', $firstAlbum->filter('a')->attr('href'));
         $this->assertEquals('https://icon.pokenini.fr/dex/banner/swordshield.png', $firstAlbum->filter('img')->attr('src'));
         $this->assertCountFilter($firstAlbum, 1, 'img.img-loader[width="578"][height="325"]');
 
         $secondAlbum = $crawler->filter('.dex-item')->eq(2);
-        $this->assertEquals('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
+        $this->assertSame('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
         $this->assertEquals('https://icon.pokenini.fr/dex/banner/homeshiny.png', $secondAlbum->filter('img')->attr('src'));
 
@@ -95,7 +95,7 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 8, '.dex-item .progress-bar');
 
         $homeAlbum = $crawler->filter('.dex-item')->eq(1);
-        $this->assertEquals('100%', $homeAlbum->filter('.progress-bar.catch-state-no')->text());
+        $this->assertSame('100%', $homeAlbum->filter('.progress-bar.catch-state-no')->text());
 
         $megaAlbum = $crawler->filter('.dex-item')->eq(5);
         $this->assertCountFilter($megaAlbum, 0, '.progress');
@@ -146,7 +146,7 @@ final class AlbumDexListTest extends WebTestCase
 
         $crawler = $client->followRedirect();
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
         $this->assertEquals('http://localhost/fr', $crawler->getBaseHref());
     }
 
@@ -263,11 +263,11 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.dex-item h3');
 
         $firstAlbum = $crawler->filter('.dex-item')->first();
-        $this->assertEquals('Épée, Bouclier 100%', $firstAlbum->text());
+        $this->assertSame('Épée, Bouclier 100%', $firstAlbum->text());
         $this->assertEquals('/fr/album/swordshield', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $crawler->filter('.dex-item')->eq(2);
-        $this->assertEquals('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
+        $this->assertSame('Home Chromatique 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/fr/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
         $this->assertCountFilter($crawler, 0, '#jumbotron');
@@ -303,11 +303,11 @@ final class AlbumDexListTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.dex-item h3');
 
         $firstAlbum = $crawler->filter('.dex-item')->first();
-        $this->assertEquals('Sword, Shield 100%', $firstAlbum->text());
+        $this->assertSame('Sword, Shield 100%', $firstAlbum->text());
         $this->assertEquals('/en/album/swordshield', $firstAlbum->filter('a')->attr('href'));
 
         $secondAlbum = $crawler->filter('.dex-item')->eq(2);
-        $this->assertEquals('Home Shiny 0.66% 99.34%', $secondAlbum->text());
+        $this->assertSame('Home Shiny 0.66% 99.34%', $secondAlbum->text());
         $this->assertEquals('/en/album/homeshiny', $secondAlbum->filter('a')->attr('href'));
 
         $this->assertCountFilter($crawler, 0, '#jumbotron');

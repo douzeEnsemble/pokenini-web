@@ -26,10 +26,10 @@ final class AdminActionTest extends TestCase
             '',
         );
 
-        $this->assertEquals('truc', $adminAction->action);
-        $this->assertEquals('machin', $adminAction->item);
-        $this->assertEquals('ok', $adminAction->state);
-        $this->assertEquals('content', $adminAction->content);
-        $this->assertEquals('', $adminAction->error);
+        $this->assertSame('truc', $adminAction->action);
+        $this->assertSame('machin', $adminAction->item);
+        $this->assertSame('ok', $adminAction->state);
+        $this->assertSame('content', $adminAction->content);
+        $this->assertSame('', $adminAction->error);
     }
 }

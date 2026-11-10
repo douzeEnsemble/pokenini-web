@@ -16,7 +16,7 @@ trait TestNavTrait
             '/fr',
             $langItem->filter('a')->attr('href') ?? ''
         );
-        $this->assertEquals(
+        $this->assertSame(
             'Français',
             $langItem->filter('a')->text()
         );
@@ -30,7 +30,7 @@ trait TestNavTrait
             '/en',
             $langItem->filter('a')->attr('href') ?? ''
         );
-        $this->assertEquals(
+        $this->assertSame(
             'English',
             $langItem->filter('a')->text()
         );

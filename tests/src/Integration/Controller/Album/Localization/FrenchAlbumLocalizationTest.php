@@ -88,12 +88,12 @@ final class FrenchAlbumLocalizationTest extends WebTestCase
 
         $this->assertPageTitleSame('Pokénini Démo, extrait');
 
-        $this->assertEquals(
+        $this->assertSame(
             'Bulbizarre',
             $crawler->filter('#bulbasaur .album-case-name')->text()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'Gigamax',
             $crawler->filter('#butterfree-gmax .album-case-forms')->text()
         );
@@ -115,68 +115,68 @@ final class FrenchAlbumLocalizationTest extends WebTestCase
         $crawler = $client->getCrawler();
 
         $selectedOption = $crawler->filter('#bulbasaur select option:selected')->first();
-        $this->assertEquals('Non', $selectedOption->text());
+        $this->assertSame('Non', $selectedOption->text());
 
         $selectedOption = $crawler->filter('#ivysaur select option:selected')->first();
-        $this->assertEquals('Non', $selectedOption->text());
+        $this->assertSame('Non', $selectedOption->text());
 
         $selectedOption = $crawler->filter('#venusaur select option:selected')->first();
-        $this->assertEquals('af. évoluer', $selectedOption->text());
+        $this->assertSame('af. évoluer', $selectedOption->text());
 
         $selectedOption = $crawler->filter('#venusaur-f select option:selected')->first();
-        $this->assertEquals('af. reproduire', $selectedOption->text());
+        $this->assertSame('af. reproduire', $selectedOption->text());
 
         $selectedOption = $crawler->filter('#venusaur-mega select option:selected')->first();
-        $this->assertEquals('à transférer', $selectedOption->text());
+        $this->assertSame('à transférer', $selectedOption->text());
 
         $selectedOption = $crawler->filter('#venusaur-gmax select option:selected')->first();
-        $this->assertEquals('À échanger', $selectedOption->text());
+        $this->assertSame('À échanger', $selectedOption->text());
 
         $selectedOption = $crawler->filter('#charmander select option:selected')->first();
-        $this->assertEquals('Oui', $selectedOption->text());
+        $this->assertSame('Oui', $selectedOption->text());
     }
 
     private function assertAlbumFrenchReadMode(KernelBrowser $client): void
     {
         $crawler = $client->getCrawler();
 
-        $this->assertEquals(
+        $this->assertSame(
             'Non',
             $crawler
                 ->filter('#bulbasaur .album-case-catch-state')
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'Non',
             $crawler
                 ->filter('#ivysaur .album-case-catch-state')
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'af. évoluer',
             $crawler
                 ->filter('#venusaur .album-case-catch-state')
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'af. reproduire',
             $crawler
                 ->filter('#venusaur-f .album-case-catch-state')
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'à transférer',
             $crawler
                 ->filter('#venusaur-mega .album-case-catch-state')
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'À échanger',
             $crawler
                 ->filter('#venusaur-gmax .album-case-catch-state')
                 ->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'Oui',
             $crawler
                 ->filter('#charmander .album-case-catch-state')
@@ -188,23 +188,23 @@ final class FrenchAlbumLocalizationTest extends WebTestCase
     {
         $crawler = $client->getCrawler();
 
-        $this->assertEquals(
+        $this->assertSame(
             'Non',
             $crawler->filter('table#report tr.catch-state-no th')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'Af. évoluer',
             $crawler->filter('table#report tr.catch-state-toevolve th')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'Af. reproduire',
             $crawler->filter('table#report tr.catch-state-tobreed th')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'À transférer',
             $crawler->filter('table#report tr.catch-state-totransfer th')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             'Oui',
             $crawler->filter('table#report tr.catch-state-yes th')->text()
         );
