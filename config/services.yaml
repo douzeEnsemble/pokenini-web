@@ -30,3 +30,11 @@ services:
 when@test:
   parameters:
     shiny_game.image_url: "http://moco.back/pokemon/big/%%1$s/%%2$s.png"
+  services:
+    # The session is mocked by the functional tests only (see phpunit.xml.dist), not by the server of the browser tests
+    test.session.storage.factory:
+      class: App\Tests\Utils\SwitchableSessionStorageFactory
+      arguments:
+        $native: "@session.storage.factory.native"
+        $mock: "@session.storage.factory.mock_file"
+        $useMock: "%env(bool:SESSION_MOCK)%"
