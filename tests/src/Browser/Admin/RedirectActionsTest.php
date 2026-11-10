@@ -60,6 +60,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $page = self::SECTION_PAGES[$section];
 
         $client->request('GET', $page);
+        $cookiesAtLoad = $this->describeCookies($client);
 
         match (\in_array("{$action}_{$item}", self::PENDING_ACTION_ITEMS, true)) {
             true => $this->clickPendingActionAndAcceptConfirm($client, $action, $item),
@@ -70,7 +71,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $baseUri = rtrim(false !== $rawUri ? $rawUri : 'http://127.0.0.1:9080', '/');
         $expectedUrl = "{$baseUri}{$page}#{$action}_{$item}";
 
-        $this->waitUntil($client, static fn (): bool => $expectedUrl === $client->getCurrentURL(), "the redirection to {$expectedUrl}");
+        $this->waitUntil($client, static fn (): bool => $expectedUrl === $client->getCurrentURL(), "the redirection to {$expectedUrl} (cookies when the page was loaded: {$cookiesAtLoad})");
 
         $this->assertSame(
             $expectedUrl,

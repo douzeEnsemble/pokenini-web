@@ -53,9 +53,10 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
         } catch (TimeoutException $e) {
             throw new \RuntimeException(
                 sprintf(
-                    "Timeout while waiting for %s.\nURL: %s\nTitle: %s\nText: %s",
+                    "Timeout while waiting for %s.\nURL: %s\nCookies now: %s\nTitle: %s\nText: %s",
                     $description,
                     $client->getCurrentURL(),
+                    $this->describeCookies($client),
                     $client->getTitle(),
                     mb_substr(trim($client->findElement(WebDriverBy::cssSelector('body'))->getText()), 0, 1500),
                 ),
@@ -63,6 +64,20 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
                 $e,
             );
         }
+    }
+
+    /**
+     * The cookies of the browser as "name=short hash of the value", to compare the session at two moments
+     * without writing it in the logs.
+     */
+    protected function describeCookies(Client $client): string
+    {
+        $cookies = [];
+        foreach ($client->getCookieJar()->all() as $cookie) {
+            $cookies[] = sprintf('%s=%s', $cookie->getName(), substr(sha1($cookie->getValue()), 0, 8));
+        }
+
+        return implode(', ', $cookies);
     }
 
     /**
