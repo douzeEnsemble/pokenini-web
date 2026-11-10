@@ -70,7 +70,7 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
         $baseUri = rtrim(false !== $rawUri ? $rawUri : 'http://127.0.0.1:9080', '/');
         $expectedUrl = "{$baseUri}{$page}#{$action}_{$item}";
 
-        $client->wait()->until(static fn (): bool => $expectedUrl === $client->getCurrentURL());
+        $this->waitUntil($client, static fn (): bool => $expectedUrl === $client->getCurrentURL(), "the redirection to {$expectedUrl}");
 
         $this->assertSame(
             $expectedUrl,
