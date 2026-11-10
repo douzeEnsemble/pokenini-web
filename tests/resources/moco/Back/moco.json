@@ -3768,6 +3768,29 @@
       "uri": {
         "match": "/election/dex"
       },
+      "queries": {
+        "lang": "fr"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer collector"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/election/election_dex_list_fr.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/election/dex"
+      },
       "method": "get",
       "headers": {
         "X-Provider": {
@@ -3781,6 +3804,29 @@
     "response": {
       "status": "200",
       "file": "/var/moco/responses/election/election_dex_list.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/election/dex"
+      },
+      "queries": {
+        "lang": "fr"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/election/election_dex_list_fr.json"
     }
   },
   {
@@ -3872,6 +3918,29 @@
       "uri": {
         "match": "/election/mega$"
       },
+      "queries": {
+        "lang": "fr"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/election/index_mega_fr.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/election/mega$"
+      },
       "method": "get",
       "headers": {
         "X-Provider": { "match": ".*" },
@@ -3881,6 +3950,29 @@
     "response": {
       "status": "200",
       "file": "/var/moco/responses/election/index_mega.json"
+    }
+  },
+  {
+    "request": {
+      "uri": {
+        "match": "/election/mega/"
+      },
+      "queries": {
+        "lang": "fr"
+      },
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/election/index_mega_fr.json"
     }
   },
   {

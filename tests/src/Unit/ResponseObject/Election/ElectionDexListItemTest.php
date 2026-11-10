@@ -86,7 +86,7 @@ final class ElectionDexListItemTest extends TestCase
         $this->assertNull($item->getDisplayTemplate());
         $this->assertNull($item->getDescription());
         $this->assertNull($item->getFrenchDescription());
-        $this->assertSame(['en' => null, 'fr' => null], $item->getDescriptions());
+        $this->assertSame(['*' => null], $item->getDescriptions());
         $this->assertNull($item->getDexTotalCount());
         $this->assertNull($item->getReport());
     }
@@ -154,5 +154,33 @@ final class ElectionDexListItemTest extends TestCase
         );
 
         $this->assertSame($category, $item->getCategory());
+    }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $item = new ElectionDexListItem(
+            slug: 'test',
+            originalSlug: 'test',
+            name: 'Démo',
+            frenchName: null,
+            flags: new DexFlags(
+                isShiny: false,
+                isPrivate: false,
+                isOnHome: false,
+                isDisplayForm: false,
+                isReleased: false,
+                isPremium: false,
+                isCustom: false,
+            ),
+            displayTemplate: null,
+            description: 'Description',
+            frenchDescription: null,
+            dexTotalCount: null,
+        );
+
+        $this->assertNull($item->getFrenchName());
+        $this->assertSame(['*' => 'Démo'], $item->getNames());
+        $this->assertSame(['*' => 'Description'], $item->getDescriptions());
     }
 }

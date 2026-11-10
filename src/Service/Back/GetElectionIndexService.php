@@ -10,11 +10,13 @@ class GetElectionIndexService extends AbstractBackService
 {
     /**
      * @param string[]|string[][] $filters
+     * @param null|string         $locale  the language of the names, null for both languages
      */
     public function get(
         string $dexSlug,
         string $electionSlug,
         array $filters,
+        ?string $locale = null,
     ): ElectionIndex {
         $path = empty($electionSlug)
             ? "/election/{$dexSlug}"
@@ -24,7 +26,7 @@ class GetElectionIndexService extends AbstractBackService
             'GET',
             $path,
             [
-                'query' => $filters,
+                'query' => null === $locale ? $filters : $filters + ['lang' => $locale],
             ]
         );
 

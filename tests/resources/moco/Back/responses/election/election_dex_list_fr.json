@@ -1,0 +1,266 @@
+[
+  {
+    "slug": "home",
+    "original_slug": "home",
+    "name": "Home",
+    "french_name": null,
+    "flags": {
+      "is_shiny": false,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "box",
+    "description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "french_description": null,
+    "dex_total_count": 61,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 0,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 0,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 43,
+          "at_max_count": 18
+        },
+        "dex_total_count": 61,
+        "round_count": 0,
+        "total_round_count": 10,
+        "winner_average": 4
+      }
+    },
+    "category": {
+      "slug": "home",
+      "name": "Pokémon Home",
+      "french_name": null,
+      "order_number": 2
+    }
+  },
+  {
+    "slug": "homeshiny",
+    "original_slug": "homeshiny",
+    "name": "Home\nChromatique",
+    "french_name": null,
+    "flags": {
+      "is_shiny": true,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "box",
+    "description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "french_description": null,
+    "dex_total_count": 33,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 60,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 30,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 15,
+          "at_max_count": 18
+        },
+        "dex_total_count": 33,
+        "round_count": 5,
+        "total_round_count": 7,
+        "winner_average": 6
+      }
+    },
+    "category": {
+      "slug": "home",
+      "name": "Pokémon Home",
+      "french_name": null,
+      "order_number": 2
+    }
+  },
+  {
+    "slug": "homepogo",
+    "original_slug": "homepokemongo",
+    "name": "Home Pokemon Go",
+    "french_name": null,
+    "flags": {
+      "is_shiny": false,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": false,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": true
+    },
+    "display_template": "list-7",
+    "description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "french_description": null,
+    "dex_total_count": 5,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 24,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 12,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 2,
+          "at_max_count": 3
+        },
+        "dex_total_count": 5,
+        "round_count": 2,
+        "total_round_count": 2,
+        "winner_average": 6
+      }
+    },
+    "category": {
+      "slug": "home",
+      "name": "Pokémon Home",
+      "french_name": null,
+      "order_number": 2
+    }
+  },
+  {
+    "slug": "mega",
+    "original_slug": "mega",
+    "name": "Méga",
+    "french_name": null,
+    "flags": {
+      "is_shiny": false,
+      "is_private": false,
+      "is_on_home": true,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": true,
+      "is_custom": false
+    },
+    "display_template": "list-3",
+    "description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "french_description": null,
+    "dex_total_count": 76,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 63,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 16,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 20,
+          "at_max_count": 56
+        },
+        "dex_total_count": 76,
+        "round_count": 5,
+        "total_round_count": 7,
+        "winner_average": 3.2
+      }
+    },
+    "category": {
+      "slug": "special",
+      "name": "Formes spéciales",
+      "french_name": null,
+      "order_number": 3
+    }
+  },
+  {
+    "slug": "sunmoon",
+    "original_slug": "sunmoon",
+    "name": "Soleil, Lune",
+    "french_name": null,
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "box",
+    "description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "french_description": null,
+    "dex_total_count": 781,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 180,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 90,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 156,
+          "at_max_count": 181
+        },
+        "dex_total_count": 781,
+        "round_count": 15,
+        "total_round_count": 137,
+        "winner_average": 6
+      }
+    }
+  },
+  {
+    "slug": "goldsilvercrystal",
+    "original_slug": "goldsilvercrystal",
+    "name": "Or, Argent, Cristal",
+    "french_name": null,
+    "flags": {
+      "is_shiny": false,
+      "is_private": true,
+      "is_on_home": false,
+      "is_display_form": true,
+      "is_released": true,
+      "is_premium": false,
+      "is_custom": false
+    },
+    "display_template": "box",
+    "description": "Tous les pokémons pouvant être transférés sur Pokémon Home.  les mâles/femelles, les formes différentes et les transformations (certains ne sont pas conservés lors du transfert, mais je voulais avoir les pokémons quand même, au cas où ça change)",
+    "french_description": null,
+    "dex_total_count": 1,
+    "report": {
+      "top": [],
+      "metrics": {
+        "view_count": {
+          "sum": 12,
+          "max": 0
+        },
+        "win_count": {
+          "sum": 6,
+          "max": 0
+        },
+        "completion": {
+          "under_max_count": 0,
+          "at_max_count": 1
+        },
+        "dex_total_count": 1,
+        "round_count": 1,
+        "total_round_count": 2,
+        "winner_average": 6
+      }
+    }
+  }
+]
