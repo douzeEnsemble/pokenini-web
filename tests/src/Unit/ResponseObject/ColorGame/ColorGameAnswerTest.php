@@ -24,7 +24,7 @@ final class ColorGameAnswerTest extends TestCase
         $object = new ColorGameAnswer(2, true, 1, 3, $game);
 
         $this->assertSame(2, $object->getPosition());
-        $this->assertSame(true, $object->isCorrect());
+        $this->assertTrue($object->isCorrect());
         $this->assertSame(1, $object->getChosenChoice());
         $this->assertSame(3, $object->getCorrectChoice());
         $this->assertSame($game, $object->getGame());

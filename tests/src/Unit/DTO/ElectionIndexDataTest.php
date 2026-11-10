@@ -43,7 +43,7 @@ final class ElectionIndexDataTest extends TestCase
 
         $this->assertSame('list_type', $object->listType);
         $this->assertSame([], $object->pokemons);
-        $this->assertSame(null, $object->pokedex);
+        $this->assertNull($object->pokedex);
         $this->assertCount(0, $object->electionTop->getItems());
         $this->assertSame(82, $object->metrics->getViewCount()->getSum());
         $this->assertSame(42, $object->metrics->getViewCount()->getMax());
@@ -57,7 +57,7 @@ final class ElectionIndexDataTest extends TestCase
         $this->assertSame(13, $object->metrics->getTotalRoundCount());
 
         $this->assertSame(0, $object->detachedCount);
-        $this->assertSame(true, $object->isTheLastOne);
-        $this->assertSame(true, $object->isTheLastPage);
+        $this->assertTrue($object->isTheLastOne);
+        $this->assertTrue($object->isTheLastPage);
     }
 }

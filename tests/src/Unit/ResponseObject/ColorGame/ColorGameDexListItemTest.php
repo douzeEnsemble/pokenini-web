@@ -29,9 +29,9 @@ final class ColorGameDexListItemTest extends TestCase
         $this->assertSame('Demo', $object->getName());
         $this->assertSame('Démo', $object->getFrenchName());
         $this->assertSame(['en' => 'Demo', 'fr' => 'Démo'], $object->getNames());
-        $this->assertSame(true, $object->isShiny());
-        $this->assertSame(false, $object->isReleased());
-        $this->assertSame(true, $object->isPremium());
+        $this->assertTrue($object->isShiny());
+        $this->assertFalse($object->isReleased());
+        $this->assertTrue($object->isPremium());
         $this->assertSame('Description', $object->getDescription());
         $this->assertSame('Description fr', $object->getFrenchDescription());
         $this->assertSame(['en' => 'Description', 'fr' => 'Description fr'], $object->getDescriptions());

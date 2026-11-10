@@ -34,7 +34,7 @@ final class FormTest extends WebTestCase
 
         $crawler = $client->getCrawler();
 
-        $this->assertEquals('♂️', $crawler->filter('#venusaur .album-case-forms')->text());
+        $this->assertSame('♂️', $crawler->filter('#venusaur .album-case-forms')->text());
     }
 
     #[Test]
@@ -51,6 +51,6 @@ final class FormTest extends WebTestCase
 
         $crawler = $client->getCrawler();
 
-        $this->assertEquals(' ', $crawler->filter('#venusaur .album-case-forms')->text());
+        $this->assertSame(' ', $crawler->filter('#venusaur .album-case-forms')->text());
     }
 }

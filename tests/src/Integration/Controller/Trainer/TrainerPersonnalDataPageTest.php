@@ -44,8 +44,8 @@ final class TrainerPersonnalDataPageTest extends WebTestCase
         $this->assertCount(1, $crawler->filter('h1'));
         $this->assertCount(2, $crawler->filter('table thead th'));
         $this->assertCount(2, $crawler->filter('table tbody tr'));
-        $this->assertEquals('Identifiant 789465465489', $crawler->filter('table tbody tr')->eq(0)->text());
-        $this->assertEquals("Service d'identification TestProvider", $crawler->filter('table tbody tr')->eq(1)->text());
+        $this->assertSame('Identifiant 789465465489', $crawler->filter('table tbody tr')->eq(0)->text());
+        $this->assertSame("Service d'identification TestProvider", $crawler->filter('table tbody tr')->eq(1)->text());
 
         $this->assertCount(4, $crawler->filter('#trainer-section-tab .nav-link'));
         $this->assertSame(

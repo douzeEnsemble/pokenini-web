@@ -524,7 +524,7 @@ final class ElectionIndexTest extends WebTestCase
 
     private function assertCardContentDemoLite(Crawler $crawler): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'Bulbizarre',
             $crawler->filter('#card-bulbasaur .list-group-item')
                 ->eq(0)
@@ -558,7 +558,7 @@ final class ElectionIndexTest extends WebTestCase
 
     private function assertCardContentMega(Crawler $crawler): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'Dracaufeu',
             $crawler->filter('#card-charizard-mega-y .list-group-item')
                 ->eq(0)
@@ -609,14 +609,14 @@ final class ElectionIndexTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#election-actions-bottom');
         $this->assertCountFilter($crawler, 2, '#election-actions-bottom .election-actions-item');
         $index = 0;
-        $this->assertEquals(
+        $this->assertSame(
             $actionLabel,
             $crawler->filter('#election-actions-bottom .election-actions-item')
                 ->eq($index)
                 ->text()
         );
         ++$index;
-        $this->assertEquals(
+        $this->assertSame(
             $filterLabel,
             $crawler->filter('#election-actions-bottom .election-actions-item')
                 ->eq($index)

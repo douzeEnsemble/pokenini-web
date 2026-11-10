@@ -192,11 +192,11 @@ final class AdminCalculateDataTest extends WebTestCase
         );
 
         foreach ($expectedReport as $label => $value) {
-            $this->assertEquals(
+            $this->assertSame(
                 $label,
                 $crawler->filter(".admin-item-{$item} .admin-item-{$type} .admin-item-report dt")->eq($index)->text()
             );
-            $this->assertEquals(
+            $this->assertSame(
                 $value,
                 $crawler->filter(".admin-item-{$item} .admin-item-{$type} .admin-item-report dd")->eq($index)->text()
             );
@@ -207,11 +207,11 @@ final class AdminCalculateDataTest extends WebTestCase
         if ($expectedDateTime) {
             $this->assertCountFilter($crawler, 1, ".admin-item-{$item} .admin-item-{$type} .admin-item-report-date");
 
-            $this->assertEquals(
+            $this->assertSame(
                 $expectedDateTime['label'],
                 $crawler->filter(".admin-item-{$item} .admin-item-{$type} .admin-item-report-date strong")->text()
             );
-            $this->assertEquals(
+            $this->assertSame(
                 $expectedDateTime['value'],
                 $crawler->filter(".admin-item-{$item} .admin-item-{$type} .admin-item-report-date em")->text()
             );
@@ -220,11 +220,11 @@ final class AdminCalculateDataTest extends WebTestCase
         if ($executionTime) {
             $this->assertCountFilter($crawler, 1, ".admin-item-{$item} .admin-item-{$type} .admin-item-report-execution");
 
-            $this->assertEquals(
+            $this->assertSame(
                 'Terminé en',
                 $crawler->filter(".admin-item-{$item} .admin-item-{$type} .admin-item-report-execution strong")->text()
             );
-            $this->assertEquals(
+            $this->assertSame(
                 $executionTime,
                 $crawler->filter(".admin-item-{$item} .admin-item-{$type} .admin-item-report-execution em")->text()
             );
@@ -233,7 +233,7 @@ final class AdminCalculateDataTest extends WebTestCase
         if ($errorMessage) {
             $this->assertCountFilter($crawler, 1, ".admin-item-{$item} .admin-item-{$type} .alert.alert-danger");
 
-            $this->assertEquals(
+            $this->assertSame(
                 $errorMessage,
                 $crawler->filter(".admin-item-{$item} .admin-item-{$type} .alert.alert-danger")->text()
             );

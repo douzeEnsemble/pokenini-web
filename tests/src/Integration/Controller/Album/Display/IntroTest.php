@@ -38,7 +38,7 @@ final class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
-        $this->assertEquals(
+        $this->assertSame(
             'Home',
             $crawler->filter('h1#album-title')->text()
         );
@@ -96,7 +96,7 @@ final class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
-        $this->assertEquals(
+        $this->assertSame(
             'Démo',
             $crawler->filter('h1#album-title')->text()
         );
@@ -104,7 +104,7 @@ final class IntroTest extends WebTestCase
         $this->assertCountFilter($crawler, 0, '#album-subtitle');
 
         $this->assertCountFilter($crawler, 1, '#album-description');
-        $this->assertEquals(
+        $this->assertSame(
             'Tous les pokémons de la démo affiché en liste, 3 éléments par colonnes',
             $crawler->filter('#album-description')->text()
         );
@@ -150,13 +150,13 @@ final class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
-        $this->assertEquals(
+        $this->assertSame(
             'Démo, extrait',
             $crawler->filter('h1#album-title')->text()
         );
 
         $this->assertCountFilter($crawler, 1, '#album-subtitle');
-        $this->assertEquals(
+        $this->assertSame(
             'chromatique',
             $crawler->filter('#album-subtitle')->text()
         );
@@ -206,7 +206,7 @@ final class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
-        $this->assertEquals(
+        $this->assertSame(
             'Or, Argent, Cristal',
             $crawler->filter('h1#album-title')->text()
         );
@@ -264,7 +264,7 @@ final class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
-        $this->assertEquals(
+        $this->assertSame(
             'Noire, Blanche',
             $crawler->filter('h1#album-title')->text()
         );
@@ -317,7 +317,7 @@ final class IntroTest extends WebTestCase
         $crawler = $client->request('GET', '/en/album/blackwhite');
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
-        $this->assertEquals(
+        $this->assertSame(
             'Black, White',
             $crawler->filter('h1#album-title')->text()
         );
@@ -375,7 +375,7 @@ final class IntroTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 1, 'h1#album-title');
-        $this->assertEquals(
+        $this->assertSame(
             'Démo',
             $crawler->filter('h1#album-title')->text()
         );

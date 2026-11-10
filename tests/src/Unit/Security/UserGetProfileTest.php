@@ -26,7 +26,7 @@ final class UserGetProfileTest extends TestCase
             'test-session-token',
         );
 
-        $this->assertEquals('user', $user->getProfile());
+        $this->assertSame('user', $user->getProfile());
     }
 
     #[Test]
@@ -40,7 +40,7 @@ final class UserGetProfileTest extends TestCase
         );
         $user->addTrainerRole();
 
-        $this->assertEquals('trainer', $user->getProfile());
+        $this->assertSame('trainer', $user->getProfile());
     }
 
     #[Test]
@@ -54,7 +54,7 @@ final class UserGetProfileTest extends TestCase
         );
         $user->addCollectorRole();
 
-        $this->assertEquals('collector', $user->getProfile());
+        $this->assertSame('collector', $user->getProfile());
     }
 
     #[Test]
@@ -68,7 +68,7 @@ final class UserGetProfileTest extends TestCase
         );
         $user->addAdminRole();
 
-        $this->assertEquals('admin', $user->getProfile());
+        $this->assertSame('admin', $user->getProfile());
     }
 
     #[Test]
@@ -83,7 +83,7 @@ final class UserGetProfileTest extends TestCase
         $user->addTrainerRole();
         $user->addAdminRole();
 
-        $this->assertEquals('admin', $user->getProfile());
+        $this->assertSame('admin', $user->getProfile());
     }
 
     #[Test]
@@ -98,7 +98,7 @@ final class UserGetProfileTest extends TestCase
         $user->addCollectorRole();
         $user->addAdminRole();
 
-        $this->assertEquals('admin', $user->getProfile());
+        $this->assertSame('admin', $user->getProfile());
     }
 
     #[Test]
@@ -113,6 +113,6 @@ final class UserGetProfileTest extends TestCase
         $user->addTrainerRole();
         $user->addCollectorRole();
 
-        $this->assertEquals('collector', $user->getProfile());
+        $this->assertSame('collector', $user->getProfile());
     }
 }

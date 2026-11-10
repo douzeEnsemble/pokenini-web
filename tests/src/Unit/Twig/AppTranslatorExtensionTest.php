@@ -31,7 +31,7 @@ final class AppTranslatorExtensionTest extends TestCase
         $almostExactlyFilter = $filters[0];
 
         $this->assertInstanceOf(TwigFilter::class, $almostExactlyFilter);
-        $this->assertEquals('almost_exactly', $almostExactlyFilter->getName());
+        $this->assertSame('almost_exactly', $almostExactlyFilter->getName());
 
         /** @var mixed[] $almostExactlyFilterCallable */
         $almostExactlyFilterCallable = $almostExactlyFilter->getCallable();

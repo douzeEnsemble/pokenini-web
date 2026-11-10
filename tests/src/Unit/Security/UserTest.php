@@ -26,9 +26,9 @@ final class UserTest extends TestCase
             'test-session-token',
         );
 
-        $this->assertEquals('12', $user->getUserIdentifier());
-        $this->assertEquals('12', $user->getId());
-        $this->assertEquals('TestProvider', $user->getProviderName());
+        $this->assertSame('12', $user->getUserIdentifier());
+        $this->assertSame('12', $user->getId());
+        $this->assertSame('TestProvider', $user->getProviderName());
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
     }
 

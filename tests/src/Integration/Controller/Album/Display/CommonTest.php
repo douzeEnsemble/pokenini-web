@@ -134,11 +134,11 @@ final class CommonTest extends WebTestCase
             $crawler->filter('#bulbasaur .album-case-image img')->attr('src')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             html_entity_decode('&nbsp;'),
             $crawler->filter('#bulbasaur .album-case-forms')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             '♀️',
             $crawler->filter('#venusaur-f .album-case-forms')->text()
         );
@@ -203,7 +203,7 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.progress');
         $this->assertCountFilter($crawler, 6, '.progress-bar');
 
-        $this->assertEquals(
+        $this->assertSame(
             '45.95%',
             $crawler->filter('.progress-bar.catch-state-no')->text()
         );
@@ -216,7 +216,7 @@ final class CommonTest extends WebTestCase
         $this->assertEmpty(
             $crawler->filter('.progress-bar.catch-state-totransfer')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             '54.05%',
             $crawler->filter('.progress-bar.catch-state-yes')->text()
         );
@@ -248,23 +248,23 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-yes');
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-total');
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-no td')->eq(0)->text());
-        $this->assertEquals('17', $crawler->filter('table#report tr.catch-state-no td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-no td')->eq(0)->text());
+        $this->assertSame('17', $crawler->filter('table#report tr.catch-state-no td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(0)->text());
-        $this->assertEquals('1', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(0)->text());
+        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(0)->text());
-        $this->assertEquals('1', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(0)->text());
+        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(0)->text());
-        $this->assertEquals('1', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(0)->text());
+        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-yes td')->eq(0)->text());
-        $this->assertEquals('20', $crawler->filter('table#report tr.catch-state-yes td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-yes td')->eq(0)->text());
+        $this->assertSame('20', $crawler->filter('table#report tr.catch-state-yes td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-total th')->eq(1)->text());
-        $this->assertEquals('37', $crawler->filter('table#report tr.catch-state-total th')->eq(2)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-total th')->eq(1)->text());
+        $this->assertSame('37', $crawler->filter('table#report tr.catch-state-total th')->eq(2)->text());
 
         $this->assertStringContainsString(
             '/album/demolite?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
@@ -301,7 +301,7 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.progress');
         $this->assertCountFilter($crawler, 6, '.progress-bar');
 
-        $this->assertEquals(
+        $this->assertSame(
             '0%',
             $crawler->filter('.progress-bar.catch-state-no')->text()
         );
@@ -314,7 +314,7 @@ final class CommonTest extends WebTestCase
         $this->assertEmpty(
             $crawler->filter('.progress-bar.catch-state-totransfer')->text()
         );
-        $this->assertEquals(
+        $this->assertSame(
             '0%',
             $crawler->filter('.progress-bar.catch-state-yes')->text()
         );
@@ -335,23 +335,23 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-yes');
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-total');
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-no td')->eq(0)->text());
-        $this->assertEquals('0', $crawler->filter('table#report tr.catch-state-no td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-no td')->eq(0)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-no td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(0)->text());
-        $this->assertEquals('0', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(0)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(0)->text());
-        $this->assertEquals('0', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(0)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(0)->text());
-        $this->assertEquals('0', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(0)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-yes td')->eq(0)->text());
-        $this->assertEquals('0', $crawler->filter('table#report tr.catch-state-yes td')->eq(1)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-yes td')->eq(0)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-yes td')->eq(1)->text());
 
-        $this->assertEquals('', $crawler->filter('table#report tr.catch-state-total th')->eq(1)->text());
-        $this->assertEquals('0', $crawler->filter('table#report tr.catch-state-total th')->eq(2)->text());
+        $this->assertSame('', $crawler->filter('table#report tr.catch-state-total th')->eq(1)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-total th')->eq(2)->text());
 
         $this->assertStringContainsString(
             '/album/virgin?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',

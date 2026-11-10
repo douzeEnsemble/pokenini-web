@@ -35,9 +35,9 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertFalse($user->isAnAdmin());
         $this->assertFalse($user->isATrainer());
         $this->assertFalse($user->isACollector());
-        $this->assertEquals('uninvited', $user->getId());
-        $this->assertEquals('uninvited', $user->getUserIdentifier());
-        $this->assertEquals('uninvited', $user->getSessionToken());
+        $this->assertSame('uninvited', $user->getId());
+        $this->assertSame('uninvited', $user->getUserIdentifier());
+        $this->assertSame('uninvited', $user->getSessionToken());
     }
 
     #[Test]
@@ -56,8 +56,8 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertFalse($user->isAnAdmin());
         $this->assertTrue($user->isATrainer());
         $this->assertFalse($user->isACollector());
-        $this->assertEquals('trainer', $user->getId());
-        $this->assertEquals('trainer', $user->getUserIdentifier());
+        $this->assertSame('trainer', $user->getId());
+        $this->assertSame('trainer', $user->getUserIdentifier());
     }
 
     #[Test]
@@ -76,8 +76,8 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertFalse($user->isAnAdmin());
         $this->assertTrue($user->isATrainer());
         $this->assertTrue($user->isACollector());
-        $this->assertEquals('collector', $user->getId());
-        $this->assertEquals('collector', $user->getUserIdentifier());
+        $this->assertSame('collector', $user->getId());
+        $this->assertSame('collector', $user->getUserIdentifier());
     }
 
     #[Test]
@@ -96,8 +96,8 @@ final class FakeAuthenticatorAuthenticateTest extends TestCase
         $this->assertTrue($user->isAnAdmin());
         $this->assertTrue($user->isATrainer());
         $this->assertTrue($user->isACollector());
-        $this->assertEquals('admin', $user->getId());
-        $this->assertEquals('admin', $user->getUserIdentifier());
+        $this->assertSame('admin', $user->getId());
+        $this->assertSame('admin', $user->getUserIdentifier());
     }
 
     #[Test]

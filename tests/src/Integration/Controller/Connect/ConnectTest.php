@@ -82,7 +82,7 @@ final class ConnectTest extends WebTestCase
 
     private function assertConnectLink(Crawler $crawler, string $label, string $shortName, int $index): void
     {
-        $this->assertEquals($label, $crawler->filter('#main-container ul.nav li')->eq($index)->text());
+        $this->assertSame($label, $crawler->filter('#main-container ul.nav li')->eq($index)->text());
         $this->assertEquals('/fr/connect/'.$shortName, $crawler->filter('#main-container ul.nav li a')->eq($index)->attr('href'));
     }
 }
