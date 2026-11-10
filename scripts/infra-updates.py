@@ -118,7 +118,7 @@ def bump_php(summary):
     docs = "doc/update.md"
     write(docs, "\n".join(
         line.replace(current_php, new_php).replace(f"alpine{current_alpine}", f"alpine{new_alpine}")
-        if line.startswith("| `php` |") else line
+        if line.startswith("| `php`") else line
         for line in read(docs).split("\n")))
 
     summarize(summary, f"- PHP image: `{current_php}-alpine{current_alpine}` → `{new_php}-alpine{new_alpine}`")
@@ -129,6 +129,8 @@ def bump_pins(summary):
         repo = image.removeprefix("ghcr.io/")
         tags = None
         for file in files:
+            if not (ROOT / file).exists():
+                continue
             content = read(file)
             for match in set(re.findall(re.escape(image) + r":(v?\d[\w.]*(?:-[\w.]+)?)", content)):
                 shape = re.sub(r"\d+", r"\\d+", re.escape(match).replace(r"\.", "."))
@@ -143,13 +145,17 @@ def bump_pins(summary):
                     summarize(summary, f"- `{image}`: `{match}` → `{best}` ({file})")
 
     file = "docker-compose.yaml"
+    if not (ROOT / file).exists():
+        return
     content = read(file)
-    current = re.search(r"MOCO_VERSION:-(\d+\.\d+\.\d+)\}", content).group(1)
+    pattern = re.compile(r"(MOCO_VERSION:\s*(?:\$\{MOCO_VERSION:-)?)(\d+\.\d+\.\d+)")
     versions = re.findall(r"<version>(\d+\.\d+\.\d+)</version>", fetch(MOCO_METADATA)[0])
     best = max(versions, key=version_key)
-    if version_key(best) > version_key(current):
-        write(file, content.replace(f"MOCO_VERSION:-{current}}}", f"MOCO_VERSION:-{best}}}"))
-        summarize(summary, f"- Moco: `{current}` → `{best}` ({file})")
+    for current in {m.group(2) for m in pattern.finditer(content)}:
+        if version_key(best) > version_key(current):
+            content = re.sub(pattern, lambda m: m.group(1) + (best if m.group(2) == current else m.group(2)), content)
+            write(file, content)
+            summarize(summary, f"- Moco: `{current}` → `{best}` ({file})")
 
 
 def main():
