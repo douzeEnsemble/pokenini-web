@@ -25,6 +25,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * @internal
+ *
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
  */
 #[CoversClass(HubHighlightsService::class)]
 final class HubHighlightsServiceElectionTest extends TestCase
