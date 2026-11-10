@@ -113,6 +113,30 @@ final class GetElectionIndexServiceTest extends AbstractTestBackService
         $service->get('test-dex', '', []);
     }
 
+    #[Test]
+    public function getInALanguage(): void
+    {
+        $serializer = $this->createMock(SerializerInterface::class);
+        $electionIndex = $this->getElectionIndex();
+
+        $serializer->expects($this->once())
+            ->method('deserialize')
+            ->with(self::RESPONSE_CONTENT, ElectionIndex::class, 'json')
+            ->willReturn($electionIndex)
+        ;
+
+        /** @var GetElectionIndexService $service */
+        $service = $this->getServiceWithLoggedUser(
+            'GET',
+            self::RESPONSE_CONTENT,
+            '/election/test-dex/test-election',
+            ['query' => ['some' => 'filter', 'lang' => 'fr']],
+            $serializer,
+        );
+
+        $this->assertSame($electionIndex, $service->get('test-dex', 'test-election', ['some' => 'filter'], 'fr'));
+    }
+
     #[\Override]
     protected function instanciateService(
         LoggerInterface $logger,

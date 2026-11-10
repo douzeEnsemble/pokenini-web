@@ -69,6 +69,25 @@ final class GetElectionDexListServiceTest extends AbstractTestBackService
         );
     }
 
+    #[Test]
+    public function getInALanguage(): void
+    {
+        $json = '{"doesnt": "matter"}';
+
+        $serializer = $this->createMock(SerializerInterface::class);
+        $serializer
+            ->expects($this->once())
+            ->method('deserialize')
+            ->with($json, ElectionDexListItem::class.'[]', 'json')
+            ->willReturn($this->makeItems(['homeshiny']))
+        ;
+
+        /** @var GetElectionDexListService $service */
+        $service = $this->getServiceWithLoggedUser('GET', $json, 'election/dex', ['query' => ['lang' => 'fr']], $serializer);
+
+        $this->assertSame(['homeshiny'], self::extractSlugs($service->get('fr')));
+    }
+
     #[\Override]
     protected function instanciateService(
         LoggerInterface $logger,

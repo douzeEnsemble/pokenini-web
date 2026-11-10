@@ -13,7 +13,10 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class ElectionIndexService
 {
-    public function __construct(private readonly GetElectionIndexService $apiService) {}
+    public function __construct(
+        private readonly GetElectionIndexService $apiService,
+        private readonly LocaleService $localeService,
+    ) {}
 
     /**
      * @param string[]|string[][] $filters
@@ -21,7 +24,7 @@ class ElectionIndexService
     public function get(string $dexSlug, string $electionSlug, array $filters): ?ElectionIndexData
     {
         try {
-            $response = $this->apiService->get($dexSlug, $electionSlug, $filters);
+            $response = $this->apiService->get($dexSlug, $electionSlug, $filters, $this->localeService->current());
         } catch (HttpExceptionInterface|TransportExceptionInterface $e) {
             return null;
         }

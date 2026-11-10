@@ -8,9 +8,12 @@ use App\DTO\ElectionIndexData;
 use App\ResponseObject\Election\ElectionIndex;
 use App\Service\Back\GetElectionIndexService;
 use App\Service\ElectionIndexService;
+use App\Service\LocaleService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
@@ -50,11 +53,11 @@ final class ElectionIndexServiceTest extends TestCase
         $apiServiceMock
             ->expects($this->once())
             ->method('get')
-            ->with($dexSlug, $electionSlug, $filters)
+            ->with($dexSlug, $electionSlug, $filters, 'fr')
             ->willReturn($electionIndexMock)
         ;
 
-        $service = new ElectionIndexService($apiServiceMock);
+        $service = new ElectionIndexService($apiServiceMock, $this->localeService());
 
         $result = $service->get($dexSlug, $electionSlug, $filters);
 
@@ -81,11 +84,11 @@ final class ElectionIndexServiceTest extends TestCase
         $apiServiceMock
             ->expects($this->once())
             ->method('get')
-            ->with($dexSlug, $electionSlug, $filters)
+            ->with($dexSlug, $electionSlug, $filters, 'fr')
             ->willThrowException($exception)
         ;
 
-        $service = new ElectionIndexService($apiServiceMock);
+        $service = new ElectionIndexService($apiServiceMock, $this->localeService());
 
         $result = $service->get($dexSlug, $electionSlug, $filters);
 
@@ -105,14 +108,24 @@ final class ElectionIndexServiceTest extends TestCase
         $apiServiceMock
             ->expects($this->once())
             ->method('get')
-            ->with($dexSlug, $electionSlug, $filters)
+            ->with($dexSlug, $electionSlug, $filters, 'fr')
             ->willThrowException($exception)
         ;
 
-        $service = new ElectionIndexService($apiServiceMock);
+        $service = new ElectionIndexService($apiServiceMock, $this->localeService());
 
         $result = $service->get($dexSlug, $electionSlug, $filters);
 
         $this->assertNull($result);
+    }
+
+    private function localeService(): LocaleService
+    {
+        $request = new Request();
+        $request->setLocale('fr');
+        $requestStack = new RequestStack();
+        $requestStack->push($request);
+
+        return new LocaleService($requestStack, ['en', 'fr'], 'en');
     }
 }

@@ -45,9 +45,7 @@ final class TopPokemon
      */
     public function getPokemonSimplifiedNames(): array
     {
-        $labels = $this->pokemon->getLabels();
-
-        return ['en' => $labels->getSimplifiedName(), 'fr' => $labels->getSimplifiedFrenchName()];
+        return $this->pokemon->getLabels()->getSimplifiedNames();
     }
 
     /**
@@ -55,7 +53,7 @@ final class TopPokemon
      */
     public function getPokemonNames(): array
     {
-        return ['en' => $this->getPokemonName(), 'fr' => $this->getPokemonFrenchName()];
+        return $this->pokemon->getLabels()->getNames();
     }
 
     public function getPokemonSmallRegularCredit(): ?PokemonCredit

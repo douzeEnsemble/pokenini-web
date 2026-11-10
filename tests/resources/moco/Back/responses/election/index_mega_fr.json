@@ -1,0 +1,6418 @@
+{
+  "type": "pick",
+  "pokemons": [
+    {
+      "pokemon": {
+        "slug": "charizard-mega-y",
+        "labels": {
+          "names": {
+            "en": "Mega Charizard Y",
+            "fr": "Mega Dracaufeu Y"
+          },
+          "simplified_names": {
+            "en": "Charizard",
+            "fr": "Dracaufeu"
+          },
+          "forms_label": "Mega Y"
+        },
+        "national_dex_number": 6,
+        "regional_dex_number": null,
+        "icon": "charizard-mega-y",
+        "family_order": 4,
+        "family_lead": {
+          "slug": "charmander"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0006-004",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "fire",
+          "name": "Feu",
+          "french_name": null,
+          "color": "#ff9d55"
+        },
+        "secondary": {
+          "slug": "flying",
+          "name": "Vol",
+          "french_name": null,
+          "color": "#8ea9df"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "blastoise-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Blastoise",
+            "fr": "Mega Tortank"
+          },
+          "simplified_names": {
+            "en": "Blastoise",
+            "fr": "Tortank"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 9,
+        "regional_dex_number": null,
+        "icon": "blastoise-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "squirtle"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0009-003",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "water",
+          "name": "Eau",
+          "french_name": null,
+          "color": "#4d91d7"
+        },
+        "secondary": null
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "beedrill-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Beedrill",
+            "fr": "Mega Dardargnan"
+          },
+          "simplified_names": {
+            "en": "Beedrill",
+            "fr": "Dardargnan"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 15,
+        "regional_dex_number": null,
+        "icon": "beedrill-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "weedle"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0015-003",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "bug",
+          "name": "Insecte",
+          "french_name": null,
+          "color": "#91c22e"
+        },
+        "secondary": {
+          "slug": "poison",
+          "name": "Poison",
+          "french_name": null,
+          "color": "#aa6ac7"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "pidgeot-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Pidgeot",
+            "fr": "Mega Roucarnage"
+          },
+          "simplified_names": {
+            "en": "Pidgeot",
+            "fr": "Roucarnage"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 18,
+        "regional_dex_number": null,
+        "icon": "pidgeot-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "pidgey"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0018-003",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "normal",
+          "name": "Normal",
+          "french_name": null,
+          "color": "#9199a1"
+        },
+        "secondary": {
+          "slug": "flying",
+          "name": "Vol",
+          "french_name": null,
+          "color": "#8ea9df"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "mewtwo-mega-x",
+        "labels": {
+          "names": {
+            "en": "Mega Mewtwo X",
+            "fr": "Mega Mewtwo X"
+          },
+          "simplified_names": {
+            "en": "Mewtwo",
+            "fr": "Mewtwo"
+          },
+          "forms_label": "Mega X"
+        },
+        "national_dex_number": 150,
+        "regional_dex_number": null,
+        "icon": "mewtwo-mega-x",
+        "family_order": 1,
+        "family_lead": {
+          "slug": "mewtwo"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0150-001",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-x"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-x"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": {
+          "slug": "legendary",
+          "name": "Légendaire",
+          "french_name": null
+        },
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "psychic",
+          "name": "Psy",
+          "french_name": null,
+          "color": "#fb7075"
+        },
+        "secondary": {
+          "slug": "fighting",
+          "name": "Combat",
+          "french_name": null,
+          "color": "#cf4069"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "ampharos-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Ampharos",
+            "fr": "Mega Pharamp"
+          },
+          "simplified_names": {
+            "en": "Ampharos",
+            "fr": "Pharamp"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 181,
+        "regional_dex_number": null,
+        "icon": "ampharos-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "mareep"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0181-003",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/ampharos-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/ampharos-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "electric",
+          "name": "Electrik",
+          "french_name": null,
+          "color": "#f3d33c"
+        },
+        "secondary": {
+          "slug": "dragon",
+          "name": "Dragon",
+          "french_name": null,
+          "color": "#0a6dc8"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "heracross-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Heracross",
+            "fr": "Mega Scarhino"
+          },
+          "simplified_names": {
+            "en": "Heracross",
+            "fr": "Scarhino"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 214,
+        "regional_dex_number": null,
+        "icon": "heracross-mega",
+        "family_order": 5,
+        "family_lead": {
+          "slug": "heracross"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0214-005",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/heracross-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/heracross-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "bug",
+          "name": "Insecte",
+          "french_name": null,
+          "color": "#91c22e"
+        },
+        "secondary": {
+          "slug": "fighting",
+          "name": "Combat",
+          "french_name": null,
+          "color": "#cf4069"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "sceptile-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Sceptile",
+            "fr": "Mega Jungko"
+          },
+          "simplified_names": {
+            "en": "Sceptile",
+            "fr": "Jungko"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 254,
+        "regional_dex_number": null,
+        "icon": "sceptile-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "treecko"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0254-003",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/sceptile-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/sceptile-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "grass",
+          "name": "Plante",
+          "french_name": null,
+          "color": "#61bb59"
+        },
+        "secondary": {
+          "slug": "dragon",
+          "name": "Dragon",
+          "french_name": null,
+          "color": "#0a6dc8"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "banette-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Banette",
+            "fr": "Mega Branette"
+          },
+          "simplified_names": {
+            "en": "Banette",
+            "fr": "Branette"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 354,
+        "regional_dex_number": null,
+        "icon": "banette-mega",
+        "family_order": 2,
+        "family_lead": {
+          "slug": "shuppet"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0354-002",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/banette-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/banette-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "ghost",
+          "name": "Spectre",
+          "french_name": null,
+          "color": "#5568aa"
+        },
+        "secondary": null
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "salamence-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Salamence",
+            "fr": "Mega Drattak"
+          },
+          "simplified_names": {
+            "en": "Salamence",
+            "fr": "Drattak"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 373,
+        "regional_dex_number": null,
+        "icon": "salamence-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "bagon"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0373-003",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/salamence-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/salamence-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "dragon",
+          "name": "Dragon",
+          "french_name": null,
+          "color": "#0a6dc8"
+        },
+        "secondary": {
+          "slug": "flying",
+          "name": "Vol",
+          "french_name": null,
+          "color": "#8ea9df"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "latias-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Latias",
+            "fr": "Mega Latias"
+          },
+          "simplified_names": {
+            "en": "Latias",
+            "fr": "Latias"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 380,
+        "regional_dex_number": null,
+        "icon": "latias-mega",
+        "family_order": 1,
+        "family_lead": {
+          "slug": "latias"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0380-001",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/latias-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/latias-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": {
+          "slug": "legendary",
+          "name": "Légendaire",
+          "french_name": null
+        },
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "dragon",
+          "name": "Dragon",
+          "french_name": null,
+          "color": "#0a6dc8"
+        },
+        "secondary": {
+          "slug": "psychic",
+          "name": "Psy",
+          "french_name": null,
+          "color": "#fb7075"
+        }
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "audino-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Audino",
+            "fr": "Mega Nanméouïe"
+          },
+          "simplified_names": {
+            "en": "Audino",
+            "fr": "Nanméouïe"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 531,
+        "regional_dex_number": null,
+        "icon": "audino-mega",
+        "family_order": 1,
+        "family_lead": {
+          "slug": "audino"
+        },
+        "original_game_bundle": {
+          "slug": "xy"
+        },
+        "order_number": "9999-0531-001",
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/audino-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/audino-mega"
+        }
+      },
+      "catch_state": null,
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "normal",
+          "name": "Normal",
+          "french_name": null,
+          "color": "#9199a1"
+        },
+        "secondary": {
+          "slug": "fairy",
+          "name": "Fée",
+          "french_name": null,
+          "color": "#ef8fe7"
+        }
+      }
+    }
+  ],
+  "pokedex": {
+    "dex": {
+      "slug": "mega",
+      "original_slug": "mega",
+      "name": "Méga",
+      "french_name": null,
+      "flags": {
+        "is_shiny": false,
+        "is_private": true,
+        "is_on_home": false,
+        "is_display_form": false,
+        "is_released": true,
+        "is_premium": false,
+        "is_custom": false
+      },
+      "display_template": "list-5",
+      "region": null,
+      "selection_rule": "p.specialForm?.name in ['Mega', 'Primal']",
+      "description": "La liste de tous les pokémons ayant une méga ou primo évolution dans les différents jeux X, Y ou Soleil et Lune (par exemple).",
+      "french_description": null,
+      "version": "20230421.090014"
+    },
+    "pokemons": [
+      {
+        "pokemon": {
+          "slug": "venusaur-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Venusaur",
+              "fr": "Mega Florizarre"
+            },
+            "simplified_names": {
+              "en": "Venusaur",
+              "fr": "Florizarre"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 3,
+          "regional_dex_number": null,
+          "icon": "venusaur-mega",
+          "family_order": 4,
+          "family_lead": {
+            "slug": "bulbasaur"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0003-004",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "grass",
+            "name": "Plante",
+            "french_name": null,
+            "color": "#61bb59"
+          },
+          "secondary": {
+            "slug": "poison",
+            "name": "Poison",
+            "french_name": null,
+            "color": "#aa6ac7"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "charizard-mega-x",
+          "labels": {
+            "names": {
+              "en": "Mega Charizard X",
+              "fr": "Mega Dracaufeu X"
+            },
+            "simplified_names": {
+              "en": "Charizard",
+              "fr": "Dracaufeu"
+            },
+            "forms_label": "Mega X"
+          },
+          "national_dex_number": 6,
+          "regional_dex_number": null,
+          "icon": "charizard-mega-x",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "charmander"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0006-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-x"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-x"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "fire",
+            "name": "Feu",
+            "french_name": null,
+            "color": "#ff9d55"
+          },
+          "secondary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "charizard-mega-y",
+          "labels": {
+            "names": {
+              "en": "Mega Charizard Y",
+              "fr": "Mega Dracaufeu Y"
+            },
+            "simplified_names": {
+              "en": "Charizard",
+              "fr": "Dracaufeu"
+            },
+            "forms_label": "Mega Y"
+          },
+          "national_dex_number": 6,
+          "regional_dex_number": null,
+          "icon": "charizard-mega-y",
+          "family_order": 4,
+          "family_lead": {
+            "slug": "charmander"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0006-004",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/charizard-mega-y"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "fire",
+            "name": "Feu",
+            "french_name": null,
+            "color": "#ff9d55"
+          },
+          "secondary": {
+            "slug": "flying",
+            "name": "Vol",
+            "french_name": null,
+            "color": "#8ea9df"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "blastoise-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Blastoise",
+              "fr": "Mega Tortank"
+            },
+            "simplified_names": {
+              "en": "Blastoise",
+              "fr": "Tortank"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 9,
+          "regional_dex_number": null,
+          "icon": "blastoise-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "squirtle"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0009-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "water",
+            "name": "Eau",
+            "french_name": null,
+            "color": "#4d91d7"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "beedrill-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Beedrill",
+              "fr": "Mega Dardargnan"
+            },
+            "simplified_names": {
+              "en": "Beedrill",
+              "fr": "Dardargnan"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 15,
+          "regional_dex_number": null,
+          "icon": "beedrill-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "weedle"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0015-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "bug",
+            "name": "Insecte",
+            "french_name": null,
+            "color": "#91c22e"
+          },
+          "secondary": {
+            "slug": "poison",
+            "name": "Poison",
+            "french_name": null,
+            "color": "#aa6ac7"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "pidgeot-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Pidgeot",
+              "fr": "Mega Roucarnage"
+            },
+            "simplified_names": {
+              "en": "Pidgeot",
+              "fr": "Roucarnage"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 18,
+          "regional_dex_number": null,
+          "icon": "pidgeot-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "pidgey"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0018-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "normal",
+            "name": "Normal",
+            "french_name": null,
+            "color": "#9199a1"
+          },
+          "secondary": {
+            "slug": "flying",
+            "name": "Vol",
+            "french_name": null,
+            "color": "#8ea9df"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "alakazam-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Alakazam",
+              "fr": "Mega Alakazam"
+            },
+            "simplified_names": {
+              "en": "Alakazam",
+              "fr": "Alakazam"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 65,
+          "regional_dex_number": null,
+          "icon": "alakazam-mega",
+          "family_order": 10,
+          "family_lead": {
+            "slug": "abra"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0065-010",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/alakazam-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/alakazam-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "slowbro-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Slowbro",
+              "fr": "Mega Flagadoss"
+            },
+            "simplified_names": {
+              "en": "Slowbro",
+              "fr": "Flagadoss"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 80,
+          "regional_dex_number": null,
+          "icon": "slowbro-mega",
+          "family_order": 4,
+          "family_lead": {
+            "slug": "slowpoke"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0080-004",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/slowbro-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/slowbro-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "water",
+            "name": "Eau",
+            "french_name": null,
+            "color": "#4d91d7"
+          },
+          "secondary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "gengar-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Gengar",
+              "fr": "Mega Ectoplasma"
+            },
+            "simplified_names": {
+              "en": "Gengar",
+              "fr": "Ectoplasma"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 94,
+          "regional_dex_number": null,
+          "icon": "gengar-mega",
+          "family_order": 6,
+          "family_lead": {
+            "slug": "gastly"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0094-006",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gengar-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gengar-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "ghost",
+            "name": "Spectre",
+            "french_name": null,
+            "color": "#5568aa"
+          },
+          "secondary": {
+            "slug": "poison",
+            "name": "Poison",
+            "french_name": null,
+            "color": "#aa6ac7"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "kangaskhan-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Kangaskhan",
+              "fr": "Mega Kangourex"
+            },
+            "simplified_names": {
+              "en": "Kangaskhan",
+              "fr": "Kangourex"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 115,
+          "regional_dex_number": null,
+          "icon": "kangaskhan-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "kangaskhan"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0115-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/kangaskhan-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/kangaskhan-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "normal",
+            "name": "Normal",
+            "french_name": null,
+            "color": "#9199a1"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "pinsir-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Pinsir",
+              "fr": "Mega Scarabrute"
+            },
+            "simplified_names": {
+              "en": "Pinsir",
+              "fr": "Scarabrute"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 127,
+          "regional_dex_number": null,
+          "icon": "pinsir-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "pinsir"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0127-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/pinsir-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/pinsir-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "bug",
+            "name": "Insecte",
+            "french_name": null,
+            "color": "#91c22e"
+          },
+          "secondary": {
+            "slug": "flying",
+            "name": "Vol",
+            "french_name": null,
+            "color": "#8ea9df"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "gyarados-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Gyarados",
+              "fr": "Mega Léviator"
+            },
+            "simplified_names": {
+              "en": "Gyarados",
+              "fr": "Léviator"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 130,
+          "regional_dex_number": null,
+          "icon": "gyarados-mega",
+          "family_order": 9,
+          "family_lead": {
+            "slug": "magikarp"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0130-009",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gyarados-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gyarados-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "water",
+            "name": "Eau",
+            "french_name": null,
+            "color": "#4d91d7"
+          },
+          "secondary": {
+            "slug": "dark",
+            "name": "Ténèbre",
+            "french_name": null,
+            "color": "#595265"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "aerodactyl-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Aerodactyl",
+              "fr": "Mega Ptéra"
+            },
+            "simplified_names": {
+              "en": "Aerodactyl",
+              "fr": "Ptéra"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 142,
+          "regional_dex_number": null,
+          "icon": "aerodactyl-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "aerodactyl"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0142-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/aerodactyl-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/aerodactyl-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "rock",
+            "name": "Roche",
+            "french_name": null,
+            "color": "#c7b78a"
+          },
+          "secondary": {
+            "slug": "flying",
+            "name": "Vol",
+            "french_name": null,
+            "color": "#8ea9df"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "mewtwo-mega-x",
+          "labels": {
+            "names": {
+              "en": "Mega Mewtwo X",
+              "fr": "Mega Mewtwo X"
+            },
+            "simplified_names": {
+              "en": "Mewtwo",
+              "fr": "Mewtwo"
+            },
+            "forms_label": "Mega X"
+          },
+          "national_dex_number": 150,
+          "regional_dex_number": null,
+          "icon": "mewtwo-mega-x",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "mewtwo"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0150-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-x"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-x"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": {
+            "slug": "legendary",
+            "name": "Légendaire",
+            "french_name": null
+          },
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          },
+          "secondary": {
+            "slug": "fighting",
+            "name": "Combat",
+            "french_name": null,
+            "color": "#cf4069"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "mewtwo-mega-y",
+          "labels": {
+            "names": {
+              "en": "Mega Mewtwo Y",
+              "fr": "Mega Mewtwo Y"
+            },
+            "simplified_names": {
+              "en": "Mewtwo",
+              "fr": "Mewtwo"
+            },
+            "forms_label": "Mega Y"
+          },
+          "national_dex_number": 150,
+          "regional_dex_number": null,
+          "icon": "mewtwo-mega-y",
+          "family_order": 2,
+          "family_lead": {
+            "slug": "mewtwo"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0150-002",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "letsgopikachuletsgoeevee"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-y"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mewtwo-mega-y"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": {
+            "slug": "legendary",
+            "name": "Légendaire",
+            "french_name": null
+          },
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "ampharos-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Ampharos",
+              "fr": "Mega Pharamp"
+            },
+            "simplified_names": {
+              "en": "Ampharos",
+              "fr": "Pharamp"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 181,
+          "regional_dex_number": null,
+          "icon": "ampharos-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "mareep"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0181-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/ampharos-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/ampharos-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "electric",
+            "name": "Electrik",
+            "french_name": null,
+            "color": "#f3d33c"
+          },
+          "secondary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "steelix-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Steelix",
+              "fr": "Mega Steelix"
+            },
+            "simplified_names": {
+              "en": "Steelix",
+              "fr": "Steelix"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 208,
+          "regional_dex_number": null,
+          "icon": "steelix-mega",
+          "family_order": 6,
+          "family_lead": {
+            "slug": "onix"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0208-006",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/steelix-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/steelix-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "steel",
+            "name": "Acier",
+            "french_name": null,
+            "color": "#598fa2"
+          },
+          "secondary": {
+            "slug": "ground",
+            "name": "Sol",
+            "french_name": null,
+            "color": "#db7645"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "scizor-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Scizor",
+              "fr": "Mega Cizayox"
+            },
+            "simplified_names": {
+              "en": "Scizor",
+              "fr": "Cizayox"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 212,
+          "regional_dex_number": null,
+          "icon": "scizor-mega",
+          "family_order": 8,
+          "family_lead": {
+            "slug": "scyther"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0212-008",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/scizor-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/scizor-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "bug",
+            "name": "Insecte",
+            "french_name": null,
+            "color": "#91c22e"
+          },
+          "secondary": {
+            "slug": "steel",
+            "name": "Acier",
+            "french_name": null,
+            "color": "#598fa2"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "heracross-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Heracross",
+              "fr": "Mega Scarhino"
+            },
+            "simplified_names": {
+              "en": "Heracross",
+              "fr": "Scarhino"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 214,
+          "regional_dex_number": null,
+          "icon": "heracross-mega",
+          "family_order": 5,
+          "family_lead": {
+            "slug": "heracross"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0214-005",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/heracross-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/heracross-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "bug",
+            "name": "Insecte",
+            "french_name": null,
+            "color": "#91c22e"
+          },
+          "secondary": {
+            "slug": "fighting",
+            "name": "Combat",
+            "french_name": null,
+            "color": "#cf4069"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "houndoom-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Houndoom",
+              "fr": "Mega Démolosse"
+            },
+            "simplified_names": {
+              "en": "Houndoom",
+              "fr": "Démolosse"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 229,
+          "regional_dex_number": null,
+          "icon": "houndoom-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "houndour"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0229-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/houndoom-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/houndoom-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dark",
+            "name": "Ténèbre",
+            "french_name": null,
+            "color": "#595265"
+          },
+          "secondary": {
+            "slug": "fire",
+            "name": "Feu",
+            "french_name": null,
+            "color": "#ff9d55"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "tyranitar-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Tyranitar",
+              "fr": "Mega Tyranocif"
+            },
+            "simplified_names": {
+              "en": "Tyranitar",
+              "fr": "Tyranocif"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 248,
+          "regional_dex_number": null,
+          "icon": "tyranitar-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "larvitar"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0248-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tyranitar-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/tyranitar-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "rock",
+            "name": "Roche",
+            "french_name": null,
+            "color": "#c7b78a"
+          },
+          "secondary": {
+            "slug": "dark",
+            "name": "Ténèbre",
+            "french_name": null,
+            "color": "#595265"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "sceptile-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Sceptile",
+              "fr": "Mega Jungko"
+            },
+            "simplified_names": {
+              "en": "Sceptile",
+              "fr": "Jungko"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 254,
+          "regional_dex_number": null,
+          "icon": "sceptile-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "treecko"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0254-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sceptile-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sceptile-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "grass",
+            "name": "Plante",
+            "french_name": null,
+            "color": "#61bb59"
+          },
+          "secondary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "blaziken-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Blaziken",
+              "fr": "Mega Braségali"
+            },
+            "simplified_names": {
+              "en": "Blaziken",
+              "fr": "Braségali"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 257,
+          "regional_dex_number": null,
+          "icon": "blaziken-mega",
+          "family_order": 10,
+          "family_lead": {
+            "slug": "torchic"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0257-010",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blaziken-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/blaziken-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "fire",
+            "name": "Feu",
+            "french_name": null,
+            "color": "#ff9d55"
+          },
+          "secondary": {
+            "slug": "fighting",
+            "name": "Combat",
+            "french_name": null,
+            "color": "#cf4069"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "swampert-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Swampert",
+              "fr": "Mega Laggron"
+            },
+            "simplified_names": {
+              "en": "Swampert",
+              "fr": "Laggron"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 260,
+          "regional_dex_number": null,
+          "icon": "swampert-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "mudkip"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0260-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/swampert-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/swampert-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "water",
+            "name": "Eau",
+            "french_name": null,
+            "color": "#4d91d7"
+          },
+          "secondary": {
+            "slug": "ground",
+            "name": "Sol",
+            "french_name": null,
+            "color": "#db7645"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "gardevoir-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Gardevoir",
+              "fr": "Mega Gardevoir"
+            },
+            "simplified_names": {
+              "en": "Gardevoir",
+              "fr": "Gardevoir"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 282,
+          "regional_dex_number": null,
+          "icon": "gardevoir-mega",
+          "family_order": 6,
+          "family_lead": {
+            "slug": "ralts"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0282-006",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gardevoir-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gardevoir-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          },
+          "secondary": {
+            "slug": "fairy",
+            "name": "Fée",
+            "french_name": null,
+            "color": "#ef8fe7"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "sableye-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Sableye",
+              "fr": "Mega Ténéfix"
+            },
+            "simplified_names": {
+              "en": "Sableye",
+              "fr": "Ténéfix"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 302,
+          "regional_dex_number": null,
+          "icon": "sableye-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "sableye"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0302-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sableye-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sableye-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dark",
+            "name": "Ténèbre",
+            "french_name": null,
+            "color": "#595265"
+          },
+          "secondary": {
+            "slug": "ghost",
+            "name": "Spectre",
+            "french_name": null,
+            "color": "#5568aa"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "mawile-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Mawile",
+              "fr": "Mega Mysdibule"
+            },
+            "simplified_names": {
+              "en": "Mawile",
+              "fr": "Mysdibule"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 303,
+          "regional_dex_number": null,
+          "icon": "mawile-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "mawile"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0303-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mawile-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/mawile-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "steel",
+            "name": "Acier",
+            "french_name": null,
+            "color": "#598fa2"
+          },
+          "secondary": {
+            "slug": "fairy",
+            "name": "Fée",
+            "french_name": null,
+            "color": "#ef8fe7"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "aggron-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Aggron",
+              "fr": "Mega Galeking"
+            },
+            "simplified_names": {
+              "en": "Aggron",
+              "fr": "Galeking"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 306,
+          "regional_dex_number": null,
+          "icon": "aggron-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "aron"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0306-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/aggron-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/aggron-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "steel",
+            "name": "Acier",
+            "french_name": null,
+            "color": "#598fa2"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "medicham-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Medicham",
+              "fr": "Mega Charmina"
+            },
+            "simplified_names": {
+              "en": "Medicham",
+              "fr": "Charmina"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 308,
+          "regional_dex_number": null,
+          "icon": "medicham-mega",
+          "family_order": 4,
+          "family_lead": {
+            "slug": "meditite"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0308-004",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/medicham-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/medicham-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "fighting",
+            "name": "Combat",
+            "french_name": null,
+            "color": "#cf4069"
+          },
+          "secondary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "manectric-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Manectric",
+              "fr": "Mega Élecsprint"
+            },
+            "simplified_names": {
+              "en": "Manectric",
+              "fr": "Élecsprint"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 310,
+          "regional_dex_number": null,
+          "icon": "manectric-mega",
+          "family_order": 2,
+          "family_lead": {
+            "slug": "electrike"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0310-002",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/manectric-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/manectric-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "electric",
+            "name": "Electrik",
+            "french_name": null,
+            "color": "#f3d33c"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "sharpedo-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Sharpedo",
+              "fr": "Mega Sharpedo"
+            },
+            "simplified_names": {
+              "en": "Sharpedo",
+              "fr": "Sharpedo"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 319,
+          "regional_dex_number": null,
+          "icon": "sharpedo-mega",
+          "family_order": 2,
+          "family_lead": {
+            "slug": "carvanha"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0319-002",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sharpedo-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/sharpedo-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "water",
+            "name": "Eau",
+            "french_name": null,
+            "color": "#4d91d7"
+          },
+          "secondary": {
+            "slug": "dark",
+            "name": "Ténèbre",
+            "french_name": null,
+            "color": "#595265"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "camerupt-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Camerupt",
+              "fr": "Mega Camérupt"
+            },
+            "simplified_names": {
+              "en": "Camerupt",
+              "fr": "Camérupt"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 323,
+          "regional_dex_number": null,
+          "icon": "camerupt-mega",
+          "family_order": 4,
+          "family_lead": {
+            "slug": "numel"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0323-004",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/camerupt-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/camerupt-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "fire",
+            "name": "Feu",
+            "french_name": null,
+            "color": "#ff9d55"
+          },
+          "secondary": {
+            "slug": "ground",
+            "name": "Sol",
+            "french_name": null,
+            "color": "#db7645"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "altaria-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Altaria",
+              "fr": "Mega Altaria"
+            },
+            "simplified_names": {
+              "en": "Altaria",
+              "fr": "Altaria"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 334,
+          "regional_dex_number": null,
+          "icon": "altaria-mega",
+          "family_order": 2,
+          "family_lead": {
+            "slug": "swablu"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0334-002",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/altaria-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/altaria-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          },
+          "secondary": {
+            "slug": "fairy",
+            "name": "Fée",
+            "french_name": null,
+            "color": "#ef8fe7"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "banette-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Banette",
+              "fr": "Mega Branette"
+            },
+            "simplified_names": {
+              "en": "Banette",
+              "fr": "Branette"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 354,
+          "regional_dex_number": null,
+          "icon": "banette-mega",
+          "family_order": 2,
+          "family_lead": {
+            "slug": "shuppet"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0354-002",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/banette-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/banette-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "ghost",
+            "name": "Spectre",
+            "french_name": null,
+            "color": "#5568aa"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "absol-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Absol",
+              "fr": "Mega Absol"
+            },
+            "simplified_names": {
+              "en": "Absol",
+              "fr": "Absol"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 359,
+          "regional_dex_number": null,
+          "icon": "absol-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "absol"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0359-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/absol-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/absol-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dark",
+            "name": "Ténèbre",
+            "french_name": null,
+            "color": "#595265"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "glalie-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Glalie",
+              "fr": "Mega Oniglali"
+            },
+            "simplified_names": {
+              "en": "Glalie",
+              "fr": "Oniglali"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 362,
+          "regional_dex_number": null,
+          "icon": "glalie-mega",
+          "family_order": 4,
+          "family_lead": {
+            "slug": "snorunt"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0362-004",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/glalie-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/glalie-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "ice",
+            "name": "Glace",
+            "french_name": null,
+            "color": "#71cfbe"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "salamence-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Salamence",
+              "fr": "Mega Drattak"
+            },
+            "simplified_names": {
+              "en": "Salamence",
+              "fr": "Drattak"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 373,
+          "regional_dex_number": null,
+          "icon": "salamence-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "bagon"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0373-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/salamence-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/salamence-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          },
+          "secondary": {
+            "slug": "flying",
+            "name": "Vol",
+            "french_name": null,
+            "color": "#8ea9df"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "metagross-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Metagross",
+              "fr": "Mega Métalosse"
+            },
+            "simplified_names": {
+              "en": "Metagross",
+              "fr": "Métalosse"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 376,
+          "regional_dex_number": null,
+          "icon": "metagross-mega",
+          "family_order": 3,
+          "family_lead": {
+            "slug": "beldum"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0376-003",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/metagross-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/metagross-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "steel",
+            "name": "Acier",
+            "french_name": null,
+            "color": "#598fa2"
+          },
+          "secondary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "latias-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Latias",
+              "fr": "Mega Latias"
+            },
+            "simplified_names": {
+              "en": "Latias",
+              "fr": "Latias"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 380,
+          "regional_dex_number": null,
+          "icon": "latias-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "latias"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0380-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/latias-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/latias-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": {
+            "slug": "legendary",
+            "name": "Légendaire",
+            "french_name": null
+          },
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          },
+          "secondary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "latios-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Latios",
+              "fr": "Mega Latios"
+            },
+            "simplified_names": {
+              "en": "Latios",
+              "fr": "Latios"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 381,
+          "regional_dex_number": null,
+          "icon": "latios-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "latios"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0381-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/latios-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/latios-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": {
+            "slug": "legendary",
+            "name": "Légendaire",
+            "french_name": null
+          },
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          },
+          "secondary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "kyogre-primal",
+          "labels": {
+            "names": {
+              "en": "Primal Kyogre",
+              "fr": "Primo-Kyogre"
+            },
+            "simplified_names": {
+              "en": "Kyogre",
+              "fr": "Kyogre"
+            },
+            "forms_label": "Primo"
+          },
+          "national_dex_number": 382,
+          "regional_dex_number": null,
+          "icon": "kyogre-primal",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "kyogre"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0382-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/kyogre-primal"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/kyogre-primal"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": {
+            "slug": "legendary",
+            "name": "Légendaire",
+            "french_name": null
+          },
+          "regional": null,
+          "special": {
+            "slug": "primal",
+            "name": "Originelle",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "water",
+            "name": "Eau",
+            "french_name": null,
+            "color": "#4d91d7"
+          },
+          "secondary": null
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "groudon-primal",
+          "labels": {
+            "names": {
+              "en": "Primal Groudon",
+              "fr": "Primo-Groudon"
+            },
+            "simplified_names": {
+              "en": "Groudon",
+              "fr": "Groudon"
+            },
+            "forms_label": "Primo"
+          },
+          "national_dex_number": 383,
+          "regional_dex_number": null,
+          "icon": "groudon-primal",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "groudon"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0383-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "rubysapphireemerald"
+              },
+              {
+                "slug": "fireredleafgreen"
+              },
+              {
+                "slug": "diamondpearlplatinium"
+              },
+              {
+                "slug": "heartgoldsoulsilver"
+              },
+              {
+                "slug": "blackwhite"
+              },
+              {
+                "slug": "black2white2"
+              },
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              },
+              {
+                "slug": "swordshield"
+              },
+              {
+                "slug": "brilliantdiamondshiningpearl"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/groudon-primal"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/groudon-primal"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": {
+            "slug": "legendary",
+            "name": "Légendaire",
+            "french_name": null
+          },
+          "regional": null,
+          "special": {
+            "slug": "primal",
+            "name": "Originelle",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "ground",
+            "name": "Sol",
+            "french_name": null,
+            "color": "#db7645"
+          },
+          "secondary": {
+            "slug": "fire",
+            "name": "Feu",
+            "french_name": null,
+            "color": "#ff9d55"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "rayquaza-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Rayquaza",
+              "fr": "Mega Rayquaza"
+            },
+            "simplified_names": {
+              "en": "Rayquaza",
+              "fr": "Rayquaza"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 384,
+          "regional_dex_number": null,
+          "icon": "rayquaza-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "rayquaza"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0384-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/rayquaza-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/rayquaza-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": {
+            "slug": "legendary",
+            "name": "Légendaire",
+            "french_name": null
+          },
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          },
+          "secondary": {
+            "slug": "flying",
+            "name": "Vol",
+            "french_name": null,
+            "color": "#8ea9df"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "lopunny-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Lopunny",
+              "fr": "Mega Lockpin"
+            },
+            "simplified_names": {
+              "en": "Lopunny",
+              "fr": "Lockpin"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 428,
+          "regional_dex_number": null,
+          "icon": "lopunny-mega",
+          "family_order": 4,
+          "family_lead": {
+            "slug": "buneary"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0428-004",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/lopunny-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/lopunny-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "normal",
+            "name": "Normal",
+            "french_name": null,
+            "color": "#9199a1"
+          },
+          "secondary": {
+            "slug": "fighting",
+            "name": "Combat",
+            "french_name": null,
+            "color": "#cf4069"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "garchomp-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Garchomp",
+              "fr": "Mega Carchacrok"
+            },
+            "simplified_names": {
+              "en": "Garchomp",
+              "fr": "Carchacrok"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 445,
+          "regional_dex_number": null,
+          "icon": "garchomp-mega",
+          "family_order": 12,
+          "family_lead": {
+            "slug": "gible"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0445-012",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/garchomp-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/garchomp-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "dragon",
+            "name": "Dragon",
+            "french_name": null,
+            "color": "#0a6dc8"
+          },
+          "secondary": {
+            "slug": "ground",
+            "name": "Sol",
+            "french_name": null,
+            "color": "#db7645"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "lucario-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Lucario",
+              "fr": "Mega Lucario"
+            },
+            "simplified_names": {
+              "en": "Lucario",
+              "fr": "Lucario"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 448,
+          "regional_dex_number": null,
+          "icon": "lucario-mega",
+          "family_order": 4,
+          "family_lead": {
+            "slug": "riolu"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0448-004",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/lucario-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/lucario-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "fighting",
+            "name": "Combat",
+            "french_name": null,
+            "color": "#cf4069"
+          },
+          "secondary": {
+            "slug": "steel",
+            "name": "Acier",
+            "french_name": null,
+            "color": "#598fa2"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "abomasnow-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Abomasnow",
+              "fr": "Mega Blizzaroi"
+            },
+            "simplified_names": {
+              "en": "Abomasnow",
+              "fr": "Blizzaroi"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 460,
+          "regional_dex_number": null,
+          "icon": "abomasnow-mega",
+          "family_order": 8,
+          "family_lead": {
+            "slug": "snover"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0460-008",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/abomasnow-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/abomasnow-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "ice",
+            "name": "Glace",
+            "french_name": null,
+            "color": "#71cfbe"
+          },
+          "secondary": {
+            "slug": "grass",
+            "name": "Plante",
+            "french_name": null,
+            "color": "#61bb59"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "gallade-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Gallade",
+              "fr": "Mega Gallame"
+            },
+            "simplified_names": {
+              "en": "Gallade",
+              "fr": "Gallame"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 475,
+          "regional_dex_number": null,
+          "icon": "gallade-mega",
+          "family_order": 9,
+          "family_lead": {
+            "slug": "ralts"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0475-009",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gallade-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/gallade-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "psychic",
+            "name": "Psy",
+            "french_name": null,
+            "color": "#fb7075"
+          },
+          "secondary": {
+            "slug": "fighting",
+            "name": "Combat",
+            "french_name": null,
+            "color": "#cf4069"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "audino-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Audino",
+              "fr": "Mega Nanméouïe"
+            },
+            "simplified_names": {
+              "en": "Audino",
+              "fr": "Nanméouïe"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 531,
+          "regional_dex_number": null,
+          "icon": "audino-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "audino"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0531-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/audino-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/audino-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": null,
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "normal",
+            "name": "Normal",
+            "french_name": null,
+            "color": "#9199a1"
+          },
+          "secondary": {
+            "slug": "fairy",
+            "name": "Fée",
+            "french_name": null,
+            "color": "#ef8fe7"
+          }
+        }
+      },
+      {
+        "pokemon": {
+          "slug": "diancie-mega",
+          "labels": {
+            "names": {
+              "en": "Mega Diancie",
+              "fr": "Mega Diancie"
+            },
+            "simplified_names": {
+              "en": "Diancie",
+              "fr": "Diancie"
+            },
+            "forms_label": "Mega"
+          },
+          "national_dex_number": 719,
+          "regional_dex_number": null,
+          "icon": "diancie-mega",
+          "family_order": 1,
+          "family_lead": {
+            "slug": "diancie"
+          },
+          "original_game_bundle": {
+            "slug": "xy"
+          },
+          "order_number": "9999-0719-001",
+          "game_bundles": {
+            "normal": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              },
+              {
+                "slug": "pokemongo"
+              }
+            ],
+            "shiny": [
+              {
+                "slug": "xy"
+              },
+              {
+                "slug": "omegarubyalphasapphire"
+              },
+              {
+                "slug": "sunmoon"
+              },
+              {
+                "slug": "ultrasunultramoon"
+              }
+            ]
+          },
+          "small_regular_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "small_shiny_credit": {
+            "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+          },
+          "big_regular_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/diancie-mega"
+          },
+          "big_shiny_credit": {
+            "credit": "PokemonDB - https://pokemondb.net/sprites/diancie-mega"
+          }
+        },
+        "catch_state": null,
+        "forms": {
+          "category": {
+            "slug": "mythical",
+            "name": "Fabuleux",
+            "french_name": null
+          },
+          "regional": null,
+          "special": {
+            "slug": "mega",
+            "name": "Mega",
+            "french_name": null
+          },
+          "variant": null
+        },
+        "types": {
+          "primary": {
+            "slug": "rock",
+            "name": "Roche",
+            "french_name": null,
+            "color": "#c7b78a"
+          },
+          "secondary": {
+            "slug": "fairy",
+            "name": "Fée",
+            "french_name": null,
+            "color": "#ef8fe7"
+          }
+        }
+      }
+    ],
+    "report": {
+      "total": 50,
+      "total_caught": 0,
+      "total_uncaught": 50,
+      "detail": [
+        {
+          "catch_state": {
+            "name": "Oui",
+            "french_name": null,
+            "slug": "yes",
+            "color": "#66bb6a"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "À échanger",
+            "french_name": null,
+            "slug": "totrade",
+            "color": "#ff9100"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "À transférer",
+            "french_name": null,
+            "slug": "totransfer",
+            "color": "#ffd54f"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "Af. reproduire",
+            "french_name": null,
+            "slug": "tobreed",
+            "color": "#4fc3f7"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "Af. évoluer",
+            "french_name": null,
+            "slug": "toevolve",
+            "color": "#9575cd"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "Non",
+            "french_name": null,
+            "slug": "no",
+            "color": "#e57373"
+          },
+          "count": 0
+        }
+      ]
+    },
+    "filtered_report": {
+      "total": 50,
+      "total_caught": 0,
+      "total_uncaught": 50,
+      "detail": [
+        {
+          "catch_state": {
+            "name": "Oui",
+            "french_name": null,
+            "slug": "yes",
+            "color": "#66bb6a"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "À échanger",
+            "french_name": null,
+            "slug": "totrade",
+            "color": "#ff9100"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "À transférer",
+            "french_name": null,
+            "slug": "totransfer",
+            "color": "#ffd54f"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "Af. reproduire",
+            "french_name": null,
+            "slug": "tobreed",
+            "color": "#4fc3f7"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "Af. évoluer",
+            "french_name": null,
+            "slug": "toevolve",
+            "color": "#9575cd"
+          },
+          "count": 0
+        },
+        {
+          "catch_state": {
+            "name": "Non",
+            "french_name": null,
+            "slug": "no",
+            "color": "#e57373"
+          },
+          "count": 0
+        }
+      ]
+    }
+  },
+  "election_top": [
+    {
+      "pokemon": {
+        "slug": "venusaur-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Venusaur",
+            "fr": "Mega Florizarre"
+          },
+          "simplified_names": {
+            "en": "Venusaur",
+            "fr": "Florizarre"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 3,
+        "regional_dex_number": null,
+        "icon": "venusaur-mega",
+        "family_order": 4,
+        "family_lead": {
+          "slug": "bulbasaur"
+        },
+        "original_game_bundle": {
+          "slug": "redgreenblueyellow"
+        },
+        "order_number": "9999-0003-004",
+        "game_bundles": {
+          "normal": [
+            {
+              "slug": "redgreenblueyellow"
+            }
+          ],
+          "shiny": [
+            {
+              "slug": "redgreenblueyellow"
+            }
+          ]
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/venusaur-mega"
+        }
+      },
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": {
+          "slug": "grass",
+          "name": "Plante",
+          "french_name": null,
+          "color": "#78C850"
+        },
+        "secondary": {
+          "slug": "poison",
+          "name": "Poison",
+          "french_name": null,
+          "color": "#A040A0"
+        }
+      },
+      "score": {
+        "elo": 1000.0,
+        "significance": false
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "blastoise-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Blastoise",
+            "fr": "Mega Tortank"
+          },
+          "simplified_names": {
+            "en": "Blastoise",
+            "fr": "Tortank"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 9,
+        "regional_dex_number": null,
+        "icon": "blastoise-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "squirtle"
+        },
+        "original_game_bundle": null,
+        "order_number": null,
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/blastoise-mega"
+        }
+      },
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": null,
+        "secondary": null
+      },
+      "score": {
+        "elo": 1000.0,
+        "significance": false
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "beedrill-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Beedrill",
+            "fr": "Mega Dardargnan"
+          },
+          "simplified_names": {
+            "en": "Beedrill",
+            "fr": "Dardargnan"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 15,
+        "regional_dex_number": null,
+        "icon": "beedrill-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "weedle"
+        },
+        "original_game_bundle": null,
+        "order_number": null,
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/beedrill-mega"
+        }
+      },
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": null,
+        "secondary": null
+      },
+      "score": {
+        "elo": 1000.0,
+        "significance": false
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "pidgeot-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Pidgeot",
+            "fr": "Mega Roucarnage"
+          },
+          "simplified_names": {
+            "en": "Pidgeot",
+            "fr": "Roucarnage"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 18,
+        "regional_dex_number": null,
+        "icon": "pidgeot-mega",
+        "family_order": 3,
+        "family_lead": {
+          "slug": "pidgey"
+        },
+        "original_game_bundle": null,
+        "order_number": null,
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/pidgeot-mega"
+        }
+      },
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": null,
+        "secondary": null
+      },
+      "score": {
+        "elo": 1000.0,
+        "significance": false
+      }
+    },
+    {
+      "pokemon": {
+        "slug": "alakazam-mega",
+        "labels": {
+          "names": {
+            "en": "Mega Alakazam",
+            "fr": "Mega Alakazam"
+          },
+          "simplified_names": {
+            "en": "Alakazam",
+            "fr": "Alakazam"
+          },
+          "forms_label": "Mega"
+        },
+        "national_dex_number": 65,
+        "regional_dex_number": null,
+        "icon": "alakazam-mega",
+        "family_order": 10,
+        "family_lead": {
+          "slug": "abra"
+        },
+        "original_game_bundle": null,
+        "order_number": null,
+        "game_bundles": {
+          "normal": [],
+          "shiny": []
+        },
+        "small_regular_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "small_shiny_credit": {
+          "credit": "PokéSprite - https://github.com/msikma/pokesprite"
+        },
+        "big_regular_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/alakazam-mega"
+        },
+        "big_shiny_credit": {
+          "credit": "PokemonDB - https://pokemondb.net/sprites/alakazam-mega"
+        }
+      },
+      "forms": {
+        "category": null,
+        "regional": null,
+        "special": {
+          "slug": "mega",
+          "name": "Mega",
+          "french_name": null
+        },
+        "variant": null
+      },
+      "types": {
+        "primary": null,
+        "secondary": null
+      },
+      "score": {
+        "elo": 1000.0,
+        "significance": false
+      }
+    }
+  ],
+  "metrics": {
+    "view_count": {
+      "sum": 63,
+      "max": 1
+    },
+    "win_count": {
+      "sum": 16,
+      "max": 1
+    },
+    "completion": {
+      "under_max_count": 1,
+      "at_max_count": 5
+    },
+    "dex_total_count": 48,
+    "round_count": 5,
+    "total_round_count": 7,
+    "winner_average": 3.2
+  },
+  "detached_count": 0,
+  "is_the_last_one": false,
+  "is_the_last_page": false
+}
