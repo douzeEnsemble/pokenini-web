@@ -86,7 +86,13 @@ class LocaleService
             return $list;
         }
 
-        return $lists[$this->fallbackLocale] ?? [];
+        $fallbackList = $lists[$this->fallbackLocale] ?? [];
+
+        if ([] !== $fallbackList) {
+            return $fallbackList;
+        }
+
+        return $lists[NamesMap::RESOLVED] ?? [];
     }
 
     /**

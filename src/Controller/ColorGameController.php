@@ -9,6 +9,7 @@ use App\DTO\GameRoundCount;
 use App\ResponseObject\ColorGame\ColorGameAnswer;
 use App\ResponseObject\ColorGame\ColorGameState;
 use App\Service\Back\ColorGameService;
+use App\Service\LocaleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,7 @@ final class ColorGameController extends AbstractController
 
     public function __construct(
         private readonly ColorGameService $colorGameService,
+        private readonly LocaleService $localeService,
     ) {}
 
     #[Route('', name: 'app_colorgame_dex', methods: ['GET'])]
@@ -32,8 +34,8 @@ final class ColorGameController extends AbstractController
         return $this->render(
             'ColorGame/dex.html.twig',
             [
-                'dex' => $this->colorGameService->getDexList(),
-                'games' => $this->colorGameService->getGames(),
+                'dex' => $this->colorGameService->getDexList($this->localeService->current()),
+                'games' => $this->colorGameService->getGames($this->localeService->current()),
             ]
         );
     }
@@ -47,6 +49,7 @@ final class ColorGameController extends AbstractController
             $game = $this->colorGameService->create(
                 $request->request->getString('dex_slug'),
                 (new GameRoundCount($request->request->getString('round_count')))->value,
+                $this->localeService->current(),
             );
         } catch (HttpExceptionInterface) {
             $this->addFlash('warning', 'color_game.flash.create_failed');
@@ -86,7 +89,7 @@ final class ColorGameController extends AbstractController
         }
 
         try {
-            $answer = $this->colorGameService->answer($gameId, $position, $request->request->getInt('choice'));
+            $answer = $this->colorGameService->answer($gameId, $position, $request->request->getInt('choice'), $this->localeService->current());
         } catch (HttpExceptionInterface) {
             return $this->redirectToRoute('app_colorgame_play', ['gameId' => $gameId]);
         }
@@ -132,7 +135,7 @@ final class ColorGameController extends AbstractController
     public function rounds(string $gameId): Response
     {
         try {
-            $rounds = $this->colorGameService->getRounds($gameId);
+            $rounds = $this->colorGameService->getRounds($gameId, $this->localeService->current());
         } catch (HttpExceptionInterface $e) {
             throw $this->createNotFoundException("Game {$gameId} not found", $e);
         }
@@ -149,7 +152,7 @@ final class ColorGameController extends AbstractController
     private function getState(string $gameId): ColorGameState
     {
         try {
-            return $this->colorGameService->get($gameId);
+            return $this->colorGameService->get($gameId, $this->localeService->current());
         } catch (HttpExceptionInterface $e) {
             throw $this->createNotFoundException("Game {$gameId} not found", $e);
         }

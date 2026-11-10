@@ -26,4 +26,13 @@ final class ColorGameChoiceTest extends TestCase
         $this->assertSame(['noir', 'blanc'], $object->getFrenchNames());
         $this->assertSame(['en' => ['black', 'white'], 'fr' => ['noir', 'blanc']], $object->getNamesByLocale());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new ColorGameChoice(2, ['#000000', '#FFFFFF'], ['noir', 'blanc'], null);
+
+        $this->assertNull($object->getFrenchNames());
+        $this->assertSame(['*' => ['noir', 'blanc']], $object->getNamesByLocale());
+    }
 }

@@ -39,4 +39,15 @@ final class ColorGameDexListItemTest extends TestCase
         $this->assertSame($game, $object->getCurrentGame());
         $this->assertSame($category, $object->getCategory());
     }
+
+    #[Test]
+    public function inASingleLanguage(): void
+    {
+        $object = new ColorGameDexListItem('demo', 'Démo', null, false, true, false, 'Description', null, 4, null);
+
+        $this->assertNull($object->getFrenchName());
+        $this->assertSame(['*' => 'Démo'], $object->getNames());
+        $this->assertNull($object->getFrenchDescription());
+        $this->assertSame(['*' => 'Description'], $object->getDescriptions());
+    }
 }

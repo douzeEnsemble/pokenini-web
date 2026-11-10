@@ -151,6 +151,8 @@ final class LocaleServiceTest extends TestCase
             'current locale is missing' => ['lists' => ['en' => ['Red']], 'requestLocale' => 'fr', 'expected' => ['Red']],
             'current locale is empty' => ['lists' => ['en' => ['Red'], 'fr' => []], 'requestLocale' => 'fr', 'expected' => ['Red']],
             'current and fallback locales are missing' => ['lists' => ['de' => ['Rot']], 'requestLocale' => 'fr', 'expected' => []],
+            'list already in the requested language' => ['lists' => ['*' => ['Noir', 'Blanc']], 'requestLocale' => 'fr', 'expected' => ['Noir', 'Blanc']],
+            'the fallback list wins over the resolved one' => ['lists' => ['en' => ['Red'], '*' => ['Rouge']], 'requestLocale' => 'fr', 'expected' => ['Red']],
         ];
     }
 
