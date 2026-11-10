@@ -29,6 +29,7 @@ class HubHighlightsService
         private readonly ColorGameService $colorGameService,
         private readonly ShinyGameService $shinyGameService,
         private readonly WhichShinyGameService $whichShinyGameService,
+        private readonly LocaleService $localeService,
     ) {}
 
     /**
@@ -55,7 +56,7 @@ class HubHighlightsService
     {
         $groups = [HubElection::IN_PROGRESS => [], HubElection::NOT_STARTED => [], HubElection::FINISHED => []];
 
-        foreach ($this->electionDexListService->get() as $dex) {
+        foreach ($this->electionDexListService->get($this->localeService->current()) as $dex) {
             $election = new HubElection($dex);
             $groups[$election->state][] = $election;
         }
@@ -71,9 +72,9 @@ class HubHighlightsService
     public function getGames(): array
     {
         return [
-            HubGame::fromGames(HubGame::COLOR, $this->colorGameService->getGames()),
-            HubGame::fromGames(HubGame::SHINY, $this->shinyGameService->getGames()),
-            HubGame::fromGames(HubGame::WHICH_SHINY, $this->whichShinyGameService->getGames()),
+            HubGame::fromGames(HubGame::COLOR, $this->colorGameService->getGames($this->localeService->current())),
+            HubGame::fromGames(HubGame::SHINY, $this->shinyGameService->getGames($this->localeService->current())),
+            HubGame::fromGames(HubGame::WHICH_SHINY, $this->whichShinyGameService->getGames($this->localeService->current())),
         ];
     }
 }

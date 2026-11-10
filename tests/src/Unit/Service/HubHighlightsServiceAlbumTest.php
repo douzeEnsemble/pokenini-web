@@ -14,9 +14,11 @@ use App\Service\Back\GetElectionDexListService;
 use App\Service\Back\ShinyGameService;
 use App\Service\Back\WhichShinyGameService;
 use App\Service\HubHighlightsService;
+use App\Service\LocaleService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * @internal
@@ -65,6 +67,7 @@ final class HubHighlightsServiceAlbumTest extends TestCase
         ?ColorGameService $colorGameService = null,
         ?ShinyGameService $shinyGameService = null,
         ?WhichShinyGameService $whichShinyGameService = null,
+        ?LocaleService $localeService = null,
     ): HubHighlightsService {
         return new HubHighlightsService(
             $albumService ?? $this->createStub(GetAlbumDexListService::class),
@@ -72,6 +75,7 @@ final class HubHighlightsServiceAlbumTest extends TestCase
             $colorGameService ?? $this->createStub(ColorGameService::class),
             $shinyGameService ?? $this->createStub(ShinyGameService::class),
             $whichShinyGameService ?? $this->createStub(WhichShinyGameService::class),
+            $localeService ?? new LocaleService(new RequestStack(), ['en', 'fr'], 'en'),
         );
     }
 
