@@ -6,7 +6,7 @@ controllers:
   prefix: /{_locale}
   trailing_slash_on_root: false
   requirements:
-    _locale: "en|fr"
+    _locale: "%app.locales_pattern%"
 
 index:
   path: /

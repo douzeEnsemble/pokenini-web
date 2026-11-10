@@ -5,4 +5,4 @@ when@dev:
         defaults: 
             _locale: 'fr'
         requirements:
-            _locale: 'en|fr'
+            _locale: '%app.locales_pattern%'

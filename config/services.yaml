@@ -1,6 +1,8 @@
 parameters:
-  # Enabled locales, in display order (keep in sync with framework.enabled_locales and the route requirement)
+  # Enabled locales, in display order: the only place to list them (framework, routes and security use it)
   app.locales: ["en", "fr"]
+  # The same locales as a route requirement, to keep in sync with the list above
+  app.locales_pattern: "en|fr"
   # Used when a name is missing in the current locale
   app.fallback_locale: "en"
   # The images of the shiny game are fetched by the server, as their URL gives the answer
