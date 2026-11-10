@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\ColorGame;
 
+use App\ResponseObject\Common\NamesMap;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final class ColorGameDexSummary
@@ -14,7 +15,7 @@ final class ColorGameDexSummary
         #[SerializedName('name')]
         private readonly string $name,
         #[SerializedName('french_name')]
-        private readonly string $frenchName,
+        private readonly ?string $frenchName,
     ) {}
 
     public function getSlug(): string
@@ -27,7 +28,7 @@ final class ColorGameDexSummary
         return $this->name;
     }
 
-    public function getFrenchName(): string
+    public function getFrenchName(): ?string
     {
         return $this->frenchName;
     }
@@ -37,6 +38,6 @@ final class ColorGameDexSummary
      */
     public function getNames(): array
     {
-        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+        return NamesMap::from($this->name, $this->frenchName);
     }
 }

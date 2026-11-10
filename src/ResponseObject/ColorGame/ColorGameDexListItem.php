@@ -6,6 +6,7 @@ namespace App\ResponseObject\ColorGame;
 
 use App\ResponseObject\Common\DexCategorizedInterface;
 use App\ResponseObject\Common\DexCategory;
+use App\ResponseObject\Common\NamesMap;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 /**
@@ -19,7 +20,7 @@ final class ColorGameDexListItem implements DexCategorizedInterface
         #[SerializedName('name')]
         private readonly string $name,
         #[SerializedName('french_name')]
-        private readonly string $frenchName,
+        private readonly ?string $frenchName,
         #[SerializedName('is_shiny')]
         private readonly bool $isShiny,
         #[SerializedName('is_released')]
@@ -48,7 +49,7 @@ final class ColorGameDexListItem implements DexCategorizedInterface
         return $this->name;
     }
 
-    public function getFrenchName(): string
+    public function getFrenchName(): ?string
     {
         return $this->frenchName;
     }
@@ -58,7 +59,7 @@ final class ColorGameDexListItem implements DexCategorizedInterface
      */
     public function getNames(): array
     {
-        return ['en' => $this->getName(), 'fr' => $this->getFrenchName()];
+        return NamesMap::from($this->name, $this->frenchName);
     }
 
     public function isShiny(): bool
@@ -91,7 +92,9 @@ final class ColorGameDexListItem implements DexCategorizedInterface
      */
     public function getDescriptions(): array
     {
-        return ['en' => $this->getDescription(), 'fr' => $this->getFrenchDescription()];
+        return null === $this->frenchDescription
+            ? [NamesMap::RESOLVED => $this->description]
+            : ['en' => $this->description, 'fr' => $this->frenchDescription];
     }
 
     public function getPlayableCount(): int

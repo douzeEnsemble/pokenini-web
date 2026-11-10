@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\ResponseObject\ColorGame;
 
+use App\ResponseObject\Common\NamesMap;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final class ColorGameChoice
 {
     /**
-     * @param string[] $codes
-     * @param string[] $names
-     * @param string[] $frenchNames
+     * @param string[]      $codes
+     * @param string[]      $names
+     * @param null|string[] $frenchNames null when the API answered in a single language
      */
     public function __construct(
         #[SerializedName('index')]
@@ -21,7 +22,7 @@ final class ColorGameChoice
         #[SerializedName('names')]
         private readonly array $names,
         #[SerializedName('french_names')]
-        private readonly array $frenchNames,
+        private readonly ?array $frenchNames,
     ) {}
 
     public function getIndex(): int
@@ -46,9 +47,9 @@ final class ColorGameChoice
     }
 
     /**
-     * @return string[]
+     * @return null|string[]
      */
-    public function getFrenchNames(): array
+    public function getFrenchNames(): ?array
     {
         return $this->frenchNames;
     }
@@ -58,6 +59,10 @@ final class ColorGameChoice
      */
     public function getNamesByLocale(): array
     {
-        return ['en' => $this->getNames(), 'fr' => $this->getFrenchNames()];
+        if (null === $this->frenchNames) {
+            return [NamesMap::RESOLVED => $this->names];
+        }
+
+        return ['en' => $this->names, 'fr' => $this->frenchNames];
     }
 }

@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Service\Back;
 use App\ResponseObject\ColorGame\ColorGame;
 use App\ResponseObject\ColorGame\ColorGameAnswer;
 use App\ResponseObject\ColorGame\ColorGameDexSummary;
+use App\ResponseObject\ColorGame\ColorGameRounds;
 use App\ResponseObject\ColorGame\ColorGameState;
 use App\Security\UserTokenServiceInterface;
 use App\Service\Back\AbstractBackService;
@@ -19,6 +20,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
+ *
+ * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
  */
 #[CoversClass(ColorGameService::class)]
 final class ColorGameServiceTest extends AbstractTestBackService
@@ -125,6 +128,42 @@ final class ColorGameServiceTest extends AbstractTestBackService
         );
 
         $this->assertSame($answer, $service->answer('g1', 2, 1));
+    }
+
+    #[Test]
+    public function inALanguage(): void
+    {
+        $items = [];
+        $games = [$this->makeGame()];
+        $game = $this->makeGame();
+        $state = new ColorGameState($game, null);
+        $rounds = new ColorGameRounds($game, []);
+        $answer = new ColorGameAnswer(2, true, 1, 1, $game);
+        $query = ['query' => ['lang' => 'fr']];
+
+        /** @var ColorGameService $service */
+        $service = $this->getServiceWithLoggedUser('GET', self::JSON, 'color_game/dex', $query, $this->getSerializerMock('App\ResponseObject\ColorGame\ColorGameDexListItem[]', $items));
+        $this->assertSame($items, $service->getDexList('fr'));
+
+        /** @var ColorGameService $service */
+        $service = $this->getServiceWithLoggedUser('GET', self::JSON, 'color_game/games', $query, $this->getSerializerMock(ColorGame::class.'[]', $games));
+        $this->assertSame($games, $service->getGames('fr'));
+
+        /** @var ColorGameService $service */
+        $service = $this->getServiceWithLoggedUser('POST', self::JSON, 'color_game/games', ['json' => ['dex_slug' => 'demo', 'round_count' => null]] + $query, $this->getSerializerMock(ColorGame::class, $game));
+        $this->assertSame($game, $service->create('demo', null, 'fr'));
+
+        /** @var ColorGameService $service */
+        $service = $this->getServiceWithLoggedUser('GET', self::JSON, 'color_game/games/g1', $query, $this->getSerializerMock(ColorGameState::class, $state));
+        $this->assertSame($state, $service->get('g1', 'fr'));
+
+        /** @var ColorGameService $service */
+        $service = $this->getServiceWithLoggedUser('GET', self::JSON, 'color_game/games/g1/rounds', $query, $this->getSerializerMock(ColorGameRounds::class, $rounds));
+        $this->assertSame($rounds, $service->getRounds('g1', 'fr'));
+
+        /** @var ColorGameService $service */
+        $service = $this->getServiceWithLoggedUser('POST', self::JSON, 'color_game/games/g1/answers', ['json' => ['position' => 2, 'choice' => 1]] + $query, $this->getSerializerMock(ColorGameAnswer::class, $answer));
+        $this->assertSame($answer, $service->answer('g1', 2, 1, 'fr'));
     }
 
     #[\Override]
