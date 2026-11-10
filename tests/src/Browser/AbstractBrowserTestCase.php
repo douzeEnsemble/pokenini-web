@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Browser;
 
 use App\Security\User;
+use Facebook\WebDriver\Exception\TimeoutException;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
 use Symfony\Component\Panther\Client;
@@ -37,6 +38,31 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
                 'capabilities' => $capabilities,
             ],
         );
+    }
+
+    /**
+     * Waits for the condition like `$client->wait()->until()`, but a timeout tells where the browser was:
+     * its URL, its title and the beginning of the text it shows, which the bare timeout message does not.
+     *
+     * @param callable(): mixed $condition
+     */
+    protected function waitUntil(Client $client, callable $condition, string $description): void
+    {
+        try {
+            $client->wait()->until($condition);
+        } catch (TimeoutException $e) {
+            throw new \RuntimeException(
+                sprintf(
+                    "Timeout while waiting for %s.\nURL: %s\nTitle: %s\nText: %s",
+                    $description,
+                    $client->getCurrentURL(),
+                    $client->getTitle(),
+                    mb_substr(trim($client->findElement(WebDriverBy::cssSelector('body'))->getText()), 0, 1500),
+                ),
+                0,
+                $e,
+            );
+        }
     }
 
     /**

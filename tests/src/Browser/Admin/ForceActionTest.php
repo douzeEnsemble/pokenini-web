@@ -45,7 +45,11 @@ final class ForceActionTest extends AbstractBrowserTestCase
         $message = $this->answerConfirmModal($client, '.confirm-modal-cancel');
         $this->assertStringContainsString('Une exécution est en cours depuis', $message);
         // The modal removes itself from the DOM once hidden (Panther's waitForInvisibility() times out on a missing element).
-        $client->wait()->until(static fn () => (bool) $client->executeScript('return null === document.querySelector(".confirm-modal-ok");'));
+        $this->waitUntil(
+            $client,
+            static fn () => (bool) $client->executeScript('return null === document.querySelector(".confirm-modal-ok");'),
+            'the confirmation modal to disappear',
+        );
 
         $this->assertTrue((bool) $client->executeScript('return window.__noNav === true;'));
     }
@@ -72,14 +76,14 @@ final class ForceActionTest extends AbstractBrowserTestCase
         // (vendor/symfony/panther/src/Client.php:227-246); since we bypass that helper (see note
         // below), wait explicitly for the post-redirect DOM state instead of assuming the click()
         // call already blocked until navigation finished.
-        $client->wait()->until(static function () use ($client) {
+        $this->waitUntil($client, static function () use ($client) {
             try {
                 return '' !== $client->findElement(WebDriverBy::cssSelector('#update_games_collections_and_dex'))->getAttribute('data-updated-state');
             } catch (NoSuchElementException|StaleElementReferenceException) {
                 // The page is being replaced by the navigation: keep waiting.
                 return false;
             }
-        });
+        }, 'the page to show the updated state of the action');
 
         $crawler = $client->refreshCrawler();
         $this->assertNotSame('', $crawler->filter('#update_games_collections_and_dex')->attr('data-updated-state'));
