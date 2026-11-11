@@ -67,7 +67,7 @@ jobs:
         uses: ./.github/actions/tools-composer
         with:
           dir: psalm
-      - name: Run 
+      - name: Run
         run: |
           tools/psalm/vendor/bin/psalm -c psalm.xml  --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions --root=.
           tools/psalm/vendor/bin/psalm -c psalm-src-only.xml --show-info=false --no-cache --find-unused-psalm-suppress --no-suggestions --root=.
