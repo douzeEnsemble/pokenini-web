@@ -6,6 +6,13 @@ on:
       - main
   pull_request: ~
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 jobs:
   composer-audit:
     name: Composer Audit
