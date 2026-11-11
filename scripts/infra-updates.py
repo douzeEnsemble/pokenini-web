@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Bump the dependencies that Dependabot cannot handle, to their latest version.
 
-  php   PHP docker image (Dockerfile), the "php" constraint of every composer.json,
-        the lock hashes, setup-php and the docs
-  pins  images pinned in Makefile / workflows / Dockerfile and the Moco version
+- php: PHP docker image, "php" constraints, lock hashes, setup-php and the docs
+- pins: images pinned in Makefile / workflows / Dockerfile and the Moco version
 
 Files are edited in place. A markdown summary is appended to --summary when
 something changed. Nothing is adapted beyond the version strings: the CI of
