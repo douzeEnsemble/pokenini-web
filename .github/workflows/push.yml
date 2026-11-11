@@ -160,3 +160,75 @@ jobs:
             $(echo "${{ steps.meta.outputs.tags }}" | sed 's/^/--tag /') \
             ${{ env.REGISTRY }}/$IMAGE_NAME_LOWERED:${{ env.VERSION }}-arm64 \
             ${{ env.REGISTRY }}/$IMAGE_NAME_LOWERED:${{ env.VERSION }}-amd64
+
+  update-pi-projects:
+    name: Bump the version in pi-projects
+    runs-on: ubuntu-24.04
+    needs: [create-manifest]
+    concurrency:
+      group: pi-projects-bump
+      cancel-in-progress: false
+    env:
+      GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+      PI_REPOSITORY: douzeEnsemble/pi-projects
+    steps:
+      - name: Open or update the pi-projects pull request
+        run: |
+          set -euo pipefail
+
+          # Prerelease => staging stack, release => prod stack
+          if [ "${{ github.event.release.prerelease }}" = "true" ]; then
+            TARGET=staging
+            SUFFIX=prerelease
+          else
+            TARGET=prod
+            SUFFIX=release
+          fi
+          NEW_VERSION="${{ github.event.release.tag_name }}-${SUFFIX}"
+          STACK="${PROJECT_NAME/pokenini-/pokenini-${TARGET}-}"
+          BRANCH="bump-${TARGET}-versions"
+
+          git clone --quiet "https://x-access-token:${GH_TOKEN}@github.com/${PI_REPOSITORY}.git" pi-projects
+          cd pi-projects
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Reuse the open pull request (its branch) if there is one
+          PR_NUMBER=$(gh pr list --repo "$PI_REPOSITORY" --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$PR_NUMBER" ] && git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null; then
+            git checkout --quiet -B "$BRANCH" "origin/$BRANCH"
+            git merge --quiet --no-edit origin/main
+          else
+            PR_NUMBER=""
+            git checkout --quiet -b "$BRANCH" origin/main
+          fi
+
+          sed -i "s|^PROJECT_VERSION=.*|PROJECT_VERSION=${NEW_VERSION}|" "${STACK}/.env"
+          if git diff --quiet; then
+            echo "${STACK} is already on ${NEW_VERSION}"
+          else
+            git commit --quiet -am "Update ${STACK} to ${NEW_VERSION}"
+          fi
+
+          # No difference with main left: nothing to propose
+          if git diff --quiet "origin/main" HEAD; then
+            echo "Nothing to change compared to main"
+            [ -n "$PR_NUMBER" ] && gh pr close "$PR_NUMBER" --repo "$PI_REPOSITORY" --comment "Already up to date on main."
+            exit 0
+          fi
+
+          git push --quiet origin "$BRANCH"
+
+          # Body: the versions of the ${TARGET} stacks that differ from main
+          LIST=$(git diff origin/main HEAD -U0 -- '*/.env' | awk '
+            /^\+\+\+ b\// { sub(/^\+\+\+ b\//, ""); sub(/\/\.env$/, ""); stack = $0 }
+            /^-PROJECT_VERSION=/ { old = substr($0, 18) }
+            /^\+PROJECT_VERSION=/ { print "- `" stack "`: " old " → " substr($0, 18) }')
+          BODY=$(printf 'Bump `PROJECT_VERSION` of the %s stacks:\n\n%s\n\nOpened by the build of %s %s.' "$TARGET" "$LIST" "$GITHUB_REPOSITORY" "${{ github.event.release.tag_name }}")
+
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr edit "$PR_NUMBER" --repo "$PI_REPOSITORY" --body "$BODY"
+          else
+            gh pr create --repo "$PI_REPOSITORY" --base main --head "$BRANCH" \
+              --title "Update ${TARGET} to the latest ${SUFFIX} versions" --body "$BODY"
+          fi
