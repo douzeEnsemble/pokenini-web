@@ -1,7 +1,7 @@
-<p class="text-secondary">{{ 'trainer.links.intro'|trans }}</p>
+<p class="text-body-secondary">{{ 'trainer.links.intro'|trans }}</p>
 
 {% if linksTree.isEmpty %}
-  <p class="text-secondary">{{ 'trainer.links.empty'|trans }}</p>
+  <p class="text-body-secondary">{{ 'trainer.links.empty'|trans }}</p>
 {% else %}
   <div class="dex-links-tree">
     {% for edge in linksTree.edges %}
