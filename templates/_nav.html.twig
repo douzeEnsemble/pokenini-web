@@ -5,102 +5,124 @@
 {% set locale = app.request.locale %}
 {% set sharedTrainerId = app.request.attributes.get('t') %}
 
-<nav class="navbar fixed-bottom navbar-expand-sm bg-body-tertiary" aria-label="{{ 'nav.aria_label'|trans }}">
+{# One markup, two layouts (see "Bottom navigation" in base.css):
+  - below xl, a tab bar for the places visited most (.nav-main) and a panel
+    opening above it for the rest (#navbarNav), reached with the "More" tab;
+  - from xl, everything on one row (the labels need about 1100px).
+  Each item exists once, so the tests and the dropdowns keep working. #}
+<nav class="navbar navbar-expand-xl fixed-bottom bg-body-tertiary" aria-label="{{ 'nav.aria_label'|trans }}">
     <div class="container-fluid">
         <a
-            class="navbar-brand navbar-logo"
+            class="navbar-brand navbar-logo d-none d-xl-block"
             href="{{ path('app_home_index', {'_locale': locale}) }}"
         >
             <img src="/img/logo/logo.png" alt="{{ 'nav.logo_alt'|trans }}" width="30" height="30" class="d-inline-block align-text-top" loading="lazy">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{{ 'nav.toggle_navigation'|trans }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <ul class="navbar-nav nav-main">
+            <li class="nav-item hub-link">
+                {% set onHub = currentRoute == 'app_home_hub' %}
+                <a
+                    class="nav-link{{ onHub ? ' active' : '' }}"
+                    {{ onHub ? 'aria-current="page"' : '' }}
+                    href="{{ path('app_home_hub') }}"
+                >
+                    <i class="bi bi-house" aria-hidden="true"></i>
+                    <span>{{ 'nav.home'|trans }}</span>
+                </a>
+            </li>
+            {% if is_granted("ROLE_TRAINER") %}
+            <li class="nav-item album-link">
+                {% set onAlbum = currentRoute in ['app_albumdexlist_index', 'app_albumindex_index'] %}
+                <a
+                    class="nav-link{{ onAlbum ? ' active' : '' }}"
+                    {{ onAlbum ? 'aria-current="page"' : '' }}
+                    href="{{ path('app_albumdexlist_index') }}"
+                >
+                    <i class="bi bi-journal-bookmark" aria-hidden="true"></i>
+                    <span>{{ 'nav.albums'|trans }}</span>
+                </a>
+            </li>
+            <li class="nav-item election-link">
+                {% set onElection = currentRoute in ['app_electiondexlist_index', 'app_electionindex_index'] %}
+                <a
+                    class="nav-link{{ onElection ? ' active' : '' }}"
+                    {{ onElection ? 'aria-current="page"' : '' }}
+                    href="{{ path('app_electiondexlist_index') }}"
+                >
+                    <i class="bi bi-heart" aria-hidden="true"></i>
+                    <span>{{ 'nav.elections'|trans }}</span>
+                </a>
+            </li>
+            <li class="nav-item game-link">
+                {% set gamePages = [
+                    {'prefix': 'app_colorgame_', 'icon': 'bi-palette', 'label': 'color_game.title', 'route': 'app_colorgame_dex'},
+                    {'prefix': 'app_shinygame_', 'icon': 'bi-stars', 'label': 'shiny_game.title', 'route': 'app_shinygame_dex'},
+                    {'prefix': 'app_whichshinygame_', 'icon': 'bi-intersect', 'label': 'which_shiny_game.title', 'route': 'app_whichshinygame_dex'},
+                ] %}
+                {% set gameRoute = currentRoute|default('') %}
+                {% set onGame = gameRoute starts with 'app_game_' or gamePages|filter(p => gameRoute starts with p.prefix)|length > 0 %}
+                <div class="dropdown dropup d-flex align-items-center">
+                    <a
+                        class="nav-link {{ onGame ? ' active' : '' }}"
+                        {{ onGame ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_game_index') }}"
+                    >
+                        <i class="bi bi-controller" aria-hidden="true"></i>
+                        <span>{{ 'nav.game'|trans }}</span>
+                    </a>
+                    {# The games page lists the games: no sub-menu in the tab bar #}
+                    <button
+                        class="nav-link dropdown-toggle dropdown-toggle-split d-none d-xl-block"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        <span class="visually-hidden">{{ 'nav.toggle_submenu'|trans }}</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for page in gamePages %}
+                        {% set onPage = gameRoute starts with page.prefix %}
+                        <li>
+                            <a
+                                class="dropdown-item{{ onPage ? ' active' : '' }}"
+                                {{ onPage ? 'aria-current="page"' : '' }}
+                                href="{{ path(page.route) }}"
+                            >
+                                <i class="bi {{ page.icon }}"></i>
+                                {{ page.label|trans }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+            {% else %}
+            {# Logging in is what a visitor can do: it stays a tab, not a line of the panel #}
+            <li class="nav-item trainer-link">
+                <a class="nav-link" href="{{ path('app_connect_index') }}">
+                    <i class="bi bi-person" aria-hidden="true"></i>
+                    <span>{{ 'nav.login'|trans }}</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="nav-item nav-more d-xl-none">
+                <button
+                    class="nav-link"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                >
+                    <i class="bi bi-three-dots" aria-hidden="true"></i>
+                    <span>{{ 'nav.more'|trans }}</span>
+                </button>
+            </li>
+        </ul>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item hub-link">
-                    {% set onHub = currentRoute == 'app_home_hub' %}
-                    <a
-                        class="nav-link{{ onHub ? ' active' : '' }}"
-                        {{ onHub ? 'aria-current="page"' : '' }}
-                        href="{{ path('app_home_hub') }}"
-                    >
-                        <i class="bi bi-house"></i>
-                        {{ 'nav.home'|trans }}
-                    </a>
-                </li>
                 {% if is_granted("ROLE_TRAINER") %}
-                <li class="nav-item album-link">
-                    {% set onAlbum = currentRoute == 'app_albumdexlist_index' %}
-                    <a
-                        class="nav-link{{ onAlbum ? ' active' : '' }}"
-                        {{ onAlbum ? 'aria-current="page"' : '' }}
-                        href="{{ path('app_albumdexlist_index') }}"
-                    >
-                        <i class="bi bi-journal-bookmark"></i>
-                        {{ 'title.album.nav'|trans }}
-                    </a>
-                </li>
-                {% endif %}
-                <li class="nav-item election-link">
-                    {% if is_granted("ROLE_TRAINER") %}
-                    {% set onElection = currentRoute in ['app_electiondexlist_index', 'app_electionindex_index'] %}
-                    <a
-                        class="nav-link {{ onElection ? ' active' : '' }}"
-                        {{ onElection ? 'aria-current="page"' : '' }}
-                        href="{{ path('app_electiondexlist_index') }}"
-                    >
-                        <i class="bi bi-heart" aria-hidden="true"></i>
-                        {{ 'title.election.nav'|trans }}
-                    </a>
-                    {% endif %}
-                </li>
-                <li class="nav-item game-link">
-                    {% if is_granted("ROLE_TRAINER") %}
-                    {% set gamePages = [
-                        {'prefix': 'app_colorgame_', 'icon': 'bi-palette', 'label': 'color_game.title', 'route': 'app_colorgame_dex'},
-                        {'prefix': 'app_shinygame_', 'icon': 'bi-stars', 'label': 'shiny_game.title', 'route': 'app_shinygame_dex'},
-                        {'prefix': 'app_whichshinygame_', 'icon': 'bi-intersect', 'label': 'which_shiny_game.title', 'route': 'app_whichshinygame_dex'},
-                    ] %}
-                    {% set gameRoute = currentRoute|default('') %}
-                    {% set onGame = gameRoute starts with 'app_game_' or gamePages|filter(p => gameRoute starts with p.prefix)|length > 0 %}
-                    <div class="dropdown dropup d-flex align-items-center">
-                        <a
-                            class="nav-link {{ onGame ? ' active' : '' }}"
-                            {{ onGame ? 'aria-current="page"' : '' }}
-                            href="{{ path('app_game_index') }}"
-                        >
-                            <i class="bi bi-controller"></i>
-                            {{ 'nav.game'|trans }}
-                        </a>
-                        <button
-                            class="nav-link dropdown-toggle dropdown-toggle-split"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            <span class="visually-hidden">{{ 'nav.toggle_submenu'|trans }}</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            {% for page in gamePages %}
-                            {% set onPage = gameRoute starts with page.prefix %}
-                            <li>
-                                <a
-                                    class="dropdown-item{{ onPage ? ' active' : '' }}"
-                                    {{ onPage ? 'aria-current="page"' : '' }}
-                                    href="{{ path(page.route) }}"
-                                >
-                                    <i class="bi {{ page.icon }}"></i>
-                                    {{ page.label|trans }}
-                                </a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endif %}
-                </li>
                 <li class="nav-item trainer-link">
-                    {% if is_granted("ROLE_TRAINER") %}
                     {% set trainerPages = [
                         {'key': 'customization', 'label': 'trainer.dex.title', 'route': 'app_trainerindex_index'},
                         {'key': 'links', 'label': 'trainer.links.title', 'route': 'app_trainerlinks_index'},
@@ -115,10 +137,11 @@
                             href="{{ path('app_trainerindex_index') }}"
                         >
                             <i class="bi bi-person-badge" aria-hidden="true"></i>
-                            {{ 'title.trainer'|trans }}
+                            <span>{{ 'nav.trainer'|trans }}</span>
                         </a>
+                        {# Those pages link to each other: no sub-menu in the panel #}
                         <button
-                            class="nav-link dropdown-toggle dropdown-toggle-split"
+                            class="nav-link dropdown-toggle dropdown-toggle-split d-none d-xl-block"
                             type="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
@@ -139,17 +162,12 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    {% else %}
-                    <a class="nav-link" href="{{ path('app_connect_index') }}">
-                        <i class="bi bi-person" aria-hidden="true"></i>
-                        {{ 'nav.login'|trans }}
-                    </a>
-                    {% endif %}
                 </li>
+                {% endif %}
                 <li class="nav-item cookie-manager">
                     <button type="button" class="nav-link">
                         <i class="bi bi-cookie" aria-hidden="true"></i>
-                        {{ 'nav.cookie-manager'|trans }}
+                        <span>{{ 'nav.cookie-manager'|trans }}</span>
                     </button>
                 </li>
                 {% for langTarget in enabled_locales()|filter(l => l != locale) %}
@@ -170,7 +188,7 @@
                             : '/' ~ langTarget ~ app.request.requesturi[3:] }}"
                     >
                         <i class="bi bi-translate" aria-hidden="true"></i>
-                        {{ ('nav.lang.'~langTarget)|trans([], 'messages', langTarget) }}
+                        <span>{{ ('nav.lang.'~langTarget)|trans([], 'messages', langTarget) }}</span>
                     </a>
                 </li>
                 {% endfor %}
@@ -193,8 +211,9 @@
                             href="{{ path('app_admin_update_data') }}"
                         >
                             <i class="bi bi-wrench-adjustable-circle" aria-hidden="true"></i>
-                            {{ 'nav.admin'|trans }}
+                            <span>{{ 'nav.admin'|trans }}</span>
                         </a>
+                        {# Seven pages, linked nowhere else: the sub-menu stays at every width #}
                         <button
                             class="nav-link dropdown-toggle dropdown-toggle-split"
                             type="button"
@@ -220,13 +239,13 @@
                 </li>
                 {% endif %}
                 {% if app.user %}
-                <li class="nav-item logout-link ms-auto">
+                <li class="nav-item logout-link ms-xl-auto">
                     <a
                         class="nav-link"
                         href="{{ path('app_connect_logout') }}"
                     >
                         <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
-                        {{ 'logout'|trans }}
+                        <span>{{ 'logout'|trans }}</span>
                     </a>
                 </li>
                 {% endif %}
