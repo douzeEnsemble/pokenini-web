@@ -256,6 +256,14 @@ html {
     cursor: pointer;
 }
 
+/* The completion sentence above that bar ("2 / 7 caught (28.6%)"). It is the
+    number people read first, so it keeps the body colour (no muted grey) and
+    aligns digits so it doesn't jitter as counts change. */
+.catch-state-summary {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
 /* Color dot in that same legend popover. Only the shape/size lives here -
     the per-state color itself comes from a .catch-state-{slug} class added
     alongside (common/_catch_state_progress_bar_styles.html.twig), since

@@ -4,5 +4,12 @@
 :root {
     {% for catchState in catchStates %}
     --catch-state-{{ catchState.slug }}: {{ catchState.color }};
+    {# The text written on that color, chosen with it by whoever picks the colors.
+      A distinct prefix on purpose: main.js collects every "--catch-state-*" as a
+      state color, and this one is not. Only a hex value gets through, since it
+      lands unquoted in a style block. #}
+    {% if catchState.textColor is not empty and catchState.textColor matches '/^#[0-9a-fA-F]{3,8}$/' %}
+    --on-catch-state-{{ catchState.slug }}: {{ catchState.textColor }};
+    {% endif %}
     {% endfor %}
 }

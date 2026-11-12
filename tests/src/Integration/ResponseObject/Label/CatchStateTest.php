@@ -29,7 +29,8 @@ final class CatchStateTest extends KernelTestCase
                 "name": "No",
                 "french_name": "Non",
                 "slug": "no",
-                "color": "#e57373"
+                "color": "#e57373",
+                "text_color": "#2a0e0e"
             }
             JSON;
 
@@ -40,5 +41,22 @@ final class CatchStateTest extends KernelTestCase
         $this->assertSame('Non', $object->getFrenchName());
         $this->assertSame('no', $object->getSlug());
         $this->assertSame('#e57373', $object->getColor());
+        $this->assertSame('#2a0e0e', $object->getTextColor());
+    }
+
+    #[Test]
+    public function deserializeWithoutATextColor(): void
+    {
+        self::bootKernel();
+
+        /** @var SerializerInterface $serializer */
+        $serializer = self::getContainer()->get(SerializerInterface::class);
+
+        $json = '{"name": "No", "french_name": "Non", "slug": "no", "color": "#e57373"}';
+
+        $object = $serializer->deserialize($json, CatchState::class, 'json');
+
+        $this->assertInstanceOf(CatchState::class, $object);
+        $this->assertNull($object->getTextColor());
     }
 }

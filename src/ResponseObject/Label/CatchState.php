@@ -18,6 +18,8 @@ final class CatchState
         private readonly string $slug,
         #[SerializedName('color')]
         private readonly string $color,
+        #[SerializedName('text_color')]
+        private readonly ?string $textColor = null,
     ) {}
 
     public function getName(): string
@@ -46,5 +48,15 @@ final class CatchState
     public function getColor(): string
     {
         return $this->color;
+    }
+
+    /**
+     * Color of the text written on the catch state color, when the API provides it.
+     */
+    public function getTextColor(): ?string
+    {
+        // "??" on purpose: the labels cache holds objects serialized before this property
+        // existed, and unserialize() leaves it uninitialized, where a plain read would throw.
+        return $this->textColor ?? null;
     }
 }
