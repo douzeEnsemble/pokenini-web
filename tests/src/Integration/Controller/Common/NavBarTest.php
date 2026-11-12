@@ -6,8 +6,10 @@ namespace App\Tests\Integration\Controller\Common;
 
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * The navigation is one markup with two layouts (a tab bar below xl, one row from xl):
@@ -15,9 +17,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * item exists once.
  *
  * @internal
- *
- * @coversNothing
  */
+#[CoversNothing]
 final class NavBarTest extends WebTestCase
 {
     use TestNavTrait;
@@ -36,13 +37,13 @@ final class NavBarTest extends WebTestCase
         $this->assertSame(
             ['hub-link', 'album-link', 'election-link', 'game-link', 'nav-more'],
             $crawler->filter('.nav-main > .nav-item')->each(
-                static fn ($item): string => explode(' ', (string) $item->attr('class'))[1]
+                static fn (Crawler $item): string => explode(' ', (string) $item->attr('class'))[1]
             ),
         );
         $this->assertSame(
             ['Accueil', 'Albums', 'Élections', 'Jeux', 'Plus'],
             $crawler->filter('.nav-main > .nav-item')->each(
-                static fn ($item): string => $item->filter('.nav-link > span:not(.visually-hidden)')->first()->text()
+                static fn (Crawler $item): string => $item->filter('.nav-link > span:not(.visually-hidden)')->first()->text()
             ),
         );
 
@@ -50,7 +51,7 @@ final class NavBarTest extends WebTestCase
         $this->assertSame(
             ['trainer-link', 'cookie-manager', 'lang-switch', 'logout-link'],
             $crawler->filter('#navbarNav .nav-item')->each(
-                static fn ($item): string => explode(' ', (string) $item->attr('class'))[1]
+                static fn (Crawler $item): string => explode(' ', (string) $item->attr('class'))[1]
             ),
         );
         $this->assertSame('#navbarNav', $crawler->filter('.nav-more button')->attr('data-bs-target'));
@@ -91,7 +92,7 @@ final class NavBarTest extends WebTestCase
         $this->assertSame(
             ['hub-link', 'trainer-link', 'nav-more'],
             $crawler->filter('.nav-main > .nav-item')->each(
-                static fn ($item): string => explode(' ', (string) $item->attr('class'))[1]
+                static fn (Crawler $item): string => explode(' ', (string) $item->attr('class'))[1]
             ),
         );
         $this->assertStringContainsString('/connect', (string) $crawler->filter('.nav-main .trainer-link a')->attr('href'));
@@ -100,7 +101,7 @@ final class NavBarTest extends WebTestCase
         $this->assertSame(
             ['cookie-manager', 'lang-switch'],
             $crawler->filter('#navbarNav .nav-item')->each(
-                static fn ($item): string => explode(' ', (string) $item->attr('class'))[1]
+                static fn (Crawler $item): string => explode(' ', (string) $item->attr('class'))[1]
             ),
         );
         $this->assertCountFilter($crawler, 0, '.navbar-nav .album-link');
@@ -140,7 +141,7 @@ final class NavBarTest extends WebTestCase
         $this->assertSame(
             ['Home', 'Albums', 'Elections', 'Games', 'More'],
             $crawler->filter('.nav-main > .nav-item')->each(
-                static fn ($item): string => $item->filter('.nav-link > span:not(.visually-hidden)')->first()->text()
+                static fn (Crawler $item): string => $item->filter('.nav-link > span:not(.visually-hidden)')->first()->text()
             ),
         );
         $this->assertSame('My space', $crawler->filter('#navbarNav .trainer-link a.nav-link')->text());
