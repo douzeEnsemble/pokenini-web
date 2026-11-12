@@ -46,6 +46,20 @@ final class AppVersionServiceTest extends TestCase
     }
 
     #[Test]
+    public function getVersionTrimsTrailingNewline(): void
+    {
+        file_put_contents(self::getDir().'/resources/metadata/version', "1.2.12\n");
+
+        $service = new AppVersionService(
+            self::getDir(),
+            new ArrayAdapter(),
+            new Filesystem(),
+        );
+
+        $this->assertSame('1.2.12', $service->getVersion());
+    }
+
+    #[Test]
     public function getVersionReturnsFallbackForMissingFile(): void
     {
         $service = new AppVersionService(

@@ -32,7 +32,7 @@ class AppVersionService
         return $this->cache->get($cacheKey, function (ItemInterface $item) use ($filePath): string {
             unset($item);
 
-            return $this->filesystem->readFile($filePath);
+            return trim($this->filesystem->readFile($filePath));
         });
     }
 
