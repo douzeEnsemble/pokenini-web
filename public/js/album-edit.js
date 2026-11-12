@@ -186,9 +186,9 @@ function activateReadMode(target) {
   bootstrap.Tooltip.getInstance('.album-all-catch-state-edit-action').hide();
 }
 
-/* Quick marking: a sheet opened by the label of a case, an undo toast after
-   each change, and a mode to mark several cases in a row. All of it goes
-   through the select of the case, which stays the source of truth. */
+// Quick marking: a sheet opened by the label of a case, an undo toast after
+// each change, and a mode to mark several cases in a row. All of it goes
+// through the select of the case, which stays the source of truth.
 let sheetCase = null;
 let sheetTrigger = null;
 let seriesState = null;
@@ -338,17 +338,18 @@ function setSeriesMode(active) {
 
   // Bootstrap listens to the clicks of its triggers while they are captured,
   // before any listener of ours: in this mode the triggers must not be some
-  document.querySelectorAll(".album-case [data-bs-toggle='modal'], .album-case [data-series-toggle]").forEach(
-    function (trigger) {
-      if (active) {
-        trigger.dataset.seriesToggle = trigger.dataset.bsToggle;
-        trigger.removeAttribute("data-bs-toggle");
-      } else {
-        trigger.dataset.bsToggle = trigger.dataset.seriesToggle;
-        delete trigger.dataset.seriesToggle;
-      }
-    }
+  const triggers = document.querySelectorAll(
+    ".album-case [data-bs-toggle='modal'], .album-case [data-series-toggle]"
   );
+  triggers.forEach(function (trigger) {
+    if (active) {
+      trigger.dataset.seriesToggle = trigger.dataset.bsToggle;
+      trigger.removeAttribute("data-bs-toggle");
+    } else {
+      trigger.dataset.bsToggle = trigger.dataset.seriesToggle;
+      delete trigger.dataset.seriesToggle;
+    }
+  });
 
   if (active) {
     const nav = document.querySelector("nav.fixed-bottom");

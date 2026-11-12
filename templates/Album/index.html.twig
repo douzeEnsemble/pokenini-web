@@ -65,11 +65,12 @@
         </form>
 
         {% include 'Album/_toasts.html.twig' %}
-        {% if allowedToEdit %}
-            {% include 'Album/_catch_state_sheet.html.twig' %}
-        {% endif %}
     </div>
     {% include 'Album/_offcanvas.html.twig' %}
+    {# After the filters: the first .offcanvas-body of the page is theirs #}
+    {% if allowedToEdit %}
+        {% include 'Album/_catch_state_sheet.html.twig' %}
+    {% endif %}
 </div>
 {% endblock container %}
 
