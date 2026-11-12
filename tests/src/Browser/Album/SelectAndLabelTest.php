@@ -162,6 +162,12 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $client->executeScript("document.getElementById('bulbasaur').scrollIntoView();");
         $this->clickElement($client, '#bulbasaur .album-case-catch-state .album-case-catch-state-label');
         $this->assertSelectorWillExist('#catch-state-sheet.show:not(.showing)');
+        // The slide is over when the sheet no longer goes below the screen
+        $client->getWebDriver()->wait(5)->until(
+            static fn (): mixed => $client->executeScript(
+                'return document.getElementById("catch-state-sheet").getBoundingClientRect().bottom <= window.innerHeight + 1;'
+            )
+        );
         $this->clickElement($client, '#catch-state-sheet [data-catch-state="totrade"]');
 
         $this->assertSelectorWillNotBeVisible('#catch-state-sheet');
