@@ -169,7 +169,7 @@ jobs:
       group: pi-projects-bump
       cancel-in-progress: false
     env:
-      GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+      GH_TOKEN: ${{ secrets.PI_PROJECTS_TOKEN }}
       PI_REPOSITORY: douzeEnsemble/pi-projects
     steps:
       - name: Open or update the pi-projects pull request
