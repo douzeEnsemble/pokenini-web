@@ -1,0 +1,39 @@
+{# Quick marking: the sheet opened by the label of a case, the "in a row" bar and the undo toast #}
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="catch-state-sheet" aria-labelledby="catch-state-sheet-title">
+  <div class="offcanvas-header">
+    <h2 class="offcanvas-title h5" id="catch-state-sheet-title"></h2>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="{{ 'a11y.close'|trans }}"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="list-group">
+      {% for catchState in catchStates %}
+        <button type="button" class="list-group-item list-group-item-action catch-state-sheet-option" data-catch-state="{{ catchState.slug }}">
+          <span class="catch-state-swatch catch-state-swatch-{{ catchState.slug }}" aria-hidden="true"></span>
+          <span>{{ catchState.names|localized }}</span>
+          <i class="bi bi-check-lg ms-auto" aria-hidden="true" hidden></i>
+        </button>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div id="series-bar" class="series-bar" role="group" aria-label="{{ 'album.series.group'|trans }}" hidden>
+  <div class="series-bar-states">
+    {% for catchState in catchStates %}
+      <button type="button" class="series-chip catch-state-{{ catchState.slug }}" data-catch-state="{{ catchState.slug }}" aria-pressed="false">
+        {{ catchState.names|localized }}
+      </button>
+    {% endfor %}
+  </div>
+  <p class="series-bar-hint small mb-0" id="series-bar-hint" aria-live="polite" data-hint="{{ 'album.series.hint'|trans }}" data-pick="{{ 'album.series.pick'|trans }}">{{ 'album.series.pick'|trans }}</p>
+  <button type="button" class="btn btn-primary btn-sm series-bar-done">{{ 'album.series.done'|trans }}</button>
+</div>
+
+<div class="toast-container position-fixed end-0 p-3 album-undo-container">
+  <div id="undoToast" class="toast" role="status" aria-live="polite" aria-atomic="true" data-bs-delay="6000">
+    <div class="toast-body d-flex align-items-center gap-3">
+      <span id="undoToast-text" class="flex-grow-1"></span>
+      <button type="button" class="btn btn-sm btn-outline-primary" id="undoToast-action">{{ 'album.undo.action'|trans }}</button>
+    </div>
+  </div>
+</div>

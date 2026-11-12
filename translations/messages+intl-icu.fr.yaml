@@ -122,6 +122,17 @@ album:
       label: "Statut de capture de {pokemonName}"
     edit:
       label: "Modifier le statut de capture de {pokemonName}"
+  sheet:
+    title: "Statut de {pokemonName}"
+  undo:
+    message: "{pokemonName} : {stateName}"
+    action: "Annuler"
+  series:
+    action: "Marquer en série"
+    group: "Marquer en série : choisissez un statut, puis touchez les cases"
+    hint: "Touchez les cases à marquer"
+    pick: "Choisissez d'abord un statut"
+    done: "Terminer"
   update:
     title: "Maj"
     success:

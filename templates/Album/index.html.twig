@@ -19,6 +19,13 @@
     .album-case.catch-state-{{ catchState.slug }} .album-case-action {
         background-color: var(--catch-state-{{ catchState.slug }});
     }
+    .catch-state-swatch-{{ catchState.slug }} {
+        background-color: var(--catch-state-{{ catchState.slug }});
+    }
+    .series-chip.catch-state-{{ catchState.slug }} {
+        background-color: var(--catch-state-{{ catchState.slug }});
+        color: var(--on-catch-state-{{ catchState.slug }}, #000);
+    }
     tr.catch-state-{{ catchState.slug }} td,
     tr.catch-state-{{ catchState.slug }} th {
         background-color: var(--catch-state-{{ catchState.slug }});
@@ -58,6 +65,9 @@
         </form>
 
         {% include 'Album/_toasts.html.twig' %}
+        {% if allowedToEdit %}
+            {% include 'Album/_catch_state_sheet.html.twig' %}
+        {% endif %}
     </div>
     {% include 'Album/_offcanvas.html.twig' %}
 </div>
@@ -88,6 +98,10 @@
     const catchStates = JSON.parse('{{ catchStates | map(cs => {name: cs.names|localized, slug: cs.slug, color: cs.color}) | json_encode | raw }}');
     const locale = '{{ locale }}';
     const dex = '{{ currentDexSlug }}';
+    const quickLabels = {
+        sheetTitle: {{ 'album.sheet.title'|trans({'pokemonName': '{pokemonName}'})|json_encode|raw }},
+        undoMessage: {{ 'album.undo.message'|trans({'pokemonName': '{pokemonName}', 'stateName': '{stateName}'})|json_encode|raw }},
+    };
     const dexBannerUrlTemplate = '{{ dexBannerUrl }}';
     const linksLabels = {
         directionTo: '{{ 'album.offcanvas.links.direction.to'|trans }}',
@@ -102,6 +116,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         watchToggleEditMode();
         watchCatchStates();
+        watchQuickMarking();
         watchToggleShinyMode();
         watchToAdjustSelectSizes();
         watchAttributes();

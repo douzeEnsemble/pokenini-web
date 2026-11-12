@@ -116,6 +116,17 @@ album:
       label: "Catch status of {pokemonName}"
     edit:
       label: "Edit the catch status of {pokemonName}"
+  sheet:
+    title: "State of {pokemonName}"
+  undo:
+    message: "{pokemonName}: {stateName}"
+    action: "Undo"
+  series:
+    action: "Mark in a row"
+    group: "Mark in a row: pick a state, then tap the cases"
+    hint: "Tap the cases to mark"
+    pick: "Pick a state first"
+    done: "Done"
   update:
     title: "Update"
     success:
