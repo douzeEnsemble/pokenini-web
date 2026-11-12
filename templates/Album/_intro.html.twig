@@ -51,6 +51,7 @@
                 hidden
             >
                 <i class="bi bi-book" aria-hidden="true"></i>
+                <span class="album-action-label">{{ 'album.intro.action.short.read'|trans }}</span>
             </button>
             <button
                 type="button"
@@ -60,6 +61,7 @@
                 data-bs-toggle="tooltip"
             >
                 <i class="bi bi-pencil-square" aria-hidden="true"></i>
+                <span class="album-action-label">{{ 'album.intro.action.short.write'|trans }}</span>
             </button>
             <button
                 type="button"
@@ -70,6 +72,7 @@
                 data-bs-toggle="tooltip"
             >
                 <i class="bi bi-lightning-charge" aria-hidden="true"></i>
+                <span class="album-action-label">{{ 'album.intro.action.short.series'|trans }}</span>
             </button>
         {% endif %}
 
@@ -83,6 +86,7 @@
             hidden
         >
             <i class="bi bi-camera2" aria-hidden="true"></i>
+            <span class="album-action-label">{{ 'album.intro.action.short.screenshot_off'|trans }}</span>
         </button>
         <button
             type="button"
@@ -92,6 +96,7 @@
             data-bs-toggle="tooltip"
         >
             <i class="bi bi-camera2" aria-hidden="true"></i>
+            <span class="album-action-label">{{ 'album.intro.action.short.screenshot_on'|trans }}</span>
         </button>
 
         {# Share link #}
@@ -104,6 +109,7 @@
                 data-bs-toggle="tooltip"
             >
                 <i class="bi bi-share" aria-hidden="true"></i>
+                <span class="album-action-label">{{ 'album.intro.action.short.share'|trans }}</span>
             </a>
         {% endif %}
 
@@ -118,6 +124,7 @@
             data-bs-toggle="offcanvas"
         >
             <i class="bi bi-three-dots" aria-hidden="true"></i>
+            <span class="album-action-label">{{ 'album.intro.action.short.filters'|trans }}</span>
         </a>
     </div>
 </div>

@@ -148,6 +148,14 @@ album:
         top_of_the_page: "Go to the top of the page"
       description:
         collapse: "Information"
+      short:
+        read: "Read"
+        write: "Edit"
+        series: "In a row"
+        screenshot_on: "Capture"
+        screenshot_off: "Leave"
+        share: "Share"
+        filters: "Filters"
       screenshot:
         enable: Screenshot mode
         disable: Status mode
