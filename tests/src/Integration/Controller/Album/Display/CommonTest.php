@@ -13,6 +13,7 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * @internal
@@ -224,35 +225,8 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '.progress');
         $this->assertCountFilter($crawler, 6, '.progress-bar');
 
-        $this->assertSame(
-            'Non 45.95%',
-            $crawler->filter('.progress-bar.catch-state-no')->text()
-        );
-        $this->assertEmpty(
-            $crawler->filter('.progress-bar.catch-state-toevolve')->text()
-        );
-        $this->assertEmpty(
-            $crawler->filter('.progress-bar.catch-state-tobreed')->text()
-        );
-        $this->assertEmpty(
-            $crawler->filter('.progress-bar.catch-state-totransfer')->text()
-        );
-        $this->assertSame(
-            'Oui 54.05%',
-            $crawler->filter('.progress-bar.catch-state-yes')->text()
-        );
-
-        // The red "no" segment is every uncaught Pokémon, so the real completion
-        // is stated in words next to the bar, and names it for assistive tech.
-        $this->assertCountFilter($crawler, 1, '.catch-state-summary');
-        $this->assertSame(
-            "20 / 37 capturés (54.1\u{00A0}%)",
-            $crawler->filter('.catch-state-summary')->text()
-        );
-        $this->assertSame(
-            "20 / 37 capturés (54.1\u{00A0}%)",
-            $crawler->filter('.progress')->attr('aria-label')
-        );
+        $this->assertProgressBarSegments($crawler);
+        $this->assertCompletionSummary($crawler);
 
         $this->assertSame('popover', $crawler->filter('.progress')->attr('data-bs-toggle'));
         $this->assertSame('Stats', $crawler->filter('.progress')->attr('data-bs-title'));
@@ -437,6 +411,42 @@ final class CommonTest extends WebTestCase
         $this->assertStringContainsString(
             '/shiny/',
             $crawler->filter('.pokemon-icon')->first()->attr('src') ?? ''
+        );
+    }
+
+    private function assertProgressBarSegments(Crawler $crawler): void
+    {
+        $this->assertSame(
+            'Non 45.95%',
+            $crawler->filter('.progress-bar.catch-state-no')->text()
+        );
+        $this->assertEmpty(
+            $crawler->filter('.progress-bar.catch-state-toevolve')->text()
+        );
+        $this->assertEmpty(
+            $crawler->filter('.progress-bar.catch-state-tobreed')->text()
+        );
+        $this->assertEmpty(
+            $crawler->filter('.progress-bar.catch-state-totransfer')->text()
+        );
+        $this->assertSame(
+            'Oui 54.05%',
+            $crawler->filter('.progress-bar.catch-state-yes')->text()
+        );
+    }
+
+    private function assertCompletionSummary(Crawler $crawler): void
+    {
+        // The red "no" segment is every uncaught Pokémon, so the real completion
+        // is stated in words next to the bar, and names it for assistive tech.
+        $this->assertCountFilter($crawler, 1, '.catch-state-summary');
+        $this->assertSame(
+            "20 / 37 capturés (54.1\u{00A0}%)",
+            $crawler->filter('.catch-state-summary')->text()
+        );
+        $this->assertSame(
+            "20 / 37 capturés (54.1\u{00A0}%)",
+            $crawler->filter('.progress')->attr('aria-label')
         );
     }
 }
