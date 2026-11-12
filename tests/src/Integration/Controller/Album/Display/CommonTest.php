@@ -212,6 +212,10 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 6, '#catch-state-sheet .catch-state-sheet-option');
         $this->assertCountFilter($crawler, 6, '#series-bar .series-chip');
         $this->assertCountFilter($crawler, 1, '#intro .album-series-action');
+        // The actions say what they do: a tooltip is out of reach of a finger
+        $this->assertSame('Modifier', trim($crawler->filter('#intro .album-all-catch-state-edit-action .album-action-label')->text()));
+        $this->assertSame('Série', trim($crawler->filter('#intro .album-series-action .album-action-label')->text()));
+        $this->assertSame('Filtres', trim($crawler->filter('#intro .open-offcanvas .album-action-label')->text()));
 
         $this->assertCountFilter($crawler, 90, '.toast');
         $this->assertCountFilter($crawler, 43, '.toast.text-bg-success');

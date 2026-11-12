@@ -154,6 +154,14 @@ album:
         top_of_the_page: "Voir le haut de la page"
       description:
         collapse: "Informations"
+      short:
+        read: "Lecture"
+        write: "Modifier"
+        series: "Série"
+        screenshot_on: "Capture"
+        screenshot_off: "Quitter"
+        share: "Partager"
+        filters: "Filtres"
       screenshot:
         enable: Mode capture
         disable: Revenir à la normale

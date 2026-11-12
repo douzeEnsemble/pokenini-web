@@ -313,23 +313,56 @@
 
 /* Quick marking ------------------------------------------------------------ */
 
-/* The label is the target of the tap that opens the sheet: on a touch screen
-    the whole bar answers, with at least 44px of height. */
+/* The whole bar is the target of the tap that opens the sheet (at least 44px
+    high on a touch screen), not only the pencil. It no longer scrolls: the label
+    wraps instead. */
+.album-case-catch-state {
+    display: flex;
+    align-items: center;
+    overflow: hidden !important;
+}
+.album-case-catch-state-label {
+    flex: 1 1 auto;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    min-height: 1.75rem;
+}
+.album-case-catch-state-edit-action {
+    float: none !important;
+    flex: none;
+}
 @media (pointer: coarse) {
-    .album-case-catch-state {
-        display: flex;
-        align-items: center;
+    .album-case-catch-state-label {
         min-height: 2.75rem;
     }
-    .album-case-catch-state-label {
-        flex: 1 1 auto;
-        align-self: stretch;
-        display: flex;
-        align-items: center;
-    }
+}
+/* Six columns leave no room for the pencil: the label alone is the control */
+@media (max-width: 575.98px) {
     .album-case-catch-state-edit-action {
-        float: none !important;
+        display: none;
     }
+    .album-case-catch-state {
+        padding-right: .5rem;
+    }
+}
+
+/* The actions under the title say what they do: a tooltip is out of reach of a finger */
+.group-actions .list-group-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .125rem;
+    min-height: 3.25rem;
+}
+.group-actions .list-group-item[hidden] {
+    display: none;
+}
+.album-action-label {
+    font-size: .75rem;
+    line-height: 1.1;
+    text-align: center;
 }
 
 .catch-state-sheet-option {
