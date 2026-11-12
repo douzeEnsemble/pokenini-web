@@ -8,6 +8,39 @@ function onCliceCookieManager() {
   tarteaucitron.userInterface.openPanel();
 }
 
+// The "More" panel of the tab bar (_nav.html.twig) is a plain Bootstrap
+// collapse, which only closes with its own tab. It also closes on a tap
+// outside, on Escape and on a choice made inside it (not on opening a sub-menu).
+function watchMoreMenu() {
+  const panel = document.getElementById('navbarNav');
+  if (!panel) {
+    return;
+  }
+  const toggle = document.querySelector('.nav-more button');
+
+  function close() {
+    bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false }).hide();
+  }
+
+  document.addEventListener('click', function (event) {
+    if (!panel.classList.contains('show') || event.target.closest('.nav-more')) {
+      return;
+    }
+    if (!event.target.closest('#navbarNav') || event.target.closest('.nav-link:not(.dropdown-toggle)')) {
+      close();
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && panel.classList.contains('show')) {
+      close();
+      if (toggle) {
+        toggle.focus();
+      }
+    }
+  });
+}
+
 function watchDexCategoryLinks() {
   document.querySelectorAll('.dex-category-link').forEach(function (element) {
     element.addEventListener('click', onClickDexCategoryLink);

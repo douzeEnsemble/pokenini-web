@@ -84,6 +84,87 @@ html {
     margin-bottom: calc(var(--nav-offset) + 0.5rem) !important;
 }
 
+/* --- Bottom navigation ------------------------------------------------------
+    _nav.html.twig is one markup with two layouts. Below xl: a tab bar (icon
+    over a short label, one tab for each place visited most: .nav-main) and a
+    panel (#navbarNav) that the "More" tab opens above it. From xl: one row,
+    icon beside label - Bootstrap's own navbar-expand-xl; the labels of that
+    row need about 1100px, below it they wrap. */
+@media (max-width: 1199.98px) {
+    :root {
+        /* An icon and its label stacked, where the row of xl is one line */
+        --nav-height: 4rem;
+        --nav-icon-size: 1.25rem;
+    }
+
+    .navbar.fixed-bottom {
+        padding-top: .25rem;
+        padding-bottom: calc(.25rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .nav-main {
+        flex: 1 1 100%;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .nav-main > .nav-item {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+    .nav-main .nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .125rem;
+        width: 100%;
+        min-height: 3.5rem;
+        padding: .25rem .125rem;
+        font-size: .75rem;
+        line-height: 1.2;
+        text-align: center;
+    }
+    /* The pill behind the icon marks the current tab (and the open panel) */
+    .nav-main .nav-link .bi {
+        padding: .125rem 1rem;
+        border-radius: 1rem;
+        font-size: var(--nav-icon-size);
+        line-height: 1;
+    }
+    .nav-main .nav-link.active,
+    .nav-main .nav-link[aria-expanded="true"] {
+        font-weight: 600;
+    }
+    .nav-main .nav-link.active .bi,
+    .nav-main .nav-link[aria-expanded="true"] .bi {
+        background-color: var(--bs-primary-bg-subtle);
+    }
+
+    /* The panel comes after the tab bar in the markup, and opens above it */
+    #navbarNav {
+        order: -1;
+        flex-basis: 100%;
+        margin-bottom: .25rem;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+    #navbarNav .nav-link {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        min-height: 3rem;
+        padding: .5rem 1rem;
+    }
+    #navbarNav .nav-link .bi {
+        font-size: var(--nav-icon-size);
+    }
+    #navbarNav .dropdown > .nav-link:first-child {
+        flex: 1 1 auto;
+    }
+    #navbarNav .dropdown-toggle-split {
+        flex: 0 0 auto;
+    }
+}
+
 /* Enlarges the pointer hit area to at least 24x24 CSS px (WCAG 2.5.8)
     without changing the visual size. Elements using it must be positioned. */
 .pokemon-image-credit::after,

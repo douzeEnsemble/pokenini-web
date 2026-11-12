@@ -28,6 +28,11 @@ nav:
   open-offcanvas: "Open the sidebar"
   cookie-manager: "Cookie manager"
   game: "Games"
+  # Short labels of the tab bar: the titles of the pages are too long for it
+  albums: "Albums"
+  elections: "Elections"
+  trainer: "My space"
+  more: "More"
   toggle_submenu: "View sub-pages"
   sidebar:
     collapse: "Collapse menu"
