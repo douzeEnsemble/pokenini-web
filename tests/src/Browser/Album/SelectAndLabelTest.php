@@ -10,6 +10,7 @@ use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Field\ChoiceFormField;
 
 /**
@@ -120,7 +121,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $client->executeScript("document.getElementById('bulbasaur').scrollIntoView();");
         $this->clickElement($client, '#bulbasaur-catch-state-edit-action');
 
-        $this->assertSelectorWillBeVisible('#catch-state-sheet');
+        $this->waitForSheet($client);
         // The select stays hidden: the sheet replaces it
         $this->assertSelectorIsVisible('#bulbasaur .album-case-catch-state');
         $this->assertSelectorIsNotVisible('#bulbasaur .album-case-action');
@@ -142,7 +143,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $client->executeScript("document.getElementById('bulbasaur').scrollIntoView();");
         $this->clickElement($client, '#bulbasaur .album-case-catch-state .album-case-catch-state-label');
 
-        $this->assertSelectorWillBeVisible('#catch-state-sheet');
+        $this->waitForSheet($client);
         $this->assertSelectorIsVisible('#bulbasaur .album-case-catch-state');
     }
 
@@ -161,13 +162,7 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->executeScript("document.getElementById('bulbasaur').scrollIntoView();");
         $this->clickElement($client, '#bulbasaur .album-case-catch-state .album-case-catch-state-label');
-        $this->assertSelectorWillExist('#catch-state-sheet.show:not(.showing)');
-        // The slide is over when the sheet no longer goes below the screen
-        $client->getWebDriver()->wait(5)->until(
-            static fn (): mixed => $client->executeScript(
-                'return document.getElementById("catch-state-sheet").getBoundingClientRect().bottom <= window.innerHeight + 1;'
-            )
-        );
+        $this->waitForSheet($client);
         $this->clickElement($client, '#catch-state-sheet [data-catch-state="totrade"]');
 
         $this->assertSelectorWillNotBeVisible('#catch-state-sheet');
@@ -444,5 +439,16 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
             JS);
 
         $this->assertFalse($blocksUnload);
+    }
+
+    private function waitForSheet(Client $client): void
+    {
+        $client->waitFor('#catch-state-sheet.show:not(.showing)');
+        // The slide is over when the sheet no longer goes below the screen
+        $client->getWebDriver()->wait(5)->until(
+            static fn (): mixed => $client->executeScript(
+                'return document.getElementById("catch-state-sheet").getBoundingClientRect().bottom <= window.innerHeight + 1;'
+            )
+        );
     }
 }
