@@ -48,6 +48,17 @@
     --bs-btn-disabled-border-color: #6ea8fe;
 }
 
+/* link-secondary is a fixed grey (#6c757d, 3.3:1 on the dark surface) that turns
+    darker still on hover. The theme's own secondary text color there (7.3:1),
+    and the body color once it is pointed at. */
+[data-bs-theme="dark"] .link-secondary {
+    color: var(--bs-secondary-color) !important;
+}
+[data-bs-theme="dark"] .link-secondary:hover,
+[data-bs-theme="dark"] .link-secondary:focus-visible {
+    color: var(--bs-body-color) !important;
+}
+
 /* btn-light is a fixed pale button: in dark mode make it a neutral dark one
     (text #dee2e6 on #343a40 ~ 9:1; hover #495057 ~ 6.7:1). */
 [data-bs-theme="dark"] .btn-light {
@@ -332,21 +343,18 @@ html {
     align-items: inherit;
 }
 
-/* Overlay label on common/_progress_bar_macros.html.twig's roundBar - sits on
-    the empty grey track as readily as on the colored bar itself (0% through
-    100%), so it needs to stay legible against either. A white halo keeps dark
-    text readable over a saturated bg-info/bg-warning/bg-danger/bg-success
-    fill without needing a different color per state. */
+/* Overlay label on common/_progress_bar_macros.html.twig's roundBar - it sits on
+    the empty track as readily as on the colored bar itself (0% through 100%).
+    Its own backdrop, the translucent surface the badges use, keeps it legible
+    on either, in both themes, so the track can follow the theme instead of
+    staying a pale island in the dark one. */
 .round-bar-label {
-    color: #000;
-    text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+    padding: 0 .5rem;
+    border-radius: 1rem;
+    background-color: var(--pk-badge-bg);
+    color: var(--bs-body-color);
+    line-height: 1.1;
     pointer-events: none;
-}
-
-/* The label is black/white-halo in both themes, so its track must not follow
-    the dark theme's --bs-progress-bg (dark grey) at 0%. */
-.round-bar {
-    --bs-progress-bg: #e9ecef;
 }
 
 /* common/_progress_bar_macros.html.twig's catchStateBar opens a legend
