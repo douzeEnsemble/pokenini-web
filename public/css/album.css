@@ -129,6 +129,14 @@
     color: inherit;
     text-decoration: inherit;
 }
+
+/* The counts of the stats table sit on the saturated catch state colors, where
+    regular-weight digits read washed out next to the bold state names and the
+    bold Total row. Same weight as the names, with aligned digits. */
+#report td {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
 .box .box-title {
     background-color: var(--pk-surface);
 }
