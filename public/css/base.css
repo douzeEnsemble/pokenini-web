@@ -30,6 +30,24 @@
     --pk-badge-shadow: rgb(255 255 255 / 40%);
 }
 
+/* Bootstrap keeps its primary blue (#0d6efd) on the dark surface: 3.4:1, under
+    the 4.5:1 of text, on every outline button (log in, the games, the vote...).
+    The lighter blue it already gives the links of the dark theme (#6ea8fe, 6.4:1),
+    with black text once the button fills on hover or when checked (8.7:1). */
+[data-bs-theme="dark"] .btn-outline-primary {
+    --bs-btn-color: #6ea8fe;
+    --bs-btn-border-color: #6ea8fe;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #6ea8fe;
+    --bs-btn-hover-border-color: #6ea8fe;
+    --bs-btn-focus-shadow-rgb: 110, 168, 254;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #6ea8fe;
+    --bs-btn-active-border-color: #6ea8fe;
+    --bs-btn-disabled-color: #6ea8fe;
+    --bs-btn-disabled-border-color: #6ea8fe;
+}
+
 /* btn-light is a fixed pale button: in dark mode make it a neutral dark one
     (text #dee2e6 on #343a40 ~ 9:1; hover #495057 ~ 6.7:1). */
 [data-bs-theme="dark"] .btn-light {
