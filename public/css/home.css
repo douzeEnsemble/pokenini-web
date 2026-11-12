@@ -20,6 +20,28 @@
     --hub-tint: #efe9fa;
 }
 
+/* On the dark surface the zone colors of the light theme are 1.8 to 2.6:1: the
+    outline buttons, the icons and the status text vanish. The same hues, lightened
+    to 5.8:1 or more on #212529, with a deep tint behind them and dark text on the
+    filled action (6.8:1 and more); the tints keep 4.6:1 for the hover text. */
+[data-bs-theme="dark"] .hub-album {
+    --hub-color: #64a0f7;
+    --hub-tint: #2a3646;
+    --hub-on: #14171a;
+}
+
+[data-bs-theme="dark"] .hub-election {
+    --hub-color: #e87dae;
+    --hub-tint: #3d313c;
+    --hub-on: #14171a;
+}
+
+[data-bs-theme="dark"] .hub-game {
+    --hub-color: #ae95da;
+    --hub-tint: #353542;
+    --hub-on: #14171a;
+}
+
 .hub-item {
     border-radius: 1rem;
 }
@@ -39,14 +61,14 @@
 .hub-action {
     background-color: var(--hub-color);
     border-color: var(--hub-color);
-    color: #fff;
+    color: var(--hub-on, #fff);
 }
 
 .hub-action:hover,
 .hub-action:focus-visible {
     background-color: var(--hub-color);
     border-color: var(--hub-color);
-    color: #fff;
+    color: var(--hub-on, #fff);
     filter: brightness(.85);
 }
 
