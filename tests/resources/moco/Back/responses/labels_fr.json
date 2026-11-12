@@ -3,32 +3,38 @@
         {
             "name": "Non",
             "slug": "no",
-            "color": "#e57373"
+            "color": "#e57373",
+            "text_color": "#2a0e0e"
         },
         {
             "name": "af. évoluer",
             "slug": "toevolve",
-            "color": "#9575cd"
+            "color": "#9575cd",
+            "text_color": "#120a24"
         },
         {
             "name": "af. reproduire",
             "slug": "tobreed",
-            "color": "#4fc3f7"
+            "color": "#4fc3f7",
+            "text_color": "#112e3b"
         },
         {
             "name": "à transférer",
             "slug": "totransfer",
-            "color": "#ffd54f"
+            "color": "#ffd54f",
+            "text_color": "#4f4217"
         },
         {
             "name": "À échanger",
             "slug": "totrade",
-            "color": "#ff9100"
+            "color": "#ff9100",
+            "text_color": "#2b1e0d"
         },
         {
             "name": "Oui",
             "slug": "yes",
-            "color": "#66bb6a"
+            "color": "#66bb6a",
+            "text_color": "#09200a"
         }
     ],
     "types": [

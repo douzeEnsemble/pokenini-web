@@ -18,9 +18,23 @@
     {% endfor %}
 </ul>
 {% endset %}
+{# The segments below show each state's share of the whole, and the red "no"
+  segment is every uncaught Pokémon: an empty album reads "100%" in red, which
+  looks like a result. This line states the real completion in words, and
+  names the bar for assistive tech (a role="button" div needs a name). #}
+{% set caughtCount = report.totalCaught ?? ((report.total ?? 0) - (report.totalUncaught ?? 0)) %}
+{% set caughtPercent = report.total ? (100 * caughtCount / report.total)|round(1) : 0 %}
+{% set summary = report.total
+    ? 'stats.summary'|trans({'caught': caughtCount, 'total': report.total, 'percent': caughtPercent})
+    : 'title.report'|trans
+%}
+{% if report.total %}
+    <p class="catch-state-summary mb-1">{{ summary }}</p>
+{% endif %}
 <div class="progress mb-2"
     role="button"
     tabindex="0"
+    aria-label="{{ summary }}"
     data-bs-toggle="popover"
     data-bs-html="true"
     data-bs-title="{{ 'title.report'|trans }}"
@@ -41,7 +55,7 @@
             data-bs-toggle="tooltip"
             data-bs-custom-class="tooltip-{{ line.slug }}"
         >
-            {{ line.slug is same as('no') or line.slug is same as('yes') ? completion~'%' : '' }}
+            {{ line.slug is same as('no') or line.slug is same as('yes') ? (line.names|localized) ~ ' ' ~ completion ~ '%' : '' }}
         </div>
     {% endfor %}
 </div>

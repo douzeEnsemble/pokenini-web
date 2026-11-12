@@ -95,6 +95,7 @@ home:
 
 stats:
   total: "Total"
+  summary: "{caught, number} / {total, number} capturés ({percent} %)"
 
 album:
   icon:

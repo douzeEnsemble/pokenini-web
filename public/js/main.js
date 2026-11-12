@@ -24,8 +24,9 @@ function onClickDexCategoryLink(event) {
 // --- Readable text on API-provided colors ---------------------------------
 // Catch-state and Pokémon-type colors come from the API as CSS custom
 // properties (--catch-state-*, --pokemon-type-*) emitted in inline <style>
-// blocks. For each one, pick black or white text from the color's WCAG
-// relative luminance and inject the matching rules.
+// blocks. For each one, use the text color the API gave it (--on-catch-state-*)
+// or else pick black or white from the color's WCAG relative luminance, and
+// inject the matching rules.
 
 function relativeLuminance(r, g, b) {
   const lin = [r, g, b].map(function (v) {
@@ -95,17 +96,22 @@ function applyContrastColors() {
   const css = [];
 
   const catchStates = collectRootCustomProperties('--catch-state-');
+  // The text color the API gives each state (--on-catch-state-*) wins; the
+  // luminance guess only covers a state that has none.
+  const catchStateTextColors = collectRootCustomProperties('--on-catch-state-');
   Object.keys(catchStates).forEach(function (slug) {
-    const color = readableTextColor(catchStates[slug]);
+    const color = catchStateTextColors[slug] || readableTextColor(catchStates[slug]);
     if (!color) {
       return;
     }
     css.push(
       '.album-case.catch-state-' + slug + ' .album-case-catch-state,' +
       '.album-case.catch-state-' + slug + ' .album-case-action,' +
-      'tr.catch-state-' + slug + ' td,tr.catch-state-' + slug + ' th' +
+      'tr.catch-state-' + slug + ' td,tr.catch-state-' + slug + ' th,' +
+      '.progress-bar.catch-state-' + slug +
       '{color:' + color + '}'
     );
+    css.push('.tooltip-' + slug + '{--bs-tooltip-color:' + color + '}');
   });
 
   const types = collectRootCustomProperties('--pokemon-type-');

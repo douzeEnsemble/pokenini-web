@@ -1,9 +1,13 @@
 {% for catchState in catchStates %}
 .progress-bar.catch-state-{{ catchState.slug }} {
     background-color: var(--catch-state-{{ catchState.slug }});
+    {# Bootstrap writes white on every bar and tooltip: unreadable on the light state colors.
+      Black until main.js (applyContrastColors) settles on the right one. #}
+    color: var(--on-catch-state-{{ catchState.slug }}, #000);
 }
 .tooltip-{{ catchState.slug }} {
     --bs-tooltip-bg: var(--catch-state-{{ catchState.slug }});
+    --bs-tooltip-color: var(--on-catch-state-{{ catchState.slug }}, #000);
 }
 {# Bootstrap's popover content is HTML-sanitized: inline style="" attributes
   get stripped, only class/id/role/aria-* survive. The catchStateBar legend

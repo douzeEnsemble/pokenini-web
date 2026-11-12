@@ -119,6 +119,27 @@ final class CommonTest extends WebTestCase
         $this->assertSame('event.stopPropagation();', (string) $badge->first()->attr('onclick'));
     }
 
+    #[Test]
+    public function catchStateTextColors(): void
+    {
+        $client = self::createClient();
+
+        $client->request('GET', '/fr/album/demolite?t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        self::assertResponseIsSuccessful();
+
+        $content = (string) $client->getResponse()->getContent();
+
+        // The text color the API gives each state is exposed next to the state color...
+        $this->assertStringContainsString('--catch-state-no: #e57373;', $content);
+        $this->assertStringContainsString('--on-catch-state-no: #2a0e0e;', $content);
+        $this->assertStringContainsString('--on-catch-state-toevolve: #120a24;', $content);
+
+        // ...and read by the bars and their tooltips, which Bootstrap would write in white
+        $this->assertStringContainsString('color: var(--on-catch-state-no, #000);', $content);
+        $this->assertStringContainsString('--bs-tooltip-color: var(--on-catch-state-no, #000);', $content);
+    }
+
     private function assertAlbum(KernelBrowser $client): void
     {
         $this->assertResponseIsSuccessful();
@@ -204,7 +225,7 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 6, '.progress-bar');
 
         $this->assertSame(
-            '45.95%',
+            'Non 45.95%',
             $crawler->filter('.progress-bar.catch-state-no')->text()
         );
         $this->assertEmpty(
@@ -217,8 +238,20 @@ final class CommonTest extends WebTestCase
             $crawler->filter('.progress-bar.catch-state-totransfer')->text()
         );
         $this->assertSame(
-            '54.05%',
+            'Oui 54.05%',
             $crawler->filter('.progress-bar.catch-state-yes')->text()
+        );
+
+        // The red "no" segment is every uncaught Pokémon, so the real completion
+        // is stated in words next to the bar, and names it for assistive tech.
+        $this->assertCountFilter($crawler, 1, '.catch-state-summary');
+        $this->assertSame(
+            "20 / 37 capturés (54.1\u{00A0}%)",
+            $crawler->filter('.catch-state-summary')->text()
+        );
+        $this->assertSame(
+            "20 / 37 capturés (54.1\u{00A0}%)",
+            $crawler->filter('.progress')->attr('aria-label')
         );
 
         $this->assertSame('popover', $crawler->filter('.progress')->attr('data-bs-toggle'));
@@ -302,7 +335,7 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 6, '.progress-bar');
 
         $this->assertSame(
-            '0%',
+            'Non 0%',
             $crawler->filter('.progress-bar.catch-state-no')->text()
         );
         $this->assertEmpty(
@@ -315,7 +348,7 @@ final class CommonTest extends WebTestCase
             $crawler->filter('.progress-bar.catch-state-totransfer')->text()
         );
         $this->assertSame(
-            '0%',
+            'Oui 0%',
             $crawler->filter('.progress-bar.catch-state-yes')->text()
         );
 

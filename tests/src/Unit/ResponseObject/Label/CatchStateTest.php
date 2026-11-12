@@ -23,6 +23,7 @@ final class CatchStateTest extends TestCase
             'Tautaux',
             'toto',
             '#blouge',
+            '#ffffff',
         );
 
         $this->assertSame('Toto', $object->getName());
@@ -30,6 +31,16 @@ final class CatchStateTest extends TestCase
         $this->assertSame(['en' => 'Toto', 'fr' => 'Tautaux'], $object->getNames());
         $this->assertSame('toto', $object->getSlug());
         $this->assertSame('#blouge', $object->getColor());
+        $this->assertSame('#ffffff', $object->getTextColor());
+    }
+
+    #[Test]
+    public function withoutATextColor(): void
+    {
+        // An API that doesn't send it yet: the page falls back to a computed color
+        $object = new CatchState('No', 'Non', 'no', '#e57373');
+
+        $this->assertNull($object->getTextColor());
     }
 
     #[Test]
