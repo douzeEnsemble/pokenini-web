@@ -59,6 +59,25 @@ final class CommonTest extends WebTestCase
     }
 
     #[Test]
+    public function filteredStatisticsGetTheirOwnColumn(): void
+    {
+        $client = self::createClient();
+
+        $user = GetUserToken::getFakeUserToken('12', 'TestProvider');
+        $user->addTrainerRole();
+        $client->loginUser($user, 'web');
+
+        $crawler = $client->request('GET', '/fr/album/demolite?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554');
+
+        $this->assertSame(
+            ['Statut', 'Filtrés', 'Total'],
+            $crawler->filter('table#report thead th')->each(static fn (Crawler $cell): string => $cell->text())
+        );
+        $this->assertCountFilter($crawler, 2, 'table#report tr.catch-state-no td');
+        $this->assertCountFilter($crawler, 3, 'table#report tr.catch-state-total th');
+    }
+
+    #[Test]
     public function listShiny(): void
     {
         $client = self::createClient();
@@ -259,7 +278,7 @@ final class CommonTest extends WebTestCase
         $this->assertStringContainsString('À échanger', $popoverContent);
 
         $this->assertCountFilter($crawler, 1, 'table#report');
-        $this->assertCountFilter($crawler, 7, 'table#report tr');
+        $this->assertCountFilter($crawler, 7, 'table#report tbody tr');
 
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-no');
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-toevolve');
@@ -268,23 +287,27 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-yes');
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-total');
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-no td')->eq(0)->text());
-        $this->assertSame('17', $crawler->filter('table#report tr.catch-state-no td')->eq(1)->text());
+        $this->assertSame('17', $crawler->filter('table#report tr.catch-state-no td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(0)->text());
-        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(1)->text());
+        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(0)->text());
-        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(1)->text());
+        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(0)->text());
-        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(1)->text());
+        $this->assertSame('1', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-yes td')->eq(0)->text());
-        $this->assertSame('20', $crawler->filter('table#report tr.catch-state-yes td')->eq(1)->text());
+        $this->assertSame('20', $crawler->filter('table#report tr.catch-state-yes td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-total th')->eq(1)->text());
-        $this->assertSame('37', $crawler->filter('table#report tr.catch-state-total th')->eq(2)->text());
+        $this->assertSame('37', $crawler->filter('table#report tr.catch-state-total th')->eq(1)->text());
+
+        $this->assertSame('Nombre de pokémon par statut de capture', trim($crawler->filter('table#report caption')->text()));
+        // No filter: one column of counts, named
+        $this->assertSame(['Statut', 'Total'], $crawler->filter('table#report thead th')->each(static fn (Crawler $cell): string => $cell->text()));
+        $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-yes td');
+        // The two filter icons of a row have a name, not only a tooltip
+        $this->assertSame(
+            ['Filtre les “Oui”', 'Filtre tous sauf les “Oui”'],
+            $crawler->filter('table#report tr.catch-state-yes a')->each(static fn (Crawler $link): string => (string) $link->attr('aria-label'))
+        );
 
         $this->assertStringContainsString(
             '/album/demolite?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
@@ -346,7 +369,7 @@ final class CommonTest extends WebTestCase
         $this->assertStringContainsString('Oui : 0% (0)', $popoverContent);
 
         $this->assertCountFilter($crawler, 1, 'table#report');
-        $this->assertCountFilter($crawler, 7, 'table#report tr');
+        $this->assertCountFilter($crawler, 7, 'table#report tbody tr');
 
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-no');
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-toevolve');
@@ -355,23 +378,17 @@ final class CommonTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-yes');
         $this->assertCountFilter($crawler, 1, 'table#report tr.catch-state-total');
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-no td')->eq(0)->text());
-        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-no td')->eq(1)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-no td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(0)->text());
-        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(1)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-toevolve td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(0)->text());
-        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(1)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-tobreed td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(0)->text());
-        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(1)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-totransfer td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-yes td')->eq(0)->text());
-        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-yes td')->eq(1)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-yes td')->eq(0)->text());
 
-        $this->assertSame('', $crawler->filter('table#report tr.catch-state-total th')->eq(1)->text());
-        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-total th')->eq(2)->text());
+        $this->assertSame('0', $crawler->filter('table#report tr.catch-state-total th')->eq(1)->text());
 
         $this->assertStringContainsString(
             '/album/virgin?cs=no&t=7b52009b64fd0a2a49e6d8a939753077792b0554',
