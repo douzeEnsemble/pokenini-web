@@ -1,0 +1,5 @@
+#!/bin/sh
+# Rejects commit messages that are not Conventional Commits (rules: .commitlintrc.json).
+# Enabled by `make hooks`. Best effort: skipped without npx, the CI checks anyway.
+command -v npx > /dev/null 2>&1 || exit 0
+exec npx --yes -p @commitlint/cli@21 commitlint --edit "$1"

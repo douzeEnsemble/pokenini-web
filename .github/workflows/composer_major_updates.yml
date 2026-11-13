@@ -86,8 +86,8 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           branch: chore/composer-major-updates-${{ matrix.name }}
           delete-branch: true
-          commit-message: "Composer major updates (${{ matrix.name }})"
-          title: "Composer major updates (${{ matrix.name }})"
+          commit-message: "build(deps): composer major updates (${{ matrix.name }})"
+          title: "build(deps): composer major updates (${{ matrix.name }})"
           body: |
             Constraints raised to the latest versions, major included, by `composer_major_updates.yml`.
 

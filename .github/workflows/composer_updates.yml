@@ -53,6 +53,6 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           branch: chore/composer-updates
           delete-branch: true
-          commit-message: "Composers updates"
-          title: "Composers updates"
+          commit-message: "build(deps): composers updates"
+          title: "build(deps): composers updates"
           labels: dependencies
