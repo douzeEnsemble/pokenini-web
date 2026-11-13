@@ -159,3 +159,9 @@ tests/resources/
 ```
 
 Every test class is `final`, `@internal`, uses `#[CoversClass(...)]`, and extends either `TestCase` (unit) or `WebTestCase` (integration).
+
+## Commits and releases
+
+- Commit messages and pull request titles follow [Conventional Commits](https://www.conventionalcommits.org): `type(scope): subject`, with `type` in `feat`, `fix`, `perf`, `revert`, `docs`, `style`, `refactor`, `test`, `build`, `ci`, `chore`. A breaking change is `type!:` or a `BREAKING CHANGE:` footer. Rules in `.commitlintrc.json`, checked by the `Conventional commits` workflow and, locally, by the hook enabled with `make hooks`.
+- Pull requests are squash-merged: the PR title is the commit on `main`, so it must be conventional.
+- On every push on `main`, `release.yml` runs semantic-release: `feat` → minor, `fix` / `perf` / `build(deps)` → patch, breaking → major, anything else → no release. A release is created as a GitHub **prerelease** (staging); `make promote` in pi-projects turns it into a release (prod). It needs the `RELEASE_TOKEN` secret (fine-grained PAT, Contents: read and write on this repository).

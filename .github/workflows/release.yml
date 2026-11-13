@@ -1,0 +1,40 @@
+name: Release
+
+# Every push on main: semantic-release reads the Conventional Commits since the last
+# tag. A feat/fix/perf/build(deps) or breaking change gives a new vX.Y.Z tag and a
+# GitHub *prerelease*, which builds the staging image (push.yml). `make promote` of
+# pi-projects later turns it into a release for prod.
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          # A personal access token (not GITHUB_TOKEN), otherwise the release created
+          # below would not trigger push.yml
+          token: ${{ secrets.RELEASE_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: npx --yes -p semantic-release@25 -p @semantic-release/exec@7 semantic-release

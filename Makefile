@@ -524,3 +524,8 @@ img-build: ## Build Docker image
 	docker build --target php_prod -f ./.docker/php/Dockerfile -t ghcr.io/douzeensemble/pokenini-web:latest .
 img-push: ## Push Docker image
 	docker push ghcr.io/douzeensemble/pokenini-web:latest
+
+## —— Git hooks ——————————————————————————————————————————————————————————————
+hooks: ## Enable the Conventional Commits git hook
+	git config core.hooksPath .githooks
+.PHONY: hooks
