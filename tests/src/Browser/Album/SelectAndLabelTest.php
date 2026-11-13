@@ -293,9 +293,9 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorAttributeContains('#bulbasaur', 'class', 'catch-state-no');
         $this->assertSelectorAttributeNotContains('#bulbasaur', 'class', 'catch-state-totrade');
 
-        $client->executeScript("document.getElementById('bulbasaur').scrollIntoView();");
-
         $this->clickElement($client, '.album-all-catch-state-edit-action');
+        // The button sits at the top: scroll to the case once the selects are out
+        $client->executeScript("document.getElementById('bulbasaur').scrollIntoView({block: 'center'});");
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
@@ -327,9 +327,9 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
         $this->assertSelectorAttributeContains('#squirtle', 'class', 'catch-state-no');
         $this->assertSelectorAttributeNotContains('#squirtle', 'class', 'catch-state-tobreed');
 
-        $client->executeScript("document.getElementById('squirtle').scrollIntoView();");
-
         $this->clickElement($client, '.album-all-catch-state-edit-action');
+        // The button sits at the top: scroll to the case once the selects are out
+        $client->executeScript("document.getElementById('squirtle').scrollIntoView({block: 'center'});");
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
@@ -358,9 +358,9 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
-        $client->executeScript("document.getElementById('ivysaur').scrollIntoView();");
-
         $this->clickElement($client, '.album-all-catch-state-edit-action');
+        // The button sits at the top: scroll to the case once the selects are out
+        $client->executeScript("document.getElementById('ivysaur').scrollIntoView({block: 'center'});");
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
@@ -388,9 +388,9 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
-        $client->executeScript("document.getElementById('ivysaur').scrollIntoView();");
-
         $this->clickElement($client, '.album-all-catch-state-edit-action');
+        // The button sits at the top: scroll to the case once the selects are out
+        $client->executeScript("document.getElementById('ivysaur').scrollIntoView({block: 'center'});");
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
@@ -420,9 +420,9 @@ final class SelectAndLabelTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr/album/demo');
 
-        $client->executeScript("document.getElementById('squirtle').scrollIntoView();");
-
         $this->clickElement($client, '.album-all-catch-state-edit-action');
+        // The button sits at the top: scroll to the case once the selects are out
+        $client->executeScript("document.getElementById('squirtle').scrollIntoView({block: 'center'});");
 
         $form = $client->getCrawler()->filter('#album-form')->form();
 
