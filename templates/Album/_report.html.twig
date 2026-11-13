@@ -7,12 +7,24 @@
 
     {% set progressBarReport = filteredReport.detail is not empty ? filteredReport : report %}
     {{ progressBar.catchStateBar(progressBarReport) }}
+    {# The column of the filtered counts only exists while a filter is applied #}
+    {% set hasFilter = filters is not empty and filteredReport.detail is not empty %}
     <table class="table table-hover table-bordered" id="report">
+        <caption class="visually-hidden">{{ 'stats.caption'|trans }}</caption>
+        <thead>
+            <tr>
+                <th scope="col" class="visually-hidden">{{ 'stats.column.state'|trans }}</th>
+                {% if hasFilter %}
+                <th scope="col" class="text-end">{{ 'stats.column.filtered'|trans }}</th>
+                {% endif %}
+                <th scope="col" class="{{ hasFilter ? 'text-start' : 'text-end' }}">{{ 'stats.total'|trans }}</th>
+            </tr>
+        </thead>
         <tbody>
         {% for line in report.detail %}
             {% set catchStateLabel = line.names|localized %}
             <tr class="catch-state-{{ line.slug }}">
-                <th>
+                <th scope="row">
                     <span class="float-start">{{ catchStateLabel }}</span>
                     <span class="float-end">
                         <a href="{{
@@ -28,6 +40,8 @@
                             )
                         }}"
                             class="{{ filters['cs'] is defined and filters['cs'] == line.slug ? 'text-light': '' }}"
+                            aria-label="{{ 'dex.filters.catch_states.positive'|trans({'cs': catchStateLabel}) }}"
+                            {{ filters['cs'] is defined and filters['cs'] == line.slug ? 'aria-current="true"' : '' }}
                             data-bs-toggle="tooltip" data-bs-title="{{- 'dex.filters.catch_states.positive'|trans({'cs': catchStateLabel}) -}}"
                         >
                             <i class="bi bi-check-circle"></i>
@@ -45,25 +59,27 @@
                             )
                         }}"
                             class="{{ filters['cs'] is defined and filters['cs'] == '!'~line.slug ? 'text-light': '' }}"
+                            aria-label="{{ 'dex.filters.catch_states.negative'|trans({'cs': catchStateLabel}) }}"
+                            {{ filters['cs'] is defined and filters['cs'] == '!'~line.slug ? 'aria-current="true"' : '' }}
                             data-bs-toggle="tooltip" data-bs-title="{{- 'dex.filters.catch_states.negative'|trans({'cs': catchStateLabel}) -}}"
                         >
                             <i class="bi bi-x-circle"></i>
                         </a>
                     </span>
                 </th>
+                {% if hasFilter %}
                 <td class="text-end">
-                    {% if filteredReport.detail is not empty %}
                     {% set filteredLine = filteredReport.detail[loop.index0] %}
                     {{ (filteredLine.slug is same as('no') ? filteredReport.totalUncaught : filteredLine.count)|format_number }}
-                    {% endif %}
                 </td>
-                <td class="text-start">
+                {% endif %}
+                <td class="{{ hasFilter ? 'text-start' : 'text-end' }}">
                     {{ (line.slug is same as('no') ? report.totalUncaught : line.count)|format_number }}
                 </td>
             </tr>
         {% endfor %}
         <tr class="catch-state-total">
-            <th>
+            <th scope="row">
                 <span class="float-start">{{ 'stats.total'|trans }}</span>
                 <span class="float-end">
                     <a href="{{
@@ -75,20 +91,17 @@
                             }
                         )
                     }}"
+                        aria-label="{{ 'dex.filters.catch_states.total'|trans }}"
                         data-bs-toggle="tooltip" data-bs-title="{{- 'dex.filters.catch_states.total'|trans -}}"
                     >
                         <i class="bi bi-funnel{{ filters is not empty ? '-fill' : '' }}"></i>
                     </a>
                 </span>
             </th>
-            <th class="text-end">
-                {% if filteredReport is not empty %}
-                {{ filteredReport.total }}
-                {% endif %}
-            </th>
-            <th class="text-start">
-                {{ report.total }}
-            </th>
+            {% if hasFilter %}
+            <th class="text-end">{{ filteredReport.total }}</th>
+            {% endif %}
+            <th class="{{ hasFilter ? 'text-start' : 'text-end' }}">{{ report.total }}</th>
         </tr>
         </tbody>
     </table>

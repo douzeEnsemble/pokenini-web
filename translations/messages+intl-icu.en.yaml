@@ -93,6 +93,10 @@ home:
         I'll call you "young trainer", that's better. Thanks for being here <3
 
 stats:
+  caption: "Number of Pokémon by catch state"
+  column:
+    state: "State"
+    filtered: "Filtered"
   total: "Total"
   summary: "{caught, number} / {total, number} caught ({percent}%)"
 

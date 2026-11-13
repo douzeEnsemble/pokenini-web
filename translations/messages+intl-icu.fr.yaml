@@ -99,6 +99,10 @@ home:
       action: "Montre moi les albums"
 
 stats:
+  caption: "Nombre de pokémon par statut de capture"
+  column:
+    state: "Statut"
+    filtered: "Filtrés"
   total: "Total"
   summary: "{caught, number} / {total, number} capturés ({percent} %)"
 
