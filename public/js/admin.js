@@ -145,6 +145,10 @@ function showConfirmModal(button, onConfirm, onReset) {
       );
       try {
         onConfirm();
+        // Actions that do not navigate away (no form submission) must close the modal themselves.
+        if (button.hasAttribute('data-confirm-dismiss')) {
+          modal.hide();
+        }
       } catch (error) {
         console.error(error);
         okButton.disabled = false;
@@ -244,5 +248,129 @@ function swapActionCard(card, freshCard) {
 
     if (imported.matches(PENDING_SELECTOR)) {
       imported.querySelectorAll('.admin-item-refresh').forEach(link => link.setAttribute('hidden', true));
+    }
+}
+
+// Runs every action of the data pipeline page in the order of the cards, each one starting once
+// the previous one has finished successfully. The chain lives in this tab: closing it stops it
+// after the step in progress, which keeps running on the server.
+function watchDataPipeline(delay = PENDING_POLL_DELAY) {
+    const button = document.getElementById('data-pipeline-run-all');
+    const container = document.getElementById('data-pipeline');
+    const status = document.getElementById('data-pipeline-status');
+    if (!button || !container || !status) {
+      return;
+    }
+
+    const format = (template, values) => Object.entries(values).reduce(
+      (text, [key, value]) => text.replace('{' + key + '}', value),
+      template,
+    );
+    const stepTitle = card => card.querySelector('h2')?.textContent.trim() || card.id;
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    button.addEventListener('click', function () {
+      showConfirmModal(button, function () {
+        runDataPipeline();
+      });
+    });
+
+    async function fetchFreshCard(id) {
+      const response = await fetch(window.location.pathname + window.location.search, {
+        credentials: 'same-origin',
+        headers: { 'X-Requested-With': 'fetch' },
+      });
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status);
+      }
+      const fresh = new DOMParser().parseFromString(await response.text(), 'text/html');
+
+      return fresh.getElementById(id);
+    }
+
+    function replaceCard(id, freshCard) {
+      const current = document.getElementById(id);
+      if (!current || !freshCard) {
+        return;
+      }
+      const imported = document.importNode(freshCard, true);
+      current.replaceWith(imported);
+      watchActionLogToggles(imported);
+      watchForceConfirm(imported);
+    }
+
+    // Resolves with "done" or "ko" once a run started after `startedAfter` has ended.
+    async function waitForEnd(id, startedAfter) {
+      for (;;) {
+        const fresh = await fetchFreshCard(id);
+        replaceCard(id, fresh);
+        const state = fresh?.dataset.currentState;
+        const createdAt = Number(fresh?.dataset.currentCreatedAt || 0);
+        if ('pending' !== state && createdAt > startedAfter) {
+          return state;
+        }
+        await sleep(delay);
+      }
+    }
+
+    async function runStep(card) {
+      const id = card.id;
+      const startedAfter = Number(card.dataset.currentCreatedAt || 0);
+
+      if ('pending' === card.dataset.currentState) {
+        // Already running (started elsewhere): follow it instead of starting a second one.
+        return waitForEnd(id, 0);
+      }
+
+      const form = card.querySelector('form');
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        credentials: 'same-origin',
+      });
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status);
+      }
+      // The POST redirects back to this page: its flash error, if any, is in the card.
+      const html = new DOMParser().parseFromString(await response.text(), 'text/html');
+      const fresh = html.getElementById(id);
+      replaceCard(id, fresh);
+      if (fresh?.querySelector('.flash-danger')) {
+        return 'ko';
+      }
+
+      return waitForEnd(id, startedAfter);
+    }
+
+    async function runDataPipeline() {
+      const cards = Array.from(document.querySelectorAll('.admin-item'));
+      button.disabled = true;
+
+      for (let index = 0; index < cards.length; index += 1) {
+        const id = cards[index].id;
+        const title = stepTitle(cards[index]);
+        status.textContent = format(container.dataset.messageRunning, {
+          current: index + 1,
+          total: cards.length,
+          name: title,
+        });
+
+        let result = 'ko';
+        try {
+          result = await runStep(document.getElementById(id));
+        } catch (error) {
+          console.error(error);
+        }
+
+        if ('done' !== result) {
+          status.textContent = format(container.dataset.messageFailed, { name: title });
+          button.disabled = false;
+
+          return;
+        }
+      }
+
+      status.textContent = container.dataset.messageDone;
+      button.disabled = false;
     }
 }
