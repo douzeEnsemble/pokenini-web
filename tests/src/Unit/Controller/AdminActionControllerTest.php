@@ -34,6 +34,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  * @internal
  *
  * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
+ * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
  */
 #[CoversClass(AdminActionController::class)]
 final class AdminActionControllerTest extends TestCase
