@@ -5,41 +5,66 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "build"
+      prefix-development: "chore"
+      include: "scope"
 
   - package-ecosystem: "composer"
     directory: "/tools/deptrac"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: "composer"
     directory: "/tools/infection"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: "composer"
     directory: "/tools/jsonlint"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: "composer"
     directory: "/tools/php-cs-fixer"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: "composer"
     directory: "/tools/phpmd"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: "composer"
     directory: "/tools/phpstan"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: "composer"
     directory: "/tools/psalm"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: "docker"
     directories:
@@ -47,6 +72,9 @@ updates:
       - "/.docker/moco"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "build"
+      include: "scope"
     ignore:
       # PHP bumps also touch composer.json and tools/*/composer.json: see infra_updates.yml
       - dependency-name: "php"
@@ -59,6 +87,9 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
     groups:
       docker-compose:
         patterns:
@@ -70,6 +101,9 @@ updates:
       - "/.github/actions/*"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
     groups:
       github-actions:
         patterns:

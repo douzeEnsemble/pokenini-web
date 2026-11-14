@@ -207,7 +207,7 @@ jobs:
           if git diff --quiet; then
             echo "${STACK} is already on ${NEW_VERSION}"
           else
-            git commit --quiet -am "Update ${STACK} to ${NEW_VERSION}"
+            git commit --quiet -am "chore(${TARGET}): update ${STACK} to ${NEW_VERSION}"
           fi
 
           # No difference with main left: nothing to propose
@@ -230,5 +230,5 @@ jobs:
             gh pr edit "$PR_NUMBER" --repo "$PI_REPOSITORY" --body "$BODY"
           else
             gh pr create --repo "$PI_REPOSITORY" --base main --head "$BRANCH" \
-              --title "Update ${TARGET} to the latest ${SUFFIX} versions" --body "$BODY"
+              --title "chore(${TARGET}): update to the latest ${SUFFIX} versions" --body "$BODY"
           fi
