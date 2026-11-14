@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Controller;
 
 use App\Controller\AdminTriggerPipelineController;
-use App\DTO\AdminAction;
 use App\Service\Back\GetActionLogsService;
 use App\Service\Back\GetBannerPipelineStatusService;
 use App\Service\Back\GetImagePipelineStatusService;
@@ -13,10 +12,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
-use Symfony\Component\HttpFoundation\Session\FlashBagAwareSessionInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Twig\Environment;
 
 /**
@@ -27,48 +22,6 @@ final class AdminTriggerPipelineControllerTest extends TestCase
 {
     public function testTriggerPipeline(): void
     {
-        $adminAction = new AdminAction(
-            'truc',
-            'machin',
-            'ok',
-            'content',
-            '',
-        );
-
-        $flashBag = new FlashBag();
-
-        $session = $this->createMock(SessionInterface::class);
-        $session
-            ->expects($this->once())
-            ->method('get')
-            ->with('admin.action.response.content')
-            ->willReturn($adminAction)
-        ;
-        $session
-            ->expects($this->once())
-            ->method('remove')
-            ->with('admin.action.response.content')
-        ;
-
-        $flashBagSession = $this->createMock(FlashBagAwareSessionInterface::class);
-        $flashBagSession
-            ->expects($this->exactly(3))
-            ->method('getFlashBag')
-            ->willReturn($flashBag)
-        ;
-
-        $requestStack = $this->createMock(RequestStack::class);
-        $requestStack
-            ->expects($this->exactly(4))
-            ->method('getSession')
-            ->willReturnOnConsecutiveCalls(
-                $session,
-                $flashBagSession,
-                $flashBagSession,
-                $flashBagSession,
-            )
-        ;
-
         $twig = $this->createMock(Environment::class);
         $twig
             ->expects($this->once())
@@ -84,132 +37,16 @@ final class AdminTriggerPipelineControllerTest extends TestCase
             ->willReturn('<html></html>')
         ;
 
-        $container = $this->createMock(ContainerInterface::class);
-        $container
-            ->expects($this->exactly(4))
-            ->method('get')
-            ->willReturnOnConsecutiveCalls(
-                $requestStack,
-                $requestStack,
-                $requestStack,
-                $twig,
-            )
-        ;
-        $container
-            ->expects($this->once())
-            ->method('has')
-            ->with('twig')
-            ->willReturn(true)
-        ;
+        $container = $this->createStub(ContainerInterface::class);
+        $container->method('has')->willReturn(true);
+        $container->method('get')->willReturn($twig);
 
         $controller = $this->getController();
         $controller->setContainer($container);
 
-        $controller->triggerPipeline($requestStack, new Request());
+        $response = $controller->triggerPipeline(new Request());
 
-        $this->assertEquals(
-            [
-                'action' => ['truc'],
-                'item' => ['machin'],
-                'state' => ['ok'],
-            ],
-            $flashBag->all()
-        );
-    }
-
-    public function testTriggerPipelineError(): void
-    {
-        $adminAction = new AdminAction(
-            'truc',
-            'machin',
-            'ok',
-            'content',
-            'error',
-        );
-
-        $flashBag = new FlashBag();
-
-        $session = $this->createMock(SessionInterface::class);
-        $session
-            ->expects($this->once())
-            ->method('get')
-            ->with('admin.action.response.content')
-            ->willReturn($adminAction)
-        ;
-        $session
-            ->expects($this->once())
-            ->method('remove')
-            ->with('admin.action.response.content')
-        ;
-
-        $flashBagSession = $this->createMock(FlashBagAwareSessionInterface::class);
-        $flashBagSession
-            ->expects($this->exactly(4))
-            ->method('getFlashBag')
-            ->willReturn($flashBag)
-        ;
-
-        $requestStack = $this->createMock(RequestStack::class);
-        $requestStack
-            ->expects($this->exactly(5))
-            ->method('getSession')
-            ->willReturnOnConsecutiveCalls(
-                $session,
-                $flashBagSession,
-                $flashBagSession,
-                $flashBagSession,
-                $flashBagSession,
-            )
-        ;
-
-        $twig = $this->createMock(Environment::class);
-        $twig
-            ->expects($this->once())
-            ->method('render')
-            ->with(
-                'Admin/trigger_pipeline.html.twig',
-                [
-                    'actionLogsData' => [],
-                    'imagePipelineStatus' => null,
-                    'bannerPipelineStatus' => null,
-                ]
-            )
-            ->willReturn('<html></html>')
-        ;
-
-        $container = $this->createMock(ContainerInterface::class);
-        $container
-            ->expects($this->exactly(5))
-            ->method('get')
-            ->willReturnOnConsecutiveCalls(
-                $requestStack,
-                $requestStack,
-                $requestStack,
-                $requestStack,
-                $twig,
-            )
-        ;
-        $container
-            ->expects($this->once())
-            ->method('has')
-            ->with('twig')
-            ->willReturn(true)
-        ;
-
-        $controller = $this->getController();
-        $controller->setContainer($container);
-
-        $controller->triggerPipeline($requestStack, new Request());
-
-        $this->assertEquals(
-            [
-                'action' => ['truc'],
-                'item' => ['machin'],
-                'state' => ['ok'],
-                'error' => ['error'],
-            ],
-            $flashBag->all()
-        );
+        $this->assertSame('<html></html>', $response->getContent());
     }
 
     public function testRefreshImagesDoesNotRefreshBanners(): void
@@ -235,10 +72,9 @@ final class AdminTriggerPipelineControllerTest extends TestCase
             $getImagePipelineStatusService,
             $getBannerPipelineStatusService,
         );
-        $requestStack = $this->createRequestStackStub();
-        $controller->setContainer($this->createContainerStub($requestStack));
+        $controller->setContainer($this->createContainerStub());
 
-        $controller->triggerPipeline($requestStack, new Request(['refresh_images' => '123']));
+        $controller->triggerPipeline(new Request(['refresh_images' => '123']));
     }
 
     public function testRefreshBannersDoesNotRefreshImages(): void
@@ -264,10 +100,9 @@ final class AdminTriggerPipelineControllerTest extends TestCase
             $getImagePipelineStatusService,
             $getBannerPipelineStatusService,
         );
-        $requestStack = $this->createRequestStackStub();
-        $controller->setContainer($this->createContainerStub($requestStack));
+        $controller->setContainer($this->createContainerStub());
 
-        $controller->triggerPipeline($requestStack, new Request(['refresh_banners' => '123']));
+        $controller->triggerPipeline(new Request(['refresh_banners' => '123']));
     }
 
     private function createActionLogsServiceStub(): GetActionLogsService
@@ -278,30 +113,14 @@ final class AdminTriggerPipelineControllerTest extends TestCase
         return $getActionLogsService;
     }
 
-    private function createRequestStackStub(): RequestStack
-    {
-        $session = $this->createStub(SessionInterface::class);
-        $session->method('get')->willReturn(null);
-
-        $flashBagSession = $this->createStub(FlashBagAwareSessionInterface::class);
-        $flashBagSession->method('getFlashBag')->willReturn(new FlashBag());
-
-        $requestStack = $this->createStub(RequestStack::class);
-        $requestStack->method('getSession')->willReturn($session, $flashBagSession, $flashBagSession, $flashBagSession);
-
-        return $requestStack;
-    }
-
-    private function createContainerStub(RequestStack $requestStack): ContainerInterface
+    private function createContainerStub(): ContainerInterface
     {
         $twig = $this->createStub(Environment::class);
         $twig->method('render')->willReturn('<html></html>');
 
         $container = $this->createStub(ContainerInterface::class);
         $container->method('has')->willReturn(true);
-        $container->method('get')->willReturnCallback(
-            static fn (string $id) => 'twig' === $id ? $twig : $requestStack
-        );
+        $container->method('get')->willReturn($twig);
 
         return $container;
     }
