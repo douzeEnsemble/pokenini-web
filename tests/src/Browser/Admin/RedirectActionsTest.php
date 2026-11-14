@@ -35,15 +35,13 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
     ];
 
     /**
-     * Each action section now lives on its own dedicated page (see AdminUpdateDataController and
-     * friends) instead of a shared tab-based "actions" page.
+     * The update and calculate actions share the data pipeline page, the invalidations have
+     * their own page.
      *
      * @var array<string, string>
      */
     private const array SECTION_PAGES = [
-        'update_data' => '/fr/istration/update_data',
-        'update_availabilities' => '/fr/istration/update_availabilities',
-        'calculate_data' => '/fr/istration/calculate_data',
+        'data_pipeline' => '/fr/istration/data_pipeline',
         'invalidate_data' => '/fr/istration/invalidate_data',
     ];
 
@@ -90,57 +88,57 @@ final class RedirectActionsTest extends AbstractBrowserTestCase
             'update_labels' => [
                 'action' => 'update',
                 'item' => 'labels',
-                'section' => 'update_data',
+                'section' => 'data_pipeline',
             ],
             'update_games_collections_and_dex' => [
                 'action' => 'update',
                 'item' => 'games_collections_and_dex',
-                'section' => 'update_data',
+                'section' => 'data_pipeline',
             ],
             'update_pokemons' => [
                 'action' => 'update',
                 'item' => 'pokemons',
-                'section' => 'update_data',
+                'section' => 'data_pipeline',
             ],
             'update_regional_dex_numbers' => [
                 'action' => 'update',
                 'item' => 'regional_dex_numbers',
-                'section' => 'update_data',
+                'section' => 'data_pipeline',
             ],
             'update_games_availabilities' => [
                 'action' => 'update',
                 'item' => 'games_availabilities',
-                'section' => 'update_availabilities',
+                'section' => 'data_pipeline',
             ],
             'update_games_shinies_availabilities' => [
                 'action' => 'update',
                 'item' => 'games_shinies_availabilities',
-                'section' => 'update_availabilities',
+                'section' => 'data_pipeline',
             ],
             'update_collections_availabilities' => [
                 'action' => 'update',
                 'item' => 'collections_availabilities',
-                'section' => 'update_availabilities',
+                'section' => 'data_pipeline',
             ],
             'calculate_game_bundles_availabilities' => [
                 'action' => 'calculate',
                 'item' => 'game_bundles_availabilities',
-                'section' => 'calculate_data',
+                'section' => 'data_pipeline',
             ],
             'calculate_game_bundles_shinies_availabilities' => [
                 'action' => 'calculate',
                 'item' => 'game_bundles_shinies_availabilities',
-                'section' => 'calculate_data',
+                'section' => 'data_pipeline',
             ],
             'calculate_dex_availabilities' => [
                 'action' => 'calculate',
                 'item' => 'dex_availabilities',
-                'section' => 'calculate_data',
+                'section' => 'data_pipeline',
             ],
             'calculate_pokemon_availabilities' => [
                 'action' => 'calculate',
                 'item' => 'pokemon_availabilities',
-                'section' => 'calculate_data',
+                'section' => 'data_pipeline',
             ],
             'invalidate_labels' => [
                 'action' => 'invalidate',

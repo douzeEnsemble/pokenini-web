@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\Controller\Admin;
 
-use App\Controller\AdminUpdateDataController;
+use App\Controller\AdminDataPipelineController;
 use App\Tests\Common\Traits\TestNavTrait;
 use App\Tests\Utils\GetUserToken;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -13,74 +13,54 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
+ * What the cards of the data pipeline page show: descriptions, buttons, confirmations,
+ * refresh links and the last executions reports.
+ *
  * @internal
  */
-#[CoversClass(AdminUpdateDataController::class)]
+#[CoversClass(AdminDataPipelineController::class)]
 #[Group('api-mocked-testing')]
-final class AdminUpdateDataTest extends WebTestCase
+final class AdminDataPipelineCardsTest extends WebTestCase
 {
     use TestNavTrait;
-
-    public function testUpdateDataNotConnected(): void
-    {
-        $client = self::createClient();
-
-        $client->request('GET', '/fr/istration/update_data');
-
-        $this->assertResponseStatusCodeSame(307);
-    }
-
-    public function testUpdateDataNotAllowed(): void
-    {
-        $client = self::createClient();
-
-        $user = GetUserToken::getFakeUserToken('8764532', 'TestProvider');
-        $client->loginUser($user, 'web');
-
-        $client->request('GET', '/fr/istration/update_data');
-
-        $this->assertResponseStatusCodeSame(403);
-    }
 
     /**
      * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
      */
-    public function testUpdateData(): void
+    public function testCards(): void
     {
         $crawler = $this->getPageConnected();
 
-        $this->assertCountFilter($crawler, 8, '#admin-actions-tab > .nav-item > .nav-link');
-        $this->assertCountFilter($crawler, 1, '#admin-actions-tab .nav-link.active');
+        $this->assertCountFilter($crawler, 5, '#admin-actions-tab > .nav-item > .nav-link');
         $this->assertCountFilter($crawler, 1, '#admin > #admin-sidebar #admin-sidebar-toggle');
         $this->assertCountFilter($crawler, 1, '#admin > #admin-main');
-        $this->assertSame(
-            'Réduire le menu',
-            $crawler->filter('#admin-sidebar-toggle')->attr('aria-label')
-        );
+        $this->assertSame('Réduire le menu', $crawler->filter('#admin-sidebar-toggle')->attr('aria-label'));
 
-        $this->assertCountFilter($crawler, 8, '.navbar-nav .admin-link .dropdown-menu .dropdown-item');
+        $this->assertCountFilter($crawler, 5, '.navbar-nav .admin-link .dropdown-menu .dropdown-item');
         $this->assertCountFilter($crawler, 1, '.navbar-nav .admin-link .dropdown-item.active');
         $this->assertStringContainsString(
-            '/fr/istration/update_data',
+            '/fr/istration/data_pipeline',
             $crawler->filter('.navbar-nav .admin-link .dropdown-item.active')->attr('href') ?? ''
         );
         $this->assertStringContainsString(
             '/fr/istration/reports',
-            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(6)->attr('href') ?? ''
+            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(3)->attr('href') ?? ''
         );
         $this->assertStringContainsString(
             '/fr/istration/versions',
-            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(7)->attr('href') ?? ''
+            $crawler->filter('.navbar-nav .admin-link .dropdown-item')->eq(4)->attr('href') ?? ''
+        );
+        $this->assertStringContainsString(
+            '/fr/istration/reports',
+            $crawler->filter('#admin-actions-tab a.nav-link')->eq(3)->attr('href') ?? ''
+        );
+        $this->assertStringContainsString(
+            '/fr/istration/versions',
+            $crawler->filter('#admin-actions-tab a.nav-link')->eq(4)->attr('href') ?? ''
         );
 
-        $reportsLinkHref = $crawler->filter('#admin-actions-tab a.nav-link')->eq(6)->attr('href') ?? '';
-        $this->assertStringContainsString('/fr/istration/reports', $reportsLinkHref);
-
-        $versionsLinkHref = $crawler->filter('#admin-actions-tab a.nav-link')->eq(7)->attr('href') ?? '';
-        $this->assertStringContainsString('/fr/istration/versions', $versionsLinkHref);
-
-        $this->assertCountFilter($crawler, 4, '.admin-item-description');
-        $this->assertCountFilter($crawler, 4, '.admin-item button.admin-item-cta');
+        $this->assertCountFilter($crawler, 11, '.admin-item-description');
+        $this->assertCountFilter($crawler, 11, '.admin-item button.admin-item-cta');
         $this->assertCountFilter($crawler, 0, '.admin-item-cta.disabled');
 
         foreach ($this->getExpectedDescriptions() as $itemId => $description) {
@@ -90,20 +70,20 @@ final class AdminUpdateDataTest extends WebTestCase
             );
         }
 
-        $this->assertCountFilter($crawler, 1, '.admin-item-cta[data-confirm-message]');
-        $this->assertCountFilter($crawler, 1, '#update_games_collections_and_dex .admin-item-cta[data-confirm-message]');
+        $this->assertCountFilter($crawler, 3, '.admin-item-cta[data-confirm-message]');
+        foreach (['update_games_collections_and_dex', 'calculate_game_bundles_availabilities', 'calculate_dex_availabilities'] as $pendingItem) {
+            $this->assertCountFilter($crawler, 1, "#{$pendingItem} .admin-item-cta[data-confirm-message]");
 
-        $confirmMessage = $crawler->filter('#update_games_collections_and_dex .admin-item-cta')->attr('data-confirm-message') ?? '';
-        $this->assertStringContainsString('Une exécution est en cours depuis', $confirmMessage);
-        $this->assertStringContainsString('j ', $confirmMessage);
-        $this->assertStringContainsString('Voulez-vous quand même relancer cette action', $confirmMessage);
+            $confirmMessage = $crawler->filter("#{$pendingItem} .admin-item-cta")->attr('data-confirm-message') ?? '';
+            $this->assertStringContainsString('Une exécution est en cours depuis', $confirmMessage);
+            $this->assertStringContainsString('Voulez-vous quand même relancer cette action', $confirmMessage);
 
-        $this->assertCountFilter($crawler, 1, '.admin-item-refresh');
-        $this->assertCountFilter($crawler, 1, '#update_games_collections_and_dex .admin-item-refresh');
-
-        $updateGamesCollectionsAndDexHref = $crawler->filter('#update_games_collections_and_dex .admin-item-refresh')->attr('href') ?? '';
-        $this->assertStringContainsString('/fr/istration/update_data?refresh=', $updateGamesCollectionsAndDexHref);
-        $this->assertStringContainsString('#update_games_collections_and_dex', $updateGamesCollectionsAndDexHref);
+            $this->assertCountFilter($crawler, 1, "#{$pendingItem} .admin-item-refresh");
+            $href = $crawler->filter("#{$pendingItem} .admin-item-refresh")->attr('href') ?? '';
+            $this->assertStringContainsString('/fr/istration/data_pipeline?refresh=', $href);
+            $this->assertStringContainsString('#'.$pendingItem, $href);
+        }
+        $this->assertCountFilter($crawler, 3, '.admin-item-refresh');
 
         $this->assertCountFilter($crawler, 0, 'script[src^="/js/album.js?v="]');
 
@@ -143,6 +123,13 @@ final class AdminUpdateDataTest extends WebTestCase
             'update_games_collections_and_dex' => 'Resynchronise les jeux, les collections et les dex depuis la source Google Sheets.',
             'update_pokemons' => 'Resynchronise les données des Pokémon depuis la source Google Sheets.',
             'update_regional_dex_numbers' => 'Resynchronise les numéros de dex régionaux depuis la source Google Sheets.',
+            'update_games_availabilities' => 'Resynchronise depuis Google Sheets quels Pokémon sont disponibles dans chaque jeu.',
+            'update_games_shinies_availabilities' => 'Resynchronise depuis Google Sheets quels Pokémon chromatiques sont disponibles dans chaque jeu.',
+            'update_collections_availabilities' => 'Resynchronise depuis Google Sheets quels Pokémon sont disponibles dans chaque collection.',
+            'calculate_game_bundles_availabilities' => 'Agrège les disponibilités des jeux au niveau des bundles de jeux.',
+            'calculate_game_bundles_shinies_availabilities' => 'Agrège les disponibilités chromatiques des jeux au niveau des bundles de jeux.',
+            'calculate_dex_availabilities' => 'Agrège les disponibilités des jeux et des collections au niveau des dex.',
+            'calculate_pokemon_availabilities' => "Agrège toutes les disponibilités en un résumé par Pokémon, utilisé dans toute l'application.",
         ];
     }
 
@@ -154,19 +141,12 @@ final class AdminUpdateDataTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration/update_data');
+        $crawler = $client->request('GET', '/fr/istration/data_pipeline');
 
         $this->assertResponseStatusCodeSame(200);
 
-        $this->assertSame(
-            'Pokénini Administration',
-            $crawler->filter('title')->text()
-        );
-
-        $this->assertSame(
-            'Administration',
-            $crawler->filter('h1')->text()
-        );
+        $this->assertSame('Pokénini Administration', $crawler->filter('title')->text());
+        $this->assertSame('Administration', $crawler->filter('h1')->text());
 
         $this->assertConnectedNavBar($crawler);
         $this->assertFrenchLangSwitch($crawler);
@@ -278,7 +258,7 @@ final class AdminUpdateDataTest extends WebTestCase
      *          value: string,
      *      },
      *      exectime?: string,
-     *     progress?: bool,
+     *      progress?: bool,
      *      error?: string,
      *  },
      *  last?: null|array{
@@ -292,6 +272,8 @@ final class AdminUpdateDataTest extends WebTestCase
      *      error?: string,
      *  },
      * }>
+     *
+     * @SuppressWarnings("PHPMD.ExcessiveMethodLength")
      */
     private function getHomeReportData(): array
     {
@@ -370,6 +352,138 @@ final class AdminUpdateDataTest extends WebTestCase
             'update_regional_dex_numbers' => [
                 'current' => null,
                 'last' => null,
+            ],
+            'update_games_availabilities' => [
+                'current' => [
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '21/03/2023 10:25:38',
+                    ],
+                    'exectime' => '00:34:38',
+                ],
+                'last' => [
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/03/2023 20:25:38',
+                    ],
+                    'exectime' => '00:33:32',
+                ],
+            ],
+            'update_games_shinies_availabilities' => [
+                'current' => [
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '22/04/2023 02:52:59',
+                    ],
+                    'exectime' => '15:01:59',
+                    'error' => 'Exception has been thrown for X reason',
+                ],
+                'last' => [
+                    'data' => [
+                        'Disponibilités des jeux des chromatiques' => '41 691',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/03/2023 10:25:38',
+                    ],
+                    'exectime' => '00:34:38',
+                ],
+            ],
+            'update_collections_availabilities' => [
+                'current' => [
+                    'data' => [
+                        'Disponibilités des collections' => '1 234',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '21/09/2024 10:35:47',
+                    ],
+                    'exectime' => '00:01:00',
+                ],
+                'last' => [
+                    'data' => [
+                        'Disponibilités des collections' => '312',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '21/09/2024 10:01:00',
+                    ],
+                    'exectime' => '00:01:00',
+                ],
+            ],
+            'calculate_game_bundles_availabilities' => [
+                'current' => [
+                    'datatime' => [
+                        'label' => 'Démarré le',
+                        'value' => '21/03/2023 08:15:04',
+                    ],
+                ],
+                'last' => null,
+            ],
+            'calculate_game_bundles_shinies_availabilities' => [
+                'current' => [
+                    'data' => [
+                        'Disponibilités des bundles des chromatiques' => '1 234',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '21/04/2023 17:27:18',
+                    ],
+                    'exectime' => '00:03:00',
+                ],
+                'last' => [
+                    'data' => [
+                        'Disponibilités des bundles des chromatiques' => '321',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/04/2023 17:28:18',
+                    ],
+                    'exectime' => '00:03:20',
+                ],
+            ],
+            'calculate_dex_availabilities' => [
+                'current' => [
+                    'datatime' => [
+                        'label' => 'Démarré le',
+                        'value' => '21/03/2023 10:14:36',
+                    ],
+                    'progress' => true,
+                ],
+                'last' => [
+                    'data' => [
+                        'Disponibilités des dex' => '22 472',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '20/03/2023 11:05:08',
+                    ],
+                    'exectime' => '00:50:32',
+                ],
+            ],
+            'calculate_pokemon_availabilities' => [
+                'current' => [
+                    'data' => [
+                        'Disponibilités des packs de jeux par pokémons' => '1',
+                        'Disponibilités des chromatiques des packs de jeux par pokémons' => '0',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '14/02/2024 10:14:36',
+                    ],
+                    'exectime' => '00:00:00',
+                ],
+                'last' => [
+                    'data' => [
+                        'Disponibilités des packs de jeux par pokémons' => '1',
+                        'Disponibilités des chromatiques des packs de jeux par pokémons' => '0',
+                    ],
+                    'datatime' => [
+                        'label' => 'Terminé le',
+                        'value' => '14/02/2024 10:14:36',
+                    ],
+                    'exectime' => '00:00:00',
+                ],
             ],
         ];
     }

@@ -23,7 +23,7 @@ final class ActionCalculateTest extends WebTestCase
 {
     use TestNavTrait;
 
-    private const string PAGE = '/fr/istration/calculate_data';
+    private const string PAGE = '/fr/istration/data_pipeline';
 
     #[Test]
     public function adminCalculateGamesBundlesAvailabilities(): void

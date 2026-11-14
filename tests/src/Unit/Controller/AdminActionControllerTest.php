@@ -89,42 +89,13 @@ final class AdminActionControllerTest extends TestCase
 
         yield 'invalidate reports' => ['invalidate', 'reports', 'app_admin_reports'];
 
-        yield 'update data' => ['update', 'labels', 'app_admin_update_data'];
+        yield 'update' => ['update', 'labels', 'app_admin_data_pipeline'];
 
-        yield 'update availabilities' => ['update', 'games_availabilities', 'app_admin_update_availabilities'];
-
-        yield 'update shinies availabilities' => ['update', 'games_shinies_availabilities', 'app_admin_update_availabilities'];
-
-        yield 'update collections availabilities' => ['update', 'collections_availabilities', 'app_admin_update_availabilities'];
-
-        yield 'calculate' => ['calculate', 'dex_availabilities', 'app_admin_calculate_data'];
+        yield 'calculate' => ['calculate', 'dex_availabilities', 'app_admin_data_pipeline'];
 
         yield 'trigger images' => ['trigger', 'update_images', 'app_admin_trigger_pipeline'];
 
         yield 'trigger banners' => ['trigger', 'update_banners', 'app_admin_trigger_pipeline'];
-    }
-
-    #[Test]
-    public function fromTheDataPipelineGoesBackToTheDataPipeline(): void
-    {
-        $service = $this->createMock(AdminActionService::class);
-        $service
-            ->expects($this->once())
-            ->method('execute')
-            ->willReturn(new AdminAction('update', 'labels', 'ok', '', ''))
-        ;
-
-        $controller = $this->controller(
-            $service,
-            $this->createStub(LoggerInterface::class),
-            $this->createStub(EventDispatcherInterface::class),
-            'app_admin_data_pipeline',
-            'update_labels',
-        );
-
-        $response = $controller->update('labels', new Request([], ['_token' => 'valid_token', '_from' => 'data_pipeline']));
-
-        $this->assertSame('/admin', $response->getTargetUrl());
     }
 
     #[Test]
@@ -186,7 +157,7 @@ final class AdminActionControllerTest extends TestCase
             $service,
             $logger,
             $this->dispatcherNeverCalled(),
-            'app_admin_update_data',
+            'app_admin_data_pipeline',
             'update_something',
         );
 
@@ -210,7 +181,7 @@ final class AdminActionControllerTest extends TestCase
             $service,
             $logger,
             $this->dispatcherNeverCalled(),
-            'app_admin_update_data',
+            'app_admin_data_pipeline',
             'update_labels',
         );
 
@@ -401,8 +372,8 @@ final class AdminActionControllerTest extends TestCase
     private function expectedRouteFor(string $action): string
     {
         return match ($action) {
-            'update' => 'app_admin_update_data',
-            'calculate' => 'app_admin_calculate_data',
+            'update' => 'app_admin_data_pipeline',
+            'calculate' => 'app_admin_data_pipeline',
             default => 'app_admin_trigger_pipeline',
         };
     }

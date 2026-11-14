@@ -14,6 +14,6 @@ final class AdminController extends AbstractController
     #[Route('', methods: ['GET'], name: 'app_admin_index')]
     public function index(): RedirectResponse
     {
-        return $this->redirectToRoute('app_admin_update_data');
+        return $this->redirectToRoute('app_admin_data_pipeline');
     }
 }

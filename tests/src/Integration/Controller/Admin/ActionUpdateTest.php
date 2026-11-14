@@ -23,19 +23,6 @@ final class ActionUpdateTest extends WebTestCase
 {
     use TestNavTrait;
 
-    /**
-     * Items sharing the 'update' action verb are split across two dedicated pages
-     * (see AdminUpdateAvailabilitiesController / AdminUpdateDataController); this mirrors
-     * AdminActionController::resolveRedirectRoute()'s own mapping.
-     *
-     * @var list<string>
-     */
-    private const array AVAILABILITIES_ITEMS = [
-        'games_availabilities',
-        'games_shinies_availabilities',
-        'collections_availabilities',
-    ];
-
     #[Test]
     public function adminUpdateLabels(): void
     {
@@ -77,7 +64,7 @@ final class ActionUpdateTest extends WebTestCase
 
         // We don't have to call 'action/update/games_shinies_availabilities' to see error
         // because it's the last action log we looking for
-        $crawler = $client->request('GET', '/fr/istration/update_availabilities');
+        $crawler = $client->request('GET', '/fr/istration/data_pipeline');
 
         $this->assertResponseStatusCodeSame(200);
 
@@ -142,7 +129,7 @@ final class ActionUpdateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $crawler = $client->request('GET', '/fr/istration/update_data');
+        $crawler = $client->request('GET', '/fr/istration/data_pipeline');
         $form = $crawler->filter('#update_labels form')->form();
         $client->submit($form);
 
@@ -152,7 +139,7 @@ final class ActionUpdateTest extends WebTestCase
         $this->assertCountFilter($crawler, 1, '#update_labels .icon-square.bg-success');
         $this->assertCountFilter($crawler, 0, '#update_labels .icon-square.bg-warning');
 
-        $crawler = $client->request('GET', '/fr/istration/update_data');
+        $crawler = $client->request('GET', '/fr/istration/data_pipeline');
 
         $this->assertCountFilter($crawler, 0, '#update_labels .icon-square.bg-warning');
     }
@@ -165,9 +152,7 @@ final class ActionUpdateTest extends WebTestCase
         $user->addAdminRole();
         $client->loginUser($user, 'web');
 
-        $page = \in_array($name, self::AVAILABILITIES_ITEMS, true)
-            ? '/fr/istration/update_availabilities'
-            : '/fr/istration/update_data';
+        $page = '/fr/istration/data_pipeline';
 
         $crawler = $client->request('GET', $page);
         $form = $crawler->filter("#update_{$name} form")->form();

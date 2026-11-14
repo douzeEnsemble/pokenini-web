@@ -24,7 +24,7 @@ final class PendingPollingTest extends AbstractBrowserTestCase
         $user->addAdminRole();
         $this->loginUser($client, $user);
 
-        $client->request('GET', '/fr/istration/update_data');
+        $client->request('GET', '/fr/istration/data_pipeline');
 
         // Marks the DOM node and the window: a swapped card loses the mark, a real navigation loses both.
         $client->executeScript(

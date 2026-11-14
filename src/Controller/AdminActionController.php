@@ -21,17 +21,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[Route('/istration/action')]
 final class AdminActionController extends AbstractController
 {
-    public const string FROM_DATA_PIPELINE = 'data_pipeline';
     public const string ERROR_ALREADY_RUNNING = 'admin.action.already_running';
-
-    /**
-     * @var list<string>
-     */
-    private const array UPDATE_AVAILABILITIES_ITEMS = [
-        'games_availabilities',
-        'games_shinies_availabilities',
-        'collections_availabilities',
-    ];
 
     public function __construct(
         private readonly AdminActionService $adminActionService,
@@ -55,7 +45,7 @@ final class AdminActionController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        return $this->execute($name, 'update', 'POST', $request);
+        return $this->execute($name, 'update', 'POST');
     }
 
     #[Route(
@@ -73,7 +63,7 @@ final class AdminActionController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        return $this->execute($name, 'calculate', 'POST', $request);
+        return $this->execute($name, 'calculate', 'POST');
     }
 
     #[Route(
@@ -98,7 +88,7 @@ final class AdminActionController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        return $this->execute($name, 'invalidate', 'DELETE', $request);
+        return $this->execute($name, 'invalidate', 'DELETE');
     }
 
     #[Route(
@@ -118,7 +108,7 @@ final class AdminActionController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        return $this->execute($name, 'trigger', 'POST', $request);
+        return $this->execute($name, 'trigger', 'POST');
     }
 
     private function assertKnownAction(string $action, string $name): void
@@ -150,7 +140,6 @@ final class AdminActionController extends AbstractController
         string $name,
         string $action,
         string $method,
-        Request $request,
     ): RedirectResponse {
         try {
             $adminAction = $this->adminActionService->execute($action, $name, $method);
@@ -171,7 +160,7 @@ final class AdminActionController extends AbstractController
         $this->addFlash('state', $adminAction->state);
 
         return $this->redirectToRoute(
-            $this->resolveRedirectRoute($action, $name, $request->request->getString('_from')),
+            $this->resolveRedirectRoute($action, $name),
             [
                 '_fragment' => "{$action}_{$name}",
             ]
@@ -179,28 +168,18 @@ final class AdminActionController extends AbstractController
     }
 
     /**
-     * Each action item now lives on its own dedicated admin page (see AdminUpdateDataController
-     * and friends) instead of a shared tab-based "actions" page, so the redirect after a POST must
-     * be resolved per action/name pair: 'reports' keeps its own special case (invalidating the
-     * reports cache sends the trainer back to the reports page), 'update' items are split between
-     * the update_data and update_availabilities pages, and the other action verbs each map to a
-     * single dedicated page.
+     * Where the trainer lands after a POST: the update and calculate actions all live on the data
+     * pipeline page, 'reports' keeps its own special case (invalidating the reports cache sends
+     * the trainer back to the reports page) and the other action verbs each map to a single page.
      */
-    private function resolveRedirectRoute(string $action, string $name, string $from): string
+    private function resolveRedirectRoute(string $action, string $name): string
     {
-        if (self::FROM_DATA_PIPELINE === $from) {
-            return 'app_admin_data_pipeline';
-        }
-
         if ('reports' === $name) {
             return 'app_admin_reports';
         }
 
         return match ($action) {
-            'update' => \in_array($name, self::UPDATE_AVAILABILITIES_ITEMS, true)
-                ? 'app_admin_update_availabilities'
-                : 'app_admin_update_data',
-            'calculate' => 'app_admin_calculate_data',
+            'update', 'calculate' => 'app_admin_data_pipeline',
             'trigger' => 'app_admin_trigger_pipeline',
             default => 'app_admin_invalidate_data',
         };

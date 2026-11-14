@@ -537,7 +537,6 @@ admin:
       failed: "Échoué"
   actions:
     update_availabilities:
-      title: "Mise à jour des données de disponibilités"
       games_availabilities:
         title: "Mise à jour des disponibilités des jeux"
         item: "Disponibilités des jeux"
@@ -554,7 +553,6 @@ admin:
         cta: "Mettre à jour"
         description: "Resynchronise depuis Google Sheets quels Pokémon sont disponibles dans chaque collection."
     update_data:
-      title: "Mise à jour des données"
       labels:
         title: "Mise à jour des labels"
         cta: "Mettre à jour"
@@ -611,7 +609,6 @@ admin:
       failed: "Chaîne arrêtée à l'étape « {name} »."
 
     calculate_data:
-      title: "Calculs des données"
       game_bundles_availabilities:
         title: "Calculs des disponibilités des bundles de jeux"
         item: "Disponibilités des bundles"

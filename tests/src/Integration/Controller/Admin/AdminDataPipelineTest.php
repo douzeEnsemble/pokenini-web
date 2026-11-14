@@ -60,7 +60,6 @@ final class AdminDataPipelineTest extends WebTestCase
         );
 
         $this->assertCountFilter($crawler, 11, '.admin-item');
-        $this->assertCountFilter($crawler, 11, '.admin-item form input[name="_from"][value="data_pipeline"]');
         $this->assertCountFilter($crawler, 1, '#data-pipeline-run-all[data-confirm-message]');
         $this->assertStringContainsString(
             '11 étapes',
