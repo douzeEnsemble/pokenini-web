@@ -37,7 +37,7 @@ final class ActionPipelineServiceTest extends TestCase
                 'calculate:dex_availabilities',
                 'calculate:pokemon_availabilities',
             ],
-            array_map(static fn (PipelineStep $s): string => $s->type.':'.$s->name, $steps),
+            array_map(static fn (PipelineStep $step): string => $step->type.':'.$step->name, $steps),
         );
     }
 
@@ -49,7 +49,7 @@ final class ActionPipelineServiceTest extends TestCase
             ['type' => 'update', 'name' => 'labels', 'depends_on' => []],
         ])->steps();
 
-        $this->assertSame(['pokemons', 'labels'], array_map(static fn (PipelineStep $s): string => $s->name, $steps));
+        $this->assertSame(['pokemons', 'labels'], array_map(static fn (PipelineStep $step): string => $step->name, $steps));
     }
 
     #[Test]
@@ -79,6 +79,19 @@ final class ActionPipelineServiceTest extends TestCase
     }
 
     #[Test]
+    public function onlyTheFirstColonSeparatesTheTypeFromTheName(): void
+    {
+        $steps = $this->service([
+            ['type' => 'update', 'name' => 'labels', 'depends_on' => ['update:labels:extra']],
+        ])->steps();
+
+        $this->assertSame(
+            ['admin.actions.update_data.labels:extra.title'],
+            $steps[0]->dependsOnTitleKeys,
+        );
+    }
+
+    #[Test]
     public function unknownActionsGetTheDefaultIcon(): void
     {
         $steps = $this->service([
@@ -97,7 +110,7 @@ final class ActionPipelineServiceTest extends TestCase
             ['type' => 'update', 'name' => 'b', 'depends_on' => ['update:a']],
         ])->steps();
 
-        $this->assertSame(['a', 'b'], array_map(static fn (PipelineStep $s): string => $s->name, $steps));
+        $this->assertSame(['a', 'b'], array_map(static fn (PipelineStep $step): string => $step->name, $steps));
     }
 
     /**
