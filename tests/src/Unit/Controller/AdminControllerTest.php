@@ -24,8 +24,8 @@ final class AdminControllerTest extends TestCase
         $router
             ->expects($this->once())
             ->method('generate')
-            ->with('app_admin_update_data', [])
-            ->willReturn('/fr/istration/update_data')
+            ->with('app_admin_data_pipeline', [])
+            ->willReturn('/fr/istration/data_pipeline')
         ;
 
         $container = $this->createMock(ContainerInterface::class);
@@ -41,7 +41,7 @@ final class AdminControllerTest extends TestCase
 
         $response = $controller->index();
 
-        $this->assertSame('/fr/istration/update_data', $response->getTargetUrl());
+        $this->assertSame('/fr/istration/data_pipeline', $response->getTargetUrl());
         $this->assertSame(302, $response->getStatusCode());
     }
 }

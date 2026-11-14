@@ -533,7 +533,6 @@ admin:
 
   actions:
     update_availabilities:
-      title: "Update availabilities' data"
       games_availabilities:
         title: "Update games' availabilities"
         item: "Games' availabilities"
@@ -550,7 +549,6 @@ admin:
         cta: "Update!"
         description: "Resyncs which Pokémon are available in each collection from the Google Sheets source."
     update_data:
-      title: "Update data"
       labels:
         title: "Update labels"
         cta: "Update!"
@@ -607,7 +605,6 @@ admin:
       failed: "Pipeline stopped at step \"{name}\"."
 
     calculate_data:
-      title: "Calculate data"
       game_bundles_availabilities:
         title: "Calculate game bundles' availabilities"
         item: "Bundles' availabilities"

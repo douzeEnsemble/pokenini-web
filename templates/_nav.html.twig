@@ -195,9 +195,6 @@
                 {% if is_granted("ROLE_ADMIN") %}
                 {% set adminPages = [
                     {'key': 'data_pipeline', 'label': 'admin.actions.data_pipeline.title', 'route': 'app_admin_data_pipeline'},
-                    {'key': 'update_data', 'label': 'admin.actions.update_data.title', 'route': 'app_admin_update_data'},
-                    {'key': 'update_availabilities', 'label': 'admin.actions.update_availabilities.title', 'route': 'app_admin_update_availabilities'},
-                    {'key': 'calculate_data', 'label': 'admin.actions.calculate_data.title', 'route': 'app_admin_calculate_data'},
                     {'key': 'invalidate_data', 'label': 'admin.actions.invalidate_data.title', 'route': 'app_admin_invalidate_data'},
                     {'key': 'trigger_pipeline', 'label': 'admin.actions.trigger_pipeline.title', 'route': 'app_admin_trigger_pipeline'},
                     {'key': 'reports', 'label': 'title.admin_reports', 'route': 'app_admin_reports'},
@@ -209,7 +206,7 @@
                         <a
                             class="nav-link {{ onAdmin ? ' active' : '' }}"
                             {{ onAdmin ? 'aria-current="page"' : '' }}
-                            href="{{ path('app_admin_update_data') }}"
+                            href="{{ path('app_admin_data_pipeline') }}"
                         >
                             <i class="bi bi-wrench-adjustable-circle" aria-hidden="true"></i>
                             <span>{{ 'nav.admin'|trans }}</span>
