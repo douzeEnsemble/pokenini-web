@@ -113,7 +113,7 @@ final class ActionCalculateTest extends WebTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $client->request('GET', '/fr/istration/action/calculate/truc');
+        $client->request('POST', '/fr/istration/action/calculate/truc');
     }
 
     #[Test]

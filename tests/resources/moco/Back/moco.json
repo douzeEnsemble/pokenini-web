@@ -2145,10 +2145,10 @@
     "response": {
       "status": "200",
       "json": {
-        "id" : "121212-admin-121212",
+        "id": "121212-admin-121212",
         "provider": "mock",
         "profile": "admmin",
-        "roles" : [
+        "roles": [
           "ROLE_TRAINER",
           "ROLE_COLLECTOR",
           "ROLE_ADMIN"
@@ -2173,10 +2173,10 @@
     "response": {
       "status": "200",
       "json": {
-        "id" : "131313-collector-131313",
+        "id": "131313-collector-131313",
         "provider": "mock",
         "profile": "collector",
-        "roles" : [
+        "roles": [
           "ROLE_TRAINER",
           "ROLE_COLLECTOR"
         ],
@@ -2200,10 +2200,10 @@
     "response": {
       "status": "200",
       "json": {
-        "id" : "111111-trainer-111111",
+        "id": "111111-trainer-111111",
         "provider": "mock",
         "profile": "trainer",
-        "roles" : [
+        "roles": [
           "ROLE_TRAINER"
         ],
         "session_token": "moco-session-token-trainer"
@@ -2226,10 +2226,10 @@
     "response": {
       "status": "200",
       "json": {
-        "id" : "101010-uninvited-101010",
+        "id": "101010-uninvited-101010",
         "provider": "mock",
         "profile": "uninvited",
-        "roles" : [
+        "roles": [
           "ROLE_TRAINER"
         ],
         "session_token": "moco-session-token-uninvited"
@@ -2464,32 +2464,6 @@
       "json": {
         "action": "calculate",
         "item": "game_bundles_shinies_availabilities",
-        "state": "ok",
-        "content": "",
-        "error": ""
-      }
-    }
-  },
-  {
-    "request": {
-      "uri": {
-        "match": "/istration/action/calculate/collections_availabilities"
-      },
-      "method": "post",
-      "headers": {
-        "X-Provider": {
-          "match": ".*"
-        },
-        "authorization": {
-          "match": "Bearer .*"
-        }
-      }
-    },
-    "response": {
-      "status": "202",
-      "json": {
-        "action": "calculate",
-        "item": "collections_availabilities",
         "state": "ok",
         "content": "",
         "error": ""
@@ -2775,10 +2749,22 @@
       "status": "200",
       "json": {
         "correlation_id": "corr-1",
-        "workflow_a": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/1"},
-        "icon_pr": {"state": "merged", "url": "https://github.com/douzeEnsemble/pokenini-icon/pull/2"},
-        "workflow_b": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/3"},
-        "resources_pr": {"state": "closed", "url": "https://github.com/douzeEnsemble/pokenini-resources/pull/4"}
+        "workflow_a": {
+          "state": "done",
+          "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/1"
+        },
+        "icon_pr": {
+          "state": "merged",
+          "url": "https://github.com/douzeEnsemble/pokenini-icon/pull/2"
+        },
+        "workflow_b": {
+          "state": "done",
+          "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/3"
+        },
+        "resources_pr": {
+          "state": "closed",
+          "url": "https://github.com/douzeEnsemble/pokenini-resources/pull/4"
+        }
       }
     }
   },
@@ -2801,10 +2787,22 @@
       "status": "200",
       "json": {
         "correlation_id": "corr-2",
-        "workflow_a": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/5"},
-        "icon_pr": {"state": "merged", "url": "https://github.com/douzeEnsemble/pokenini-icon/pull/6"},
-        "workflow_b": {"state": "done", "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/7"},
-        "resources_pr": {"state": "closed", "url": "https://github.com/douzeEnsemble/pokenini-resources/pull/8"}
+        "workflow_a": {
+          "state": "done",
+          "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/5"
+        },
+        "icon_pr": {
+          "state": "merged",
+          "url": "https://github.com/douzeEnsemble/pokenini-icon/pull/6"
+        },
+        "workflow_b": {
+          "state": "done",
+          "url": "https://github.com/douzeEnsemble/pokenini-icon/actions/runs/7"
+        },
+        "resources_pr": {
+          "state": "closed",
+          "url": "https://github.com/douzeEnsemble/pokenini-resources/pull/8"
+        }
       }
     }
   },
@@ -2873,6 +2871,24 @@
     "response": {
       "status": "200",
       "file": "/var/moco/responses/reports.json"
+    }
+  },
+  {
+    "request": {
+      "uri": "/istration/actions",
+      "method": "get",
+      "headers": {
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
+      }
+    },
+    "response": {
+      "status": "200",
+      "file": "/var/moco/responses/action_catalog.json"
     }
   },
   {
@@ -3057,10 +3073,10 @@
       "headers": {
         "accept": "application/json",
         "X-Provider": {
-          "exist" : "false"
+          "exist": "false"
         },
         "authorization": {
-          "exist" : "false"
+          "exist": "false"
         }
       }
     },
@@ -3948,8 +3964,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -3964,8 +3984,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -3980,8 +4004,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -3996,8 +4024,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4035,8 +4067,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4074,8 +4110,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4090,8 +4130,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4106,8 +4150,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4122,8 +4170,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4138,8 +4190,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4154,8 +4210,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4170,8 +4230,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {
@@ -4186,8 +4250,12 @@
       },
       "method": "get",
       "headers": {
-        "X-Provider": { "match": ".*" },
-        "authorization": { "match": "Bearer .*" }
+        "X-Provider": {
+          "match": ".*"
+        },
+        "authorization": {
+          "match": "Bearer .*"
+        }
       }
     },
     "response": {

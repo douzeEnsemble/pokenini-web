@@ -1,0 +1,68 @@
+[
+  {
+    "type": "update",
+    "name": "labels",
+    "depends_on": []
+  },
+  {
+    "type": "update",
+    "name": "games_collections_and_dex",
+    "depends_on": []
+  },
+  {
+    "type": "update",
+    "name": "pokemons",
+    "depends_on": []
+  },
+  {
+    "type": "update",
+    "name": "regional_dex_numbers",
+    "depends_on": []
+  },
+  {
+    "type": "update",
+    "name": "games_availabilities",
+    "depends_on": []
+  },
+  {
+    "type": "update",
+    "name": "games_shinies_availabilities",
+    "depends_on": []
+  },
+  {
+    "type": "update",
+    "name": "collections_availabilities",
+    "depends_on": []
+  },
+  {
+    "type": "calculate",
+    "name": "game_bundles_availabilities",
+    "depends_on": [
+      "update:games_availabilities"
+    ]
+  },
+  {
+    "type": "calculate",
+    "name": "game_bundles_shinies_availabilities",
+    "depends_on": [
+      "update:games_shinies_availabilities"
+    ]
+  },
+  {
+    "type": "calculate",
+    "name": "dex_availabilities",
+    "depends_on": [
+      "update:games_availabilities",
+      "update:collections_availabilities"
+    ]
+  },
+  {
+    "type": "calculate",
+    "name": "pokemon_availabilities",
+    "depends_on": [
+      "calculate:game_bundles_availabilities",
+      "calculate:game_bundles_shinies_availabilities",
+      "calculate:dex_availabilities"
+    ]
+  }
+]

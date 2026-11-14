@@ -1,8 +1,8 @@
-function watchActionLogToggles() {
-    document.querySelectorAll(".admin-item-current .admin-item-toggle").forEach(function (element) {
+function watchActionLogToggles(root = document) {
+    root.querySelectorAll(".admin-item-current .admin-item-toggle").forEach(function (element) {
       element.addEventListener("click", onToggleCurrent);
     });
-    document.querySelectorAll(".admin-item-last .admin-item-toggle").forEach(function (element) {
+    root.querySelectorAll(".admin-item-last .admin-item-toggle").forEach(function (element) {
       element.addEventListener("click", onToggleLast);
     });
 }
@@ -70,8 +70,8 @@ function onToggleLast(event) {
   });
 }
 
-function watchForceConfirm() {
-    document.querySelectorAll(".admin-item-cta[data-confirm-message]").forEach(function (button) {
+function watchForceConfirm(root = document) {
+    root.querySelectorAll(".admin-item-cta[data-confirm-message]").forEach(function (button) {
       const form = button.closest('form');
       if (!form) {
         return;
@@ -183,4 +183,66 @@ function showConfirmModal(button, onConfirm, onReset) {
       modalEl.remove();
     });
     modal.show();
+}
+
+// Live follow-up of the running actions: while at least one card is pending, the page is
+// re-fetched every few seconds and the pending cards are swapped with their fresh server
+// rendering (state, elapsed time, progress bar, error), so no manual refresh is needed.
+// The "refresh" links stay in the markup as a fallback without JavaScript.
+const PENDING_SELECTOR = '.admin-item[data-current-state="pending"]';
+const PENDING_POLL_DELAY = 5000;
+
+function watchPendingActions(delay = PENDING_POLL_DELAY) {
+    if (!document.querySelector(PENDING_SELECTOR)) {
+      return;
+    }
+
+    document.querySelectorAll('.admin-item-refresh').forEach(link => link.setAttribute('hidden', true));
+
+    const timer = setInterval(async function () {
+      // Hidden tab or open confirmation modal (bound to the current form): leave the DOM alone.
+      if (document.hidden || document.querySelector('.modal')) {
+        return;
+      }
+
+      try {
+        const response = await fetch(window.location.pathname + window.location.search, {
+          credentials: 'same-origin',
+          headers: { 'X-Requested-With': 'fetch' },
+        });
+        if (!response.ok) {
+          return;
+        }
+        const fresh = new DOMParser().parseFromString(await response.text(), 'text/html');
+        document.querySelectorAll(PENDING_SELECTOR).forEach(function (card) {
+          swapActionCard(card, fresh.getElementById(card.id));
+        });
+      } catch (error) {
+        console.error(error);
+      }
+
+      if (!document.querySelector(PENDING_SELECTOR)) {
+        clearInterval(timer);
+      }
+    }, delay);
+}
+
+function swapActionCard(card, freshCard) {
+    if (!freshCard) {
+      return;
+    }
+    // Do not yank the card away while the user is reading the previous execution.
+    const current = card.querySelector('.admin-item-current');
+    if (current && current.hasAttribute('hidden')) {
+      return;
+    }
+
+    const imported = document.importNode(freshCard, true);
+    card.replaceWith(imported);
+    watchActionLogToggles(imported);
+    watchForceConfirm(imported);
+
+    if (imported.matches(PENDING_SELECTOR)) {
+      imported.querySelectorAll('.admin-item-refresh').forEach(link => link.setAttribute('hidden', true));
+    }
 }

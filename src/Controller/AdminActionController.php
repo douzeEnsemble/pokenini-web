@@ -7,11 +7,12 @@ namespace App\Controller;
 use App\DTO\AdminAction;
 use App\Event\AdminActionSucceededEvent;
 use App\Service\Back\AdminActionService;
+use App\Service\Back\GetActionCatalogService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
@@ -20,7 +21,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[Route('/istration/action')]
 final class AdminActionController extends AbstractController
 {
-    public const string SESSION_ACTION_DATA = 'admin.action.response.content';
+    public const string ERROR_ALREADY_RUNNING = 'admin.action.already_running';
 
     /**
      * @var list<string>
@@ -33,29 +34,22 @@ final class AdminActionController extends AbstractController
 
     public function __construct(
         private readonly AdminActionService $adminActionService,
-        private readonly RequestStack $requestStack,
         private readonly LoggerInterface $logger,
         private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly GetActionCatalogService $actionCatalog,
     ) {}
 
     #[Route(
         '/update/{name}',
         methods: ['POST'],
-        condition: "params['name']
-            in [
-                'labels',
-                'games_collections_and_dex',
-                'pokemons',
-                'games_availabilities',
-                'games_shinies_availabilities',
-                'regional_dex_numbers',
-                'collections_availabilities',
-            ]"
+        requirements: ['name' => '[a-z_]+'],
     )]
     public function update(
         string $name,
         Request $request,
     ): RedirectResponse {
+        $this->assertKnownAction('update', $name);
+
         if (!$this->isCsrfTokenValid('admin_update', $request->request->getString('_token'))) {
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
@@ -66,19 +60,14 @@ final class AdminActionController extends AbstractController
     #[Route(
         '/calculate/{name}',
         methods: ['POST'],
-        condition: "params['name']
-            in [
-                'game_bundles_availabilities',
-                'game_bundles_shinies_availabilities',
-                'collections_availabilities',
-                'dex_availabilities',
-                'pokemon_availabilities',
-            ]"
+        requirements: ['name' => '[a-z_]+'],
     )]
     public function calculate(
         string $name,
         Request $request,
     ): RedirectResponse {
+        $this->assertKnownAction('calculate', $name);
+
         if (!$this->isCsrfTokenValid('admin_calculate', $request->request->getString('_token'))) {
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
@@ -131,6 +120,13 @@ final class AdminActionController extends AbstractController
         return $this->execute($name, 'trigger', 'POST');
     }
 
+    private function assertKnownAction(string $action, string $name): void
+    {
+        if (!$this->actionCatalog->has($action, $name)) {
+            throw $this->createNotFoundException("Unknown action: {$action} {$name}");
+        }
+    }
+
     private function execute(
         string $name,
         string $action,
@@ -139,20 +135,27 @@ final class AdminActionController extends AbstractController
         try {
             $adminAction = $this->adminActionService->execute($action, $name, $method);
         } catch (HttpExceptionInterface|TransportExceptionInterface $e) {
-            $this->logger->critical(
-                $e->getMessage(),
-                [
-                    'name' => $name,
-                    'action' => $action,
-                ]
-            );
+            if ($e instanceof HttpExceptionInterface && Response::HTTP_CONFLICT === $e->getResponse()->getStatusCode()) {
+                // The same action is already running: not an incident, only worth a clear message.
+                $error = self::ERROR_ALREADY_RUNNING;
+            } else {
+                $error = $e->getMessage();
+
+                $this->logger->critical(
+                    $error,
+                    [
+                        'name' => $name,
+                        'action' => $action,
+                    ]
+                );
+            }
 
             $adminAction = new AdminAction(
                 $action,
                 $name,
                 'ko',
                 '',
-                $e->getMessage(),
+                $error,
             );
         }
 
@@ -160,7 +163,13 @@ final class AdminActionController extends AbstractController
             $this->eventDispatcher->dispatch(new AdminActionSucceededEvent($name));
         }
 
-        $this->requestStack->getSession()->set(self::SESSION_ACTION_DATA, $adminAction);
+        if ('' !== $adminAction->error) {
+            $this->addFlash('error', $adminAction->error);
+        }
+
+        $this->addFlash('action', $adminAction->action);
+        $this->addFlash('item', $adminAction->item);
+        $this->addFlash('state', $adminAction->state);
 
         return $this->redirectToRoute(
             $this->resolveRedirectRoute($action, $name),
