@@ -127,6 +127,24 @@ final class AdminActionController extends AbstractController
         }
     }
 
+    private function failedAction(string $action, string $name, \Throwable $failure): AdminAction
+    {
+        if ($failure instanceof HttpExceptionInterface && Response::HTTP_CONFLICT === $failure->getResponse()->getStatusCode()) {
+            // The same action is already running: not an incident, only worth a clear message.
+            return new AdminAction($action, $name, 'ko', '', self::ERROR_ALREADY_RUNNING);
+        }
+
+        $this->logger->critical(
+            $failure->getMessage(),
+            [
+                'name' => $name,
+                'action' => $action,
+            ]
+        );
+
+        return new AdminAction($action, $name, 'ko', '', $failure->getMessage());
+    }
+
     private function execute(
         string $name,
         string $action,
@@ -135,28 +153,7 @@ final class AdminActionController extends AbstractController
         try {
             $adminAction = $this->adminActionService->execute($action, $name, $method);
         } catch (HttpExceptionInterface|TransportExceptionInterface $e) {
-            if ($e instanceof HttpExceptionInterface && Response::HTTP_CONFLICT === $e->getResponse()->getStatusCode()) {
-                // The same action is already running: not an incident, only worth a clear message.
-                $error = self::ERROR_ALREADY_RUNNING;
-            } else {
-                $error = $e->getMessage();
-
-                $this->logger->critical(
-                    $error,
-                    [
-                        'name' => $name,
-                        'action' => $action,
-                    ]
-                );
-            }
-
-            $adminAction = new AdminAction(
-                $action,
-                $name,
-                'ko',
-                '',
-                $error,
-            );
+            $adminAction = $this->failedAction($action, $name, $e);
         }
 
         if ('ok' === $adminAction->state) {

@@ -16,6 +16,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
+/**
+ * Every back service test extends it, so its number of children grows with the back endpoints.
+ *
+ * @SuppressWarnings("PHPMD.NumberOfChildren")
+ */
 abstract class AbstractTestBackService extends TestCase
 {
     /**
