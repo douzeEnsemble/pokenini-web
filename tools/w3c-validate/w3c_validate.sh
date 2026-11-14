@@ -67,7 +67,7 @@ URLS=(
 	"trainer|fr/trainer/links"
 	"trainer|fr/trainer/home_page"
 	"trainer|fr/trainer/personnal_data"
-	"admin|fr/istration/update_data"
+	"admin|fr/istration/data_pipeline"
 	"admin|fr/istration/reports"
 	# Exceptions documentées (code HTTP attendu autre que 200, rien à valider) :
 	"anon||301"            # la racine redirige vers /fr (déjà couvert par "fr")
@@ -84,7 +84,7 @@ JAR_DIR="/tmp/w3c-cookies-$$"
 declare -A SEEN_ROLES=()
 declare -A ROLE_COOKIES=()
 # Page réservée à chaque rôle, utilisée pour vérifier que la session est reconnue après la connexion.
-declare -A PROBE_URLS=([trainer]="fr/trainer" [collector]="fr/trainer" [admin]="fr/istration/update_data")
+declare -A PROBE_URLS=([trainer]="fr/trainer" [collector]="fr/trainer" [admin]="fr/istration/data_pipeline")
 FAILURES=0
 
 fail() {
