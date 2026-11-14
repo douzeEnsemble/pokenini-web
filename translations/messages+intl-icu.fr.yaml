@@ -600,6 +600,16 @@ admin:
       variant_forms:
         item: "Variantes"
 
+    data_pipeline:
+      title: "Chaîne de données"
+      intro: "Toutes les mises à jour et tous les calculs, dans l'ordre où ils doivent être lancés. Chaque étape ne démarre que si la précédente s'est terminée sans erreur."
+      depends_on: "Après :"
+      run_all: "Tout lancer"
+      run_all_confirm: "Lancer les {count} étapes les unes après les autres ? L'onglet doit rester ouvert pour que la chaîne continue."
+      running: "Étape {current}/{total} : {name}"
+      done: "Chaîne terminée."
+      failed: "Chaîne arrêtée à l'étape « {name} »."
+
     calculate_data:
       title: "Calculs des données"
       game_bundles_availabilities:

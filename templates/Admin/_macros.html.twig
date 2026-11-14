@@ -6,7 +6,8 @@
     updatedItem,
     updatedAction,
     updatedState,
-    actionLogsData
+    actionLogsData,
+    dependencies = []
 ) %}
   {% set actionItem = actionPrefix~'_'~item %}
 
@@ -74,11 +75,11 @@
     {% set lastTextStyle = 'light' %}
   {% endif %}
 
-  <div class="col-lg-4 col-md-6 d-flex align-items-start admin-item admin-item-{{ actionItem }} admin-item-{{ actionPrefix }}" data-current-bg-style="{{ currentBgStyle }}" data-current-text-style="{{ currentTextStyle }}" data-last-bg-style="{{ lastBgStyle }}" data-last-text-style="{{ lastTextStyle }}" data-updated-state="{{ updatedState }}" data-current-state="{{ currentState }}" data-last-state="{{ lastState }}" id="{{ actionItem }}">
+  <div class="col-lg-4 col-md-6 d-flex align-items-start admin-item admin-item-{{ actionItem }} admin-item-{{ actionPrefix }}" data-current-bg-style="{{ currentBgStyle }}" data-current-text-style="{{ currentTextStyle }}" data-last-bg-style="{{ lastBgStyle }}" data-last-text-style="{{ lastTextStyle }}" data-updated-state="{{ updatedState }}" data-current-state="{{ currentState }}" data-last-state="{{ lastState }}"{% if currentActionLog is not null %} data-current-created-at="{{ currentActionLog.createdAt|date('U') }}"{% endif %} id="{{ actionItem }}">
     <div class="d-flex rounded-3 p-3 mb-md-1 mb-sm-2 mb-3 align-items-start">
       {{ _self.actionIcon(action, item, icon, currentBgStyle, currentTextStyle) }}
       <div>
-        {{ _self.actionTitle(action, item, icon) }}
+        {{ _self.actionTitle(action, item, icon, dependencies) }}
         {{ _self.actionFlashError(actionPrefix, item, updatedItem, updatedAction, updatedState) }}
         {{ _self.actionContainer(action, item, currentActionLog, lastActionLog) }}
         {{ _self.actionButton(action, actionPrefix, item, currentState, currentBgStyle, currentActionLog) }}
@@ -91,9 +92,17 @@
     action,
     item,
     icon,
+    dependencies = [],
 ) %}
   <h2 class="h3 text-body-emphasis">{{ ('admin.actions.'~action~'.'~item~'.title')|trans }}</h2>
   <p class="admin-item-description text-body-secondary small">{{ ('admin.actions.'~action~'.'~item~'.description')|trans }}</p>
+  {% if dependencies is not empty %}
+    <p class="admin-item-dependencies text-body-secondary small">
+      <i class="bi bi-diagram-2"></i>
+      {{ 'admin.actions.data_pipeline.depends_on'|trans }}
+      {{ dependencies|map(key => key|trans)|join(', ') }}
+    </p>
+  {% endif %}
 {% endmacro %}
 
 {% macro actionIcon (
@@ -125,6 +134,9 @@
   <div class="text-end border-top border-{{ bgStyle }} pt-3">
     <form method="post" action="{{ path('app_adminaction_'~actionPrefix, {'name': item}) }}">
       <input type="hidden" name="_token" value="{{ csrf_token(csrfId) }}">
+      {% if app.request.attributes.get('_route') == 'app_admin_data_pipeline' %}
+        <input type="hidden" name="_from" value="data_pipeline">
+      {% endif %}
       <button
         type="submit"
         class="btn btn-outline-primary admin-item-cta"

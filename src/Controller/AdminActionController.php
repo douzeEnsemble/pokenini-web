@@ -21,6 +21,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 #[Route('/istration/action')]
 final class AdminActionController extends AbstractController
 {
+    public const string FROM_DATA_PIPELINE = 'data_pipeline';
     public const string ERROR_ALREADY_RUNNING = 'admin.action.already_running';
 
     /**
@@ -54,7 +55,7 @@ final class AdminActionController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        return $this->execute($name, 'update', 'POST');
+        return $this->execute($name, 'update', 'POST', $request);
     }
 
     #[Route(
@@ -72,7 +73,7 @@ final class AdminActionController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        return $this->execute($name, 'calculate', 'POST');
+        return $this->execute($name, 'calculate', 'POST', $request);
     }
 
     #[Route(
@@ -97,7 +98,7 @@ final class AdminActionController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        return $this->execute($name, 'invalidate', 'DELETE');
+        return $this->execute($name, 'invalidate', 'DELETE', $request);
     }
 
     #[Route(
@@ -117,7 +118,7 @@ final class AdminActionController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        return $this->execute($name, 'trigger', 'POST');
+        return $this->execute($name, 'trigger', 'POST', $request);
     }
 
     private function assertKnownAction(string $action, string $name): void
@@ -149,6 +150,7 @@ final class AdminActionController extends AbstractController
         string $name,
         string $action,
         string $method,
+        Request $request,
     ): RedirectResponse {
         try {
             $adminAction = $this->adminActionService->execute($action, $name, $method);
@@ -169,7 +171,7 @@ final class AdminActionController extends AbstractController
         $this->addFlash('state', $adminAction->state);
 
         return $this->redirectToRoute(
-            $this->resolveRedirectRoute($action, $name),
+            $this->resolveRedirectRoute($action, $name, $request->request->getString('_from')),
             [
                 '_fragment' => "{$action}_{$name}",
             ]
@@ -184,8 +186,12 @@ final class AdminActionController extends AbstractController
      * the update_data and update_availabilities pages, and the other action verbs each map to a
      * single dedicated page.
      */
-    private function resolveRedirectRoute(string $action, string $name): string
+    private function resolveRedirectRoute(string $action, string $name, string $from): string
     {
+        if (self::FROM_DATA_PIPELINE === $from) {
+            return 'app_admin_data_pipeline';
+        }
+
         if ('reports' === $name) {
             return 'app_admin_reports';
         }

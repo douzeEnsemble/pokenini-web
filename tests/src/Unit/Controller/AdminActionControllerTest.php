@@ -105,6 +105,29 @@ final class AdminActionControllerTest extends TestCase
     }
 
     #[Test]
+    public function fromTheDataPipelineGoesBackToTheDataPipeline(): void
+    {
+        $service = $this->createMock(AdminActionService::class);
+        $service
+            ->expects($this->once())
+            ->method('execute')
+            ->willReturn(new AdminAction('update', 'labels', 'ok', '', ''))
+        ;
+
+        $controller = $this->controller(
+            $service,
+            $this->createStub(LoggerInterface::class),
+            $this->createStub(EventDispatcherInterface::class),
+            'app_admin_data_pipeline',
+            'update_labels',
+        );
+
+        $response = $controller->update('labels', new Request([], ['_token' => 'valid_token', '_from' => 'data_pipeline']));
+
+        $this->assertSame('/admin', $response->getTargetUrl());
+    }
+
+    #[Test]
     #[DataProvider('failingActions')]
     public function httpFailureIsLoggedAndFlashed(string $action, string $name): void
     {

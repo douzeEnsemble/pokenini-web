@@ -596,6 +596,16 @@ admin:
       variant_forms:
         item: "Variant forms"
 
+    data_pipeline:
+      title: "Data pipeline"
+      intro: "Every update and calculation, in the order they have to be run. Each step only starts if the previous one ended without error."
+      depends_on: "After:"
+      run_all: "Run everything"
+      run_all_confirm: "Run the {count} steps one after the other? This tab has to stay open for the chain to go on."
+      running: "Step {current}/{total}: {name}"
+      done: "Pipeline finished."
+      failed: "Pipeline stopped at step \"{name}\"."
+
     calculate_data:
       title: "Calculate data"
       game_bundles_availabilities:
