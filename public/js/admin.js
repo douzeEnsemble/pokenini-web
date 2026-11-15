@@ -269,11 +269,22 @@ function watchRunAll(delay = PENDING_POLL_DELAY) {
     const stepTitle = card => card.querySelector('h2')?.textContent.trim() || card.id;
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+    const nextLink = document.getElementById('run-all-next');
+
     button.addEventListener('click', function () {
       showConfirmModal(button, function () {
         runAll();
       });
     });
+
+    // Arriving from the "next page" link of the previous chain: the click was the confirmation.
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('run_all')) {
+      params.delete('run_all');
+      const query = params.toString();
+      history.replaceState(null, '', window.location.pathname + (query ? '?' + query : '') + window.location.hash);
+      runAll();
+    }
 
     async function fetchFreshCard(id) {
       const response = await fetch(window.location.pathname + window.location.search, {
@@ -370,7 +381,8 @@ function watchRunAll(delay = PENDING_POLL_DELAY) {
         }
       }
 
-      status.textContent = container.dataset.messageDone;
+      status.textContent = container.dataset.messageFinished || container.dataset.messageDone;
       button.disabled = false;
+      nextLink?.removeAttribute('hidden');
     }
 }
