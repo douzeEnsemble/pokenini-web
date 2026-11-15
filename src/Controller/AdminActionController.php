@@ -23,6 +23,15 @@ final class AdminActionController extends AbstractController
 {
     public const string ERROR_ALREADY_RUNNING = 'admin.action.already_running';
 
+    /**
+     * @var list<string>
+     */
+    private const array UPDATE_AVAILABILITIES_ITEMS = [
+        'games_availabilities',
+        'games_shinies_availabilities',
+        'collections_availabilities',
+    ];
+
     public function __construct(
         private readonly AdminActionService $adminActionService,
         private readonly LoggerInterface $logger,
@@ -168,9 +177,12 @@ final class AdminActionController extends AbstractController
     }
 
     /**
-     * Where the trainer lands after a POST: the update and calculate actions all live on the data
-     * pipeline page, 'reports' keeps its own special case (invalidating the reports cache sends
-     * the trainer back to the reports page) and the other action verbs each map to a single page.
+     * Each action item now lives on its own dedicated admin page (see AdminUpdateDataController
+     * and friends) instead of a shared tab-based "actions" page, so the redirect after a POST must
+     * be resolved per action/name pair: 'reports' keeps its own special case (invalidating the
+     * reports cache sends the trainer back to the reports page), 'update' items are split between
+     * the update_data and update_availabilities pages, and the other action verbs each map to a
+     * single dedicated page.
      */
     private function resolveRedirectRoute(string $action, string $name): string
     {
@@ -179,7 +191,10 @@ final class AdminActionController extends AbstractController
         }
 
         return match ($action) {
-            'update', 'calculate' => 'app_admin_data_pipeline',
+            'update' => \in_array($name, self::UPDATE_AVAILABILITIES_ITEMS, true)
+                ? 'app_admin_update_availabilities'
+                : 'app_admin_update_data',
+            'calculate' => 'app_admin_calculate_data',
             'trigger' => 'app_admin_trigger_pipeline',
             default => 'app_admin_invalidate_data',
         };

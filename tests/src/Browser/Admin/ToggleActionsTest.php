@@ -27,7 +27,7 @@ final class ToggleActionsTest extends AbstractBrowserTestCase
         $user->addAdminRole();
         $this->loginUser($client, $user);
 
-        $client->request('GET', '/fr/istration/data_pipeline');
+        $client->request('GET', '/fr/istration/update_data');
 
         $this->assertSelectorIsVisible('.admin-item-update_labels .admin-item-current');
         $this->assertSelectorIsNotVisible('.admin-item-update_labels .admin-item-last');

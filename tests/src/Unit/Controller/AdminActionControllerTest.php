@@ -89,9 +89,15 @@ final class AdminActionControllerTest extends TestCase
 
         yield 'invalidate reports' => ['invalidate', 'reports', 'app_admin_reports'];
 
-        yield 'update' => ['update', 'labels', 'app_admin_data_pipeline'];
+        yield 'update data' => ['update', 'labels', 'app_admin_update_data'];
 
-        yield 'calculate' => ['calculate', 'dex_availabilities', 'app_admin_data_pipeline'];
+        yield 'update availabilities' => ['update', 'games_availabilities', 'app_admin_update_availabilities'];
+
+        yield 'update shinies availabilities' => ['update', 'games_shinies_availabilities', 'app_admin_update_availabilities'];
+
+        yield 'update collections availabilities' => ['update', 'collections_availabilities', 'app_admin_update_availabilities'];
+
+        yield 'calculate' => ['calculate', 'dex_availabilities', 'app_admin_calculate_data'];
 
         yield 'trigger images' => ['trigger', 'update_images', 'app_admin_trigger_pipeline'];
 
@@ -157,7 +163,7 @@ final class AdminActionControllerTest extends TestCase
             $service,
             $logger,
             $this->dispatcherNeverCalled(),
-            'app_admin_data_pipeline',
+            'app_admin_update_data',
             'update_something',
         );
 
@@ -181,7 +187,7 @@ final class AdminActionControllerTest extends TestCase
             $service,
             $logger,
             $this->dispatcherNeverCalled(),
-            'app_admin_data_pipeline',
+            'app_admin_update_data',
             'update_labels',
         );
 
@@ -372,8 +378,8 @@ final class AdminActionControllerTest extends TestCase
     private function expectedRouteFor(string $action): string
     {
         return match ($action) {
-            'update' => 'app_admin_data_pipeline',
-            'calculate' => 'app_admin_data_pipeline',
+            'update' => 'app_admin_update_data',
+            'calculate' => 'app_admin_calculate_data',
             default => 'app_admin_trigger_pipeline',
         };
     }

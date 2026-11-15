@@ -251,13 +251,13 @@ function swapActionCard(card, freshCard) {
     }
 }
 
-// Runs every action of the data pipeline page in the order of the cards, each one starting once
+// Runs every action of the page in the order of the cards, each one starting once
 // the previous one has finished successfully. The chain lives in this tab: closing it stops it
 // after the step in progress, which keeps running on the server.
-function watchDataPipeline(delay = PENDING_POLL_DELAY) {
-    const button = document.getElementById('data-pipeline-run-all');
-    const container = document.getElementById('data-pipeline');
-    const status = document.getElementById('data-pipeline-status');
+function watchRunAll(delay = PENDING_POLL_DELAY) {
+    const button = document.getElementById('run-all-button');
+    const container = document.getElementById('run-all');
+    const status = document.getElementById('run-all-status');
     if (!button || !container || !status) {
       return;
     }
@@ -271,7 +271,7 @@ function watchDataPipeline(delay = PENDING_POLL_DELAY) {
 
     button.addEventListener('click', function () {
       showConfirmModal(button, function () {
-        runDataPipeline();
+        runAll();
       });
     });
 
@@ -342,7 +342,7 @@ function watchDataPipeline(delay = PENDING_POLL_DELAY) {
       return waitForEnd(id, startedAfter);
     }
 
-    async function runDataPipeline() {
+    async function runAll() {
       const cards = Array.from(document.querySelectorAll('.admin-item'));
       button.disabled = true;
 

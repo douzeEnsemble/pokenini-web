@@ -18,7 +18,7 @@ use Symfony\Component\Panther\Client;
  * @internal
  */
 #[CoversNothing]
-final class DataPipelineTest extends AbstractBrowserTestCase
+final class RunAllTest extends AbstractBrowserTestCase
 {
     private const string FETCH_STUB = <<<'JS'
         window.__posted = [];
@@ -56,12 +56,12 @@ final class DataPipelineTest extends AbstractBrowserTestCase
 
         $this->waitUntil(
             $client,
-            fn () => str_contains($this->pipelineStatus($client), 'terminée'),
-            'the pipeline to be finished',
+            fn () => str_contains($this->pipelineStatus($client), 'terminées'),
+            'the steps to be finished',
         );
 
         $this->assertSame($expected, $this->script($client, 'return window.__posted;'));
-        $this->assertFalse((bool) $client->executeScript('return document.getElementById("data-pipeline-run-all").disabled;'));
+        $this->assertFalse((bool) $client->executeScript('return document.getElementById("run-all-button").disabled;'));
     }
 
     #[Test]
@@ -76,13 +76,13 @@ final class DataPipelineTest extends AbstractBrowserTestCase
 
         $this->waitUntil(
             $client,
-            fn () => str_contains($this->pipelineStatus($client), 'arrêtée'),
-            'the pipeline to stop',
+            fn () => str_contains($this->pipelineStatus($client), 'Arrêt'),
+            'the chain to stop',
         );
 
         $posted = $this->script($client, 'return window.__posted;');
         $this->assertContains('update_pokemons', $posted);
-        $this->assertNotContains('calculate_pokemon_availabilities', $posted);
+        $this->assertNotContains('update_regional_dex_numbers', $posted);
         $this->assertStringContainsString('Mise à jour des pokémons', $this->pipelineStatus($client));
     }
 
@@ -108,7 +108,7 @@ final class DataPipelineTest extends AbstractBrowserTestCase
     private function pipelineStatus(Client $client): string
     {
         /** @psalm-suppress MixedAssignment */
-        $text = $client->executeScript('return document.getElementById("data-pipeline-status").textContent;');
+        $text = $client->executeScript('return document.getElementById("run-all-status").textContent;');
 
         return \is_string($text) ? $text : '';
     }
@@ -121,16 +121,16 @@ final class DataPipelineTest extends AbstractBrowserTestCase
         $user->addAdminRole();
         $this->loginUser($client, $user);
 
-        $client->request('GET', '/fr/istration/data_pipeline');
+        $client->request('GET', '/fr/istration/update_data');
 
         return $client;
     }
 
     private function runAll(Client $client): void
     {
-        $client->executeScript('document.getElementById("data-pipeline-run-all").scrollIntoView({block: "center"}); document.getElementById("data-pipeline-run-all").click();');
+        $client->executeScript('document.getElementById("run-all-button").scrollIntoView({block: "center"}); document.getElementById("run-all-button").click();');
 
         $message = $this->answerConfirmModal($client, '.confirm-modal-ok');
-        $this->assertStringContainsString('11 étapes', $message);
+        $this->assertStringContainsString('4 étapes', $message);
     }
 }

@@ -87,6 +87,19 @@ class ActionPipelineService
     }
 
     /**
+     * The steps of one admin page, in the order they have to be run.
+     *
+     * @return list<PipelineStep>
+     */
+    public function stepsOf(string $page): array
+    {
+        return array_values(array_filter(
+            $this->steps(),
+            static fn (PipelineStep $step): bool => $step->page === $page,
+        ));
+    }
+
+    /**
      * The admin page whose translations describe the action.
      */
     private static function page(string $type, string $name): string
