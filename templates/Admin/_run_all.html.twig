@@ -1,0 +1,22 @@
+{% if steps|length > 1 %}
+  <div
+    id="run-all"
+    class="d-flex align-items-center flex-wrap gap-3 px-4 pt-5 pb-3"
+    data-message-running="{{ 'admin.actions.run_all.running'|trans }}"
+    data-message-done="{{ 'admin.actions.run_all.done'|trans }}"
+    data-message-failed="{{ 'admin.actions.run_all.failed'|trans }}"
+  >
+    <button
+      type="button"
+      id="run-all-button"
+      class="btn btn-primary"
+      data-confirm-message="{{ 'admin.actions.run_all.confirm'|trans({'count': steps|length}) }}"
+      data-confirm-dismiss
+    >
+      <i class="bi bi-play-fill"></i> {{ 'admin.actions.run_all.cta'|trans }}
+    </button>
+    <span id="run-all-status" class="text-body-secondary" role="status" aria-live="polite"></span>
+  </div>
+{% else %}
+  <div class="pt-5"></div>
+{% endif %}

@@ -42,6 +42,22 @@ final class ActionPipelineServiceTest extends TestCase
     }
 
     #[Test]
+    public function stepsOfKeepsTheStepsOfOnePageInOrder(): void
+    {
+        $steps = $this->service([
+            ['type' => 'calculate', 'name' => 'dex_availabilities', 'depends_on' => ['update:games_availabilities']],
+            ['type' => 'update', 'name' => 'games_availabilities', 'depends_on' => []],
+            ['type' => 'update', 'name' => 'labels', 'depends_on' => []],
+            ['type' => 'calculate', 'name' => 'pokemon_availabilities', 'depends_on' => ['calculate:dex_availabilities']],
+        ])->stepsOf('calculate_data');
+
+        $this->assertSame(
+            ['dex_availabilities', 'pokemon_availabilities'],
+            array_map(static fn (PipelineStep $step): string => $step->name, $steps),
+        );
+    }
+
+    #[Test]
     public function stepsKeepTheCatalogOrderWithoutDependencies(): void
     {
         $steps = $this->service([

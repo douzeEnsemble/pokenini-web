@@ -533,6 +533,7 @@ admin:
 
   actions:
     update_availabilities:
+      title: "Update availabilities' data"
       games_availabilities:
         title: "Update games' availabilities"
         item: "Games' availabilities"
@@ -549,6 +550,7 @@ admin:
         cta: "Update!"
         description: "Resyncs which Pokémon are available in each collection from the Google Sheets source."
     update_data:
+      title: "Update data"
       labels:
         title: "Update labels"
         cta: "Update!"
@@ -594,17 +596,16 @@ admin:
       variant_forms:
         item: "Variant forms"
 
-    data_pipeline:
-      title: "Data pipeline"
-      intro: "Every update and calculation, in the order they have to be run. Each step only starts if the previous one ended without error."
+    run_all:
+      cta: "Run everything"
+      confirm: "Run the {count} steps of this tab one after the other? This page has to stay open for the chain to go on."
       depends_on: "After:"
-      run_all: "Run everything"
-      run_all_confirm: "Run the {count} steps one after the other? This tab has to stay open for the chain to go on."
       running: "Step {current}/{total}: {name}"
-      done: "Pipeline finished."
-      failed: "Pipeline stopped at step \"{name}\"."
+      done: "All steps are done."
+      failed: "Stopped at step \"{name}\"."
 
     calculate_data:
+      title: "Calculate data"
       game_bundles_availabilities:
         title: "Calculate game bundles' availabilities"
         item: "Bundles' availabilities"

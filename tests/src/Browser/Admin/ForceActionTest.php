@@ -30,7 +30,7 @@ final class ForceActionTest extends AbstractBrowserTestCase
         $user->addAdminRole();
         $this->loginUser($client, $user);
 
-        $client->request('GET', '/fr/istration/data_pipeline');
+        $client->request('GET', '/fr/istration/update_data');
 
         // Sentinel wiped out by any real page load (navigation destroys the JS context), unlike
         // the `data-updated-state` attribute which can't distinguish "no navigation happened" from
@@ -63,7 +63,7 @@ final class ForceActionTest extends AbstractBrowserTestCase
         $user->addAdminRole();
         $this->loginUser($client, $user);
 
-        $client->request('GET', '/fr/istration/data_pipeline');
+        $client->request('GET', '/fr/istration/update_data');
 
         $button = $client->findElement(WebDriverBy::cssSelector('#update_games_collections_and_dex button.admin-item-cta'));
         $client->executeScript('arguments[0].scrollIntoView({block: "center", inline: "nearest"});', [$button]);

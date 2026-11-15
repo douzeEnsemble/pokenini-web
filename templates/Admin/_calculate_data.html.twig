@@ -1,0 +1,9 @@
+{% import "Admin/_macros.html.twig" as admin %}
+
+{% include 'Admin/_run_all.html.twig' %}
+
+<div class="row px-4 pb-5">
+  {% for step in steps %}
+    {{ admin.action('calculate_data', step.type, step.name, step.icon, updatedItem, updatedAction, updatedState, actionLogsData, step.dependsOnTitleKeys) }}
+  {% endfor %}
+</div>

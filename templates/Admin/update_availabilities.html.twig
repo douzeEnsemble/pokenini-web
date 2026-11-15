@@ -25,10 +25,10 @@
     <h1 class="text-center">{{ 'title.admin'|trans }}</h1>
   </div>
   <div class="col-md-3 sidebar-column" id="admin-sidebar">
-    {% include 'Admin/_tabs.html.twig' with {'active': 'data_pipeline'} %}
+    {% include 'Admin/_tabs.html.twig' with {'active': 'update_availabilities'} %}
   </div>
   <div id="admin-main" class="sidebar-main col-md-9">
-    {% include 'Admin/_data_pipeline.html.twig' %}
+    {% include 'Admin/_update_availabilities.html.twig' %}
   </div>
 </div>
 {% endblock %}
@@ -46,7 +46,7 @@
       watchActionLogToggles();
       watchForceConfirm();
       watchPendingActions();
-      watchDataPipeline();
+      watchRunAll();
     })();
   </script>
 {% endblock %}

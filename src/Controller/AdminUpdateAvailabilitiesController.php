@@ -11,20 +11,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/istration')]
-final class AdminDataPipelineController extends AbstractController
+final class AdminUpdateAvailabilitiesController extends AbstractController
 {
     public function __construct(
         private readonly ActionPipelineService $pipelineService,
         private readonly GetActionLogsService $getActionLogsService,
     ) {}
 
-    #[Route('/data_pipeline', methods: ['GET'], name: 'app_admin_data_pipeline')]
-    public function dataPipeline(): Response
+    #[Route('/update_availabilities', methods: ['GET'], name: 'app_admin_update_availabilities')]
+    public function updateAvailabilities(): Response
     {
         return $this->render(
-            'Admin/data_pipeline.html.twig',
+            'Admin/update_availabilities.html.twig',
             [
-                'steps' => $this->pipelineService->steps(),
+                'steps' => $this->pipelineService->stepsOf('update_availabilities'),
                 'actionLogsData' => $this->getActionLogsService->get(),
             ]
         );

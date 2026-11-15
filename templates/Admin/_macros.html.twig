@@ -99,7 +99,7 @@
   {% if dependencies is not empty %}
     <p class="admin-item-dependencies text-body-secondary small">
       <i class="bi bi-diagram-2"></i>
-      {{ 'admin.actions.data_pipeline.depends_on'|trans }}
+      {{ 'admin.actions.run_all.depends_on'|trans }}
       {{ dependencies|map(key => key|trans)|join(', ') }}
     </p>
   {% endif %}
