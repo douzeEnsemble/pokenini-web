@@ -607,6 +607,8 @@ admin:
       running: "Étape {current}/{total} : {name}"
       done: "Toutes les étapes sont terminées."
       failed: "Arrêt à l'étape « {name} »."
+      next: "Passer à la page suivante : {page}"
+      finished: "Toutes les mises à jour et tous les calculs sont terminés : le pipeline est complet."
 
     calculate_data:
       title: "Calculs des données"

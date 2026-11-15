@@ -603,6 +603,8 @@ admin:
       running: "Step {current}/{total}: {name}"
       done: "All steps are done."
       failed: "Stopped at step \"{name}\"."
+      next: "Go to the next page: {page}"
+      finished: "All updates and calculations are done: the pipeline is complete."
 
     calculate_data:
       title: "Calculate data"
