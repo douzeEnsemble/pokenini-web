@@ -65,10 +65,10 @@ final class RunAllTest extends AbstractBrowserTestCase
 
         // Once the chain is over, the link to the next page (which starts its own chain) shows up.
         $this->assertFalse((bool) $client->executeScript('return document.getElementById("run-all-next").hidden;'));
-        $this->assertStringContainsString(
-            '/istration/update_availabilities?run_all=1',
-            (string) $client->executeScript('return document.getElementById("run-all-next").href;'),
-        );
+        /** @psalm-suppress MixedAssignment */
+        $nextHref = $client->executeScript('return document.getElementById("run-all-next").href;');
+        $this->assertIsString($nextHref);
+        $this->assertStringContainsString('/istration/update_availabilities?run_all=1', $nextHref);
     }
 
     #[Test]
