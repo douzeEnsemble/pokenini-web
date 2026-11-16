@@ -5,6 +5,9 @@ on:
     branches:
       - main
   pull_request: ~
+  schedule:
+    - cron: "0 4 * * 1"
+  workflow_dispatch: ~
 
 permissions:
   contents: read
@@ -14,56 +17,19 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  composer-audit:
-    name: Composer Audit
+  audit:
+    name: Audit des dépendances
     runs-on: ubuntu-24.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Composer install
-        uses: ./.github/actions/local-composer
-      - name: Run
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ./.github/actions/local-php
+      # composer audit lit composer.lock : aucune installation nécessaire (PHP-11)
+      - name: Application
         run: composer audit
-
-  tools-composer-audit:
-    name: Tools Composer Audit (${{ matrix.tool }})
-    runs-on: ubuntu-24.04
-    strategy:
-      matrix:
-        tool:
-          - deptrac
-          - infection
-          - jsonlint
-          - php-cs-fixer
-          - phpmd
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Tool's Composer install
-        uses: ./.github/actions/tools-composer
-        with:
-          dir: ${{ matrix.tool }}
-      - name: Audit
-        shell: bash
-        run: composer audit --working-dir=tools/${{ matrix.tool }}
-
-  tools-composer-audit-with-app:
-    name: Tools Composer Audit with App (${{ matrix.tool }})
-    runs-on: ubuntu-24.04
-    strategy:
-      matrix:
-        tool:
-          - phpstan
-          - psalm
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Composer install
-        uses: ./.github/actions/local-composer
-      - name: Tool's Composer install
-        uses: ./.github/actions/tools-composer
-        with:
-          dir: ${{ matrix.tool }}
-      - name: Audit
-        shell: bash
-        run: composer audit --working-dir=tools/${{ matrix.tool }}
+      - name: Chaque outil de tools/
+        run: |
+          for lock in tools/*/composer.lock; do
+            dir=$(dirname "$lock")
+            echo "Audit de $dir"
+            composer audit --working-dir="$dir"
+          done
