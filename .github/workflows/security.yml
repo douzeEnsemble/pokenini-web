@@ -23,13 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: ./.github/actions/local-php
-      # composer audit lit composer.lock : aucune installation nécessaire (PHP-11)
+      # --locked : audite composer.lock sans rien installer (PHP-11)
       - name: Application
-        run: composer audit
+        run: composer audit --locked
       - name: Chaque outil de tools/
         run: |
           for lock in tools/*/composer.lock; do
             dir=$(dirname "$lock")
             echo "Audit de $dir"
-            composer audit --working-dir="$dir"
+            composer audit --locked --working-dir="$dir"
           done
