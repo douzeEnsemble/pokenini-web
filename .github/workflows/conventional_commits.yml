@@ -1,5 +1,6 @@
 name: Conventional commits
 
+# GIT-07 : le titre de la PR et chaque commit suivent Conventional Commits (règles : .commitlintrc.json).
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
@@ -9,7 +10,6 @@ permissions:
   pull-requests: read
 
 jobs:
-  # The title becomes the commit on main when the pull request is squash-merged
   pr-title:
     name: Titre de PR conventionnel
     runs-on: ubuntu-24.04
