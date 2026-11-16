@@ -165,3 +165,8 @@ Every test class is `final`, `@internal`, uses `#[CoversClass(...)]`, and extend
 - Commit messages and pull request titles follow [Conventional Commits](https://www.conventionalcommits.org): `type(scope): subject`, with `type` in `feat`, `fix`, `perf`, `revert`, `docs`, `style`, `refactor`, `test`, `build`, `ci`, `chore`. A breaking change is `type!:` or a `BREAKING CHANGE:` footer. Rules in `.commitlintrc.json`, checked by the `Conventional commits` workflow and, locally, by the hook enabled with `make hooks`.
 - Pull requests are rebase-merged: every commit of the PR lands on `main` as is, so each commit message must be conventional (checked by the `commits` job).
 - On every push on `main`, `release.yml` runs semantic-release: `feat` → minor, `fix` / `perf` / `build(deps)` → patch, breaking → major, anything else → no release. A release is created as a GitHub **prerelease** (staging); `make promote` in pi-projects turns it into a release (prod). It needs the `RELEASE_TOKEN` secret (fine-grained PAT, Contents: read and write on this repository).
+
+## Documentation
+
+- `doc/` — stable reference, read by humans and by agents: architecture, coding conventions, improvement backlog, dependency inventory.
+- `docs/` — dated specs and plans, one per piece of work (`YYYY-MM-DD-topic.md`).

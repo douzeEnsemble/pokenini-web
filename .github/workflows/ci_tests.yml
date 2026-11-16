@@ -28,7 +28,7 @@ env:
 
 jobs:
   unit-tests:
-    name: Unit Tests
+    name: Tests unitaires
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -40,7 +40,7 @@ jobs:
           docker compose exec -T php php vendor/bin/phpunit tests/src/Unit --exclude-group="time-testing"
 
   integration-tests:
-    name: Integration Tests
+    name: Tests d'intégration
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -52,7 +52,7 @@ jobs:
           docker compose exec -T php php vendor/bin/phpunit tests/src/Integration --exclude-group="time-testing"
 
   browser-tests-chrome:
-    name: Browser Tests (Chrome)
+    name: Tests navigateur (Chrome)
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -67,7 +67,7 @@ jobs:
             -T php php vendor/bin/phpunit tests/src/Browser --exclude-group="time-testing"
 
   browser-tests-firefox:
-    name: Browser Tests (Firefox)
+    name: Tests navigateur (Firefox)
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -81,8 +81,8 @@ jobs:
             -e PANTHER_BROWSER_NAME=firefox \
             -T php php vendor/bin/phpunit tests/src/Browser --exclude-group="time-testing"
 
-  measures:
-    name: Measures (Coverage & Mutation Testing)
+  coverage:
+    name: Tests unitaires + couverture
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -95,9 +95,32 @@ jobs:
             -e XDEBUG_MODE=coverage \
             -T php php vendor/bin/phpunit \
             --exclude-testsuite="Browser Test Suite" \
-            --coverage-clover=coverage.xml \
+            --coverage-clover=build/coverage/coverage.xml \
             --coverage-xml=build/coverage/coverage-xml \
             --log-junit=build/coverage/junit.xml
+      - name: Measures / Coverage threshold (100 %)
+        run: docker compose exec -T php php tools/coverage/coverage.php build/coverage/coverage.xml 100 true
+      - name: Measures / Upload coverage
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: coverage-report
+          path: build/coverage/
+          retention-days: 14
+
+  mutation-testing:
+    name: Mutation testing (logique pure)
+    needs: coverage
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Prepare
+        uses: ./.github/actions/docker-compose
+      - name: Measures / Download coverage
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: coverage-report
+          path: build/coverage/
       - name: Measures / Composer install Infection
         shell: bash
         run: docker compose exec -T php composer install --working-dir=tools/infection --prefer-dist --no-progress --no-interaction

@@ -29,7 +29,7 @@ env:
 
 jobs:
   docker-compose-lint:
-    name: Docker Compose Linter
+    name: Linter Docker Compose
     runs-on: ubuntu-24.04
     container:
       image: zavoloklom/dclint:3.1.0-alpine
@@ -40,7 +40,7 @@ jobs:
       - run: /bin/dclint -r .
 
   dotenv-lint:
-    name: DotEnv Linter
+    name: Linter DotEnv
     runs-on: ubuntu-24.04
     steps:
       - name: Check out code
@@ -55,7 +55,7 @@ jobs:
           dotenv_linter_flags: --recursive
 
   dockerfile-lint:
-    name: Dockerfile Linter
+    name: Linter Dockerfile
     runs-on: ubuntu-24.04
     steps:
       - name: Check out code
@@ -70,7 +70,7 @@ jobs:
           dockerfile: ./.docker/php/Dockerfile
 
   moco-refs:
-    name: Moco References
+    name: Références des mocks
     runs-on: ubuntu-24.04
     steps:
       - name: Check out code

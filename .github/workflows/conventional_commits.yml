@@ -11,6 +11,7 @@ permissions:
 jobs:
   # The title becomes the commit on main when the pull request is squash-merged
   pr-title:
+    name: Titre de PR conventionnel
     runs-on: ubuntu-24.04
     steps:
       - uses: amannn/action-semantic-pull-request@2252a14e810aa9b85c2d560bd7070c802206ecf6 # v6
@@ -31,6 +32,7 @@ jobs:
             chore
 
   commits:
+    name: Commits conventionnels
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
