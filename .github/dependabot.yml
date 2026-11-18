@@ -76,7 +76,7 @@ updates:
       prefix: "build"
       include: "scope"
     ignore:
-      # PHP bumps also touch composer.json and tools/*/composer.json: see infra_updates.yml
+      # PHP bumps also touch composer.json and tools/*/composer.json: see infra-updates.yml
       - dependency-name: "php"
     groups:
       docker:
