@@ -324,7 +324,7 @@ editorconfig-linter:
 .PHONY: jsonlint
 jsonlint: ## Execute jsonlint
 jsonlint: tools/jsonlint/vendor/bin/jsonlint
-	grep -RhoP '"[A-Za-z0-9]+"(?=\s*:)' tests/resources \
+	grep -RhoP --exclude-dir=axe '"[A-Za-z0-9]+"(?=\s*:)' tests/resources \
 		| grep -vE '"[a-z0-9_]+"' \
 		| sort -u \
 		| tee /dev/stderr \

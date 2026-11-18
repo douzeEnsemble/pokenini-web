@@ -1,5 +1,6 @@
 {
     "Exclude": [
-        "tools/.*/.*\\.phar$"
+        "tools/.*/.*\\.phar$",
+        "tests/resources/axe/"
     ]
 }

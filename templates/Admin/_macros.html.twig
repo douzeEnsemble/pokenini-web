@@ -300,7 +300,7 @@
   {% set progressColor = 'bg-success' %}
 {% endif %}
 
-<div class="progress" role="progressbar" aria-valuenow="{{ elapsedSeconds }}" aria-valuemin="0" aria-valuemax="{{ otherActionData.executionTime }}">
+<div class="progress" role="progressbar" aria-label="{{ elapsedPercent|round }}%" aria-valuenow="{{ elapsedSeconds }}" aria-valuemin="0" aria-valuemax="{{ otherActionData.executionTime }}">
   <div class="progress-bar progress-bar-striped progress-bar-animated {{ progressColor }}" style="width: {{ elapsedPercent|round }}%" title="{{ elapsedPercent|round }}%">
     {{ elapsedPercent|round }}%
   </div>
