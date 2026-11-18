@@ -172,6 +172,13 @@ final class FooTest extends WebTestCase {}
 - Une exception se déclare **règle par règle** dans `DISABLED_RULES`, pour la page concernée, avec sa raison en commentaire. Jamais pour toute la page.
 - Le nom accessible d'un contrôle commence par son texte visible (WCAG 2.5.3) : `aria-label="{{ libellé court }} : {{ libellé long }}"`. Un lien d'image qui double le lien du titre à côté est retiré de l'arbre d'accessibilité (`aria-hidden="true" tabindex="-1"`).
 
+### Clavier et focus (A11Y-03)
+
+- `KeyboardTest` : lien d'évitement, offcanvas des filtres (focus gardé à l'intérieur, Échap, focus rendu au bouton), panneau « Plus », légende de la barre de progression (Entrée ou Espace l'ouvre, Échap la ferme). Un nouveau composant interactif (dialogue, menu, popover) y ajoute son test.
+- `FocusIndicatorTest` : chaque arrêt de la touche Tab montre un contour plein d'au moins 2 px, à 3:1 au moins contre la couleur qui l'entoure, en thème clair et sombre. Firefox sans gestionnaire de fenêtres peut ne pas donner le focus à la page : le test se saute alors, il ne passe pas à vide.
+- Un `div` ou un `span` qui joue un bouton (`role="button"`) n'est pas activé par Entrée ni Espace : `watchPopoverTriggers()` (`main.js`) le fait pour les popovers. Préférer un vrai `<button>`.
+- Le contour vient de `--pk-focus-color` (`base.css`), réglé par thème. Sur les couleurs d'état de capture, que l'API fournit dans toutes les teintes, le contour est à deux tons (noir puis blanc) : aucune couleur unique n'y tient 3:1.
+
 ### Fixtures et données de test
 
 - Fixtures HTTP : JSON dans `tests/resources/moco/Back/` (format Moco), organisées par domaine (`/album/`, `/dex/`, `/election/`)

@@ -105,19 +105,54 @@ html {
     padding-bottom: calc(var(--nav-offset) + 0.5rem);
 }
 
-/* Visible keyboard focus: this outline applies everywhere except where
-    Bootstrap deliberately replaces it with its own box-shadow ring
-    (.btn:focus-visible, .btn-close:focus, form controls). The skip-link
-    target #main-container is focused programmatically only, so it has none.
-    Offset is negative inside album cases: they use content-visibility, whose
-    paint containment would clip an outer outline. */
+/* Visible keyboard focus: one solid outline everywhere. The skip-link target
+    #main-container is focused programmatically only, so it has none. Offset is
+    negative inside album cases: they use content-visibility, whose paint
+    containment would clip an outer outline. The colour holds 3:1 on the surface
+    of each theme (#0d6efd on white 4.5:1, #6ea8fe on the dark one 6.4:1). */
+:root {
+    --pk-focus-color: #0d6efd;
+}
+[data-bs-theme="dark"] {
+    --pk-focus-color: #6ea8fe;
+}
 :focus-visible {
-    outline: 2px solid var(--bs-primary);
+    outline: 2px solid var(--pk-focus-color);
     outline-offset: 2px;
+}
+/* Bootstrap replaces the outline on these controls with a 25 % blue ring: 1.4:1 on
+    white, far under the 3:1 of a focus indicator (WCAG 1.4.11, A11Y-03). */
+.btn:focus-visible,
+.btn-check:focus-visible + .btn,
+.nav-link:focus-visible,
+.btn-close:focus,
+.page-link:focus-visible,
+.accordion-button:focus-visible,
+.dropdown-item:focus-visible,
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    outline: 2px solid var(--pk-focus-color);
+    outline-offset: 2px;
+    box-shadow: none;
 }
 .album-case :focus-visible,
 .election-card :focus-visible {
     outline-offset: -2px;
+}
+/* On the catch-state colours (set by the API, any hue) no single colour holds 3:1:
+    two tones, black then white, so one of them stands out whatever the surface
+    (WCAG technique C40). Inside an album case the rings are drawn inward. */
+[class*="catch-state-"] :focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px #fff;
+}
+.album-case [class*="catch-state-"] :focus-visible,
+.album-case[class*="catch-state-"] :focus-visible,
+.album-case-catch-state :focus-visible {
+    outline-offset: -2px;
+    box-shadow: inset 0 0 0 4px #fff;
 }
 
 /* Fixed navbar: keep the device's bottom inset inside it, and keep toasts
