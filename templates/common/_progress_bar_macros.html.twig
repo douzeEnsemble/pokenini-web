@@ -31,10 +31,19 @@
 {% if report.total %}
     <p class="catch-state-summary mb-1">{{ summary }}</p>
 {% endif %}
+{# The name starts with the text the segments show (WCAG 2.5.3, label in name). #}
+{% set visibleTexts = [] %}
+{% for line in report.detail %}
+    {% if line.slug is same as('no') or line.slug is same as('yes') %}
+        {% set count = line.slug is same as('no') ? report.totalUncaught : line.count %}
+        {% set completion = report.total ? (100 * count / report.total)|round(2) : 0 %}
+        {% set visibleTexts = visibleTexts|merge([(line.names|localized) ~ ' ' ~ completion ~ '%']) %}
+    {% endif %}
+{% endfor %}
 <div class="progress mb-2"
     role="button"
     tabindex="0"
-    aria-label="{{ summary }}"
+    aria-label="{{ visibleTexts|join(' ') }} : {{ summary }}"
     data-bs-toggle="popover"
     data-bs-html="true"
     data-bs-title="{{ 'title.report'|trans }}"

@@ -165,6 +165,13 @@ final class FooTest extends WebTestCase {}
 - `final` : toujours présent
 - Héritage : `TestCase` (Unit), `WebTestCase` (Integration), `AbstractBrowserTestCase` (Browser)
 
+### Accessibilité (A11Y-02)
+
+- `tests/src/Browser/Accessibility/AccessibilityTest.php` passe chaque page de la liste à **axe-core** (WCAG 2.2 A et AA), dans le thème clair **et** sombre, sur Chrome et Firefox. Une nouvelle page, ou un état qui change le DOM, s'ajoute à `pageProvider()`.
+- axe est injecté comme script de page, et son résultat est lu dans le DOM : en Firefox, un script WebDriver ne voit pas les globaux de la page. La copie d'axe-core est dans `tests/resources/axe/` (version et mise à jour : son `README.md`).
+- Une exception se déclare **règle par règle** dans `DISABLED_RULES`, pour la page concernée, avec sa raison en commentaire. Jamais pour toute la page.
+- Le nom accessible d'un contrôle commence par son texte visible (WCAG 2.5.3) : `aria-label="{{ libellé court }} : {{ libellé long }}"`. Un lien d'image qui double le lien du titre à côté est retiré de l'arbre d'accessibilité (`aria-hidden="true" tabindex="-1"`).
+
 ### Fixtures et données de test
 
 - Fixtures HTTP : JSON dans `tests/resources/moco/Back/` (format Moco), organisées par domaine (`/album/`, `/dex/`, `/election/`)

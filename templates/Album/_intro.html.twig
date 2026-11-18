@@ -46,7 +46,7 @@
                 type="button"
                 class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-read-action"
                 title="{{ (('album.intro.action.mode.read'))|trans }}"
-                aria-label="{{ 'album.intro.action.mode.read'|trans }}"
+                aria-label="{{ 'album.intro.action.short.read'|trans }} : {{ 'album.intro.action.mode.read'|trans }}"
                 data-bs-toggle="tooltip"
                 hidden
             >
@@ -57,7 +57,7 @@
                 type="button"
                 class="list-group-item list-group-item-action flex-fill list-group-item-primary album-all-catch-state-edit-action"
                 title="{{ (('album.intro.action.mode.write'))|trans }}"
-                aria-label="{{ 'album.intro.action.mode.write'|trans }}"
+                aria-label="{{ 'album.intro.action.short.write'|trans }} : {{ 'album.intro.action.mode.write'|trans }}"
                 data-bs-toggle="tooltip"
             >
                 <i class="bi bi-pencil-square" aria-hidden="true"></i>
@@ -67,7 +67,7 @@
                 type="button"
                 class="list-group-item list-group-item-action flex-fill list-group-item-primary album-series-action"
                 title="{{ 'album.series.action'|trans }}"
-                aria-label="{{ 'album.series.action'|trans }}"
+                aria-label="{{ 'album.intro.action.short.series'|trans }} : {{ 'album.series.action'|trans }}"
                 aria-pressed="false"
                 data-bs-toggle="tooltip"
             >
@@ -81,7 +81,7 @@
             type="button"
             class="list-group-item list-group-item-action list-group-item-secondary flex-fill screenshot-mode screenshot-mode-off"
             title="{{ 'album.intro.action.screenshot.disable'|trans }}"
-            aria-label="{{ 'album.intro.action.screenshot.disable'|trans }}"
+            aria-label="{{ 'album.intro.action.short.screenshot_off'|trans }} : {{ 'album.intro.action.screenshot.disable'|trans }}"
             data-bs-toggle="tooltip"
             hidden
         >
@@ -92,7 +92,7 @@
             type="button"
             class="list-group-item list-group-item-action list-group-item-primary flex-fill screenshot-mode screenshot-mode-on"
             title="{{ 'album.intro.action.screenshot.enable'|trans }}"
-            aria-label="{{ 'album.intro.action.screenshot.enable'|trans }}"
+            aria-label="{{ 'album.intro.action.short.screenshot_on'|trans }} : {{ 'album.intro.action.screenshot.enable'|trans }}"
             data-bs-toggle="tooltip"
         >
             <i class="bi bi-camera2" aria-hidden="true"></i>
@@ -105,7 +105,7 @@
                 class="list-group-item list-group-item-action list-group-item-success flex-fill share"
                 href="{{ path('app_albumindex_index', filters|merge({ 'dexSlug': currentDexSlug, 't': trainerId, }) ) }}"
                 title="{{ 'nav.share'|trans }}"
-                aria-label="{{ 'nav.share'|trans }}"
+                aria-label="{{ 'album.intro.action.short.share'|trans }} : {{ 'nav.share'|trans }}"
                 data-bs-toggle="tooltip"
             >
                 <i class="bi bi-share" aria-hidden="true"></i>
@@ -118,7 +118,7 @@
             class="list-group-item list-group-item-action list-group-item-info flex-fill open-offcanvas"
             href="#offcanvas"
             title="{{ 'nav.open-offcanvas'|trans }}"
-            aria-label="{{ 'nav.open-offcanvas'|trans }}"
+            aria-label="{{ 'album.intro.action.short.filters'|trans }} : {{ 'nav.open-offcanvas'|trans }}"
             aria-controls="offcanvas"
             data-bs-title="{{ 'nav.open-offcanvas'|trans }}"
             data-bs-toggle="offcanvas"

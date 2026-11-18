@@ -474,8 +474,9 @@ final class CommonTest extends WebTestCase
             "20 / 37 capturés (54.1\u{00A0}%)",
             $crawler->filter('.catch-state-summary')->text()
         );
+        // The name starts with the text the segments show (label in name, WCAG 2.5.3).
         $this->assertSame(
-            "20 / 37 capturés (54.1\u{00A0}%)",
+            "Oui 54.05% Non 45.95% : 20 / 37 capturés (54.1\u{00A0}%)",
             $crawler->filter('.progress')->attr('aria-label')
         );
     }

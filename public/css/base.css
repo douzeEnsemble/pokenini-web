@@ -48,6 +48,22 @@
     --bs-btn-disabled-border-color: #6ea8fe;
 }
 
+/* Same for the outline secondary buttons: Bootstrap keeps its grey (#6c757d) on the
+    dark surface, 3.3:1. The light grey the theme uses for disabled controls (#adb5bd,
+    7.5:1), with black text once the button fills on hover or when checked. */
+[data-bs-theme="dark"] .btn-outline-secondary {
+    --bs-btn-color: #adb5bd;
+    --bs-btn-border-color: #adb5bd;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #adb5bd;
+    --bs-btn-hover-border-color: #adb5bd;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #adb5bd;
+    --bs-btn-active-border-color: #adb5bd;
+    --bs-btn-disabled-color: #adb5bd;
+    --bs-btn-disabled-border-color: #adb5bd;
+}
+
 /* link-secondary is a fixed grey (#6c757d, 3.3:1 on the dark surface) that turns
     darker still on hover. The theme's own secondary text color there (7.3:1),
     and the body color once it is pointed at. */
