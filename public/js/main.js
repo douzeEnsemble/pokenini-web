@@ -41,6 +41,25 @@ function watchMoreMenu() {
   });
 }
 
+// A popover trigger that is not a native button or link (the legend of a progress
+// bar is a role="button" div) is not clicked by Enter or Space: do it here. Escape
+// closes the open popovers, the focus staying on the trigger.
+function watchPopoverTriggers() {
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      document.querySelectorAll('[data-bs-toggle="popover"][aria-describedby]').forEach(function (trigger) {
+        bootstrap.Popover.getInstance(trigger)?.hide();
+      });
+      return;
+    }
+    const trigger = event.target.closest?.('[data-bs-toggle="popover"][role="button"]');
+    if (trigger && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      trigger.click();
+    }
+  });
+}
+
 function watchDexCategoryLinks() {
   document.querySelectorAll('.dex-category-link').forEach(function (element) {
     element.addEventListener('click', onClickDexCategoryLink);
