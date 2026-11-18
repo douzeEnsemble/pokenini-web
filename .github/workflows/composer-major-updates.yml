@@ -1,6 +1,6 @@
 name: Composer Major Updates
 
-# Complements composer_updates.yml, which stays within the current constraints.
+# Complements composer-updates.yml, which stays within the current constraints.
 # This one raises the constraints of the direct dependencies to their latest
 # version (major included) and opens one PR per composer project. It does not
 # adapt the code: if the CI of such a PR is red, the upgrade needs manual work.
@@ -89,7 +89,7 @@ jobs:
           commit-message: "build(deps): composer major updates (${{ matrix.name }})"
           title: "build(deps): composer major updates (${{ matrix.name }})"
           body: |
-            Constraints raised to the latest versions, major included, by `composer_major_updates.yml`.
+            Constraints raised to the latest versions, major included, by `composer-major-updates.yml`.
 
             The code is not adapted automatically: if the checks fail, this upgrade needs manual work.
           labels: dependencies

@@ -36,7 +36,7 @@ jobs:
 
       - name: Bump ${{ matrix.target }}
         run: |
-          printf 'Bumped by `infra_updates.yml`; the code is not adapted, a red CI means manual work is needed.\n\n' > "$RUNNER_TEMP/summary.md"
+          printf 'Bumped by `infra-updates.yml`; the code is not adapted, a red CI means manual work is needed.\n\n' > "$RUNNER_TEMP/summary.md"
           python3 scripts/infra-updates.py ${{ matrix.target }} --summary "$RUNNER_TEMP/summary.md"
 
       - name: Create Pull Request
