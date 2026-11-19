@@ -33,6 +33,13 @@
     </plugins>
 
     <issueHandlers>
+        <!-- Privacy hash (stable identifiers, not security): see PrivacyHasher -->
+        <WeakHash>
+            <errorLevel type="suppress">
+                <file name="src/Utils/PrivacyHasher.php" />
+            </errorLevel>
+        </WeakHash>
+
         <ClassMustBeFinal>
             <errorLevel type="suppress">
                 <directory name="src/Service" />
