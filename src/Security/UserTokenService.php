@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Security;
 
 use App\Exception\NoLoggedUserException;
+use App\Utils\PrivacyHasher;
 use Symfony\Bundle\SecurityBundle\Security;
 
 final class UserTokenService implements UserTokenServiceInterface
@@ -31,7 +32,7 @@ final class UserTokenService implements UserTokenServiceInterface
     {
         $user = $this->getLoggedUser();
 
-        return sha1($user->getUserIdentifier());
+        return PrivacyHasher::hash($user->getUserIdentifier());
     }
 
     #[\Override]

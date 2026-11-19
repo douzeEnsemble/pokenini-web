@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Browser;
 
 use App\Security\User;
+use App\Utils\PrivacyHasher;
 use Facebook\WebDriver\Exception\TimeoutException;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
@@ -74,7 +75,7 @@ abstract class AbstractBrowserTestCase extends PantherTestCase
     {
         $cookies = [];
         foreach ($client->getCookieJar()->all() as $cookie) {
-            $cookies[] = sprintf('%s=%s', $cookie->getName(), substr(sha1($cookie->getValue()), 0, 8));
+            $cookies[] = sprintf('%s=%s', $cookie->getName(), substr(PrivacyHasher::hash($cookie->getValue()), 0, 8));
         }
 
         return implode(', ', $cookies);
