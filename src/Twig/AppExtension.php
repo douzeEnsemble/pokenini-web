@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Service\AppVersionService;
+use App\Utils\PrivacyHasher;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -45,7 +46,7 @@ final class AppExtension extends AbstractExtension
 
     public function sha1(string $value): string
     {
-        return sha1($value);
+        return PrivacyHasher::hash($value);
     }
 
     public function htmlNl2br(string $value): string
