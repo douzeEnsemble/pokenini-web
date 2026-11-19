@@ -13,7 +13,6 @@ final class PrivacyHasher
 {
     public static function hash(string $value): string
     {
-        /** @psalm-suppress WeakHash */
         return sha1($value);
     }
 }
