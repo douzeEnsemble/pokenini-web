@@ -185,6 +185,7 @@ parameters:
       - AppDTO
       - AppException
       - AppService
+      - AppUtils
       - KnpUOAuth2ClientBundle
       - LeagueOAuth2
       - Logger
@@ -217,6 +218,7 @@ parameters:
       - SymfonyValidator
     AppTwig:
       - AppService
+      - AppUtils
       - SymfonyContractsTranslation
       - SymfonyHttpFoundation
       - Twig

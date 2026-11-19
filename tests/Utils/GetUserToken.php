@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Utils;
 
 use App\Security\User;
+use App\Utils\PrivacyHasher;
 use League\OAuth2\Client\Token\AccessToken;
 
 final class GetUserToken
@@ -23,12 +24,12 @@ final class GetUserToken
             $providerName,
             new AccessToken(
                 [
-                    'access_token' => sha1($identifier),
+                    'access_token' => PrivacyHasher::hash($identifier),
                     'expires_in' => 999999,
-                    'refresh_token' => md5($identifier),
+                    'refresh_token' => PrivacyHasher::hash($identifier),
                 ]
             ),
-            sha1($identifier),
+            PrivacyHasher::hash($identifier),
         );
     }
 }
