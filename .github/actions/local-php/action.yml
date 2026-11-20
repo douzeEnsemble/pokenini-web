@@ -11,7 +11,7 @@ runs:
     - name: Setup PHP
       uses: shivammathur/setup-php@fd40a155f071e5750f84893bd40a9db4be44f605 # verbose
       with:
-        php-version: "8.5"
+        php-version: "8.6"
         extensions: apcu, ctype, dom, iconv, intl, json, libxml, mbstring, simplexml, tokenizer, xml, xmlwriter, zip
         tools: none
         coverage: none
