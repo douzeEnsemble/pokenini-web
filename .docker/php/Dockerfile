@@ -9,16 +9,20 @@ ENV XDEBUG_MODE=off
 
 RUN docker-php-ext-enable opcache 2>/dev/null || true
 
-# hadolint ignore=DL3018,SC2086
-RUN apk add --no-cache $PHPIZE_DEPS \
-	&& pecl install redis \
-	&& docker-php-ext-enable redis \
-	&& apk del $PHPIZE_DEPS
-
-	# hadolint ignore=DL3018,SC2086
-RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
-	&& pecl install apcu \
-	&& docker-php-ext-enable apcu \
+# PHP 8.6 images no longer ship pecl, and the released redis/apcu do not build on 8.6 yet:
+# build them from pinned upstream commits. Back to pecl once releases support PHP 8.6.
+ARG PHPREDIS_REF=a6ce1e60b3e81ce3b25174aa5aaefd5590dc64fd
+ARG APCU_REF=66300e28647c
+# hadolint ignore=DL3003,DL3018,SC2086
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS git \
+	&& git clone -q https://github.com/phpredis/phpredis.git /tmp/phpredis \
+	&& git -C /tmp/phpredis checkout -q "$PHPREDIS_REF" \
+	&& (cd /tmp/phpredis && phpize && ./configure && make -j"$(nproc)" && make install) \
+	&& git clone -q https://github.com/krakjoe/apcu.git /tmp/apcu \
+	&& git -C /tmp/apcu checkout -q "$APCU_REF" \
+	&& (cd /tmp/apcu && phpize && ./configure && make -j"$(nproc)" && make install) \
+	&& docker-php-ext-enable redis apcu \
+	&& rm -rf /tmp/phpredis /tmp/apcu \
 	&& apk del .build-deps
 
 # hadolint ignore=DL3018
@@ -31,6 +35,12 @@ RUN apk add --no-cache \
 RUN apk add --no-cache \
 	icu-dev \
 	&& docker-php-ext-install intl
+
+# mbstring is no longer bundled in the PHP 8.6 images
+# hadolint ignore=DL3018
+RUN apk add --no-cache \
+	oniguruma-dev \
+	&& docker-php-ext-install mbstring
 
 # hadolint ignore=DL3018,DL4006,SC2015
 RUN php -m | grep -qi iconv \
@@ -57,10 +67,15 @@ ENV APP_ENV=dev
 
 COPY --link .docker/php/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/20-app.dev.ini
 
-# hadolint ignore=DL3018,SC2086
-RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS linux-headers \
-	&& pecl install xdebug \
+# No pecl on PHP 8.6 images: build xdebug from its first release supporting 8.6.
+ARG XDEBUG_REF=3.6.0alpha1
+# hadolint ignore=DL3003,DL3018,SC2086
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS linux-headers git \
+	&& git clone -q https://github.com/xdebug/xdebug.git /tmp/xdebug \
+	&& git -C /tmp/xdebug checkout -q "$XDEBUG_REF" \
+	&& (cd /tmp/xdebug && phpize && ./configure --enable-xdebug && make -j"$(nproc)" && make install) \
 	&& docker-php-ext-enable xdebug \
+	&& rm -rf /tmp/xdebug \
 	&& apk del .build-deps
 
 COPY --link \
