@@ -5,6 +5,7 @@
         "php": ">=8.6.0",
         "ext-apcu": "*",
         "ext-ctype": "*",
+        "ext-filter": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-zip": "*",
