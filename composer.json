@@ -33,9 +33,9 @@
         "symfony/twig-bundle": "8.1.*",
         "symfony/validator": "8.1.*",
         "symfony/yaml": "8.1.*",
-        "twig/extra-bundle": "^3.29.0",
-        "twig/intl-extra": "^3.30.0",
-        "twig/twig": "^3.30.0",
+        "twig/extra-bundle": "^3.31.0",
+        "twig/intl-extra": "^3.31.0",
+        "twig/twig": "^3.31.1",
         "wohali/oauth2-discord-new": "^1.2.1"
     },
     "require-dev": {
