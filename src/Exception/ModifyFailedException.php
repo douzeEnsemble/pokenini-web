@@ -6,5 +6,6 @@ namespace App\Exception;
 
 final class ModifyFailedException extends \RuntimeException
 {
+    #[\Override]
     protected $message = 'Fail to modify resources';
 }
