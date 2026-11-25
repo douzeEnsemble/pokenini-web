@@ -6,5 +6,6 @@ namespace App\Exception;
 
 final class InvalidJsonException extends \RuntimeException
 {
+    #[\Override]
     protected $message = 'Json is invalid';
 }
