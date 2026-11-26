@@ -11,6 +11,11 @@ final class PokemonImage
         private readonly string $contentType,
     ) {}
 
+    /**
+     * Raw bytes of an image fetched from the resources server, never rendered as HTML.
+     *
+     * @psalm-taint-escape html
+     */
     public function getContent(): string
     {
         return $this->content;
