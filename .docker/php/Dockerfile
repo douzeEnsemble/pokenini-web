@@ -79,7 +79,7 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS linux-headers git \
 	&& apk del .build-deps
 
 COPY --link \
-	--from=ghcr.io/symfony-cli/symfony-cli:5.22.2 \
+	--from=ghcr.io/symfony-cli/symfony-cli:5.23.0 \
 	/usr/local/bin/symfony /usr/local/bin/symfony
 
 ## < Panther / Selenium
