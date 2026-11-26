@@ -29,6 +29,9 @@ final class CommonTest extends AbstractBrowserTestCase
 
         $client->request('GET', '/fr');
 
+        // tarteaucitron injects its panel asynchronously, after the page is loaded
+        $client->waitFor('#tarteaucitron');
+
         $this->assertSelectorIsNotVisible('#tarteaucitron');
 
         $client->executeScript("document.querySelector('#navbarNav .cookie-manager button').click();");
