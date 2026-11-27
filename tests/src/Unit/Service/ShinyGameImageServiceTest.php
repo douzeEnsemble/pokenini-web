@@ -56,6 +56,30 @@ final class ShinyGameImageServiceTest extends TestCase
     }
 
     #[Test]
+    public function getPng(): void
+    {
+        $service = new ShinyGameImageService(
+            $this->createStub(LoggerInterface::class),
+            $this->getClient('https://resources.domain/pokemon/big/regular/ivysaur.webp', 'regular', ['content-type' => ['image/png']]),
+            self::URL,
+        );
+
+        $this->assertSame('image/png', $service->get('ivysaur', false)?->getContentType());
+    }
+
+    #[Test]
+    public function getWithAnotherContentType(): void
+    {
+        $service = new ShinyGameImageService(
+            $this->createStub(LoggerInterface::class),
+            $this->getClient('https://resources.domain/pokemon/big/regular/ivysaur.webp', 'regular', ['content-type' => ['text/html']]),
+            self::URL,
+        );
+
+        $this->assertSame('application/octet-stream', $service->get('ivysaur', false)?->getContentType());
+    }
+
+    #[Test]
     public function getWithoutContentType(): void
     {
         $service = new ShinyGameImageService(
