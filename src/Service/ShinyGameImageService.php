@@ -30,7 +30,7 @@ class ShinyGameImageService
         try {
             $response = $this->client->request('GET', $url);
             $content = $response->getContent();
-            $contentType = $response->getHeaders()['content-type'][0] ?? self::DEFAULT_CONTENT_TYPE;
+            $contentType = $this->getContentType($response->getHeaders()['content-type'][0] ?? '');
         } catch (ExceptionInterface $exception) {
             $this->logger->warning('Failed to fetch the shiny game image', ['exception' => $exception]);
 
@@ -38,5 +38,18 @@ class ShinyGameImageService
         }
 
         return new PokemonImage($content, $contentType);
+    }
+
+    /**
+     * The content type is sent back to the browser as a header: only known image types are kept,
+     * as literals, so a value from the resources server never reaches the response.
+     */
+    private function getContentType(string $contentType): string
+    {
+        return match ($contentType) {
+            'image/webp' => 'image/webp',
+            'image/png' => 'image/png',
+            default => self::DEFAULT_CONTENT_TYPE,
+        };
     }
 }
